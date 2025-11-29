@@ -2,41 +2,729 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>CurioCity - 个人主页</title>
+  <title>Aleph · 个人网站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Aleph 的个人主页与作品集" />
+
   <style>
+    /* ====== 基础配色，可按喜好调整 ====== */
+    :root {
+      --bg: #050816;
+      --bg-elevated: rgba(15,23,42,0.9);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.15);
+      --accent-strong: #7c3aed;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+      --nav-height: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 720px;
-      margin: 40px auto;
-      padding: 0 16px;
-      line-height: 1.6;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.22), transparent 55%),
+        linear-gradient(135deg, #020617, #020617 40%, #020617);
+      min-height: 100vh;
     }
-    h1 {
-      margin-bottom: 0;
-    }
-    .subtitle {
-      color: #666;
-      margin-top: 4px;
-    }
+
     a {
+      color: inherit;
       text-decoration: none;
     }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ====== 顶部导航 ====== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(15,23,42,0.88), rgba(15,23,42,0.6), transparent);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+    }
+
+    .navbar-inner {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #38bdf8 40%, #1d4ed8 80%);
+      box-shadow: 0 0 18px rgba(56,189,248,0.5);
+    }
+
+    .logo-text-main {
+      font-size: 17px;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-link {
+      position: relative;
+      color: var(--text-muted);
+      padding-bottom: 2px;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      font-size: 12px;
+      color: var(--text-muted);
+      background: rgba(15,23,42,0.9);
+    }
+
+    /* 手机端隐藏/折叠导航（简单版） */
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ====== Hero 区 ====== */
+    .hero {
+      padding: 56px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(56,189,248,0.3);
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      margin-top: 18px;
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-top: 14px;
+      max-width: 480px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-primary {
+      border: none;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #38bdf8, #6366f1, #a855f7);
+      color: #0b1220;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(37,99,235,0.6);
+    }
+
+    .btn-outline {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .hero-side-card {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.3), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(129,140,248,0.55), transparent 60%),
+                  var(--bg-elevated);
+      padding: 16px 18px 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e5e7eb;
+    }
+
+    .hero-side-tagline {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .timeline {
+      margin-top: 16px;
+      padding-left: 0;
+      list-style: none;
+      border-left: 1px dashed rgba(148,163,184,0.7);
+    }
+
+    .timeline-item {
+      padding-left: 14px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -4.5px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #38bdf8, #a855f7);
+      box-shadow: 0 0 10px rgba(56,189,248,0.8);
+    }
+
+    .timeline-title {
+      font-size: 13px;
+    }
+
+    .timeline-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ====== 通用 section 样式 ====== */
+    section {
+      padding: 32px 0 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 20px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ====== 关于我 ====== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(129,140,248,0.18), transparent 55%),
+                  rgba(15,23,42,0.92);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.7);
+    }
+
+    .card-title {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.55);
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    /* ====== 项目卡片 ====== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-pill {
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(56,189,248,0.4);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    /* ====== 博客列表 ====== */
+    .post-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(0,1.4fr);
+      gap: 14px;
+    }
+
+    .post-item {
+      font-size: 13px;
+    }
+
+    .post-title {
+      font-size: 13px;
+    }
+
+    .post-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .post-list {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    /* ====== 联系方式 ====== */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pill-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(56,189,248,0.6);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .pill-accent-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .footer {
+      padding: 18px 0 26px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
-  <h1>Hi，我是 XXX</h1>
-  <p class="subtitle">开发者 / 学习者 / 好奇心重度患者</p>
+  <!-- 顶部导航 -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#top" class="logo">
+        <div class="logo-mark"></div>
+        <div>
+          <div class="logo-text-main">CurioCity</div>
+          <div class="logo-text-sub">keep learning · keep shipping</div>
+        </div>
+      </a>
 
-  <h2>关于我</h2>
-  <p>这里写一点你的介绍，比如会什么语言，最近在做什么项目。</p>
+      <nav class="nav-links">
+        <a href="#about" class="nav-link">关于我</a>
+        <a href="#projects" class="nav-link">项目</a>
+        <a href="#blog" class="nav-link">博客</a>
+        <a href="#contact" class="nav-link">联系</a>
+        <span class="pill">个人网站 · v1</span>
+      </nav>
+    </div>
+  </header>
 
-  <h2>项目 / 作品</h2>
-  <ul>
-    <li>项目 A – 一句话说明，用到什么技术。</li>
-    <li>项目 B – 一句话说明，用到什么技术。</li>
-  </ul>
+  <main id="top">
+    <div class="container">
 
-  <h2>联系我</h2>
-  <p>Email：<a href="mailto:you@example.com">you@example.com</a></p>
+      <!-- Hero 区 -->
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span>欢迎来到我的小宇宙</span>
+            </div>
+            <h1 class="hero-title">
+              嗨，我是 <span>你的名字</span>，<br/>
+              一个对世界充满好奇的开发者。
+            </h1>
+            <p class="hero-subtitle">
+              这里记录我在编程、AI、产品和日常生活里的探索。这个网站还在持续迭代中，
+              也许你今天看到的是 v1，但很快就会有 v2、v3……
+            </p>
+            <div class="hero-actions">
+              <a href="#projects">
+                <button class="btn-primary">看看我做过什么</button>
+              </a>
+              <a href="#contact">
+                <button class="btn-outline">联系我聊聊想法</button>
+              </a>
+            </div>
+          </div>
+
+          <aside class="hero-side-card">
+            <div class="hero-side-title">Snapshot · 个人小档案</div>
+            <div class="hero-side-tagline">写给第一次来到这里的你。</div>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-title">目前在做的事</div>
+                <div class="timeline-meta">例如：计算机/AI 学习 · 某项目开发 · 业余写博客</div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-title">感兴趣的方向</div>
+                <div class="timeline-meta">比如：Python · 多智能体仿真 · Web 前端 · 个人知识管理</div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-title">这个站想做成什么</div>
+                <div class="timeline-meta">一个可以长期打磨的“数字花园”，而不是一次性作品。</div>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 关于我 -->
+      <section id="about">
+        <div class="section-header">
+          <h2 class="section-title">关于我</h2>
+          <p class="section-subtitle">一些背景信息 + 现在的方向。</p>
+        </div>
+
+        <div class="about-grid">
+          <article class="card">
+            <h3 class="card-title">我是谁？</h3>
+            <div class="card-body">
+              <p>
+                这里写一段更正式的自我介绍：你现在的身份（学生 / 开发者 / 打工人），
+                平时主要用哪些技术栈，最近在学习什么，对什么方向最感兴趣。
+              </p>
+              <p>
+                也可以写一点点你对“好奇心 / CurioCity”这个概念的理解，让网站有一点灵魂和故事。
+              </p>
+              <div class="tag-row">
+                <!-- 修改成你自己的标签 -->
+                <span class="tag">Python</span>
+                <span class="tag">AI / LLM</span>
+                <span class="tag">Web 开发</span>
+                <span class="tag">命令行爱好者</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">技能清单</h3>
+            <div class="card-body">
+              <p>你可以按“正在使用 / 在学 / 想尝试”来分：</p>
+              <ul>
+                <li>常用：Python、Git、Linux / WSL、VS Code …</li>
+                <li>在学：前端基础（HTML / CSS / JS）、多智能体仿真、数据可视化 …</li>
+                <li>感兴趣：系统设计、游戏开发、写作和表达 …</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 项目 -->
+      <section id="projects">
+        <div class="section-header">
+          <h2 class="section-title">项目 Projects</h2>
+          <p class="section-subtitle">挑几件你愿意拿出来展示的东西。</p>
+        </div>
+
+        <div class="grid">
+          <!-- 项目 1 -->
+          <article class="card project-card">
+            <div class="project-pill">Side Project</div>
+            <h3 class="project-title">多智能体文化适应模拟</h3>
+            <p class="project-desc">
+              使用 Python + LLM 构建的多智能体环境，用“移民 / 本地人”之间的互动来模拟文化认同的变化。
+            </p>
+            <div class="project-meta">
+              <span class="chip">Python · LLM</span>
+              <!-- 把 # 改成你的仓库地址 -->
+              <a href="#" class="nav-link" style="font-size:11px;">查看代码 →</a>
+            </div>
+          </article>
+
+          <!-- 项目 2 -->
+          <article class="card project-card">
+            <div class="project-pill">Tooling</div>
+            <h3 class="project-title">个人效率脚本合集</h3>
+            <p class="project-desc">
+              日常用到的一些小脚本和配置，比如自动备份、批量重命名、环境初始化脚本等。
+            </p>
+            <div class="project-meta">
+              <span class="chip">Shell · PowerShell</span>
+              <a href="#" class="nav-link" style="font-size:11px;">查看仓库 →</a>
+            </div>
+          </article>
+
+          <!-- 项目 3 -->
+          <article class="card project-card">
+            <div class="project-pill">This site</div>
+            <h3 class="project-title">CurioCity · 个人网站</h3>
+            <p class="project-desc">
+              当前这个站本身也是一个项目：基于 GitHub Pages 的静态网站，计划逐步加入博客、友链和更多实验。
+            </p>
+            <div class="project-meta">
+              <span class="chip">HTML · CSS · GitHub Pages</span>
+              <a href="#" class="nav-link" style="font-size:11px;">本站源码 →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 博客 -->
+      <section id="blog">
+        <div class="section-header">
+          <h2 class="section-title">博客 Blog</h2>
+          <p class="section-subtitle">先列几个主题，之后再慢慢把文章写出来。</p>
+        </div>
+
+        <div class="card">
+          <ul class="post-list">
+            <li class="post-item">
+              <a href="#" class="post-title">从 0 到 1 搭建个人网站：GitHub Pages 实战记录</a>
+              <div class="post-meta">2025-11- · 笔记 / 折腾</div>
+            </li>
+            <li class="post-item">
+              <a href="#" class="post-title">让命令行“顺手好看”的一些小技巧</a>
+              <div class="post-meta">计划中 · 工具向</div>
+            </li>
+            <li class="post-item">
+              <a href="#" class="post-title">我如何使用 AI 辅助学习与开发</a>
+              <div class="post-meta">计划中 · 思考</div>
+            </li>
+            <li class="post-item">
+              <a href="#" class="post-title">多智能体模拟的一些灵感和想法</a>
+              <div class="post-meta">计划中 · 技术 / 想法</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 联系方式 -->
+      <section id="contact">
+        <div class="section-header">
+          <h2 class="section-title">联系我</h2>
+          <p class="section-subtitle">如果你有想聊的项目、想法或者只是打个招呼。</p>
+        </div>
+
+        <div class="card">
+          <div class="contact-row">
+            <div class="contact-main">
+              <div class="pill-accent">
+                <span class="pill-accent-dot"></span>
+                <span>目前欢迎：技术交流 / 学习互助 / 项目合作</span>
+              </div>
+              <p>
+                最快的方式通常是发邮件给我，我看到之后会尽量回复。
+              </p>
+              <p>
+                Email：
+                <!-- 把地址换成你自己的 -->
+                <a href="mailto:you@example.com">you@example.com</a>
+              </p>
+            </div>
+            <div>
+              <p>你也可以在这些地方找到我（把链接补上）：</p>
+              <div class="tag-row">
+                <a class="tag" href="#" target="_blank">GitHub</a>
+                <a class="tag" href="#" target="_blank">博客 / 备用站</a>
+                <!-- 想加就加，比如 Twitter / B 站等 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> CurioCity. Handcrafted with curiosity.</div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // 自动填当前年份
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
