@@ -5,6 +5,7 @@
   <title>Aleph · Digital Garden</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Aleph 的个人主页与写作、项目笔记。" />
+  <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -435,6 +436,31 @@
         flex-direction: column;
         align-items: flex-start;
       }
+      .resource-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;               /* 按钮之间的间距 */
+        margin-top: 16px;
+      }
+
+      .resource-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: rgba(240, 249, 255, 0.6);   /* 看你整体配色可以调整 */
+        font-size: 13px;
+        color: #334155;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .resource-pill:hover {
+        border-color: #22c55e;
+        background: #ecfdf5;
+      }
+
     }
   </style>
 </head>
@@ -476,7 +502,7 @@
         <aside class="side-note">
           <h3>此刻的侧记</h3>
           <ul>
-            <li>正在整理多智能体文化适应模拟的实验记录。</li>
+            <li>最后一次更新于251130。</li>
             <li>对生活有更好的设计。</li>
             <li>个人网站将持续更新。</li>
           </ul>
@@ -537,8 +563,8 @@
                 <dd>PowerShell · Git Bash · Windows Terminal </dd>
             </div>
             <div class="skill-item">
-                <dt><strong>写作/笔记</strong></dt>
-                <dd>Obsidian · 云记 · Notion（轻量）</dd>
+                <dt><strong>阅读/笔记</strong></dt>
+                <dd>Obsidian · Zotero · 云记 · Overleaf · Notion（轻量）</dd>
             </div>
             <div class="skill-item">
                 <dt><strong>AI</strong></dt>
@@ -560,8 +586,8 @@
             <p class="summary">这些地方最容易找到我，长期维护。</p>
             <div class="contact-links">
               <a class="ghost-link" href="https://github.com/RUCmonk2" target="_blank">GitHub</a>
-              <a class="ghost-link" href="https://www.zhihu.com/people/monk-90-11" target="_blank">知乎 / X</a>
-              <a class="ghost-link" href="https://space.bilibili.com/3546699962256011?spm_id_from=333.337.0.0" target="_blank">bilibili / RSS</a>
+              <a class="ghost-link" href="https://www.zhihu.com/people/monk-90-11" target="_blank">知乎</a>
+              <a class="ghost-link" href="https://space.bilibili.com/3546699962256011?spm_id_from=333.337.0.0" target="_blank">bilibili</a>
               <a class="ghost-link" href="https://www.xiaohongshu.com/user/profile/66cbd2a5000000001d021723">小红书</a>
             </div>
           </article>
@@ -628,11 +654,11 @@
             <div class="chip">Side Project</div>
             <h3>几个有用的学习网站</h3>
             <p>Arthals大佬真的帮助了我很多，大二上的bomblab就是看着他的教程完成的，下面一些网站对于计算机专业的同学想必是很有用的</p>
-            <div class="project-meta">
+            <div class="resource-links">
               <span class="tag">学习网站</span>
-              <a class="ghost-link" href="https://arthals.ink/about">Arthals的个人网站</a>
-              <a class="ghost-link" href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程</a>
-              <a class="ghost-link" href="https://csdiy.wiki/#cs61a">cs自学指南</a>
+              <a class="resource-pill" href="https://arthals.ink/about">Arthals的个人网站</a>
+              <a class="resource-pill" href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程</a>
+              <a class="resource-pill" href="https://csdiy.wiki/#cs61a">cs自学指南</a>
             </div>
           </article>
           
@@ -682,11 +708,6 @@
         <article class="card contact-card">
           <p>最快的方式是邮件；我会尽量在 48 小时内回复。</p>
           <p>Email：<a href="mailto:aleph@example.com">36231219360@qq.com</a></p>
-          <div class="contact-links">
-            <a class="ghost-link" href="#" target="_blank">GitHub</a>
-            <a class="ghost-link" href="#" target="_blank">博客镜像 / 备用站</a>
-            <a class="ghost-link" href="#" target="_blank">想放的其他链接</a>
-          </div>
         </article>
       </section>
     </main>
