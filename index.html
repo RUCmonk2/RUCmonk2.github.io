@@ -198,8 +198,8 @@
 
     .side-note ul {
       list-style: none;
-      padding: 0;
       margin: 8px 0 0;
+      padding: 0;
       display: grid;
       gap: 8px;
     }
@@ -288,27 +288,57 @@
     }
 
     .bullet-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
       display: grid;
       gap: 8px;
       color: var(--muted);
+      padding: 0;
+      margin: 0;
     }
 
-    .bullet-list li {
+    .bullet-row {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 10px;
       align-items: baseline;
     }
 
-    .bullet-list li::before {
+    .bullet-row::before {
       content: "·";
       font-weight: 700;
       color: var(--accent-2);
       font-size: 18px;
       line-height: 1;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .skill-item {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px;
+      align-items: baseline;
+      color: var(--muted);
+    }
+
+    .skill-item dt {
+      margin: 0;
+      font-family: var(--mono);
+      color: var(--accent);
+    }
+
+    .skill-item dd {
+      margin: 0;
+    }
+
+    .wide-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
     }
 
     .project-list {
@@ -340,11 +370,10 @@
     }
 
     .post-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
       display: grid;
       gap: 12px;
+      padding: 0;
+      margin: 0;
     }
 
     .post-item {
@@ -421,6 +450,8 @@
       </a>
       <nav class="nav">
         <a href="#about">关于</a>
+        <a href="#tools">工具</a>
+        <a href="#resources">资料</a>
         <a href="#projects">项目</a>
         <a href="#blog">博客</a>
         <a href="#contact">联系</a>
@@ -434,11 +465,11 @@
           <h1 class="hero-title">这里是 Aleph：在代码、叙事和好奇心之间折返跑。</h1>
           <p class="lead">
             我喜欢把读过的、做过的、想试的东西整理成清爽的笔记。这里更像一间有光的书房，
-            参考了 arthals.ink/blog 那种克制又温暖的排版，也欢迎你在这里停留、留言、交换想法。
+            也欢迎你在这里停留、留言、交换想法。
           </p>
           <div class="meta-chips">
             <span class="chip">常驻：北京 · RUC</span>
-            <span class="chip">关注：AI / Web / 知识组织</span>
+            <span class="chip">关注：AI / math / 知识组织 / 神经科学</span>
             <span class="chip">状态：慢慢迭代作品和文章</span>
           </div>
         </div>
@@ -446,8 +477,8 @@
           <h3>此刻的侧记</h3>
           <ul>
             <li>正在整理多智能体文化适应模拟的实验记录。</li>
-            <li>把命令行与写作工具链收拾得更顺手。</li>
-            <li>保持每周一篇短文或碎片笔记。</li>
+            <li>对生活有更好的设计。</li>
+            <li>个人网站将持续更新。</li>
           </ul>
         </aside>
       </section>
@@ -460,24 +491,95 @@
         <div class="columns">
           <article class="card">
             <h3>我是谁</h3>
-            <p>计算机相关背景，喜欢写代码也喜欢写字；习惯在静态网站里记录，享受把杂乱信息整理成清晰结构的过程。</p>
+            <p>人工智能本科，喜欢写代码也喜欢书法，尤其是米芾和赵孟頫的；习惯在静态网站里记录，享受把杂乱信息整理成清晰结构的过程。</p>
             <p>我相信好的工具和语言能让人更自由，正在尝试把技术与人文好奇心放在同一张桌子上。</p>
             <div class="tag-row">
-              <span class="tag">Python</span>
-              <span class="tag">LLM / Agents</span>
-              <span class="tag">Web</span>
+              <span class="tag">AI</span>
+              <span class="tag">math</span>
+              <span class="tag">自由</span>
               <span class="tag">写作</span>
             </div>
           </article>
           <article class="card">
             <h3>偏好与在学</h3>
-            <ul class="bullet-list">
-              <li><strong>常用</strong>:Python · Git · VS Code · 一点点前端</li>
-              <li><strong>在学</strong>:西湖大学机器学习网课、知识库整理</li>
-              <li><strong>想尝试</strong>:系统设计、游戏原型、长篇写作、AI4math</li>
-            </ul>
+            <dl class="skill-list">
+            <div class="skill-item">
+                <dt><strong>常用</strong></dt>
+                <dd>Python · Git · VS Code · 一点点前端</dd>
+            </div>
+            <div class="skill-item">
+                <dt><strong>在学</strong></dt>
+                <dd>西湖大学机器学习网课、知识库整理</dd>
+            </div>
+            <div class="skill-item">
+                <dt><strong>想尝试</strong></dt>
+                <dd>系统设计、游戏原型、长篇写作、AI4math</dd>
+            </div>
+            </dl>
           </article>
         </div>
+      </section>
+
+      <section id="tools" class="section">
+        <div class="section-head">
+          <h2>常用的工具</h2>
+          <p>日常会开的软件栈，外加我常出现的社交媒体。</p>
+        </div>
+        <div class="wide-stack">
+          <article class="card">
+            <h3>常用工具</h3>
+            <div class="skill-item">
+                <dt><strong>开发</strong></dt>
+                <dd>VS Code · Cursor · Codex · Git · GitHub · WSL/Ubuntu · 微信开发者工具 · HBuilderX</dd>
+            </div>
+            <div class="skill-item">
+                <dt><strong>终端</strong></dt>
+                <dd>PowerShell · Git Bash · Windows Terminal </dd>
+            </div>
+            <div class="skill-item">
+                <dt><strong>写作/笔记</strong></dt>
+                <dd>Obsidian · 云记 · Notion（轻量）</dd>
+            </div>
+            <div class="skill-item">
+                <dt><strong>AI</strong></dt>
+                <dd>Chatgpt · Gemini · Coze</dd>
+            </div>
+            <div class="skill-item">
+                <dt><strong>设计/图</strong></dt>
+                <dd>暂无</dd>
+            </div>
+            <div class="skill-item">
+                <dt><strong>日常</strong></dt>
+                <dd>暂无</dd>
+            </div>
+            </dl>
+          </article>
+
+          <article class="card">
+            <h3>社交媒体</h3>
+            <p class="summary">这些地方最容易找到我，长期维护。</p>
+            <div class="contact-links">
+              <a class="ghost-link" href="https://github.com/RUCmonk2" target="_blank">GitHub</a>
+              <a class="ghost-link" href="https://www.zhihu.com/people/monk-90-11" target="_blank">知乎 / X</a>
+              <a class="ghost-link" href="https://space.bilibili.com/3546699962256011?spm_id_from=333.337.0.0" target="_blank">bilibili / RSS</a>
+              <a class="ghost-link" href="https://www.xiaohongshu.com/user/profile/66cbd2a5000000001d021723">小红书</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="comments" class="section">
+        <div class="section-head">
+          <h2>评论 / 留言</h2>
+          <p>如果未来接入评论系统，这里会放留言区；目前先用邮件/社交联系我。</p>
+        </div>
+        <article class="card contact-card">
+          <p>暂未部署实时评论。可以直接发邮件到 <a href="mailto:aleph@example.com">aleph@example.com</a>，或在 GitHub 开一个 Issue/Discussion（稍后补链）。</p>
+          <div class="contact-links">
+            <a class="ghost-link" href="#" target="_blank">GitHub Issues</a>
+            <a class="ghost-link" href="mailto:aleph@example.com">写邮件</a>
+          </div>
+        </article>
       </section>
 
       <section id="projects" class="section">
@@ -516,34 +618,59 @@
         </div>
       </section>
 
+      <section id="resources" class="section">
+        <div class="section-head">
+          <h2>学习资料 Recources</h2>
+          <p>曾经收益匪浅或正在学或将要学的各种资料。</p>
+        </div>
+        <div class="project-list">
+          <article class="card project-card">
+            <div class="chip">Side Project</div>
+            <h3>几个有用的学习网站</h3>
+            <p>Arthals大佬真的帮助了我很多，大二上的bomblab就是看着他的教程完成的，下面一些网站对于计算机专业的同学想必是很有用的</p>
+            <div class="project-meta">
+              <span class="tag">学习网站</span>
+              <a class="ghost-link" href="https://arthals.ink/about">Arthals的个人网站</a>
+              <a class="ghost-link" href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程</a>
+              <a class="ghost-link" href="https://csdiy.wiki/#cs61a">cs自学指南</a>
+            </div>
+          </article>
+          
+        </div>
+      </section>
+
       <section id="blog" class="section">
         <div class="section-head">
           <h2>博客 Blog</h2>
           <p>先列主题，慢慢充实。</p>
         </div>
         <div class="card">
-          <ul class="post-list">
-            <li class="post-item">
+          <div class="post-list">
+            <div class="post-item">
               <a class="post-title" href="assets/ai_cli.html">AI_CLI：命令行速查 PDF 预览</a>
               <span class="post-meta">PDF · 在线预览 / 下载</span>
-            </li>
-            <li class="post-item">
-              <a class="post-title" href="#">从 0 到 1 搭建个人网站：新的排版尝试</a>
+            </div>
+            <div class="post-item">
+              <a class="post-title" href="assets/windows_shortcuts.html">Windows 快捷键速查</a>
+              <span class="post-meta">Win + VS Code · 使用技巧</span>
+            </div>
+            <div class="post-item">
+              <a class="post-title" href="#">从 0 到 1 搭建个人网站：新的排版尝试（还没写）</a>
               <span class="post-meta">2025 · 架构 / 记录</span>
-            </li>
-            <li class="post-item">
-              <a class="post-title" href="#">让命令行顺手：我的工作流布置</a>
+            </div>
+            <div class="post-item">
+              <a class="post-title" href="#">让命令行顺手：我的工作流布置（还没写）</a>
               <span class="post-meta">草稿 · 工具</span>
-            </li>
-            <li class="post-item">
-              <a class="post-title" href="#">我如何用 AI 辅助学习与写作</a>
+            </div>
+            <div class="post-item">
+              <a class="post-title" href="#">我如何用 AI 辅助学习与写作（还没写）</a>
               <span class="post-meta">草稿 · 想法</span>
-            </li>
-            <li class="post-item">
-              <a class="post-title" href="#">多智能体模拟：灵感与坑</a>
+            </div>
+            <div class="post-item">
+              <a class="post-title" href="#">多智能体模拟：灵感与坑（还没写）</a>
               <span class="post-meta">草稿 · 技术</span>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -573,5 +700,3 @@
   </script>
 </body>
 </html>
-
-

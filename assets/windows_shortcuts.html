@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Windows 快捷键速查</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f2eb;
+      --paper: rgba(255, 255, 255, 0.92);
+      --ink: #1f2430;
+      --muted: #5b6271;
+      --accent: #1f7a7a;
+      --border: #e3ddd2;
+      --shadow: 0 10px 32px rgba(18, 21, 31, 0.08);
+      --radius: 16px;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "Source Serif 4", serif;
+      --sans: "Space Grotesk", "Noto Sans SC", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(90% 70% at 25% 20%, rgba(31, 122, 122, 0.08), transparent 45%), var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+    .page { max-width: 1080px; margin: 0 auto; padding: 28px 22px 48px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .title { font-family: var(--serif); font-size: 26px; margin: 0; letter-spacing: 0.02em; }
+    .meta { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+    a { color: inherit; text-decoration: underline; text-decoration-color: rgba(31,122,122,0.4); text-underline-offset: 3px; }
+    a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    .card { margin-top: 18px; background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 18px 16px; }
+    .summary { color: var(--muted); margin: 0 0 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .shortcut { padding: 12px 12px; border-radius: 12px; border: 1px dashed rgba(31,122,122,0.3); background: rgba(31,122,122,0.06); }
+    .keys { font-family: var(--mono); font-weight: 600; color: var(--accent); font-size: 14px; }
+    .desc { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .section-title { margin: 18px 0 8px; font-family: var(--serif); letter-spacing: 0.02em; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .pill { padding: 7px 10px; border-radius: 10px; border: 1px solid rgba(31,122,122,0.2); background: rgba(31,122,122,0.08); color: var(--accent); font-size: 12px; text-decoration: none; }
+    footer { margin-top: 18px; font-size: 12px; color: var(--muted); text-align: center; }
+    @media (max-width: 600px) { .title { font-size: 22px; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1 class="title">Windows & VS Code 快捷技巧速查</h1>
+        <p class="meta">面向计算机专业/开发者的常用组合键与小技巧，覆盖系统、编辑器和终端。</p>
+      </div>
+      <a href="../index.html#blog">返回博客</a>
+    </header>
+
+    <article class="card">
+      <p class="summary">按场景整理。优先熟悉：Win + .（符号面板）、Win + V（剪贴板历史）、Win + Shift + S（截图）、Ctrl + Shift + P（VS Code 命令面板）、Ctrl + Shift + N（新开 VS Code 窗口）。</p>
+
+      <h3 class="section-title">输入与剪贴板</h3>
+      <div class="grid">
+        <div class="shortcut"><div class="keys">Win + .</div><div class="desc">打开 emoji / 符号 / 表情面板，输入特殊符号。</div></div>
+        <div class="shortcut"><div class="keys">Win + V</div><div class="desc">剪贴板历史；先在设置里开启，可粘贴最近复制的多条记录。</div></div>
+        <div class="shortcut"><div class="keys">Win + ;</div><div class="desc">与 Win + . 同效果（emoji 面板）。</div></div>
+        <div class="shortcut"><div class="keys">Win + Shift + S</div><div class="desc">调出截图工具，矩形/窗口/全屏截图，保存到剪贴板。</div></div>
+        <div class="shortcut"><div class="keys">Win + Space</div><div class="desc">切换输入法/键盘布局。</div></div>
+      </div>
+
+      <h3 class="section-title">窗口与桌面</h3>
+      <div class="grid">
+        <div class="shortcut"><div class="keys">Win + Tab</div><div class="desc">任务视图，查看所有窗口并切换虚拟桌面。</div></div>
+        <div class="shortcut"><div class="keys">Win + Ctrl + D</div><div class="desc">新建一个虚拟桌面。</div></div>
+        <div class="shortcut"><div class="keys">Win + Ctrl + F4</div><div class="desc">关闭当前虚拟桌面。</div></div>
+        <div class="shortcut"><div class="keys">Win + ↑ / ↓ / ← / →</div><div class="desc">窗口贴边/分屏/最大化/还原。</div></div>
+        <div class="shortcut"><div class="keys">Win + L</div><div class="desc">快速锁屏，离开座位首选。</div></div>
+        <div class="shortcut"><div class="keys">Win + D</div><div class="desc">显示/隐藏桌面。</div></div>
+        <div class="shortcut"><div class="keys">Alt + Tab</div><div class="desc">在当前打开的窗口间快速切换。</div></div>
+      </div>
+
+      <h3 class="section-title">启动与系统</h3>
+      <div class="grid">
+        <div class="shortcut"><div class="keys">Win + E</div><div class="desc">打开文件资源管理器。</div></div>
+        <div class="shortcut"><div class="keys">Win + R</div><div class="desc">运行窗口，输入 `cmd`、`powershell` 或应用路径快速启动。</div></div>
+        <div class="shortcut"><div class="keys">Win + I</div><div class="desc">打开系统设置。</div></div>
+        <div class="shortcut"><div class="keys">Win + P</div><div class="desc">投影/显示模式切换（复制、扩展等）。</div></div>
+        <div class="shortcut"><div class="keys">Win + X</div><div class="desc">电源用户菜单：终端、任务管理器、设置等入口。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + Shift + Esc</div><div class="desc">直接打开任务管理器。</div></div>
+      </div>
+
+      <h3 class="section-title">通用编辑与导航</h3>
+      <div class="grid">
+        <div class="shortcut"><div class="keys">Ctrl + C / X / V</div><div class="desc">复制 / 剪切 / 粘贴。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + Z / Y</div><div class="desc">撤销 / 重做。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + A</div><div class="desc">全选当前区域内容。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + F</div><div class="desc">查找；大多数应用通用。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + H</div><div class="desc">替换（在支持的编辑器/浏览器中）。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + L</div><div class="desc">在浏览器/资源管理器聚焦地址栏。</div></div>
+        <div class="shortcut"><div class="keys">Alt + 左/右</div><div class="desc">在浏览器/资源管理器中后退/前进。</div></div>
+      </div>
+
+      <h3 class="section-title">VS Code 高效操作</h3>
+      <div class="grid">
+        <div class="shortcut"><div class="keys">Ctrl + Shift + P</div><div class="desc">命令面板，几乎所有操作的入口。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + P</div><div class="desc">快速打开文件；可输入 `@` 跳转符号，`:` 跳转行。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + Shift + N</div><div class="desc">新开一个 VS Code 窗口。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + `</div><div class="desc">内置终端开关。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + B</div><div class="desc">隐藏/显示侧边栏。</div></div>
+        <div class="shortcut"><div class="keys">Alt + ↑ / ↓</div><div class="desc">移动当前行/选区。</div></div>
+        <div class="shortcut"><div class="keys">Alt + Shift + ↑ / ↓</div><div class="desc">复制当前行/选区并向上/下插入。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + D</div><div class="desc">选择下一个相同文本进行多光标编辑。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + /</div><div class="desc">行注释切换。</div></div>
+      </div>
+
+      <h3 class="section-title">终端 / PowerShell / Windows Terminal</h3>
+      <div class="grid">
+        <div class="shortcut"><div class="keys">Ctrl + L</div><div class="desc">清屏（Windows Terminal/Pwsh 支持）。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + Shift + C / V</div><div class="desc">终端内复制/粘贴（Windows Terminal 默认）。</div></div>
+        <div class="shortcut"><div class="keys">Ctrl + Shift + T</div><div class="desc">在 Windows Terminal 重新打开上次关闭的标签。</div></div>
+        <div class="shortcut"><div class="keys">Alt + Shift + D</div><div class="desc">在 Windows Terminal 分屏（纵向）。</div></div>
+      </div>
+
+      <h3 class="section-title">截图与录屏</h3>
+      <div class="grid">
+        <div class="shortcut"><div class="keys">Win + Shift + S</div><div class="desc">截图（矩形/窗口/全屏），存入剪贴板。</div></div>
+        <div class="shortcut"><div class="keys">Win + Alt + R</div><div class="desc">快捷录屏（Xbox Game Bar），适合简单录制。</div></div>
+        <div class="shortcut"><div class="keys">Win + G</div><div class="desc">打开 Xbox Game Bar，可录屏/音量调节/性能监控。</div></div>
+      </div>
+
+      <div class="actions">
+        <a class="pill" href="../index.html#blog">回到博客</a>
+      </div>
+    </article>
+
+    <footer>(c) <span id="year"></span> Aleph · Windows & VS Code 快捷技巧</footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
