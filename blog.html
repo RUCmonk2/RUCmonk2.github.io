@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aleph · Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Aleph 的博客索引：PDF 预览、命令行工作流、学习与多智能体笔记。" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <a class="brand" href="index.html#top">
+        <div class="brand-mark">A</div>
+        <div>
+          <div class="brand-name">Aleph</div>
+          <div class="brand-sub">curate · build · write</div>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html#about">关于</a>
+        <a href="index.html#tools">工具栈</a>
+        <a href="index.html#projects">项目</a>
+        <a href="index.html#resources">资源</a>
+        <a href="index.html#contact">联系</a>
+        <a class="active" href="blog.html">博客</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-narrow" id="blog">
+        <div>
+          <div class="eyebrow">Aleph / blog</div>
+          <h1 class="hero-title">博客与笔记索引</h1>
+          <p class="lead">PDF 预览、命令行工作流、AI 学习与多智能体实验笔记。轻量、易读，可下载离线查看。</p>
+          <div class="pill-row filter-tags" id="tagFiltersTop">
+            <div class="filter-tag active" data-tag="all">全部</div>
+            <div class="filter-tag" data-tag="pdf">PDF</div>
+            <div class="filter-tag" data-tag="cli">CLI</div>
+            <div class="filter-tag" data-tag="windows">Windows</div>
+            <div class="filter-tag" data-tag="web">Web</div>
+            <div class="filter-tag" data-tag="ai">AI</div>
+            <div class="filter-tag" data-tag="workflow">Workflow</div>
+            <div class="filter-tag" data-tag="productivity">Productivity</div>
+            <div class="filter-tag" data-tag="writing">写作</div>
+            <div class="filter-tag" data-tag="simulation">多智能体</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section blog-layout">
+        <div>
+          <div class="post-list" id="postList">
+            <article class="post-card" data-tags="pdf,cli,ai,workflow">
+              <a class="title" href="assets/ai_cli.html">AI_CLI：命令行速查 PDF 预览</a>
+              <div class="post-meta">
+                <span>PDF · 在线预览 / 下载</span>
+                <span>tags: cli / ai / pdf</span>
+              </div>
+              <p class="notice">命令行常用指令、AI 辅助的速查卡片，直接嵌入 PDF 阅读器，便于离线查看。</p>
+              <div class="tag-list">
+                <span class="tag">cli</span>
+                <span class="tag">ai</span>
+                <span class="tag">pdf</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-tags="pdf,windows,productivity">
+              <a class="title" href="assets/windows_shortcuts.html">Windows 快捷键速查</a>
+              <div class="post-meta">
+                <span>Win + VS Code · 使用技巧</span>
+                <span>tags: windows / productivity</span>
+              </div>
+              <p class="notice">整理系统、终端、VS Code 的高频组合键与截图/录屏操作，便于新机器快速上手。</p>
+              <div class="tag-list">
+                <span class="tag">windows</span>
+                <span class="tag">productivity</span>
+                <span class="tag">pdf</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-tags="pdf,productivity">
+              <a class="title" href="assets/专注力探索.pdf">专注力探索：策略与练习</a>
+              <div class="post-meta">
+                <span>PDF · 专注力管理</span>
+                <span>tags: pdf / productivity</span>
+              </div>
+              <p class="notice">关于注意力维护、环境布置与小练习的总结，便于快速回顾或离线阅读。</p>
+              <div class="tag-list">
+                <span class="tag">pdf</span>
+                <span class="tag">productivity</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-tags="pdf,web,design">
+              <a class="title" href="assets/website_typography.html">从 0 到 1 搭建个人网站：排版尝试</a>
+              <div class="post-meta">
+                <span>排版 / 发布流程</span>
+                <span>tags: web / design</span>
+              </div>
+              <p class="notice">记录这版个人站的配色、字体、布局、发布流程与后续迭代清单。</p>
+              <div class="tag-list">
+                <span class="tag">web</span>
+                <span class="tag">design</span>
+                <span class="tag">pdf</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-tags="pdf,cli,workflow">
+              <a class="title" href="assets/cli_workflow.html">让命令行顺手：我的工作流布置</a>
+              <div class="post-meta">
+                <span>PowerShell / Terminal · 2 页</span>
+                <span>tags: cli / workflow</span>
+              </div>
+              <p class="notice">终端栈、Profile 片段、导航习惯与日常节奏，适合新机器直接套用。</p>
+              <div class="tag-list">
+                <span class="tag">cli</span>
+                <span class="tag">workflow</span>
+                <span class="tag">pdf</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-tags="pdf,ai,writing">
+              <a class="title" href="assets/ai_learning_writing.html">我如何用 AI 辅助学习与写作</a>
+              <div class="post-meta">
+                <span>学习 / 写作 · 2 页</span>
+                <span>tags: ai / writing</span>
+              </div>
+              <p class="notice">AI 在提纲、分块摘要、自测卡片、段落润色中的用法与提示语模板，强调“辅助而非代写”。</p>
+              <div class="tag-list">
+                <span class="tag">ai</span>
+                <span class="tag">writing</span>
+                <span class="tag">pdf</span>
+              </div>
+            </article>
+
+            <article class="post-card" data-tags="pdf,ai,simulation">
+              <a class="title" href="assets/multiagent_notes.html">多智能体模拟：灵感与坑</a>
+              <div class="post-meta">
+                <span>模拟 / LLM · 2 页</span>
+                <span>tags: ai / simulation</span>
+              </div>
+              <p class="notice">多智能体文化适应实验的框架、提示词结构、常见坑与后续计划，附可视化与可重复性思路。</p>
+              <div class="tag-list">
+                <span class="tag">ai</span>
+                <span class="tag">simulation</span>
+                <span class="tag">pdf</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <aside class="card sidebar-card">
+          <h3>标签</h3>
+          <p class="notice">点击标签筛选文章，再次点击可恢复「全部」。</p>
+          <div class="filter-tags" id="tagFiltersSide">
+            <div class="filter-tag active" data-tag="all">全部</div>
+            <div class="filter-tag" data-tag="pdf">PDF</div>
+            <div class="filter-tag" data-tag="cli">CLI</div>
+            <div class="filter-tag" data-tag="windows">Windows</div>
+            <div class="filter-tag" data-tag="web">Web</div>
+            <div class="filter-tag" data-tag="ai">AI</div>
+            <div class="filter-tag" data-tag="workflow">Workflow</div>
+            <div class="filter-tag" data-tag="productivity">Productivity</div>
+            <div class="filter-tag" data-tag="writing">写作</div>
+            <div class="filter-tag" data-tag="simulation">多智能体</div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      (c) <span id="year"></span> Aleph - handwritten in small iterations.
+    </footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const posts = document.querySelectorAll('[data-tags]');
+
+    function applyFilter(tag) {
+      posts.forEach((post) => {
+        const tags = post.dataset.tags.split(',').map((t) => t.trim());
+        const show = tag === 'all' || tags.includes(tag);
+        post.style.display = show ? 'grid' : 'none';
+      });
+
+      filterTags.forEach((el) => {
+        el.classList.toggle('active', el.dataset.tag === tag);
+      });
+    }
+
+    filterTags.forEach((el) => {
+      el.addEventListener('click', () => {
+        const tag = el.dataset.tag;
+        const isActive = el.classList.contains('active');
+        applyFilter(isActive ? 'all' : tag);
+      });
+    });
+
+    applyFilter('all');
+  </script>
+  <div class="contact-links nav-floating">
+    <a class="ghost-link" href="index.html">返回主页</a>
+    <a class="ghost-link" href="#blog">回到顶部</a>
+  </div>
+</body>
+</html>
