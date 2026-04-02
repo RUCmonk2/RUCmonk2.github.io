@@ -2,467 +2,19 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>Aleph · Digital Garden</title>
+  <title>Aleph · About</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Aleph 的个人主页与写作、项目笔记。" />
+  <meta name="description" content="Aleph 的个人主页：背景、项目、工具栈与联系信息。" />
+  <link rel="canonical" href="https://yeyaozhi.eu.cc/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aleph" />
+  <meta property="og:title" content="Aleph · About" />
+  <meta property="og:description" content="Aleph 的个人主页：背景、项目、工具栈与联系信息。" />
+  <meta property="og:url" content="https://yeyaozhi.eu.cc/" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f6f2eb;
-      --paper: rgba(255, 255, 255, 0.82);
-      --ink: #1f2430;
-      --muted: #5b6271;
-      --accent: #1f7a7a;
-      --accent-2: #d86c4f;
-      --border: #e3ddd2;
-      --shadow: 0 12px 40px rgba(18, 21, 31, 0.08);
-      --radius: 18px;
-      --mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
-      --serif: "Source Serif 4", "Times New Roman", serif;
-      --sans: "Space Grotesk", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background:
-        radial-gradient(120% 90% at 30% 20%, rgba(31, 122, 122, 0.08), transparent 40%),
-        radial-gradient(80% 70% at 80% 0%, rgba(216, 108, 79, 0.07), transparent 45%),
-        var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      line-height: 1.72;
-      letter-spacing: 0.01em;
-    }
-
-    a {
-      color: inherit;
-      text-decoration-thickness: 0.12em;
-      text-underline-offset: 3px;
-      text-decoration-color: rgba(31, 122, 122, 0.45);
-    }
-
-    a:hover {
-      color: var(--accent);
-      text-decoration-color: var(--accent);
-    }
-
-    .page {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 28px 24px 64px;
-    }
-
-    .top {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-      background: rgba(246, 242, 235, 0.92);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(160deg, #1f7a7a, #243b55 60%, #0b1c2c);
-      color: #f6f2eb;
-      font-family: var(--mono);
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      box-shadow: 0 10px 30px rgba(31, 122, 122, 0.18);
-    }
-
-    .brand-name {
-      font-family: var(--serif);
-      font-size: 20px;
-      letter-spacing: 0.03em;
-    }
-
-    .brand-sub {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 13px;
-      text-transform: lowercase;
-      letter-spacing: 0.04em;
-    }
-
-    .nav a {
-      padding: 6px 8px;
-      border-radius: 9px;
-    }
-
-    .nav a:hover {
-      background: rgba(31, 122, 122, 0.12);
-      color: var(--ink);
-    }
-
-    main {
-      display: block;
-    }
-
-    .hero {
-      padding: 44px 0 26px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      gap: 28px;
-      align-items: start;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 10px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--paper);
-      color: var(--accent);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-title {
-      margin: 12px 0 14px;
-      font-family: var(--serif);
-      font-size: clamp(30px, 4vw, 40px);
-      line-height: 1.25;
-    }
-
-    .lead {
-      margin: 0;
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .meta-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .chip {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(31, 122, 122, 0.1);
-      border: 1px solid rgba(31, 122, 122, 0.35);
-      color: var(--accent);
-      font-size: 12px;
-    }
-
-    .side-note {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .side-note h3 {
-      margin: 0 0 8px;
-      font-size: 15px;
-      font-family: var(--serif);
-      letter-spacing: 0.02em;
-    }
-
-    .side-note ul {
-      list-style: none;
-      margin: 8px 0 0;
-      padding: 0;
-      display: grid;
-      gap: 8px;
-    }
-
-    .side-note li {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px;
-      align-items: baseline;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .side-note li::before {
-      content: "—";
-      color: var(--accent);
-      font-family: var(--mono);
-      font-weight: 600;
-    }
-
-    .section {
-      padding: 30px 0 10px;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-family: var(--serif);
-      font-size: 22px;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .columns {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px 20px;
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-family: var(--serif);
-      letter-spacing: 0.02em;
-    }
-
-    .card p {
-      margin: 0 0 10px 0;
-      color: var(--muted);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .tag {
-      font-size: 12px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      border: 1px dashed rgba(31, 122, 122, 0.35);
-      color: var(--accent);
-      background: rgba(31, 122, 122, 0.08);
-    }
-
-    .bullet-list {
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      padding: 0;
-      margin: 0;
-    }
-
-    .bullet-row {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px;
-      align-items: baseline;
-    }
-
-    .bullet-row::before {
-      content: "·";
-      font-weight: 700;
-      color: var(--accent-2);
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .skill-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .skill-item {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 10px;
-      align-items: baseline;
-      color: var(--muted);
-    }
-
-    .skill-item dt {
-      margin: 0;
-      font-family: var(--mono);
-      color: var(--accent);
-    }
-
-    .skill-item dd {
-      margin: 0;
-    }
-
-    .wide-stack {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 14px;
-    }
-
-    .project-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .project-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .ghost-link {
-      padding: 4px 8px;
-      border-radius: 8px;
-      background: rgba(31, 122, 122, 0.08);
-      border: 1px solid rgba(31, 122, 122, 0.2);
-      text-decoration: none;
-      font-size: 12px;
-      color: var(--accent);
-    }
-
-    .ghost-link:hover {
-      background: rgba(31, 122, 122, 0.15);
-    }
-
-    .post-list {
-      display: grid;
-      gap: 12px;
-      padding: 0;
-      margin: 0;
-    }
-
-    .post-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px dashed var(--border);
-    }
-
-    .post-title {
-      font-weight: 600;
-    }
-
-    .post-meta {
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .contact-card {
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .footer {
-      margin-top: 36px;
-      font-size: 12px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    @media (max-width: 860px) {
-      .hero,
-      .columns {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .nav {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      .post-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .project-meta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .resource-links {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 12px;               /* 按钮之间的间距 */
-        margin-top: 16px;
-      }
-
-      .resource-pill {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        background: rgba(240, 249, 255, 0.6);   /* 看你整体配色可以调整 */
-        font-size: 13px;
-        color: #334155;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-      .resource-pill:hover {
-        border-color: #22c55e;
-        background: #ecfdf5;
-      }
-
-    }
-  </style>
 </head>
 <body>
   <div class="page">
@@ -471,54 +23,61 @@
         <div class="brand-mark">A</div>
         <div>
           <div class="brand-name">Aleph</div>
-          <div class="brand-sub">notes on code & words</div>
+          <div class="brand-sub">curate · build · write</div>
         </div>
       </a>
       <nav class="nav">
         <a href="#about">关于</a>
-        <a href="#tools">工具</a>
-        <a href="#resources">资料</a>
+        <a href="#tools">工具栈</a>
         <a href="#projects">项目</a>
-        <a href="#blog">博客</a>
+        <a href="#resources">资源</a>
         <a href="#contact">联系</a>
+        <a href="blog.html">博客</a>
       </nav>
     </header>
 
     <main>
       <section class="hero" id="top">
         <div>
-          <div class="eyebrow">Aleph / digital garden</div>
+          <div class="eyebrow">Aleph / about</div>
           <h1 class="hero-title">这里是 Aleph：在代码、叙事和好奇心之间折返跑。</h1>
           <p class="lead">
-            我喜欢把读过的、做过的、想试的东西整理成清爽的笔记。这里更像一间有光的书房，
-            也欢迎你在这里停留、留言、交换想法。
+            习惯把读过的、做过的、想试的东西整理成清爽的笔记；重视排版与留白，希望信息可以被快速读取，也能长久存档。
           </p>
-          <div class="meta-chips">
+          <div class="pill-row">
             <span class="chip">常驻：北京 · RUC</span>
             <span class="chip">关注：AI / math / 知识组织 / 神经科学</span>
             <span class="chip">状态：慢慢迭代作品和文章</span>
           </div>
         </div>
-        <aside class="side-note">
-          <h3>此刻的侧记</h3>
-          <ul>
-            <li>最后一次更新于251130。</li>
-            <li>对生活有更好的设计。</li>
-            <li>个人网站将持续更新。</li>
-          </ul>
+        <aside class="card sidebar-card">
+          <h3>现在在做</h3>
+          <p class="notice">把个人站重写成「主页 + 博客」的双页结构；持续整理 CLI 工作流与多智能体小实验。</p>
+          <div class="tag-row">
+            <span class="tag">轻量网页</span>
+            <span class="tag">CLI</span>
+            <span class="tag">LLM</span>
+            <span class="tag">学习卡片</span>
+          </div>
+          <div class="contact-links">
+            <a class="ghost-link" href="https://github.com/RUCmonk2" target="_blank">GitHub</a>
+            <a class="ghost-link" href="https://www.zhihu.com/people/monk-90-11" target="_blank">知乎</a>
+            <a class="ghost-link" href="https://space.bilibili.com/3546699962256011?spm_id_from=333.337.0.0" target="_blank">bilibili</a>
+            <a class="ghost-link" href="https://www.xiaohongshu.com/user/profile/66cbd2a5000000001d021723" target="_blank">小红书</a>
+          </div>
         </aside>
       </section>
 
       <section id="about" class="section">
         <div class="section-head">
-          <h2>关于 Aleph</h2>
-          <p>一眼能看完的自我介绍。</p>
+          <h2>个人简介</h2>
+          <p>写给自己也写给朋友的一页。</p>
         </div>
-        <div class="columns">
+        <div class="grid-two">
           <article class="card">
             <h3>我是谁</h3>
-            <p>人工智能本科，喜欢写代码也喜欢书法，尤其是米芾和赵孟頫的；习惯在静态网站里记录，享受把杂乱信息整理成清晰结构的过程。</p>
-            <p>我相信好的工具和语言能让人更自由，正在尝试把技术与人文好奇心放在同一张桌子上。</p>
+            <p>人工智能本科，喜欢写代码也喜欢书法，尤其是米芾和赵孟頫；享受把杂乱信息整理成清晰结构的过程。相信好的工具和语言能让人更自由。</p>
+            <p>这版个人站最后更新于25年12月5日，下次寒假再更新。</p>
             <div class="tag-row">
               <span class="tag">AI</span>
               <span class="tag">math</span>
@@ -526,98 +85,79 @@
               <span class="tag">写作</span>
             </div>
           </article>
-          <article class="card">
-            <h3>偏好与在学</h3>
-            <dl class="skill-list">
-            <div class="skill-item">
-                <dt><strong>常用</strong></dt>
-                <dd>Python · Git · VS Code · 一点点前端</dd>
-            </div>
-            <div class="skill-item">
-                <dt><strong>在学</strong></dt>
-                <dd>西湖大学机器学习网课、知识库整理</dd>
-            </div>
-            <div class="skill-item">
-                <dt><strong>想尝试</strong></dt>
-                <dd>系统设计、游戏原型、长篇写作、AI4math</dd>
-            </div>
-            </dl>
-          </article>
+          <!-- <article class="card">
+            <h3>教育 / 经历</h3>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <span class="time">2022 - 今</span>
+                <div>中国人民大学 · 人工智能本科 · 关注 AI/数学/知识组织</div>
+              </li>
+              <li class="timeline-item">
+                <span class="time">2024 - 今</span>
+                <div>整理个人站与工作流脚本：静态网页、命令行速查、学习卡片</div>
+              </li>
+              <li class="timeline-item">
+                <span class="time">Side</span>
+                <div>多智能体文化适应小实验、写作工具/阅读清单等个人项目</div>
+              </li>
+            </ul>
+          </article> -->
         </div>
       </section>
 
       <section id="tools" class="section">
         <div class="section-head">
-          <h2>常用的工具</h2>
-          <p>日常会开的软件栈，外加我常出现的社交媒体。</p>
+          <h2>常用工具栈</h2>
+          <p>日常会开的软件和在学/想试的方向。</p>
         </div>
-        <div class="wide-stack">
-          <article class="card">
-            <h3>常用工具</h3>
+        <article class="card">
+          <dl class="skill-list">
             <div class="skill-item">
-                <dt><strong>开发</strong></dt>
-                <dd>VS Code · Cursor · Codex · Git · GitHub · WSL/Ubuntu · 微信开发者工具 · HBuilderX</dd>
-            </div>
-            <div class="skill-item">
-                <dt><strong>终端</strong></dt>
-                <dd>PowerShell · Git Bash · Windows Terminal </dd>
+              <dt><strong>常用</strong></dt>
+              <dd>Python · Git · VS Code · 一点点前端</dd>
             </div>
             <div class="skill-item">
-                <dt><strong>阅读/笔记</strong></dt>
-                <dd>Obsidian · Zotero · 云记 · Overleaf · Notion（轻量）</dd>
+              <dt><strong>在学</strong></dt>
+              <dd>西湖大学机器学习网课 · 知识库整理</dd>
             </div>
             <div class="skill-item">
-                <dt><strong>AI</strong></dt>
-                <dd>Chatgpt · Gemini · Coze</dd>
+              <dt><strong>想尝试</strong></dt>
+              <dd>系统设计 · 游戏原型 · 长篇写作 · AI4math</dd>
             </div>
             <div class="skill-item">
-                <dt><strong>设计/图</strong></dt>
-                <dd>暂无</dd>
+              <dt><strong>开发</strong></dt>
+              <dd>VS Code · Cursor · Codex · GitHub · WSL/Ubuntu · 微信开发者工具 · HBuilderX</dd>
             </div>
             <div class="skill-item">
-                <dt><strong>日常</strong></dt>
-                <dd>暂无</dd>
+              <dt><strong>终端</strong></dt>
+              <dd>PowerShell · Git Bash · Windows Terminal</dd>
             </div>
-            </dl>
-          </article>
-
-          <article class="card">
-            <h3>社交媒体</h3>
-            <p class="summary">这些地方最容易找到我2333。</p>
-            <div class="contact-links">
-              <a class="ghost-link" href="https://github.com/RUCmonk2" target="_blank">GitHub</a>
-              <a class="ghost-link" href="https://www.zhihu.com/people/monk-90-11" target="_blank">知乎</a>
-              <a class="ghost-link" href="https://space.bilibili.com/3546699962256011?spm_id_from=333.337.0.0" target="_blank">bilibili</a>
-              <a class="ghost-link" href="https://www.xiaohongshu.com/user/profile/66cbd2a5000000001d021723">小红书</a>
+            <div class="skill-item">
+              <dt><strong>阅读/笔记</strong></dt>
+              <dd>Obsidian · Zotero · 云记 · Overleaf · Notion（轻量）</dd>
             </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- <section id="comments" class="section">
-        <div class="section-head">
-          <h2>评论 / 留言</h2>
-          <p>如果未来接入评论系统，这里会放留言区；目前先用邮件/社交联系我。</p>
-        </div>
-        <article class="card contact-card">
-          <p>暂未部署实时评论。可以直接发邮件到 <a href="mailto:aleph@example.com">aleph@example.com</a>，或在 GitHub 开一个 Issue/Discussion（稍后补链）。</p>
-          <div class="contact-links">
-            <a class="ghost-link" href="#" target="_blank">GitHub Issues</a>
-            <a class="ghost-link" href="mailto:aleph@example.com">写邮件</a>
-          </div>
+            <div class="skill-item">
+              <dt><strong>AI</strong></dt>
+              <dd>ChatGPT · Gemini · Coze</dd>
+            </div>
+            <div class="skill-item">
+              <dt><strong>其它</strong></dt>
+              <dd>colab · jupyter notebook · multcloud</dd>
+            </div>
+          </dl>
         </article>
-      </section> -->
+      </section>
 
       <section id="projects" class="section">
         <div class="section-head">
           <h2>项目 Projects</h2>
-          <p>挑些正在打磨的东西。</p>
+          <p>正在打磨或持续记录的东西。</p>
         </div>
         <div class="project-list">
           <article class="card project-card">
             <div class="chip">Side Project</div>
             <h3>多智能体文化适应模拟</h3>
-            <p>用 Python 与 LLM 搭建的小型仿真场景，观察“移民 / 本地人”在互动中的认同变化，也在做可视化仪表板。</p>
+            <p>用 Python 与 LLM 搭建小型仿真场景，观察“移民 / 本地人”在互动中的认同变化，并尝试可视化仪表板。</p>
             <div class="project-meta">
               <span class="tag">Python · LLM</span>
               <a class="ghost-link" href="#">仓库（待公开）</a>
@@ -626,7 +166,7 @@
           <article class="card project-card">
             <div class="chip">Tooling</div>
             <h3>个人效率脚本</h3>
-            <p>常用的自动化小脚本：批量重命名、环境初始化、备份同步与写作发布流程，逐步整理成可复用的工具包。</p>
+            <p>自动化小脚本：批量重命名、环境初始化、备份同步与写作发布流程，整理成可复用的工具包。</p>
             <div class="project-meta">
               <span class="tag">Shell · PowerShell</span>
               <a class="ghost-link" href="#">脚本清单</a>
@@ -635,10 +175,10 @@
           <article class="card project-card">
             <div class="chip">This site</div>
             <h3>Aleph · 个人站</h3>
-            <p>静态化的数字花园，重写排版和留白，让内容比视觉更重要；后续会加入博客索引、友链与实验页面。</p>
+            <p>静态化的数字花园，重写排版和留白；博客独立成一页，主页专注自我介绍与导航。</p>
             <div class="project-meta">
               <span class="tag">HTML · CSS · Github Pages</span>
-              <a class="ghost-link" href="#">本站源码</a>
+              <a class="ghost-link" href="blog.html">查看博客页</a>
             </div>
           </article>
         </div>
@@ -647,56 +187,22 @@
       <section id="resources" class="section">
         <div class="section-head">
           <h2>学习资料 Recources</h2>
-          <p>曾经收益匪浅或正在学或将要学的各种资料。</p>
+          <p>曾经收益匪浅或正在学的各种资料。</p>
         </div>
-        <div class="project-list">
+        <div class="resource-list">
           <article class="card project-card">
             <div class="chip">Side Project</div>
             <h3>几个有用的学习网站</h3>
-            <p>Arthals大佬真的帮助了我很多，大二上的bomblab就是看着他的教程完成的，下面一些网站对于计算机专业的同学想必是很有用的</p>
-            <div class="resource-links">
+            <p>Arthals 大佬真的帮助了我很多，大二上的 bomblab 就是看着他的教程完成的；下面这些网站对计算机专业同学很有用。</p>
+            <div class="tag-row">
               <span class="tag">学习网站</span>
-              <a class="resource-pill" href="https://arthals.ink/about">Arthals的个人网站</a>
-              <a class="resource-pill" href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程</a>
-              <a class="resource-pill" href="https://csdiy.wiki/#cs61a">cs自学指南</a>
+            </div>
+            <div class="contact-links">
+              <a class="ghost-link" href="https://arthals.ink/about" target="_blank">Arthals 的个人网站</a>
+              <a class="ghost-link" href="https://www.runoob.com/cprogramming/c-tutorial.html" target="_blank">菜鸟教程</a>
+              <a class="ghost-link" href="https://csdiy.wiki/#cs61a" target="_blank">CS 自学指南</a>
             </div>
           </article>
-          
-        </div>
-      </section>
-
-      <section id="blog" class="section">
-        <div class="section-head">
-          <h2>博客 Blog</h2>
-          <p>先列主题，慢慢充实。</p>
-        </div>
-        <div class="card">
-          <div class="post-list">
-            <div class="post-item">
-              <a class="post-title" href="assets/ai_cli.html">AI_CLI：命令行速查 PDF 预览</a>
-              <span class="post-meta">PDF · 在线预览 / 下载</span>
-            </div>
-            <div class="post-item">
-              <a class="post-title" href="assets/windows_shortcuts.html">Windows 快捷键速查</a>
-              <span class="post-meta">Win + VS Code · 使用技巧</span>
-            </div>
-            <div class="post-item">
-              <a class="post-title" href="#">从 0 到 1 搭建个人网站：新的排版尝试（还没写）</a>
-              <span class="post-meta">2025 · 架构 / 记录</span>
-            </div>
-            <div class="post-item">
-              <a class="post-title" href="#">让命令行顺手：我的工作流布置（还没写）</a>
-              <span class="post-meta">草稿 · 工具</span>
-            </div>
-            <div class="post-item">
-              <a class="post-title" href="#">我如何用 AI 辅助学习与写作（还没写）</a>
-              <span class="post-meta">草稿 · 想法</span>
-            </div>
-            <div class="post-item">
-              <a class="post-title" href="#">多智能体模拟：灵感与坑（还没写）</a>
-              <span class="post-meta">草稿 · 技术</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -705,14 +211,14 @@
           <h2>联系我</h2>
           <p>留言、交换想法或合作。</p>
         </div>
-        <article class="card contact-card">
-          <p>最快的方式是随便在我小红书的某个帖子评论；我会尽量在 48 小时内回复。</p>
-          <p>Email：<a href="mailto:aleph@example.com">36231219360@qq.com</a></p>
+        <article class="card">
+          <p class="lead">最快的方式是在小红书任意帖子评论；我会尽量在 48 小时内回复。</p>
+          <p>Email：<a href="mailto:36231219360@qq.com">36231219360@qq.com</a></p>
         </article>
       </section>
     </main>
 
-        <footer class="footer">
+    <footer class="footer">
       (c) <span id="year"></span> Aleph - handwritten in small iterations.
     </footer>
   </div>
