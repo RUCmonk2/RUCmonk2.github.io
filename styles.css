@@ -423,6 +423,14 @@ a:hover {
   margin-top: 24px;
 }
 
+.blog-group {
+  margin-top: 36px;
+}
+
+.blog-group:first-of-type {
+  margin-top: 24px;
+}
+
 .blog-row {
   display: flex;
   justify-content: space-between;
