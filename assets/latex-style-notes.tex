@@ -1,0 +1,363 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{ctexart}
+
+\usepackage{geometry}
+\geometry{margin=1.7cm}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{cleveref}
+\usepackage{fvextra}
+
+\setlength{\columnsep}{0.8cm}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.3em}
+\raggedcolumns
+
+\definecolor{accent}{RGB}{39,113,172}
+\definecolor{softback}{RGB}{246,249,253}
+\definecolor{softgray}{RGB}{110,120,135}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent!80!black,
+  urlcolor=accent!80!black,
+  citecolor=accent!80!black
+}
+
+\setlist[itemize]{leftmargin=1.2em,itemsep=0.2em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.4em,itemsep=0.2em,topsep=0.25em}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{\thesection}{0.6em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{accent!90}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{accent!80}}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{0.8em}{0.45em}
+\titlespacing*{\subsection}{0pt}{0.6em}{0.3em}
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0.2em}
+
+\tcbset{
+  boxrule=0.55pt,
+  arc=2pt,
+  left=6pt,right=6pt,top=5pt,bottom=5pt,
+  colframe=accent!25,
+  colback=softback,
+}
+
+\newtcolorbox{examplebox}[1]{
+  enhanced,
+  colback=accent!3,
+  colframe=accent!28,
+  colbacktitle=accent!10,
+  coltitle=accent!90!black,
+  fonttitle=\bfseries,
+  borderline west={0.9pt}{0pt}{accent!45},
+  title={#1},
+  before skip=6pt,
+  after skip=8pt,
+}
+
+\newtcolorbox{ideabox}[1]{
+  enhanced,
+  colback=green!3,
+  colframe=accent!20,
+  colbacktitle=softgray!15,
+  coltitle=accent!90!black,
+  fonttitle=\bfseries,
+  title={#1},
+  boxed title style={
+    sharp corners,
+    boxrule=0pt,
+    frame empty,
+    interior style={fill=softgray!15},
+    top=2pt,bottom=2pt,left=6pt,right=6pt,
+  },
+  borderline west={0.9pt}{0pt}{accent!35},
+  before skip=6pt,
+  after skip=8pt,
+}
+
+\newtcolorbox{warningbox}[1]{
+  enhanced,
+  colback=red!3,
+  colframe=red!25,
+  colbacktitle=red!10,
+  coltitle=red!70!black,
+  fonttitle=\bfseries,
+  borderline west={0.9pt}{0pt}{red!35},
+  title={#1},
+  before skip=6pt,
+  after skip=8pt,
+}
+
+\newtcolorbox{abstractbox}{
+  enhanced,
+  colback=softback,
+  colframe=accent!28,
+  coltitle=accent!90!black,
+  fonttitle=\bfseries,
+  title=摘要,
+  boxrule=0.55pt,
+  arc=2pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,
+  before skip=4pt,
+  after skip=10pt,
+}
+
+\DefineVerbatimEnvironment{codeblock}{Verbatim}{
+  breaklines=true,
+  breakanywhere=true,
+  fontsize=\footnotesize,
+  frame=single,
+  rulecolor=\color{accent!28},
+  framesep=3mm,
+  baselinestretch=1,
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\id}{\mathrm{id}}
+
+\title{\bfseries\color{accent}{LaTeX 讲义格式速记}\\[3pt]
+\large\color{softgray}{复现本次版式}}
+\author{}
+\date{\color{softgray}{\today}}
+
+\begin{document}
+\maketitle
+
+\begin{abstractbox}
+这份文件把 \texttt{latex-style-notes.md} 直接改写成可编译的 LaTeX 版本，并且正文本身就使用同一套版式。以后新建讲义时，保留前导区与盒子定义，再替换正文即可。
+\end{abstractbox}
+
+\begin{multicols}{2}
+
+\section{模板核心}
+
+\begin{itemize}
+\item 文档类：\texttt{ctexart}，参数为 \texttt{11pt,a4paper}。
+\item 版面：\texttt{geometry[margin=1.7cm]}，两栏环境使用 \texttt{multicol}。
+\item 列间距：\texttt{\textbackslash columnsep=0.8cm}。
+\item 段落：\texttt{\textbackslash parindent=2em}，\texttt{\textbackslash parskip=0.3em}。
+\item 常用包集中放在导言区，建议保持下面这组基础组合。
+\end{itemize}
+
+\begin{codeblock}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{cleveref}
+\end{codeblock}
+
+\subsection{颜色定义}
+
+\begin{codeblock}
+\definecolor{accent}{RGB}{39,113,172}
+\definecolor{softback}{RGB}{246,249,253}
+\definecolor{softgray}{RGB}{110,120,135}
+\end{codeblock}
+
+\subsection{超链接与列表}
+
+\begin{itemize}
+\item 超链接建议启用 \texttt{colorlinks=true}，并统一用 \texttt{accent!80!black}。
+\item \texttt{itemize} 左缩进设为 \texttt{1.2em}，\texttt{enumerate} 左缩进设为 \texttt{1.4em}。
+\item 两类列表都把 \texttt{itemsep} 压到 \texttt{0.2em}，适合讲义型紧凑排版。
+\end{itemize}
+
+\begin{ideabox}{最小可复用骨架}
+如果只想快速迁移风格，至少保留四组设置：页面几何、颜色定义、标题样式、盒子体系。正文内容可以完全替换。
+\end{ideabox}
+
+\section{标题样式}
+
+\begin{codeblock}
+\titleformat{\section}{\large\bfseries\color{accent}}{\thesection}{0.6em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{accent!90}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{accent!80}}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{0.8em}{0.45em}
+\titlespacing*{\subsection}{0pt}{0.6em}{0.3em}
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0.2em}
+\end{codeblock}
+
+\begin{examplebox}{标题示例}
+主标题用 \texttt{accent}，副标题改用 \texttt{softgray}，这样层级清楚，而且不会比正文更重。讲义封面通常只保留主标题和副标题两层信息即可。
+\end{examplebox}
+
+\begin{codeblock}
+\title{\bfseries\color{accent}{主标题} \\[3pt]
+\large\color{softgray}{副标题}}
+\end{codeblock}
+
+\section{盒子体系（tcolorbox）}
+
+\subsection{全局设置}
+
+\begin{codeblock}
+\tcbset{
+  boxrule=0.55pt,
+  arc=2pt,
+  left=6pt,right=6pt,top=5pt,bottom=5pt,
+  colframe=accent!25,
+  colback=softback,
+}
+\end{codeblock}
+
+\subsection{示例盒子}
+
+\begin{examplebox}{examplebox}
+适合放例题、小模板、定义后的直接应用，边线和底色都保持轻量，不抢正文。
+\end{examplebox}
+
+\begin{codeblock}
+\newtcolorbox{examplebox}[1]{
+  enhanced,
+  colback=accent!3,
+  colframe=accent!28,
+  colbacktitle=accent!10,
+  coltitle=accent!90!black,
+  fonttitle=\bfseries,
+  borderline west={0.9pt}{0pt}{accent!45},
+  title={#1},
+  before skip=6pt,
+  after skip=8pt,
+}
+\end{codeblock}
+
+\subsection{引导思考盒子}
+
+\begin{ideabox}{ideabox}
+适合放“怎么想”“怎么选方法”“做题先看什么”这类元信息。它的标题条更柔和，读者不会把它误认为正式定理。
+\end{ideabox}
+
+\begin{codeblock}
+\newtcolorbox{ideabox}[1]{
+  enhanced,
+  colback=green!3,
+  colframe=accent!20,
+  colbacktitle=softgray!15,
+  coltitle=accent!90!black,
+  fonttitle=\bfseries,
+  title={#1},
+  boxed title style={
+    sharp corners,
+    boxrule=0pt,
+    frame empty,
+    interior style={fill=softgray!15},
+    top=2pt,bottom=2pt,left=6pt,right=6pt,
+  },
+  borderline west={0.9pt}{0pt}{accent!35},
+  before skip=6pt,
+  after skip=8pt,
+}
+\end{codeblock}
+
+\subsection{警告盒子}
+
+\begin{warningbox}{warningbox}
+适合放易错点、编译提醒、定义域条件或常见逻辑漏洞。颜色改成淡红后，读者扫页时能快速定位风险信息。
+\end{warningbox}
+
+\begin{codeblock}
+\newtcolorbox{warningbox}[1]{
+  enhanced,
+  colback=red!3,
+  colframe=red!25,
+  colbacktitle=red!10,
+  coltitle=red!70!black,
+  fonttitle=\bfseries,
+  borderline west={0.9pt}{0pt}{red!35},
+  title={#1},
+  before skip=6pt,
+  after skip=8pt,
+}
+\end{codeblock}
+
+\subsection{摘要盒子}
+
+\begin{abstractbox}
+摘要盒子适合放导读、文档说明、复习范围或使用方法。它的角色是开篇总览，不适合塞太多公式细节。
+\end{abstractbox}
+
+\begin{codeblock}
+\newtcolorbox{abstractbox}{
+  enhanced,
+  colback=softback,
+  colframe=accent!28,
+  coltitle=accent!90!black,
+  fonttitle=\bfseries,
+  title=摘要,
+  boxrule=0.55pt,
+  arc=2pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,
+  before skip=4pt,
+  after skip=10pt,
+}
+\end{codeblock}
+
+\section{宏与记号}
+
+常用数学记号建议先统一定义，后续所有讲义都复用，能避免正文里反复手写格式。
+
+\begin{codeblock}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\id}{\mathrm{id}}
+\end{codeblock}
+
+\section{交叉引用与超链接}
+
+\begin{itemize}
+\item 引用章节、定理、公式时，建议统一交给 \texttt{cleveref}，例如 \texttt{\textbackslash Cref\{thm:prime-powers\}}。
+\item 标题里一旦出现数学公式，就要配合 \texttt{texorpdfstring}，否则 PDF 书签容易报错或乱码。
+\end{itemize}
+
+\begin{codeblock}
+\subsection{应用 1：快速求和
+\texorpdfstring{$\sum_{n\le N}\varphi(n)$}{Sigma phi(n)}}
+\end{codeblock}
+
+\section{编译}
+
+\begin{warningbox}{编译器选择}
+推荐直接用 XeLaTeX。因为文档类是 \texttt{ctexart}，而正文里含中文，切到纯 pdfLaTeX 往往会直接卡在编码或字体上。
+\end{warningbox}
+
+\begin{codeblock}
+xelatex -interaction=nonstopmode -halt-on-error yourfile.tex
+\end{codeblock}
+
+\section{复用方式}
+
+\begin{enumerate}
+\item 直接把“模板核心”“标题样式”“盒子体系”复制到新文档的导言区。
+\item 把这份文件当成模板，在其基础上删除正文、替换标题和内容。
+\item 如果想要单栏讲义，只需删掉 \texttt{multicol} 环境，其余颜色和盒子配置可以原样保留。
+\end{enumerate}
+
+\begin{ideabox}{建议的工作流}
+先搭好导言区和盒子，再写摘要，再补各节内容。这样版式一次定死，后面只管填内容，不会在正文快写完时再返工排版。
+\end{ideabox}
+
+\end{multicols}
+
+\end{document}
