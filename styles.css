@@ -387,6 +387,16 @@ a:hover {
   background: rgba(29, 95, 99, 0.16);
 }
 
+.inert-link {
+  color: var(--muted);
+  cursor: default;
+}
+
+.inert-link:hover {
+  background: rgba(29, 95, 99, 0.08);
+  color: var(--muted);
+}
+
 .contact-card-block {
   display: grid;
   gap: 14px;
