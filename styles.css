@@ -246,8 +246,16 @@ a:hover {
 }
 
 .overview-card p {
-  margin: 0;
+  margin: 0 0 10px;
   color: var(--muted);
+}
+
+.overview-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+.overview-links {
+  margin-top: 18px;
 }
 
 .card-label {
