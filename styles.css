@@ -434,35 +434,54 @@ a:hover {
 }
 
 .prompt-box {
-  position: relative;
   margin-top: 16px;
 }
 
-.prompt-box .code-block {
-  margin-top: 0;
-  padding-top: 48px;
+.prompt-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .copy-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 11px;
+  padding: 8px 13px;
   border: 1px solid rgba(29, 95, 99, 0.18);
   border-radius: 999px;
-  background: rgba(255, 253, 248, 0.96);
-  color: var(--accent);
+  background: var(--accent);
+  color: #f8f4ed;
   font: inherit;
   font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
 }
 
 .copy-button:hover {
-  background: var(--accent-soft);
+  background: #174f52;
+}
+
+.copy-shortcuts {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.copy-shortcuts kbd {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 7px;
+  border: 1px solid rgba(221, 213, 199, 0.9);
+  border-radius: 6px;
+  background: rgba(255, 253, 248, 0.92);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
 }
 
 .code-block,

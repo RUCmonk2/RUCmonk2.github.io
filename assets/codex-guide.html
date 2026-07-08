@@ -46,7 +46,14 @@
           <h2>直接发给 Codex 的提示词</h2>
           <p>把下面这段里的项目路径换成你的目标文件夹，再发给 Codex：</p>
           <div class="prompt-box">
-            <button class="copy-button" type="button" data-copy-target="codex-guide-prompt">⧉ 复制提示词</button>
+            <div class="prompt-toolbar">
+              <span>复制快捷入口</span>
+              <button class="copy-button" type="button" data-copy-target="codex-guide-prompt">复制提示词</button>
+              <span class="copy-shortcuts">
+                <kbd>⌘C</kbd>
+                <kbd>Ctrl+C</kbd>
+              </span>
+            </div>
             <pre class="code-block" id="codex-guide-prompt"><code>请阅读 https://yeyaozhi.eu.cc/assets/codex-guide.html
 
 并按页面中的 Codex 交互指南，
@@ -176,6 +183,24 @@
     </footer>
   </div>
   <script>
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const copied = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return copied;
+    }
+
     document.querySelectorAll('[data-copy-target]').forEach((button) => {
       button.addEventListener('click', async () => {
         const target = document.getElementById(button.dataset.copyTarget);
@@ -183,10 +208,10 @@
         if (!text) return;
 
         try {
-          await navigator.clipboard.writeText(text);
+          await copyText(text);
           button.textContent = '已复制';
           setTimeout(() => {
-            button.textContent = '⧉ 复制提示词';
+            button.textContent = '复制提示词';
           }, 1600);
         } catch (error) {
           button.textContent = '请手动复制';
