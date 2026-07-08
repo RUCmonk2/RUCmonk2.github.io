@@ -16,7 +16,8 @@
 ## 临时工作区
 
 - `temps/`：用户临时放资料的工作区。
-- `temps/.gitignore`：忽略未来放入 `temps/` 的临时资料，避免误提交或误发布。
+- `temps/README.md`：临时资料管理台账，记录当前清单、建议清理节奏和清理记录。
+- `temps/.gitignore`：忽略未来放入 `temps/` 的临时资料，避免误提交或误发布；保留 `.gitignore`、`.gitkeep` 和 `README.md`。
 - `temps/.gitkeep`：保留空目录。
 
 ## 项目主要文件

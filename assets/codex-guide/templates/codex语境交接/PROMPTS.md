@@ -17,7 +17,7 @@
 ## 处理 temps 临时资料
 
 ```text
-请先阅读 {{PROJECT_PATH_FOR_PROMPT}}/codex交互reademe.md 恢复上下文，然后检查 temps/ 里的临时资料。请先告诉我你看到哪些资料、判断它们应该归类到哪里、哪些信息需要提取、哪些文件处理完可以删除。确认后再执行移动、整理或删除。
+请先阅读 {{PROJECT_PATH_FOR_PROMPT}}/codex交互reademe.md 和 {{PROJECT_PATH_FOR_PROMPT}}/temps/README.md 恢复上下文，然后检查 temps/ 里的临时资料。请先告诉我你看到哪些资料、判断它们应该归类到哪里、哪些信息需要提取、哪些文件处理完可以删除。确认后再执行移动、整理或删除。处理后请更新 temps/README.md 的当前清单和清理记录。
 ```
 
 ## 只让 Codex 复述需求和计划

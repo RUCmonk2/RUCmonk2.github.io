@@ -36,17 +36,22 @@
 │   └── PROMPTS.md
 └── temps/
     ├── .gitignore
-    └── .gitkeep
+    ├── .gitkeep
+    └── README.md
 ```
 
 ## temps 规则
 
 - `temps/` 是临时资料工作区，不是正式内容目录。
+- `temps/README.md` 是临时资料的管理台账，记录使用规则、当前清单、建议清理节奏和清理记录。
 - 用户可以偶尔把资料放进 `temps/`，让 Codex 读取、分类、提取信息或辅助整理。
-- Codex 处理前应先列出 `temps/` 里的文件，并说明每个文件的处理建议。
+- Codex 处理前应先列出 `temps/` 里的文件，并对照 `temps/README.md` 说明每个文件的处理建议。
 - 有长期价值的资料应移动到合适正式目录，或把信息写入正式文件。
 - 只用于一次性参考的资料，利用完后可以删除；如果内容重要，要先在 `JOURNAL.md` 记录处理方式和去向。
 - 不能确认是否可删时，先问用户。
+- 每次阶段性任务结束时快速检查一次 `temps/`；每周至少清理一次。
+- 当 `temps/` 文件超过 10 个或总大小超过 200MB 时，优先建议用户整理。
+- 处理 `temps/` 后，应同步更新 `temps/README.md` 的当前清单和清理记录；有长期影响的处理也写入 `codex语境交接/JOURNAL.md`。
 
 ## 文件分工
 
@@ -66,5 +71,6 @@
 - `templates/codex语境交接/*.md`
 - `templates/temps/.gitignore`
 - `templates/temps/.gitkeep`
+- `templates/temps/README.md`
 
 不要把模板里的占位符原样留在目标项目里。应替换为目标项目的真实路径、真实主线和真实文件说明。

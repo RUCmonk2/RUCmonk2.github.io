@@ -38,6 +38,7 @@
 4. `{{PROJECT_PATH_FOR_PROMPT}}/codex语境交接/DECISIONS.md`
 5. `{{PROJECT_PATH_FOR_PROMPT}}/codex语境交接/JOURNAL.md`
 6. `{{PROJECT_PATH_FOR_PROMPT}}/codex语境交接/PROMPTS.md`
+7. 如需处理临时资料，再读 `{{PROJECT_PATH_FOR_PROMPT}}/temps/README.md`
 
 ## 当前主线
 
@@ -46,17 +47,20 @@
 ## 重要文件夹
 
 - `temps/`：临时资料工作区，只用于待整理输入，不作为正式内容目录。
+- `temps/README.md`：临时资料管理台账，记录当前清单、建议清理节奏和清理记录。
 - `codex语境交接/`：Codex 上下文交接文件夹。
 - {{PROJECT_FILE_MAP_SUMMARY}}
 
 ## temps 使用规则
 
 - `temps/` 用来临时放用户稍后交给 Codex 处理的资料。
-- Codex 处理 `temps/` 前，应先列出文件、判断类别和目标去向，再执行移动、整理或删除。
+- Codex 处理 `temps/` 前，应先读取 `temps/README.md`，再列出文件、判断类别和目标去向。
 - 有长期价值的内容应整理到合适的正式目录，或写入正式文件。
 - 只提供参考价值的信息，应先提取结论或更新正式文件，再删除原始临时资料。
-- 临时资料默认不进入 Git：`temps/.gitignore` 会忽略除 `.gitignore` 和 `.gitkeep` 以外的文件。
-- 删除前如果资料内容重要，应在 `codex语境交接/JOURNAL.md` 记录处理方式和去向。
+- 临时资料默认不进入 Git：`temps/.gitignore` 会忽略除 `.gitignore`、`.gitkeep` 和 `README.md` 以外的文件。
+- 每次阶段性任务结束时快速检查一次 `temps/`；每周至少清理一次。
+- 当 `temps/` 文件超过 10 个或总大小超过 200MB 时，优先建议用户整理。
+- 处理后应更新 `temps/README.md` 的当前清单和清理记录；如果资料内容重要，也应在 `codex语境交接/JOURNAL.md` 记录处理方式和去向。
 
 ## 最近完成
 
@@ -76,3 +80,4 @@
 - 重要文件夹变化更新 `FILE_MAP.md`。
 - 已经形成的判断或约定记录到 `DECISIONS.md`。
 - 涉及 `temps/` 的整理、移动和删除，应尽量在 `JOURNAL.md` 留下处理记录。
+- 处理 `temps/` 后，必须同步更新 `temps/README.md`。
