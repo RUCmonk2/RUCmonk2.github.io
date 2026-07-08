@@ -433,6 +433,38 @@ a:hover {
   font-size: 30px;
 }
 
+.prompt-box {
+  position: relative;
+  margin-top: 16px;
+}
+
+.prompt-box .code-block {
+  margin-top: 0;
+  padding-top: 48px;
+}
+
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 11px;
+  border: 1px solid rgba(29, 95, 99, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.96);
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: var(--accent-soft);
+}
+
 .code-block,
 .tree-block {
   margin: 16px 0 0;
@@ -462,11 +494,19 @@ a:hover {
   box-shadow: var(--shadow);
 }
 
+.asset-figure a {
+  display: block;
+}
+
 .asset-figure img {
   display: block;
-  width: 100%;
+  width: min(100%, 760px);
+  max-height: 430px;
+  margin: 0 auto;
+  object-fit: contain;
   border-radius: 14px;
   border: 1px solid rgba(221, 213, 199, 0.9);
+  background: var(--surface-strong);
 }
 
 .asset-figure figcaption {

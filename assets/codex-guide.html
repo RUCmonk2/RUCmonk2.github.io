@@ -45,7 +45,20 @@
           <p class="card-label">Copy This</p>
           <h2>直接发给 Codex 的提示词</h2>
           <p>把下面这段里的项目路径换成你的目标文件夹，再发给 Codex：</p>
-          <pre class="code-block"><code>请阅读 https://yeyaozhi.eu.cc/assets/codex-guide.html，并按页面中的 Codex 交互指南，为 &lt;目标项目路径&gt; 建立 Codex 交互入口、temps 临时资料区和 codex 语境交接机制。先检查目标项目已有结构和同名文件，再告诉我你准备创建或修改哪些文件，确认后执行。</code></pre>
+          <div class="prompt-box">
+            <button class="copy-button" type="button" data-copy-target="codex-guide-prompt">⧉ 复制提示词</button>
+            <pre class="code-block" id="codex-guide-prompt"><code>请阅读 https://yeyaozhi.eu.cc/assets/codex-guide.html
+
+并按页面中的 Codex 交互指南，
+为 &lt;目标项目路径&gt; 建立：
+1. Codex 交互入口；
+2. temps 临时资料区；
+3. codex 语境交接机制。
+
+先检查目标项目已有结构和同名文件，
+再告诉我你准备创建或修改哪些文件，
+确认后执行。</code></pre>
+          </div>
         </article>
       </section>
 
@@ -101,8 +114,10 @@
           <h2>本地指南文件夹截图</h2>
         </div>
         <figure class="asset-figure">
-          <img src="codex-guide/desktop-codex-guide.png" alt="Codex 交互指南文件夹截图" />
-          <figcaption>截图展示了 `README.md`、`初始化清单.md`、`常用提示词.md` 和 `templates/` 的组织方式。</figcaption>
+          <a href="codex-guide/desktop-codex-guide.png" target="_blank">
+            <img src="codex-guide/desktop-codex-guide.png" alt="Codex 交互指南文件夹截图" />
+          </a>
+          <figcaption>截图展示了 `README.md`、`初始化清单.md`、`常用提示词.md` 和 `templates/` 的组织方式。点击图片可以查看原图。</figcaption>
         </figure>
       </section>
 
@@ -160,5 +175,24 @@
       <p><a href="../index.html">返回主页</a> · <a href="../blog.html">返回博客</a></p>
     </footer>
   </div>
+  <script>
+    document.querySelectorAll('[data-copy-target]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        const text = target ? target.innerText.trim() : '';
+        if (!text) return;
+
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = '已复制';
+          setTimeout(() => {
+            button.textContent = '⧉ 复制提示词';
+          }, 1600);
+        } catch (error) {
+          button.textContent = '请手动复制';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
