@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Codex 交互指南 · 叶耀之</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="一套可直接发给 Codex 执行的项目交接模板：temps 临时资料区、codex 交互入口和语境交接文件。" />
+  <link rel="canonical" href="https://yeyaozhi.eu.cc/assets/codex-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="叶耀之" />
+  <meta property="og:title" content="Codex 交互指南" />
+  <meta property="og:description" content="这不是只给人阅读的教程，也是一份可以直接交给 Codex 执行的项目初始化说明书。" />
+  <meta property="og:url" content="https://yeyaozhi.eu.cc/assets/codex-guide.html" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="site-brand" href="../index.html">叶耀之</a>
+      <nav class="site-nav">
+        <a href="../index.html#about">关于</a>
+        <a href="../index.html#focus">方向</a>
+        <a href="../index.html#projects">项目</a>
+        <a href="../index.html#resources">资源</a>
+        <a href="../index.html#tips">技巧</a>
+        <a href="../blog.html">博客</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="blog-hero">
+        <p class="section-kicker">AI Workflow</p>
+        <h1>Codex 交互指南</h1>
+        <p>
+          这页不完全是写给人逐字阅读的教程，也是一份写给 Codex 执行的公开说明书。
+          如果你也想在自己的项目里建立类似的交接机制，可以直接把本页网址发给 Codex，让它按这里的规则初始化你的项目。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <article class="content-card guide-callout">
+          <p class="card-label">Copy This</p>
+          <h2>直接发给 Codex 的提示词</h2>
+          <p>把下面这段里的项目路径换成你的目标文件夹，再发给 Codex：</p>
+          <pre class="code-block"><code>请阅读 https://yeyaozhi.eu.cc/assets/codex-guide.html，并按页面中的 Codex 交互指南，为 &lt;目标项目路径&gt; 建立 Codex 交互入口、temps 临时资料区和 codex 语境交接机制。先检查目标项目已有结构和同名文件，再告诉我你准备创建或修改哪些文件，确认后执行。</code></pre>
+        </article>
+      </section>
+
+      <section class="content-section">
+        <div class="section-header">
+          <p class="section-kicker">Why</p>
+          <h2>我为什么做这个</h2>
+        </div>
+        <div class="three-column">
+          <article class="content-card compact-card">
+            <h3>先解决上下文丢失</h3>
+            <p>长线任务经常跨多个 Codex 窗口推进。我先在科研文件夹里放交接 README，记录当前主线、重要文件、遗留问题和可复制开场白。</p>
+          </article>
+          <article class="content-card compact-card">
+            <h3>再处理临时资料</h3>
+            <p>很多任务会临时塞进截图、PDF、草稿或参考材料，所以我给项目加了 `temps/`，让临时资料先集中进入一个可清理的区域。</p>
+          </article>
+          <article class="content-card compact-card">
+            <h3>最后抽象成模板</h3>
+            <p>当我发现每个项目都需要同一套布置，就把它抽象成 `codex交互指南`。以后新项目不再从零解释，直接让 Codex 照指南初始化。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-header">
+          <p class="section-kicker">Result</p>
+          <h2>它会帮项目建立什么</h2>
+        </div>
+        <article class="content-card">
+          <pre class="tree-block"><code>目标项目/
+├── codex交互reademe.md
+├── codex语境交接/
+│   ├── CURRENT.md
+│   ├── OPEN_QUESTIONS.md
+│   ├── FILE_MAP.md
+│   ├── DECISIONS.md
+│   ├── JOURNAL.md
+│   └── PROMPTS.md
+└── temps/
+    ├── .gitignore
+    └── .gitkeep</code></pre>
+          <p>
+            `codex交互reademe.md` 是新窗口入口；`codex语境交接/` 负责状态、遗留问题、文件地图、决策、日志和提示词；
+            `temps/` 负责临时资料，处理后应该归档到正式目录或删除。
+          </p>
+        </article>
+      </section>
+
+      <section class="content-section">
+        <div class="section-header">
+          <p class="section-kicker">Preview</p>
+          <h2>本地指南文件夹截图</h2>
+        </div>
+        <figure class="asset-figure">
+          <img src="codex-guide/desktop-codex-guide.png" alt="Codex 交互指南文件夹截图" />
+          <figcaption>截图展示了 `README.md`、`初始化清单.md`、`常用提示词.md` 和 `templates/` 的组织方式。</figcaption>
+        </figure>
+      </section>
+
+      <section class="content-section">
+        <div class="section-header">
+          <p class="section-kicker">Files</p>
+          <h2>完整公开文件</h2>
+        </div>
+        <div class="stack-list">
+          <article class="list-card">
+            <div>
+              <p class="card-label">Guide</p>
+              <h3>说明与执行清单</h3>
+              <p>这几份 Markdown 是给人和 Codex 共同读取的入口，说明什么时候使用、怎样初始化、常用提示词怎么写。</p>
+            </div>
+            <div class="resource-links">
+              <a class="text-link" href="codex-guide/README.md">README</a>
+              <a class="text-link" href="codex-guide/初始化清单.md">初始化清单</a>
+              <a class="text-link" href="codex-guide/常用提示词.md">常用提示词</a>
+            </div>
+          </article>
+
+          <article class="list-card">
+            <div>
+              <p class="card-label">Templates</p>
+              <h3>项目内交接模板</h3>
+              <p>这些文件是 Codex 初始化目标项目时要改写的模板。它不应该原样复制占位符，而应该替换成目标项目的真实路径、主线和文件说明。</p>
+            </div>
+            <div class="resource-links">
+              <a class="text-link" href="codex-guide/templates/codex交互reademe.md">入口模板</a>
+              <a class="text-link" href="codex-guide/templates/codex语境交接/CURRENT.md">CURRENT</a>
+              <a class="text-link" href="codex-guide/templates/codex语境交接/OPEN_QUESTIONS.md">OPEN_QUESTIONS</a>
+              <a class="text-link" href="codex-guide/templates/codex语境交接/FILE_MAP.md">FILE_MAP</a>
+              <a class="text-link" href="codex-guide/templates/codex语境交接/DECISIONS.md">DECISIONS</a>
+              <a class="text-link" href="codex-guide/templates/codex语境交接/JOURNAL.md">JOURNAL</a>
+              <a class="text-link" href="codex-guide/templates/codex语境交接/PROMPTS.md">PROMPTS</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <article class="content-card">
+          <p class="card-label">Note</p>
+          <h2>给读者的一句话</h2>
+          <p>
+            如果你只是好奇我的工作流，可以读上面的思路；如果你真正想复用它，不需要完全理解每个模板文件。
+            直接把这个页面发给 Codex，并告诉它你的项目路径，它就能按这里的规则帮你布置项目级交接机制。
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="../index.html">返回主页</a> · <a href="../blog.html">返回博客</a></p>
+    </footer>
+  </div>
+</body>
+</html>

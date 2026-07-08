@@ -427,6 +427,54 @@ a:hover {
   color: var(--ink);
 }
 
+.guide-callout h2 {
+  margin: 8px 0 10px;
+  font-family: var(--serif);
+  font-size: 30px;
+}
+
+.code-block,
+.tree-block {
+  margin: 16px 0 0;
+  padding: 18px;
+  overflow-x: auto;
+  border: 1px solid rgba(221, 213, 199, 0.9);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.92);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.tree-block {
+  margin-bottom: 14px;
+  white-space: pre;
+}
+
+.asset-figure {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgba(221, 213, 199, 0.86);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.asset-figure img {
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(221, 213, 199, 0.9);
+}
+
+.asset-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .blog-hero {
   padding: 18px 2px 8px;
 }
