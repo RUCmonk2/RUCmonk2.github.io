@@ -1,0 +1,154 @@
+{
+  "news": {
+    "items": [
+      {
+        "date": "当前",
+        "title": "科研入门：残差连接与模型结构",
+        "content": "通过科研领航进入魏哲巍老师的团队，在郭雨荷师姐指导下建立论文阅读和问题记录的基本方法。"
+      },
+      {
+        "date": "2026.04",
+        "title": "三创课程参访",
+        "content": "与队友参访木木美术馆并访谈嘉诚集团，把课堂中的商业问题放到真实场景里观察。"
+      },
+      {
+        "date": "本科期间",
+        "title": "OfferGo 完成大学生创业训练计划",
+        "content": "面向泛商科同学的 AI 面试微信小程序获得国家级立项，并以优秀结项、优胜团队奖完成阶段实践。"
+      }
+    ]
+  },
+  "projects": {
+    "items": [
+      {
+        "title": "OfferGo",
+        "href": "#contact",
+        "dates": "本科期间",
+        "active": true,
+        "description": "面向泛商科同学的 AI 面试微信小程序。项目获得国家级大学生创业训练计划立项，最终优秀结项并获优胜团队奖。",
+        "technologies": ["Codex", "AI 面试", "产品实践"],
+        "authors": "与团队共同完成",
+        "links": [],
+        "image": "",
+        "video": ""
+      },
+      {
+        "title": "北大极客松与清华黑客松",
+        "href": "#contact",
+        "dates": "大一",
+        "active": true,
+        "description": "通过密集协作和快速原型接触开放式技术实践，在有限时间内把问题转化为可演示的方案。",
+        "technologies": ["Hackathon", "原型", "协作"],
+        "authors": "",
+        "links": [],
+        "image": "",
+        "video": ""
+      },
+      {
+        "title": "Codex 项目交接工作流",
+        "href": "/assets/codex-guide.html",
+        "dates": "持续更新",
+        "active": true,
+        "description": "把项目主线、文件地图、决策与临时资料规则写成可复用模板，让 AI 能够在多轮对话后稳定接续工作。",
+        "technologies": ["Codex", "CLI", "Markdown"],
+        "authors": "",
+        "links": [
+          {
+            "type": "公开指南",
+            "href": "/assets/codex-guide.html",
+            "icon": "bookopen"
+          },
+          {
+            "type": "Markdown",
+            "href": "/assets/codex-interaction-readme.md",
+            "icon": "paper"
+          }
+        ],
+        "image": "/assets/codex-guide/desktop-codex-guide.png",
+        "video": ""
+      },
+      {
+        "title": "个人主页与公开笔记库",
+        "href": "https://github.com/RUCmonk2/RUCmonk2.github.io",
+        "dates": "持续更新",
+        "active": true,
+        "description": "把个人介绍、项目、博客和可下载资料整理在同一站点，并用 GitHub Pages 保持公开、可追溯和便于维护。",
+        "technologies": ["Next.js", "GitHub Pages", "知识整理"],
+        "authors": "",
+        "links": [
+          {
+            "type": "GitHub",
+            "href": "https://github.com/RUCmonk2/RUCmonk2.github.io",
+            "icon": "github"
+          },
+          {
+            "type": "建站指南",
+            "href": "/assets/personal-site-guide.html",
+            "icon": "bookopen"
+          }
+        ],
+        "image": "",
+        "video": ""
+      }
+    ]
+  },
+  "publications": { "items": [] },
+  "education": {
+    "items": [
+      {
+        "school": "中国人民大学",
+        "href": "https://www.ruc.edu.cn/",
+        "degree": "人工智能本科生",
+        "logoUrl": "/icon/ruc.svg",
+        "start": "本科",
+        "end": "在读"
+      }
+    ]
+  },
+  "work": { "items": [] },
+  "awards": { "items": [] },
+  "teaching": { "items": [] },
+  "invitedTalks": { "items": [] },
+  "skills": [
+    "模型结构",
+    "残差连接",
+    "具身智能",
+    "Codex",
+    "命令行",
+    "Markdown",
+    "知识整理",
+    "注意力管理"
+  ],
+  "reviewerConferences": [],
+  "reviewerJournals": [],
+  "social": {
+    "GitHub": {
+      "name": "GitHub",
+      "url": "https://github.com/RUCmonk2",
+      "icon": "github",
+      "content": true,
+      "footer": true
+    },
+    "Zhihu": {
+      "name": "知乎",
+      "url": "https://www.zhihu.com/people/monk-90-11",
+      "icon": "zhihu",
+      "content": true,
+      "footer": true
+    },
+    "Xiaohongshu": {
+      "name": "小红书",
+      "url": "https://www.xiaohongshu.com/user/profile/66cbd2a5000000001d021723",
+      "icon": "xiaohongshu",
+      "content": true,
+      "footer": true
+    },
+    "email": {
+      "name": "邮箱",
+      "url": "mailto:36231219360@qq.com",
+      "icon": "email",
+      "content": true,
+      "footer": true
+    }
+  }
+}

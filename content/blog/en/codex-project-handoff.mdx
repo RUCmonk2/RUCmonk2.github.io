@@ -1,0 +1,52 @@
+---
+title: "A project handoff system for long-running Codex work"
+date: "2026-07-09"
+updatedAt: "2026-08-03"
+summary: "An entry README, a small context directory, and a temps area keep work coherent across conversations."
+readingTime: 5
+---
+
+Short tasks need a clear prompt. Long-running projects have a different problem: conversations end, files accumulate, and a new AI session does not know why earlier decisions were made. My approach is to store project state in the project itself instead of building an ever-longer master prompt.
+
+## A stable entry point
+
+I keep a handoff README at the project root. It answers five questions:
+
+- What is the current objective?
+- Which files matter most?
+- How should temporary materials be handled?
+- Which issues are still open?
+- What is the most useful next step?
+
+At the start of a new conversation, I ask Codex to read this file and restate the current situation. That restatement is a low-cost check that catches misunderstandings before files change.
+
+## Separate different kinds of state
+
+As a project grows, I split context into a few focused files:
+
+- `CURRENT.md` describes the current state;
+- `DECISIONS.md` records choices and their reasoning;
+- `FILE_MAP.md` explains the role of important files;
+- `OPEN_QUESTIONS.md` keeps unresolved issues visible;
+- `JOURNAL.md` stores brief milestone notes.
+
+These files are not a transcript. They contain only the information a future contributor needs to recover sound judgment quickly.
+
+## Keep temps temporary
+
+The `temps/` directory receives screenshots, drafts, exports, and intermediate files whose long-term role is not clear yet.
+
+1. New material enters the temporary area first.
+2. Before use, decide whether it should be archived, rewritten, or removed.
+3. Move durable material into a formal location and update the file map.
+4. Do not treat the temporary area as a permanent archive or publish it with the site.
+
+This separation reduces accidental changes and keeps the formal project structure readable.
+
+## Align before execution
+
+Before a substantial change, I ask the AI to state the objective, intended scope, and verification method. After the work, only information that genuinely changes project state is written back to the handoff files.
+
+This does not prevent every mistake, but it exposes many mistakes earlier and keeps useful work from disappearing when a conversation ends.
+
+The full reusable structure is available in the [public guide](/assets/codex-guide.html), with the [handoff README in Markdown](/assets/codex-interaction-readme.md).

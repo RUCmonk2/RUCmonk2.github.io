@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>从 0 到 1 搭建个人网站 · PDF 预览</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Aleph 的 PDF 预览页：从 0 到 1 搭建个人网站，可在线阅读或下载。" />
+  <link rel="canonical" href="https://yeyaozhi.eu.cc/assets/website_typography.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aleph" />
+  <meta property="og:title" content="从 0 到 1 搭建个人网站 · PDF 预览" />
+  <meta property="og:description" content="Aleph 的 PDF 预览页：从 0 到 1 搭建个人网站，可在线阅读或下载。" />
+  <meta property="og:url" content="https://yeyaozhi.eu.cc/assets/website_typography.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f2eb;
+      --paper: rgba(255, 255, 255, 0.92);
+      --ink: #1f2430;
+      --muted: #5b6271;
+      --accent: #1f7a7a;
+      --border: #e3ddd2;
+      --shadow: 0 10px 32px rgba(18, 21, 31, 0.08);
+      --radius: 16px;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "Source Serif 4", "Times New Roman", serif;
+      --sans: "Space Grotesk", "Noto Sans SC", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(90% 70% at 25% 20%, rgba(31, 122, 122, 0.08), transparent 45%), var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.7;
+    }
+    .page { max-width: 1080px; margin: 0 auto; padding: 28px 22px 48px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .title { font-family: var(--serif); font-size: 26px; margin: 0; letter-spacing: 0.02em; }
+    .meta { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+    a { color: inherit; text-decoration: underline; text-decoration-color: rgba(31,122,122,0.4); text-underline-offset: 3px; }
+    a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    .card { margin-top: 18px; background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 18px 14px; }
+    .summary { color: var(--muted); margin: 0 0 12px; }
+    .viewer { width: 100%; height: 72vh; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    iframe { width: 100%; height: 100%; border: none; background: #fdfbf7; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .pill { padding: 7px 10px; border-radius: 10px; border: 1px solid rgba(31,122,122,0.2); background: rgba(31,122,122,0.08); color: var(--accent); font-size: 12px; text-decoration: none; }
+    footer { margin-top: 18px; font-size: 12px; color: var(--muted); text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1 class="title">从 0 到 1 搭建个人网站：排版笔记</h1>
+        <p class="meta">文件：assets/website_typography.pdf · 2 页 · 在线预览/下载</p>
+      </div>
+      <a href="../blog.html">返回博客</a>
+    </header>
+
+    <article class="card">
+      <p class="summary">记录这版个人站的排版取舍：配色、字体、布局、发布流程和后续迭代清单。页面与 PDF 的风格保持一致，重点是“轻量可持续”。</p>
+      <div class="viewer">
+        <iframe src="website_typography.pdf#view=FitH" title="从 0 到 1 搭建个人网站 PDF"></iframe>
+      </div>
+      <div class="actions">
+        <a class="pill" href="website_typography.pdf" download>下载 PDF</a>
+        <a class="pill" href="../blog.html">回到博客列表</a>
+      </div>
+    </article>
+
+    <footer>(c) <span id="year"></span> Aleph · 预览自 website_typography.pdf</footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

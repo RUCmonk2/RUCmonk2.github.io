@@ -1,0 +1,1090 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+@import "katex/dist/katex.min.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans:
+    var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 11.1% 3.53%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 11.1% 3.53%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11.1% 3.53%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 210 11.1% 3.53%;
+    --foreground: 0 0% 98%;
+
+    --card: 210 11.1% 3.53%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 210 11.1% 3.53%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: #a6192e;
+    color: white;
+  }
+}
+
+.editorial-title,
+.editorial-heading {
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", Georgia, serif;
+  letter-spacing: 0;
+}
+
+.editorial-lead {
+  letter-spacing: 0;
+}
+
+.section-index {
+  color: #a6192e;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.academic-name,
+.academic-heading,
+.academic-headline {
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", Georgia, serif;
+  letter-spacing: 0;
+}
+
+.academic-kicker {
+  color: #9f1d2f;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.academic-link {
+  align-items: center;
+  border-bottom: 1px solid rgb(163 163 163);
+  display: inline-flex;
+  font-size: 0.8rem;
+  font-weight: 600;
+  gap: 0.4rem;
+  line-height: 1.5;
+  padding-bottom: 0.12rem;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.academic-link:hover {
+  border-color: #9f1d2f;
+  color: #9f1d2f;
+}
+
+.academic-section {
+  padding: 3.5rem 1.25rem 0;
+}
+
+.academic-section-inner {
+  border-top: 1px solid rgb(212 212 212);
+  display: grid;
+  gap: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64rem;
+  padding-top: 3.5rem;
+}
+
+.academic-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.academic-section-header .academic-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.academic-prose p {
+  color: rgb(82 82 82);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+@media (min-width: 640px) {
+  .academic-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 4.5rem;
+  }
+
+  .academic-section-inner {
+    padding-top: 4.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .academic-section-inner {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .academic-section {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.dark .academic-section-inner {
+  border-color: rgb(64 64 64);
+}
+
+.dark .academic-prose p {
+  color: rgb(212 212 212);
+}
+
+/* guided tutorial */
+.tutorial-page {
+  background: #f7f7f5;
+  color: #171918;
+}
+.dark .tutorial-page {
+  background: #0f1110;
+  color: #f5f5f4;
+}
+.tutorial-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.65fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 8.5rem 2.5rem 4rem;
+}
+.tutorial-hero h1 {
+  max-width: 46rem;
+  margin-top: 1rem;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.tutorial-hero > div > p:not(.academic-kicker) {
+  max-width: 42rem;
+  margin-top: 1.5rem;
+  color: #525252;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+.dark .tutorial-hero > div > p:not(.academic-kicker) {
+  color: #c7c7c7;
+}
+.tutorial-hero a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  border-bottom: 1px solid #9f1d2f;
+  padding-bottom: 0.25rem;
+  color: #9f1d2f;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.tutorial-hero a svg {
+  width: 0.9rem;
+}
+.tutorial-hero aside {
+  align-self: end;
+  border-top: 2px solid #9f1d2f;
+}
+.tutorial-hero aside > div {
+  display: flex;
+  gap: 0.8rem;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 1rem 0;
+}
+.dark .tutorial-hero aside > div {
+  border-color: #404040;
+}
+.tutorial-hero aside svg {
+  width: 1rem;
+  color: #9f1d2f;
+}
+.tutorial-hero aside b,
+.tutorial-hero aside small {
+  display: block;
+}
+.tutorial-hero aside b {
+  font-size: 0.75rem;
+}
+.tutorial-hero aside small {
+  margin-top: 0.15rem;
+  color: #737373;
+  font-size: 0.65rem;
+}
+.tutorial-sequence {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  border-block: 1px solid #d4d4d4;
+  padding: 1.1rem 2rem;
+  color: #525252;
+  font-size: 0.68rem;
+  font-weight: 650;
+}
+.dark .tutorial-sequence {
+  border-color: #404040;
+  color: #bdbdbd;
+}
+.tutorial-sequence i {
+  color: #9f1d2f;
+  font-style: normal;
+}
+.tutorial-reader {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 4.5rem 2.5rem 6rem;
+}
+.tutorial-platforms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 42rem;
+  margin: 0 auto;
+  border: 1px solid #d4d4d4;
+  background: #ececea;
+  padding: 0.3rem;
+}
+.dark .tutorial-platforms {
+  border-color: #404040;
+  background: #191b1a;
+}
+.tutorial-platforms button {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem;
+  color: #737373;
+  text-align: left;
+}
+.tutorial-platforms button.active {
+  background: white;
+  color: #171918;
+  box-shadow: 0 3px 12px #0000000d;
+}
+.dark .tutorial-platforms button.active {
+  background: #292b2a;
+  color: #fafafa;
+}
+.tutorial-platforms button > span {
+  display: grid;
+  place-items: center;
+  height: 2rem;
+  border: 1px solid #d4d4d4;
+  font-weight: 700;
+}
+.tutorial-platforms svg {
+  width: 1rem;
+}
+.tutorial-platforms strong {
+  font-size: 0.78rem;
+}
+.tutorial-platforms small {
+  font-size: 0.62rem;
+}
+.tutorial-context {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1.5rem 2rem;
+  max-width: 64rem;
+  margin: 2rem auto 2.5rem;
+  border-left: 3px solid #9f1d2f;
+  padding: 1rem 1.25rem;
+  background: #f0efeb;
+}
+.dark .tutorial-context {
+  background: #191b1a;
+}
+.tutorial-context div span,
+.tutorial-context div strong {
+  display: block;
+}
+.tutorial-context span {
+  color: #9f1d2f;
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.tutorial-context strong {
+  margin-top: 0.2rem;
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+}
+.tutorial-context > p {
+  margin: 0;
+  color: #525252;
+  font-size: 0.76rem;
+  line-height: 1.7;
+}
+.dark .tutorial-context > p {
+  color: #c7c7c7;
+}
+.tutorial-context .tutorial-source-note {
+  grid-column: 2;
+  display: flex;
+  gap: 0.5rem;
+  color: #737373;
+  font-size: 0.65rem;
+}
+.tutorial-source-note svg {
+  flex: none;
+  width: 0.8rem;
+}
+.tutorial-workspace {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr) 14rem;
+  gap: 1rem;
+  align-items: start;
+}
+.tutorial-step-nav,
+.tutorial-companion {
+  position: sticky;
+  top: 5.2rem;
+}
+.tutorial-step-nav > p,
+.tutorial-companion > p {
+  margin: 0 0 0.65rem;
+  color: #737373;
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.tutorial-step-nav button {
+  display: grid;
+  grid-template-columns: 1.8rem 1fr 0.8rem;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  border-top: 1px solid #d4d4d4;
+  padding: 0.8rem 0.35rem;
+  color: #737373;
+  text-align: left;
+}
+.dark .tutorial-step-nav button {
+  border-color: #404040;
+}
+.tutorial-step-nav button.active {
+  border-top-color: #9f1d2f;
+  background: #f0efeb;
+  color: #171918;
+}
+.dark .tutorial-step-nav button.active {
+  background: #191b1a;
+  color: #f5f5f4;
+}
+.tutorial-step-nav button span {
+  font-family: monospace;
+  font-size: 0.58rem;
+}
+.tutorial-step-nav button b {
+  font-size: 0.68rem;
+}
+.tutorial-step-nav button svg {
+  width: 0.75rem;
+}
+.tutorial-step-card {
+  overflow: hidden;
+  border: 1px solid #d4d4d4;
+  background: white;
+  box-shadow: 0 12px 35px #0000000a;
+}
+.dark .tutorial-step-card {
+  border-color: #404040;
+  background: #151716;
+}
+.tutorial-step-card > header {
+  padding: 2rem 2rem 1.7rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.dark .tutorial-step-card > header {
+  border-color: #343434;
+}
+.tutorial-step-card > header > p:first-child {
+  color: #9f1d2f;
+  font-family: monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+.tutorial-step-card h2 {
+  margin-top: 0.55rem;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.tutorial-step-card > header > p:last-child {
+  margin-top: 0.7rem;
+  color: #525252;
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+.dark .tutorial-step-card > header > p:last-child {
+  color: #c7c7c7;
+}
+.tutorial-reading-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  border-bottom: 1px solid #e5e5e5;
+}
+.dark .tutorial-reading-grid {
+  border-color: #343434;
+}
+.tutorial-reading-grid section {
+  padding: 1.5rem 2rem;
+}
+.tutorial-reading-grid section + section {
+  border-left: 1px solid #e5e5e5;
+}
+.dark .tutorial-reading-grid section + section {
+  border-color: #343434;
+}
+.source-pane {
+  background: #fafaf8;
+}
+.dark .source-pane {
+  background: #191b1a;
+}
+.tutorial-pane-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: #365966;
+}
+.why-pane .tutorial-pane-label {
+  color: #7a541f;
+}
+.tutorial-pane-label svg {
+  width: 0.9rem;
+}
+.tutorial-pane-label b {
+  font-size: 0.68rem;
+}
+.tutorial-reading-grid ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #404040;
+  font-size: 0.75rem;
+  line-height: 1.75;
+}
+.tutorial-reading-grid li + li {
+  margin-top: 0.4rem;
+}
+.tutorial-reading-grid p {
+  margin: 0;
+  color: #525252;
+  font-size: 0.75rem;
+  line-height: 1.8;
+}
+.dark .tutorial-reading-grid ol,
+.dark .tutorial-reading-grid p {
+  color: #d4d4d4;
+}
+.tutorial-command {
+  position: relative;
+  margin: 1.25rem 2rem;
+  border: 1px solid #d4d4d4;
+  background: #171918;
+  color: #f5f5f4;
+}
+.tutorial-command > div {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-bottom: 1px solid #3f3f3f;
+  padding: 0.55rem 0.8rem;
+  color: #c7c7c7;
+  font-size: 0.58rem;
+}
+.tutorial-command svg {
+  width: 0.75rem;
+}
+.tutorial-command pre {
+  margin: 0;
+  padding: 1rem 1.1rem !important;
+  white-space: pre-wrap;
+}
+.tutorial-command code {
+  font-size: 0.7rem;
+  line-height: 1.7 !important;
+}
+.tutorial-command code:before {
+  display: none !important;
+}
+.tutorial-command button {
+  position: absolute;
+  right: 0.6rem;
+  top: 0.38rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.4rem;
+  color: #d4d4d4;
+  font-size: 0.56rem;
+}
+.tutorial-checkpoint,
+.tutorial-caution {
+  display: flex;
+  gap: 0.8rem;
+  margin: 1.25rem 2rem;
+  padding: 1rem 1.1rem;
+}
+.tutorial-checkpoint {
+  border-left: 3px solid #39705b;
+  background: #edf5f0;
+}
+.dark .tutorial-checkpoint {
+  background: #17231e;
+}
+.tutorial-caution {
+  border-left: 3px solid #9f1d2f;
+  background: #f7eeee;
+}
+.dark .tutorial-caution {
+  background: #29191b;
+}
+.tutorial-checkpoint > svg,
+.tutorial-caution > svg {
+  flex: none;
+  width: 1rem;
+}
+.tutorial-checkpoint > svg {
+  color: #39705b;
+}
+.tutorial-caution > svg {
+  color: #9f1d2f;
+}
+.tutorial-checkpoint b,
+.tutorial-caution b {
+  font-size: 0.66rem;
+}
+.tutorial-checkpoint p,
+.tutorial-caution p {
+  margin: 0.25rem 0 0;
+  color: #525252;
+  font-size: 0.7rem;
+  line-height: 1.65;
+}
+.dark .tutorial-checkpoint p,
+.dark .tutorial-caution p {
+  color: #d4d4d4;
+}
+.tutorial-step-card > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e5e5e5;
+  padding: 1rem 2rem;
+}
+.dark .tutorial-step-card > footer {
+  border-color: #343434;
+}
+.tutorial-step-card > footer button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #9f1d2f;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+.tutorial-step-card > footer button:disabled {
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
+.tutorial-step-card > footer svg {
+  width: 0.75rem;
+}
+.tutorial-step-card > footer span {
+  display: flex;
+  gap: 0.25rem;
+}
+.tutorial-step-card > footer i {
+  width: 1rem;
+  height: 2px;
+  background: #d4d4d4;
+}
+.tutorial-step-card > footer i.active {
+  background: #9f1d2f;
+}
+.tutorial-companion {
+  border-top: 2px solid #171918;
+  padding-top: 0.75rem;
+}
+.dark .tutorial-companion {
+  border-color: #e5e5e5;
+}
+.tutorial-companion dl {
+  margin: 0;
+}
+.tutorial-companion dl > div {
+  display: grid;
+  grid-template-columns: 0.7rem 1fr;
+  gap: 0.55rem;
+  border-top: 1px solid #d4d4d4;
+  padding: 0.8rem 0;
+}
+.dark .tutorial-companion dl > div {
+  border-color: #404040;
+}
+.tutorial-companion dt {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.15rem;
+  border-radius: 50%;
+  background: #587b89;
+}
+.tutorial-companion .why-dot {
+  background: #b8863b;
+}
+.tutorial-companion .success-dot {
+  background: #39705b;
+}
+.tutorial-companion .inactive {
+  opacity: 0.38;
+}
+.tutorial-companion dd {
+  margin: 0;
+}
+.tutorial-companion dd b,
+.tutorial-companion dd span {
+  display: block;
+}
+.tutorial-companion dd b {
+  font-size: 0.66rem;
+}
+.tutorial-companion dd span {
+  margin-top: 0.2rem;
+  color: #737373;
+  font-size: 0.58rem;
+  line-height: 1.5;
+}
+.tutorial-safety {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid #d6aeb4;
+  padding: 0.75rem;
+  color: #7f2735;
+}
+.tutorial-safety svg {
+  flex: none;
+  width: 0.85rem;
+}
+.tutorial-safety p {
+  margin: 0;
+  font-size: 0.6rem;
+  line-height: 1.55;
+}
+.tutorial-scope {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 2.5rem 6rem;
+}
+.tutorial-scope h2 {
+  max-width: 36rem;
+  margin-top: 0.6rem;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.tutorial-scope > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 1.8rem;
+  border-block: 1px solid #d4d4d4;
+}
+.dark .tutorial-scope > div {
+  border-color: #404040;
+}
+.tutorial-scope article {
+  padding: 1.25rem 1.25rem 1.25rem 0;
+}
+.tutorial-scope article + article {
+  border-left: 1px solid #d4d4d4;
+  padding-left: 1.25rem;
+}
+.dark .tutorial-scope article + article {
+  border-color: #404040;
+}
+.tutorial-scope b {
+  font-size: 0.7rem;
+  color: #9f1d2f;
+}
+.tutorial-scope p {
+  margin-top: 0.5rem;
+  color: #525252;
+  font-size: 0.7rem;
+  line-height: 1.75;
+}
+.dark .tutorial-scope p {
+  color: #c7c7c7;
+}
+@media (max-width: 1050px) {
+  .tutorial-workspace {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
+  .tutorial-companion {
+    position: static;
+    grid-column: 1/-1;
+  }
+  .tutorial-companion dl {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .tutorial-companion dl > div {
+    border-bottom: 1px solid #d4d4d4;
+  }
+}
+@media (max-width: 760px) {
+  .tutorial-hero {
+    grid-template-columns: 1fr;
+    padding: 7rem 1.25rem 3rem;
+  }
+  .tutorial-hero aside {
+    max-width: 28rem;
+  }
+  .tutorial-sequence {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .tutorial-reader {
+    padding: 3rem 1rem 4rem;
+  }
+  .tutorial-context {
+    grid-template-columns: 1fr;
+  }
+  .tutorial-context .tutorial-source-note {
+    grid-column: auto;
+  }
+  .tutorial-workspace {
+    grid-template-columns: 1fr;
+  }
+  .tutorial-step-nav {
+    position: static;
+    display: flex;
+    overflow-x: auto;
+    border-block: 1px solid #d4d4d4;
+  }
+  .tutorial-step-nav > p {
+    display: none;
+  }
+  .tutorial-step-nav button {
+    min-width: 9.5rem;
+    border: 0;
+    border-right: 1px solid #d4d4d4;
+  }
+  .tutorial-reading-grid {
+    grid-template-columns: 1fr;
+  }
+  .tutorial-reading-grid section + section {
+    border-left: 0;
+    border-top: 1px solid #e5e5e5;
+  }
+  .tutorial-companion {
+    grid-column: auto;
+  }
+  .tutorial-companion dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tutorial-scope {
+    padding: 0 1.25rem 4rem;
+  }
+  .tutorial-scope > div {
+    grid-template-columns: 1fr;
+  }
+  .tutorial-scope article + article {
+    border-left: 0;
+    border-top: 1px solid #d4d4d4;
+    padding-left: 0;
+  }
+}
+@media (max-width: 480px) {
+  .tutorial-platforms {
+    grid-template-columns: 1fr;
+  }
+  .tutorial-platforms button {
+    grid-template-columns: 2rem 1fr auto;
+  }
+  .tutorial-step-card > header,
+  .tutorial-reading-grid section {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+  .tutorial-command,
+  .tutorial-checkpoint,
+  .tutorial-caution {
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+  }
+  .tutorial-step-card > footer {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+  .tutorial-companion dl {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* code styling */
+h3 code {
+  @apply text-lg! md:text-xl!;
+}
+
+pre {
+  @apply overflow-x-auto rounded-lg px-0! py-4;
+}
+
+pre [data-line] {
+  @apply px-4;
+}
+
+code {
+  @apply text-sm leading-loose! md:text-base;
+}
+
+pre > code {
+  counter-reset: line;
+}
+
+code[data-theme*="light"],
+code[data-theme*="light"] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  code[data-theme*="dark"],
+  code[data-theme*="dark"] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  @apply mr-4 inline-block w-4 text-right text-gray-500;
+}
+
+code {
+  counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 3rem;
+}
+
+/* Notion-style scrollbar for TOC */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--border));
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.5);
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--border) / 0.6);
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.4);
+}

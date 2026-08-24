@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Codex 交互入口 · 实用小技巧</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="一个用于恢复 Codex 长线任务上下文的交接 README 示例，包含开场白、阅读顺序、当前主线、遗留问题和维护规则。" />
+  <link rel="canonical" href="https://yeyaozhi.eu.cc/assets/codex-interaction-readme.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="叶耀之" />
+  <meta property="og:title" content="Codex 交互入口 · 实用小技巧" />
+  <meta property="og:description" content="一个用于恢复 Codex 长线任务上下文的交接 README 示例。" />
+  <meta property="og:url" content="https://yeyaozhi.eu.cc/assets/codex-interaction-readme.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f2eb;
+      --paper: rgba(255, 255, 255, 0.92);
+      --ink: #1f2430;
+      --muted: #5b6271;
+      --accent: #1f7a7a;
+      --border: #e3ddd2;
+      --shadow: 0 10px 32px rgba(18, 21, 31, 0.08);
+      --radius: 16px;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "Source Serif 4", "Songti SC", serif;
+      --sans: "Space Grotesk", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(90% 70% at 25% 20%, rgba(31, 122, 122, 0.08), transparent 45%), var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.75;
+    }
+    .page { max-width: 980px; margin: 0 auto; padding: 28px 22px 52px; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+    h1, h2, h3 { font-family: var(--serif); line-height: 1.25; }
+    h1 { margin: 0; font-size: clamp(32px, 6vw, 48px); }
+    h2 { margin: 0 0 12px; font-size: 28px; }
+    h3 { margin: 18px 0 8px; font-size: 22px; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 0 0 12px; padding-left: 24px; }
+    li { margin: 4px 0; }
+    a { color: inherit; text-decoration: underline; text-decoration-color: rgba(31, 122, 122, 0.4); text-underline-offset: 3px; }
+    a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    .meta { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+    .back-link { flex: 0 0 auto; color: var(--accent); font-size: 14px; }
+    .card { margin-top: 18px; background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+    .lead { color: var(--muted); font-size: 17px; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .pill { padding: 7px 10px; border-radius: 10px; border: 1px solid rgba(31,122,122,0.2); background: rgba(31,122,122,0.08); color: var(--accent); font-size: 12px; text-decoration: none; }
+    code, pre { font-family: var(--mono); }
+    code { padding: 2px 5px; border-radius: 6px; background: rgba(31, 122, 122, 0.08); color: var(--accent); font-size: 0.92em; }
+    pre {
+      overflow-x: auto;
+      margin: 10px 0 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fffdf8;
+      color: #2f3746;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+    .note-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .note-list li { padding: 12px 14px; border: 1px solid rgba(31, 122, 122, 0.16); border-radius: 12px; background: rgba(31, 122, 122, 0.05); }
+    footer { margin-top: 18px; font-size: 12px; color: var(--muted); text-align: center; }
+    @media (max-width: 720px) {
+      .page { padding: 20px 14px 44px; }
+      header { flex-direction: column; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Codex 交互入口</h1>
+        <p class="meta">最后更新：2026-07-05 · 长线任务上下文恢复模板</p>
+      </div>
+      <a class="back-link" href="../index.html#tips">返回实用小技巧</a>
+    </header>
+
+    <article class="card">
+      <p class="lead">
+        这个页面展示一种很实用的 AI 协作方式：为长期项目准备一个固定入口文件，让新开的 Codex 会话先恢复当前主线、重要文件、遗留问题和下一步建议，再继续工作。
+      </p>
+      <div class="actions">
+        <a class="pill" href="codex-interaction-readme.md">查看 Markdown 原文</a>
+        <a class="pill" href="codex-context-ls.txt">查看目录快照</a>
+        <a class="pill" href="../index.html#tips">回到技巧区</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>为什么有用</h2>
+      <ul class="note-list">
+        <li>新窗口不需要重新解释全部背景，只要先读入口文件，就能恢复任务上下文。</li>
+        <li>长期任务的状态、决策、文件地图和遗留问题被拆开放置，后续维护更清楚。</li>
+        <li>适合科研整理、论文复现、个人知识库这类持续迭代、容易散掉的工作。</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Markdown 原文</h2>
+      <h3>Codex 交互入口</h3>
+      <p>最后更新：2026-07-05</p>
+      <p>这个文件是 <code>/Users/zlh/Desktop/科研</code> 的 Codex 上下文入口。每次新开 Codex 窗口时，先让 Codex 读这个文件，再按下面的指引恢复语境。</p>
+
+      <h3>新窗口开场白</h3>
+      <p><strong>只恢复上下文，不修改文件</strong></p>
+      <pre>请先阅读 Desktop/科研/codex交互reademe.md 恢复上下文。先不要修改文件，先告诉我你理解到的当前状态、重要文件夹、遗留问题和下一步建议。</pre>
+
+      <p><strong>恢复上下文后继续推进</strong></p>
+      <pre>请先阅读 Desktop/科研/codex交互reademe.md，并按里面的指引恢复当前科研上下文。然后继续处理 codex语境交接/OPEN_QUESTIONS.md 里优先级最高的问题。每次完成阶段性工作后，更新 codex 语境交接文件。</pre>
+
+      <p><strong>结束前更新交接文件</strong></p>
+      <pre>请更新 Desktop/科研/codex交互reademe.md 和 Desktop/科研/codex语境交接/，记录本次完成内容、当前遗留问题、重要文件变化和下一步建议。</pre>
+
+      <h3>新 Codex 请先读</h3>
+      <ol>
+        <li><code>Desktop/科研/codex语境交接/CURRENT.md</code></li>
+        <li><code>Desktop/科研/codex语境交接/OPEN_QUESTIONS.md</code></li>
+        <li><code>Desktop/科研/codex语境交接/FILE_MAP.md</code></li>
+        <li><code>Desktop/科研/codex语境交接/DECISIONS.md</code></li>
+        <li><code>Desktop/科研/codex语境交接/JOURNAL.md</code></li>
+      </ol>
+
+      <h3>当前主线</h3>
+      <p>当前科研整理主线围绕 mHClite 复现、HC/AttnRes 组会故事、图流与 Sketch 前置知识、高瓴导师/博士生方向整理展开。</p>
+
+      <h3>最近完成</h3>
+      <ul>
+        <li>已整理 mHClite 前置知识与参数。</li>
+        <li>已生成组会小故事 <code>tex/pdf</code>：从残差稀释到 HC 与 AttnRes。</li>
+        <li>已整理组会小故事可参考成熟论文。</li>
+        <li>已建立 GitHub 友好的 mHClite research notes 仓库。</li>
+        <li>已整理图流与 Sketch 核心概念。</li>
+        <li>已整理高瓴导师与公开博士生研究方向。</li>
+        <li>已创建本 Codex 语境交接机制。</li>
+      </ul>
+
+      <h3>当前遗留问题</h3>
+      <p>详细列表见 <code>codex语境交接/OPEN_QUESTIONS.md</code>。当前最重要的是：</p>
+      <ul>
+        <li>是否把“成熟论文支撑”补进组会小故事 LaTeX。</li>
+        <li>是否系统阅读 mHClite 开源代码。</li>
+        <li>是否把新的 Markdown 笔记同步到 GitHub 仓库。</li>
+      </ul>
+
+      <h3>维护规则</h3>
+      <ul>
+        <li>每次 Codex 完成阶段性任务后，应更新本文件和 <code>codex语境交接/</code>。</li>
+        <li>本文件只保留短摘要和可复制开场白，不写过长细节。</li>
+        <li>详细状态写入 <code>CURRENT.md</code>，日志追加到 <code>JOURNAL.md</code>，遗留问题维护在 <code>OPEN_QUESTIONS.md</code>。</li>
+        <li>重要文件夹变化更新 <code>FILE_MAP.md</code>。</li>
+        <li>已经形成的判断或约定记录到 <code>DECISIONS.md</code>。</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>相关目录快照</h2>
+      <pre>科研/
+├── codex交互reademe.md
+├── codex语境交接/
+│   ├── CURRENT.md
+│   ├── OPEN_QUESTIONS.md
+│   ├── FILE_MAP.md
+│   ├── DECISIONS.md
+│   ├── JOURNAL.md
+│   └── PROMPTS.md
+├── mHClite前置知识与参数整理/
+│   ├── mHClite前置知识与参数.md
+│   ├── 组会小故事-从残差稀释到HC与AttnRes.md
+│   ├── 组会小故事-从残差稀释到HC与AttnRes.pdf
+│   ├── 组会小故事-从残差稀释到HC与AttnRes.tex
+│   └── 组会小故事可参考成熟论文.md
+├── mhclite-research-github/
+│   ├── README.md
+│   ├── CLAUDE_PROMPT.md
+│   ├── experiments/
+│   ├── logs/
+│   ├── notes/
+│   ├── papers/
+│   └── raw_notes/
+├── papers/
+│   ├── bilingual_notes/
+│   ├── pdf/
+│   └── 论文索引.md
+├── 图流Sketch概念整理/
+│   └── 图流与Sketch核心概念.md
+├── 高瓴导师博士生研究方向整理/
+│   ├── README.md
+│   ├── sources.md
+│   ├── 代表作与论文入口.md
+│   ├── 公开博士生与学生主页.md
+│   └── 方向归类.md
+├── DeepseekV4论文阅读和我的理解/
+│   └── DeepseekV4论文阅读和我的理解.md
+├── mHC与attenres梳理260529/
+│   └── mHC与attenres梳理260529.md
+├── 叶耀之的科研工作/
+│   └── 叶耀之的科研工作.md
+├── mHClite复现指南.md
+├── 科研工作时间线总结.md
+└── 科研的自我要求.md</pre>
+    </article>
+
+    <footer>叶耀之 · Codex workflow note</footer>
+  </div>
+</body>
+</html>

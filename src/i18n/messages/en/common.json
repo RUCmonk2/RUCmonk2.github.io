@@ -1,0 +1,60 @@
+{
+  "sections": {
+    "about": "About",
+    "selectedProjects": "Projects & Practice",
+    "checkOutLatestWork": "Turning ideas into things I can test",
+    "research": "Research",
+    "viewFullPublications": "View the full list",
+    "skills": "Interests & Tools",
+    "education": "Education",
+    "workExperience": "Experience",
+    "awards": "Milestones",
+    "academicServices": "Academic Services",
+    "news": { "title": "What I am working on" },
+    "publications": { "title": "Publications" },
+    "invitedTalks": { "title": "Talks & Exchanges" },
+    "teaching": {
+      "title": "Teaching",
+      "reviewerConferencesLabel": "Conference reviewer:",
+      "reviewerJournalsLabel": "Journal reviewer:",
+      "teachingLabel": "Teaching:"
+    },
+    "contact": "Contact",
+    "getInTouch": "Get in touch",
+    "contactDescription": "Feel free to write about learning, projects, or this workflow",
+    "viaEmail": "via email",
+    "askQuestions": "Ask a question",
+    "exploreCollaboration": "Discuss a project",
+    "coffeeChat": "Online chat",
+    "schedule": "Schedule"
+  },
+  "showAll": "Show all",
+  "navbar": {
+    "items": [
+      { "href": "/", "icon": "home", "label": "Home" },
+      { "href": "/blog", "icon": "notebook", "label": "Blog" }
+    ],
+    "theme": "Theme",
+    "language": "Language"
+  },
+  "blog": {
+    "title": "Blog & Notes",
+    "titleWithName": "{name}'s Blog",
+    "readMore": "Read more",
+    "authorLabel": "by",
+    "readingTime": "About {minutes} min",
+    "toc": {
+      "title": "Table of contents",
+      "toggle": "Open table of contents",
+      "close": "Close table of contents",
+      "empty": "No table of contents"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageInfo": "Page {current} of {total}",
+      "previousLabel": "Go to previous page",
+      "nextLabel": "Go to next page"
+    }
+  }
+}

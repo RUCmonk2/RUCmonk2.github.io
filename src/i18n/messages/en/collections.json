@@ -1,0 +1,154 @@
+{
+  "news": {
+    "items": [
+      {
+        "date": "Current",
+        "title": "Research fundamentals: residual connections and model architecture",
+        "content": "I joined Professor Zhewei Wei's group through the undergraduate research program and am learning how to read papers and keep useful research questions with guidance from Yuhe Guo."
+      },
+      {
+        "date": "Apr. 2026",
+        "title": "Entrepreneurship course field visit",
+        "content": "My team visited M Woods Museum and interviewed Jiacheng Group to observe business questions in a real setting."
+      },
+      {
+        "date": "Undergraduate",
+        "title": "OfferGo completed the student entrepreneurship program",
+        "content": "Our AI interview mini program received national-level project approval and finished with an excellent completion rating and team award."
+      }
+    ]
+  },
+  "projects": {
+    "items": [
+      {
+        "title": "OfferGo",
+        "href": "#contact",
+        "dates": "Undergraduate",
+        "active": true,
+        "description": "An AI interview WeChat mini program for students pursuing business roles. It received national-level student entrepreneurship project approval and finished with an excellent completion rating and team award.",
+        "technologies": ["Codex", "AI interviews", "Product practice"],
+        "authors": "Built with my team",
+        "links": [],
+        "image": "",
+        "video": ""
+      },
+      {
+        "title": "PKU GeekGame and Tsinghua Hackathon",
+        "href": "#contact",
+        "dates": "First year",
+        "active": true,
+        "description": "Fast-paced team events that taught me to turn open-ended problems into demonstrable prototypes under time constraints.",
+        "technologies": ["Hackathon", "Prototyping", "Collaboration"],
+        "authors": "",
+        "links": [],
+        "image": "",
+        "video": ""
+      },
+      {
+        "title": "Codex project handoff workflow",
+        "href": "/assets/codex-guide.html",
+        "dates": "Ongoing",
+        "active": true,
+        "description": "A reusable structure for project state, file maps, decisions, and temporary materials so an AI coding agent can resume long-running work reliably.",
+        "technologies": ["Codex", "CLI", "Markdown"],
+        "authors": "",
+        "links": [
+          {
+            "type": "Public guide",
+            "href": "/assets/codex-guide.html",
+            "icon": "bookopen"
+          },
+          {
+            "type": "Markdown",
+            "href": "/assets/codex-interaction-readme.md",
+            "icon": "paper"
+          }
+        ],
+        "image": "/assets/codex-guide/desktop-codex-guide.png",
+        "video": ""
+      },
+      {
+        "title": "Personal site and public notebook",
+        "href": "https://github.com/RUCmonk2/RUCmonk2.github.io",
+        "dates": "Ongoing",
+        "active": true,
+        "description": "A single place for my profile, projects, blog posts, and downloadable resources, hosted on GitHub Pages for transparent and maintainable publishing.",
+        "technologies": ["Next.js", "GitHub Pages", "Knowledge organization"],
+        "authors": "",
+        "links": [
+          {
+            "type": "GitHub",
+            "href": "https://github.com/RUCmonk2/RUCmonk2.github.io",
+            "icon": "github"
+          },
+          {
+            "type": "Site guide",
+            "href": "/assets/personal-site-guide.html",
+            "icon": "bookopen"
+          }
+        ],
+        "image": "",
+        "video": ""
+      }
+    ]
+  },
+  "publications": { "items": [] },
+  "education": {
+    "items": [
+      {
+        "school": "Renmin University of China",
+        "href": "https://www.ruc.edu.cn/",
+        "degree": "Undergraduate in Artificial Intelligence",
+        "logoUrl": "/icon/ruc.svg",
+        "start": "Undergraduate",
+        "end": "Current"
+      }
+    ]
+  },
+  "work": { "items": [] },
+  "awards": { "items": [] },
+  "teaching": { "items": [] },
+  "invitedTalks": { "items": [] },
+  "skills": [
+    "Model architecture",
+    "Residual connections",
+    "Embodied AI",
+    "Codex",
+    "Command line",
+    "Markdown",
+    "Knowledge organization",
+    "Attention management"
+  ],
+  "reviewerConferences": [],
+  "reviewerJournals": [],
+  "social": {
+    "GitHub": {
+      "name": "GitHub",
+      "url": "https://github.com/RUCmonk2",
+      "icon": "github",
+      "content": true,
+      "footer": true
+    },
+    "Zhihu": {
+      "name": "Zhihu",
+      "url": "https://www.zhihu.com/people/monk-90-11",
+      "icon": "zhihu",
+      "content": true,
+      "footer": true
+    },
+    "Xiaohongshu": {
+      "name": "Xiaohongshu",
+      "url": "https://www.xiaohongshu.com/user/profile/66cbd2a5000000001d021723",
+      "icon": "xiaohongshu",
+      "content": true,
+      "footer": true
+    },
+    "email": {
+      "name": "Email",
+      "url": "mailto:36231219360@qq.com",
+      "icon": "email",
+      "content": true,
+      "footer": true
+    }
+  }
+}

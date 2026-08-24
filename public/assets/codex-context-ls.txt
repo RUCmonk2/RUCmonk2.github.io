@@ -1,0 +1,44 @@
+科研/
+├── codex交互reademe.md
+├── codex语境交接/
+│   ├── CURRENT.md
+│   ├── OPEN_QUESTIONS.md
+│   ├── FILE_MAP.md
+│   ├── DECISIONS.md
+│   ├── JOURNAL.md
+│   └── PROMPTS.md
+├── mHClite前置知识与参数整理/
+│   ├── mHClite前置知识与参数.md
+│   ├── 组会小故事-从残差稀释到HC与AttnRes.md
+│   ├── 组会小故事-从残差稀释到HC与AttnRes.pdf
+│   ├── 组会小故事-从残差稀释到HC与AttnRes.tex
+│   └── 组会小故事可参考成熟论文.md
+├── mhclite-research-github/
+│   ├── README.md
+│   ├── CLAUDE_PROMPT.md
+│   ├── experiments/
+│   ├── logs/
+│   ├── notes/
+│   ├── papers/
+│   └── raw_notes/
+├── papers/
+│   ├── bilingual_notes/
+│   ├── pdf/
+│   └── 论文索引.md
+├── 图流Sketch概念整理/
+│   └── 图流与Sketch核心概念.md
+├── 高瓴导师博士生研究方向整理/
+│   ├── README.md
+│   ├── sources.md
+│   ├── 代表作与论文入口.md
+│   ├── 公开博士生与学生主页.md
+│   └── 方向归类.md
+├── DeepseekV4论文阅读和我的理解/
+│   └── DeepseekV4论文阅读和我的理解.md
+├── mHC与attenres梳理260529/
+│   └── mHC与attenres梳理260529.md
+├── 叶耀之的科研工作/
+│   └── 叶耀之的科研工作.md
+├── mHClite复现指南.md
+├── 科研工作时间线总结.md
+└── 科研的自我要求.md

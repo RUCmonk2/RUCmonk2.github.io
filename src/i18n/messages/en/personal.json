@@ -1,0 +1,18 @@
+{
+  "name": {
+    "full": "Yaozhi Ye",
+    "given": "Yaozhi",
+    "family": "Ye",
+    "initials": "YYZ"
+  },
+  "subtitle": "Renmin University of China · Artificial Intelligence",
+  "headline": "AI undergraduate\nExploring model architecture, AI workflows, and learning systems",
+  "welcome": "Welcome to my homepage",
+  "ogImageUrl": "yeyaozhi.eu.cc/en",
+  "bioMarkdown": "Hi, I am Yaozhi Ye, an undergraduate studying artificial intelligence at Renmin University of China. This site is both my homepage and a growing public notebook about how I learn, build projects, and turn scattered knowledge into reusable resources.\n\nI began research through the university's undergraduate research program in Professor Zhewei Wei's group, with guidance from Yuhe Guo. I am currently building a foundation around residual connections and model architecture, while staying curious about embodied intelligence, mathematics, and neuroscience.\n\nOutside coursework and research, I experiment with long-running workflows built around Codex, the command line, and Markdown. I also use regular exercise, attention logs, and behavioral design to find a learning rhythm that works for me.",
+  "location": {
+    "name": "Beijing, China",
+    "mapUrl": "https://www.openstreetmap.org/search?query=Beijing%2C%20China"
+  },
+  "blogTagline": "Notes on AI tools, learning methods, research fundamentals, and knowledge organization."
+}
