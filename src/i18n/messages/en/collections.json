@@ -3,8 +3,8 @@
     "items": [
       {
         "date": "Current",
-        "title": "Research fundamentals: residual connections and model architecture",
-        "content": "I joined Professor Zhewei Wei's group through the undergraduate research program and am learning how to read papers and keep useful research questions with guidance from Yuhe Guo."
+        "title": "Research fundamentals: AI4Math and AI4TCS",
+        "content": "I joined Professor Zhewei Wei's group through the undergraduate research program and, with guidance from Yuhe Guo, am building habits for paper reading, hands-on Lean practice, and research-question tracking around AI4Math and AI4TCS."
       },
       {
         "date": "Apr. 2026",
@@ -110,9 +110,10 @@
   "teaching": { "items": [] },
   "invitedTalks": { "items": [] },
   "skills": [
-    "Model architecture",
-    "Residual connections",
+    "AI4Math",
+    "AI4TCS",
     "Embodied AI",
+    "AI for Chinese calligraphy",
     "Codex",
     "Command line",
     "Markdown",

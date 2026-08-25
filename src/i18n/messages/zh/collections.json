@@ -3,8 +3,8 @@
     "items": [
       {
         "date": "当前",
-        "title": "科研入门：残差连接与模型结构",
-        "content": "通过科研领航进入魏哲巍老师的团队，在郭雨荷师姐指导下建立论文阅读和问题记录的基本方法。"
+        "title": "科研入门：AI4Math 与 AI4TCS",
+        "content": "通过科研领航进入魏哲巍老师的团队，在郭雨荷师姐指导下，围绕 AI4Math、AI4TCS 与 Lean 形式化方法建立论文阅读、工具实践和问题记录的基本方法。"
       },
       {
         "date": "2026.04",
@@ -110,9 +110,10 @@
   "teaching": { "items": [] },
   "invitedTalks": { "items": [] },
   "skills": [
-    "模型结构",
-    "残差连接",
+    "AI4Math",
+    "AI4TCS",
     "具身智能",
+    "AI4中国书法",
     "Codex",
     "命令行",
     "Markdown",

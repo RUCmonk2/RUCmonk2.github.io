@@ -64,7 +64,7 @@ export default async function Page({
         role: "Undergraduate in Artificial Intelligence",
         institution: "Renmin University of China",
         headline:
-          "My current interests center on model architecture and residual connections, with an ongoing curiosity about embodied intelligence.",
+          "My current interests center on AI4Math and AI4TCS. I remain curious about embodied intelligence and explore ideas such as AI for Chinese calligraphy.",
         intro:
           "I am learning how to read research carefully, formulate useful questions, and build technical workflows that remain clear over time.",
         email: "Email",
@@ -73,15 +73,15 @@ export default async function Page({
         researchTitle: "Current directions",
         researchIntro:
           "I am still at the stage of building foundations. These are the questions and methods I am following most closely.",
-        modelTitle: "Model architecture",
-        modelText:
-          "Learning how architectural choices shape optimization, representation, and behavior.",
-        residualTitle: "Residual connections",
-        residualText:
-          "Using residual pathways as an entry point into deeper questions about modern neural networks.",
-        embodiedTitle: "Embodied intelligence",
-        embodiedText:
-          "Exploring how perception, action, and learning meet in agents that interact with the world.",
+        ai4MathTitle: "AI4Math",
+        ai4MathText:
+          "Exploring how formal mathematics, theorem proving, and AI can support verifiable mathematical reasoning.",
+        ai4TcsTitle: "AI4TCS",
+        ai4TcsText:
+          "Studying how AI can contribute to theoretical computer science, algorithmic reasoning, and formal verification.",
+        creativeAiTitle: "Embodied and creative AI",
+        creativeAiText:
+          "Staying curious about embodied intelligence while exploring interdisciplinary ideas such as AI for Chinese calligraphy.",
         aboutLabel: "02 / Profile",
         aboutTitle: "About",
         education: "Education",
@@ -121,7 +121,7 @@ export default async function Page({
         role: "人工智能本科生",
         institution: "中国人民大学",
         headline:
-          "目前主要关注模型结构与残差连接，并持续保持对具身智能的兴趣。",
+          "目前主要关注AI4math和AI4TCS，并持续保持对具身智能的兴趣，也会有AI4中国书法等有意思的想法",
         intro:
           "我正在学习如何严谨地阅读论文、形成有价值的问题，并建立能够长期保持清晰的技术工作流。",
         email: "邮件",
@@ -130,13 +130,15 @@ export default async function Page({
         researchTitle: "当前关注方向",
         researchIntro:
           "我仍处在建立基础的阶段。下面是现阶段最希望继续理解的问题与方法。",
-        modelTitle: "模型结构",
-        modelText: "理解不同结构选择如何影响优化过程、表征能力与模型行为。",
-        residualTitle: "残差连接",
-        residualText: "以残差路径为入口，逐步理解现代神经网络中的更深层问题。",
-        embodiedTitle: "具身智能",
-        embodiedText:
-          "关注感知、行动与学习如何在真实环境中的智能体上发生联系。",
+        ai4MathTitle: "AI4Math",
+        ai4MathText:
+          "关注形式化数学、定理证明与人工智能如何共同支持可验证的数学推理。",
+        ai4TcsTitle: "AI4TCS",
+        ai4TcsText:
+          "探索人工智能在理论计算机科学、算法推理与形式验证中的作用。",
+        creativeAiTitle: "具身智能与创意 AI",
+        creativeAiText:
+          "保持对具身智能的兴趣，也尝试 AI4中国书法等跨领域、有意思的想法。",
         aboutLabel: "02 / 个人档案",
         aboutTitle: "关于我",
         education: "教育背景",
@@ -172,18 +174,18 @@ export default async function Page({
   const researchAreas = [
     {
       number: "01",
-      title: copy.modelTitle,
-      description: copy.modelText,
+      title: copy.ai4MathTitle,
+      description: copy.ai4MathText,
     },
     {
       number: "02",
-      title: copy.residualTitle,
-      description: copy.residualText,
+      title: copy.ai4TcsTitle,
+      description: copy.ai4TcsText,
     },
     {
       number: "03",
-      title: copy.embodiedTitle,
-      description: copy.embodiedText,
+      title: copy.creativeAiTitle,
+      description: copy.creativeAiText,
     },
   ];
 
