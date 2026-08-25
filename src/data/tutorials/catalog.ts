@@ -86,10 +86,42 @@ export const tutorialCatalog: TutorialCategory[] = [
       },
     ],
   },
+  {
+    slug: "formal-methods-ai",
+    index: "03",
+    title: {
+      zh: "形式化方法与可验证 AI",
+      en: "Formal methods and verifiable AI",
+    },
+    description: {
+      zh: "从 Lean、形式证明与算法验证出发，建立能区分语义、内核、测试和理论保证的学习路径。",
+      en: "Learn through Lean, formal proofs, and algorithm verification while keeping semantics, kernels, tests, and guarantees distinct.",
+    },
+    tutorials: [
+      {
+        slug: "lean-ai4math-ai4tcs",
+        href: "/tutorials/lean-ai4math-ai4tcs",
+        title: {
+          zh: "Lean × AI4Math / AI4TCS 自学教程",
+          en: "Lean for AI4Math and AI4TCS",
+        },
+        description: {
+          zh: "用两周完成 Lean 与 mathlib 共同基础，再分流到形式数学或可验证算法，并以一个可审计小项目收束。",
+          en: "Build a shared Lean and mathlib foundation, branch into formal mathematics or verified algorithms, and finish with an auditable small project.",
+        },
+        platforms: ["Lean 4", "mathlib", "AI4Math", "AI4TCS"],
+        readingTime: {
+          zh: "约 6 周 · 可按检查点推进",
+          en: "About 6 weeks · checkpoint-paced",
+        },
+        status: "published",
+      },
+    ],
+  },
 ];
 
 export const plannedTutorialCategories: LocalizedTutorialText[] = [
-  { zh: "学习系统", en: "Learning systems" },
   { zh: "技术写作", en: "Technical writing" },
   { zh: "数据分析与可视化", en: "Data analysis and visualization" },
+  { zh: "学习系统", en: "Learning systems" },
 ];

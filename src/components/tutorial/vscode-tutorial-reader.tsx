@@ -17,6 +17,10 @@ import {
   type HarnessTutorialRoute,
 } from "@/data/deepseek-harness-tutorial";
 import {
+  getLeanAiTutorialRoutes,
+  type LeanAiTutorialRoute,
+} from "@/data/lean-ai-tutorial";
+import {
   type TutorialPlatform,
   tutorialPlatforms,
   type TutorialRouteContent,
@@ -51,7 +55,7 @@ function GuidedTutorialReader<RouteKey extends string>({
   const routeKeys = Object.keys(routes) as RouteKey[];
   const current = routes[route];
   const step = current.steps[stepIndex];
-  const alternativeRoute = routeKeys.find((key) => key !== route);
+  const alternativeRoutes = routeKeys.filter((key) => key !== route);
 
   const chooseRoute = (value: RouteKey) => {
     setRoute(value);
@@ -378,19 +382,19 @@ function GuidedTutorialReader<RouteKey extends string>({
                 </span>
               </dd>
             </div>
-            {alternativeRoute && (
-              <div className="inactive">
+            {alternativeRoutes.map((alternativeRoute) => (
+              <div className="inactive" key={alternativeRoute}>
                 <dt />
                 <dd>
                   <b>{routes[alternativeRoute].label}</b>
                   <span>
                     {isEnglish
-                      ? "Available as the alternative route above"
-                      : "可在上方切换的另一条教程路线"}
+                      ? "Available from the route selector above"
+                      : "可从上方路径选择器切换进入"}
                   </span>
                 </dd>
               </div>
-            )}
+            ))}
           </dl>
           <div className="tutorial-safety">
             <TriangleAlert aria-hidden="true" />
@@ -454,6 +458,33 @@ export function DeepseekHarnessTutorialReader({
         isEnglish
           ? "Harness can edit files and run commands. Start in a disposable workspace, keep meaningful operations approval-gated, and review every command and plugin."
           : "Harness 能编辑文件和运行命令。请从可丢弃工作区开始，对重要操作保留审批，并审查每条命令与插件来源。"
+      }
+    />
+  );
+}
+
+export function LeanAiTutorialReader({ isEnglish }: { isEnglish: boolean }) {
+  const routes = getLeanAiTutorialRoutes(isEnglish);
+  return (
+    <GuidedTutorialReader<LeanAiTutorialRoute>
+      isEnglish={isEnglish}
+      routes={routes}
+      initialRoute="foundation"
+      sourceLabel={isEnglish ? "Course basis" : "课程依据"}
+      sourceNote={
+        isEnglish
+          ? "The course reorganizes the supplied Lean, AI4Math, and AI4TCS notes into a self-study sequence. Current setup steps and resource links are checked against official Lean and mathlib documentation."
+          : "本课程将用户提供的 Lean、AI4Math 与 AI4TCS 笔记重组为自学路径；环境步骤和资源链接另按 Lean 与 mathlib 当前官方文档复核。"
+      }
+      sourceDescription={
+        isEnglish
+          ? "Traceable to the supplied notes or the linked first-party documentation"
+          : "可追溯到提供的笔记或页面列出的第一方资料"
+      }
+      safetyNote={
+        isEnglish
+          ? "Commands are examples to review and copy; this page does not install Lean, create projects, run proofs, or invoke an AI model."
+          : "命令仅供理解与复制；本页不会安装 Lean、创建项目、运行证明或调用 AI 模型。"
       }
     />
   );
