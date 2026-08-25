@@ -7,30 +7,54 @@ import {
   Clipboard,
   ExternalLink,
   Info,
-  Monitor,
   Terminal,
   TriangleAlert,
 } from "lucide-react";
 import { useRef, useState } from "react";
 
 import {
+  getDeepseekHarnessTutorialRoutes,
+  type HarnessTutorialRoute,
+} from "@/data/deepseek-harness-tutorial";
+import {
   type TutorialPlatform,
   tutorialPlatforms,
+  type TutorialRouteContent,
 } from "@/data/vscode-tutorial";
 
-export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
-  const [platform, setPlatform] = useState<TutorialPlatform>("windows");
+type GuidedTutorialReaderProps<RouteKey extends string> = {
+  isEnglish: boolean;
+  routes: Record<RouteKey, TutorialRouteContent>;
+  initialRoute: RouteKey;
+  sourceLabel?: string;
+  sourceNote: string;
+  sourceDescription: string;
+  safetyNote: string;
+};
+
+function GuidedTutorialReader<RouteKey extends string>({
+  isEnglish,
+  routes,
+  initialRoute,
+  sourceLabel,
+  sourceNote,
+  sourceDescription,
+  safetyNote,
+}: GuidedTutorialReaderProps<RouteKey>) {
+  const [route, setRoute] = useState<RouteKey>(initialRoute);
   const [stepIndex, setStepIndex] = useState(0);
   const [copyState, setCopyState] = useState<{
     id: string;
     status: "copied" | "error";
   } | null>(null);
   const copyResetTimer = useRef<number | null>(null);
-  const current = tutorialPlatforms[platform];
+  const routeKeys = Object.keys(routes) as RouteKey[];
+  const current = routes[route];
   const step = current.steps[stepIndex];
+  const alternativeRoute = routeKeys.find((key) => key !== route);
 
-  const choosePlatform = (value: TutorialPlatform) => {
-    setPlatform(value);
+  const chooseRoute = (value: RouteKey) => {
+    setRoute(value);
     setStepIndex(0);
   };
 
@@ -67,7 +91,7 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
 
   const ui = isEnglish
     ? {
-        source: "From the source",
+        source: sourceLabel ?? "Source basis",
         why: "Why it matters",
         success: "Success check",
         note: "Before continuing",
@@ -81,11 +105,10 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
         thirdParty: "Third-party",
         previous: "Previous",
         next: "Next",
-        original:
-          "The supplied tutorials are in Chinese; technical steps below stay source-faithful.",
+        original: sourceNote,
       }
     : {
-        source: "资料原意",
+        source: sourceLabel ?? "资料依据",
         why: "为什么要做",
         success: "成功时会看到",
         note: "继续前留意",
@@ -99,30 +122,27 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
         thirdParty: "第三方",
         previous: "上一步",
         next: "下一步",
-        original:
-          "以下步骤整理自用户提供的中文 PDF / Word 教程；命令只供阅读与复制，网页不会执行。",
+        original: sourceNote,
       };
 
   return (
     <section className="tutorial-reader" id="reader">
       <div
         className="tutorial-platforms"
-        aria-label={isEnglish ? "Choose operating system" : "选择操作系统"}
+        aria-label={isEnglish ? "Choose tutorial route" : "选择教程路线"}
       >
-        {(Object.keys(tutorialPlatforms) as TutorialPlatform[]).map((key) => {
-          const item = tutorialPlatforms[key];
-          const active = platform === key;
+        {routeKeys.map((key) => {
+          const item = routes[key];
+          const active = route === key;
           return (
             <button
               key={key}
               type="button"
               className={active ? "active" : ""}
-              onClick={() => choosePlatform(key)}
+              onClick={() => chooseRoute(key)}
               aria-pressed={active}
             >
-              <span>
-                {key === "mac" ? "⌘" : <Monitor aria-hidden="true" />}
-              </span>
+              <span aria-hidden="true">{item.badge}</span>
               <strong>{item.label}</strong>
               <small>{item.time}</small>
             </button>
@@ -333,11 +353,7 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
               <dt className="source-dot" />
               <dd>
                 <b>{ui.source}</b>
-                <span>
-                  {isEnglish
-                    ? "Directly traceable to the supplied material"
-                    : "可追溯到提供的教程资料"}
-                </span>
+                <span>{sourceDescription}</span>
               </dd>
             </div>
             <div>
@@ -362,28 +378,83 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
                 </span>
               </dd>
             </div>
-            <div className="inactive">
-              <dt />
-              <dd>
-                <b>{platform === "mac" ? "Windows" : "macOS"}</b>
-                <span>
-                  {isEnglish
-                    ? "Not applicable to the selected route"
-                    : "当前平台不适用，因此灰显"}
-                </span>
-              </dd>
-            </div>
+            {alternativeRoute && (
+              <div className="inactive">
+                <dt />
+                <dd>
+                  <b>{routes[alternativeRoute].label}</b>
+                  <span>
+                    {isEnglish
+                      ? "Available as the alternative route above"
+                      : "可在上方切换的另一条教程路线"}
+                  </span>
+                </dd>
+              </div>
+            )}
           </dl>
           <div className="tutorial-safety">
             <TriangleAlert aria-hidden="true" />
-            <p>
-              {isEnglish
-                ? "Review commands before running them. This page never installs software or changes your device."
-                : "运行任何命令前先理解其作用。本页不会替你安装软件，也不会更改电脑设置。"}
-            </p>
+            <p>{safetyNote}</p>
           </div>
         </aside>
       </div>
     </section>
+  );
+}
+
+export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
+  return (
+    <GuidedTutorialReader<TutorialPlatform>
+      isEnglish={isEnglish}
+      routes={tutorialPlatforms}
+      initialRoute="windows"
+      sourceLabel={isEnglish ? "From the source" : "资料原意"}
+      sourceNote={
+        isEnglish
+          ? "The supplied tutorials are in Chinese; technical steps below stay source-faithful."
+          : "以下步骤整理自用户提供的中文 PDF / Word 教程；命令只供阅读与复制，网页不会执行。"
+      }
+      sourceDescription={
+        isEnglish
+          ? "Directly traceable to the supplied material"
+          : "可追溯到提供的教程资料"
+      }
+      safetyNote={
+        isEnglish
+          ? "Review commands before running them. This page never installs software or changes your device."
+          : "运行任何命令前先理解其作用。本页不会替你安装软件，也不会更改电脑设置。"
+      }
+    />
+  );
+}
+
+export function DeepseekHarnessTutorialReader({
+  isEnglish,
+}: {
+  isEnglish: boolean;
+}) {
+  const routes = getDeepseekHarnessTutorialRoutes(isEnglish);
+  return (
+    <GuidedTutorialReader<HarnessTutorialRoute>
+      isEnglish={isEnglish}
+      routes={routes}
+      initialRoute="quick"
+      sourceLabel={isEnglish ? "Evidence and reference" : "依据与参考"}
+      sourceNote={
+        isEnglish
+          ? "The reference video informs the learning path; commands and requirements are checked against DeepSeek's official repository and documentation. This page never runs them."
+          : "参考视频用于组织入门路径；命令与要求以 DeepSeek 官方仓库和开发者文档复核。本页只展示、解释与复制，不会执行。"
+      }
+      sourceDescription={
+        isEnglish
+          ? "Traceable to the linked official source or reference video"
+          : "可追溯到页面列出的官方资料或参考视频"
+      }
+      safetyNote={
+        isEnglish
+          ? "Harness can edit files and run commands. Start in a disposable workspace, keep meaningful operations approval-gated, and review every command and plugin."
+          : "Harness 能编辑文件和运行命令。请从可丢弃工作区开始，对重要操作保留审批，并审查每条命令与插件来源。"
+      }
+    />
   );
 }

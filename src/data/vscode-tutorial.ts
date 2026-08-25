@@ -33,7 +33,8 @@ export type TutorialStep = {
   copyBlocks?: TutorialCopyBlock[];
 };
 
-type TutorialPlatformContent = {
+export type TutorialRouteContent = {
+  badge: string;
   label: string;
   time: string;
   intro: string;
@@ -42,9 +43,10 @@ type TutorialPlatformContent = {
 
 export const tutorialPlatforms: Record<
   TutorialPlatform,
-  TutorialPlatformContent
+  TutorialRouteContent
 > = {
   mac: {
+    badge: "⌘",
     label: "macOS",
     time: "约 20–45 分钟",
     intro:
@@ -272,6 +274,7 @@ export const tutorialPlatforms: Record<
     ],
   },
   windows: {
+    badge: "⊞",
     label: "Windows 10 / 11",
     time: "约 60–120 分钟",
     intro:

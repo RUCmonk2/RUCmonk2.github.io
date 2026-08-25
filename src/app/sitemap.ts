@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 
 import { siteConfig } from "@/data/site";
+import { tutorialCatalog } from "@/data/tutorials/catalog";
 import { DEFAULT_LOCALE, LOCALES } from "@/i18n/routing";
 import { getBlogPosts } from "@/lib/blog";
 
@@ -23,7 +24,10 @@ type ChangeFrequency =
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages
-  const staticPages = ["", "/blog", "/tutorials", "/tutorials/vscode-cpp"];
+  const tutorialPages = tutorialCatalog.flatMap((category) =>
+    category.tutorials.map((tutorial) => tutorial.href),
+  );
+  const staticPages = ["", "/blog", "/tutorials", ...tutorialPages];
 
   const pages = LOCALES.flatMap((locale) => {
     return staticPages.map((page) => ({

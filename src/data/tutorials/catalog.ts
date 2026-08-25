@@ -54,10 +54,42 @@ export const tutorialCatalog: TutorialCategory[] = [
       },
     ],
   },
+  {
+    slug: "ai-research-workflows",
+    index: "02",
+    title: {
+      zh: "AI 与研究工作流",
+      en: "AI and research workflows",
+    },
+    description: {
+      zh: "从运行环境、模型连接到权限边界，建立可检查、可复现的智能工具使用路径。",
+      en: "Build inspectable and reproducible AI-tool workflows across runtimes, model connections, and permission boundaries.",
+    },
+    tutorials: [
+      {
+        slug: "deepseek-harness",
+        href: "/tutorials/deepseek-harness",
+        title: {
+          zh: "DeepSeek Harness 本地部署伴读",
+          en: "Run DeepSeek Harness locally",
+        },
+        description: {
+          zh: "分 npx 快速启动与源码构建两条路线，讲清本地运行、模型端点、工作区安全和插件边界。",
+          en: "Choose an npx quick start or a source build while keeping local runtime, model endpoints, workspace safety, and plugins distinct.",
+        },
+        platforms: ["Node.js", "Web UI"],
+        readingTime: {
+          zh: "双路线分步完成",
+          en: "Two guided routes",
+        },
+        status: "published",
+      },
+    ],
+  },
 ];
 
 export const plannedTutorialCategories: LocalizedTutorialText[] = [
-  { zh: "AI 与研究工作流", en: "AI and research workflows" },
   { zh: "学习系统", en: "Learning systems" },
   { zh: "技术写作", en: "Technical writing" },
+  { zh: "数据分析与可视化", en: "Data analysis and visualization" },
 ];
