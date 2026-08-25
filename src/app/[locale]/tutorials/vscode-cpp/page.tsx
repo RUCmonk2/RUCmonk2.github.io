@@ -123,7 +123,7 @@ export default async function TutorialPage({
             <p>
               {isEnglish
                 ? "The procedural content of the supplied macOS 5-page and Windows 31-page tutorials, reorganized around actions, reasons, and visible checks."
-                : "用户提供的 macOS 5 页、Windows 31 页教程中的操作内容，并按“做什么—为什么—如何确认”重新组织。"}
+                : "用户提供的 macOS 5 页教程（PDF 元数据作者 Ma Zhengyi）与 Windows 31 页第四版教程（资料署名修订者 Li Gan / Nictheboy Li），并按“做什么—为什么—如何确认”重新组织。"}
             </p>
           </article>
           <article>

@@ -1,15 +1,17 @@
 "use client";
 
 import {
+  BookOpen,
   Check,
   ChevronRight,
   Clipboard,
+  ExternalLink,
   Info,
   Monitor,
   Terminal,
   TriangleAlert,
 } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import {
   type TutorialPlatform,
@@ -19,7 +21,11 @@ import {
 export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
   const [platform, setPlatform] = useState<TutorialPlatform>("windows");
   const [stepIndex, setStepIndex] = useState(0);
-  const [copied, setCopied] = useState<string | null>(null);
+  const [copyState, setCopyState] = useState<{
+    id: string;
+    status: "copied" | "error";
+  } | null>(null);
+  const copyResetTimer = useRef<number | null>(null);
   const current = tutorialPlatforms[platform];
   const step = current.steps[stepIndex];
 
@@ -28,10 +34,35 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
     setStepIndex(0);
   };
 
+  const legacyCopy = (value: string) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = value;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.inset = "0 auto auto -9999px";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, value.length);
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    if (!copied) throw new Error("Legacy clipboard copy failed");
+  };
+
   const copy = async (value: string, id: string) => {
-    await navigator.clipboard.writeText(value);
-    setCopied(id);
-    window.setTimeout(() => setCopied(null), 1600);
+    try {
+      if (window.isSecureContext && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        legacyCopy(value);
+      }
+      setCopyState({ id, status: "copied" });
+    } catch {
+      setCopyState({ id, status: "error" });
+    }
+    if (copyResetTimer.current) window.clearTimeout(copyResetTimer.current);
+    copyResetTimer.current = window.setTimeout(() => setCopyState(null), 2200);
   };
 
   const ui = isEnglish
@@ -42,6 +73,12 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
         note: "Before continuing",
         copy: "Copy",
         copied: "Copied",
+        copyError: "Select manually",
+        detail: "Detailed guidance",
+        links: "Useful links",
+        official: "Official",
+        reference: "Source link",
+        thirdParty: "Third-party",
         previous: "Previous",
         next: "Next",
         original:
@@ -54,6 +91,12 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
         note: "继续前留意",
         copy: "复制",
         copied: "已复制",
+        copyError: "请手动选择",
+        detail: "展开详细说明",
+        links: "相关链接",
+        official: "官方网站",
+        reference: "资料链接",
+        thirdParty: "第三方",
         previous: "上一步",
         next: "下一步",
         original:
@@ -126,9 +169,12 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
 
         <article className="tutorial-step-card" aria-live="polite">
           <header>
-            <p>
-              STEP {String(stepIndex + 1).padStart(2, "0")} · {current.label}
-            </p>
+            <div className="tutorial-step-meta">
+              <p>
+                STEP {String(stepIndex + 1).padStart(2, "0")} · {current.label}
+              </p>
+              {step.sourcePages && <span>{step.sourcePages}</span>}
+            </div>
             <h2>{step.title}</h2>
             <p>{step.summary}</p>
           </header>
@@ -154,32 +200,83 @@ export function VscodeTutorialReader({ isEnglish }: { isEnglish: boolean }) {
             </section>
           </div>
 
-          {step.commands?.map((command, index) => {
+          {step.links && step.links.length > 0 && (
+            <section className="tutorial-links" aria-label={ui.links}>
+              <div className="tutorial-section-heading">
+                <ExternalLink aria-hidden="true" />
+                <b>{ui.links}</b>
+              </div>
+              <div className="tutorial-link-grid">
+                {step.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>
+                      {link.kind === "official"
+                        ? ui.official
+                        : link.kind === "third-party"
+                          ? ui.thirdParty
+                          : ui.reference}
+                    </span>
+                    <strong>{link.label}</strong>
+                    <small>{link.note}</small>
+                    <ExternalLink aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {step.details && step.details.length > 0 && (
+            <section className="tutorial-details" aria-label={ui.detail}>
+              <div className="tutorial-section-heading">
+                <BookOpen aria-hidden="true" />
+                <b>{ui.detail}</b>
+                <span>{step.details.length}</span>
+              </div>
+              {step.details.map((detail, index) => (
+                <details key={detail.title} open={index === 0}>
+                  <summary>
+                    <ChevronRight aria-hidden="true" />
+                    {detail.title}
+                  </summary>
+                  <ol>
+                    {detail.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ol>
+                </details>
+              ))}
+            </section>
+          )}
+
+          {step.copyBlocks?.map((block, index) => {
             const id = `${step.id}-${index}`;
             return (
               <div className="tutorial-command" key={id}>
                 <div>
                   <Terminal aria-hidden="true" />
-                  <span>
-                    {command.includes("\n")
-                      ? isEnglish
-                        ? "Example file"
-                        : "示例文件"
-                      : isEnglish
-                        ? "Command shown in source"
-                        : "资料中的命令"}
-                  </span>
+                  <span>{block.label}</span>
+                  <i>{block.format}</i>
                 </div>
                 <pre>
-                  <code>{command}</code>
+                  <code>{block.value}</code>
                 </pre>
-                <button type="button" onClick={() => copy(command, id)}>
-                  {copied === id ? (
+                {block.note && <p>{block.note}</p>}
+                <button type="button" onClick={() => copy(block.value, id)}>
+                  {copyState?.id === id && copyState.status === "copied" ? (
                     <Check aria-hidden="true" />
                   ) : (
                     <Clipboard aria-hidden="true" />
                   )}
-                  {copied === id ? ui.copied : ui.copy}
+                  {copyState?.id === id
+                    ? copyState.status === "copied"
+                      ? ui.copied
+                      : ui.copyError
+                    : ui.copy}
                 </button>
               </div>
             );

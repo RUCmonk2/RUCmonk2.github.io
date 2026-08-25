@@ -52,6 +52,12 @@ export default async function Page({
       ? latestPost.metadata.readingTime
       : 5;
 
+  // Reversible display switch. The original section copy and source data stay
+  // loaded below and in the locale message files so they can be restored later.
+  const hideHomepageShowcaseSections = true;
+  const hideHomepageContactSection = true;
+  const hiddenLabel = isEnglish ? "Temporarily hidden" : "暂时隐藏";
+
   const copy = isEnglish
     ? {
         eyebrow: "YAOZHI YE",
@@ -269,23 +275,29 @@ export default async function Page({
             <h2>{isEnglish ? "Research" : "研究兴趣"}</h2>
           </header>
           <div className="pure-section-body">
-            <p className="pure-section-intro">{copy.researchIntro}</p>
-            <div className="pure-research-list">
-              {researchAreas.map((area) => (
-                <article key={area.number}>
-                  <span>{area.number}</span>
-                  <div>
-                    <h3>{area.title}</h3>
-                    <p>{area.description}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-            <div className="pure-tag-row" aria-label="Keywords">
-              {skills.map((skill) => (
-                <span key={skill}>{skill}</span>
-              ))}
-            </div>
+            {hideHomepageShowcaseSections ? (
+              <p className="pure-temporary-placeholder">{hiddenLabel}</p>
+            ) : (
+              <>
+                <p className="pure-section-intro">{copy.researchIntro}</p>
+                <div className="pure-research-list">
+                  {researchAreas.map((area) => (
+                    <article key={area.number}>
+                      <span>{area.number}</span>
+                      <div>
+                        <h3>{area.title}</h3>
+                        <p>{area.description}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                <div className="pure-tag-row" aria-label="Keywords">
+                  {skills.map((skill) => (
+                    <span key={skill}>{skill}</span>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </section>
 
@@ -295,15 +307,19 @@ export default async function Page({
             <h2>{isEnglish ? "Updates" : "近期动态"}</h2>
           </header>
           <div className="pure-section-body pure-row-list">
-            {news.map((item) => (
-              <article className="pure-update-row" key={item.title}>
-                <time>{item.date}</time>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.content}</p>
-                </div>
-              </article>
-            ))}
+            {hideHomepageShowcaseSections ? (
+              <p className="pure-temporary-placeholder">{hiddenLabel}</p>
+            ) : (
+              news.map((item) => (
+                <article className="pure-update-row" key={item.title}>
+                  <time>{item.date}</time>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.content}</p>
+                  </div>
+                </article>
+              ))
+            )}
           </div>
         </section>
 
@@ -313,39 +329,47 @@ export default async function Page({
             <h2>{isEnglish ? "Projects" : "项目实践"}</h2>
           </header>
           <div className="pure-section-body">
-            <p className="pure-section-intro">{copy.projectsIntro}</p>
-            <div className="pure-project-grid">
-              {projects.map((project) => (
-                <article className="pure-project-card" key={project.title}>
-                  <div className="pure-card-topline">
-                    <span>{project.dates}</span>
-                    {project.href && (
-                      <a
-                        href={project.href}
-                        target={
-                          project.href.startsWith("http") ? "_blank" : undefined
-                        }
-                        rel={
-                          project.href.startsWith("http")
-                            ? "noreferrer"
-                            : undefined
-                        }
-                        aria-label={`${copy.details}: ${project.title}`}
-                      >
-                        <ArrowUpRight aria-hidden="true" />
-                      </a>
-                    )}
-                  </div>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="pure-card-tags">
-                    {project.technologies.map((technology) => (
-                      <span key={technology}>{technology}</span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
+            {hideHomepageShowcaseSections ? (
+              <p className="pure-temporary-placeholder">{hiddenLabel}</p>
+            ) : (
+              <>
+                <p className="pure-section-intro">{copy.projectsIntro}</p>
+                <div className="pure-project-grid">
+                  {projects.map((project) => (
+                    <article className="pure-project-card" key={project.title}>
+                      <div className="pure-card-topline">
+                        <span>{project.dates}</span>
+                        {project.href && (
+                          <a
+                            href={project.href}
+                            target={
+                              project.href.startsWith("http")
+                                ? "_blank"
+                                : undefined
+                            }
+                            rel={
+                              project.href.startsWith("http")
+                                ? "noreferrer"
+                                : undefined
+                            }
+                            aria-label={`${copy.details}: ${project.title}`}
+                          >
+                            <ArrowUpRight aria-hidden="true" />
+                          </a>
+                        )}
+                      </div>
+                      <h3>{project.title}</h3>
+                      <p>{project.description}</p>
+                      <div className="pure-card-tags">
+                        {project.technologies.map((technology) => (
+                          <span key={technology}>{technology}</span>
+                        ))}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </section>
 
@@ -395,22 +419,24 @@ export default async function Page({
           </section>
         )}
 
-        <section id="contact" className="pure-section scroll-mt-24">
-          <header className="pure-section-label">
-            <span>07</span>
-            <h2>{isEnglish ? "Contact" : "联系"}</h2>
-          </header>
-          <div className="pure-section-body pure-contact-card">
-            <div>
-              <h3>{copy.contactTitle}</h3>
-              <p>{copy.contactText}</p>
+        {!hideHomepageContactSection && (
+          <section id="contact" className="pure-section scroll-mt-24">
+            <header className="pure-section-label">
+              <span>07</span>
+              <h2>{isEnglish ? "Contact" : "联系"}</h2>
+            </header>
+            <div className="pure-section-body pure-contact-card">
+              <div>
+                <h3>{copy.contactTitle}</h3>
+                <p>{copy.contactText}</p>
+              </div>
+              <a href="mailto:36231219360@qq.com">
+                {copy.writeEmail}
+                <ArrowUpRight aria-hidden="true" />
+              </a>
             </div>
-            <a href="mailto:36231219360@qq.com">
-              {copy.writeEmail}
-              <ArrowUpRight aria-hidden="true" />
-            </a>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
     </main>
   );
