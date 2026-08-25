@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Locale } from "next-intl";
 
+import { HarnessPlatformGuide } from "@/components/tutorial/harness-platform-guide";
 import { DeepseekHarnessTutorialReader } from "@/components/tutorial/vscode-tutorial-reader";
 import { constructMetadata } from "@/lib/metadata";
 
@@ -30,6 +31,7 @@ export async function generateMetadata({
     locale: locale as Locale,
   });
 }
+
 
 export default async function DeepseekHarnessTutorialPage({
   params,
@@ -92,9 +94,9 @@ export default async function DeepseekHarnessTutorialPage({
           <div>
             <ShieldCheck aria-hidden="true" />
             <span>
-              <b>{isEnglish ? "Approval-aware" : "强调审批边界"}</b>
+              <b>{isEnglish ? "Platform-aware" : "双系统分流"}</b>
               <small>
-                {isEnglish ? "Isolate · inspect · verify" : "隔离 · 审查 · 验证"}
+                {isEnglish ? "macOS / Windows" : "macOS / Windows"}
               </small>
             </span>
           </div>
@@ -153,6 +155,8 @@ export default async function DeepseekHarnessTutorialPage({
         </div>
       </section>
 
+      <HarnessPlatformGuide isEnglish={isEnglish} />
+
       <section className="harness-concepts" aria-labelledby="harness-concepts-title">
         <div>
           <p className="academic-kicker">MENTAL MODEL · HARNESS LAYERS</p>
@@ -196,4 +200,3 @@ export default async function DeepseekHarnessTutorialPage({
     </main>
   );
 }
-

@@ -2239,6 +2239,421 @@
   font-size: 0.7rem;
   letter-spacing: -0.05em;
 }
+.harness-platform-guide {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 2.5rem 7rem;
+}
+.harness-platform-guide > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: end;
+  border-top: 1px solid #d4d4d4;
+  padding-top: 2rem;
+}
+.dark .harness-platform-guide > header {
+  border-color: #404040;
+}
+.harness-platform-guide > header h2 {
+  max-width: 42rem;
+  margin-top: 0.55rem;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+.harness-platform-guide > header > div:first-child > p:last-child {
+  max-width: 46rem;
+  margin-top: 0.8rem;
+  color: #525252;
+  font-size: 0.76rem;
+  line-height: 1.75;
+}
+.dark .harness-platform-guide > header > div:first-child > p:last-child {
+  color: #c7c7c7;
+}
+.harness-diagnostic-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-block: 1px solid #d4d4d4;
+  padding: 0.75rem 0;
+  color: #525252;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.56rem;
+  white-space: nowrap;
+}
+.dark .harness-diagnostic-flow {
+  border-color: #404040;
+  color: #bdbdbd;
+}
+.harness-diagnostic-flow i {
+  color: var(--eng-signal, #9f1d2f);
+  font-style: normal;
+}
+.harness-platform-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 50rem;
+  margin: 2.5rem auto 0;
+  border: 1px solid #d4d4d4;
+  padding: 0.3rem;
+  background: #ececea;
+}
+.dark .harness-platform-tabs {
+  border-color: #404040;
+  background: #191b1a;
+}
+.harness-platform-tabs button {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.15rem 0.75rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  color: #737373;
+  text-align: left;
+}
+.harness-platform-tabs button.active {
+  background: white;
+  color: #171918;
+  box-shadow: 0 3px 12px #0000000d;
+}
+.dark .harness-platform-tabs button.active {
+  background: #292b2a;
+  color: #fafafa;
+}
+.harness-platform-tabs button > span {
+  grid-row: 1 / 3;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid #bdbdbd;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+.harness-platform-tabs b {
+  font-size: 0.76rem;
+}
+.harness-platform-tabs small {
+  overflow: hidden;
+  font-size: 0.57rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.harness-platform-summary {
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+  gap: 2rem;
+  max-width: 64rem;
+  margin: 1.25rem auto 3rem;
+  border-left: 3px solid var(--eng-signal, #9f1d2f);
+  padding: 1rem 1.25rem;
+  background: #f0efeb;
+}
+.dark .harness-platform-summary {
+  background: #191b1a;
+}
+.harness-platform-summary > div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.harness-platform-summary svg {
+  width: 1.1rem;
+  color: var(--eng-signal, #9f1d2f);
+}
+.harness-platform-summary b,
+.harness-platform-summary small {
+  display: block;
+}
+.harness-platform-summary b {
+  font-size: 0.72rem;
+}
+.harness-platform-summary small {
+  margin-top: 0.15rem;
+  color: #737373;
+  font-size: 0.58rem;
+}
+.harness-platform-summary > p {
+  margin: 0;
+  color: #525252;
+  font-size: 0.7rem;
+  line-height: 1.7;
+}
+.dark .harness-platform-summary > p {
+  color: #c7c7c7;
+}
+.harness-issue-list {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 2rem;
+  border-top: 2px solid #171918;
+  padding-top: 1rem;
+}
+.dark .harness-issue-list {
+  border-color: #e5e5e5;
+}
+.harness-issue-list.shared {
+  margin-top: 4.5rem;
+}
+.harness-issue-heading {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+.harness-issue-heading > span,
+.harness-issue-heading > svg {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #bdbdbd;
+  color: var(--eng-signal, #9f1d2f);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 750;
+}
+.harness-issue-heading > svg {
+  padding: 0.45rem;
+}
+.harness-issue-heading p {
+  margin: 0;
+  color: var(--eng-signal, #9f1d2f);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.harness-issue-heading h3 {
+  margin-top: 0.25rem;
+  font-size: 0.76rem;
+  font-weight: 720;
+  line-height: 1.5;
+}
+.harness-issue-details {
+  border-bottom: 1px solid #d4d4d4;
+}
+.dark .harness-issue-details {
+  border-color: #404040;
+}
+.harness-issue-details > details {
+  border-top: 1px solid #d4d4d4;
+}
+.dark .harness-issue-details > details {
+  border-color: #404040;
+}
+.harness-issue-details summary {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 1rem;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 1rem 0.35rem;
+  cursor: pointer;
+  list-style: none;
+}
+.harness-issue-details summary::-webkit-details-marker {
+  display: none;
+}
+.harness-issue-details summary > span {
+  color: #8b8b8b;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.58rem;
+}
+.harness-issue-details summary b {
+  font-size: 0.76rem;
+}
+.harness-issue-details summary svg {
+  width: 0.8rem;
+  transition: transform 160ms ease;
+}
+.harness-issue-details details[open] summary {
+  color: var(--eng-signal, #9f1d2f);
+}
+.harness-issue-details details[open] summary svg {
+  transform: rotate(90deg);
+}
+.harness-issue-body {
+  padding: 0.25rem 0.35rem 1.75rem 2.7rem;
+}
+.harness-issue-diagnosis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #dededb;
+  background: #fafaf8;
+}
+.dark .harness-issue-diagnosis {
+  border-color: #3f4140;
+  background: #191b1a;
+}
+.harness-issue-diagnosis article {
+  padding: 1rem;
+}
+.harness-issue-diagnosis article + article {
+  border-left: 1px solid #dededb;
+}
+.dark .harness-issue-diagnosis article + article {
+  border-color: #3f4140;
+}
+.harness-issue-diagnosis span {
+  color: var(--eng-signal, #9f1d2f);
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.harness-issue-diagnosis p,
+.harness-issue-body section li {
+  color: #525252;
+  font-size: 0.68rem;
+  line-height: 1.75;
+}
+.dark .harness-issue-diagnosis p,
+.dark .harness-issue-body section li {
+  color: #c7c7c7;
+}
+.harness-issue-diagnosis p {
+  margin: 0.45rem 0 0;
+}
+.harness-issue-body > section:not(.harness-avoid) {
+  margin-top: 1.25rem;
+}
+.harness-issue-body h4 {
+  margin: 0;
+  font-size: 0.64rem;
+}
+.harness-issue-body ol,
+.harness-issue-body ul {
+  margin: 0.55rem 0 0;
+  padding-left: 1.2rem;
+}
+.harness-issue-body li + li {
+  margin-top: 0.35rem;
+}
+.harness-fix-command {
+  position: relative;
+  margin-top: 1rem;
+  border: 1px solid #353736;
+  background: #171918;
+  color: #f5f5f4;
+}
+.harness-fix-command.optional {
+  border-color: #765f38;
+}
+.harness-fix-command > div {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.2rem;
+  border-bottom: 1px solid #3f3f3f;
+  padding: 0.55rem 6.2rem 0.55rem 0.8rem;
+  color: #c7c7c7;
+  font-size: 0.58rem;
+}
+.harness-fix-command > div svg {
+  width: 0.75rem;
+}
+.harness-fix-command > div i {
+  margin-left: auto;
+  color: #d2aa65;
+  font-size: 0.5rem;
+  font-style: normal;
+  text-transform: uppercase;
+}
+.harness-fix-command pre {
+  margin: 0;
+  padding: 1rem 1.1rem !important;
+  white-space: pre-wrap;
+}
+.harness-fix-command code {
+  font-size: 0.68rem;
+  line-height: 1.7 !important;
+}
+.harness-fix-command code:before {
+  display: none !important;
+}
+.harness-fix-command > p {
+  margin: 0;
+  border-top: 1px solid #333534;
+  padding: 0.65rem 1.1rem;
+  color: #aaa;
+  font-size: 0.58rem;
+  line-height: 1.6;
+}
+.harness-fix-command > button {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.45rem;
+  color: #d4d4d4;
+  font-size: 0.56rem;
+}
+.harness-fix-command > button svg {
+  width: 0.72rem;
+}
+.harness-avoid {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  border-left: 3px solid var(--eng-signal, #9f1d2f);
+  padding: 0.85rem 1rem;
+  background: #f7eeee;
+}
+.dark .harness-avoid {
+  background: #29191b;
+}
+.harness-avoid > svg {
+  flex: none;
+  width: 1rem;
+  color: var(--eng-signal, #9f1d2f);
+}
+.harness-issue-body > footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  margin-top: 1rem;
+}
+.harness-issue-body > footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.15rem;
+  color: var(--eng-signal, #9f1d2f);
+  font-size: 0.6rem;
+  font-weight: 650;
+}
+.harness-issue-body > footer svg {
+  width: 0.65rem;
+}
+.harness-screenshot-note {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 64rem;
+  margin: 2.5rem auto 0;
+  border-top: 1px solid #d4d4d4;
+  padding-top: 1rem;
+  color: #737373;
+}
+.dark .harness-screenshot-note {
+  border-color: #404040;
+}
+.harness-screenshot-note svg {
+  flex: none;
+  width: 0.85rem;
+}
+.harness-screenshot-note p {
+  margin: 0;
+  font-size: 0.6rem;
+  line-height: 1.6;
+}
 .harness-concepts {
   max-width: 64rem;
   margin: 0 auto;
@@ -2307,6 +2722,43 @@
   color: #c7c7c7;
 }
 @media (max-width: 760px) {
+  .harness-platform-guide {
+    padding: 0 1rem 4.5rem;
+  }
+  .harness-platform-guide > header {
+    grid-template-columns: 1fr;
+  }
+  .harness-diagnostic-flow {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+  .harness-platform-tabs {
+    grid-template-columns: 1fr;
+  }
+  .harness-platform-summary {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .harness-issue-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .harness-issue-heading {
+    align-items: center;
+  }
+  .harness-issue-body {
+    padding-left: 0.35rem;
+  }
+  .harness-issue-diagnosis {
+    grid-template-columns: 1fr;
+  }
+  .harness-issue-diagnosis article + article {
+    border-top: 1px solid #dededb;
+    border-left: 0;
+  }
+  .harness-platform-tabs small {
+    white-space: normal;
+  }
   .harness-concepts {
     padding: 0 1.25rem 4.5rem;
   }
