@@ -3,7 +3,7 @@
 import { useLocale } from "next-intl";
 
 import { Button } from "@/components/ui/button";
-import { usePathname, useRouter } from "@/i18n/routing";
+import { usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 interface LanguageToggleProps {
@@ -12,7 +12,6 @@ interface LanguageToggleProps {
 
 export function LanguageToggle({ disabled = false }: LanguageToggleProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const locale = useLocale();
 
   // Check if current locale is Chinese
@@ -32,9 +31,27 @@ export function LanguageToggle({ disabled = false }: LanguageToggleProps) {
       sessionStorage.setItem(scrollKey, scrollPosition.toString());
     }
 
-    // Switch to the other locale while preserving the path
+    // Use the public canonical paths directly. This avoids the internal `/zh`
+    // locale path leaking into the static GitHub Pages build.
     const targetLocale = isChinese ? "en" : "zh";
-    router.replace(pathname, { locale: targetLocale });
+    const pathWithoutLocale =
+      pathname.replace(/^\/(?:en|zh)(?=\/|$)/, "") || "/";
+    const normalizedPath =
+      pathWithoutLocale === "/"
+        ? "/"
+        : `/${pathWithoutLocale.replace(/^\/+|\/+$/g, "")}/`;
+    const targetPath =
+      targetLocale === "en"
+        ? normalizedPath === "/"
+          ? "/en/"
+          : `/en${normalizedPath}`
+        : normalizedPath;
+
+    if (typeof window !== "undefined") {
+      window.location.assign(
+        `${targetPath}${window.location.search}${window.location.hash}`,
+      );
+    }
   };
 
   // Determine display text based on current locale
