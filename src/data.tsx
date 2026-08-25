@@ -23,6 +23,26 @@ export const DATA = {
       url: "https://yydslws-6g9r3ozbc664f0f2-1416454691.tcloudbaseapp.com/",
     },
   ],
+  friends: [
+    {
+      name: { zh: "李文盛", en: "Wensheng Li" },
+      handle: "yydslws",
+      description: {
+        zh: "人大物理系的朋友，我们经常讨论问题；他的主页关注物理学、AI for Science 与计算科学。",
+        en: "A friend in RUC's Department of Physics. We often exchange ideas; his site covers physics, AI for Science, and computational science.",
+      },
+      url: "https://yydslws-6g9r3ozbc664f0f2-1416454691.tcloudbaseapp.com/",
+    },
+    {
+      name: { zh: "T_IM", en: "T_IM" },
+      handle: "exyeus.github.io",
+      description: {
+        zh: "关于计算机科学、数据库系统、Agent Memory 与个人项目的个人主页。",
+        en: "A personal site about computer science, database systems, agent memory, and individual projects.",
+      },
+      url: "https://exyeus.github.io/",
+    },
+  ],
   contact: {
     social: {
       GitHub: {

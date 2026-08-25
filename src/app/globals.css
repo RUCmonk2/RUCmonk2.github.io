@@ -4425,6 +4425,68 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   font-style: normal;
 }
 
+.pure-friend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.pure-friend-card {
+  display: flex;
+  min-height: 10rem;
+  border: 1px solid var(--pure-border);
+  border-radius: 1rem;
+  background: var(--pure-muted);
+  padding: 1rem;
+  color: var(--pure-fg);
+  text-decoration: none;
+  flex-direction: column;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.pure-friend-card:hover {
+  border-color: var(--pure-primary);
+  transform: translateY(-2px);
+}
+
+.pure-friend-card > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--pure-muted-fg);
+}
+
+.pure-friend-card small {
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.62rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pure-friend-card svg {
+  width: 0.82rem;
+  height: 0.82rem;
+  flex: none;
+}
+
+.pure-friend-card h3 {
+  margin: 1.1rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 570;
+  letter-spacing: -0.02em;
+}
+
+.pure-friend-card p {
+  margin: 0.35rem 0 0;
+  color: var(--pure-muted-fg);
+  font-size: 0.75rem;
+  line-height: 1.68;
+}
+
 .pure-contact-card {
   display: flex;
   align-items: center;
@@ -4569,6 +4631,9 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
     margin: 0 0 0 auto;
   }
   .pure-project-grid {
+    grid-template-columns: 1fr;
+  }
+  .pure-friend-grid {
     grid-template-columns: 1fr;
   }
   .pure-contact-card {
