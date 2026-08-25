@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const tutorialPages = tutorialCatalog.flatMap((category) =>
     category.tutorials.map((tutorial) => tutorial.href),
   );
-  const staticPages = ["", "/blog", "/tutorials", ...tutorialPages];
+  const staticPages = ["", "/blog", "/tutorials", "/links", ...tutorialPages];
 
   const pages = LOCALES.flatMap((locale) => {
     return staticPages.map((page) => ({

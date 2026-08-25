@@ -27,6 +27,8 @@ export const DATA = {
     {
       name: { zh: "李文盛", en: "Wensheng Li" },
       handle: "yydslws",
+      initials: "LW",
+      tone: "blue",
       description: {
         zh: "人大物理系的朋友，我们经常讨论问题；他的主页关注物理学、AI for Science 与计算科学。",
         en: "A friend in RUC's Department of Physics. We often exchange ideas; his site covers physics, AI for Science, and computational science.",
@@ -36,11 +38,24 @@ export const DATA = {
     {
       name: { zh: "T_IM", en: "T_IM" },
       handle: "exyeus.github.io",
+      initials: "TI",
+      tone: "violet",
       description: {
         zh: "关于计算机科学、数据库系统、Agent Memory 与个人项目的个人主页。",
         en: "A personal site about computer science, database systems, agent memory, and individual projects.",
       },
       url: "https://exyeus.github.io/",
+    },
+    {
+      name: { zh: "卢科均", en: "Kejun Lu" },
+      handle: "lkj-louis",
+      initials: "LK",
+      tone: "amber",
+      description: {
+        zh: "宁波大学经济学学生，记录阅读、运动、个人成长与持续探索。",
+        en: "An economics student at Ningbo University writing about reading, sports, personal growth, and continued exploration.",
+      },
+      url: "https://lkj-louis.github.io/my-personal-info-page/",
     },
   ],
   contact: {

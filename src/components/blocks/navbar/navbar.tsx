@@ -12,12 +12,13 @@ export default function Navbar() {
   const homeHref = isEnglish ? "/en" : "/";
   const blogHref = isEnglish ? "/en/blog" : "/blog";
   const tutorialHref = isEnglish ? "/en/tutorials" : "/tutorials";
+  const linksHref = isEnglish ? "/en/links" : "/links";
   const copy = isEnglish
     ? {
         about: "About",
         projects: "Work",
         writing: "Writing",
-        contact: "Contact",
+        friends: "Friends",
         blog: "Notes",
         tutorial: "Guide",
       }
@@ -25,7 +26,7 @@ export default function Navbar() {
         about: "关于",
         projects: "项目",
         writing: "写作",
-        contact: "联系",
+        friends: "友链",
         blog: "笔记",
         tutorial: "教程",
       };
@@ -58,8 +59,8 @@ export default function Navbar() {
           <Link href={tutorialHref} className="">
             {copy.tutorial}
           </Link>
-          <Link href={`${homeHref}#contact`} className="">
-            {copy.contact}
+          <Link href={linksHref} className="">
+            {copy.friends}
           </Link>
         </nav>
 

@@ -45,6 +45,7 @@ export default async function Page({
   const skills = (t.raw("skills") as string[]) ?? [];
   const latestPost = sortPostsByDate(await getBlogPosts(locale))[0];
   const blogHref = isEnglish ? "/en/blog" : "/blog";
+  const linksHref = isEnglish ? "/en/links" : "/links";
   const articleHref = latestPost ? `${blogHref}/${latestPost.slug}` : blogHref;
   const latestReadingTime =
     latestPost &&
@@ -426,6 +427,9 @@ export default async function Page({
           <header className="pure-section-label">
             <span>07</span>
             <h2>{isEnglish ? "Friends" : "友链"}</h2>
+            <Link href={linksHref}>
+              {isEnglish ? "All links" : "友链页面"}
+            </Link>
           </header>
           <div className="pure-section-body pure-friend-grid">
             {DATA.friends.map((friend) => (
