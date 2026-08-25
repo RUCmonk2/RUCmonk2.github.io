@@ -36,7 +36,7 @@ export function BlogCard({
   return (
     <Link
       href={`/blog/${slug}`}
-      className="group grid gap-5 border-b border-neutral-300 py-8 focus-visible:ring-2 focus-visible:ring-[#9f1d2f] focus-visible:outline-none sm:grid-cols-[0.32fr_1.4fr_auto] sm:items-start sm:gap-8 dark:border-neutral-700"
+      className="engineering-blog-row group grid gap-5 py-8 focus-visible:ring-2 focus-visible:ring-[#9f1d2f] focus-visible:outline-none sm:grid-cols-[0.32fr_1.4fr_auto] sm:items-start sm:gap-8"
     >
       <time
         className="font-mono text-xs text-neutral-500 dark:text-neutral-400"
@@ -45,7 +45,7 @@ export function BlogCard({
         {formattedDate}
       </time>
       <div>
-        <h2 className="academic-heading text-xl leading-tight font-semibold transition-colors group-hover:text-[#9f1d2f] sm:text-2xl">
+        <h2 className="text-xl leading-tight font-semibold transition-colors sm:text-2xl">
           {title}
         </h2>
         {summary ? (

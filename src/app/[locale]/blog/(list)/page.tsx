@@ -39,10 +39,10 @@ export default async function BlogPage(props: {
   const isEnglish = locale === "en";
 
   return (
-    <main className="flex-1 pt-16">
+    <main className="engineering-list-page flex-1 pt-16">
       {jsonldScript(blogJsonLd)}
       <section className="px-5 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16 lg:px-10">
-        <div className="mx-auto grid max-w-5xl gap-6 border-b border-neutral-200 pb-12 sm:grid-cols-[10rem_1fr] sm:gap-8 dark:border-neutral-800">
+        <div className="engineering-list-head mx-auto grid max-w-6xl gap-6 pb-12 sm:grid-cols-[12rem_1fr] sm:gap-8">
           <div>
             <p className="section-index">
               {isEnglish ? "Writing / Notes" : "写作 / 笔记"}
@@ -60,7 +60,7 @@ export default async function BlogPage(props: {
       </section>
 
       <section className="px-5 pb-16 sm:px-8 sm:pb-20 lg:px-10">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <div className="mb-7 flex items-center justify-between">
             <h2 className="text-sm font-semibold">
               {isEnglish ? "Latest entries" : "最近更新"}

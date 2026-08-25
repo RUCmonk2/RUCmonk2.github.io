@@ -11,9 +11,7 @@ export default function Navbar() {
   const isEnglish = locale === "en";
   const homeHref = isEnglish ? "/en" : "/";
   const blogHref = isEnglish ? "/en/blog" : "/blog";
-  const tutorialHref = isEnglish
-    ? "/en/tutorials/vscode-cpp"
-    : "/tutorials/vscode-cpp";
+  const tutorialHref = isEnglish ? "/en/tutorials" : "/tutorials";
   const copy = isEnglish
     ? {
         about: "About",
@@ -33,62 +31,40 @@ export default function Navbar() {
       };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-neutral-200/90 bg-white/90 backdrop-blur-xl dark:border-neutral-800 dark:bg-[#0f1110]/90">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5 sm:px-8 lg:px-10">
+    <header className="pure-nav">
+      <div className="pure-nav-inner">
         <Link
           href={homeHref}
-          className="group border-l-2 border-[#9f1d2f] pl-3 leading-tight"
+          className="pure-brand"
           aria-label={isEnglish ? "Yaozhi Ye home" : "叶耀之首页"}
         >
-          <span className="block text-sm font-semibold">
-            {isEnglish ? "Yaozhi Ye" : "叶耀之"}
-          </span>
-          <span className="hidden text-[9px] text-neutral-500 sm:block dark:text-neutral-400">
-            {isEnglish ? "叶耀之 · RUC" : "YAOZHI YE · RUC"}
-          </span>
+          <b>{isEnglish ? "Yaozhi Ye" : "叶耀之"}</b>
+          <span>Pure Lab</span>
         </Link>
 
         <nav
-          className="hidden items-center gap-6 text-xs md:flex"
+          className="pure-nav-links"
           aria-label={isEnglish ? "Primary navigation" : "主导航"}
         >
-          <Link
-            href={`${homeHref}#about`}
-            className="transition-colors hover:text-[#9f1d2f]"
-          >
+          <Link href={`${homeHref}#about`} className="">
             {copy.about}
           </Link>
-          <Link
-            href={`${homeHref}#projects`}
-            className="transition-colors hover:text-[#9f1d2f]"
-          >
+          <Link href={`${homeHref}#projects`} className="">
             {copy.projects}
           </Link>
-          <Link
-            href={blogHref}
-            className="transition-colors hover:text-[#9f1d2f]"
-          >
+          <Link href={blogHref} className="">
             {copy.writing}
           </Link>
-          <Link
-            href={tutorialHref}
-            className="transition-colors hover:text-[#9f1d2f]"
-          >
+          <Link href={tutorialHref} className="">
             {copy.tutorial}
           </Link>
-          <Link
-            href={`${homeHref}#contact`}
-            className="transition-colors hover:text-[#9f1d2f]"
-          >
+          <Link href={`${homeHref}#contact`} className="">
             {copy.contact}
           </Link>
         </nav>
 
-        <div className="flex items-center gap-1">
-          <Link
-            href={blogHref}
-            className="mr-1 px-2 py-2 text-xs font-semibold md:hidden"
-          >
+        <div className="pure-nav-tools">
+          <Link href={blogHref} className="pure-mobile-blog">
             {copy.blog}
           </Link>
           <ModeToggle />

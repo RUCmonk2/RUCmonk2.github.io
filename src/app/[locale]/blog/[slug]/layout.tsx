@@ -65,7 +65,10 @@ export default async function BlogLayout(props: {
   const blogPostingJsonLd = await generateBlogPostingJsonLd(post);
 
   return (
-    <main id="blog" className="flex-1 pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36">
+    <main
+      id="blog"
+      className="engineering-article flex-1 pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36"
+    >
       {jsonldScript(blogPostingJsonLd)}
 
       {/* Desktop Table of Contents - Fixed on the left side */}

@@ -1,5 +1,6 @@
 import { ArrowDown, BookOpen, Clock, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Locale } from "next-intl";
 
 import { VscodeTutorialReader } from "@/components/tutorial/vscode-tutorial-reader";
@@ -31,8 +32,19 @@ export default async function TutorialPage({
 }) {
   const { locale } = await params;
   const isEnglish = locale === "en";
+  const tutorialsHref = isEnglish ? "/en/tutorials" : "/tutorials";
   return (
     <main className="tutorial-page">
+      <nav
+        className="tutorial-breadcrumbs"
+        aria-label={isEnglish ? "Tutorial hierarchy" : "教程层级"}
+      >
+        <Link href={tutorialsHref}>{isEnglish ? "Tutorials" : "教程中心"}</Link>
+        <span>/</span>
+        <span>{isEnglish ? "Development environments" : "开发环境与工具"}</span>
+        <span>/</span>
+        <b>VS Code C/C++</b>
+      </nav>
       <section className="tutorial-hero">
         <div>
           <p className="academic-kicker">

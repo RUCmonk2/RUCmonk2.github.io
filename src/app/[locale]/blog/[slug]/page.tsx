@@ -51,9 +51,9 @@ export default async function Blog(props: {
       : 1;
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-6 sm:px-8 md:px-10">
+    <div className="engineering-article-shell mx-auto w-full max-w-4xl px-6 sm:px-8 md:px-10">
       <p className="section-index mb-5">{t("blog.title")}</p>
-      <h1 className="academic-heading mb-5 text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl">
+      <h1 className="mb-5 text-3xl leading-tight font-semibold sm:text-4xl md:text-5xl">
         {post.metadata.title}
       </h1>
       <div className="mb-10 flex items-center justify-between border-b border-neutral-200 pb-6 text-sm dark:border-neutral-800">
