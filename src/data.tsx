@@ -57,6 +57,17 @@ export const DATA = {
       },
       url: "https://lkj-louis.github.io/my-personal-info-page/",
     },
+    {
+      name: { zh: "Hshevin", en: "Hshevin" },
+      handle: "home.empathless.com",
+      initials: "HS",
+      tone: "green",
+      description: {
+        zh: "持续学习，也持续记录；整理生活、文章、项目与学习中的工具。",
+        en: "A personal space for continuous learning and notes on life, writing, projects, and everyday tools.",
+      },
+      url: "https://home.empathless.com/",
+    },
   ],
   contact: {
     social: {
