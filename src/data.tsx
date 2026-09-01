@@ -68,6 +68,17 @@ export const DATA = {
       },
       url: "https://home.empathless.com/",
     },
+    {
+      name: { zh: "黄铠鹏", en: "Kaipeng Huang" },
+      handle: "tsukikp4666",
+      initials: "KP",
+      tone: "rose",
+      description: {
+        zh: "中国人民大学高瓴人工智能学院本科生，关注多模态大模型、Agent 与相关实践。",
+        en: "An undergraduate at RUC's Gaoling School of AI, interested in multimodal language models, agents, and related projects.",
+      },
+      url: "https://tsukikp4666.github.io/",
+    },
   ],
   contact: {
     social: {

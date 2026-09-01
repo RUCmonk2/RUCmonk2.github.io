@@ -4941,6 +4941,10 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   --friend-accent: #5d9b7a;
 }
 
+.links-tone-rose {
+  --friend-accent: #b86f7b;
+}
+
 .links-monogram {
   display: flex;
   width: 3.25rem;
