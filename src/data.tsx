@@ -79,6 +79,17 @@ export const DATA = {
       },
       url: "https://tsukikp4666.github.io/",
     },
+    {
+      name: { zh: "Xinpei Ye", en: "Xinpei Ye" },
+      handle: "yexinpei.eu.cc",
+      initials: "XY",
+      tone: "cyan",
+      description: {
+        zh: "记录学习、项目与思考的个人主页。",
+        en: "A personal homepage for notes on learning, projects, and reflections.",
+      },
+      url: "https://yexinpei.eu.cc/",
+    },
   ],
   contact: {
     social: {
