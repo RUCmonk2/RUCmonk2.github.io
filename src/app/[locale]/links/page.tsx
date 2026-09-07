@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, Link2, Network } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Link2 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Locale } from "next-intl";
@@ -49,22 +49,20 @@ export default async function LinksPage({
             ? "A personal site should not be an island. These links lead to friends, distinct interests, and other ways of observing the world."
             : "个人主页不该是一座孤岛。沿着这些链接，可以遇见朋友、不同的兴趣，以及观察世界的另一种方式。"}
         </span>
-        <div className="links-hero-stats">
-          <div>
-            <Link2 aria-hidden="true" />
-            <b>{String(DATA.friends.length).padStart(2, "0")}</b>
-            <small>{isEnglish ? "Friend sites" : "友链站点"}</small>
-          </div>
-          <div>
-            <Network aria-hidden="true" />
-            <b>∞</b>
-            <small>{isEnglish ? "Possible paths" : "可能的路径"}</small>
-          </div>
+        <div className="links-hero-count">
+          <Link2 aria-hidden="true" />
+          <b>{String(DATA.friends.length).padStart(2, "0")}</b>
+          <span>
+            {isEnglish ? "sites in this directory" : "个朋友站点，仍在慢慢增加"}
+          </span>
         </div>
       </section>
 
       <div className="links-layout">
-        <aside className="links-toc" aria-label={isEnglish ? "Page contents" : "页面目录"}>
+        <aside
+          className="links-toc"
+          aria-label={isEnglish ? "Page contents" : "页面目录"}
+        >
           <span>{isEnglish ? "Contents" : "页面目录"}</span>
           <a href="#friend-sites">01 · {isEnglish ? "Friends" : "朋友们"}</a>
           <a href="#exchange">02 · {isEnglish ? "Exchange" : "交换友链"}</a>
@@ -83,27 +81,33 @@ export default async function LinksPage({
                 </p>
               </div>
             </header>
-            <div className="links-card-grid">
-              {DATA.friends.map((friend) => (
-                <a
-                  className={`links-directory-card links-tone-${friend.tone}`}
-                  href={friend.url}
-                  key={friend.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="links-monogram" aria-hidden="true">
-                    {friend.initials}
-                  </div>
-                  <div>
-                    <span>{friend.handle}</span>
-                    <h3>{friend.name[localeKey]}</h3>
-                    <p>{friend.description[localeKey]}</p>
-                  </div>
-                  <ArrowUpRight aria-hidden="true" />
-                </a>
+            <ol className="links-directory-list">
+              {DATA.friends.map((friend, index) => (
+                <li key={friend.url}>
+                  <a
+                    className={`links-directory-card links-tone-${friend.tone}`}
+                    href={friend.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="links-card-index">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="links-monogram" aria-hidden="true">
+                      {friend.initials}
+                    </div>
+                    <div className="links-friend-copy">
+                      <div className="links-friend-heading">
+                        <h3>{friend.name[localeKey]}</h3>
+                        <span>{friend.handle}</span>
+                      </div>
+                      <p>{friend.description[localeKey]}</p>
+                    </div>
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                </li>
               ))}
-            </div>
+            </ol>
           </section>
 
           <section id="exchange" className="links-section scroll-mt-24">

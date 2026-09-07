@@ -98,6 +98,9 @@ export default async function Page({
         details: "Details",
         resourcesLabel: "05 / Open files",
         resourcesTitle: "Notes and resources",
+        programmingCourse: "Programming course · 2026",
+        programmingCourseDesc:
+          "Browse, copy, or download introductory C++ examples organized by lecture and slide number.",
         codexGuide: "Codex project handoff guide",
         codexDesc:
           "A reusable structure for context, decisions, file maps, and temporary materials.",
@@ -155,6 +158,9 @@ export default async function Page({
         details: "查看详情",
         resourcesLabel: "05 / 公开文件",
         resourcesTitle: "笔记与资源",
+        programmingCourse: "程序设计课程 · 2026",
+        programmingCourseDesc:
+          "从基础输入输出开始，按讲次和课件编号查看、复制或下载 C++ 示例代码。",
         codexGuide: "Codex 项目交接指南",
         codexDesc: "关于上下文、决策、文件地图和临时资料的可复用结构。",
         siteGuide: "个人主页搭建指南",
@@ -192,6 +198,13 @@ export default async function Page({
   ];
 
   const resources = [
+    {
+      title: copy.programmingCourse,
+      description: copy.programmingCourseDesc,
+      href: isEnglish
+        ? "/en/teaching/programming-2026"
+        : "/teaching/programming-2026",
+    },
     {
       title: copy.codexGuide,
       description: copy.codexDesc,
@@ -380,7 +393,7 @@ export default async function Page({
         <section className="pure-section">
           <header className="pure-section-label">
             <span>05</span>
-            <h2>{isEnglish ? "Resources" : "公开资料"}</h2>
+            <h2>{isEnglish ? "Resources & teaching" : "资料与教学"}</h2>
           </header>
           <div className="pure-section-body pure-row-list">
             {resources.map((resource) => (

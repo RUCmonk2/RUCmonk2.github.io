@@ -90,6 +90,17 @@ export const DATA = {
       },
       url: "https://yexinpei.eu.cc/",
     },
+    {
+      name: { zh: "朱珏明", en: "Jueming Zhu" },
+      handle: "mint-wood.github.io",
+      initials: "ZJ",
+      tone: "green",
+      description: {
+        zh: "朱珏明（Mint）的个人主页，记录学习、项目、写作与校园生活。",
+        en: "Jueming Zhu (Mint)'s personal homepage, with notes on learning, projects, writing, and university life.",
+      },
+      url: "https://mint-wood.github.io/",
+    },
   ],
   contact: {
     social: {
