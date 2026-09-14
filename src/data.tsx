@@ -25,6 +25,17 @@ export const DATA = {
   ],
   friends: [
     {
+      name: { zh: "YuXuan255", en: "YuXuan255" },
+      handle: "yuxuan255.github.io",
+      initials: "YX",
+      tone: "blue",
+      description: {
+        zh: "记录比赛复盘、项目实践、个人笔记与日记的技术博客。",
+        en: "A technical blog featuring competition writeups, project notes, personal learning, and journal entries.",
+      },
+      url: "https://yuxuan255.github.io/",
+    },
+    {
       name: { zh: "李文盛", en: "Wensheng Li" },
       handle: "yydslws",
       initials: "LW",
