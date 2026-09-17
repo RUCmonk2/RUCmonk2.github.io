@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, Link2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Locale } from "next-intl";
@@ -42,64 +42,43 @@ export default async function LinksPage({
           <ArrowLeft aria-hidden="true" />
           {isEnglish ? "Back home" : "返回主页"}
         </Link>
-        <p>FRIEND LINKS · OPEN WEB</p>
-        <h1>{isEnglish ? "Friends and paths outward" : "友链与互联网漫游"}</h1>
-        <span>
+        <h1>{isEnglish ? "Friends" : "友链"}</h1>
+        <p className="links-intro">
           {isEnglish
-            ? "A personal site should not be an island. These links lead to friends, distinct interests, and other ways of observing the world."
-            : "个人主页不该是一座孤岛。沿着这些链接，可以遇见朋友、不同的兴趣，以及观察世界的另一种方式。"}
+            ? "Small corners of the web, familiar faces along the way."
+            : "在互联网的小小角落，遇见一些有趣的人。"}
+        </p>
+        <span className="links-count">
+          {DATA.friends.length} {isEnglish ? "friends" : "位朋友"}
         </span>
-        <div className="links-hero-count">
-          <Link2 aria-hidden="true" />
-          <b>{String(DATA.friends.length).padStart(2, "0")}</b>
-          <span>
-            {isEnglish ? "sites in this directory" : "个朋友站点，仍在慢慢增加"}
-          </span>
-        </div>
       </section>
 
       <div className="links-layout">
-        <aside
-          className="links-toc"
-          aria-label={isEnglish ? "Page contents" : "页面目录"}
-        >
-          <span>{isEnglish ? "Contents" : "页面目录"}</span>
-          <a href="#friend-sites">01 · {isEnglish ? "Friends" : "朋友们"}</a>
-          <a href="#exchange">02 · {isEnglish ? "Exchange" : "交换友链"}</a>
-        </aside>
-
         <div className="links-content">
           <section id="friend-sites" className="links-section scroll-mt-24">
             <header>
-              <span>01</span>
-              <div>
-                <h2>{isEnglish ? "Friend sites" : "朋友们的站点"}</h2>
-                <p>
-                  {isEnglish
-                    ? "No ranking—only a small collection that can keep growing."
-                    : "这里没有排名，只是一份可以慢慢生长的链接收藏。"}
-                </p>
-              </div>
+              <h2>{isEnglish ? "Around the neighborhood" : "朋友们的小站"}</h2>
+              <a href="#exchange">
+                {isEnglish ? "Exchange links" : "交换友链"}{" "}
+                <ArrowUpRight aria-hidden="true" />
+              </a>
             </header>
             <ol className="links-directory-list">
-              {DATA.friends.map((friend, index) => (
+              {DATA.friends.map((friend) => (
                 <li key={friend.url}>
                   <a
                     className={`links-directory-card links-tone-${friend.tone}`}
+                    title={`${friend.name[localeKey]} — ${friend.description[localeKey]}`}
                     href={friend.url}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <span className="links-card-index">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
                     <div className="links-monogram" aria-hidden="true">
                       {friend.initials}
                     </div>
                     <div className="links-friend-copy">
                       <div className="links-friend-heading">
                         <h3>{friend.name[localeKey]}</h3>
-                        <span>{friend.handle}</span>
                       </div>
                       <p>{friend.description[localeKey]}</p>
                     </div>
@@ -112,7 +91,6 @@ export default async function LinksPage({
 
           <section id="exchange" className="links-section scroll-mt-24">
             <header>
-              <span>02</span>
               <div>
                 <h2>{isEnglish ? "Exchange links" : "交换友链"}</h2>
                 <p>

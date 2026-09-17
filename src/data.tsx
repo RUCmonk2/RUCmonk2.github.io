@@ -25,39 +25,6 @@ export const DATA = {
   ],
   friends: [
     {
-      name: { zh: "郑乐晨 · Judy’s Notes", en: "Judy’s Notes" },
-      handle: "zhenglechen123456.github.io/site",
-      initials: "ZL",
-      tone: "violet",
-      description: {
-        zh: "中国人民大学人工智能本科生，记录机器学习、大语言模型与具身智能的学习笔记。",
-        en: "An AI undergraduate at RUC sharing notes on machine learning, large language models, and embodied AI.",
-      },
-      url: "https://zhenglechen123456.github.io/site/",
-    },
-    {
-      name: { zh: "Yonacky", en: "Yonacky" },
-      handle: "yonacky.github.io",
-      initials: "YO",
-      tone: "green",
-      description: {
-        zh: "关注世界模型、JEPA、表征学习、具身智能与自主智能体的个人主页。",
-        en: "A personal site exploring world models, JEPA, representation learning, embodied AI, and autonomous agents.",
-      },
-      url: "https://yonacky.github.io/",
-    },
-    {
-      name: { zh: "YuXuan255", en: "YuXuan255" },
-      handle: "yuxuan255.github.io",
-      initials: "YX",
-      tone: "blue",
-      description: {
-        zh: "记录比赛复盘、项目实践、个人笔记与日记的技术博客。",
-        en: "A technical blog featuring competition writeups, project notes, personal learning, and journal entries.",
-      },
-      url: "https://yuxuan255.github.io/",
-    },
-    {
       name: { zh: "李文盛", en: "Wensheng Li" },
       handle: "yydslws",
       initials: "LW",
@@ -133,6 +100,39 @@ export const DATA = {
         en: "Jueming Zhu (Mint)'s personal homepage, with notes on learning, projects, writing, and university life.",
       },
       url: "https://mint-wood.github.io/",
+    },
+    {
+      name: { zh: "郑乐晨 · Judy’s Notes", en: "Judy’s Notes" },
+      handle: "zhenglechen123456.github.io/site",
+      initials: "ZL",
+      tone: "violet",
+      description: {
+        zh: "中国人民大学人工智能本科生，记录机器学习、大语言模型与具身智能的学习笔记。",
+        en: "An AI undergraduate at RUC sharing notes on machine learning, large language models, and embodied AI.",
+      },
+      url: "https://zhenglechen123456.github.io/site/",
+    },
+    {
+      name: { zh: "Yonacky", en: "Yonacky" },
+      handle: "yonacky.github.io",
+      initials: "YO",
+      tone: "green",
+      description: {
+        zh: "关注世界模型、JEPA、表征学习、具身智能与自主智能体的个人主页。",
+        en: "A personal site exploring world models, JEPA, representation learning, embodied AI, and autonomous agents.",
+      },
+      url: "https://yonacky.github.io/",
+    },
+    {
+      name: { zh: "YuXuan255", en: "YuXuan255" },
+      handle: "yuxuan255.github.io",
+      initials: "YX",
+      tone: "blue",
+      description: {
+        zh: "记录比赛复盘、项目实践、个人笔记与日记的技术博客。",
+        en: "A technical blog featuring competition writeups, project notes, personal learning, and journal entries.",
+      },
+      url: "https://yuxuan255.github.io/",
     },
   ],
   contact: {
