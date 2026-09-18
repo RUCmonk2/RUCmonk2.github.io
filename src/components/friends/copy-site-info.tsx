@@ -3,18 +3,20 @@
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 
+import { siteConfig } from "@/data/site";
+
 const siteInfo = {
   zh: [
     ["名称", "叶耀之"],
     ["描述", "人工智能本科生，关注 AI4Math、AI4TCS 与跨学科 AI"],
     ["链接", "https://yeyaozhi.eu.cc/"],
-    ["头像", "https://yeyaozhi.eu.cc/images/luxun-avatar.webp"],
+    ["头像", `${siteConfig.url}${siteConfig.avatarUrl}`],
   ],
   en: [
     ["Name", "Yaozhi Ye"],
     ["Description", "AI undergraduate exploring AI4Math, AI4TCS, and interdisciplinary AI"],
     ["Link", "https://yeyaozhi.eu.cc/"],
-    ["Avatar", "https://yeyaozhi.eu.cc/images/luxun-avatar.webp"],
+    ["Avatar", `${siteConfig.url}${siteConfig.avatarUrl}`],
   ],
 } as const;
 

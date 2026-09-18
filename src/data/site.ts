@@ -8,7 +8,7 @@ export const BLUR_FADE_DELAY = 0.05;
 export const siteConfig = {
   url: "https://yeyaozhi.eu.cc",
   lastUpdated: "2026.08",
-  avatarUrl: "/assets/profile.jpg",
+  avatarUrl: "/images/yaozhi-avatar.jpg",
   blog: {
     /* Number of posts per page on the blog list */
     postsPerPage: 6,

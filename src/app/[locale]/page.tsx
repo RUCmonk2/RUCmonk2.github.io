@@ -11,6 +11,7 @@ import { getTranslations } from "next-intl/server";
 
 import { CustomReactMarkdown } from "@/components/react-markdown";
 import { DATA } from "@/data";
+import { siteConfig } from "@/data/site";
 import { getBlogPosts, sortPostsByDate } from "@/lib/blog";
 import { generatePersonJsonLd } from "@/lib/jsonld";
 import { jsonldScript } from "@/lib/utils";
@@ -228,12 +229,12 @@ export default async function Page({
       <section id="about" className="pure-profile-hero scroll-mt-24">
         <Image
           className="pure-avatar"
-          src="/images/luxun-avatar.webp"
-          width={512}
-          height={512}
+          src={siteConfig.avatarUrl}
+          width={1086}
+          height={1448}
           priority
           unoptimized
-          alt={isEnglish ? "Cartoon portrait of Lu Xun" : "Q 版鲁迅头像"}
+          alt={isEnglish ? "Portrait of Yaozhi Ye" : "叶耀之的头像"}
         />
 
         <div className="pure-identity">
