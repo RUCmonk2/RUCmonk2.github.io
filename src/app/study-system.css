@@ -105,7 +105,13 @@ body.study-site {
   background: url("/images/study/mountains.webp") right 46% / cover no-repeat;
   opacity: 0.13;
   filter: saturate(0.25);
-  mask-image: linear-gradient(to right, transparent, #000 80%);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 40%,
+    #000 65%,
+    transparent
+  );
   pointer-events: none;
 }
 .study-site .study-page-heading::after {
@@ -451,4 +457,64 @@ body.study-site {
   > div
   > div:first-child {
   line-height: 1.7;
+}
+
+/* A framed album leaf makes the friends page landscape an intentional picture. */
+.study-site .links-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  column-gap: 64px;
+  align-items: start;
+}
+.study-site .links-hero > :not(.links-album) {
+  grid-column: 1;
+}
+.study-site .links-hero::before,
+.study-site .links-hero::after {
+  display: none;
+}
+.links-album {
+  grid-column: 2;
+  grid-row: 1 / 5;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--study-line);
+  background: var(--study-soft);
+  transform: rotate(-1deg);
+}
+.links-album-picture {
+  aspect-ratio: 4 / 3;
+  background: url("/images/study/mountains.webp") 66% center / cover;
+  filter: saturate(0.3);
+  opacity: 0.72;
+}
+.links-album figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 3px 1px;
+  font-family: var(--study-serif);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--study-muted);
+}
+.links-album-seal {
+  padding: 3px;
+  border: 1px solid var(--study-seal);
+  color: var(--study-seal);
+  font-size: 10px;
+  line-height: 1.2;
+}
+@media (max-width: 760px) {
+  .study-site .links-hero {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .links-album {
+    grid-column: 1;
+    grid-row: auto;
+    width: min(100%, 320px);
+    margin: 28px 0 10px;
+    transform: none;
+  }
 }

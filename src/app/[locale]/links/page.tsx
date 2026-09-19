@@ -51,6 +51,23 @@ export default async function LinksPage({
         <span className="links-count">
           {DATA.friends.length} {isEnglish ? "friends" : "位朋友"}
         </span>
+        <figure className="links-album">
+          <div
+            className="links-album-picture"
+            role="img"
+            aria-label={
+              isEnglish
+                ? "Misty mountains and a distant pavilion"
+                : "云山深处，一座远亭"
+            }
+          />
+          <figcaption>
+            <span>{isEnglish ? "Friends afar" : "山水有相逢"}</span>
+            <span className="links-album-seal" aria-hidden="true">
+              知音
+            </span>
+          </figcaption>
+        </figure>
       </section>
 
       <div className="links-layout">

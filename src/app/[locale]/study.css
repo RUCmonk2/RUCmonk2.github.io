@@ -41,13 +41,13 @@ body:has(.study-home) .pure-brand span {
 }
 .study-landscape {
   position: absolute;
-  inset: 0 0 0 20%;
+  inset: 0;
   z-index: -1;
   background: url("/images/study/mountains.webp") 68% 50% / cover;
   filter: saturate(0.42);
   opacity: 0.76;
-  mask-image: linear-gradient(to right, transparent, #000 40%);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 40%);
+  mask-image: linear-gradient(to right, rgb(0 0 0 / 20%), #000 65%);
+  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 20%), #000 65%);
 }
 .study-landscape::after {
   content: "";
@@ -341,7 +341,8 @@ body:has(.study-home) .pure-brand span {
   .study-landscape {
     left: 0;
     opacity: 0.45;
-    mask-image: linear-gradient(to right, transparent, #000 80%);
+    mask-image: linear-gradient(to right, rgb(0 0 0 / 12%), #000 80%);
+    -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 12%), #000 80%);
   }
   .study-introduction {
     max-width: 67%;
