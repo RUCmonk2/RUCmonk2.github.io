@@ -134,6 +134,17 @@ export const DATA = {
       },
       url: "https://yuxuan255.github.io/",
     },
+    {
+      name: { zh: "张林晖", en: "Linhui Zhang" },
+      handle: "davidz0926.github.io",
+      initials: "ZL",
+      tone: "cyan",
+      description: {
+        zh: "温州医科大学临床医学学生张林晖的个人主页。",
+        en: "The personal homepage of Linhui Zhang, a clinical medicine student at Wenzhou Medical University.",
+      },
+      url: "https://davidz0926.github.io/",
+    },
   ],
   contact: {
     social: {
