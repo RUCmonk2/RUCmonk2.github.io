@@ -1,10 +1,6 @@
-import {
-  ArrowRight,
-  ArrowUpRight,
-  BookOpen,
-  Github,
-  MapPin,
-} from "lucide-react";
+import "./study.css";
+
+import { ArrowRight, ArrowUpRight, BookOpen, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
@@ -222,52 +218,66 @@ export default async function Page({
   ];
 
   return (
-    <main className="pure-home">
+    <main className="pure-home study-home">
       {jsonldScript(personJsonLd)}
-      <section id="about" className="pure-profile-hero scroll-mt-24">
-        <Image
-          className="pure-avatar"
-          src={siteConfig.avatarUrl}
-          width={1086}
-          height={1448}
-          priority
-          unoptimized
-          alt={isEnglish ? "Portrait of Yaozhi Ye" : "叶耀之的头像"}
-        />
-
-        <div className="pure-identity">
-          <p>{copy.eyebrow}</p>
-          <h1>{isEnglish ? "Yaozhi Ye" : "叶耀之"}</h1>
-          <span>{isEnglish ? "Pure Lab" : "Yaozhi Ye"}</span>
+      <section id="about" className="study-hero scroll-mt-24">
+        <div className="study-landscape" aria-hidden="true">
+          <div className="study-mist" />
+          <div className="study-mist study-mist-second" />
         </div>
-
-        <div className="pure-meta">
-          <span>
-            <MapPin aria-hidden="true" />
-            {copy.location}
-          </span>
-          <a
-            href="https://github.com/RUCmonk2"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Github aria-hidden="true" />
-            RUCmonk2
+        <div className="study-hero-inner">
+          <div className="study-introduction">
+            <p className="study-kicker">
+              {isEnglish ? "A PERSONAL STUDY" : "山水之间 · 求索不止"}
+            </p>
+            <Image
+              className="study-avatar"
+              src={siteConfig.avatarUrl}
+              width={1086}
+              height={1448}
+              priority
+              unoptimized
+              alt={isEnglish ? "Portrait of Yaozhi Ye" : "叶耀之的头像"}
+            />
+            <h1>{isEnglish ? "Yaozhi Ye" : "叶耀之"}</h1>
+            <p className="study-roman">{isEnglish ? "叶耀之" : "YAOZHI YE"}</p>
+            <p className="study-role">
+              {copy.institution} · {copy.role}
+            </p>
+            <p className="study-description">
+              {isEnglish
+                ? "Exploring mathematics, intelligence, and the possibilities between ink and code."
+                : "在数学与智能之间求索，"}
+              <br />
+              {isEnglish ? "" : "也在笔墨与山水之间，安放好奇心。"}
+            </p>
+            <div className="study-actions">
+              <Link href={blogHref}>
+                {isEnglish ? "Read my notes" : "读些文字"}
+                <ArrowUpRight size={15} />
+              </Link>
+              <a
+                href="https://github.com/RUCmonk2"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Github size={15} /> GitHub
+              </a>
+            </div>
+          </div>
+          <div className="study-inscription" aria-label="浮舟沧海，立马昆仑">
+            <span>浮舟沧海</span>
+            <span>立马昆仑</span>
+            <i>耀之</i>
+          </div>
+          <a href="#study-content" className="study-scroll">
+            {isEnglish ? "SCROLL TO EXPLORE" : "往下，慢慢读"}
+            <span>↓</span>
           </a>
         </div>
-
-        <a
-          className="pure-status"
-          href="https://www.ruc.edu.cn/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <i aria-hidden="true" />
-          {copy.role} · {copy.institution}
-        </a>
       </section>
 
-      <div className="pure-content">
+      <div id="study-content" className="pure-content study-content">
         <section className="pure-section">
           <header className="pure-section-label">
             <span>01</span>
@@ -285,7 +295,11 @@ export default async function Page({
           </div>
         </section>
 
-        <section id="research" className="pure-section scroll-mt-24">
+        <section
+          hidden={hideHomepageShowcaseSections}
+          id="research"
+          className="pure-section scroll-mt-24"
+        >
           <header className="pure-section-label">
             <span>02</span>
             <h2>{isEnglish ? "Research" : "研究兴趣"}</h2>
@@ -317,7 +331,7 @@ export default async function Page({
           </div>
         </section>
 
-        <section className="pure-section">
+        <section hidden={hideHomepageShowcaseSections} className="pure-section">
           <header className="pure-section-label">
             <span>03</span>
             <h2>{isEnglish ? "Updates" : "近期动态"}</h2>
@@ -339,7 +353,11 @@ export default async function Page({
           </div>
         </section>
 
-        <section id="projects" className="pure-section scroll-mt-24">
+        <section
+          hidden={hideHomepageShowcaseSections}
+          id="projects"
+          className="pure-section scroll-mt-24"
+        >
           <header className="pure-section-label">
             <span>04</span>
             <h2>{isEnglish ? "Projects" : "项目实践"}</h2>
@@ -391,7 +409,7 @@ export default async function Page({
 
         <section className="pure-section">
           <header className="pure-section-label">
-            <span>05</span>
+            <span>02</span>
             <h2>{isEnglish ? "Resources & teaching" : "资料与教学"}</h2>
           </header>
           <div className="pure-section-body pure-row-list">
@@ -414,7 +432,7 @@ export default async function Page({
         {latestPost && (
           <section className="pure-section">
             <header className="pure-section-label">
-              <span>06</span>
+              <span>03</span>
               <h2>{isEnglish ? "Writing" : "写作"}</h2>
               <Link href={blogHref}>{copy.allWriting}</Link>
             </header>
@@ -438,7 +456,7 @@ export default async function Page({
         {!hideHomepageContactSection && (
           <section id="contact" className="pure-section scroll-mt-24">
             <header className="pure-section-label">
-              <span>08</span>
+              <span>04</span>
               <h2>{isEnglish ? "Contact" : "联系"}</h2>
             </header>
             <div className="pure-section-body pure-contact-card">

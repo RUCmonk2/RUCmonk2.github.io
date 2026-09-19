@@ -1,0 +1,391 @@
+/* The personal study: mist at the opening, quiet typography below. */
+.study-home {
+  --pure-bg: #f6f4ee;
+  --pure-fg: #293c37;
+  --pure-muted: #eeeee6;
+  --pure-muted-fg: #63716a;
+  --pure-border: #d9ddd2;
+  --pure-primary: #4d7166;
+  background: var(--pure-bg);
+}
+.study-home::before {
+  display: none;
+}
+.study-home [hidden] {
+  display: none !important;
+}
+body:has(.study-home) {
+  background: #f6f4ee;
+}
+.pure-nav:has(~ .study-home),
+body:has(.study-home) .pure-nav {
+  max-width: 1160px;
+  border: 0;
+  border-bottom: 1px solid #74867833;
+  border-radius: 0;
+  background: #f6f4eee6;
+  box-shadow: none;
+}
+body:has(.study-home) .pure-brand b {
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  letter-spacing: 0.12em;
+}
+body:has(.study-home) .pure-brand span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+.study-hero {
+  overflow: hidden;
+  min-height: 740px;
+  isolation: isolate;
+}
+.study-landscape {
+  position: absolute;
+  inset: 0 0 0 20%;
+  z-index: -1;
+  background: url("/images/study/mountains.webp") 68% 50% / cover;
+  filter: saturate(0.42);
+  opacity: 0.76;
+  mask-image: linear-gradient(to right, transparent, #000 40%);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 40%);
+}
+.study-landscape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #f6f4ee 0%,
+    transparent 24%,
+    transparent 62%,
+    #f6f4ee 100%
+  );
+}
+.study-mist {
+  position: absolute;
+  inset: 30% -25% -10%;
+  background: radial-gradient(ellipse at 38% 55%, #f6f4eedb, transparent 62%);
+  filter: blur(25px);
+  animation: study-drift 28s ease-in-out infinite alternate;
+}
+.study-mist-second {
+  inset: 0 -20% 10%;
+  opacity: 0.65;
+  animation-duration: 39s;
+  animation-direction: alternate-reverse;
+}
+.study-hero-inner {
+  position: relative;
+  max-width: 1060px;
+  min-height: 740px;
+  margin: auto;
+  padding: 76px 24px 100px;
+}
+.study-introduction {
+  position: relative;
+  z-index: 2;
+  max-width: 460px;
+}
+.study-kicker {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: #708177;
+  margin: 0 0 35px;
+}
+.study-avatar {
+  width: 84px;
+  height: 100px;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: 42px 42px 8px 8px;
+  padding: 3px;
+  border: 1px solid #82958555;
+  margin-bottom: 25px;
+}
+.study-introduction h1 {
+  font-family: "Songti SC", "Noto Serif SC", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(42px, 5vw, 62px);
+  letter-spacing: 0.14em;
+  line-height: 1.25;
+  margin: 0;
+}
+.study-roman {
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  margin: 14px 0 25px;
+  color: #6b7f75;
+}
+.study-role {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--pure-muted-fg);
+}
+.study-description {
+  font-family: "Songti SC", Georgia, serif;
+  font-size: 17px;
+  line-height: 2.05;
+  letter-spacing: 0.05em;
+  margin: 20px 0 27px;
+}
+.study-actions {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  font-size: 12px;
+}
+.study-actions a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #70847777;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.study-actions a:hover {
+  color: #a14939;
+  border-color: #a14939;
+}
+.study-inscription {
+  position: absolute;
+  right: 90px;
+  top: 125px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 23px;
+  color: #354e43;
+}
+.study-inscription > span {
+  writing-mode: vertical-rl;
+  font-family: "Kaiti SC", STKaiti, KaiTi, "Songti SC", serif;
+  font-size: clamp(36px, 4.5vw, 57px);
+  letter-spacing: 0.22em;
+  line-height: 1.25;
+  font-weight: 400;
+  text-shadow: 0 1px 16px #f6f4ee;
+  animation: study-ink 1.6s ease both;
+}
+.study-inscription > span:nth-child(2) {
+  margin-top: 56px;
+  animation-delay: 0.22s;
+}
+.study-inscription i {
+  position: absolute;
+  bottom: -60px;
+  left: 10px;
+  writing-mode: vertical-rl;
+  padding: 5px 3px;
+  font-family: "Songti SC", serif;
+  color: #a44936;
+  border: 1px solid #a44936;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 1.1;
+  transform: rotate(-5deg);
+}
+.study-scroll {
+  position: absolute;
+  bottom: 35px;
+  left: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: #77867c;
+}
+.study-scroll span {
+  font-size: 21px;
+}
+.study-content {
+  max-width: 1012px;
+  width: calc(100% - 48px);
+  gap: 65px;
+  padding-top: 32px;
+}
+.study-content .pure-section {
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--pure-border);
+}
+.study-content .pure-section-label h2 {
+  font-family: "Songti SC", Georgia, serif;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+}
+.study-content .pure-section-label > span {
+  color: #9b6e53;
+  font-size: 10px;
+  margin-bottom: 14px;
+}
+.study-content .pure-prose {
+  font-size: 15px;
+  line-height: 2;
+}
+.study-content .pure-lead-note {
+  font-size: 14px;
+  line-height: 1.9;
+}
+.study-content .pure-resource-row {
+  padding-block: 19px;
+}
+.study-content .pure-resource-row b {
+  font-size: 14px;
+  font-weight: 500;
+}
+.study-content .pure-resource-row small {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.study-content .pure-writing-card {
+  border-radius: 2px;
+  background: #e9ece344;
+  border: 1px solid var(--pure-border);
+  box-shadow: none;
+}
+.study-content .pure-friend-card {
+  border-radius: 2px;
+  background: transparent;
+  box-shadow: none;
+}
+.study-content .pure-friend-card h3 {
+  font-family: "Songti SC", serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+.study-home a:focus-visible,
+.study-home button:focus-visible {
+  outline: 2px solid #96745c;
+  outline-offset: 5px;
+}
+.dark .study-home {
+  --pure-bg: #17231f;
+  --pure-fg: #e1e6da;
+  --pure-muted: #24332c;
+  --pure-muted-fg: #acb9ae;
+  --pure-border: #3a4c40;
+  --pure-primary: #b6c8b1;
+}
+.dark body:has(.study-home) {
+  background: #17231f;
+}
+.dark body:has(.study-home) .pure-nav {
+  background: #17231fe6;
+  color: #e1e6da;
+}
+.dark .study-landscape {
+  opacity: 0.32;
+}
+.dark .study-landscape::after {
+  background: linear-gradient(
+    to bottom,
+    #17231f,
+    transparent 30%,
+    transparent 60%,
+    #17231f
+  );
+}
+.dark .study-inscription {
+  color: #d5ddc9;
+}
+.dark .study-inscription > span {
+  text-shadow: 0 1px 16px #17231f;
+}
+.dark .study-mist {
+  opacity: 0.16;
+}
+.dark .study-kicker,
+.dark .study-roman,
+.dark .study-scroll {
+  color: #a4b5a6;
+}
+@keyframes study-drift {
+  from {
+    transform: translate3d(-3%, 2%, 0);
+  }
+  to {
+    transform: translate3d(6%, -3%, 0);
+  }
+}
+@keyframes study-ink {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 760px) {
+  .study-hero,
+  .study-hero-inner {
+    min-height: 690px;
+  }
+  .study-hero-inner {
+    padding-top: 55px;
+  }
+  .study-inscription {
+    right: 30px;
+    top: 140px;
+    gap: 12px;
+  }
+  .study-inscription > span {
+    font-size: 35px;
+  }
+  .study-landscape {
+    left: 0;
+    opacity: 0.45;
+    mask-image: linear-gradient(to right, transparent, #000 80%);
+  }
+  .study-introduction {
+    max-width: 67%;
+  }
+  .study-description {
+    font-size: 15px;
+  }
+  .study-role {
+    font-size: 11px;
+    max-width: 230px;
+    line-height: 1.8;
+  }
+  .study-content .pure-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .study-content {
+    gap: 44px;
+  }
+  .study-kicker {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+  }
+}
+@media (max-width: 420px) {
+  .study-inscription {
+    right: 21px;
+    top: 150px;
+    gap: 7px;
+  }
+  .study-inscription > span {
+    font-size: 29px;
+  }
+  .study-description {
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .study-actions {
+    gap: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .study-home * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

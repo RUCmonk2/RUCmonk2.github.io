@@ -40,7 +40,7 @@ export default function Navbar() {
           aria-label={isEnglish ? "Yaozhi Ye home" : "叶耀之首页"}
         >
           <b>{isEnglish ? "Yaozhi Ye" : "叶耀之"}</b>
-          <span>Pure Lab</span>
+          <span>{isEnglish ? "A personal study" : "山水 · 笔墨"}</span>
         </Link>
 
         <nav
@@ -50,8 +50,8 @@ export default function Navbar() {
           <Link href={`${homeHref}#about`} className="">
             {copy.about}
           </Link>
-          <Link href={`${homeHref}#projects`} className="">
-            {copy.projects}
+          <Link href={`${homeHref}#study-content`} className="">
+            {isEnglish ? "Explore" : "拾录"}
           </Link>
           <Link href={blogHref} className="">
             {copy.writing}
