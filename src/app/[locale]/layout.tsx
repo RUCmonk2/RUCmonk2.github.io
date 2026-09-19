@@ -73,7 +73,7 @@ export default async function LocaleLayout({
 
       <body
         className={cn(
-          "bg-background flex min-h-screen flex-col font-sans antialiased",
+          "study-site bg-background flex min-h-screen flex-col font-sans antialiased",
           fontSans.variable,
         )}
       >

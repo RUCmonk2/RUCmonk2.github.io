@@ -1,0 +1,454 @@
+/* Shared palette and reading surfaces for the personal study. */
+body.study-site {
+  --study-paper: #f6f4ee;
+  --study-ink: #293c37;
+  --study-muted: #63716a;
+  --study-line: #d9ddd2;
+  --study-soft: #eeeee6;
+  --study-link: #486c60;
+  --study-seal: #9c5140;
+  --study-serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  --background: var(--study-paper);
+  --foreground: var(--study-ink);
+  --border: var(--study-line);
+  --muted-foreground: var(--study-muted);
+  --eng-bg: var(--study-paper);
+  --eng-paper: var(--study-paper);
+  --eng-ink: var(--study-ink);
+  --eng-line: var(--study-line);
+  --eng-line-strong: var(--study-line);
+  --eng-signal: var(--study-link);
+  background: var(--study-paper);
+  color: var(--study-ink);
+}
+.dark body.study-site {
+  --study-paper: #17231f;
+  --study-ink: #e1e6da;
+  --study-muted: #acb9ae;
+  --study-line: #3a4c40;
+  --study-soft: #24332c;
+  --study-link: #b6c8b1;
+  --study-seal: #d39b85;
+}
+.study-site .pure-nav {
+  width: min(calc(100% - 2rem), 1160px);
+  border: 0;
+  border-bottom: 1px solid var(--study-line);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--study-paper) 94%, transparent);
+  box-shadow: none;
+  color: var(--study-ink);
+}
+.study-site .pure-brand b {
+  font-family: var(--study-serif);
+  letter-spacing: 0.12em;
+}
+.study-site .pure-brand span {
+  color: var(--study-muted);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+.study-site .pure-nav-links a:hover {
+  background: var(--study-soft);
+  color: var(--study-link);
+}
+.study-site .pure-nav-links a[aria-current="page"] {
+  color: var(--study-link);
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-color: var(--study-seal);
+}
+.study-site .pure-footer {
+  background: var(--study-paper);
+  color: var(--study-muted);
+  border-color: var(--study-line);
+}
+.study-site .pure-footer-inner {
+  max-width: 1012px;
+  border-color: var(--study-line);
+}
+.study-site
+  :is(
+    .engineering-list-page,
+    .engineering-article,
+    .tutorial-library,
+    .tutorial-page,
+    .links-page
+  ) {
+  --tutorial-bg: var(--study-paper);
+  --tutorial-fg: var(--study-ink);
+  --tutorial-muted: var(--study-soft);
+  --tutorial-muted-fg: var(--study-muted);
+  --tutorial-border: var(--study-line);
+  --tutorial-primary: var(--study-link);
+  --links-bg: var(--study-paper);
+  --links-fg: var(--study-ink);
+  --links-muted: color-mix(in srgb, var(--study-soft) 45%, transparent);
+  --links-muted-fg: var(--study-muted);
+  --links-border: var(--study-line);
+  --links-primary: var(--study-link);
+  background: var(--study-paper);
+  color: var(--study-ink);
+}
+.study-site :is(.tutorial-library, .links-page)::before {
+  display: none;
+}
+.study-site .study-page-heading {
+  position: relative;
+  isolation: isolate;
+}
+.study-site .study-page-heading::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 25%;
+  background: url("/images/study/mountains.webp") right 46% / cover no-repeat;
+  opacity: 0.13;
+  filter: saturate(0.25);
+  mask-image: linear-gradient(to right, transparent, #000 80%);
+  pointer-events: none;
+}
+.study-site .study-page-heading::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    var(--study-paper),
+    transparent 35%,
+    var(--study-paper)
+  );
+  pointer-events: none;
+}
+.study-site
+  :is(
+    .engineering-list-page,
+    .engineering-article,
+    .tutorial-library,
+    .tutorial-page,
+    .links-page
+  )
+  h1 {
+  font-family: var(--study-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 3.3rem);
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  color: var(--study-ink);
+}
+.study-site :is(.section-index, .academic-kicker, .tutorial-library-hero > p) {
+  color: var(--study-seal);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  font-size: 11px;
+}
+.study-site :is(.engineering-list-page, .engineering-article) {
+  padding-top: 3.5rem;
+}
+.study-site .engineering-list-page > section {
+  max-width: 1060px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+.study-site .engineering-list-page > section:first-of-type {
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+.study-site .engineering-list-head {
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 40px;
+  padding-bottom: 3rem;
+}
+.study-site .engineering-list-head p {
+  color: var(--study-muted);
+  line-height: 1.9;
+}
+.study-site .engineering-list-head .section-index {
+  color: var(--study-seal);
+}
+.study-site .engineering-blog-row {
+  border-color: var(--study-line);
+  padding-inline: 12px;
+  border-radius: 2px;
+}
+.study-site .engineering-blog-row h2 {
+  font-family: var(--study-serif);
+  font-weight: 400;
+  line-height: 1.65;
+  font-size: 23px;
+}
+.study-site .engineering-blog-row :is(time, p) {
+  color: var(--study-muted);
+}
+.study-site .engineering-blog-row:hover {
+  background: var(--study-soft);
+}
+.study-site .engineering-blog-row:hover h2 {
+  color: var(--study-link);
+}
+.study-site .engineering-list-page .border-t {
+  border-color: var(--study-line);
+}
+.study-site .engineering-article-shell {
+  border: 0;
+  background: transparent;
+  max-width: 820px;
+  padding-top: 1rem;
+}
+.study-site .engineering-article-shell > div {
+  border-color: var(--study-line);
+  color: var(--study-muted);
+}
+.study-site .engineering-article .prose {
+  --tw-prose-body: var(--study-ink);
+  --tw-prose-headings: var(--study-ink);
+  --tw-prose-links: var(--study-link);
+  --tw-prose-bold: var(--study-ink);
+  --tw-prose-quotes: var(--study-muted);
+  --tw-prose-quote-borders: var(--study-line);
+  --tw-prose-code: var(--study-ink);
+  --tw-prose-hr: var(--study-line);
+  --tw-prose-th-borders: var(--study-line);
+  --tw-prose-td-borders: var(--study-line);
+  font-size: 16px;
+  line-height: 2;
+}
+.study-site .engineering-article article :is(h2, h3) {
+  font-family: var(--study-serif);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+}
+.study-site .engineering-article article a {
+  color: var(--study-link);
+  text-decoration-color: var(--study-line);
+  text-underline-offset: 4px;
+}
+.study-site .engineering-article article blockquote {
+  background: var(--study-soft);
+  padding: 6px 20px;
+  border-left-color: var(--study-seal);
+}
+.study-site .engineering-article :is(pre, table) {
+  overflow-x: auto;
+}
+.study-site .tutorial-library-hero {
+  width: min(calc(100% - 48px), 1012px);
+  padding: 5rem 0 3.5rem;
+}
+.study-site
+  :is(
+    .tutorial-library-layout,
+    .tutorial-library-content,
+    .tutorial-library-categories
+  ) {
+  max-width: 1012px;
+}
+.study-site
+  :is(
+    .tutorial-category-title,
+    .tutorial-category h2,
+    .tutorial-card h3,
+    .tutorial-library h2
+  ) {
+  font-family: var(--study-serif);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+.study-site .tutorial-library-stats {
+  border-color: var(--study-line);
+}
+.study-site .tutorial-library-stats b {
+  font-weight: 400;
+}
+.study-site .tutorial-hero {
+  max-width: 1060px;
+  padding: 4rem 24px 3rem;
+  gap: 3rem;
+}
+.study-site .tutorial-hero h1 {
+  max-width: 780px;
+}
+.study-site .tutorial-hero > div > p:not(.academic-kicker) {
+  color: var(--study-muted);
+}
+.study-site .tutorial-hero :is(a, aside svg),
+.study-site .tutorial-sequence i {
+  color: var(--study-link);
+}
+.study-site .tutorial-hero aside {
+  border-top: 1px solid var(--study-seal);
+}
+.study-site .tutorial-hero aside > div {
+  border-color: var(--study-line);
+}
+.study-site .tutorial-hero aside small {
+  color: var(--study-muted);
+}
+.study-site .tutorial-hero a {
+  border-color: var(--study-line);
+}
+.study-site .tutorial-sequence {
+  border-color: var(--study-line);
+  color: var(--study-muted);
+  background: var(--study-soft);
+}
+.study-site
+  :is(
+    .tutorial-platforms,
+    .tutorial-context,
+    .tutorial-step-card,
+    .tutorial-step-nav,
+    .tutorial-companion,
+    .source-pane,
+    .why-pane,
+    .tutorial-link-grid a,
+    .tutorial-scope,
+    .tutorial-endnote
+  ) {
+  border-color: var(--study-line);
+  background: var(--study-paper);
+  color: var(--study-ink);
+}
+.study-site
+  :is(.tutorial-step-card h2, .tutorial-scope h2, .tutorial-reading-grid h3) {
+  font-family: var(--study-serif);
+  font-weight: 500;
+}
+.study-site .tutorial-platforms button.active,
+.study-site .tutorial-step-nav button.active {
+  background: var(--study-soft);
+  color: var(--study-link);
+  border-color: var(--study-link);
+}
+.study-site
+  :is(
+    .tutorial-source-note,
+    .tutorial-context p,
+    .tutorial-step-nav small,
+    .tutorial-platforms small,
+    .source-pane p,
+    .why-pane p,
+    .tutorial-companion p
+  ) {
+  color: var(--study-muted);
+}
+.study-site .lean-ai-tutorial-page {
+  --lean-ink: var(--study-ink);
+  --lean-blue: var(--study-link);
+  --lean-cyan: #628b7b;
+  --lean-violet: #91755f;
+}
+.study-site .lean-ai-hero::after {
+  display: none;
+}
+.study-site .links-page {
+  padding: 4rem 24px 6rem;
+}
+.study-site :is(.links-hero, .links-layout) {
+  max-width: 1012px;
+  width: 100%;
+}
+.study-site .links-hero {
+  padding-bottom: 2.5rem;
+}
+.study-site .links-hero h1 {
+  margin-top: 24px;
+}
+.study-site .links-directory-card {
+  background: transparent;
+  border-radius: 2px;
+  border-color: var(--study-line);
+  box-shadow: none;
+}
+.study-site .links-directory-card:hover {
+  background: var(--study-soft);
+  transform: translateY(-2px);
+}
+.study-site .links-monogram {
+  border-radius: 50%;
+  background: var(--study-soft);
+  color: var(--study-link);
+}
+.study-site .links-site-info {
+  background: var(--study-soft);
+  border-radius: 2px;
+}
+.study-site a:focus-visible,
+.study-site button:focus-visible {
+  outline: 2px solid var(--study-link);
+  outline-offset: 4px;
+}
+@media (min-width: 1280px) and (max-width: 1450px) {
+  .study-site .engineering-article-shell {
+    margin-left: 280px;
+    margin-right: 32px;
+    width: calc(100% - 312px);
+  }
+}
+@media (max-width: 760px) {
+  .study-site .engineering-list-head {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-bottom: 2rem;
+  }
+  .study-site :is(.engineering-list-page, .engineering-article) {
+    padding-top: 2rem;
+  }
+  .study-site .engineering-blog-row h2 {
+    font-size: 21px;
+  }
+  .study-site .tutorial-library-hero {
+    padding-top: 3rem;
+  }
+  .study-site .tutorial-hero {
+    padding-top: 2.5rem;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .study-site .links-page {
+    padding-top: 2.5rem;
+  }
+  .study-site .study-page-heading::before {
+    inset-inline-start: 0;
+    opacity: 0.09;
+  }
+  .study-site .engineering-article .prose {
+    font-size: 15px;
+  }
+}
+.study-site .tutorial-library-content {
+  width: min(calc(100% - 48px), 1012px);
+}
+.study-site .tutorial-catalog-list {
+  grid-template-columns: 1fr;
+}
+.study-site .tutorial-catalog-card {
+  min-height: auto;
+  border-radius: 2px;
+  background: transparent;
+  padding: 22px 25px;
+}
+.study-site .tutorial-catalog-card:hover {
+  background: var(--study-soft);
+}
+.study-site .tutorial-catalog-card h3 {
+  font-family: var(--study-serif);
+  font-weight: 400;
+  font-size: 22px;
+  margin-top: 15px;
+}
+.study-site .tutorial-library-stats > div {
+  border-radius: 2px;
+}
+.study-site .tutorial-breadcrumbs,
+.study-site .tutorial-breadcrumbs a {
+  color: var(--study-muted);
+}
+.study-site
+  .engineering-list-page
+  > section:nth-of-type(2)
+  > div
+  > div:first-child {
+  line-height: 1.7;
+}

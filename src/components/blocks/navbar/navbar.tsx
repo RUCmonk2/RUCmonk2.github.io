@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
 
 import { LanguageToggle } from "@/components/blocks/navbar/language-toggle";
@@ -8,6 +9,7 @@ import { ModeToggle } from "@/components/blocks/navbar/mode-toggle";
 
 export default function Navbar() {
   const locale = useLocale();
+  const pathname = usePathname();
   const isEnglish = locale === "en";
   const homeHref = isEnglish ? "/en" : "/";
   const blogHref = isEnglish ? "/en/blog" : "/blog";
@@ -53,13 +55,25 @@ export default function Navbar() {
           <Link href={`${homeHref}#study-content`} className="">
             {isEnglish ? "Explore" : "拾录"}
           </Link>
-          <Link href={blogHref} className="">
+          <Link
+            href={blogHref}
+            aria-current={pathname.includes("/blog") ? "page" : undefined}
+            className=""
+          >
             {copy.writing}
           </Link>
-          <Link href={tutorialHref} className="">
+          <Link
+            href={tutorialHref}
+            aria-current={pathname.includes("/tutorials") ? "page" : undefined}
+            className=""
+          >
             {copy.tutorial}
           </Link>
-          <Link href={linksHref} className="">
+          <Link
+            href={linksHref}
+            aria-current={pathname.includes("/links") ? "page" : undefined}
+            className=""
+          >
             {copy.friends}
           </Link>
         </nav>

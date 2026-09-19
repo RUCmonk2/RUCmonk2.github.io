@@ -1,10 +1,4 @@
-import {
-  ArrowDown,
-  Blocks,
-  Clock,
-  Laptop,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowDown, Blocks, Clock, Laptop, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Locale } from "next-intl";
@@ -32,7 +26,6 @@ export async function generateMetadata({
   });
 }
 
-
 export default async function DeepseekHarnessTutorialPage({
   params,
 }: {
@@ -50,12 +43,14 @@ export default async function DeepseekHarnessTutorialPage({
       >
         <Link href={tutorialsHref}>{isEnglish ? "Tutorials" : "教程中心"}</Link>
         <span>/</span>
-        <span>{isEnglish ? "AI and research workflows" : "AI 与研究工作流"}</span>
+        <span>
+          {isEnglish ? "AI and research workflows" : "AI 与研究工作流"}
+        </span>
         <span>/</span>
         <b>DeepSeek Harness</b>
       </nav>
 
-      <section className="tutorial-hero harness-tutorial-hero">
+      <section className="tutorial-hero harness-tutorial-hero study-page-heading">
         <div>
           <p className="academic-kicker">
             LOCAL AGENT · {isEnglish ? "GUIDED DEPLOYMENT" : "本地部署伴读"}
@@ -95,9 +90,7 @@ export default async function DeepseekHarnessTutorialPage({
             <ShieldCheck aria-hidden="true" />
             <span>
               <b>{isEnglish ? "Platform-aware" : "双系统分流"}</b>
-              <small>
-                {isEnglish ? "macOS / Windows" : "macOS / Windows"}
-              </small>
+              <small>{isEnglish ? "macOS / Windows" : "macOS / Windows"}</small>
             </span>
           </div>
         </aside>
@@ -137,7 +130,9 @@ export default async function DeepseekHarnessTutorialPage({
             </p>
           </article>
           <article>
-            <b>{isEnglish ? "Local does not imply offline" : "本地不等于离线"}</b>
+            <b>
+              {isEnglish ? "Local does not imply offline" : "本地不等于离线"}
+            </b>
             <p>
               {isEnglish
                 ? "The Harness process and workspace are local. Choosing the official DeepSeek provider still sends model requests to its API; a truly local model requires a separately operated compatible endpoint."
@@ -157,7 +152,10 @@ export default async function DeepseekHarnessTutorialPage({
 
       <HarnessPlatformGuide isEnglish={isEnglish} />
 
-      <section className="harness-concepts" aria-labelledby="harness-concepts-title">
+      <section
+        className="harness-concepts"
+        aria-labelledby="harness-concepts-title"
+      >
         <div>
           <p className="academic-kicker">MENTAL MODEL · HARNESS LAYERS</p>
           <h2 id="harness-concepts-title">

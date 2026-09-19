@@ -37,7 +37,7 @@ export default async function LinksPage({
 
   return (
     <main className="links-page">
-      <section className="links-hero">
+      <section className="links-hero study-page-heading">
         <Link href={homeHref} className="links-back">
           <ArrowLeft aria-hidden="true" />
           {isEnglish ? "Back home" : "返回主页"}

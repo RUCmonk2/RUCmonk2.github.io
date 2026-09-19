@@ -43,7 +43,7 @@ export default async function TutorialsPage({
 
   return (
     <main className="tutorial-library">
-      <section className="tutorial-library-hero">
+      <section className="tutorial-library-hero study-page-heading">
         <p>TUTORIAL LIBRARY · {isEnglish ? "GUIDED NOTES" : "分层目录"}</p>
         <h1>{isEnglish ? "Tutorials and companions" : "教程与伴读"}</h1>
         <span>

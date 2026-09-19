@@ -45,7 +45,7 @@ export default async function TutorialPage({
         <span>/</span>
         <b>VS Code C/C++</b>
       </nav>
-      <section className="tutorial-hero">
+      <section className="tutorial-hero study-page-heading">
         <div>
           <p className="academic-kicker">
             GUIDED SETUP · {isEnglish ? "LEARNING NOTES" : "分步伴读"}

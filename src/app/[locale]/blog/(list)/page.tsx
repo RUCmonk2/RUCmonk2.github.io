@@ -41,7 +41,7 @@ export default async function BlogPage(props: {
   return (
     <main className="engineering-list-page flex-1 pt-16">
       {jsonldScript(blogJsonLd)}
-      <section className="px-5 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16 lg:px-10">
+      <section className="study-page-heading px-5 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16 lg:px-10">
         <div className="engineering-list-head mx-auto grid max-w-6xl gap-6 pb-12 sm:grid-cols-[12rem_1fr] sm:gap-8">
           <div>
             <p className="section-index">

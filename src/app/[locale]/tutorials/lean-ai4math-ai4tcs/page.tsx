@@ -54,7 +54,7 @@ export default async function LeanAiTutorialPage({
         <b>Lean × AI4Math / AI4TCS</b>
       </nav>
 
-      <section className="tutorial-hero lean-ai-hero">
+      <section className="tutorial-hero lean-ai-hero study-page-heading">
         <div>
           <p className="academic-kicker">
             FORMAL METHODS · {isEnglish ? "SELF-STUDY STUDIO" : "可验证自学课"}
@@ -158,7 +158,10 @@ export default async function LeanAiTutorialPage({
 
       <LeanAiTutorialReader isEnglish={isEnglish} />
 
-      <section className="lean-evidence-ladder" aria-labelledby="lean-evidence-title">
+      <section
+        className="lean-evidence-ladder"
+        aria-labelledby="lean-evidence-title"
+      >
         <header>
           <p className="academic-kicker">EVIDENCE LADDER · CLAIM DISCIPLINE</p>
           <h2 id="lean-evidence-title">
@@ -181,7 +184,9 @@ export default async function LeanAiTutorialPage({
                 ? "The code parses, types align, and the candidate obeys its interface."
                 : "代码可解析、类型匹配，候选满足接口。"}
             </p>
-            <small>{isEnglish ? "Parser · type checker" : "Parser · type checker"}</small>
+            <small>
+              {isEnglish ? "Parser · type checker" : "Parser · type checker"}
+            </small>
           </article>
           <article>
             <span>02</span>
@@ -191,7 +196,9 @@ export default async function LeanAiTutorialPage({
                 ? "Finite enumeration or tests find no counterexample within a stated scope."
                 : "有限穷举或测试在声明范围内没有找到反例。"}
             </p>
-            <small>{isEnglish ? "Tests · enumeration" : "Tests · enumeration"}</small>
+            <small>
+              {isEnglish ? "Tests · enumeration" : "Tests · enumeration"}
+            </small>
           </article>
           <article>
             <span>03</span>
@@ -211,7 +218,9 @@ export default async function LeanAiTutorialPage({
                 ? "The formal statement preserves the intended natural-language problem and assumptions."
                 : "形式 statement 忠实保留自然语言问题与假设。"}
             </p>
-            <small>{isEnglish ? "Alignment · counterexamples" : "对齐表 · 反例"}</small>
+            <small>
+              {isEnglish ? "Alignment · counterexamples" : "对齐表 · 反例"}
+            </small>
           </article>
           <article>
             <span>05</span>
@@ -221,12 +230,17 @@ export default async function LeanAiTutorialPage({
                 ? "Novelty, generality, complexity, usefulness, and relation to prior work are reviewed."
                 : "审查新颖性、一般性、复杂度、用途及与已有工作的关系。"}
             </p>
-            <small>{isEnglish ? "Literature · human review" : "文献核验 · 人类审查"}</small>
+            <small>
+              {isEnglish ? "Literature · human review" : "文献核验 · 人类审查"}
+            </small>
           </article>
         </div>
       </section>
 
-      <section className="lean-course-finish" aria-labelledby="lean-finish-title">
+      <section
+        className="lean-course-finish"
+        aria-labelledby="lean-finish-title"
+      >
         <div>
           <p className="academic-kicker">SIX-WEEK PACE · 3 × 25 MIN / WEEK</p>
           <h2 id="lean-finish-title">
@@ -244,39 +258,64 @@ export default async function LeanAiTutorialPage({
           <li>
             <span>W01</span>
             <b>{isEnglish ? "Lean model and project" : "Lean 模型与项目"}</b>
-            <p>{isEnglish ? "Kernel boundary, official setup, first build." : "kernel 边界、官方环境、第一次 build。"}</p>
+            <p>
+              {isEnglish
+                ? "Kernel boundary, official setup, first build."
+                : "kernel 边界、官方环境、第一次 build。"}
+            </p>
           </li>
           <li>
             <span>W02</span>
             <b>{isEnglish ? "Proof literacy" : "证明读写能力"}</b>
-            <p>{isEnglish ? "Ten theorems, induction, mathlib search, one failure trace." : "十条 theorem、归纳、mathlib 检索、一份失败轨迹。"}</p>
+            <p>
+              {isEnglish
+                ? "Ten theorems, induction, mathlib search, one failure trace."
+                : "十条 theorem、归纳、mathlib 检索、一份失败轨迹。"}
+            </p>
           </li>
           <li>
             <span>W03</span>
             <b>{isEnglish ? "Branch concepts" : "支线核心概念"}</b>
-            <p>{isEnglish ? "Statement fidelity or algorithm object and invariants." : "statement fidelity，或算法对象与不变量。"}</p>
+            <p>
+              {isEnglish
+                ? "Statement fidelity or algorithm object and invariants."
+                : "statement fidelity，或算法对象与不变量。"}
+            </p>
           </li>
           <li>
             <span>W04</span>
             <b>{isEnglish ? "Verifier protocol" : "Verifier 协议"}</b>
-            <p>{isEnglish ? "Freeze the environment, edit scope, splits, and budgets." : "冻结环境、可编辑范围、数据划分与预算。"}</p>
+            <p>
+              {isEnglish
+                ? "Freeze the environment, edit scope, splits, and budgets."
+                : "冻结环境、可编辑范围、数据划分与预算。"}
+            </p>
           </li>
           <li>
             <span>W05</span>
             <b>{isEnglish ? "Run the small study" : "运行小型研究"}</b>
-            <p>{isEnglish ? "Baselines, candidates, hidden variants, and counterexamples." : "baseline、候选、hidden variants 与反例。"}</p>
+            <p>
+              {isEnglish
+                ? "Baselines, candidates, hidden variants, and counterexamples."
+                : "baseline、候选、hidden variants 与反例。"}
+            </p>
           </li>
           <li>
             <span>W06</span>
             <b>{isEnglish ? "Audit and publish" : "审计与整理"}</b>
-            <p>{isEnglish ? "Clean build, evidence register, failure analysis, stop decision." : "干净构建、证据表、失败分析与停止判断。"}</p>
+            <p>
+              {isEnglish
+                ? "Clean build, evidence register, failure analysis, stop decision."
+                : "干净构建、证据表、失败分析与停止判断。"}
+            </p>
           </li>
         </ol>
       </section>
 
       <section className="tutorial-scope lean-source-scope">
         <p className="academic-kicker">
-          SOURCE SCOPE · {isEnglish ? "MATERIAL AND VERSION BOUNDARY" : "资料与版本边界"}
+          SOURCE SCOPE ·{" "}
+          {isEnglish ? "MATERIAL AND VERSION BOUNDARY" : "资料与版本边界"}
         </p>
         <h2>
           {isEnglish
