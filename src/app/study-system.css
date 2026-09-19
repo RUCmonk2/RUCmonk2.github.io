@@ -518,3 +518,111 @@ body.study-site {
     transform: none;
   }
 }
+
+/* Paper and ink: quiet reading rooms beyond the landscape homepage. */
+.study-site
+  :is(.engineering-list-page, .tutorial-library, .tutorial-page)
+  .study-page-heading::before,
+.study-site
+  :is(.engineering-list-page, .tutorial-library, .tutorial-page)
+  .study-page-heading::after {
+  display: none;
+}
+.study-site .engineering-list-head {
+  grid-template-columns: 1fr;
+  gap: 28px;
+  padding-bottom: 1.5rem;
+}
+.study-site .engineering-list-head .section-index {
+  display: inline-block;
+  border-left: 2px solid var(--study-seal);
+  padding-left: 12px;
+}
+.study-site .engineering-list-head h1 {
+  letter-spacing: 0.12em;
+}
+.study-site .engineering-list-page > section:first-of-type {
+  padding-top: 3rem;
+  padding-bottom: 3.5rem;
+}
+.study-site .engineering-blog-row {
+  padding-block: 28px;
+  padding-inline: 0;
+}
+.study-site .tutorial-library-hero > p,
+.study-site .tutorial-hero .academic-kicker {
+  border-left: 2px solid var(--study-seal);
+  padding-left: 12px;
+}
+.study-site .tutorial-library-stats {
+  gap: 32px;
+}
+.study-site .tutorial-library-stats > div {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+.study-site .tutorial-library-stats b {
+  font-family: var(--study-serif);
+  font-size: 24px;
+}
+.study-site .tutorial-category {
+  padding-top: 28px;
+  border-top: 1px solid var(--study-line);
+}
+.study-site .tutorial-category > header > span {
+  color: var(--study-seal);
+  font-family: var(--study-serif);
+  font-size: 20px;
+  line-height: 1.3;
+}
+.study-site .tutorial-catalog-card {
+  border: 0;
+  border-bottom: 1px solid var(--study-line);
+  padding: 0 0 26px;
+}
+.study-site .tutorial-catalog-card:hover {
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+.study-site .tutorial-catalog-card:hover h3 {
+  color: var(--study-link);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+.study-site .tutorial-catalog-card footer {
+  border: 0;
+  padding-top: 14px;
+}
+/* A short uneven ink stroke anchors each opening without a raster texture. */
+.study-site .engineering-list-head > div:last-child::after,
+.study-site .tutorial-library .tutorial-library-hero::after {
+  content: "";
+  display: block;
+  position: static;
+  width: 76px;
+  height: 3px;
+  margin-top: 32px;
+  background: var(--study-ink);
+  opacity: 0.5;
+  clip-path: polygon(
+    0 30%,
+    17% 0,
+    68% 20%,
+    100% 50%,
+    72% 70%,
+    25% 100%,
+    2% 75%
+  );
+}
+@media (max-width: 760px) {
+  .study-site .engineering-list-page > section:first-of-type {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .study-site .engineering-list-head {
+    gap: 20px;
+  }
+}
