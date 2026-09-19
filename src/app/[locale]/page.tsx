@@ -10,7 +10,6 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 import { CustomReactMarkdown } from "@/components/react-markdown";
-import { DATA } from "@/data";
 import { siteConfig } from "@/data/site";
 import { getBlogPosts, sortPostsByDate } from "@/lib/blog";
 import { generatePersonJsonLd } from "@/lib/jsonld";
@@ -46,7 +45,6 @@ export default async function Page({
   const skills = (t.raw("skills") as string[]) ?? [];
   const latestPost = sortPostsByDate(await getBlogPosts(locale))[0];
   const blogHref = isEnglish ? "/en/blog" : "/blog";
-  const linksHref = isEnglish ? "/en/links" : "/links";
   const articleHref = latestPost ? `${blogHref}/${latestPost.slug}` : blogHref;
   const latestReadingTime =
     latestPost &&
@@ -436,34 +434,6 @@ export default async function Page({
             </div>
           </section>
         )}
-
-        <section id="friends" className="pure-section scroll-mt-24">
-          <header className="pure-section-label">
-            <span>07</span>
-            <h2>{isEnglish ? "Friends" : "友链"}</h2>
-            <Link href={linksHref}>
-              {isEnglish ? "All links" : "友链页面"}
-            </Link>
-          </header>
-          <div className="pure-section-body pure-friend-grid">
-            {DATA.friends.map((friend) => (
-              <a
-                className="pure-friend-card"
-                href={friend.url}
-                key={friend.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>
-                  <small>{friend.handle}</small>
-                  <ArrowUpRight aria-hidden="true" />
-                </span>
-                <h3>{friend.name[isEnglish ? "en" : "zh"]}</h3>
-                <p>{friend.description[isEnglish ? "en" : "zh"]}</p>
-              </a>
-            ))}
-          </div>
-        </section>
 
         {!hideHomepageContactSection && (
           <section id="contact" className="pure-section scroll-mt-24">
