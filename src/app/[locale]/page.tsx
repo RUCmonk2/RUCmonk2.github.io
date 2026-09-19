@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 import { CustomReactMarkdown } from "@/components/react-markdown";
+import { StudyCompanion } from "@/components/study-companion";
 import { siteConfig } from "@/data/site";
 import { getBlogPosts, sortPostsByDate } from "@/lib/blog";
 import { generatePersonJsonLd } from "@/lib/jsonld";
@@ -220,6 +221,7 @@ export default async function Page({
   return (
     <main className="pure-home study-home">
       {jsonldScript(personJsonLd)}
+      <StudyCompanion english={isEnglish} />
       <section id="about" className="study-hero scroll-mt-24">
         <div className="study-landscape" aria-hidden="true">
           <div className="study-mist" />
