@@ -44,9 +44,7 @@ export default async function BlogPage(props: {
       <section className="study-page-heading px-5 pt-16 pb-12 sm:px-8 sm:pt-20 sm:pb-16 lg:px-10">
         <div className="engineering-list-head mx-auto grid max-w-6xl gap-6 pb-12 sm:grid-cols-[12rem_1fr] sm:gap-8">
           <div>
-            <p className="section-index">
-              {isEnglish ? "Writing / Notes" : "写作 / 笔记"}
-            </p>
+            <p className="section-index">WRITING</p>
           </div>
           <div>
             <h1 className="academic-heading text-4xl leading-none font-semibold sm:text-5xl">
@@ -63,7 +61,7 @@ export default async function BlogPage(props: {
         <div className="mx-auto max-w-6xl">
           <div className="mb-7 flex items-center justify-between">
             <h2 className="text-sm font-semibold">
-              {isEnglish ? "Latest entries" : "最近更新"}
+              {isEnglish ? "Latest articles" : "最新文章"}
             </h2>
             <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400">
               {String(posts.length).padStart(2, "0")}{" "}

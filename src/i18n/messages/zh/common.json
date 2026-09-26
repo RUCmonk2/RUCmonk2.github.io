@@ -29,17 +29,19 @@
     "schedule": "预约"
   },
   "showAll": "查看全部",
+  "navigation": { "about": "关于", "learning": "学习", "friends": "友链" },
   "navbar": {
     "items": [
       { "href": "/", "icon": "home", "label": "首页" },
-      { "href": "/blog", "icon": "notebook", "label": "博客" }
+      { "href": "/blog", "icon": "notebook", "label": "写作" }
     ],
     "theme": "主题",
     "language": "语言"
   },
   "blog": {
-    "title": "博客与笔记",
-    "titleWithName": "{name}的博客",
+    "title": "写作",
+    "titleWithName": "{name}的写作",
+    "updated": "更新于 {date}",
     "readMore": "继续阅读",
     "authorLabel": "作者",
     "readingTime": "约 {minutes} 分钟",

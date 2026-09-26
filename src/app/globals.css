@@ -4453,6 +4453,20 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   font-weight: 550;
 }
 
+@media (max-width: 380px) {
+  .pure-mobile-blog {
+    padding-inline: 0.3rem;
+    font-size: 0.72rem;
+  }
+  .pure-nav-tools button {
+    width: 1.9rem;
+  }
+  .study-site .pure-nav .pure-brand b {
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+}
+
 .pure-profile-hero {
   display: flex;
   width: min(calc(100% - 2rem), 760px);

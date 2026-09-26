@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Locale } from "next-intl";
 
 import { LeanAiTutorialReader } from "@/components/tutorial/vscode-tutorial-reader";
+import { getLearningItem } from "@/data/learning/catalog";
 import { constructMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -18,16 +19,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const isEnglish = locale === "en";
-
+  const item = getLearningItem("lean-ai4math-ai4tcs");
+  const language = locale === "en" ? "en" : "zh";
   return constructMetadata({
-    title: isEnglish
-      ? "Lean for AI4Math and AI4TCS"
-      : "Lean × AI4Math / AI4TCS 自学教程",
-    description: isEnglish
-      ? "A guided Lean 4 and mathlib curriculum that branches into verifiable AI4Math and AI4TCS projects."
-      : "从 Lean 4 与 mathlib 共同基础出发，分流到可验证的 AI4Math 与 AI4TCS 小项目。",
-    path: "/tutorials/lean-ai4math-ai4tcs",
+    title: item.title[language],
+    description: item.description[language],
+    path: item.href,
     locale: locale as Locale,
   });
 }
@@ -39,7 +36,7 @@ export default async function LeanAiTutorialPage({
 }) {
   const { locale } = await params;
   const isEnglish = locale === "en";
-  const tutorialsHref = isEnglish ? "/en/tutorials" : "/tutorials";
+  const learningHref = isEnglish ? "/en/learning" : "/learning";
 
   return (
     <main className="tutorial-page lean-ai-tutorial-page">
@@ -47,7 +44,11 @@ export default async function LeanAiTutorialPage({
         className="tutorial-breadcrumbs"
         aria-label={isEnglish ? "Tutorial hierarchy" : "教程层级"}
       >
-        <Link href={tutorialsHref}>{isEnglish ? "Tutorials" : "教程中心"}</Link>
+        <Link href={learningHref}>{isEnglish ? "Learning" : "学习"}</Link>
+        <span>/</span>
+        <Link href={learningHref + "#guides"}>
+          {isEnglish ? "Practical guides" : "实践指南"}
+        </Link>
         <span>/</span>
         <span>{isEnglish ? "Formal methods and AI" : "形式化方法与 AI"}</span>
         <span>/</span>

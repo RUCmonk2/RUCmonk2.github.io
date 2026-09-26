@@ -30,6 +30,7 @@ export function BlogCard({
       year: "numeric",
       month: "short",
       day: "2-digit",
+      timeZone: "UTC",
     },
   );
 

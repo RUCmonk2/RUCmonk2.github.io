@@ -29,17 +29,23 @@
     "schedule": "Schedule"
   },
   "showAll": "Show all",
+  "navigation": {
+    "about": "About",
+    "learning": "Learning",
+    "friends": "Friends"
+  },
   "navbar": {
     "items": [
       { "href": "/", "icon": "home", "label": "Home" },
-      { "href": "/blog", "icon": "notebook", "label": "Blog" }
+      { "href": "/blog", "icon": "notebook", "label": "Writing" }
     ],
     "theme": "Theme",
     "language": "Language"
   },
   "blog": {
-    "title": "Blog & Notes",
-    "titleWithName": "{name}'s Blog",
+    "title": "Writing",
+    "titleWithName": "{name}'s Writing",
+    "updated": "Updated {date}",
     "readMore": "Read more",
     "authorLabel": "by",
     "readingTime": "About {minutes} min",

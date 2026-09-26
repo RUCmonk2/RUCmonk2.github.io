@@ -3,7 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Locale } from "next-intl";
 
+import { CourseDrawing } from "@/components/learning/course-drawing";
 import { learningCourses, type LearningLocale } from "@/data/learning";
+import {
+  learningCatalog,
+  learningCategories,
+  learningItemHref,
+} from "@/data/learning/catalog";
 import { constructMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -13,88 +19,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return constructMetadata({
-    title: locale === "en" ? "Course notes" : "课程笔记",
+    title: locale === "en" ? "Learning" : "学习",
     description:
-      "深度学习与机器人学的网页学习笔记，包含公式推导、手算例题与自测。",
+      locale === "en"
+        ? "Course notes and practical guides, together in one learning directory."
+        : "按课程打基础，围绕具体问题动手实践。课程笔记、代码伴读与技术指南的统一目录。",
     path: "/learning",
     locale: locale as Locale,
   });
-}
-
-function CourseDrawing({ robotics }: { robotics: boolean }) {
-  return (
-    <svg viewBox="0 0 460 160" fill="none" aria-hidden="true">
-      <path d="M30 135H430M60 25V140" className="cover-guide" />
-      {robotics ? (
-        <>
-          <path
-            d="M103 132H171M120 132V112H152V132"
-            className="cover-structure"
-          />
-          <path d="M136 112L223 49L316 87" className="cover-arm-shadow" />
-          <path d="M136 112L223 49L316 87" className="cover-structure" />
-          <path
-            d="M316 87L336 68M316 87L329 110M336 68L350 73M329 110L343 115"
-            className="cover-structure"
-          />
-          <circle cx="136" cy="112" r="9" className="cover-joint" />
-          <circle cx="223" cy="49" r="9" className="cover-joint" />
-          <circle cx="316" cy="87" r="7" className="cover-joint" />
-          <path
-            d="M136 87A25 25 0 0 1 160 104M199 67A30 30 0 0 1 250 60"
-            className="cover-guide"
-          />
-          <path d="M370 104V79M357 91H382" className="cover-target" />
-          <circle cx="370" cy="91" r="20" className="cover-guide" />
-          <text x="357" y="138">
-            p = f(q)
-          </text>
-        </>
-      ) : (
-        <>
-          {[43, 80, 117].flatMap((y) =>
-            [25, 62, 99, 136].map((nextY) => (
-              <path
-                key={y + "-" + nextY}
-                d={"M115 " + y + "L232 " + nextY}
-                className="cover-connection"
-              />
-            )),
-          )}
-          {[25, 62, 99, 136].flatMap((y) =>
-            [53, 108].map((nextY) => (
-              <path
-                key={y + "-" + nextY}
-                d={"M232 " + y + "L351 " + nextY}
-                className="cover-connection"
-              />
-            )),
-          )}
-          {[43, 80, 117].map((y) => (
-            <circle key={y} cx="115" cy={y} r="9" className="cover-node" />
-          ))}
-          {[25, 62, 99, 136].map((y) => (
-            <circle
-              key={y}
-              cx="232"
-              cy={y}
-              r="9"
-              className="cover-node cover-hidden"
-            />
-          ))}
-          {[53, 108].map((y) => (
-            <circle key={y} cx="351" cy={y} r="9" className="cover-node" />
-          ))}
-          <text x="65" y="85">
-            x
-          </text>
-          <text x="386" y="85">
-            ŷ
-          </text>
-        </>
-      )}
-    </svg>
-  );
 }
 
 export default async function LearningPage({
@@ -106,6 +38,8 @@ export default async function LearningPage({
   const language: LearningLocale = locale === "en" ? "en" : "zh";
   const isEnglish = language === "en";
   const prefix = isEnglish ? "/en" : "";
+  const courses = learningCatalog.filter((item) => item.category === "course");
+  const guides = learningCatalog.filter((item) => item.category === "guide");
 
   return (
     <main className="notes-page notes-library">
@@ -116,87 +50,151 @@ export default async function LearningPage({
         </Link>
         <header className="notes-library-heading">
           <div>
-            <span className="notes-overline">
-              {isEnglish ? "LEARNING / NOTES" : "学习 · 课程笔记"}
-            </span>
+            <span className="notes-overline">A PERSONAL STUDY / LEARNING</span>
             <h1>
-              {isEnglish ? "Learn it, work it out." : "把知识，慢慢算明白。"}
+              {isEnglish
+                ? "Learn, then put it into practice."
+                : "学习，也动手实践。"}
             </h1>
           </div>
           <p>
             {isEnglish
-              ? "Read a chapter, work through an example, then check your understanding. Notes are written in Chinese."
-              : "读一节讲解，跟着算一个例子，再用自测检查理解。"}
+              ? "Follow a course to build foundations, or a practical guide to work through a specific task."
+              : "沿着课程打基础，也围绕一个具体问题，逐步理解、动手和验证。"}
           </p>
         </header>
+        <nav
+          className="learning-jump-links"
+          aria-label={isEnglish ? "Learning categories" : "学习分类"}
+        >
+          {learningCategories.map((category) => (
+            <a href={"#" + category.anchor} key={category.id}>
+              {category.title[language]}
+              <span>
+                {String(
+                  learningCatalog.filter(
+                    (item) => item.category === category.id,
+                  ).length,
+                ).padStart(2, "0")}
+              </span>
+              <ArrowRight size={14} aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
 
         <section
-          className="notes-course-grid"
-          aria-label={isEnglish ? "Courses" : "课程"}
+          className="learning-section"
+          id="courses"
+          aria-labelledby="courses-title"
         >
-          {learningCourses.map((course) => (
-            <article
-              className={"notes-course-card notes-" + course.slug}
-              key={course.slug}
-            >
-              <Link
-                href={prefix + "/learning/" + course.slug}
-                className="notes-course-cover"
-                aria-label={course.title[language]}
-              >
-                <span>
-                  {course.slug === "deep-learning"
-                    ? "DEEP LEARNING"
-                    : "ROBOTICS"}
-                </span>
-                <CourseDrawing robotics={course.slug === "robotics"} />
-              </Link>
-              <div className="notes-course-copy">
-                <div className="notes-course-meta">
-                  <span>{course.scope[language]}</span>
-                  <span>
-                    {course.chapters.length} {isEnglish ? "chapters" : "节"}
-                  </span>
-                </div>
-                <h2>
-                  <Link href={prefix + "/learning/" + course.slug}>
-                    {course.title[language]}
-                  </Link>
-                </h2>
-                <p>{course.description[language]}</p>
-                <Link
-                  className="notes-read-link"
-                  href={prefix + "/learning/" + course.slug}
+          <header className="learning-section-heading">
+            <div>
+              <span>01 / COURSES</span>
+              <h2 id="courses-title">{isEnglish ? "Courses" : "课程学习"}</h2>
+            </div>
+            <p>
+              {isEnglish
+                ? "Read, calculate, and check your understanding."
+                : "按章节阅读，用例题与练习检查理解。"}
+            </p>
+          </header>
+          <div className="notes-course-grid">
+            {courses.map((course) => {
+              const chapterCount = learningCourses.find(
+                (item) => item.slug === course.id,
+              )?.chapters.length;
+              const href = learningItemHref(course, language);
+              return (
+                <article
+                  className={"notes-course-card notes-" + course.id}
+                  key={course.id}
                 >
-                  {isEnglish ? "Start reading" : "开始阅读"}{" "}
-                  <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-              </div>
-            </article>
-          ))}
+                  <Link
+                    href={href}
+                    className="notes-course-cover"
+                    aria-label={course.title[language]}
+                  >
+                    <span>{course.topic[language]}</span>
+                    <CourseDrawing kind={course.id} />
+                  </Link>
+                  <div className="notes-course-copy">
+                    <div className="notes-course-meta">
+                      <span>{course.scope[language]}</span>
+                      {chapterCount && (
+                        <span>
+                          {chapterCount} {isEnglish ? "chapters" : "节"}
+                        </span>
+                      )}
+                    </div>
+                    <h3>
+                      <Link href={href}>{course.title[language]}</Link>
+                    </h3>
+                    <p>{course.description[language]}</p>
+                    <div className="learning-card-footer">
+                      <Link className="notes-read-link" href={href}>
+                        {isEnglish ? "Start reading" : "开始阅读"}
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </Link>
+                      <time dateTime={course.updated}>
+                        {course.updated.replaceAll("-", ".")}
+                      </time>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </section>
 
-        <section className="notes-questions">
-          <h2>
-            {isEnglish ? "Start with a question" : "也可以从一个问题开始"}
-          </h2>
-          <div>
-            <Link href={prefix + "/learning/deep-learning/softmax"}>
-              <span>{isEnglish ? "Deep learning" : "深度学习"}</span>
-              <strong>Softmax 的梯度为什么是 p − y？</strong>
-              <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-            <Link href={prefix + "/learning/robotics/transforms"}>
-              <span>{isEnglish ? "Robotics" : "机器人学"}</span>
-              <strong>相机看到的坐标，怎样交给机械臂？</strong>
-              <ArrowRight size={16} aria-hidden="true" />
-            </Link>
+        <section
+          className="learning-section"
+          id="guides"
+          aria-labelledby="guides-title"
+        >
+          <header className="learning-section-heading">
+            <div>
+              <span>02 / PRACTICE</span>
+              <h2 id="guides-title">
+                {isEnglish ? "Practical guides" : "实践指南"}
+              </h2>
+            </div>
+            <p>
+              {isEnglish
+                ? "Start with a task. Work toward a result you can verify."
+                : "从具体任务出发，走到可以验证的结果。"}
+            </p>
+          </header>
+          <div className="learning-guide-grid">
+            {guides.map((guide) => (
+              <Link
+                href={learningItemHref(guide, language)}
+                className="learning-guide-card"
+                key={guide.id}
+              >
+                <div className="learning-guide-topline">
+                  <span>{guide.topic[language]}</span>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </div>
+                <h3>{guide.title[language]}</h3>
+                <p>{guide.description[language]}</p>
+                <div className="learning-guide-meta">
+                  <span>{guide.scope[language]}</span>
+                  <time dateTime={guide.updated}>
+                    {guide.updated.replaceAll("-", ".")}
+                  </time>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
         <p className="notes-library-footnote">
           {isEnglish
-            ? "Personal study notes · worked examples and self-checks · updated September 25, 2026"
-            : "个人学习笔记 · 含手算例题与自测 · 更新于 2026.09.25"}
+            ? "Dates reflect content updates. For reflections and progress notes, visit "
+            : "日期为内容更新时间。随想与阶段记录，收在"}
+          <Link href={prefix + "/blog"}>
+            {isEnglish ? "Writing" : "「写作」"}
+          </Link>
+          {isEnglish ? "." : "。"}
         </p>
       </div>
     </main>

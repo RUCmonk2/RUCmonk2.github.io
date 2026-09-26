@@ -15,6 +15,7 @@ import {
   getLearningCourse,
   type LearningLocale,
 } from "@/data/learning";
+import { learningCatalog, learningItemHref } from "@/data/learning/catalog";
 import { constructMetadata } from "@/lib/metadata";
 
 function NoteMarkdown({ children }: { children: string }) {
@@ -102,24 +103,23 @@ export function CoursePage({
       <div className="reader-topbar">
         <Link href={prefix + "/learning"} className="notes-back">
           <ArrowLeft size={14} aria-hidden="true" />
-          {isEnglish ? "Course notes" : "课程笔记"}
+          {isEnglish ? "Learning" : "学习"}
         </Link>
         <div
           className="reader-course-switch"
           aria-label={isEnglish ? "Switch course" : "切换课程"}
         >
-          <Link
-            href={prefix + "/learning/deep-learning"}
-            aria-current={slug === "deep-learning" ? "true" : undefined}
-          >
-            {isEnglish ? "Deep learning" : "深度学习"}
-          </Link>
-          <Link
-            href={prefix + "/learning/robotics"}
-            aria-current={slug === "robotics" ? "true" : undefined}
-          >
-            {isEnglish ? "Robotics" : "机器人学"}
-          </Link>
+          {learningCatalog
+            .filter((item) => item.category === "course")
+            .map((item) => (
+              <Link
+                key={item.id}
+                href={learningItemHref(item, language)}
+                aria-current={slug === item.id ? "true" : undefined}
+              >
+                {item.title[language]}
+              </Link>
+            ))}
         </div>
       </div>
 
@@ -134,7 +134,10 @@ export function CoursePage({
             {isEnglish ? "chapters · Chinese notes" : "节笔记 · 按章节阅读"}
           </p>
           {contents}
-          <Link className="reader-all-courses" href={prefix + "/learning"}>
+          <Link
+            className="reader-all-courses"
+            href={prefix + "/learning#courses"}
+          >
             {isEnglish ? "All courses" : "全部课程"}{" "}
             <ArrowRight size={13} aria-hidden="true" />
           </Link>
@@ -222,7 +225,7 @@ export function CoursePage({
                 <strong>{next.title}</strong>
               </Link>
             ) : (
-              <Link href={prefix + "/learning"}>
+              <Link href={prefix + "/learning#courses"}>
                 <span>
                   回到目录 <ArrowRight size={14} aria-hidden="true" />
                 </span>

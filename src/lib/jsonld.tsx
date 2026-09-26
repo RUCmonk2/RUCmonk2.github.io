@@ -304,6 +304,7 @@ export async function generateBlogPostingJsonLd(post: {
   metadata: Record<string, unknown> & {
     title: string;
     date: string;
+    updatedAt?: string;
     summary: string;
     image?: string;
   };
@@ -334,7 +335,7 @@ export async function generateBlogPostingJsonLd(post: {
     "@type": "BlogPosting",
     headline: post.metadata.title,
     datePublished: post.metadata.date,
-    dateModified: post.metadata.date,
+    dateModified: post.metadata.updatedAt ?? post.metadata.date,
     description: post.metadata.summary,
     image: post.metadata.image
       ? `${siteConfig.url}${post.metadata.image}`

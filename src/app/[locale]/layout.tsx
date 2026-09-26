@@ -15,6 +15,7 @@ import { ScrollRestore } from "@/components/blocks/scroll-restore";
 import JsonLdScripts from "@/components/jsonld-scripts";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DEFAULT_LOCALE, routing } from "@/i18n/routing";
+import { blogSource } from "@/lib/blog-source";
 import { constructMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
@@ -64,6 +65,9 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const messages = await getMessages();
+  const translatedBlogSlugs = blogSource
+    .list(locale === "en" ? "zh" : "en")
+    .map((post) => post.slug);
 
   return (
     <html lang={locale || DEFAULT_LOCALE} suppressHydrationWarning>
@@ -82,7 +86,7 @@ export default async function LocaleLayout({
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <TooltipProvider delayDuration={0}>
               <ScrollRestore />
-              <Navbar />
+              <Navbar translatedBlogSlugs={translatedBlogSlugs} />
               {children}
               <Footer />
             </TooltipProvider>

@@ -57,10 +57,20 @@ export default async function Blog(props: {
         {post.metadata.title}
       </h1>
       <div className="mb-10 flex items-center justify-between border-b border-neutral-200 pb-6 text-sm dark:border-neutral-800">
-        <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-          <p>{formatDate(post.metadata.date, locale)}</p>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-neutral-600 dark:text-neutral-400">
+          <time dateTime={post.metadata.date}>
+            {formatDate(post.metadata.date, locale)}
+          </time>
           <span className="mx-1">·</span>
           <p>{t("blog.readingTime", { minutes: readingTime })}</p>
+          {post.metadata.updatedAt &&
+            post.metadata.updatedAt !== post.metadata.date && (
+              <p className="basis-full text-xs">
+                {t("blog.updated", {
+                  date: formatDate(post.metadata.updatedAt, locale),
+                })}
+              </p>
+            )}
         </div>
       </div>
       <article

@@ -15,6 +15,7 @@ import Link from "next/link";
 import { Locale } from "next-intl";
 
 import { CodeCopyButton } from "@/components/teaching/code-copy-button";
+import { getLearningItem } from "@/data/learning/catalog";
 import {
   programming2026Copy,
   programming2026Lectures,
@@ -29,12 +30,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const localeKey: TeachingLocale = locale === "en" ? "en" : "zh";
-  const copy = programming2026Copy[localeKey];
+  const item = getLearningItem("programming-2026");
 
   return constructMetadata({
-    title: copy.title,
-    description: copy.description,
-    path: "/teaching/programming-2026",
+    title: item.title[localeKey],
+    description: item.description[localeKey],
+    path: item.href,
     locale: locale as Locale,
   });
 }
@@ -47,7 +48,8 @@ export default async function Programming2026Page({
   const { locale } = await params;
   const localeKey: TeachingLocale = locale === "en" ? "en" : "zh";
   const copy = programming2026Copy[localeKey];
-  const homeHref = localeKey === "en" ? "/en" : "/";
+  const title = getLearningItem("programming-2026").title[localeKey];
+  const learningHref = (localeKey === "en" ? "/en" : "") + "/learning#courses";
   const exampleCount = programming2026Lectures.reduce(
     (total, lecture) => total + lecture.examples.length,
     0,
@@ -77,16 +79,16 @@ export default async function Programming2026Page({
   return (
     <main className="teaching-page">
       <section className="teaching-hero">
-        <Link className="teaching-back-link" href={homeHref}>
+        <Link className="teaching-back-link" href={learningHref}>
           <ArrowLeft aria-hidden="true" />
-          {copy.backHome}
+          {localeKey === "en" ? "Learning · Courses" : "学习 · 课程学习"}
         </Link>
 
         <p className="teaching-eyebrow">{copy.eyebrow}</p>
-        <h1>{copy.title}</h1>
+        <h1>{title}</h1>
         <p className="teaching-intro">{copy.description}</p>
 
-        <div className="teaching-stats" aria-label={copy.title}>
+        <div className="teaching-stats" aria-label={title}>
           <span>
             <b>{String(programming2026Lectures.length).padStart(2, "0")}</b>
             <small>{copy.publishedCount}</small>
@@ -125,7 +127,9 @@ export default async function Programming2026Page({
                   <header>
                     <Code2 aria-hidden="true" />
                     <div>
-                      <h4>{copy.browseTitle}</h4>
+                      <h4>
+                        {copy.browseTitle} · {lecture.examples.length}
+                      </h4>
                       <p>{copy.browseDescription}</p>
                     </div>
                   </header>

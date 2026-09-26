@@ -5,6 +5,7 @@ import { Locale } from "next-intl";
 
 import { HarnessPlatformGuide } from "@/components/tutorial/harness-platform-guide";
 import { DeepseekHarnessTutorialReader } from "@/components/tutorial/vscode-tutorial-reader";
+import { getLearningItem } from "@/data/learning/catalog";
 import { constructMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -13,15 +14,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const isEnglish = locale === "en";
+  const item = getLearningItem("deepseek-harness");
+  const language = locale === "en" ? "en" : "zh";
   return constructMetadata({
-    title: isEnglish
-      ? "Run DeepSeek Harness locally"
-      : "DeepSeek Harness 本地部署伴读",
-    description: isEnglish
-      ? "A source-checked, two-route guide to running the DeepSeek Harness Web UI locally with a safe first workspace."
-      : "以官方仓库和文档复核命令，分 npx 快速启动与源码构建两条路线完成 DeepSeek Harness 本地部署。",
-    path: "/tutorials/deepseek-harness",
+    title: item.title[language],
+    description: item.description[language],
+    path: item.href,
     locale: locale as Locale,
   });
 }
@@ -33,7 +31,7 @@ export default async function DeepseekHarnessTutorialPage({
 }) {
   const { locale } = await params;
   const isEnglish = locale === "en";
-  const tutorialsHref = isEnglish ? "/en/tutorials" : "/tutorials";
+  const learningHref = isEnglish ? "/en/learning" : "/learning";
 
   return (
     <main className="tutorial-page harness-tutorial-page">
@@ -41,7 +39,11 @@ export default async function DeepseekHarnessTutorialPage({
         className="tutorial-breadcrumbs"
         aria-label={isEnglish ? "Tutorial hierarchy" : "教程层级"}
       >
-        <Link href={tutorialsHref}>{isEnglish ? "Tutorials" : "教程中心"}</Link>
+        <Link href={learningHref}>{isEnglish ? "Learning" : "学习"}</Link>
+        <span>/</span>
+        <Link href={learningHref + "#guides"}>
+          {isEnglish ? "Practical guides" : "实践指南"}
+        </Link>
         <span>/</span>
         <span>
           {isEnglish ? "AI and research workflows" : "AI 与研究工作流"}

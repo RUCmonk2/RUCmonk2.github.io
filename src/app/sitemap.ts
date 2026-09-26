@@ -1,10 +1,15 @@
 import { MetadataRoute } from "next";
 
 import { chapterPath, learningCourses } from "@/data/learning";
+import {
+  getLearningItem,
+  learningCatalog,
+  learningItemHref,
+} from "@/data/learning/catalog";
 import { siteConfig } from "@/data/site";
-import { tutorialCatalog } from "@/data/tutorials/catalog";
 import { DEFAULT_LOCALE, LOCALES } from "@/i18n/routing";
 import { getBlogPosts } from "@/lib/blog";
+import { postUpdatedDate } from "@/lib/blog-source";
 
 export const dynamic = "force-static";
 
@@ -25,30 +30,34 @@ type ChangeFrequency =
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages
-  const tutorialPages = tutorialCatalog.flatMap((category) =>
-    category.tutorials.map((tutorial) => tutorial.href),
-  );
-  const staticPages = [
-    "",
-    "/blog",
-    "/tutorials",
-    "/links",
-    "/learning",
-    "/learning/deep-learning",
-    "/learning/robotics",
-    ...learningCourses.flatMap((course) =>
-      course.chapters
-        .slice(1)
-        .map((chapter) => chapterPath(course.slug, chapter.id)),
+  const staticPages = ["", "/blog", "/links", "/learning"];
+
+  const chapterPages = LOCALES.flatMap((locale) =>
+    learningCourses.flatMap((course) =>
+      course.chapters.slice(1).map((chapter) => ({
+        url:
+          siteUrl +
+          localePathPrefix(locale) +
+          chapterPath(course.slug, chapter.id),
+        lastModified: new Date(getLearningItem(course.slug).updated),
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      })),
     ),
-    "/teaching/programming-2026",
-    ...tutorialPages,
-  ];
+  );
+
+  const catalogPages = learningCatalog.flatMap((item) =>
+    (item.localized ? LOCALES : [DEFAULT_LOCALE]).map((locale) => ({
+      url: siteUrl + learningItemHref(item, locale === "en" ? "en" : "zh"),
+      lastModified: new Date(item.updated),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+  );
 
   const pages = LOCALES.flatMap((locale) => {
     return staticPages.map((page) => ({
       url: `${siteUrl}${locale === DEFAULT_LOCALE ? "" : `/${locale}`}${page}`,
-      lastModified: new Date(),
       changeFrequency: (["", "/blog"].includes(page)
         ? "weekly"
         : "monthly") as ChangeFrequency,
@@ -60,22 +69,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const locale of LOCALES) {
     const posts = await getBlogPosts(locale);
-    const visiblePosts = posts.filter(
-      (post) =>
-        post.slug &&
-        (post.metadata.status !== "draft" || !post.metadata.status),
-    );
-
-    visiblePosts.forEach((post) => {
+    posts.forEach((post) => {
       const slugPart = post.slug.replace(/^\//, "").replace(/^blogs\//, "");
       if (slugPart) {
         allBlogSitemapEntries.push({
           url: `${siteUrl}${localePathPrefix(locale)}/blog/${slugPart}`,
-          lastModified: post.metadata.updatedAt
-            ? new Date(post.metadata.updatedAt as string)
-            : post.metadata.date
-              ? new Date(post.metadata.date)
-              : new Date(),
+          lastModified: new Date(postUpdatedDate(post.metadata)),
           changeFrequency: "monthly" as ChangeFrequency,
           priority: 0.7,
         });
@@ -87,5 +86,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     new Map(allBlogSitemapEntries.map((entry) => [entry.url, entry])).values(),
   );
 
-  return [...pages, ...uniqueBlogPostEntries];
+  return [...pages, ...catalogPages, ...chapterPages, ...uniqueBlogPostEntries];
 }

@@ -6,6 +6,10 @@
     "build": "next build && node scripts/promote-default-locale.mjs",
     "dev": "next dev --turbopack",
     "lint": "eslint .",
+    "check:learning": "node scripts/check-learning-catalog.mjs",
+    "test:content": "node scripts/check-blog-content.mjs",
+    "check:site": "node scripts/check-site-export.mjs",
+    "check:export": "npm run check:learning && npm run check:site",
     "preview": "npx serve out"
   },
   "dependencies": {

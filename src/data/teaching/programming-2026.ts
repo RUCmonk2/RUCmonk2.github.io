@@ -184,7 +184,6 @@ export const programming2026Copy = {
   zh: {
     backHome: "叶耀之 · 个人主页",
     eyebrow: "TEACHING · PROGRAMMING · 2026",
-    title: "程序设计课程 · 2026",
     description:
       "程序设计课程的公开学习资料。按讲次查看、复制或下载可独立运行的 C++ 示例；后续内容将在完成整理与授权确认后逐步加入。",
     publishedCount: "已发布讲次",
@@ -193,7 +192,7 @@ export const programming2026Copy = {
     materialsDescription:
       "当前只提供已经确认可以公开的整理版文件，可直接展开阅读。",
     published: "已发布",
-    browseTitle: "在线查看 19 个示例",
+    browseTitle: "在线查看示例",
     browseDescription: "按课件编号展开代码，无需下载即可阅读和复制。",
     copyCode: "复制代码",
     copiedCode: "已复制",
@@ -215,7 +214,6 @@ export const programming2026Copy = {
   en: {
     backHome: "Yaozhi Ye · Homepage",
     eyebrow: "TEACHING · PROGRAMMING · 2026",
-    title: "Programming Course · 2026",
     description:
       "Public learning materials for the programming course. Browse, copy, or download runnable C++ examples by lecture; later materials will follow after review and publication approval.",
     publishedCount: "Published lecture",
@@ -224,7 +222,7 @@ export const programming2026Copy = {
     materialsDescription:
       "Only reviewed files cleared for public access are listed here, ready to read in the page.",
     published: "Published",
-    browseTitle: "Browse all 19 examples",
+    browseTitle: "Browse examples",
     browseDescription:
       "Expand examples by slide number and copy code without downloading anything.",
     copyCode: "Copy code",

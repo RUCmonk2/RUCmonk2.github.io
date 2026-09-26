@@ -10,14 +10,6 @@ import {
   LOCALES,
 } from "@/i18n/routing";
 
-function getAtomFeedUrl(locale: Locale): string {
-  const u = new URL("/api/feed/atom.xml", siteConfig.url);
-  if (locale !== DEFAULT_LOCALE) {
-    u.searchParams.set("locale", locale);
-  }
-  return u.toString();
-}
-
 type MetadataProps = {
   title?: string;
   description?: string;
@@ -43,7 +35,8 @@ export async function constructMetadata({
     path === "/" ? pageTitle : `${pageTitle} | ${t("name.full")}`;
   const finalDescription = description || t("headline");
   const canonicalUrl = getLocaleUrl(resolvedLocale, path || "");
-  const atomFeedUrl = getAtomFeedUrl(resolvedLocale);
+  // The static site currently has one Chinese feed, shared by both interfaces.
+  const atomFeedUrl = new URL("/api/feed/atom.xml", siteConfig.url).toString();
 
   // Use availableLocales if provided, otherwise use all locales
   const locales = availableLocales || LOCALES;
@@ -56,7 +49,10 @@ export async function constructMetadata({
     },
     {} as Record<string, string>,
   );
-  alternateLanguages["x-default"] = getLocaleUrl(DEFAULT_LOCALE, path || "");
+  alternateLanguages["x-default"] = getLocaleUrl(
+    locales.includes(DEFAULT_LOCALE) ? DEFAULT_LOCALE : resolvedLocale,
+    path || "",
+  );
 
   return {
     title: finalTitle,

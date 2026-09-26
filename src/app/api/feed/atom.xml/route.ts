@@ -1,11 +1,18 @@
 import { DATA, getEmail } from "@/data";
 import { getBlogPosts } from "@/lib/blog";
+import { postUpdatedDate } from "@/lib/blog-source";
 
 export const dynamic = "force-static";
 
 export async function GET() {
   const posts = await getBlogPosts("zh");
   const authorEmail = extractEmailAddress(getEmail());
+  const feedUpdated = new Date(
+    Math.max(
+      0,
+      ...posts.map((post) => Date.parse(postUpdatedDate(post.metadata))),
+    ),
+  ).toISOString();
 
   // Sort posts by published date (newest first)
   const sortedPosts = posts.sort((a, b) => {
@@ -16,21 +23,23 @@ export async function GET() {
 
   const atomFeed = `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>${DATA.name} - Blog</title>
-  <subtitle>${DATA.description}</subtitle>
-  <link href="${DATA.url}/blog" rel="self"/>
+  <title>${escapeXml(DATA.name)} · 写作</title>
+  <subtitle>${escapeXml(DATA.description)}</subtitle>
+  <link href="${DATA.url}/api/feed/atom.xml" rel="self"/>
   <link href="${DATA.url}"/>
   <id>${DATA.url}/blog</id>
   <author>
     <name>${DATA.name}</name>
     <email>${authorEmail}</email>
   </author>
-  <updated>${new Date().toISOString()}</updated>
+  <updated>${feedUpdated}</updated>
   ${sortedPosts
     .map((post) => {
       const postUrl = `${DATA.url}/blog/${post.slug}`;
       const publishedDate = new Date(post.metadata.date).toISOString();
-      const updatedDate = new Date(post.metadata.date).toISOString();
+      const updatedDate = new Date(
+        postUpdatedDate(post.metadata),
+      ).toISOString();
 
       return `
   <entry>

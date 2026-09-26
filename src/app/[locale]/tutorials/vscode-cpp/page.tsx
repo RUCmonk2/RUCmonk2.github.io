@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Locale } from "next-intl";
 
 import { VscodeTutorialReader } from "@/components/tutorial/vscode-tutorial-reader";
+import { getLearningItem } from "@/data/learning/catalog";
 import { constructMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -12,15 +13,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const isEnglish = locale === "en";
+  const item = getLearningItem("vscode-cpp");
+  const language = locale === "en" ? "en" : "zh";
   return constructMetadata({
-    title: isEnglish
-      ? "VS Code C/C++ setup companion"
-      : "VS Code C/C++ 环境配置伴读",
-    description: isEnglish
-      ? "A source-faithful, checkpoint-based companion for setting up VS Code C/C++ on macOS and Windows."
-      : "按平台拆分、带解释与成功检查点的 VS Code C/C++ 环境配置伴读教程。",
-    path: "/tutorials/vscode-cpp",
+    title: item.title[language],
+    description: item.description[language],
+    path: item.href,
     locale: locale as Locale,
   });
 }
@@ -32,14 +30,18 @@ export default async function TutorialPage({
 }) {
   const { locale } = await params;
   const isEnglish = locale === "en";
-  const tutorialsHref = isEnglish ? "/en/tutorials" : "/tutorials";
+  const learningHref = isEnglish ? "/en/learning" : "/learning";
   return (
     <main className="tutorial-page">
       <nav
         className="tutorial-breadcrumbs"
         aria-label={isEnglish ? "Tutorial hierarchy" : "教程层级"}
       >
-        <Link href={tutorialsHref}>{isEnglish ? "Tutorials" : "教程中心"}</Link>
+        <Link href={learningHref}>{isEnglish ? "Learning" : "学习"}</Link>
+        <span>/</span>
+        <Link href={learningHref + "#guides"}>
+          {isEnglish ? "Practical guides" : "实践指南"}
+        </Link>
         <span>/</span>
         <span>{isEnglish ? "Development environments" : "开发环境与工具"}</span>
         <span>/</span>

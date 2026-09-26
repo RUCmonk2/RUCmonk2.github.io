@@ -43,6 +43,7 @@ export async function generateMetadata(props: {
       ...baseMetadata.openGraph,
       type: "article",
       publishedTime,
+      modifiedTime: post.metadata.updatedAt ?? publishedTime,
     },
   };
 }

@@ -1,6 +1,3 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeRaw from "rehype-raw";
@@ -14,6 +11,7 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
 import { siteConfig } from "@/data/site";
+import { type BlogPostMetadata, blogSource } from "@/lib/blog-source";
 
 const MATH_UNICODE_REPLACEMENTS: Array<[RegExp, string]> = [[/𝜇/gu, "\\mu"]];
 const BLOG_HTML_SANITIZE_SCHEMA = {
@@ -39,29 +37,12 @@ const BLOG_HTML_SANITIZE_SCHEMA = {
   },
 };
 
-function getBlogContentDir(locale: string): string {
-  const localeDir = locale === "zh" ? "zh" : "en";
-  return path.join(process.cwd(), "content", "blog", localeDir);
-}
-
-// Define the expected metadata structure
-interface BlogPostMetadata {
-  title: string;
-  date: string;
-  summary: string;
-  [key: string]: unknown;
-}
-
 // Define the blog post type
 export interface BlogPost {
   metadata: BlogPostMetadata;
   slug: string;
   source: string;
   locale: string;
-}
-
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
 export async function markdownToHTML(markdown: string) {
@@ -97,55 +78,18 @@ export async function getPost(
   slug: string,
   locale: string = "en",
 ): Promise<BlogPost | null> {
-  const filePath = path.join(getBlogContentDir(locale), `${slug}.mdx`);
-
-  // Check if file exists
-  if (!fs.existsSync(filePath)) {
-    return null;
-  }
-
-  const source = fs.readFileSync(filePath, "utf-8");
-  const { content: rawContent, data: rawMetadata } = matter(source);
-  const content = await markdownToHTML(rawContent);
-
-  // Ensure required fields exist and type the metadata properly
-  const metadata: BlogPostMetadata = {
-    title: rawMetadata.title || "",
-    date: rawMetadata.date || "",
-    summary: rawMetadata.summary || "",
-    ...rawMetadata,
-  };
-
-  return {
-    source: content,
-    metadata,
-    slug,
-    locale,
-  };
-}
-
-async function getAllPosts(
-  dir: string,
-  locale: string = "en",
-): Promise<BlogPost[]> {
-  const mdxFiles = getMDXFiles(dir);
-  const posts = await Promise.all(
-    mdxFiles.map(async (file) => {
-      const slug = path.basename(file, path.extname(file));
-      const post = await getPost(slug, locale);
-      if (!post) {
-        return null;
-      }
-      return post;
-    }),
-  );
-
-  // Filter out null values (posts that don't exist)
-  return posts.filter((post): post is BlogPost => post !== null);
+  const post = blogSource.read(slug, locale);
+  if (!post) return null;
+  return { ...post, source: await markdownToHTML(post.source) };
 }
 
 export async function getBlogPosts(locale: string = "en"): Promise<BlogPost[]> {
-  return getAllPosts(getBlogContentDir(locale), locale);
+  return Promise.all(
+    blogSource.list(locale).map(async (post) => ({
+      ...post,
+      source: await markdownToHTML(post.source),
+    })),
+  );
 }
 
 export interface PaginatedBlogPosts {
@@ -189,27 +133,16 @@ export async function getPaginatedBlogPosts(
 }
 
 export async function hasChineseVersion(slug: string): Promise<boolean> {
-  const chineseFilePath = path.join(getBlogContentDir("zh"), `${slug}.mdx`);
-  return fs.existsSync(chineseFilePath);
+  return blogSource.read(slug, "zh") !== null;
 }
 
 export async function hasEnglishVersion(slug: string): Promise<boolean> {
-  const englishFilePath = path.join(getBlogContentDir("en"), `${slug}.mdx`);
-  return fs.existsSync(englishFilePath);
+  return blogSource.read(slug, "en") !== null;
 }
 
 export async function getAvailableLocales(
   slug: string,
   locales: string[],
 ): Promise<string[]> {
-  const availableLocales: string[] = [];
-
-  for (const locale of locales) {
-    const filePath = path.join(getBlogContentDir(locale), `${slug}.mdx`);
-    if (fs.existsSync(filePath)) {
-      availableLocales.push(locale);
-    }
-  }
-
-  return availableLocales;
+  return blogSource.availableLocales(slug, locales);
 }

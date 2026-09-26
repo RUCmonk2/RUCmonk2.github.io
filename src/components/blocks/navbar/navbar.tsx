@@ -2,36 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { LanguageToggle } from "@/components/blocks/navbar/language-toggle";
 import { ModeToggle } from "@/components/blocks/navbar/mode-toggle";
 
-export default function Navbar() {
+export default function Navbar({
+  translatedBlogSlugs,
+}: {
+  translatedBlogSlugs: string[];
+}) {
   const locale = useLocale();
   const pathname = usePathname();
   const isEnglish = locale === "en";
   const homeHref = isEnglish ? "/en" : "/";
   const blogHref = isEnglish ? "/en/blog" : "/blog";
-  const tutorialHref = isEnglish ? "/en/tutorials" : "/tutorials";
+  const learningHref = isEnglish ? "/en/learning" : "/learning";
+  const isLearningPage = /\/(learning|tutorials|teaching)(\/|$)/.test(pathname);
   const linksHref = isEnglish ? "/en/links" : "/links";
-  const copy = isEnglish
-    ? {
-        about: "About",
-        projects: "Work",
-        writing: "Writing",
-        friends: "Friends",
-        blog: "Notes",
-        tutorial: "Guide",
-      }
-    : {
-        about: "关于",
-        projects: "项目",
-        writing: "写作",
-        friends: "友链",
-        blog: "笔记",
-        tutorial: "教程",
-      };
+  const t = useTranslations();
 
   return (
     <header className="pure-nav">
@@ -50,40 +39,44 @@ export default function Navbar() {
           aria-label={isEnglish ? "Primary navigation" : "主导航"}
         >
           <Link href={`${homeHref}#about`} className="">
-            {copy.about}
+            {t("navigation.about")}
           </Link>
-          <Link href={`${homeHref}#study-content`} className="">
-            {isEnglish ? "Explore" : "拾录"}
+          <Link
+            href={learningHref}
+            aria-current={isLearningPage ? "page" : undefined}
+            className=""
+          >
+            {t("navigation.learning")}
           </Link>
           <Link
             href={blogHref}
             aria-current={pathname.includes("/blog") ? "page" : undefined}
             className=""
           >
-            {copy.writing}
-          </Link>
-          <Link
-            href={tutorialHref}
-            aria-current={pathname.includes("/tutorials") ? "page" : undefined}
-            className=""
-          >
-            {copy.tutorial}
+            {t("blog.title")}
           </Link>
           <Link
             href={linksHref}
             aria-current={pathname.includes("/links") ? "page" : undefined}
             className=""
           >
-            {copy.friends}
+            {t("navigation.friends")}
           </Link>
         </nav>
 
         <div className="pure-nav-tools">
+          <Link
+            href={learningHref}
+            className="pure-mobile-blog"
+            aria-current={isLearningPage ? "page" : undefined}
+          >
+            {t("navigation.learning")}
+          </Link>
           <Link href={blogHref} className="pure-mobile-blog">
-            {copy.blog}
+            {t("blog.title")}
           </Link>
           <ModeToggle />
-          <LanguageToggle />
+          <LanguageToggle translatedBlogSlugs={translatedBlogSlugs} />
         </div>
       </div>
     </header>

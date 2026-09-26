@@ -7,6 +7,7 @@ import { getTranslations } from "next-intl/server";
 
 import { CustomReactMarkdown } from "@/components/react-markdown";
 import { StudyCompanion } from "@/components/study-companion";
+import { getFeaturedLearning, learningItemHref } from "@/data/learning/catalog";
 import { siteConfig } from "@/data/site";
 import { getBlogPosts, sortPostsByDate } from "@/lib/blog";
 import { generatePersonJsonLd } from "@/lib/jsonld";
@@ -35,6 +36,8 @@ export default async function Page({
 }) {
   const { locale } = await params;
   const isEnglish = locale === "en";
+  const learningLocale = isEnglish ? "en" : "zh";
+  const learningHref = isEnglish ? "/en/learning" : "/learning";
   const t = await getTranslations({ locale });
   const personJsonLd = await generatePersonJsonLd(locale);
   const projects = (t.raw("projects.items") as Project[]) ?? [];
@@ -92,23 +95,6 @@ export default async function Page({
         projectsIntro:
           "Selected projects through which I have explored product design, rapid prototyping, and reproducible ways of working.",
         details: "Details",
-        resourcesLabel: "05 / Open files",
-        resourcesTitle: "Notes and resources",
-        programmingCourse: "Programming course · 2026",
-        programmingCourseDesc:
-          "Browse, copy, or download introductory C++ examples organized by lecture and slide number.",
-        courseNotes: "Course notes",
-        courseNotesDesc:
-          "Read deep learning and robotics notes, worked examples, and self-checks directly on the site.",
-        codexGuide: "Codex project handoff guide",
-        codexDesc:
-          "A reusable structure for context, decisions, file maps, and temporary materials.",
-        siteGuide: "Personal site guide",
-        siteDesc:
-          "A practical record of maintaining a personal site with GitHub Pages.",
-        archive: "Technical notes archive",
-        archiveDesc:
-          "Writing on command-line tools, typography, learning, and attention.",
         writingLabel: "06 / Writing",
         writingTitle: "Latest note",
         allWriting: "All writing",
@@ -155,19 +141,6 @@ export default async function Page({
         projectsIntro:
           "通过这些项目，我持续接触产品设计、快速原型和可复用的工作方法。",
         details: "查看详情",
-        resourcesLabel: "05 / 公开文件",
-        resourcesTitle: "笔记与资源",
-        programmingCourse: "程序设计课程 · 2026",
-        programmingCourseDesc:
-          "从基础输入输出开始，按讲次和课件编号查看、复制或下载 C++ 示例代码。",
-        courseNotes: "课程笔记",
-        courseNotesDesc: "在线阅读深度学习与机器人学笔记，跟着公式推导、例题与自测逐步理解。",
-        codexGuide: "Codex 项目交接指南",
-        codexDesc: "关于上下文、决策、文件地图和临时资料的可复用结构。",
-        siteGuide: "个人主页搭建指南",
-        siteDesc: "使用 GitHub Pages 维护个人主页的实践记录。",
-        archive: "技术笔记归档",
-        archiveDesc: "关于命令行、排版、学习方法与注意力的整理。",
         writingLabel: "06 / 技术写作",
         writingTitle: "最近文章",
         allWriting: "全部文章",
@@ -195,36 +168,6 @@ export default async function Page({
       number: "03",
       title: copy.creativeAiTitle,
       description: copy.creativeAiText,
-    },
-  ];
-
-  const resources = [
-    {
-      title: copy.courseNotes,
-      description: copy.courseNotesDesc,
-      href: isEnglish ? "/en/learning" : "/learning",
-    },
-    {
-      title: copy.programmingCourse,
-      description: copy.programmingCourseDesc,
-      href: isEnglish
-        ? "/en/teaching/programming-2026"
-        : "/teaching/programming-2026",
-    },
-    {
-      title: copy.codexGuide,
-      description: copy.codexDesc,
-      href: "/assets/codex-guide.html",
-    },
-    {
-      title: copy.siteGuide,
-      description: copy.siteDesc,
-      href: "/assets/personal-site-guide.html",
-    },
-    {
-      title: copy.archive,
-      description: copy.archiveDesc,
-      href: "/assets/latex-style-notes.html",
     },
   ];
 
@@ -422,21 +365,24 @@ export default async function Page({
         <section className="pure-section">
           <header className="pure-section-label">
             <span>02</span>
-            <h2>{isEnglish ? "Resources & teaching" : "资料与教学"}</h2>
+            <h2>{isEnglish ? "Learning picks" : "学习精选"}</h2>
+            <Link href={learningHref}>
+              {isEnglish ? "View all" : "查看全部"}
+            </Link>
           </header>
           <div className="pure-section-body pure-row-list">
-            {resources.map((resource) => (
-              <a
+            {getFeaturedLearning().map((resource) => (
+              <Link
                 className="pure-resource-row"
-                href={resource.href}
-                key={resource.href}
+                href={learningItemHref(resource, learningLocale)}
+                key={resource.id}
               >
                 <span>
-                  <b>{resource.title}</b>
-                  <small>{resource.description}</small>
+                  <b>{resource.title[learningLocale]}</b>
+                  <small>{resource.description[learningLocale]}</small>
                 </span>
                 <ArrowRight aria-hidden="true" />
-              </a>
+              </Link>
             ))}
           </div>
         </section>
