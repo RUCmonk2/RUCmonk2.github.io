@@ -97,6 +97,9 @@ export default async function Page({
         programmingCourse: "Programming course · 2026",
         programmingCourseDesc:
           "Browse, copy, or download introductory C++ examples organized by lecture and slide number.",
+        courseNotes: "Course notes",
+        courseNotesDesc:
+          "Read deep learning and robotics notes, worked examples, and self-checks directly on the site.",
         codexGuide: "Codex project handoff guide",
         codexDesc:
           "A reusable structure for context, decisions, file maps, and temporary materials.",
@@ -157,6 +160,8 @@ export default async function Page({
         programmingCourse: "程序设计课程 · 2026",
         programmingCourseDesc:
           "从基础输入输出开始，按讲次和课件编号查看、复制或下载 C++ 示例代码。",
+        courseNotes: "课程笔记",
+        courseNotesDesc: "在线阅读深度学习与机器人学笔记，跟着公式推导、例题与自测逐步理解。",
         codexGuide: "Codex 项目交接指南",
         codexDesc: "关于上下文、决策、文件地图和临时资料的可复用结构。",
         siteGuide: "个人主页搭建指南",
@@ -194,6 +199,11 @@ export default async function Page({
   ];
 
   const resources = [
+    {
+      title: copy.courseNotes,
+      description: copy.courseNotesDesc,
+      href: isEnglish ? "/en/learning" : "/learning",
+    },
     {
       title: copy.programmingCourse,
       description: copy.programmingCourseDesc,

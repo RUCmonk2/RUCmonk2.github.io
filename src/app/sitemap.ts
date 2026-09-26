@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 
+import { chapterPath, learningCourses } from "@/data/learning";
 import { siteConfig } from "@/data/site";
 import { tutorialCatalog } from "@/data/tutorials/catalog";
 import { DEFAULT_LOCALE, LOCALES } from "@/i18n/routing";
@@ -32,6 +33,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/blog",
     "/tutorials",
     "/links",
+    "/learning",
+    "/learning/deep-learning",
+    "/learning/robotics",
+    ...learningCourses.flatMap((course) =>
+      course.chapters
+        .slice(1)
+        .map((chapter) => chapterPath(course.slug, chapter.id)),
+    ),
     "/teaching/programming-2026",
     ...tutorialPages,
   ];
