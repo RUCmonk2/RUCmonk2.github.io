@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 
 import { courseAtlases } from "@/data/course-maps";
+import { k12Atlases, k12LessonHref, k12Topics, k12Updated } from "@/data/k12";
 import { chapterPath, learningCourses } from "@/data/learning";
 import {
   getLearningItem,
@@ -99,6 +100,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pages,
     ...catalogPages,
     ...courseMapPages,
+    ...LOCALES.flatMap((locale) =>
+      [
+        ...k12Atlases.map((atlas) => atlas.href),
+        ...k12Topics.map((topic) => k12LessonHref(topic.id)),
+        "/learning/math-lab/factorization",
+      ].map((href) => ({
+        url: siteUrl + localePathPrefix(locale) + href,
+        lastModified: new Date(k12Updated),
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      })),
+    ),
     ...chapterPages,
     ...uniqueBlogPostEntries,
   ];

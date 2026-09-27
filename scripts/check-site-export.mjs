@@ -11,6 +11,7 @@ const { blogSource, postUpdatedDate } = await jiti.import(
 const { siteConfig } = await jiti.import("../src/data/site.ts");
 const { mathMapNodes } = await jiti.import("../src/data/math-map.ts");
 const { courseAtlases } = await jiti.import("../src/data/course-maps/index.ts");
+const { k12Atlases, k12Topics } = await jiti.import("../src/data/k12/index.ts");
 const root = path.resolve("out");
 assert(
   existsSync(path.join(root, "index.html")),
@@ -65,12 +66,21 @@ for (const atlas of courseAtlases) {
     );
   }
 }
+for (const topic of k12Topics) {
+  const relative = "assets/k12-lessons/zh/" + topic.id + ".json";
+  assert.equal(
+    readFileSync(path.join(root, relative), "utf8"),
+    readFileSync(path.join("public", relative), "utf8"),
+    "Stale K12 lesson: " + topic.id,
+  );
+}
 function isAtlasSelection(url, fragment) {
   const pathname = url.pathname.replace(/^\/en(?=\/)/, "").replace(/\/$/, "");
   const nodes =
     pathname === "/learning/math-map"
       ? mathMapNodes
-      : courseAtlases.find((a) => a.href === pathname)?.nodes;
+      : [...courseAtlases, ...k12Atlases].find((a) => a.href === pathname)
+          ?.nodes;
   return nodes?.some((n) => n.id === fragment) ?? false;
 }
 

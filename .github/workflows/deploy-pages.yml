@@ -33,6 +33,8 @@ jobs:
         run: npm run test:content
       - name: Validate mathematics map
         run: npm run test:math-map
+      - name: Validate K12 lessons and factor workshop
+        run: npm run test:k12
       - name: Build static site
         run: npm run build
       - name: Check exported pages and links

@@ -1,0 +1,310 @@
+.factor-area {
+  margin: 45px 0 55px;
+}
+.factor-area-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 35px;
+}
+.factor-area-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--note-paper);
+  border: 1px solid var(--note-line);
+  border-radius: 6px;
+  padding: 12px 15px 25px;
+  min-width: 0;
+}
+.factor-area-visual svg {
+  width: 100%;
+  max-width: 440px;
+  min-height: 290px;
+}
+.factor-tile rect {
+  stroke: var(--note-paper);
+  stroke-width: 2;
+  fill: var(--note-accent);
+  fill-opacity: 0.18;
+}
+.factor-tile-square rect {
+  fill-opacity: 0.4;
+}
+.factor-tile-b rect {
+  fill: #967858;
+  fill-opacity: 0.24;
+}
+.factor-tile-unit rect {
+  fill: #967858;
+  fill-opacity: 0.45;
+}
+.factor-tile text {
+  font-size: 17px;
+  fill: var(--note-ink);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.factor-dimension {
+  fill: var(--note-muted);
+  font:
+    13px ui-monospace,
+    monospace;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.factor-total {
+  font-size: 13px;
+  fill: var(--note-ink);
+  text-anchor: middle;
+}
+.factor-area-controls {
+  padding: 10px 0;
+  min-width: 0;
+}
+.factor-area-controls label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px;
+  font-size: 13px;
+  margin-bottom: 15px;
+  color: var(--note-muted);
+}
+.factor-area-controls label input {
+  grid-column: 1/-1;
+  width: 100%;
+  accent-color: var(--note-accent);
+}
+.factor-area-controls p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--note-muted);
+}
+.factor-math {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  color: var(--note-ink);
+  font-size: 17px;
+}
+.factor-math .katex-display {
+  margin: 16px 0;
+}
+.factor-math-inline {
+  white-space: nowrap;
+}
+.factor-note {
+  font-size: 11px !important;
+  line-height: 1.9 !important;
+  color: var(--note-muted);
+}
+.factor-explanation {
+  border-top: 1px solid var(--note-line);
+  border-bottom: 1px solid var(--note-line);
+  margin-top: 24px;
+  padding: 18px 0;
+}
+.factor-explanation summary {
+  font-size: 14px;
+  cursor: pointer;
+}
+.factor-explanation p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--note-muted);
+}
+.factor-settings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 15px;
+  margin: 22px 0;
+}
+.factor-settings label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--note-muted);
+}
+.factor-settings select,
+.factor-answer input,
+.factor-share input {
+  padding: 10px 12px;
+  border: 1px solid var(--note-line);
+  border-radius: 4px;
+  background: var(--note-paper);
+  color: var(--note-ink);
+  font: inherit;
+  min-height: 43px;
+  max-width: 100%;
+}
+.factor-question {
+  padding: 25px 10px 30px;
+  text-align: center;
+  border-top: 1px solid var(--note-line);
+  border-bottom: 1px solid var(--note-line);
+  margin: 24px 0;
+}
+.factor-question .factor-math {
+  font-size: 28px;
+}
+.factor-question p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--note-muted);
+}
+.factor-answer {
+  display: flex;
+  gap: 14px;
+  align-items: end;
+}
+.factor-answer label {
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  font-size: 13px;
+  color: var(--note-muted);
+  min-width: 0;
+}
+.factor-answer input {
+  font:
+    16px/1.6 ui-monospace,
+    monospace;
+  width: 100%;
+  min-height: 48px;
+}
+.factor-answer button {
+  min-height: 48px;
+}
+.factor-feedback {
+  padding: 20px 22px;
+  border-left: 3px solid var(--note-accent);
+  background: var(--note-tint);
+  margin: 25px 0;
+}
+.factor-feedback strong {
+  font-size: 15px;
+  font-weight: 550;
+}
+.factor-feedback p,
+.factor-feedback > span {
+  font-size: 13px;
+  line-height: 1.9;
+}
+.factor-incorrect,
+.factor-invalid {
+  border-left-color: #987451;
+  background: color-mix(in srgb, var(--note-paper) 85%, #987451 15%);
+}
+.factor-help-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 23px 0;
+}
+.factor-hints {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+}
+.factor-hints li {
+  padding: 14px 0;
+  border-top: 1px solid var(--note-line);
+}
+.factor-hints b {
+  font-size: 12px;
+  color: var(--note-accent);
+}
+.factor-hints p {
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 8px 0 0;
+}
+.factor-solution {
+  background: var(--note-tint);
+  padding: 20px 25px;
+  border-radius: 4px;
+  margin: 24px 0;
+}
+.factor-solution ol {
+  list-style: decimal;
+  padding-left: 20px;
+}
+.factor-solution li,
+.factor-solution p {
+  font-size: 13px;
+  line-height: 2;
+}
+.factor-share {
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.factor-share input {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.factor-question-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--note-muted);
+  border-top: 1px solid var(--note-line);
+  padding-top: 20px;
+  margin-top: 25px;
+}
+.factor-question-footer a {
+  color: var(--note-accent);
+  text-decoration: none;
+}
+.factor-teaching {
+  margin-top: 35px;
+}
+@media (max-width: 750px) {
+  .factor-area-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .factor-area-visual svg {
+    max-width: 380px;
+  }
+  .factor-area-controls {
+    padding: 5px 10px;
+  }
+}
+@media (max-width: 480px) {
+  .factor-settings {
+    gap: 12px;
+  }
+  .factor-settings label {
+    flex: 1;
+  }
+  .factor-settings > button {
+    width: 100%;
+  }
+  .factor-answer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .factor-question .factor-math {
+    font-size: 24px;
+  }
+  .factor-help-actions .k12-button {
+    font-size: 12px;
+  }
+  .factor-solution {
+    padding: 15px;
+  }
+  .factor-area-visual {
+    padding: 5px 8px 20px;
+  }
+  .factor-area-visual svg {
+    min-height: 250px;
+  }
+  .factor-math {
+    font-size: 15px;
+  }
+}

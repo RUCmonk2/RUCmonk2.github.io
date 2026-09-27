@@ -39,6 +39,9 @@ export default async function LearningPage({
   const isEnglish = language === "en";
   const prefix = isEnglish ? "/en" : "";
   const courses = learningCatalog.filter((item) => item.category === "course");
+  const mathematics = learningCatalog.filter(
+    (item) => item.category === "math",
+  );
   const guides = learningCatalog.filter((item) => item.category === "guide");
 
   return (
@@ -148,12 +151,53 @@ export default async function LearningPage({
 
         <section
           className="learning-section"
+          id="mathematics"
+          aria-labelledby="mathematics-title"
+        >
+          <header className="learning-section-heading">
+            <div>
+              <span>02 / MATHEMATICS</span>
+              <h2 id="mathematics-title">
+                {isEnglish ? "Mathematics" : "数学探索"}
+              </h2>
+            </div>
+            <p>
+              {isEnglish
+                ? "Connect school mathematics, advanced ideas and hands-on experiments."
+                : "从中小学基础走向高等数学，用讲义和小实验把知识连起来。"}
+            </p>
+          </header>
+          <div className="learning-guide-grid">
+            {mathematics.map((item) => (
+              <Link
+                key={item.id}
+                href={learningItemHref(item, language)}
+                className="learning-guide-card"
+              >
+                <div className="learning-guide-topline">
+                  <span>{item.topic[language]}</span>
+                  <ArrowRight size={16} />
+                </div>
+                <h3>{item.title[language]}</h3>
+                <p>{item.description[language]}</p>
+                <div className="learning-guide-meta">
+                  <span>{item.scope[language]}</span>
+                  <time dateTime={item.updated}>
+                    {item.updated.replaceAll("-", ".")}
+                  </time>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section
+          className="learning-section"
           id="guides"
           aria-labelledby="guides-title"
         >
           <header className="learning-section-heading">
             <div>
-              <span>02 / PRACTICE</span>
+              <span>03 / PRACTICE</span>
               <h2 id="guides-title">
                 {isEnglish ? "Practical guides" : "实践指南"}
               </h2>

@@ -29,7 +29,7 @@ for (const item of learningCatalog) {
   assert(!hrefs.has(item.href), `Duplicate canonical path: ${item.href}`);
   ids.add(item.id);
   hrefs.add(item.href);
-  assert(["course", "guide"].includes(item.category), item.id);
+  assert(["course", "guide", "math"].includes(item.category), item.id);
   assert.match(item.updated, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(new Date(item.updated).toISOString().slice(0, 10), item.updated);
   for (const locale of ["zh", "en"]) {

@@ -1,6 +1,6 @@
 import type { LearningLocale, Localized } from "./types";
 
-export type LearningCategory = "course" | "guide";
+export type LearningCategory = "course" | "guide" | "math";
 export type LearningItem = {
   id: string;
   category: LearningCategory;
@@ -82,8 +82,39 @@ export const learningCatalog: readonly LearningItem[] = [
     updated: "2026-09-07",
   },
   {
+    id: "k12",
+    category: "math",
+    href: "/learning/k12",
+    localized: true,
+    title: { zh: "中小学数学知识网", en: "School Mathematics Atlas" },
+    description: {
+      zh: "小学、初中、高中 199 节双模式讲义，连接先修知识、逐步例题、常见误区与练习解答。",
+      en: "199 Chinese school-mathematics lessons, connected prerequisites, worked examples and practice.",
+    },
+    topic: { zh: "中小学数学", en: "School mathematics" },
+    scope: {
+      zh: "3 个学段 · 自学与家教",
+      en: "Three stages · study and tutoring",
+    },
+    updated: "2026-09-28",
+  },
+  {
+    id: "math-lab",
+    category: "math",
+    href: "/learning/math-lab",
+    localized: true,
+    title: { zh: "数学实验室", en: "Mathematics Lab" },
+    description: {
+      zh: "从因式工坊开始：用面积理解因式分解，按题型练习，逐层查看提示并分享同一道题。",
+      en: "Explore factorization through area models, reproducible practice and progressive hints. Activities are in Chinese.",
+    },
+    topic: { zh: "动手探索", en: "Hands-on exploration" },
+    scope: { zh: "因式工坊 · 随机练习", en: "Factorization workshop" },
+    updated: "2026-09-28",
+  },
+  {
     id: "math-map",
-    category: "guide",
+    category: "math",
     href: "/learning/math-map",
     localized: true,
     title: { zh: "数学知识网", en: "Mathematics Map" },
@@ -199,6 +230,11 @@ export const learningCatalog: readonly LearningItem[] = [
 
 export const learningCategories = [
   { id: "course", anchor: "courses", title: { zh: "课程学习", en: "Courses" } },
+  {
+    id: "math",
+    anchor: "mathematics",
+    title: { zh: "数学探索", en: "Mathematics" },
+  },
   {
     id: "guide",
     anchor: "guides",
