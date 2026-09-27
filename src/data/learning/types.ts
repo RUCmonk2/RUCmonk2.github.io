@@ -1,5 +1,5 @@
 export type LearningLocale = "zh" | "en";
-export type CourseSlug = "deep-learning" | "robotics";
+export type CourseSlug = "deep-learning" | "robotics" | "ai-practice";
 export type Localized = Record<LearningLocale, string>;
 
 export type CourseChapter = {
@@ -11,6 +11,11 @@ export type CourseChapter = {
   checks: { question: string; answer: string }[];
   source: string;
   lab?: "gradient" | "rotation";
+  figure?: {
+    src: string;
+    alt: string;
+    caption: string;
+  };
 };
 
 export type LearningCourse = {

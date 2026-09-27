@@ -15,6 +15,10 @@
   --note-accent: #886348;
   --note-tint: #f1ebe2;
 }
+.notes-ai-practice {
+  --note-accent: #355f81;
+  --note-tint: #eaf0f5;
+}
 .dark .notes-page {
   --note-bg: #18221e;
   --note-paper: #202c25;
@@ -28,6 +32,10 @@
 .dark .notes-robotics {
   --note-accent: #d5b390;
   --note-tint: #39372c;
+}
+.dark .notes-ai-practice {
+  --note-accent: #a8c7de;
+  --note-tint: #293b49;
 }
 .notes-back {
   display: inline-flex;
@@ -81,7 +89,7 @@
 }
 .notes-course-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 .notes-course-card {
@@ -510,6 +518,34 @@
   margin-top: 12px;
   color: var(--note-muted);
   font-size: 11px;
+}
+.note-slide-figure {
+  margin: 0 0 30px;
+  border: 1px solid var(--note-line);
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--note-tint);
+}
+.note-slide-figure a {
+  display: block;
+}
+.note-slide-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.note-slide-figure figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 15px;
+  color: var(--note-muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+.note-slide-figure figcaption span {
+  flex: none;
+  color: var(--note-accent);
 }
 .note-prose {
   font-size: 14px;

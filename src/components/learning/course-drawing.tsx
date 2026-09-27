@@ -2,7 +2,21 @@ export function CourseDrawing({ kind }: { kind: string }) {
   return (
     <svg viewBox="0 0 460 160" fill="none" aria-hidden="true">
       <path d="M30 135H430M60 25V140" className="cover-guide" />
-      {kind === "programming-2026" ? (
+      {kind === "ai-practice" ? (
+        <>
+          <rect x="76" y="44" width="78" height="68" rx="7" className="cover-node" />
+          <circle cx="115" cy="69" r="13" className="cover-hidden" />
+          <path d="M98 96H132M154 78H211M211 78L197 70M211 78L197 86" className="cover-structure" />
+          <circle cx="249" cy="78" r="37" className="cover-node" />
+          <path d="M229 67L249 55L270 67L249 80ZM229 67V90L249 102V80M270 67V90L249 102" className="cover-structure" />
+          <path d="M286 78H352M352 78L338 70M352 78L338 86" className="cover-structure" />
+          <circle cx="384" cy="78" r="23" className="cover-node" />
+          <path d="M371 78H397M384 65V91" className="cover-structure" />
+          <text x="90" y="151">agent</text>
+          <text x="218" y="151">model</text>
+          <text x="366" y="151">tensor</text>
+        </>
+      ) : kind === "programming-2026" ? (
         <>
           <rect
             x="92"

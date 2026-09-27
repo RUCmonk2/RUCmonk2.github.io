@@ -18,12 +18,20 @@ import {
 import { learningCatalog, learningItemHref } from "@/data/learning/catalog";
 import { constructMetadata } from "@/lib/metadata";
 
-function NoteMarkdown({ children }: { children: string }) {
+function NoteMarkdown({
+  children,
+  inline = false,
+}: {
+  children: string;
+  inline?: boolean;
+}) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm, remarkMath]}
       rehypePlugins={[rehypeKatex]}
       components={{
+        p: ({ children }) =>
+          inline ? <span>{children}</span> : <p>{children}</p>,
         table: ({ children }) => (
           <div className="note-table-scroll">
             <table>{children}</table>
@@ -171,6 +179,20 @@ export function CoursePage({
                 </small>
               )}
             </header>
+            {chapter.figure && (
+              <figure className="note-slide-figure">
+                <a href={chapter.figure.src} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={chapter.figure.src}
+                    alt={chapter.figure.alt}
+                    loading="lazy"
+                  />
+                </a>
+                <figcaption>
+                  {chapter.figure.caption} <span>点击图片查看大图</span>
+                </figcaption>
+              </figure>
+            )}
             <div className="note-prose">
               <NoteMarkdown>{chapter.body}</NoteMarkdown>
             </div>
@@ -186,7 +208,9 @@ export function CoursePage({
                     <span className="note-check-number">
                       {String(checkIndex + 1).padStart(2, "0")}
                     </span>
-                    <span>{check.question}</span>
+                    <span>
+                      <NoteMarkdown inline>{check.question}</NoteMarkdown>
+                    </span>
                     <ChevronDown size={16} aria-hidden="true" />
                   </summary>
                   <div className="note-answer note-prose">

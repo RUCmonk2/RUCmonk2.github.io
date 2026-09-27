@@ -1,3 +1,4 @@
+import { aiPracticeChapters } from "./learning/ai-practice";
 import { getLearningItem } from "./learning/catalog";
 import { deepLearningChapters } from "./learning/deep-learning";
 import { roboticsChapters } from "./learning/robotics";
@@ -21,6 +22,12 @@ export const learningCourses: readonly LearningCourse[] = [
     slug: "robotics",
     index: "02",
     chapters: roboticsChapters,
+  },
+  {
+    ...getLearningItem("ai-practice"),
+    slug: "ai-practice",
+    index: "03",
+    chapters: aiPracticeChapters,
   },
 ];
 

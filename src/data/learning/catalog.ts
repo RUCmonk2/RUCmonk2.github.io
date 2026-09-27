@@ -51,6 +51,23 @@ export const learningCatalog: readonly LearningItem[] = [
     featuredOrder: 2,
   },
   {
+    id: "ai-practice",
+    category: "course",
+    href: "/learning/ai-practice",
+    localized: true,
+    title: {
+      zh: "人工智能实践与应用选讲",
+      en: "AI Practice and Applications",
+    },
+    description: {
+      zh: "依据前三讲课件，串起跨学科 AI、机器学习与张量基础；有页码、精选课件图和自测题。",
+      en: "A Chinese study companion to the first three lectures on interdisciplinary AI, machine learning, and tensors.",
+    },
+    topic: { zh: "人工智能", en: "Artificial intelligence" },
+    scope: { zh: "Lecture 1–3 · 课件伴读", en: "Lectures 1–3 · study notes" },
+    updated: "2026-09-27",
+  },
+  {
     id: "programming-2026",
     category: "course",
     href: "/teaching/programming-2026",
