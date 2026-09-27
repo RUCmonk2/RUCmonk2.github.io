@@ -9,6 +9,7 @@ const { blogSource, postUpdatedDate } = await jiti.import(
   "../src/lib/blog-source.ts",
 );
 const { siteConfig } = await jiti.import("../src/data/site.ts");
+const { mathMapNodes } = await jiti.import("../src/data/math-map.ts");
 const root = path.resolve("out");
 assert(
   existsSync(path.join(root, "index.html")),
@@ -17,6 +18,31 @@ assert(
 const base = new URL(siteConfig.url);
 const failures = [];
 const htmlCache = new Map();
+
+// Lessons load on demand: every node must ship both complete language assets.
+for (const locale of ["zh", "en"]) {
+  for (const node of mathMapNodes) {
+    const relative = path.join(
+      "assets/math-lessons",
+      locale,
+      node.id + ".json",
+    );
+    const exported = readFileSync(path.join(root, relative), "utf8");
+    assert.equal(
+      exported,
+      readFileSync(path.join("public", relative), "utf8"),
+      `Stale lesson export: ${relative}`,
+    );
+    const lesson = JSON.parse(exported);
+    assert(
+      lesson.beginner &&
+        lesson.formal &&
+        lesson.intro.beginner &&
+        lesson.intro.formal,
+      `Incomplete lesson: ${relative}`,
+    );
+  }
+}
 
 function filesIn(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {

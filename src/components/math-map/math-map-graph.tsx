@@ -58,6 +58,13 @@ import {
   snapshotSimulation,
   visibleLabels,
 } from "./layout";
+import {
+  LessonBody,
+  MathProse,
+  type ReadingMode,
+  ReadingModes,
+  useMathLesson,
+} from "./lesson-reader";
 import { useDwellFocus } from "./use-dwell-focus";
 
 const inkMarks = new Map(
@@ -119,12 +126,30 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
   );
   const [camera, setCamera] = useState<Camera>(() => fitCamera(positions));
   const [selected, setSelected] = useState("gradient");
+  const [readingMode, setReadingMode] = useState<ReadingMode>("beginner");
+  const lessonState = useMathLesson(selected, locale);
   const [focused, setFocused] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>(allFilter);
   const [view, setView] = useState<"graph" | "list">("graph");
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const [forces, setForces] = useState(DEFAULT_FORCES);
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem("mathmap-reading-mode");
+      if (stored === "formal" || stored === "beginner") setReadingMode(stored);
+    } catch {
+      /* Reading remains available when storage is disabled. */
+    }
+  }, []);
+  function changeReadingMode(mode: ReadingMode) {
+    setReadingMode(mode);
+    try {
+      window.localStorage.setItem("mathmap-reading-mode", mode);
+    } catch {
+      /* Optional preference. */
+    }
+  }
   const {
     pending,
     queue: queueDwell,
@@ -1010,12 +1035,10 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
             </div>
           </div>
           <aside
-            ref={detailRef}
-            id={uid + "-detail"}
             className="mathmap-detail"
             data-domain={current.domain}
             tabIndex={-1}
-            aria-label={en ? "Concept details" : "概念详情"}
+            aria-label={en ? "Concept preview" : "概念预览"}
           >
             <button
               type="button"
@@ -1057,16 +1080,28 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
               / {mathMapNodes.length}
             </div>
             <h2>{current.label[locale]}</h2>
-            <p className="mathmap-blurb">{current.blurb[locale]}</p>
+            <ReadingModes
+              mode={readingMode}
+              onChange={changeReadingMode}
+              en={en}
+              label={en ? "Preview reading mode" : "预览阅读模式"}
+            />
+            <div className="mathmap-blurb">
+              <MathProse>
+                {lessonState.lesson?.intro[readingMode] ??
+                  current.blurb[locale]}
+              </MathProse>
+            </div>
             <Formula value={current.formula} />
-            <h3>{en ? "Keep in mind" : "理解与条件"}</h3>
-            <p>{current.insight[locale]}</p>
-            {current.example && (
-              <>
-                <h3>{en ? "Work through an example" : "对照一个例子"}</h3>
-                <Formula value={current.example} />
-              </>
-            )}
+            <button
+              type="button"
+              className="mathmap-open-lesson"
+              onClick={readDetails}
+            >
+              <BookOpen size={15} />
+              {en ? "Read the full lesson" : "阅读完整讲解"}
+              <ArrowRight size={14} />
+            </button>
             <div className="mathmap-neighbors">
               {(["before", "after", "related"] as const).map((kind) => {
                 const matches = neighbors.filter(({ edge }) =>
@@ -1132,6 +1167,61 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
             </div>
           </aside>
         </div>
+        <article
+          ref={detailRef}
+          id={uid + "-detail"}
+          className="mathmap-lesson"
+          data-domain={current.domain}
+          tabIndex={-1}
+          aria-label={en ? "Concept details" : "概念详情"}
+        >
+          <header className="mathmap-lesson-header">
+            <button
+              type="button"
+              className="mathmap-return"
+              onClick={returnToMap}
+            >
+              <ArrowLeft size={14} />
+              {en ? "Back to map" : "返回图谱"}
+            </button>
+            <span className="mathmap-section-label">
+              {domain.label[locale]} /{" "}
+              {en ? "READ & WORK THROUGH" : "理解 · 演算 · 练习"}
+            </span>
+            <h2>{current.label[locale]}</h2>
+            <ReadingModes
+              mode={readingMode}
+              onChange={changeReadingMode}
+              en={en}
+              label={en ? "Lesson reading mode" : "讲解阅读模式"}
+            />
+            <p>
+              {readingMode === "beginner"
+                ? en
+                  ? "Start with intuition, decode the notation, then calculate and practise."
+                  : "先建立直觉，再读懂每个符号，跟着算例动手，最后用题目检查理解。"
+                : en
+                  ? "Definitions, assumptions, derivations and connections."
+                  : "定义、适用条件、推导与知识联系。"}
+            </p>
+          </header>
+          <LessonBody
+            key={selected + readingMode + locale}
+            {...lessonState}
+            mode={readingMode}
+            en={en}
+          />
+          <footer className="mathmap-lesson-footer">
+            <button
+              type="button"
+              className="mathmap-return"
+              onClick={returnToMap}
+            >
+              <ArrowLeft size={14} />
+              {en ? "Explore another concept" : "回到图谱，探索下一个概念"}
+            </button>
+          </footer>
+        </article>
       </section>
       <section
         id="mathmap-routes"

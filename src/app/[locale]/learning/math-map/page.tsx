@@ -126,8 +126,8 @@ export default async function MathMapPage({
             </h2>
             <p>
               {en
-                ? "This first edition connects analysis, linear algebra, multivariable calculus, vector operators, matrix differentials, groups and the mathematics of AI. Each card is a starting point for study, with conditions and examples; it does not replace a full course or proof."
-                : "第一版从数分、线代、多元微积分、向量算子、矩阵微分、群论和 AI 数学基础入手。每张卡片提供理解起点、适用条件与例子，完整证明与练习可沿参考资料继续阅读。"}
+                ? "Explore analysis, linear algebra, multivariable calculus, vector operators, matrix differentials, groups and AI foundations. Every concept has guided learning with notation, worked examples and exercises, alongside a formal treatment of definitions and conditions."
+                : "从数分、线代、多元微积分、向量算子、矩阵微分、群论和 AI 数学基础入手。每个概念都有“从零理解”和“严谨表述”：前者解释符号、展开算例与练习，后者梳理定义、推导和适用条件。"}
             </p>
             <p>
               {en
