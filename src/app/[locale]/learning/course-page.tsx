@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
 import { CourseLab } from "@/components/learning/course-lab";
+import { CourseViewSwitch } from "@/components/learning/course-view-switch";
 import {
   chapterPath,
   type CourseSlug,
@@ -152,6 +153,7 @@ export function CoursePage({
         </aside>
 
         <div className="reader-main">
+          <CourseViewSwitch locale={language} courseHref={chapterPath(slug, chapter.id)} mapHref={`/learning/${slug}/knowledge-map#${slug}-${chapter.id}`} active="notes" />
           <details className="reader-mobile-nav" key={chapter.id}>
             <summary>
               <span>

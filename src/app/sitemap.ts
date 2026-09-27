@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 
+import { courseAtlases } from "@/data/course-maps";
 import { chapterPath, learningCourses } from "@/data/learning";
 import {
   getLearningItem,
@@ -46,6 +47,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ),
   );
 
+  const courseMapPages = courseAtlases.flatMap((atlas) =>
+    LOCALES.map((locale) => ({
+      url: siteUrl + localePathPrefix(locale) + atlas.href,
+      lastModified: new Date(atlas.updated),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+  );
   const catalogPages = learningCatalog.flatMap((item) =>
     (item.localized ? LOCALES : [DEFAULT_LOCALE]).map((locale) => ({
       url: siteUrl + learningItemHref(item, locale === "en" ? "en" : "zh"),
@@ -86,5 +95,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     new Map(allBlogSitemapEntries.map((entry) => [entry.url, entry])).values(),
   );
 
-  return [...pages, ...catalogPages, ...chapterPages, ...uniqueBlogPostEntries];
+  return [
+    ...pages,
+    ...catalogPages,
+    ...courseMapPages,
+    ...chapterPages,
+    ...uniqueBlogPostEntries,
+  ];
 }

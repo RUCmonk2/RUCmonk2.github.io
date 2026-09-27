@@ -10,6 +10,7 @@ const { blogSource, postUpdatedDate } = await jiti.import(
 );
 const { siteConfig } = await jiti.import("../src/data/site.ts");
 const { mathMapNodes } = await jiti.import("../src/data/math-map.ts");
+const { courseAtlases } = await jiti.import("../src/data/course-maps/index.ts");
 const root = path.resolve("out");
 assert(
   existsSync(path.join(root, "index.html")),
@@ -42,6 +43,35 @@ for (const locale of ["zh", "en"]) {
       `Incomplete lesson: ${relative}`,
     );
   }
+}
+
+// Course lessons are loaded on demand; verify the actual exported payloads.
+for (const atlas of courseAtlases) {
+  for (const locale of ["zh", "en"]) {
+    const prefix = locale === "en" ? "/en" : "";
+    assert(
+      existsSync(path.join(root, prefix + atlas.href, "index.html")),
+      `Missing course map: ${atlas.href}`,
+    );
+  }
+  for (const node of atlas.nodes) {
+    const ref = node.lesson;
+    if (!ref?.namespace.startsWith("course-lessons/")) continue;
+    const relative = `assets/${ref.namespace}/${ref.locale}/${ref.id}.json`;
+    assert.equal(
+      readFileSync(path.join(root, relative), "utf8"),
+      readFileSync(path.join("public", relative), "utf8"),
+      `Stale course lesson: ${relative}`,
+    );
+  }
+}
+function isAtlasSelection(url, fragment) {
+  const pathname = url.pathname.replace(/^\/en(?=\/)/, "").replace(/\/$/, "");
+  const nodes =
+    pathname === "/learning/math-map"
+      ? mathMapNodes
+      : courseAtlases.find((a) => a.href === pathname)?.nodes;
+  return nodes?.some((n) => n.id === fragment) ?? false;
 }
 
 function filesIn(directory) {
@@ -130,7 +160,11 @@ for (const file of pages) {
       const fragment = decodeURIComponent(url.hash.slice(1)).split(
         ":~:text=",
       )[0];
-      if (fragment && !html(target).ids.has(fragment))
+      if (
+        fragment &&
+        !html(target).ids.has(fragment) &&
+        !isAtlasSelection(url, fragment)
+      )
         failures.push(`${route} → ${value}: missing anchor`);
     }
   }

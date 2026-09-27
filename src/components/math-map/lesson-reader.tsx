@@ -67,8 +67,12 @@ export function ReadingModes({
 }
 
 const cache = new Map<string, Lesson>();
-export function useMathLesson(id: string, locale: "zh" | "en") {
-  const key = `${locale}/${id}`;
+export function useMathLesson(
+  id: string,
+  locale: "zh" | "en",
+  namespace = "math-lessons",
+) {
+  const key = `${namespace}/${locale}/${id}`;
   const [loaded, setLoaded] = useState<{ key: string; lesson: Lesson } | null>(
     null,
   );
@@ -81,7 +85,7 @@ export function useMathLesson(id: string, locale: "zh" | "en") {
       setLoaded({ key, lesson: known });
       return;
     }
-    fetch(`/assets/math-lessons/${key}.json`, { signal: controller.signal })
+    fetch(`/assets/${key}.json`, { signal: controller.signal })
       .then((response) => {
         if (!response.ok)
           throw new Error(`Lesson response: ${response.status}`);

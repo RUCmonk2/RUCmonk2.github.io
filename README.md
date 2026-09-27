@@ -10,6 +10,7 @@
 | 全站名称与导航翻译             | `src/i18n/messages/{zh,en}/common.json`          |
 | 学习目录、标题、精选、更新时间 | `src/data/learning/catalog.ts`                   |
 | 课程正文与交互内容             | `src/data/learning/`、`src/components/learning/` |
+| 课程知识网与节点讲解 | `src/data/course-maps/`、`content/course-maps/`（复用数学图组件） |
 | 程序设计讲次与代码清单         | `src/data/teaching/programming-2026.ts`          |
 | 写作文章                       | `content/blog/{zh,en}/*.mdx`                     |
 | 当前静态指南、附件与下载文件   | `public/`，其中指南为 `public/assets/`           |
@@ -17,7 +18,7 @@
 
 栏目固定为“关于 / 学习 / 写作 / 友链”。“课程学习、实践指南”是学习下的分类；“教程、伴读、速查”只是内容形式，不再建立平行总入口。旧网址保持兼容，不为改显示名称而迁移地址。
 
-详细规则见 [学习目录维护](docs/learning-catalog.md) 和 [内容与发布维护](docs/site-maintenance.md)。
+详细规则见 [学习目录维护](docs/learning-catalog.md) 、[内容与发布维护](docs/site-maintenance.md) 和 [课程知识网维护](docs/course-maps.md)。
 
 ## 本地检查
 
@@ -27,6 +28,7 @@
 npm ci
 npm run lint
 npm run test:content
+npm run test:math-map
 npm run build
 npm run check:export
 npm run preview

@@ -1,3 +1,4 @@
+import type { AtlasNode } from "./knowledge-atlas";
 import type { Localized } from "./learning/types";
 
 export type MathMapDomainId =
@@ -1202,6 +1203,10 @@ const shortLabels: Record<string, Localized> = {
   equivariance: { zh: "不变与等变", en: "Equivariance" },
   softmax: { zh: "Softmax", en: "Softmax" },
 };
-export function mathMapLabel(node: MathMapNode, locale: "zh" | "en") {
-  return shortLabels[node.id]?.[locale] ?? node.label[locale];
+export function mathMapLabel(node: AtlasNode, locale: "zh" | "en") {
+  return (
+    node.shortLabel?.[locale] ??
+    shortLabels[node.id]?.[locale] ??
+    node.label[locale]
+  );
 }

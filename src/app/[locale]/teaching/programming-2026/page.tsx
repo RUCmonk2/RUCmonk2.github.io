@@ -14,6 +14,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Locale } from "next-intl";
 
+import { CourseViewSwitch } from "@/components/learning/course-view-switch";
 import { CodeCopyButton } from "@/components/teaching/code-copy-button";
 import { getLearningItem } from "@/data/learning/catalog";
 import {
@@ -88,6 +89,7 @@ export default async function Programming2026Page({
         <h1>{title}</h1>
         <p className="teaching-intro">{copy.description}</p>
 
+        <CourseViewSwitch locale={localeKey} courseHref="/teaching/programming-2026" mapHref="/teaching/programming-2026/knowledge-map" active="notes" />
         <div className="teaching-stats" aria-label={title}>
           <span>
             <b>{String(programming2026Lectures.length).padStart(2, "0")}</b>

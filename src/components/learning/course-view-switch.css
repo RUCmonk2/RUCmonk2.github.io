@@ -1,0 +1,31 @@
+.course-view-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 24px;
+  font-size: 13px;
+}
+.course-view-switch a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border: 1px solid var(--note-line, var(--border));
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--note-muted, var(--muted-foreground));
+}
+.course-view-switch a[aria-current="page"],
+.course-view-switch a:hover {
+  color: var(--note-accent, var(--foreground));
+  background: var(--note-tint, var(--muted));
+}
+.course-view-switch a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.course-map-language {
+  color: var(--note-muted);
+  font-size: 13px;
+  margin: 18px 0;
+}

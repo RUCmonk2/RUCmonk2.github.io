@@ -26,17 +26,9 @@ import {
   useState,
 } from "react";
 
-import {
-  type MathMapDomainId,
-  mathMapDomains,
-  mathMapEdges,
-  mathMapLabel,
-  mathMapNeighbors,
-  mathMapNode,
-  mathMapNodes,
-  mathMapPaths,
-  mathMapSources,
-} from "@/data/math-map";
+import type { KnowledgeAtlas } from "@/data/knowledge-atlas";
+import { mathAtlas } from "@/data/math-atlas";
+import { mathMapLabel } from "@/data/math-map";
 
 import { DWELL_MS } from "./dwell";
 import { bindGraphGestures, MAX_ZOOM, MIN_ZOOM, zoomAt } from "./gestures";
@@ -67,10 +59,6 @@ import {
 } from "./lesson-reader";
 import { useDwellFocus } from "./use-dwell-focus";
 
-const inkMarks = new Map(
-  mathMapNodes.map((node) => [node.id, inkMark(node.id)]),
-);
-
 function Formula({ value }: { value: string }) {
   const html = useMemo(
     () =>
@@ -92,7 +80,7 @@ function Formula({ value }: { value: string }) {
 }
 
 type Filter = {
-  domain: MathMapDomainId | "all";
+  domain: string;
   path: string;
   query: string;
   neighborhood: boolean;
@@ -103,7 +91,41 @@ const allFilter: Filter = {
   query: "",
   neighborhood: false,
 };
-export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
+export function MathMapGraph({
+  locale,
+  atlas = mathAtlas,
+}: {
+  locale: "zh" | "en";
+  atlas?: KnowledgeAtlas;
+}) {
+  const {
+    nodes: mathMapNodes,
+    edges: mathMapEdges,
+    domains: mathMapDomains,
+    paths: mathMapPaths,
+    sources: mathMapSources,
+    centers,
+  } = atlas;
+  const mathMapNode = useCallback(
+    (id: string) => mathMapNodes.find((node) => node.id === id),
+    [mathMapNodes],
+  );
+  const mathMapNeighbors = useCallback(
+    (id: string) =>
+      mathMapEdges
+        .filter((edge) => edge.source === id || edge.target === id)
+        .map((edge) => ({
+          node: mathMapNode(edge.source === id ? edge.target : edge.source)!,
+          edge,
+        })),
+    [mathMapEdges, mathMapNode],
+  );
+  const inkMarks = useMemo(
+    () => new Map(mathMapNodes.map((node) => [node.id, inkMark(node.id)])),
+    [mathMapNodes],
+  );
+  const colorOf = (id: string) =>
+    mathMapDomains.find((d) => d.id === id)?.tone ?? id;
   const en = locale === "en";
   const uid = useId();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -122,12 +144,18 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
     origin?: Point;
   } | null>(null);
   const [positions, setPositions] = useState(() =>
-    layoutGraph(mathMapNodes, mathMapEdges, locale),
+    layoutGraph(mathMapNodes, mathMapEdges, locale, centers),
   );
   const [camera, setCamera] = useState<Camera>(() => fitCamera(positions));
-  const [selected, setSelected] = useState("gradient");
+  const [selected, setSelected] = useState(atlas.defaultNode);
   const [readingMode, setReadingMode] = useState<ReadingMode>("beginner");
-  const lessonState = useMathLesson(selected, locale);
+  const lessonRef = mathMapNode(selected)?.lesson;
+  const lessonLocale = lessonRef?.locale ?? locale;
+  const lessonState = useMathLesson(
+    lessonRef?.id ?? selected,
+    lessonLocale,
+    lessonRef?.namespace,
+  );
   const [focused, setFocused] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>(allFilter);
   const [view, setView] = useState<"graph" | "list">("graph");
@@ -183,7 +211,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
             node.blurb.en,
           ].some((text) => text.toLowerCase().includes(query))),
     );
-  }, [filter, path, selected]);
+  }, [filter, path, selected, mathMapNodes, mathMapNeighbors]);
   const visibleIds = new Set(visible.map((n) => n.id));
   const visibleEdges = mathMapEdges.filter(
     (e) => visibleIds.has(e.source) && visibleIds.has(e.target),
@@ -227,8 +255,10 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
 
   useEffect(() => {
     const simulation = createGraphSimulation(
-      layoutGraph(mathMapNodes, mathMapEdges, locale),
+      layoutGraph(mathMapNodes, mathMapEdges, locale, centers),
       mathMapEdges,
+      DEFAULT_FORCES,
+      centers,
     ).alpha(0);
     simulationRef.current = simulation;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -250,7 +280,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
       simulationRef.current = null;
       preference.removeEventListener("change", syncMotion);
     };
-  }, [locale]);
+  }, [locale, mathMapNodes, mathMapEdges, centers]);
 
   useEffect(() => {
     if (window.matchMedia("(max-width: 600px)").matches) setView("list");
@@ -268,7 +298,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
     restoreHash();
     window.addEventListener("hashchange", restoreHash);
     return () => window.removeEventListener("hashchange", restoreHash);
-  }, [cancelDwell]);
+  }, [cancelDwell, mathMapNode]);
   const hasVisibleNodes = visible.length > 0;
   useEffect(() => {
     const svg = svgRef.current;
@@ -307,7 +337,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
     setForces(next);
     const simulation = simulationRef.current;
     if (!simulation) return;
-    configureForces(simulation, mathMapEdges, next);
+    configureForces(simulation, mathMapEdges, next, centers);
     fitAfterSettle.current = true;
     settleSimulation();
   }
@@ -433,14 +463,14 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
   }
 
   function reset() {
-    const next = layoutGraph(mathMapNodes, mathMapEdges, locale);
+    const next = layoutGraph(mathMapNodes, mathMapEdges, locale, centers);
     const simulation = simulationRef.current;
     if (simulation) {
       simulation.stop().alpha(0).alphaTarget(0);
       simulation.nodes().forEach((node, i) => {
         Object.assign(node, next[i], { vx: 0, vy: 0, fx: null, fy: null });
       });
-      configureForces(simulation, mathMapEdges, DEFAULT_FORCES);
+      configureForces(simulation, mathMapEdges, DEFAULT_FORCES, centers);
     }
     setForces(DEFAULT_FORCES);
     fitAfterSettle.current = false;
@@ -466,7 +496,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
       <section
         id="mathmap-explorer"
         className="mathmap-explorer"
-        aria-label={en ? "Explore the mathematics map" : "探索数学知识网"}
+        aria-label={atlas.title[locale]}
       >
         <div className="mathmap-panel-title">
           <div>
@@ -496,7 +526,9 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
               placeholder={
                 en
                   ? "Search a concept or keyword…"
-                  : "搜索概念：梯度、Jacobian、群…"
+                  : atlas.id === "math-map"
+                    ? "搜索概念：梯度、Jacobian、群…"
+                    : "搜索本课程的概念或关键词…"
               }
               aria-label={en ? "Search concepts" : "搜索概念"}
               type="search"
@@ -549,7 +581,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
           {mathMapDomains.map((d) => (
             <button
               type="button"
-              data-domain={d.id}
+              data-domain={colorOf(d.id)}
               aria-pressed={filter.domain === d.id}
               key={d.id}
               onClick={() => {
@@ -624,7 +656,10 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
                 {en ? "Selected neighborhood" : "只看当前概念及邻居"}
               </label>
             </div>
-            <div className="mathmap-selection" data-domain={current.domain}>
+            <div
+              className="mathmap-selection"
+              data-domain={colorOf(current.domain)}
+            >
               <div>
                 <span>{en ? "Current concept" : "当前概念"}</span>
                 <b title={current.label[locale]}>{current.label[locale]}</b>
@@ -658,7 +693,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
                   <button
                     type="button"
                     key={node.id}
-                    data-domain={node.domain}
+                    data-domain={colorOf(node.domain)}
                     aria-pressed={selected === node.id}
                     onClick={() => choose(node.id)}
                   >
@@ -886,7 +921,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
                           key={node.id}
                           data-node={node.id}
                           data-importance={nodeTier(p)}
-                          data-domain={node.domain}
+                          data-domain={colorOf(node.domain)}
                           transform={`translate(${p.x} ${p.y})`}
                           className={[
                             "mathmap-node",
@@ -1000,18 +1035,12 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
               className="mathmap-color-key"
               aria-label={en ? "Color key" : "颜色图例"}
             >
-              <span data-domain="analysis">
-                <i />
-                {en ? "Analysis & change" : "分析与变化"}
-              </span>
-              <span data-domain="linear-algebra">
-                <i />
-                {en ? "Space & symmetry" : "空间与对称"}
-              </span>
-              <span data-domain="matrix-calculus">
-                <i />
-                {en ? "Matrices & learning" : "矩阵与学习"}
-              </span>
+              {atlas.legend.map((item) => (
+                <span key={item.tone} data-domain={item.tone}>
+                  <i />
+                  {item.label[locale]}
+                </span>
+              ))}
               <small>
                 {en
                   ? "Larger nodes have more connections"
@@ -1036,7 +1065,7 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
           </div>
           <aside
             className="mathmap-detail"
-            data-domain={current.domain}
+            data-domain={colorOf(current.domain)}
             tabIndex={-1}
             aria-label={en ? "Concept preview" : "概念预览"}
           >
@@ -1092,7 +1121,13 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
                   current.blurb[locale]}
               </MathProse>
             </div>
-            <Formula value={current.formula} />
+            {current.code ? (
+              <pre className="mathmap-code-preview" tabIndex={0}>
+                <code>{current.code}</code>
+              </pre>
+            ) : (
+              <Formula value={current.formula} />
+            )}
             <button
               type="button"
               className="mathmap-open-lesson"
@@ -1150,29 +1185,38 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
                 href={(en ? "/en" : "") + current.href}
               >
                 <BookOpen size={15} />
-                {en ? "Open related course notes" : "阅读相关课程笔记"}
+                {current.hrefLabel?.[locale] ??
+                  (en ? "Open related course notes" : "阅读相关课程笔记")}
                 <ArrowRight size={14} />
               </Link>
             )}
-            <div className="mathmap-reading">
-              <h3>{en ? "Further reading" : "继续阅读"}</h3>
-              {mathMapSources
-                .filter((s) => sourceIds.includes(s.id))
-                .map((s) => (
-                  <a key={s.id} href={s.href} target="_blank" rel="noreferrer">
-                    {s.title}
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                ))}
-            </div>
+            {sourceIds.length > 0 && (
+              <div className="mathmap-reading">
+                <h3>{en ? "Further reading" : "继续阅读"}</h3>
+                {mathMapSources
+                  .filter((s) => sourceIds.includes(s.id))
+                  .map((s) => (
+                    <a
+                      key={s.id}
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {s.title}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+              </div>
+            )}
           </aside>
         </div>
         <article
           ref={detailRef}
           id={uid + "-detail"}
           className="mathmap-lesson"
-          data-domain={current.domain}
+          data-domain={colorOf(current.domain)}
           tabIndex={-1}
+          lang={lessonLocale}
           aria-label={en ? "Concept details" : "概念详情"}
         >
           <header className="mathmap-lesson-header">
@@ -1232,7 +1276,9 @@ export function MathMapGraph({ locale }: { locale: "zh" | "en" }) {
           {en ? "02 / READING ROUTES" : "02 / 阅读路线"}
         </div>
         <h2>
-          {en ? "Four paths into the mathematics." : "沿着问题，把知识连起来。"}
+          {en
+            ? "Follow a route through the ideas."
+            : "沿着问题，把知识连起来。"}
         </h2>
         <div className="mathmap-route-grid">
           {mathMapPaths.map((route, i) => (

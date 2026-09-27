@@ -1350,3 +1350,29 @@
     stroke-dashoffset: 0;
   }
 }
+
+.mathmap-code-preview,
+.mathmap-lesson-prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 18px 20px;
+  margin: 22px 0;
+  border: 1px solid var(--note-line);
+  background: var(--note-tint);
+  color: var(--note-ink);
+  font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace;
+  tab-size: 4;
+}
+.mathmap-lesson-prose :not(pre) > code {
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: var(--note-tint);
+  font: 0.88em ui-monospace, SFMono-Regular, Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+.mathmap-lesson-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 24px auto 12px;
+}

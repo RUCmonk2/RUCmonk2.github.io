@@ -10,12 +10,8 @@ import {
   type SimulationNodeDatum,
 } from "d3-force";
 
-import {
-  type MathMapDomainId,
-  type MathMapEdge,
-  mathMapLabel,
-  type MathMapNode,
-} from "../../data/math-map";
+import type { AtlasNode } from "../../data/knowledge-atlas";
+import { type MathMapEdge, mathMapLabel } from "../../data/math-map";
 
 export const GRAPH_WIDTH = 1080;
 export const GRAPH_HEIGHT = 860;
@@ -27,7 +23,7 @@ export type PositionedNode = Point & {
   radius: number;
   importance: number;
   landmark: boolean;
-  domain: MathMapDomainId;
+  domain: string;
 };
 export type ForceNode = PositionedNode & SimulationNodeDatum;
 type ForceLink = SimulationLinkDatum<ForceNode>;
@@ -54,7 +50,7 @@ export function labelWidth(label: string) {
 
 // Soft subject attraction provides composition; these are not bounds or pins.
 // Uneven spacing leaves open passages between related areas of the map.
-const subjectCenters: Record<MathMapDomainId, Point> = {
+const subjectCenters: Readonly<Record<string, Point>> = {
   analysis: { x: 240, y: 170 },
   multivariable: { x: 560, y: 230 },
   nabla: { x: 855, y: 165 },
@@ -175,19 +171,16 @@ export function configureForces(
   simulation: GraphSimulation,
   edges: readonly MathMapEdge[],
   settings: ForceSettings,
+  centers = subjectCenters,
 ) {
   simulation
     .force(
       "center-x",
-      forceX<ForceNode>((p) => subjectCenters[p.domain].x).strength(
-        settings.center,
-      ),
+      forceX<ForceNode>((p) => centers[p.domain].x).strength(settings.center),
     )
     .force(
       "center-y",
-      forceY<ForceNode>((p) => subjectCenters[p.domain].y).strength(
-        settings.center,
-      ),
+      forceY<ForceNode>((p) => centers[p.domain].y).strength(settings.center),
     )
     .force(
       "repel",
@@ -227,6 +220,7 @@ export function createGraphSimulation(
   points: readonly PositionedNode[],
   edges: readonly MathMapEdge[],
   settings: ForceSettings = DEFAULT_FORCES,
+  centers = subjectCenters,
 ): GraphSimulation {
   // D3 mutates simulation nodes and links. Never pass shared content or React
   // state objects into it; render from a snapshot of its private copies.
@@ -234,7 +228,7 @@ export function createGraphSimulation(
     .stop()
     .velocityDecay(0.42)
     .alphaDecay(0.025);
-  return configureForces(simulation, edges, settings);
+  return configureForces(simulation, edges, settings, centers);
 }
 
 export function snapshotSimulation(
@@ -255,9 +249,10 @@ export function snapshotSimulation(
 }
 
 export function layoutGraph(
-  nodes: readonly MathMapNode[],
+  nodes: readonly AtlasNode[],
   edges: readonly MathMapEdge[],
   locale: "zh" | "en",
+  centers = subjectCenters,
 ): PositionedNode[] {
   const degrees = new Map(nodes.map((node) => [node.id, 0]));
   for (const edge of edges) {
@@ -278,7 +273,7 @@ export function layoutGraph(
     const angle = index * Math.PI * (3 - Math.sqrt(5));
     const distance = 36 * Math.sqrt(index + 0.5);
     const importance = (degrees.get(node.id) ?? 0) / maxDegree;
-    const center = subjectCenters[node.domain];
+    const center = centers[node.domain];
     return {
       id: node.id,
       domain: node.domain,
@@ -290,7 +285,12 @@ export function layoutGraph(
       y: center.y + Math.sin(angle) * distance,
     };
   });
-  const simulation = createGraphSimulation(points, edges);
+  const simulation = createGraphSimulation(
+    points,
+    edges,
+    DEFAULT_FORCES,
+    centers,
+  );
   simulation.tick(500);
   return snapshotSimulation(simulation);
 }
