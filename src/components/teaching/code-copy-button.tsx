@@ -32,7 +32,7 @@ export function CodeCopyButton({
   return (
     <button
       type="button"
-      className="teaching-copy-button"
+      className="programming-copy-button"
       onClick={copyCode}
       aria-label={`${copied ? copiedLabel : label}: ${filename}`}
     >

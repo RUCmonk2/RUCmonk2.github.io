@@ -1,0 +1,93 @@
+.notes-programming-2026 .note-article,
+.notes-programming-2026 #course-downloads {
+  scroll-margin-top: 100px;
+}
+.notes-programming-2026 .note-article + .note-article {
+  margin-top: 24px;
+}
+.programming-examples summary {
+  grid-template-columns: 42px minmax(0, 1fr) 16px;
+}
+.programming-example-title {
+  min-width: 0;
+}
+.programming-example-title b {
+  display: block;
+  font-weight: 550;
+}
+.programming-example-title small {
+  display: block;
+  margin-top: 4px;
+  color: var(--note-muted);
+  font:
+    10px/1.7 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+  overflow-wrap: anywhere;
+}
+.programming-code-panel {
+  margin-bottom: 18px;
+}
+.programming-code-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--note-muted);
+  font-size: 11px;
+}
+.programming-copy-button,
+.note-prose .programming-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid var(--note-line);
+  border-radius: 4px;
+  background: var(--note-paper);
+  color: var(--note-accent);
+  font: inherit;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.programming-copy-button:hover,
+.programming-download:hover {
+  background: var(--note-tint);
+}
+.programming-copy-button svg {
+  width: 14px;
+  height: 14px;
+}
+.programming-code-panel pre {
+  margin-top: 10px;
+  white-space: pre;
+  tab-size: 4;
+}
+.programming-code-panel code {
+  font: inherit;
+}
+.programming-download-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+}
+.programming-download-row p {
+  margin: 0;
+}
+.programming-download-row small {
+  display: block;
+  color: var(--note-muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+@media (max-width: 600px) {
+  .programming-examples summary {
+    grid-template-columns: 34px minmax(0, 1fr) 16px;
+    gap: 8px;
+  }
+}

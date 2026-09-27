@@ -4,6 +4,7 @@
 
 ## 复用边界
 
+- 四门课程的阅读页共用 `src/components/learning/course-reader.tsx` 和 `learning.css`，统一课程切换、侧栏、移动端目录及正文框架。程序设计仅用 `programming-reader.css` 补充代码工具栏与下载行，不再维护独立主题。
 - 五张图（数学总图与四门课程图）共用 `MathMapGraph`、D3 布局、墨点轮廓、手势、800ms 悬停聚焦、阅读器和 CSS。
 - `src/data/knowledge-atlas.ts` 定义可序列化的图谱结构。`math-atlas.ts` 适配既有数学数据；`course-maps/index.ts` 策展课程概念、主题、先修边和阅读路线。
 - `centers` 是柔性的主题吸引中心，不是边界、固定坐标或节点锁定。保留自然力学布局，不给课程图增加盒子或背景墙。

@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, BookOpen, ChevronDown } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -9,14 +9,13 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
 import { CourseLab } from "@/components/learning/course-lab";
-import { CourseViewSwitch } from "@/components/learning/course-view-switch";
+import { CourseReader } from "@/components/learning/course-reader";
 import {
   chapterPath,
   type CourseSlug,
   getLearningCourse,
   type LearningLocale,
 } from "@/data/learning";
-import { learningCatalog, learningItemHref } from "@/data/learning/catalog";
 import { constructMetadata } from "@/lib/metadata";
 
 function NoteMarkdown({
@@ -108,159 +107,122 @@ export function CoursePage({
   );
 
   return (
-    <main className={"notes-page notes-" + slug}>
-      <div className="reader-topbar">
-        <Link href={prefix + "/learning"} className="notes-back">
-          <ArrowLeft size={14} aria-hidden="true" />
-          {isEnglish ? "Learning" : "学习"}
-        </Link>
-        <div
-          className="reader-course-switch"
-          aria-label={isEnglish ? "Switch course" : "切换课程"}
-        >
-          {learningCatalog
-            .filter((item) => item.category === "course")
-            .map((item) => (
-              <Link
-                key={item.id}
-                href={learningItemHref(item, language)}
-                aria-current={slug === item.id ? "true" : undefined}
-              >
-                {item.title[language]}
-              </Link>
-            ))}
-        </div>
-      </div>
-
-      <div className="reader-layout">
-        <aside className="reader-sidebar">
-          <div className="reader-sidebar-heading">
-            <BookOpen size={18} aria-hidden="true" />
-            <h2>{course.title[language]}</h2>
+    <CourseReader
+      locale={language}
+      slug={slug}
+      title={course.title[language]}
+      sidebarMeta={
+        <>
+          {course.chapters.length}{" "}
+          {isEnglish ? "chapters · Chinese notes" : "节笔记 · 按章节阅读"}
+        </>
+      }
+      contents={contents}
+      mobileLabel={
+        <>
+          {isEnglish ? "Contents" : "章节目录"} ·{" "}
+          {String(index + 1).padStart(2, "0")} / {course.chapters.length}
+        </>
+      }
+      courseHref={chapterPath(slug, chapter.id)}
+      mapHref={`/learning/${slug}/knowledge-map#${slug}-${chapter.id}`}
+    >
+      <article className="note-article" lang="zh">
+        <header className="note-header">
+          <div className="note-eyebrow">
+            <span>{course.title.zh}</span>
+            <span>
+              第 {index + 1} 节 / 共 {course.chapters.length} 节
+            </span>
           </div>
-          <p className="reader-sidebar-meta">
-            {course.chapters.length}{" "}
-            {isEnglish ? "chapters · Chinese notes" : "节笔记 · 按章节阅读"}
-          </p>
-          {contents}
-          <Link
-            className="reader-all-courses"
-            href={prefix + "/learning#courses"}
-          >
-            {isEnglish ? "All courses" : "全部课程"}{" "}
-            <ArrowRight size={13} aria-hidden="true" />
-          </Link>
-        </aside>
-
-        <div className="reader-main">
-          <CourseViewSwitch locale={language} courseHref={chapterPath(slug, chapter.id)} mapHref={`/learning/${slug}/knowledge-map#${slug}-${chapter.id}`} active="notes" />
-          <details className="reader-mobile-nav" key={chapter.id}>
-            <summary>
-              <span>
-                {isEnglish ? "Contents" : "章节目录"} ·{" "}
-                {String(index + 1).padStart(2, "0")} / {course.chapters.length}
-              </span>
-              <ChevronDown size={16} aria-hidden="true" />
-            </summary>
-            {contents}
-          </details>
-
-          <article className="note-article" lang="zh">
-            <header className="note-header">
-              <div className="note-eyebrow">
-                <span>{course.title.zh}</span>
-                <span>
-                  第 {index + 1} 节 / 共 {course.chapters.length} 节
-                </span>
-              </div>
-              <h1>{chapter.title}</h1>
-              <p>{chapter.lead}</p>
-              {isEnglish && (
-                <small lang="en">
-                  The course notes are written in Chinese.
-                </small>
-              )}
-            </header>
-            {chapter.figure && (
-              <figure className="note-slide-figure">
-                <a href={chapter.figure.src} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={chapter.figure.src}
-                    alt={chapter.figure.alt}
-                    loading="lazy"
-                  />
-                </a>
-                <figcaption>
-                  {chapter.figure.caption} <span>点击图片查看大图</span>
-                </figcaption>
-              </figure>
-            )}
-            <div className="note-prose">
-              <NoteMarkdown>{chapter.body}</NoteMarkdown>
-            </div>
-            {chapter.lab && <CourseLab kind={chapter.lab} />}
-            <section className="note-checks" aria-labelledby="checks-title">
-              <div className="note-section-heading">
-                <h2 id="checks-title">停一下，自己试试</h2>
-                <span>先想答案，再展开</span>
-              </div>
-              {chapter.checks.map((check, checkIndex) => (
-                <details key={check.question}>
-                  <summary>
-                    <span className="note-check-number">
-                      {String(checkIndex + 1).padStart(2, "0")}
-                    </span>
-                    <span>
-                      <NoteMarkdown inline>{check.question}</NoteMarkdown>
-                    </span>
-                    <ChevronDown size={16} aria-hidden="true" />
-                  </summary>
-                  <div className="note-answer note-prose">
-                    <NoteMarkdown>{check.answer}</NoteMarkdown>
-                  </div>
-                </details>
-              ))}
-            </section>
-            <details className="note-source">
-              <summary>
-                整理依据 <ChevronDown size={13} aria-hidden="true" />
-              </summary>
-              <p>{chapter.source}</p>
-            </details>
-          </article>
-
-          <nav
-            className="reader-pagination"
-            aria-label={isEnglish ? "Chapter navigation" : "前后章节"}
-          >
-            {previous ? (
-              <Link href={prefix + chapterPath(slug, previous.id)}>
-                <span>
-                  <ArrowLeft size={14} aria-hidden="true" /> 上一节
-                </span>
-                <strong>{previous.title}</strong>
-              </Link>
-            ) : (
-              <div />
-            )}
-            {next ? (
-              <Link href={prefix + chapterPath(slug, next.id)}>
-                <span>
-                  下一节 <ArrowRight size={14} aria-hidden="true" />
-                </span>
-                <strong>{next.title}</strong>
-              </Link>
-            ) : (
-              <Link href={prefix + "/learning#courses"}>
-                <span>
-                  回到目录 <ArrowRight size={14} aria-hidden="true" />
-                </span>
-                <strong>继续探索另一门课程</strong>
-              </Link>
-            )}
-          </nav>
+          <h1>{chapter.title}</h1>
+          <p>{chapter.lead}</p>
+          {isEnglish && (
+            <small lang="en">The course notes are written in Chinese.</small>
+          )}
+        </header>
+        {chapter.figure && (
+          <figure className="note-slide-figure">
+            <a
+              href={chapter.figure.src}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={chapter.figure.src}
+                alt={chapter.figure.alt}
+                loading="lazy"
+              />
+            </a>
+            <figcaption>
+              {chapter.figure.caption} <span>点击图片查看大图</span>
+            </figcaption>
+          </figure>
+        )}
+        <div className="note-prose">
+          <NoteMarkdown>{chapter.body}</NoteMarkdown>
         </div>
-      </div>
-    </main>
+        {chapter.lab && <CourseLab kind={chapter.lab} />}
+        <section className="note-checks" aria-labelledby="checks-title">
+          <div className="note-section-heading">
+            <h2 id="checks-title">停一下，自己试试</h2>
+            <span>先想答案，再展开</span>
+          </div>
+          {chapter.checks.map((check, checkIndex) => (
+            <details key={check.question}>
+              <summary>
+                <span className="note-check-number">
+                  {String(checkIndex + 1).padStart(2, "0")}
+                </span>
+                <span>
+                  <NoteMarkdown inline>{check.question}</NoteMarkdown>
+                </span>
+                <ChevronDown size={16} aria-hidden="true" />
+              </summary>
+              <div className="note-answer note-prose">
+                <NoteMarkdown>{check.answer}</NoteMarkdown>
+              </div>
+            </details>
+          ))}
+        </section>
+        <details className="note-source">
+          <summary>
+            整理依据 <ChevronDown size={13} aria-hidden="true" />
+          </summary>
+          <p>{chapter.source}</p>
+        </details>
+      </article>
+
+      <nav
+        className="reader-pagination"
+        aria-label={isEnglish ? "Chapter navigation" : "前后章节"}
+      >
+        {previous ? (
+          <Link href={prefix + chapterPath(slug, previous.id)}>
+            <span>
+              <ArrowLeft size={14} aria-hidden="true" /> 上一节
+            </span>
+            <strong>{previous.title}</strong>
+          </Link>
+        ) : (
+          <div />
+        )}
+        {next ? (
+          <Link href={prefix + chapterPath(slug, next.id)}>
+            <span>
+              下一节 <ArrowRight size={14} aria-hidden="true" />
+            </span>
+            <strong>{next.title}</strong>
+          </Link>
+        ) : (
+          <Link href={prefix + "/learning#courses"}>
+            <span>
+              回到目录 <ArrowRight size={14} aria-hidden="true" />
+            </span>
+            <strong>继续探索另一门课程</strong>
+          </Link>
+        )}
+      </nav>
+    </CourseReader>
   );
 }

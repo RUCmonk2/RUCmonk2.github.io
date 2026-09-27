@@ -7,7 +7,6 @@ import { createJiti } from "jiti";
 const jiti = createJiti(import.meta.url);
 const { learningCatalog, getFeaturedLearning, learningItemHref } =
   await jiti.import("../src/data/learning/catalog.ts");
-const { learningCourses } = await jiti.import("../src/data/learning.ts");
 const output = path.resolve("out");
 const ids = new Set();
 const hrefs = new Set();
@@ -55,10 +54,7 @@ for (const item of learningCatalog) {
       page.match(/<title>(.*?)<\/title>/)?.[1].includes(escapedTitle),
       `Catalog/page title mismatch: ${href}`,
     );
-    const isChapterReader = learningCourses.some(
-      (course) => course.slug === item.id,
-    );
-    if (!item.localized || (item.category === "course" && !isChapterReader)) {
+    if (!item.localized) {
       assert.equal(
         page
           .match(/<h1\b[^>]*>([^]*?)<\/h1>/)?.[1]
@@ -67,7 +63,7 @@ for (const item of learningCatalog) {
         escapedTitle,
         `Catalog/heading mismatch: ${href}`,
       );
-    } else if (isChapterReader) {
+    } else if (item.category === "course") {
       const courseSwitch = page.match(
         /<div\b[^>]*class="reader-course-switch"[^>]*>([^]*?)<\/div>/,
       )?.[1];
