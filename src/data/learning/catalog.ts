@@ -65,6 +65,20 @@ export const learningCatalog: readonly LearningItem[] = [
     updated: "2026-09-07",
   },
   {
+    id: "math-map",
+    category: "guide",
+    href: "/learning/math-map",
+    localized: true,
+    title: { zh: "数学知识网", en: "Mathematics Map" },
+    description: {
+      zh: "沿着概念关系探索数分、线代、多元微积分、∇ 算子、矩阵微分、群论与 AI 数学基础。",
+      en: "Explore analysis, linear algebra, multivariable calculus, vector operators, matrix differentials, groups, and mathematics for AI.",
+    },
+    topic: { zh: "数学基础", en: "Mathematical foundations" },
+    scope: { zh: "交互图谱 · 7 个领域", en: "Interactive map · 7 subjects" },
+    updated: "2026-09-27",
+  },
+  {
     id: "vscode-cpp",
     category: "guide",
     href: "/tutorials/vscode-cpp",

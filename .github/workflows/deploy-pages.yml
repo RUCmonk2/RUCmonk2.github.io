@@ -31,6 +31,8 @@ jobs:
         run: npm run lint
       - name: Test publication rules
         run: npm run test:content
+      - name: Validate mathematics map
+        run: npm run test:math-map
       - name: Build static site
         run: npm run build
       - name: Check exported pages and links
