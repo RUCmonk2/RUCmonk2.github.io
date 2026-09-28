@@ -145,6 +145,17 @@ export const DATA = {
       },
       url: "https://davidz0926.github.io/",
     },
+    {
+      name: { zh: "Nevertheless", en: "Nevertheless" },
+      handle: "nevertheless.eu.cc",
+      initials: "NE",
+      tone: "violet",
+      description: {
+        zh: "中国人民大学高瓴人工智能学院学生，记录数学、C++、网页开发的学习，以及日常思考与尝试。",
+        en: "A student at RUC's Gaoling School of AI sharing her learning in mathematics, C++, and web development, alongside everyday reflections and experiments.",
+      },
+      url: "https://nevertheless.eu.cc/",
+    },
   ],
   contact: {
     social: {
