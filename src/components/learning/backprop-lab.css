@@ -1,3 +1,6 @@
+.backprop-lab {
+  scroll-margin-top: 100px;
+}
 .backprop-scenario {
   display: grid;
   gap: 8px;
