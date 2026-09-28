@@ -39,15 +39,15 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "机器人学导论", en: "Introduction to Robotics" },
     description: {
-      zh: "从一次抓取理解机器人系统，再算清坐标变换、关节轨迹、末端速度与下一步行动。",
-      en: "Connect robot hardware with coordinate transforms, trajectories, Jacobians, and decision-making. Notes are in Chinese.",
+      zh: "从系统与数学基础走到第四周：逐步推导欧拉角、四元数、D-H、正逆运动学与动力学，配三组交互实验。",
+      en: "Robot systems through week 4: rotations, quaternions, D-H, kinematics, and dynamics, with worked examples and three interactive labs. Notes are in Chinese.",
     },
     topic: { zh: "具身智能", en: "Embodied intelligence" },
     scope: {
-      zh: "导论、硬件与数学基础",
-      en: "Systems, hardware, and mathematics",
+      zh: "更新至第四周 · 机器人学基础详解",
+      en: "Through week 4 · robotics foundations",
     },
-    updated: "2026-09-25",
+    updated: "2026-09-28",
     featuredOrder: 2,
   },
   {

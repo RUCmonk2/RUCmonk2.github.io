@@ -1,0 +1,177 @@
+.robotics-lab {
+  min-width: 0;
+}
+.robotics-lab .lab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.robotics-lab button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.robot-sliders {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+.robot-matrices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.robot-matrix-wrap,
+.robot-history {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.robotics-lab table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+.robotics-lab table caption {
+  text-align: left;
+  color: var(--note-muted);
+  padding: 0.7rem 0;
+  font-size: 0.8rem;
+}
+.robotics-lab td,
+.robotics-lab th {
+  padding: 0.5rem 0.55rem;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--note-line);
+}
+.robotics-lab .robot-matrix td {
+  text-align: center;
+}
+.robot-status {
+  border-left: 3px solid var(--note-accent);
+  padding: 0.7rem 1rem;
+  background: var(--note-tint);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.robotics-lab .robot-note {
+  font-size: 0.8rem;
+  color: var(--note-muted);
+  line-height: 1.8;
+}
+.robot-arm-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+.robot-arm {
+  display: block;
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  color: var(--note-ink);
+}
+.robot-arm text {
+  fill: currentColor;
+  font-family: inherit;
+  font-size: 10px;
+}
+.robot-grid {
+  stroke: var(--note-line);
+  stroke-width: 0.6;
+}
+.robot-grid text {
+  stroke: none;
+  fill: var(--note-muted);
+}
+.robot-axis {
+  stroke: var(--note-muted);
+  stroke-width: 1;
+  fill: none;
+}
+.robot-links {
+  stroke: var(--note-accent);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.robot-joint {
+  stroke: var(--note-accent);
+  stroke-width: 2.5;
+  fill: var(--note-paper);
+}
+.robot-target {
+  stroke: #c18742;
+  stroke-width: 1.4;
+  fill: none;
+}
+.robot-heading {
+  stroke: #c18742;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.robotics-lab .robot-values {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.robot-method {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.85rem;
+}
+.robot-method select {
+  max-width: 100%;
+  padding: 0.55rem;
+  border: 1px solid var(--note-line);
+  border-radius: 4px;
+  background: var(--note-paper);
+  color: var(--note-ink);
+}
+.robot-errors {
+  margin: 0;
+}
+.robot-errors dt {
+  color: var(--note-muted);
+  font-size: 0.8rem;
+  margin-top: 0.9rem;
+}
+.robot-errors dd {
+  margin: 0.2rem 0;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.robot-details {
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+}
+.robot-details summary {
+  cursor: pointer;
+  color: var(--note-accent);
+}
+@media (max-width: 600px) {
+  .robot-sliders,
+  .robot-matrices,
+  .robot-arm-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .robot-arm {
+    margin-inline: auto;
+  }
+  .robot-errors {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+  .robot-errors dt,
+  .robot-errors dd {
+    margin: 0;
+  }
+  .robotics-lab .robot-values strong {
+    font-size: 1rem;
+  }
+}

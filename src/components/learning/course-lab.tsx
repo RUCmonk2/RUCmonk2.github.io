@@ -3,6 +3,10 @@
 import { RotateCcw } from "lucide-react";
 import { useId, useState } from "react";
 
+import type { CourseChapter } from "@/data/learning/types";
+
+import { RoboticsLab } from "./robotics-lab";
+
 function number(value: number) {
   if (Math.abs(value) < 0.00005) return "0";
   return Math.abs(value) >= 10000
@@ -242,6 +246,12 @@ function RotationLab() {
   );
 }
 
-export function CourseLab({ kind }: { kind: "gradient" | "rotation" }) {
-  return kind === "gradient" ? <GradientLab /> : <RotationLab />;
+export function CourseLab({
+  kind,
+}: {
+  kind: NonNullable<CourseChapter["lab"]>;
+}) {
+  if (kind === "gradient") return <GradientLab />;
+  if (kind === "rotation") return <RotationLab />;
+  return <RoboticsLab kind={kind} />;
 }
