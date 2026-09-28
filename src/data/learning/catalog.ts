@@ -24,12 +24,15 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "深度学习导论", en: "Introduction to Deep Learning" },
     description: {
-      zh: "从数据和损失出发，手算梯度下降、Softmax 与反向传播，把前三周的知识连成一次完整训练。",
-      en: "Work through data, losses, gradient descent, Softmax, and backpropagation. The reading notes are in Chinese.",
+      zh: "更新至第四周：逐步推导矩阵链式法则、BP 与自动微分，补充批量梯度、数值校验和可操作的六权重实验。",
+      en: "Through week 4: matrix chain rules, backpropagation, automatic differentiation, batch gradients and an interactive training example. Notes are in Chinese.",
     },
     topic: { zh: "机器学习", en: "Machine learning" },
-    scope: { zh: "前三周 · 自学讲义伴读", en: "Weeks 1–3 · study notes" },
-    updated: "2026-09-25",
+    scope: {
+      zh: "更新至第四周 · BP 算法详解",
+      en: "Through week 4 · backpropagation",
+    },
+    updated: "2026-09-28",
     featuredOrder: 1,
   },
   {

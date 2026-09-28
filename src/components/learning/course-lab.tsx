@@ -5,6 +5,7 @@ import { useId, useState } from "react";
 
 import type { CourseChapter } from "@/data/learning/types";
 
+import { BackpropLab } from "./backprop-lab";
 import { RoboticsLab } from "./robotics-lab";
 
 function number(value: number) {
@@ -251,6 +252,7 @@ export function CourseLab({
 }: {
   kind: NonNullable<CourseChapter["lab"]>;
 }) {
+  if (kind === "backprop") return <BackpropLab />;
   if (kind === "gradient") return <GradientLab />;
   if (kind === "rotation") return <RotationLab />;
   return <RoboticsLab kind={kind} />;

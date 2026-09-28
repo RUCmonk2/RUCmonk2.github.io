@@ -1,6 +1,6 @@
 # Knowledge map label font
 
-`kai-labels.woff` is an 845-character subset of **LXGW WenKai Regular 1.522**,
+`kai-labels.woff` is an 849-character subset of **LXGW WenKai Regular 1.522**,
 used only for Chinese labels inside the mathematics graph, four course graphs,
 three K12 mathematics graphs, and 37 school-subject graphs.
 

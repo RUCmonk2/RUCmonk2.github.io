@@ -10,7 +10,13 @@ export type CourseChapter = {
   body: string;
   checks: { question: string; answer: string }[];
   source: string;
-  lab?: "gradient" | "rotation" | "euler" | "planar-forward" | "planar-inverse";
+  lab?:
+    | "backprop"
+    | "gradient"
+    | "rotation"
+    | "euler"
+    | "planar-forward"
+    | "planar-inverse";
   figure?: {
     src: string;
     alt: string;

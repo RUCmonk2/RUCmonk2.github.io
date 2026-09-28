@@ -1,0 +1,54 @@
+.backprop-scenario {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+}
+.backprop-scenario select {
+  width: 100%;
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid var(--note-line);
+  border-radius: 4px;
+  color: var(--note-ink);
+  background: var(--note-paper);
+}
+.backprop-lab .lab-values strong {
+  overflow-wrap: anywhere;
+}
+.backprop-lab .backprop-state {
+  margin: 16px 0;
+  min-height: 3em;
+}
+.backprop-table {
+  overflow-x: auto;
+  margin: 16px 0 24px;
+}
+.backprop-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 340px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.backprop-table caption {
+  color: var(--note-muted);
+  text-align: left;
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+.backprop-table td,
+.backprop-table th {
+  padding: 9px 7px;
+  text-align: right;
+  border-bottom: 1px solid var(--note-line);
+  white-space: nowrap;
+}
+.backprop-table th {
+  font-weight: 500;
+}
+.backprop-table th:first-child {
+  text-align: left;
+}
+.backprop-lab .lab-actions {
+  flex-wrap: wrap;
+}
