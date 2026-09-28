@@ -254,6 +254,38 @@ export type CheckResult = {
   message: string;
   expanded?: string;
 };
+export type FactorizationBlanks = {
+  multiplier: string;
+  factors: [
+    { coefficient: string; constant: string },
+    { coefficient: string; constant: string },
+  ];
+};
+export function checkFactorizationBlanks(
+  input: FactorizationBlanks,
+  coefficients: readonly number[],
+): CheckResult {
+  const values = [
+    input.multiplier,
+    ...input.factors.flatMap((factor) => [factor.coefficient, factor.constant]),
+  ].map((value) => value.trim().replace(/[−–]/g, "-"));
+  if (values.some((value) => !value))
+    return { status: "invalid", message: "请先把所有空格填好。" };
+  if (
+    values.some(
+      (value) => !/^[+-]?\d+(?:\.\d+)?(?:\/[+-]?\d+(?:\.\d+)?)?$/.test(value),
+    )
+  )
+    return {
+      status: "invalid",
+      message: "每个空里只填一个数，可以是负数或分数。",
+    };
+  const [k, a, b, c, d] = values;
+  return checkFactorization(
+    `(${k})((${a})x+(${b}))((${c})x+(${d}))`,
+    coefficients,
+  );
+}
 export function checkFactorization(
   input: string,
   coefficients: readonly number[],

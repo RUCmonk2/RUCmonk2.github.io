@@ -5,6 +5,7 @@ import katex from "katex";
 const jiti = createJiti(import.meta.url);
 const {
   checkFactorization,
+  checkFactorizationBlanks,
   makeFactorQuestion,
   factorKinds,
   parseQuestionLink,
@@ -39,6 +40,32 @@ check("x^99", [1], "invalid");
 check("(x+2", [6, 5, 1], "invalid");
 check("x/x", [1], "invalid");
 check("(1/0)^0", [1], "invalid");
+const checkBlanks = (values, coefficients, status) => {
+  const [multiplier, a, b, c, d] = values;
+  const result = checkFactorizationBlanks(
+    {
+      multiplier,
+      factors: [
+        { coefficient: a, constant: b },
+        { coefficient: c, constant: d },
+      ],
+    },
+    coefficients,
+  );
+  assert.equal(result.status, status, JSON.stringify({ values, result }));
+};
+checkBlanks(["1", "1", "2", "1", "3"], [6, 5, 1], "correct");
+checkBlanks(["2", "1", "2", "1", "3"], [12, 10, 2], "correct");
+checkBlanks(["1", "2", "4", "1", "3"], [12, 10, 2], "correct");
+checkBlanks(["1", "1", "3", "2", "4"], [12, 10, 2], "correct");
+checkBlanks(["1", "2", "1", "3", "2"], [2, 7, 6], "correct");
+checkBlanks(["1", "1/2", "−1/2", "2", "6"], [-3, 2, 1], "correct");
+checkBlanks(["1", "2", "2", "1", "3"], [12, 10, 2], "incorrect");
+checkBlanks(["", "1", "2", "1", "3"], [12, 10, 2], "invalid");
+checkBlanks(["2", "", "2", "1", "3"], [12, 10, 2], "invalid");
+checkBlanks(["2", "1", "", "1", "3"], [12, 10, 2], "invalid");
+checkBlanks(["1", "x", "2", "1", "3"], [6, 5, 1], "invalid");
+checkBlanks(["1/0", "1", "2", "1", "3"], [6, 5, 1], "invalid");
 const nested = (base, depth) =>
   Array.from({ length: depth }).reduce((value) => "(" + value + ")^6", base);
 check(nested("2", 20), [1], "invalid");

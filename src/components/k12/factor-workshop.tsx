@@ -8,7 +8,9 @@ import { useEffect, useMemo, useState } from "react";
 import { k12LessonHref } from "@/data/k12";
 import {
   checkFactorization,
+  checkFactorizationBlanks,
   type CheckResult,
+  type FactorizationBlanks,
   type FactorKind,
   factorKinds,
   makeFactorQuestion,
@@ -258,6 +260,15 @@ function AreaExplorer() {
     </section>
   );
 }
+function emptyFactorBlanks(): FactorizationBlanks {
+  return {
+    multiplier: "",
+    factors: [
+      { coefficient: "", constant: "" },
+      { coefficient: "", constant: "" },
+    ],
+  };
+}
 export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
   const [kind, setKind] = useState<FactorKind>("quadratic"),
     [difficulty, setDifficulty] = useState<1 | 2 | 3>(1);
@@ -265,6 +276,7 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
     makeFactorQuestion(20260927, "quadratic", 1),
   );
   const [answer, setAnswer] = useState(""),
+    [factorBlanks, setFactorBlanks] = useState(emptyFactorBlanks),
     [result, setResult] = useState<CheckResult | null>(null),
     [hints, setHints] = useState(0),
     [showSteps, setShowSteps] = useState(false),
@@ -273,6 +285,10 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
     [count, setCount] = useState(0),
     [linkNotice, setLinkNotice] = useState("");
   const prefix = locale === "en" ? "/en" : "";
+  const usesFactorBlanks =
+    question.kind === "quadratic" || question.kind === "mixed";
+  const usesCoefficientBlanks =
+    question.kind === "mixed" || question.coefficients[2] !== 1;
   function load(
     seed: number,
     type: FactorKind,
@@ -284,6 +300,7 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
     setKind(type);
     setDifficulty(level);
     setAnswer("");
+    setFactorBlanks(emptyFactorBlanks());
     setResult(null);
     setHints(0);
     setShowSteps(false);
@@ -313,12 +330,43 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
   }
   function submit(event: React.FormEvent) {
     event.preventDefault();
-    const checked = checkFactorization(answer, question.coefficients);
+    const checked = usesFactorBlanks
+      ? checkFactorizationBlanks(
+          usesCoefficientBlanks
+            ? factorBlanks
+            : {
+                multiplier: "1",
+                factors: [
+                  {
+                    coefficient: "1",
+                    constant: factorBlanks.factors[0].constant,
+                  },
+                  {
+                    coefficient: "1",
+                    constant: factorBlanks.factors[1].constant,
+                  },
+                ],
+              },
+          question.coefficients,
+        )
+      : checkFactorization(answer, question.coefficients);
     setResult(checked);
     if (checked.status === "correct" && !solved) {
       setCount((value) => value + 1);
       setSolved(true);
     }
+  }
+  function updateFactorBlank(
+    index: number,
+    field: "coefficient" | "constant",
+    value: string,
+  ) {
+    setFactorBlanks((current) => {
+      const factors: FactorizationBlanks["factors"] = [...current.factors];
+      factors[index] = { ...factors[index], [field]: value };
+      return { ...current, factors };
+    });
+    setResult(null);
   }
   async function copyLink() {
     const url = new URL(location.href);
@@ -386,31 +434,108 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
         </div>
         {linkNotice && <p role="status">{linkNotice}</p>}
         <form onSubmit={submit} className="factor-answer">
-          <label htmlFor="factor-answer">
-            写出分解后的式子
-            <input
-              id="factor-answer"
-              value={answer}
-              onChange={(event) => {
-                setAnswer(event.target.value);
-                setResult(null);
-              }}
-              placeholder="例如 (x+2)(x+3)"
-              autoComplete="off"
-              autoCapitalize="off"
-              spellCheck={false}
-              maxLength={240}
-              aria-describedby="factor-input-help"
-            />
-          </label>
+          {usesFactorBlanks ? (
+            <fieldset className="factor-fill-answer">
+              <legend>在空格里填数</legend>
+              <div className="factor-fill-expression">
+                {usesCoefficientBlanks && (
+                  <input
+                    className="factor-fill-number"
+                    aria-label="括号外的公因数"
+                    value={factorBlanks.multiplier}
+                    onChange={(event) => {
+                      setFactorBlanks((current) => ({
+                        ...current,
+                        multiplier: event.target.value,
+                      }));
+                      setResult(null);
+                    }}
+                    autoComplete="off"
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    maxLength={24}
+                    aria-describedby="factor-input-help"
+                  />
+                )}
+                {factorBlanks.factors.map((factor, index) => (
+                  <span className="factor-fill-term" key={index}>
+                    <span aria-hidden="true">(</span>
+                    {usesCoefficientBlanks && (
+                      <input
+                        className="factor-fill-number"
+                        aria-label={"第" + (index + 1) + "个因式中 x 的系数"}
+                        value={factor.coefficient}
+                        onChange={(event) =>
+                          updateFactorBlank(
+                            index,
+                            "coefficient",
+                            event.target.value,
+                          )
+                        }
+                        autoComplete="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
+                        maxLength={24}
+                        aria-describedby="factor-input-help"
+                      />
+                    )}
+                    <span aria-hidden="true">x+</span>
+                    <input
+                      className="factor-fill-number"
+                      aria-label={"第" + (index + 1) + "个因式中加上的数"}
+                      value={factor.constant}
+                      onChange={(event) =>
+                        updateFactorBlank(index, "constant", event.target.value)
+                      }
+                      autoComplete="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
+                      maxLength={24}
+                      aria-describedby="factor-input-help"
+                    />
+                    <span aria-hidden="true">)</span>
+                  </span>
+                ))}
+              </div>
+            </fieldset>
+          ) : (
+            <label htmlFor="factor-answer">
+              写出分解后的式子
+              <input
+                id="factor-answer"
+                value={answer}
+                onChange={(event) => {
+                  setAnswer(event.target.value);
+                  setResult(null);
+                }}
+                placeholder="例如 (x+2)(x+3)"
+                autoComplete="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                maxLength={240}
+                aria-describedby="factor-input-help"
+              />
+            </label>
+          )}
           <button type="submit" className="k12-button">
             检查这一步
           </button>
         </form>
         <p id="factor-input-help" className="factor-note">
-          可省略相邻因式间的乘号；平方可写 ^2 或
-          ²。接受因式换序和等价写法。只写结果，不用输入等号；含 x
-          的分母不属于本练习的多项式答案。
+          {usesFactorBlanks ? (
+            <>
+              {usesCoefficientBlanks
+                ? "括号外填公因数（没有则填 1），x 前填系数；两个因式顺序不限。"
+                : "只需填写两个数，顺序不限；"}
+              负数可直接填 -2，分数可写 1/2。按 Tab 切换空格，按回车检查。
+            </>
+          ) : (
+            <>
+              可省略相邻因式间的乘号；平方可写 ^2 或
+              ²。接受因式换序和等价写法。只写结果，不用输入等号；含 x
+              的分母不属于本练习的多项式答案。
+            </>
+          )}
         </p>
         {result && (
           <div
