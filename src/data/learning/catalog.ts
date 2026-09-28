@@ -1,6 +1,6 @@
 import type { LearningLocale, Localized } from "./types";
 
-export type LearningCategory = "course" | "guide" | "math";
+export type LearningCategory = "course" | "guide" | "math" | "school";
 export type LearningItem = {
   id: string;
   category: LearningCategory;
@@ -83,8 +83,25 @@ export const learningCatalog: readonly LearningItem[] = [
   },
   {
     id: "k12",
-    category: "math",
+    category: "school",
     href: "/learning/k12",
+    localized: true,
+    title: { zh: "中小学全科学习导航", en: "School Learning Atlas" },
+    description: {
+      zh: "16 个学科入口，按小学、初中、高中整理知识主线、学习任务与检查要点，连接六个跨学科项目。",
+      en: "Sixteen subject entries with stage-based learning frameworks, original tasks, checkpoints and interdisciplinary projects in Chinese.",
+    },
+    topic: { zh: "全科学习", en: "School subjects" },
+    scope: {
+      zh: "学科框架 · 自学与家教",
+      en: "Frameworks · study and tutoring",
+    },
+    updated: "2026-09-28",
+  },
+  {
+    id: "k12-mathematics",
+    category: "math",
+    href: "/learning/k12/mathematics",
     localized: true,
     title: { zh: "中小学数学知识网", en: "School Mathematics Atlas" },
     description: {
@@ -230,6 +247,11 @@ export const learningCatalog: readonly LearningItem[] = [
 
 export const learningCategories = [
   { id: "course", anchor: "courses", title: { zh: "课程学习", en: "Courses" } },
+  {
+    id: "school",
+    anchor: "schools",
+    title: { zh: "中小学学习", en: "School learning" },
+  },
   {
     id: "math",
     anchor: "mathematics",

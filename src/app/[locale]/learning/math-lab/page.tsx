@@ -55,7 +55,9 @@ export default async function Page({ params }: Props) {
           <p>
             每个实验都连接相关讲义。遇到不理解的步骤，回到概念、例题和误区解释；完成后换一个数值，检查自己能否独立迁移。
           </p>
-          <Link href={prefix + "/learning/k12"}>进入中小学数学知识网 →</Link>
+          <Link href={prefix + "/learning/k12/mathematics"}>
+            进入中小学数学知识网 →
+          </Link>
         </div>
       </section>
     </K12Shell>

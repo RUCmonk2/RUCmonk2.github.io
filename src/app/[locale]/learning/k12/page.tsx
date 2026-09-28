@@ -1,25 +1,26 @@
-import { ArrowRight, BookOpen, Network, Shapes } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { Locale } from "next-intl";
 
-import { K12Catalog } from "@/components/k12/k12-catalog";
 import { K12Shell } from "@/components/k12/k12-shell";
+import { SubjectDirectory } from "@/components/k12/subject-directory";
+import { k12Topics } from "@/data/k12";
 import {
-  k12LessonHref,
-  k12Routes,
-  k12Sources,
-  k12Stages,
-  k12Topics,
-} from "@/data/k12";
+  curriculumSources,
+  schoolDirectory,
+  schoolProjects,
+  subjectHref,
+  subjectModuleCount,
+} from "@/data/k12-subjects";
 import { constructMetadata } from "@/lib/metadata";
+
 type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return constructMetadata({
-    title: locale === "en" ? "School Mathematics Atlas" : "中小学数学知识网",
+    title: locale === "en" ? "School Learning Atlas" : "中小学全科学习导航",
     description:
-      "小学、初中、高中完整数学主干：知识网、双模式详细讲义、逐步例题、练习解答与家教实验室。",
+      "小学、初中、高中各学科的知识主线、学习任务、检查要点与跨学科项目，服务自学和家教备课。",
     path: "/learning/k12",
     locale: locale as Locale,
   });
@@ -29,127 +30,135 @@ export default async function Page({ params }: Props) {
   const language = locale === "en" ? "en" : "zh";
   const prefix = language === "en" ? "/en" : "";
   return (
-    <K12Shell locale={language}>
+    <K12Shell locale={language} section="subjects">
       <header className="k12-hero">
         <span className="notes-overline">
-          MATHEMATICS / UNDERSTAND · PRACTISE · CONNECT
+          SCHOOL LEARNING / UNDERSTAND · PRACTISE · CONNECT
         </span>
-        <h1>从一个问题，走进数学。</h1>
+        <h1>从一门课，认识更大的世界。</h1>
         <p>
-          给中小学生的自学讲义，也给家教课堂一张能反复使用的地图。知道从哪里开始，弄懂每一步为什么，再用一道新题检查自己。
+          给中小学生一张能找到起点的学习地图，也给家教课堂一份可反复使用的备课目录。看看要学什么、怎样练习，再把相邻学科连起来。
         </p>
         <div className="k12-hero-meta">
-          <span>{k12Topics.length} 节完整讲义</span>
-          <span>从零理解 / 严谨表述</span>
-          <span>例题 · 提示 · 参考解答</span>
+          <span>{schoolDirectory.length} 个学科入口</span>
+          <span>小学 · 初中 · 高中</span>
+          <span>{subjectModuleCount} 个学习框架模块</span>
+          <span>数学另有 {k12Topics.length} 节详细讲义</span>
         </div>
       </header>
-      <section className="k12-stage-grid" aria-label="按学段开始">
-        {k12Stages.map((stage, index) => (
-          <article className="k12-stage-card" key={stage.id}>
-            <span className="notes-overline">
-              0{index + 1} / {stage.en.toUpperCase()}
-            </span>
-            <h2>{stage.title}</h2>
-            <p>{stage.description}</p>
-            <span className="k12-card-meta">
-              {k12Topics.filter((topic) => topic.stage === stage.id).length} 节
-              ·{" "}
-              {stage.id === "high"
-                ? "必修、选择性必修与拓展分开标记"
-                : "按概念学习，按先修关系补基础"}
-            </span>
-            <div>
-              <Link href={prefix + "/learning/k12/" + stage.id}>
-                <Network size={15} />
-                探索知识网
-              </Link>
-              <Link
-                href={
-                  prefix +
-                  k12LessonHref(
-                    k12Topics.find((topic) => topic.stage === stage.id)!.id,
-                  )
-                }
-              >
-                <BookOpen size={15} />
-                从第一节开始
-              </Link>
-            </div>
-          </article>
-        ))}
-      </section>
-      <section className="k12-start note-article">
-        <div>
-          <span className="notes-overline">A SMALL EXPERIMENT</span>
-          <h2>把一个式子，拼成一个长方形。</h2>
+      <div className="subject-start-grid">
+        <section>
+          <span className="notes-overline">FOR LEARNERS</span>
+          <h2>自己学</h2>
           <p>
-            因式工坊把面积、整式乘法和因式分解连在一起。先动手看懂，再换一道同类题，提示可以一层一层展开。
+            先选学段和学科，读起步要求，再做一个具体任务。完成后展开检查要点；卡住时回到知识主线补基础。
           </p>
-          <Link
-            className="k12-button"
-            href={prefix + "/learning/math-lab/factorization"}
-          >
-            <Shapes size={16} />
-            打开因式工坊
-            <ArrowRight size={14} />
+          <a href="#subjects">选一个学科 ↓</a>
+        </section>
+        <section>
+          <span className="notes-overline">FOR TUTORING</span>
+          <h2>一起上课</h2>
+          <p>
+            先让学生解释已有理解，再用任务观察困难在哪里。把“概念不清、步骤不熟、表达欠缺”分开记录，下一次课再检查。
+          </p>
+          <a href="#teaching">查看备课方法 ↓</a>
+        </section>
+        <section>
+          <span className="notes-overline">READY TO EXPLORE</span>
+          <h2>数学已经可以深入学</h2>
+          <p>
+            三张知识网、双模式讲义、逐步例题与练习解答；因式工坊支持面积探索、随机题和分层提示。
+          </p>
+          <Link href={prefix + "/learning/k12/mathematics"}>
+            进入数学知识网 →
           </Link>
-        </div>
-        <div className="k12-start-equation" aria-hidden="true">
-          <span>一个整体</span>
-          <strong>↔</strong>
-          <span>几块相加</span>
-        </div>
-      </section>
-      <section className="k12-paths" aria-labelledby="paths-title">
+        </section>
+      </div>
+      <SubjectDirectory locale={language} />
+      <section
+        className="subject-projects"
+        id="projects"
+        aria-labelledby="projects-title"
+      >
         <div className="note-section-heading">
-          <h2 id="paths-title">不知道从哪里开始？选一条路线</h2>
-          <span>每一站都能回看先修</span>
+          <h2 id="projects-title">把几门课用在同一个问题里</h2>
+          <span>六个可开展的小项目</span>
         </div>
         <div className="k12-path-grid">
-          {k12Routes.map((route) => (
-            <article key={route.id}>
-              <h3>{route.title}</h3>
-              <p>{route.description}</p>
-              <ol>
-                {route.nodes.map((id) => (
-                  <li key={id}>
-                    <Link href={prefix + k12LessonHref(id)}>
-                      {k12Topics.find((topic) => topic.id === id)!.title}
-                    </Link>
-                  </li>
+          {schoolProjects.map((project) => (
+            <article id={project.id} key={project.id}>
+              <span className="notes-overline">{project.stage}</span>
+              <h3>{project.title}</h3>
+              <p>{project.question}</p>
+              <div className="subject-project-links">
+                {project.subjects.map((id) => (
+                  <Link href={prefix + subjectHref(id)} key={id}>
+                    {schoolDirectory.find((s) => s.id === id)!.title}
+                  </Link>
                 ))}
-              </ol>
+              </div>
+              <details>
+                <summary>展开步骤与交付成果</summary>
+                <ol className="subject-project-steps">
+                  {project.steps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
+                <p>
+                  <strong>最后留下：</strong>
+                  {project.result}
+                </p>
+              </details>
             </article>
           ))}
         </div>
       </section>
-      <K12Catalog locale={language} />
-      <section className="k12-guidance note-article">
+      <section className="k12-guidance note-article" id="teaching">
         <div className="note-prose">
-          <h2>怎样用这套内容</h2>
-          <h3>自己学</h3>
+          <h2>把框架变成一节家教课</h2>
+          <ol>
+            <li>
+              <strong>从一道任务开始诊断。</strong>
+              先听学生如何解释；不要先演示完整解法，再把模仿成功当作已经掌握。
+            </li>
+            <li>
+              <strong>一次解决一个主要困难。</strong>
+              概念不清就用具体事物或反例，步骤不熟就分步练习，表达不清就追问依据。
+            </li>
+            <li>
+              <strong>换一道情境相近的任务。</strong>
+              减少提示，观察能否迁移。数学检查数值和条件，文科检查材料和论证，实践课程检查过程与成果。
+            </li>
+            <li>
+              <strong>留下下次能复查的记录。</strong>
+              记“学生能独立做什么、仍需什么提示、下次怎样检查”，而不是只写完成了几页。
+            </li>
+          </ol>
           <p>
-            先看本节目标与先修，用“从零理解”完成例题，再独立尝试三道练习。卡住时回到具体步骤；答案只在你主动展开后出现。严谨表述帮助你核对条件与边界。
+            同一模块可以跨多次课学习；页面顺序是导航，不要求按顺序一次学完。
           </p>
-          <h3>一起上课</h3>
-          <p>
-            老师可从某个薄弱点进入，先让学生解释，再用例题和变式检查。因式工坊支持固定题号和分层提示；讲义可打印，展开的答案是否打印由你决定。
-          </p>
-          <h3>范围与依据</h3>
-          <p>
-            按中国大陆小学、初中和高中数学主干组织；高中选择性必修与拓展单独标记。各地教材安排有差异，目录顺序是学习建议。讲解与题目独立编写，课标用于核对范围。
-          </p>
-          <ul>
-            {k12Sources.map((source) => (
-              <li key={source.id}>
-                <a href={source.href} target="_blank" rel="noreferrer">
-                  {source.title}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
+      </section>
+      <section className="subject-sources" id="scope">
+        <h2>覆盖范围与课程依据</h2>
+        <p>
+          以中国大陆普通小学、初中和高中为范围。外语任务当前以英语为主；艺术合并呈现音乐、美术及其他艺术形式；初中综合科学与分科安排并列说明。地方课程、校本课程和其他外语独立讲义尚未展开。
+        </p>
+        <p>
+          目前数学提供完整双模式讲义，其余学科提供分学段知识框架、原创任务、检查要点与误区。这些模块用于导航和起步，不能等同逐知识点教材，也不是各地统一的年级进度表。
+        </p>
+        <p>
+          课程范围参照以下文件，本站的分组、例子与学习路线独立编写。实际开课和高中选学内容请结合在用教材。
+        </p>
+        <ul>
+          {curriculumSources.map((source) => (
+            <li key={source.href}>
+              <a href={source.href} target="_blank" rel="noreferrer">
+                {source.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
     </K12Shell>
   );

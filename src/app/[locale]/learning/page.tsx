@@ -42,6 +42,7 @@ export default async function LearningPage({
   const mathematics = learningCatalog.filter(
     (item) => item.category === "math",
   );
+  const schools = learningCatalog.filter((item) => item.category === "school");
   const guides = learningCatalog.filter((item) => item.category === "guide");
 
   return (
@@ -151,12 +152,53 @@ export default async function LearningPage({
 
         <section
           className="learning-section"
+          id="schools"
+          aria-labelledby="schools-title"
+        >
+          <header className="learning-section-heading">
+            <div>
+              <span>02 / SCHOOL LEARNING</span>
+              <h2 id="schools-title">
+                {isEnglish ? "School learning" : "中小学学习"}
+              </h2>
+            </div>
+            <p>
+              {isEnglish
+                ? "Find a starting point across subjects."
+                : "服务家教与自学：找到起点，动手练习，再连接不同学科。"}
+            </p>
+          </header>
+          <div className="learning-guide-grid">
+            {schools.map((item) => (
+              <Link
+                href={learningItemHref(item, language)}
+                className="learning-guide-card"
+                key={item.id}
+              >
+                <div className="learning-guide-topline">
+                  <span>{item.topic[language]}</span>
+                  <ArrowRight size={16} />
+                </div>
+                <h3>{item.title[language]}</h3>
+                <p>{item.description[language]}</p>
+                <div className="learning-guide-meta">
+                  <span>{item.scope[language]}</span>
+                  <time dateTime={item.updated}>
+                    {item.updated.replaceAll("-", ".")}
+                  </time>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section
+          className="learning-section"
           id="mathematics"
           aria-labelledby="mathematics-title"
         >
           <header className="learning-section-heading">
             <div>
-              <span>02 / MATHEMATICS</span>
+              <span>03 / MATHEMATICS</span>
               <h2 id="mathematics-title">
                 {isEnglish ? "Mathematics" : "数学探索"}
               </h2>
@@ -197,7 +239,7 @@ export default async function LearningPage({
         >
           <header className="learning-section-heading">
             <div>
-              <span>03 / PRACTICE</span>
+              <span>04 / PRACTICE</span>
               <h2 id="guides-title">
                 {isEnglish ? "Practical guides" : "实践指南"}
               </h2>

@@ -12,35 +12,52 @@ export function K12Shell({
   locale,
   children,
   active = "overview",
+  section = "mathematics",
 }: {
   locale: "zh" | "en";
   children: ReactNode;
   active?: string;
+  section?: "mathematics" | "subjects";
 }) {
   const prefix = locale === "en" ? "/en" : "";
   return (
     <main className="notes-page k12-page">
       <div className="reader-topbar">
-        <Link href={prefix + "/learning#mathematics"} className="notes-back">
+        <Link href={prefix + "/learning#schools"} className="notes-back">
           <ArrowLeft size={14} />
-          学习 · 数学探索
+          学习 · 中小学
         </Link>
-        <nav className="reader-course-switch" aria-label="数学学习导航">
+        <nav className="reader-course-switch" aria-label="中小学学习导航">
           <Link
             href={prefix + "/learning/k12"}
-            aria-current={active === "overview" ? "page" : undefined}
+            aria-current={
+              section === "subjects" && active === "overview"
+                ? "page"
+                : undefined
+            }
           >
-            学习总览
+            全科导航
           </Link>
-          {k12Stages.map((stage) => (
-            <Link
-              key={stage.id}
-              href={prefix + "/learning/k12/" + stage.id}
-              aria-current={active === stage.id ? "page" : undefined}
-            >
-              {stage.title}
-            </Link>
-          ))}
+          <Link
+            href={prefix + "/learning/k12/mathematics"}
+            aria-current={
+              section === "mathematics" && active === "overview"
+                ? "page"
+                : undefined
+            }
+          >
+            数学总览
+          </Link>
+          {section === "mathematics" &&
+            k12Stages.map((stage) => (
+              <Link
+                key={stage.id}
+                href={prefix + "/learning/k12/" + stage.id}
+                aria-current={active === stage.id ? "page" : undefined}
+              >
+                {stage.title}
+              </Link>
+            ))}
           <Link
             href={prefix + "/learning/math-lab"}
             aria-current={active === "lab" ? "page" : undefined}
@@ -52,15 +69,23 @@ export function K12Shell({
       <div className="k12-shell">
         {locale === "en" && (
           <p className="course-map-language" lang="en">
-            These school-mathematics lessons and activities are written in
-            Chinese for tutoring and independent study.
+            These school-learning guides and activities are written in Chinese
+            for tutoring and independent study.
           </p>
         )}
         {children}
         <footer className="mathmap-footer">
-          <span>中小学数学 · 理解、练习、再连接</span>
-          <Link href={prefix + "/learning/math-map"}>
-            走向高等数学 <ArrowRight size={13} />
+          <span>中小学学习 · 理解、练习、再连接</span>
+          <Link
+            href={
+              prefix +
+              (section === "subjects"
+                ? "/learning/k12/mathematics"
+                : "/learning/math-map")
+            }
+          >
+            {section === "subjects" ? "深入数学学习" : "走向高等数学"}{" "}
+            <ArrowRight size={13} />
           </Link>
         </footer>
       </div>
