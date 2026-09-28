@@ -1,3 +1,5 @@
+import "./check-advanced-factorization.mjs";
+
 import assert from "node:assert/strict";
 
 import { createJiti } from "jiti";
@@ -8,6 +10,7 @@ const {
   checkFactorizationBlanks,
   makeFactorQuestion,
   factorKinds,
+  isAdvancedKind,
   parseQuestionLink,
   questionHash,
 } = await jiti.import("../src/lib/math-lab/factorization.ts");
@@ -71,7 +74,7 @@ const nested = (base, depth) =>
 check(nested("2", 20), [1], "invalid");
 check(nested("1", 20) + "(x+2)(x+3)", [6, 5, 1], "correct");
 let generated = 0;
-for (const kind of factorKinds)
+for (const kind of factorKinds.filter((item) => !isAdvancedKind(item.id)))
   for (const level of [1, 2, 3])
     for (let seed = 0; seed < 150; seed++) {
       const q = makeFactorQuestion(seed, kind.id, level);

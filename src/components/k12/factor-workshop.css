@@ -120,6 +120,75 @@
   gap: 15px;
   margin: 22px 0;
 }
+.factor-modes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+.factor-modes button {
+  padding: 14px 16px;
+  border: 1px solid var(--note-line);
+  border-radius: 4px;
+  color: var(--note-ink);
+  text-align: left;
+  background: var(--note-paper);
+  cursor: pointer;
+}
+.factor-modes strong,
+.factor-modes span {
+  display: block;
+}
+.factor-modes strong {
+  font-size: 15px;
+  font-weight: 550;
+}
+.factor-modes span {
+  margin-top: 5px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--note-muted);
+}
+.factor-modes [aria-pressed="true"],
+.factor-input-modes [aria-pressed="true"] {
+  background: var(--note-tint);
+  border-color: var(--note-accent);
+}
+.factor-input-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.factor-answer .factor-fill-polynomial {
+  width: 10rem;
+  padding: 8px 10px;
+  font-size: 16px;
+}
+.factor-slot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 14px;
+}
+.factor-slot-actions button {
+  min-height: 36px;
+  font-size: 12px;
+  color: var(--note-accent);
+  cursor: pointer;
+}
+.factor-slot-actions button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.factor-advanced-expression {
+  gap: 12px;
+}
+.factor-modes button:focus-visible,
+.factor-slot-actions button:focus-visible {
+  outline: 2px solid var(--note-accent);
+  outline-offset: 3px;
+}
 .factor-settings label {
   display: grid;
   gap: 8px;

@@ -33,7 +33,7 @@ export default async function Page({ params }: Props) {
           <span className="notes-overline">01 / FACTORIZATION</span>
           <h2>因式工坊</h2>
           <p>
-            把几块面积拼成一个长方形，再把多项式写成因式的积。五类可重复出题的练习，支持正负号、分层提示、等价答案检查和题号分享。
+            把几块面积拼成一个长方形，再把多项式写成因式的积。基础五类、进阶八类练习，覆盖高次式、多个字母与无理数，支持按因式填空、分层提示和题号分享。
           </p>
           <Link
             className="k12-button"

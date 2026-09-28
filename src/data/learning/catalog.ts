@@ -125,11 +125,14 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "数学实验室", en: "Mathematics Lab" },
     description: {
-      zh: "从因式工坊开始：用面积理解因式分解，按题型练习，逐层查看提示并分享同一道题。",
-      en: "Explore factorization through area models, reproducible practice and progressive hints. Activities are in Chinese.",
+      zh: "用面积理解因式分解，从基础二次式进阶到高次、多字母与根式题；按因式填空，逐层查看提示并分享同一道题。",
+      en: "Explore factorization from quadratics to higher powers, multiple variables and radicals, with factor blanks, progressive hints and shareable questions. Activities are in Chinese.",
     },
     topic: { zh: "动手探索", en: "Hands-on exploration" },
-    scope: { zh: "因式工坊 · 随机练习", en: "Factorization workshop" },
+    scope: {
+      zh: "因式工坊 · 基础与进阶",
+      en: "Factorization · basic & advanced",
+    },
     updated: "2026-09-28",
   },
   {

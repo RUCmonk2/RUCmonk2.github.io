@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return constructMetadata({
     title: locale === "en" ? "Factorization Workshop" : "因式工坊",
     description:
-      "用面积拼图理解因式分解，练习提公因式、平方差、完全平方和二次三项式，获得逐步提示与准确反馈。",
+      "用面积拼图理解因式分解，从二次式进阶到立方、高次换元、多字母和根式分解，按因式填空并查看逐步提示。",
     path: "/learning/math-lab/factorization",
     locale: locale as Locale,
   });
@@ -28,7 +28,7 @@ export default async function Page({ params }: Props) {
         </p>
         <div className="k12-hero-meta">
           <span>面积探索</span>
-          <span>五类练习 · 三档难度</span>
+          <span>基础 5 类 · 进阶 8 类 · 三档难度</span>
           <a href="#practice">直接开始练习 ↓</a>
         </div>
       </header>

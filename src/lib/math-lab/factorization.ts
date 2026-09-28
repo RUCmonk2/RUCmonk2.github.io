@@ -1,3 +1,13 @@
+import {
+  type AdvancedFactorKind,
+  advancedFactorKinds,
+  isAdvancedKind,
+  makeAdvancedQuestion,
+} from "./advanced-factorization";
+import { checkAdvancedFactorization } from "./multivariate-polynomial";
+
+export { isAdvancedKind } from "./advanced-factorization";
+
 export type Fraction = { n: bigint; d: bigint };
 export type Polynomial = Fraction[];
 type Expr =
@@ -356,7 +366,12 @@ export function checkFactorization(
   }
 }
 export type FactorKind =
-  "common" | "difference" | "square" | "quadratic" | "mixed";
+  | "common"
+  | "difference"
+  | "square"
+  | "quadratic"
+  | "mixed"
+  | AdvancedFactorKind;
 export const factorKinds: {
   id: FactorKind;
   title: string;
@@ -387,22 +402,61 @@ export const factorKinds: {
     title: "综合分解",
     description: "先提公因式，再看括号里能否继续分解。",
   },
+  ...advancedFactorKinds,
 ];
 export type FactorQuestion = {
   seed: number;
   kind: FactorKind;
   difficulty: 1 | 2 | 3;
   coefficients: number[];
+  expression: string;
   answer: string;
   hints: string[];
   steps: string[];
   lessonId: string;
+  advanced?: {
+    atoms: string[];
+    slots: number;
+    variables: string[];
+    radicand?: number;
+  };
 };
+export function checkFactorQuestion(
+  input: string,
+  question: FactorQuestion,
+): CheckResult {
+  return question.advanced
+    ? checkAdvancedFactorization(input, {
+        expression: question.expression,
+        atoms: question.advanced.atoms,
+        radicand: question.advanced.radicand,
+      })
+    : checkFactorization(input, question.coefficients);
+}
+export function checkAdvancedBlanks(
+  values: readonly string[],
+  question: FactorQuestion,
+): CheckResult {
+  if (
+    values.length < 2 ||
+    values.length > 8 ||
+    values.some((value) => !value.trim())
+  )
+    return {
+      status: "invalid",
+      message: "请先把每个括号里的因式填好；不需要的括号可以删去。",
+    };
+  return checkFactorQuestion(
+    values.map((value) => "(" + value + ")").join(""),
+    question,
+  );
+}
 export function makeFactorQuestion(
   seed: number,
   kind: FactorKind,
   difficulty: 1 | 2 | 3,
 ): FactorQuestion {
+  if (isAdvancedKind(kind)) return makeAdvancedQuestion(seed, kind, difficulty);
   let state = seed >>> 0;
   const random = () => {
     state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
@@ -517,6 +571,7 @@ export function makeFactorQuestion(
     kind,
     difficulty,
     coefficients,
+    expression: polynomialText(coefficients),
     answer,
     hints,
     steps,

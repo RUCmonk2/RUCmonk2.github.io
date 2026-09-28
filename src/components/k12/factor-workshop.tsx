@@ -7,15 +7,16 @@ import { useEffect, useMemo, useState } from "react";
 
 import { k12LessonHref } from "@/data/k12";
 import {
-  checkFactorization,
+  checkAdvancedBlanks,
   checkFactorizationBlanks,
+  checkFactorQuestion,
   type CheckResult,
   type FactorizationBlanks,
   type FactorKind,
   factorKinds,
+  isAdvancedKind,
   makeFactorQuestion,
   parseQuestionLink,
-  polynomialText,
   questionHash,
 } from "@/lib/math-lab/factorization";
 import { factorLatex, factorStepSegments } from "@/lib/math-lab/math-text";
@@ -277,6 +278,10 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
   );
   const [answer, setAnswer] = useState(""),
     [factorBlanks, setFactorBlanks] = useState(emptyFactorBlanks),
+    [advancedBlanks, setAdvancedBlanks] = useState<string[]>(["", ""]),
+    [advancedInput, setAdvancedInput] = useState<"blanks" | "expression">(
+      "blanks",
+    ),
     [result, setResult] = useState<CheckResult | null>(null),
     [hints, setHints] = useState(0),
     [showSteps, setShowSteps] = useState(false),
@@ -285,6 +290,7 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
     [count, setCount] = useState(0),
     [linkNotice, setLinkNotice] = useState("");
   const prefix = locale === "en" ? "/en" : "";
+  const advanced = !!question.advanced;
   const usesFactorBlanks =
     question.kind === "quadratic" || question.kind === "mixed";
   const usesCoefficientBlanks =
@@ -301,6 +307,8 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
     setDifficulty(level);
     setAnswer("");
     setFactorBlanks(emptyFactorBlanks());
+    setAdvancedBlanks(Array.from({ length: q.advanced?.slots ?? 2 }, () => ""));
+    setAdvancedInput("blanks");
     setResult(null);
     setHints(0);
     setShowSteps(false);
@@ -314,8 +322,10 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
       if (parsed) {
         load(parsed.seed, parsed.kind, parsed.difficulty, false);
         setLinkNotice("");
-      } else if (location.hash) {
+      } else if (location.hash && location.hash !== "#practice") {
         setLinkNotice("题号链接不完整，当前显示示例题。可以重新生成并分享。");
+      } else {
+        setLinkNotice("");
       }
     }
     read();
@@ -330,26 +340,30 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
   }
   function submit(event: React.FormEvent) {
     event.preventDefault();
-    const checked = usesFactorBlanks
-      ? checkFactorizationBlanks(
-          usesCoefficientBlanks
-            ? factorBlanks
-            : {
-                multiplier: "1",
-                factors: [
-                  {
-                    coefficient: "1",
-                    constant: factorBlanks.factors[0].constant,
-                  },
-                  {
-                    coefficient: "1",
-                    constant: factorBlanks.factors[1].constant,
-                  },
-                ],
-              },
-          question.coefficients,
-        )
-      : checkFactorization(answer, question.coefficients);
+    const checked = advanced
+      ? advancedInput === "blanks"
+        ? checkAdvancedBlanks(advancedBlanks, question)
+        : checkFactorQuestion(answer, question)
+      : usesFactorBlanks
+        ? checkFactorizationBlanks(
+            usesCoefficientBlanks
+              ? factorBlanks
+              : {
+                  multiplier: "1",
+                  factors: [
+                    {
+                      coefficient: "1",
+                      constant: factorBlanks.factors[0].constant,
+                    },
+                    {
+                      coefficient: "1",
+                      constant: factorBlanks.factors[1].constant,
+                    },
+                  ],
+                },
+            question.coefficients,
+          )
+        : checkFactorQuestion(answer, question);
     setResult(checked);
     if (checked.status === "correct" && !solved) {
       setCount((value) => value + 1);
@@ -392,6 +406,28 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
           <h2 id="practice-title">再自己做一题</h2>
           <span>本次完成 {count} 题</span>
         </div>
+        <div className="factor-modes" role="group" aria-label="练习模式">
+          <button
+            type="button"
+            aria-pressed={!advanced}
+            onClick={() => {
+              if (advanced) next("quadratic", 1);
+            }}
+          >
+            <strong>基础练习</strong>
+            <span>面积、公式与二次三项式</span>
+          </button>
+          <button
+            type="button"
+            aria-pressed={advanced}
+            onClick={() => {
+              if (!advanced) next("cubes", 1);
+            }}
+          >
+            <strong>进阶挑战</strong>
+            <span>高次式 · 多字母 · 根式</span>
+          </button>
+        </div>
         <div className="factor-settings">
           <label>
             题型
@@ -401,11 +437,13 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
                 next(event.target.value as FactorKind, difficulty)
               }
             >
-              {factorKinds.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.title}
-                </option>
-              ))}
+              {factorKinds
+                .filter((item) => isAdvancedKind(item.id) === advanced)
+                .map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.title}
+                  </option>
+                ))}
             </select>
           </label>
           <label>
@@ -416,9 +454,15 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
                 next(kind, Number(event.target.value) as 1 | 2 | 3)
               }
             >
-              <option value="1">入门 · 小整数</option>
-              <option value="2">进阶 · 正负号</option>
-              <option value="3">巩固 · 更大系数</option>
+              <option value="1">
+                {advanced ? "起步 · 单一方法" : "入门 · 小整数"}
+              </option>
+              <option value="2">
+                {advanced ? "进阶 · 符号与变式" : "进阶 · 正负号"}
+              </option>
+              <option value="3">
+                {advanced ? "挑战 · 系数与组合" : "巩固 · 更大系数"}
+              </option>
             </select>
           </label>
           <button type="button" className="k12-button" onClick={() => next()}>
@@ -427,14 +471,106 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
         </div>
         <div className="factor-question">
           <span className="notes-overline">
-            {title.title} / 在有理系数范围内分解
+            {title.title} /{" "}
+            {question.advanced?.radicand
+              ? "在实数系数范围内分解（允许根式）"
+              : "在有理系数范围内分解"}
           </span>
-          <MathDisplay value={polynomialText(question.coefficients)} />
+          <MathDisplay value={factorLatex(question.expression)} />
           <p>{title.description}</p>
+          {question.advanced && (
+            <p className="factor-note">
+              本题字母：{question.advanced.variables.join("、")}
+              ，各自表示独立的变量；目标是写成因式的乘积，不是求这些字母的值。
+            </p>
+          )}
         </div>
         {linkNotice && <p role="status">{linkNotice}</p>}
+        {advanced && (
+          <div
+            className="factor-input-modes"
+            role="group"
+            aria-label="答案输入方式"
+          >
+            <button
+              className="k12-button"
+              type="button"
+              aria-pressed={advancedInput === "blanks"}
+              onClick={() => {
+                setAdvancedInput("blanks");
+                setResult(null);
+              }}
+            >
+              按因式填空
+            </button>
+            <button
+              className="k12-button"
+              type="button"
+              aria-pressed={advancedInput === "expression"}
+              onClick={() => {
+                setAdvancedInput("expression");
+                setResult(null);
+              }}
+            >
+              输入完整式子
+            </button>
+          </div>
+        )}
         <form onSubmit={submit} className="factor-answer">
-          {usesFactorBlanks ? (
+          {advanced && advancedInput === "blanks" ? (
+            <fieldset className="factor-fill-answer">
+              <legend>每个括号里填一个完整因式</legend>
+              <div className="factor-fill-expression factor-advanced-expression">
+                {advancedBlanks.map((value, index) => (
+                  <span className="factor-fill-term" key={index}>
+                    <span aria-hidden="true">(</span>
+                    <input
+                      className="factor-fill-polynomial"
+                      aria-label={`第 ${index + 1} 个完整因式`}
+                      value={value}
+                      onChange={(event) => {
+                        setAdvancedBlanks((current) =>
+                          current.map((entry, i) =>
+                            i === index ? event.target.value : entry,
+                          ),
+                        );
+                        setResult(null);
+                      }}
+                      placeholder={`因式 ${index + 1}`}
+                      autoComplete="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
+                      maxLength={120}
+                      aria-describedby="factor-input-help"
+                    />
+                    <span aria-hidden="true">)</span>
+                  </span>
+                ))}
+              </div>
+              <div className="factor-slot-actions">
+                <button
+                  type="button"
+                  disabled={advancedBlanks.length >= 8}
+                  onClick={() => {
+                    setAdvancedBlanks([...advancedBlanks, ""]);
+                    setResult(null);
+                  }}
+                >
+                  ＋ 添加一个因式
+                </button>
+                <button
+                  type="button"
+                  disabled={advancedBlanks.length <= 2}
+                  onClick={() => {
+                    setAdvancedBlanks(advancedBlanks.slice(0, -1));
+                    setResult(null);
+                  }}
+                >
+                  − 去掉最后一个
+                </button>
+              </div>
+            </fieldset>
+          ) : usesFactorBlanks ? (
             <fieldset className="factor-fill-answer">
               <legend>在空格里填数</legend>
               <div className="factor-fill-expression">
@@ -508,11 +644,17 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
                   setAnswer(event.target.value);
                   setResult(null);
                 }}
-                placeholder="例如 (x+2)(x+3)"
+                placeholder={
+                  question.advanced?.radicand
+                    ? "例如 (x-√2)(x+sqrt(2))"
+                    : advanced
+                      ? "例如 (x-y)(x+y)(x^2+1)"
+                      : "例如 (x+2)(x+3)"
+                }
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                maxLength={240}
+                maxLength={advanced ? 480 : 240}
                 aria-describedby="factor-input-help"
               />
             </label>
@@ -522,7 +664,22 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
           </button>
         </form>
         <p id="factor-input-help" className="factor-note">
-          {usesFactorBlanks ? (
+          {advanced ? (
+            <>
+              每个因式可含数字和本题字母，如 3xy、x-y 或 x^2+1；系数不必为
+              1。可用 ^3、^4、^6 写高次幂，xy 表示 x 乘
+              y。接受因式换序和重复因式的幂写法，含字母的分母不属于多项式答案。按
+              Tab 换空、回车检查。
+              {question.advanced?.radicand && (
+                <>
+                  {" "}
+                  本题支持 √{question.advanced.radicand}、sqrt(
+                  {question.advanced.radicand}) 及同类根式（如
+                  √8=2√2）；根号内只填非负整数，请保留精确根式，不用小数近似。
+                </>
+              )}
+            </>
+          ) : usesFactorBlanks ? (
             <>
               {usesCoefficientBlanks
                 ? "括号外填公因数（没有则填 1），x 前填系数；两个因式顺序不限。"
@@ -609,7 +766,7 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
             </ol>
             <p>
               检查：展开后，逐项比较次数与系数。不要把因式分解的结果直接写成方程的解；只有原题另给“式子等于零”时，才继续求
-              x。
+              未知数。
             </p>
           </section>
         )}
@@ -645,6 +802,10 @@ export function FactorWorkshop({ locale }: { locale: "zh" | "en" }) {
           <h2>把练习带进课堂，也带回家</h2>
           <p>
             先让学生解释面积与各项的对应，再选择一道同类型练习。答错时先看系数反馈，只在需要时展开下一层提示；答对后换一题，检查是否真正理解。题号链接会保留题型、难度和题目，方便课后回看。
+          </p>
+          <p>
+            进阶挑战把同样的方法用于高次式、多个字母和根式：先提公因式，再尝试公式、分组或换元。换元后要还原，括号里的平方差还要继续分解；平方和、立方公式中留下的某些二次因式则可能已经不能在有理系数范围内继续分解。根式题会放宽到实数系数，例如
+            x²−2 可以写成 (x−√2)(x+√2)；分解前先看清题目的系数范围。
           </p>
           <p>
             本次题数仅记录当前页面中的完成次数，刷新后重新开始。它不是成绩或掌握度评分。出题与判题都在本机浏览器进行。
