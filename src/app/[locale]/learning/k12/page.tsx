@@ -9,8 +9,9 @@ import {
   curriculumSources,
   schoolDirectory,
   schoolProjects,
+  subjectConceptCount,
   subjectHref,
-  subjectModuleCount,
+  subjectMapCount,
 } from "@/data/k12-subjects";
 import { constructMetadata } from "@/lib/metadata";
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return constructMetadata({
     title: locale === "en" ? "School Learning Atlas" : "中小学全科学习导航",
     description:
-      "小学、初中、高中各学科的知识主线、学习任务、检查要点与跨学科项目，服务自学和家教备课。",
+      "小学、初中、高中40张学段知识图谱，870个知识点的双模式讲解、例子与自测，服务自学和家教备课。",
     path: "/learning/k12",
     locale: locale as Locale,
   });
@@ -42,8 +43,10 @@ export default async function Page({ params }: Props) {
         <div className="k12-hero-meta">
           <span>{schoolDirectory.length} 个学科入口</span>
           <span>小学 · 初中 · 高中</span>
-          <span>{subjectModuleCount} 个学习框架模块</span>
-          <span>数学另有 {k12Topics.length} 节详细讲义</span>
+          <span>{subjectMapCount + 3} 张学段知识图谱</span>
+          <span>
+            {subjectConceptCount + k12Topics.length} 个知识点 · 双模式阅读
+          </span>
         </div>
       </header>
       <div className="subject-start-grid">
@@ -51,7 +54,7 @@ export default async function Page({ params }: Props) {
           <span className="notes-overline">FOR LEARNERS</span>
           <h2>自己学</h2>
           <p>
-            先选学段和学科，读起步要求，再做一个具体任务。完成后展开检查要点；卡住时回到知识主线补基础。
+            先选学段和学科，在知识网中找到一个起点。读「从零理解」，跟着例子尝试，再展开自测解答；卡住时沿「建议先学」补基础。
           </p>
           <a href="#subjects">选一个学科 ↓</a>
         </section>
@@ -115,7 +118,7 @@ export default async function Page({ params }: Props) {
       </section>
       <section className="k12-guidance note-article" id="teaching">
         <div className="note-prose">
-          <h2>把框架变成一节家教课</h2>
+          <h2>用知识网组织一节家教课</h2>
           <ol>
             <li>
               <strong>从一道任务开始诊断。</strong>
@@ -145,7 +148,7 @@ export default async function Page({ params }: Props) {
           以中国大陆普通小学、初中和高中为范围。外语任务当前以英语为主；艺术合并呈现音乐、美术及其他艺术形式；初中综合科学与分科安排并列说明。地方课程、校本课程和其他外语独立讲义尚未展开。
         </p>
         <p>
-          目前数学提供完整双模式讲义，其余学科提供分学段知识框架、原创任务、检查要点与误区。这些模块用于导航和起步，不能等同逐知识点教材，也不是各地统一的年级进度表。
+          数学保留199节详细讲义与3张图谱；其余15个学科将现有目录的671个主干主题展开为37张图谱，每个节点都有双模式讲解、具体例子、误区和自测解答。模块任务用于综合应用，图谱顺序不是各地统一的年级进度表。
         </p>
         <p>
           课程范围参照以下文件，本站的分组、例子与学习路线独立编写。实际开课和高中选学内容请结合在用教材。

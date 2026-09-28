@@ -7,6 +7,7 @@ import {
   moduleHref,
   schoolDirectory,
   schoolStages,
+  subjectConceptHref,
   subjectGroups,
   subjectHref,
   subjectStageHref,
@@ -29,14 +30,41 @@ export function SubjectDirectory({ locale }: { locale: "zh" | "en" }) {
       .toLocaleLowerCase()
       .includes(term);
     const matches = stages.flatMap((item) =>
-      item.modules
-        .filter((module) =>
-          [module.title, ...module.topics, module.task]
-            .join(" ")
-            .toLocaleLowerCase()
-            .includes(term),
-        )
-        .map((module) => ({ ...module, stage: item.id })),
+      item.modules.flatMap((module) => {
+        if (subject.id !== "mathematics") {
+          const topics = module.topics.flatMap((title, index) =>
+            title.toLocaleLowerCase().includes(term)
+              ? [
+                  {
+                    id: `${module.id}-${index}`,
+                    title,
+                    stage: item.id,
+                    href: subjectConceptHref(
+                      subject.id,
+                      item.id,
+                      module.id,
+                      index,
+                    ),
+                  },
+                ]
+              : [],
+          );
+          if (topics.length) return topics;
+        }
+        return [module.title, ...module.topics, module.task]
+          .join(" ")
+          .toLocaleLowerCase()
+          .includes(term)
+          ? [
+              {
+                id: module.id,
+                title: module.title,
+                stage: item.id,
+                href: moduleHref(subject.id, item.id, module.id),
+              },
+            ]
+          : [];
+      }),
     );
     if (term && !subjectMatch && !matches.length) return [];
     return [{ subject, stages, matches }];
@@ -118,7 +146,9 @@ export function SubjectDirectory({ locale }: { locale: "zh" | "en" }) {
                 {subjectGroups.find((item) => item.id === subject.group)!.title}
               </span>
               <span>
-                {subject.id === "mathematics" ? "详细讲义" : "学习框架与任务"}
+                {subject.id === "mathematics"
+                  ? "详细讲义"
+                  : "知识网 · 双模式讲解"}
               </span>
             </div>
             <h3>
@@ -136,8 +166,13 @@ export function SubjectDirectory({ locale }: { locale: "zh" | "en" }) {
                 >
                   {schoolStages.find((s) => s.id === item.id)!.title}
                   <span>
-                    {item.modules.length}{" "}
-                    {subject.id === "mathematics" ? "讲义" : "模块"}
+                    {subject.id === "mathematics"
+                      ? item.modules.length
+                      : item.modules.reduce(
+                          (n, m) => n + m.topics.length,
+                          0,
+                        )}{" "}
+                    个知识点
                   </span>
                 </Link>
               ))}
@@ -146,11 +181,7 @@ export function SubjectDirectory({ locale }: { locale: "zh" | "en" }) {
               <ul className="subject-matches">
                 {matches.slice(0, 3).map((item) => (
                   <li key={item.stage + item.id}>
-                    <Link
-                      href={
-                        prefix + moduleHref(subject.id, item.stage, item.id)
-                      }
-                    >
+                    <Link href={prefix + item.href}>
                       {schoolStages.find((s) => s.id === item.stage)!.title} ·{" "}
                       {item.title}
                     </Link>

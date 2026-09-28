@@ -14,7 +14,11 @@ const { mathMapNodes, mathMapLabel } = await jiti.import(
 );
 const { courseAtlases } = await jiti.import("../src/data/course-maps/index.ts");
 const { k12Atlases } = await jiti.import("../src/data/k12/index.ts");
+const { subjectAtlases } = await jiti.import(
+  "../src/data/k12-subjects/atlas.ts",
+);
 const allNodes = [
+  ...subjectAtlases.flatMap((atlas) => atlas.nodes),
   ...mathMapNodes,
   ...courseAtlases.flatMap((atlas) => atlas.nodes),
   ...k12Atlases.flatMap((atlas) => atlas.nodes),

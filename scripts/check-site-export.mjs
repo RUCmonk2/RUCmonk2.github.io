@@ -12,6 +12,9 @@ const { siteConfig } = await jiti.import("../src/data/site.ts");
 const { mathMapNodes } = await jiti.import("../src/data/math-map.ts");
 const { courseAtlases } = await jiti.import("../src/data/course-maps/index.ts");
 const { k12Atlases, k12Topics } = await jiti.import("../src/data/k12/index.ts");
+const { subjectAtlases } = await jiti.import(
+  "../src/data/k12-subjects/atlas.ts",
+);
 const root = path.resolve("out");
 assert(
   existsSync(path.join(root, "index.html")),
@@ -47,7 +50,7 @@ for (const locale of ["zh", "en"]) {
 }
 
 // Course lessons are loaded on demand; verify the actual exported payloads.
-for (const atlas of courseAtlases) {
+for (const atlas of [...courseAtlases, ...subjectAtlases]) {
   for (const locale of ["zh", "en"]) {
     const prefix = locale === "en" ? "/en" : "";
     assert(
@@ -57,7 +60,7 @@ for (const atlas of courseAtlases) {
   }
   for (const node of atlas.nodes) {
     const ref = node.lesson;
-    if (!ref?.namespace.startsWith("course-lessons/")) continue;
+    if (!ref || !/^(course|school)-lessons\//.test(ref.namespace)) continue;
     const relative = `assets/${ref.namespace}/${ref.locale}/${ref.id}.json`;
     assert.equal(
       readFileSync(path.join(root, relative), "utf8"),
@@ -79,8 +82,9 @@ function isAtlasSelection(url, fragment) {
   const nodes =
     pathname === "/learning/math-map"
       ? mathMapNodes
-      : [...courseAtlases, ...k12Atlases].find((a) => a.href === pathname)
-          ?.nodes;
+      : [...courseAtlases, ...k12Atlases, ...subjectAtlases].find(
+          (a) => a.href === pathname,
+        )?.nodes;
   return nodes?.some((n) => n.id === fragment) ?? false;
 }
 

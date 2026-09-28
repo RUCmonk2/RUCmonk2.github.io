@@ -1,0 +1,640 @@
+{
+  "subject": "science",
+  "modules": [
+    {
+      "stage": "primary",
+      "id": "investigation",
+      "nodes": [
+        {
+          "id": "primary-investigation-1",
+          "title": "感官与工具",
+          "intuition": "观察先回答“我确实看到了什么”。工具能扩展眼睛和手的能力，但也需要按合适方法使用，不能把猜测写成直接观察。",
+          "formal": "观察是有目的地获取对象特征；测量工具需与任务相匹配，并注意量程、刻度、观察位置与使用条件。",
+          "example": "观察一片叶子时，先记颜色、边缘和叶脉，再用放大镜寻找细节。“这片叶子生病了”是解释，需要进一步证据。",
+          "question": "“水面出现气泡”和“气泡一定是氧气”，哪句是观察，哪句是推断？",
+          "answer": "前句描述看见的现象，后句推断气体身份。只看气泡不能确认成分。",
+          "pitfall": "不靠直接闻、尝未知物来观察；工具读数也要核对是否正确使用。"
+        },
+        {
+          "id": "primary-investigation-2",
+          "title": "测量单位",
+          "intuition": "一个长度数字只有配上单位才清楚。用大家约定的单位，可以让不同人的测量结果相互比较。",
+          "formal": "测量是把待测量与约定单位比较；数值和单位共同构成结果。同一物体改用较小单位，数值通常变大但实际长度不变。",
+          "example": "同一根绳长1米，也可写100厘米。不是绳变长，而是计量的小份数改变了。",
+          "question": "一位同学写桌长80，另一位写0.8，能立刻判断谁错了吗？",
+          "answer": "不能。若分别用厘米和米，两个结果可能相同；先补齐单位再比较。",
+          "pitfall": "单位不是可有可无的尾巴；面积、体积和长度单位也不能混用。"
+        },
+        {
+          "id": "primary-investigation-3",
+          "title": "分类标准",
+          "intuition": "分类是先选一个标准，再让每个对象按同一规则归组。换标准后，同一批物品会有不同的合理分法。",
+          "formal": "分类标准应明确且适合问题；类别是否互斥、是否覆盖全部对象，需要根据任务检查。",
+          "example": "把积木按颜色分组与按形状分组，都可能合理。但同一轮中不能一会按颜色、一会按大小，否则统计无法比较。",
+          "question": "一个物品有两种颜色，按颜色分类时应怎么办？",
+          "answer": "事先约定多色类别或主要颜色等规则，并让所有物品遵循同样办法，不能遇到它才随意改标准。",
+          "pitfall": "分类的目的不同，合理标准也不同，不一定只有一种正确分组。"
+        },
+        {
+          "id": "primary-investigation-4",
+          "title": "控制变量",
+          "intuition": "想知道折纸形状会不会影响承重，就需要尽量让纸张、跨度和加重方式相同。否则结果可能来自别的变化。",
+          "formal": "公平比较只主动改变要研究的因素，尽量保持其他相关条件一致，并观察同一结果指标。",
+          "example": "比较平纸桥和折纸桥时，用相同纸、相同跨度与相同小重物，逐步加重。这样形状才更可能是差异来源。",
+          "question": "用厚纸做折桥、薄纸做平桥，能仅凭结果证明折叠一定更好？",
+          "answer": "不能。厚度也改变了，需要控制纸张条件，或另做能区分厚度与形状作用的实验。",
+          "pitfall": "控制变量不是声称所有条件绝对相同，而是明确记录重要条件和仍有的限制。"
+        },
+        {
+          "id": "primary-investigation-5",
+          "title": "记录与比较",
+          "intuition": "记忆容易漏掉细节，记录能让我们回到证据。表格里每一行代表一次观察，每一列要有固定含义。",
+          "formal": "科学记录应保留时间、对象、条件、结果与单位；比较时需检查测量方法和指标是否一致。",
+          "example": "连续三次测试纸桥，可记录形状、承重数量和失败位置；若某次纸受潮，应注明而非默默删掉。",
+          "question": "甲记硬币枚数，乙记小石块枚数，两个承重结果能直接比较吗？",
+          "answer": "不能直接比较，因为每枚的质量可能不同。需要统一载荷或换算到相同量。",
+          "pitfall": "不要为了得到整齐结论而改原始记录；异常也可能提供重要线索。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "primary-investigation-1",
+          "target": "primary-investigation-2",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-investigation-1",
+          "target": "primary-investigation-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-investigation-2",
+          "target": "primary-investigation-5",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-investigation-4",
+          "target": "primary-investigation-5",
+          "kind": "prereq"
+        }
+      ]
+    },
+    {
+      "stage": "primary",
+      "id": "matter",
+      "nodes": [
+        {
+          "id": "primary-matter-1",
+          "title": "固液气",
+          "intuition": "同一种物质可以有不同状态。状态关系到形状、体积和流动表现，不是按能否看见分类。",
+          "formal": "固体通常具有一定形状和体积，液体通常具有一定体积但随容器改变形状，气体更易充满可用空间；这些是常见宏观性质。",
+          "example": "水装进不同杯子会改变外形，空气装进气球会随气球形状分布，冰块在短时间内常保持自身外形。",
+          "question": "看不见空气，是否意味着杯子里没有物质？",
+          "answer": "不是。空气会占据空间、产生作用并具有质量，能否看见不是物质是否存在的标准。",
+          "pitfall": "粉末能倒出来不意味着每一颗固体粒子都变成液体。"
+        },
+        {
+          "id": "primary-matter-2",
+          "title": "溶解与混合",
+          "intuition": "把物质放进水里，有的均匀分散后看不见颗粒，有的仍能看到或沉下。先描述表现，再讨论是不是溶解。",
+          "formal": "溶解形成均一溶液；一般混合还包括悬浮、沉降等情况。溶解不等于物质消失，溶解能力有条件限制。",
+          "example": "少量食盐溶于水后难以看见晶粒，沙混入水则可能沉底。二者都是物质进入水中，但分散状态不同。",
+          "question": "不断加盐，最后杯底留下盐，是先前的盐又都不存在了吗？",
+          "answer": "不是，水在该条件下能溶解的量有限，多出的盐可能保持固体状态，已溶部分仍在溶液中。",
+          "pitfall": "搅拌更快常影响溶解速度，不代表最终一定能溶更多。"
+        },
+        {
+          "id": "primary-matter-3",
+          "title": "冷热变化",
+          "intuition": "热与冷是我们感知温度的经验，但手的感觉会受先前接触影响。温度计能提供更一致的比较方法。",
+          "formal": "温度描述冷热状态，热传递常从较高温物体向较低温物体进行。加热也可能引起物态变化，而不只是温度升高。",
+          "example": "同室内金属和木头温度可能相近，摸起来却不同，因为它们从手吸收热量的快慢不同。",
+          "question": "金属摸起来更冷，能只凭触觉证明它温度一定更低吗？",
+          "answer": "不能。材料传热能力影响感觉，应在相同环境下用合适工具比较温度。",
+          "pitfall": "不要用手触摸可能烫伤的物体来判断温度。"
+        },
+        {
+          "id": "primary-matter-4",
+          "title": "光和影",
+          "intuition": "当光被不透明物体挡住，一部分区域接收不到直接光，会形成影子。影子的方向和大小取决于光源、物体与接收面的位置。",
+          "formal": "在通常生活尺度和均匀介质中，可用光沿直线传播的模型解释影子；实际光源有大小，影子边缘可能不完全清晰。",
+          "example": "固定纸屏和小物体，移动手电距离，观察影子大小变化；每次只移动一个部分，才能解释变化来源。",
+          "question": "同一物体为什么在一天中的影子方向会改变？",
+          "answer": "太阳相对观察者的方向改变，物体背光区域随之变化。不能把影子当作物体自带的固定图案。",
+          "pitfall": "镜面反光与影子是不同现象；不要直视强光或太阳。"
+        },
+        {
+          "id": "primary-matter-5",
+          "title": "声音振动",
+          "intuition": "很多声音都能找到正在振动的部分。看到振动停止后声音减弱，可以把听觉与可观察的运动联系起来。",
+          "formal": "声音由振动产生，传播需要介质。高低、强弱与音色是不同听觉特征，不能只用“大声”描述全部差异。",
+          "example": "轻拨和较重地拨同一根橡皮筋，可感到响度不同；改变松紧还可能改变声音高低。比较时分开改变条件。",
+          "question": "把正在发声的音叉轻触水面看到水花，能提供什么证据？",
+          "answer": "水的运动支持音叉正在振动；实验需适当器材与教师指导，不能由水花直接判断所有声音特征。",
+          "pitfall": "听不见不等于完全没有振动，人耳能听的频率范围有限。"
+        },
+        {
+          "id": "primary-matter-6",
+          "title": "磁与简单电路",
+          "intuition": "磁体能对某些材料产生作用，闭合电路可让电流持续通过。它们都是可用简单实验探索的相互作用，但不是同一现象。",
+          "formal": "磁体有磁极并对铁等某些材料有明显作用；简单电路需电源、导电通路和用电器，开路与短路含义不同。",
+          "example": "用规定的低压课堂电池、导线和灯泡构成回路，打开开关会断路；磁铁并不能同样吸引所有金属。",
+          "question": "铝片不被普通磁铁明显吸住，能否说明它一定不是金属？",
+          "answer": "不能。是否被磁铁明显吸引不是所有金属的共同判据。",
+          "pitfall": "不要让电池两极直接由导线短接；绝不使用家用市电作自学实验。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "primary-matter-1",
+          "target": "primary-matter-2",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-matter-1",
+          "target": "primary-matter-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-matter-4",
+          "target": "primary-matter-5",
+          "kind": "related"
+        },
+        {
+          "source": "primary-matter-5",
+          "target": "primary-matter-6",
+          "kind": "related"
+        },
+        {
+          "source": "primary-matter-2",
+          "target": "primary-matter-3",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "primary",
+      "id": "life-earth",
+      "nodes": [
+        {
+          "id": "primary-life-earth-1",
+          "title": "植物生长",
+          "intuition": "种子萌发、叶片长大和开花结果是不同过程，所需条件也不完全相同。观察一株植物要记录阶段，而不是只量一个高度。",
+          "formal": "植物生长发育受遗传与环境共同影响，常涉及水分、温度、空气、光和矿质条件；不同物种和阶段需求不同。",
+          "example": "比较植物的光照条件时，应使用相近种类和初始状态，记录浇水与环境，不能把两株本来不同的植物直接对比。",
+          "question": "植物是否浇水越多长得越好？",
+          "answer": "不是。过多水可能影响根部空气条件，适宜量依植物与环境而定，需结合观察。",
+          "pitfall": "“种子发芽必须有光”并非对所有种子都成立，要说明具体物种。"
+        },
+        {
+          "id": "primary-life-earth-2",
+          "title": "动物需求",
+          "intuition": "动物需要能量、物质与合适环境，还需要适合繁殖和活动的条件。观察外形之外，要看它怎样获取资源。",
+          "formal": "动物生存依赖食物、水、气体交换及适宜环境等；需求的满足方式因物种和生活史而异。",
+          "example": "鱼从水中获取溶解氧，哺乳动物主要用肺呼吸空气。都需要氧等并不意味着获取方式相同。",
+          "question": "把动物放进有食物的小盒子，就一定满足它的所有需要了吗？",
+          "answer": "没有。还可能缺水、通气、适当空间、温度与隐蔽环境，需要按物种理解需求。",
+          "pitfall": "不要为了观察而随意捕捉或饲养未知野生动物。"
+        },
+        {
+          "id": "primary-life-earth-3",
+          "title": "食物关系",
+          "intuition": "生物彼此联系，某种动物吃什么、被谁吃会影响其他生物。画箭头前先约定它表示食物和能量的流向。",
+          "formal": "食物关系连接生产者与消费者等角色；一条食物链是简化模型，真实生境中常有多条交织路径。",
+          "example": "草被兔吃，兔又被鹰捕食，可画草→兔→鹰；这不是按体形大小排队，而是表示被取食到取食者的关系。",
+          "question": "一种动物减少，所有相关动物都一定按同一方向变化吗？",
+          "answer": "不一定。食物替代、竞争和其他环境条件都会影响结果，简单链条只提供初步线索。",
+          "pitfall": "别把生态箭头当作“谁喜欢谁”，必须说明含义。"
+        },
+        {
+          "id": "primary-life-earth-4",
+          "title": "天气与季节",
+          "intuition": "天气描述较短时间的环境表现，季节反映一年中有规律的变化。一天很冷与一年中冬季较冷是不同层次的观察。",
+          "formal": "天气可用温度、降水、风和云等描述；季节与地球运动和太阳照射条件的年变化有关，各地季节表现不完全相同。",
+          "example": "每天在固定时刻记录气温，更容易比较；若一天早晨测、一天中午测，差异可能来自时刻而非整天更热。",
+          "question": "今天下雨，能否推出这个地区一年大多数天都下雨？",
+          "answer": "不能。一次天气不足以代表长期规律，需要较长期且有代表性的记录。",
+          "pitfall": "不能只凭“离太阳更近”解释地球各地同一时刻不同季节。"
+        },
+        {
+          "id": "primary-life-earth-5",
+          "title": "岩石土壤",
+          "intuition": "岩石、矿物和土壤并非同一个词。土壤中除矿物颗粒，还有空气、水和生物等成分，是一个活跃环境。",
+          "formal": "岩石由一种或多种矿物等组成；土壤由岩石风化与生物活动等长期过程形成，具有颗粒、孔隙和有机质等特征。",
+          "example": "同样一杯水倒入两种土壤，渗入速度可能不同；比较时需控制土量、压实程度和容器等条件。",
+          "question": "土壤只是磨细的石头吗？",
+          "answer": "不是，还含有机质、水、空气与生物等，结构也影响植物生长和水分流动。",
+          "pitfall": "颜色不能单独决定土壤肥力或所有岩石种类。"
+        },
+        {
+          "id": "primary-life-earth-6",
+          "title": "太阳月亮",
+          "intuition": "太阳自身发光，月亮主要反射太阳光。我们看见的月相变化与三者的位置关系有关，不是月亮每个月真的变成不同形状。",
+          "formal": "月相反映月球被照亮部分相对地球观察者的可见比例；日食、月食需要特定相对位置，不等同于普通月相变化。",
+          "example": "月亮整体近似球体，一半受太阳照亮，但我们看到的亮面比例随相对位置改变，所以会有新月、上弦和满月等。",
+          "question": "普通月牙是地球影子挡住月亮造成的吗？",
+          "answer": "不是。通常由观看被太阳照亮部分的角度造成；地球影子涉及月食这一特定现象。",
+          "pitfall": "月亮白天也可能可见；不要用肉眼或普通光学工具直视太阳。"
+        },
+        {
+          "id": "primary-life-earth-7",
+          "title": "工程设计",
+          "intuition": "科学常问现象为什么发生，工程还要问怎样在限制条件下做出可用方案。先定需要，再比较多个想法。",
+          "formal": "工程设计包含需求、约束、方案、原型、测试与改进；评价指标需对应使用目的，通常存在权衡。",
+          "example": "设计纸桥时若限定纸张数量与跨度，就不能只靠无限增加材料获胜。承重、材料消耗和制作难度可同时纳入评价。",
+          "question": "一次失败的原型是否毫无价值？",
+          "answer": "不是。失败位置和条件能告诉我们下一次该改哪里，前提是认真记录并提出可检验的改法。",
+          "pitfall": "外观好看不能替代功能验证；“最强”也未必就是最符合需要。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "primary-life-earth-1",
+          "target": "primary-life-earth-2",
+          "kind": "related"
+        },
+        {
+          "source": "primary-life-earth-1",
+          "target": "primary-life-earth-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-life-earth-2",
+          "target": "primary-life-earth-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-life-earth-4",
+          "target": "primary-life-earth-6",
+          "kind": "related"
+        },
+        {
+          "source": "primary-life-earth-4",
+          "target": "primary-life-earth-5",
+          "kind": "related"
+        },
+        {
+          "source": "primary-life-earth-5",
+          "target": "primary-life-earth-7",
+          "kind": "related"
+        },
+        {
+          "source": "primary-life-earth-1",
+          "target": "primary-life-earth-7",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "middle",
+      "id": "models",
+      "nodes": [
+        {
+          "id": "middle-models-1",
+          "title": "误差与重复",
+          "intuition": "测量值常有波动，重复能帮助判断结果稳定程度。但每次都用错误刻度，重复再多也不能自动纠正共同偏差。",
+          "formal": "随机误差引起重复读数的分散，系统偏差来自校准或方法等共同因素；不确定度应与测量分辨率和过程相符。",
+          "example": "同一本书测长三次略有不同，可比较平均和范围；若尺的零点损坏，应从完好刻度取两端差值。",
+          "question": "十次都得到完全相同数字，就能断言没有误差吗？",
+          "answer": "不能。可能仪器分辨率不足，也可能存在固定偏差。重复一致只说明某一层面的稳定性。",
+          "pitfall": "不要把保留更多小数当成提高精度，也不能按期待值修改记录。"
+        },
+        {
+          "id": "middle-models-2",
+          "title": "比例关系",
+          "intuition": "很多自然关系可以先比较倍数：一个量加倍，另一个量是否也加倍？需要证据确认关系范围，而不是看到一起变大就叫正比。",
+          "formal": "正比关系形如 $y=kx$，比值 $y/x$ 在适用范围内恒定；$k$ 是比例常数。一次测量不能证明所有范围都服从该关系。\n\n$x,y$ 是正在比较的两个量，$k$ 表示每一单位 $x$ 所对应的 $y$；这些字母是可替换的变量标记。计算比值 $y/x$ 时要求 $x$ 不为零，而关系式本身可包含原点。比如单价固定为每支2元，支数为 $x$、总价为 $y$ 时，$k=2$ 元每支。",
+          "example": "同一均匀材料且状态不变，质量与体积成正比；切成不同大小的小块，可检查质量除以体积是否近似相同。",
+          "question": "一株植物今天高10厘米，明天11厘米，能推出以后每天都长1厘米吗？",
+          "answer": "不能。短期观察不足以支持长期线性外推，生长受阶段和环境影响。",
+          "pitfall": "正相关不等于正比例，关系还可能有截距、曲线或范围限制。"
+        },
+        {
+          "id": "middle-models-3",
+          "title": "微观模型",
+          "intuition": "有些现象无法直接看清内部过程，可以用粒子模型解释。模型要能预测和接受检验，而不是画得像小球就当作实物照片。",
+          "formal": "科学模型保留与问题相关的特征并作简化；微粒模型可解释物态、扩散和反应等，但不同尺度需采用不同描述。",
+          "example": "气体扩散可用微粒无规则运动解释；模型图中画的空隙、颜色和球大小通常是示意，不是实际按比例拍摄。",
+          "question": "模型没有画出某个细节，是否必然说明模型错误？",
+          "answer": "不一定。若该细节对当前问题不重要，省略可合理；若影响预测，就需改进模型或限制应用范围。",
+          "pitfall": "模型解释有效不意味着它包含对象全部真实特征。"
+        },
+        {
+          "id": "middle-models-4",
+          "title": "图表与证据",
+          "intuition": "图表让变化更容易比较，但选择坐标、单位与数据范围会影响读者印象。结论应回到数据收集方法。",
+          "formal": "表格保留对应关系，图像呈现趋势与差异；图上关联需结合样本、误差与实验设计解释，不能单凭曲线形状断定因果。",
+          "example": "一张纵轴不从零开始的图可能突出很小差异；这不自动违法规则，但必须清楚标示刻度并避免夸大。",
+          "question": "两个量在图中一起上升，就能说一个导致另一个吗？",
+          "answer": "不能。可能受共同因素影响，也可能有时间趋势；需要控制或其他证据支持因果解释。",
+          "pitfall": "图表应有标题、轴含义、单位和数据来源，漂亮的线条不能替代这些。"
+        },
+        {
+          "id": "middle-models-5",
+          "title": "变量控制",
+          "intuition": "把问题变成实验时，要区分主动改变的因素、测量结果，以及需要保持一致的其他条件。控制的目的是减少替代解释。",
+          "formal": "自变量是研究中主动改变或比较的因素，因变量是观察结果，控制变量是尽量保持一致的相关条件；实验还需重复与合理对照。",
+          "example": "比较保温材料时，可用相同杯子、相同体积与初温的温水，按固定时间记录温度；否则材料效应与起始条件混在一起。",
+          "question": "是否所有科学问题都必须通过主动操纵变量来研究？",
+          "answer": "不是。天文等研究常依赖观察与自然比较，但同样需要识别混杂因素并说明结论限度。",
+          "pitfall": "控制变量法不是对所有研究方法的唯一规定。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "middle-models-1",
+          "target": "middle-models-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-models-2",
+          "target": "middle-models-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-models-3",
+          "target": "middle-models-5",
+          "kind": "related"
+        },
+        {
+          "source": "middle-models-4",
+          "target": "middle-models-5",
+          "kind": "related"
+        },
+        {
+          "source": "middle-models-1",
+          "target": "middle-models-5",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "middle",
+      "id": "systems",
+      "nodes": [
+        {
+          "id": "middle-systems-1",
+          "title": "物态与反应",
+          "intuition": "状态变化和生成新物质是两条不同的判断线。一个过程可能同时包含加热、蒸发和化学反应，要分步骤追踪。",
+          "formal": "物态变化主要改变宏观状态与粒子间安排，化学反应改变物种组成与成键关系。可用组成证据区分，不只凭发热或气泡。",
+          "example": "燃烧蜡烛时既有蜡熔化、汽化，也有蜡蒸气燃烧，不能把整个过程只贴一个没有细节的标签。",
+          "question": "水烧开冒泡，与某反应放出二氧化碳是否是同一种变化？",
+          "answer": "不是。前者通常为水汽化，后者可能产生新的化学物种，需要结合气体身份与来源判断。",
+          "pitfall": "现象相似不保证机制相同。"
+        },
+        {
+          "id": "middle-systems-2",
+          "title": "能量转移",
+          "intuition": "能量可以在物体之间转移，也可以改变表现形式。追踪输入、输出和储存变化，能把多种现象放到统一框架。",
+          "formal": "选定系统后，能量守恒要求输入、输出和内部能量变化相互一致；机械、热、电和化学等是描述不同形式的方式。",
+          "example": "电池带动小电机时，化学能经电能转为机械能，也有一部分转为内能和声音，不能只数可见转动。",
+          "question": "机器停下后能量是否就不存在了？",
+          "answer": "不是，原有机械能可能散到内能等形式。停止运动只是某一种形式发生变化。",
+          "pitfall": "把“可利用程度下降”与“总能量消失”区分开。"
+        },
+        {
+          "id": "middle-systems-3",
+          "title": "细胞与器官",
+          "intuition": "结构层次使生命活动的分工更清楚。同一个器官包含多种组织，器官之间又通过物质与信息联系协作。",
+          "formal": "细胞形成组织，多组织构成器官，相关器官在动物中组成系统；层次描述取决于研究对象和组织方式。",
+          "example": "胃中的肌肉帮助运动，上皮参与分泌和保护，神经参与调节，不能说整个胃只由一种细胞完成全部作用。",
+          "question": "给出一块肌肉组织，就能代表整个消化系统吗？",
+          "answer": "不能。组织只是其中一个层次，消化系统还需要多个器官与协调过程。",
+          "pitfall": "结构图只显示位置时，还需要说明物质或信号如何在其间流动。"
+        },
+        {
+          "id": "middle-systems-4",
+          "title": "生态与物质循环",
+          "intuition": "生物与非生物环境相互影响。物质可以转变形态后再次利用，但生态系统的能量还需要持续输入。",
+          "formal": "生态系统包含生物群落与非生物环境，物质循环、能量流动和信息联系共同维持其运行；系统边界会影响分析。",
+          "example": "落叶被分解后，其中元素可回到土壤和空气，再被生物利用；原来储存的能量却不能全部重新变成阳光。",
+          "question": "把能量流动画成完全封闭、无需外部输入的循环是否合理？",
+          "answer": "通常不合理。能量经过程散失为热等形式，维持系统活动需要输入，不能与元素循环混同。",
+          "pitfall": "分解者不是生态图中可随意省去而不影响解释的角色。"
+        },
+        {
+          "id": "middle-systems-5",
+          "title": "地球系统",
+          "intuition": "空气、水、岩石和生物之间发生联系，局部变化可能沿多个过程影响其他部分。系统观点提醒我们寻找边界和反馈。",
+          "formal": "地球系统可从大气圈、水圈、岩石圈与生物圈等相互作用理解；过程具有不同空间与时间尺度。",
+          "example": "植被改变会影响土壤保持和水分流动，进而影响生物生活条件；只看一次降雨不足以解释长期地表变化。",
+          "question": "一场雨后的泥水能直接证明某地长期气候正在改变吗？",
+          "answer": "不能。它可以提供局部过程证据，但长期气候判断需要更长时间、多方面记录。",
+          "pitfall": "系统联系不是任何两个现象都可随意画因果箭头，需要过程与证据。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "middle-systems-1",
+          "target": "middle-systems-2",
+          "kind": "related"
+        },
+        {
+          "source": "middle-systems-2",
+          "target": "middle-systems-3",
+          "kind": "related"
+        },
+        {
+          "source": "middle-systems-3",
+          "target": "middle-systems-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-systems-4",
+          "target": "middle-systems-5",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "middle",
+      "id": "engineering",
+      "nodes": [
+        {
+          "id": "middle-engineering-1",
+          "title": "实验方案",
+          "intuition": "好的方案让别人知道你究竟比较什么，并能按记录重复关键步骤。先定义指标，再决定工具和操作。",
+          "formal": "实验方案需说明问题、假设、变量、对照、测量方法、重复、数据记录及安全条件；方案与可得证据之间应匹配。",
+          "example": "研究保温效果时，可规定十分钟内温度下降量作为指标，而不是只凭手摸“比较暖”。",
+          "question": "结果指标在看到数据以后才选择，会有什么问题？",
+          "answer": "容易挑选最支持预设结论的指标。最好提前确定，若修改，应说明理由并保留原计划。",
+          "pitfall": "步骤越长不一定方案越好；关键是能否回答研究问题。"
+        },
+        {
+          "id": "middle-engineering-2",
+          "title": "解释竞争",
+          "intuition": "同一个现象可能有不止一种解释。寻找能区分解释的证据，比只搜集支持喜欢结论的例子更可靠。",
+          "formal": "竞争解释提出不同机制或原因，通过可区分的预测与证据检验；否定某一解释不自动证明另一解释完全正确。",
+          "example": "植物长得慢，可能因光照、水分或病害。改变水量有效不能立即证明光照永远无影响，要针对不同解释设计比较。",
+          "question": "一个结果符合自己的预测，就足以排除所有其他解释吗？",
+          "answer": "不够。不同解释可能预测同样结果，需要寻找它们预测不同的情境。",
+          "pitfall": "不要把“我想不到其他原因”当成唯一原因的证明。"
+        },
+        {
+          "id": "middle-engineering-3",
+          "title": "结构与功能",
+          "intuition": "物体或生物的结构会影响它能做什么，但一个功能也可能由多种结构实现。比较要对应明确的使用情境。",
+          "formal": "结构是组成与安排，功能是系统在条件下表现的作用；解释需要联系材料、形状、连接与环境，不只看外形名称。",
+          "example": "折叠纸形成梁状结构，可能提高某方向上的承重能力；换加载方向后表现可能不同。",
+          "question": "某结构在一次测试中最好，是否意味着所有用途都最好？",
+          "answer": "不是。不同用途、受力方向和成本约束会改变评价，结构的优势有条件。",
+          "pitfall": "功能解释不能倒过来假定所有结构都是为了当前用途预先设计出来。"
+        },
+        {
+          "id": "middle-engineering-4",
+          "title": "材料选择",
+          "intuition": "选择材料时，强度、重量、防水、成本和可回收性等常需要权衡。先明确需求，才能解释为什么选某种材料。",
+          "formal": "材料选择是将性能与使用环境、制造方法和资源约束匹配；没有脱离任务的普遍最佳材料。",
+          "example": "制作临时展示牌，纸板便宜轻便；长期户外使用时，还需考虑雨水、风和维护，选择可能不同。",
+          "question": "某材料强度最高，就一定最适合轻便模型吗？",
+          "answer": "不一定。重量、加工难度、成本和安全性同样影响任务完成，需要按指标比较。",
+          "pitfall": "不能仅凭“天然”“新材料”等名称判断性能。"
+        },
+        {
+          "id": "middle-engineering-5",
+          "title": "测试与改进",
+          "intuition": "测试的价值不只是宣布成功，还要定位哪里不符合需要。改进后用同样标准复测，才能判断是否真的变好。",
+          "formal": "迭代包括提出改动、保留其他条件、测试、比较和记录；有效改进需与明确评价指标和失败原因相对应。",
+          "example": "纸桥在中央弯折，可提出增加中部支撑的方案；若同时换纸、改跨度、改重物，就难以判断哪个改动起作用。",
+          "question": "改进后的结果更差，是否应删除这次记录？",
+          "answer": "不应。它说明该改动在该条件下未达目标，可帮助排除解释并指导下一次设计。",
+          "pitfall": "只比较最好的一次结果会夸大表现，需考虑重复性与条件差异。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "middle-engineering-1",
+          "target": "middle-engineering-2",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-engineering-3",
+          "target": "middle-engineering-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-engineering-4",
+          "target": "middle-engineering-5",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-engineering-2",
+          "target": "middle-engineering-5",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-engineering-1",
+          "target": "middle-engineering-3",
+          "kind": "related"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "source": "primary-investigation-1",
+      "target": "primary-matter-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-investigation-4",
+      "target": "primary-life-earth-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-investigation-5",
+      "target": "primary-life-earth-4",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-matter-3",
+      "target": "primary-life-earth-4",
+      "kind": "related"
+    },
+    {
+      "source": "primary-life-earth-7",
+      "target": "middle-engineering-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-investigation-2",
+      "target": "middle-models-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-investigation-4",
+      "target": "middle-models-5",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-investigation-5",
+      "target": "middle-models-4",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-matter-1",
+      "target": "middle-models-3",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-models-3",
+      "target": "middle-systems-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-models-3",
+      "target": "middle-systems-3",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-models-5",
+      "target": "middle-engineering-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-models-4",
+      "target": "middle-engineering-2",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-systems-2",
+      "target": "middle-engineering-4",
+      "kind": "related"
+    },
+    {
+      "source": "middle-systems-5",
+      "target": "middle-engineering-3",
+      "kind": "related"
+    }
+  ],
+  "bridges": [
+    {
+      "node": "middle-systems-1",
+      "subject": "chemistry",
+      "stage": "middle",
+      "target": "middle-particles-6",
+      "why": "用物种是否改变区分化学反应与物态变化。"
+    },
+    {
+      "node": "middle-systems-3",
+      "subject": "biology",
+      "stage": "middle",
+      "target": "middle-cells-3",
+      "why": "进一步认识组织、器官与系统的不同层次。"
+    },
+    {
+      "node": "middle-systems-2",
+      "subject": "physics",
+      "stage": "middle",
+      "target": "middle-energy-3",
+      "why": "能量守恒与机械能变化需要分别追踪。"
+    },
+    {
+      "node": "middle-models-2",
+      "subject": "mathematics",
+      "stage": "primary",
+      "target": "ratio",
+      "why": "比例关系建立在对比值和单位的理解上。"
+    }
+  ]
+}

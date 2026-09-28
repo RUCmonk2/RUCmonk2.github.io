@@ -9,6 +9,8 @@ import {
   schoolDirectory,
   schoolStages,
   schoolSubjects,
+  subjectAtlasHref,
+  subjectConceptHref,
   subjectHref,
 } from "@/data/k12-subjects";
 import { constructMetadata } from "@/lib/metadata";
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title:
       locale === "en"
         ? subject.en + " · School Learning"
-        : subject.title + " · 中小学学习框架",
+        : subject.title + " · 中小学知识图谱",
     description: subject.intro,
     path: subjectHref(id),
     locale: locale as Locale,
@@ -47,10 +49,10 @@ export default async function Page({ params }: Props) {
         <h1>{subject.title}</h1>
         <p>{subject.intro}</p>
         <div className="k12-hero-meta">
-          <span>分学段学习框架</span>
+          <span>{subject.stages.length} 张学段知识图谱</span>
           <span>
             {subject.stages.reduce((n, stage) => n + stage.modules.length, 0)}{" "}
-            个模块 · 任务与检查要点
+            个模块 · 知识讲解与综合任务
           </span>
           <a href="#method">怎样学这门课 ↓</a>
         </div>
@@ -60,7 +62,8 @@ export default async function Page({ params }: Props) {
         <p>{subject.method}</p>
         <p className="subject-scope">{subject.note}</p>
         <p className="subject-scope">
-          本页是知识范围、练习方向与学习顺序的导览。模块中的任务用于起步和检查，尚不是逐知识点的完整双模式讲义。
+          进入学段知识网，可切换「从零理解 /
+          严谨表述」，阅读每个知识点的解释、例子、辨析与自测。下面保留模块任务，适合串联练习和备课。
         </p>
       </section>
       <div className="k12-reader-layout subject-layout">
@@ -107,6 +110,14 @@ export default async function Page({ params }: Props) {
                   {subject.title}
                 </h2>
                 <p>{stage.goal}</p>
+                <Link
+                  className="k12-button subject-map-entry"
+                  href={prefix + subjectAtlasHref(id, stage.id)}
+                >
+                  进入{schoolStages.find((s) => s.id === stage.id)!.title}知识网
+                  · {stage.modules.reduce((n, m) => n + m.topics.length, 0)}{" "}
+                  个知识点 ↗
+                </Link>
                 <div className="subject-entry">
                   <strong>从这里起步</strong>
                   <p>{stage.entry}</p>
@@ -137,8 +148,23 @@ export default async function Page({ params }: Props) {
                   </div>
                   <h4>知识主线</h4>
                   <ul className="subject-topics">
-                    {module.topics.map((topic) => (
-                      <li key={topic}>{topic}</li>
+                    {module.topics.map((topic, topicIndex) => (
+                      <li key={topic}>
+                        <Link
+                          className="subject-topic-link"
+                          href={
+                            prefix +
+                            subjectConceptHref(
+                              id,
+                              stage.id,
+                              module.id,
+                              topicIndex,
+                            )
+                          }
+                        >
+                          {topic} ↗
+                        </Link>
+                      </li>
                     ))}
                   </ul>
                   <div className="subject-task">

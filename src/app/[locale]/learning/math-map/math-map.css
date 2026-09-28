@@ -1360,14 +1360,22 @@
   border: 1px solid var(--note-line);
   background: var(--note-tint);
   color: var(--note-ink);
-  font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace;
+  font:
+    13px/1.8 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
   tab-size: 4;
 }
 .mathmap-lesson-prose :not(pre) > code {
   padding: 2px 4px;
   border-radius: 3px;
   background: var(--note-tint);
-  font: 0.88em ui-monospace, SFMono-Regular, Consolas, monospace;
+  font:
+    0.88em ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
   overflow-wrap: anywhere;
 }
 .mathmap-lesson-prose img {
@@ -1375,4 +1383,14 @@
   max-width: 100%;
   height: auto;
   margin: 24px auto 12px;
+}
+
+.mathmap-concept-preview {
+  margin: 18px 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--note-line);
+  border-bottom: 1px solid var(--note-line);
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--note-accent);
 }

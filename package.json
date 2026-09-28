@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-math-lessons.mjs && node scripts/build-course-lessons.mjs && node scripts/build-k12-lessons.mjs && next build && node scripts/promote-default-locale.mjs",
+    "build": "node scripts/build-math-lessons.mjs && node scripts/build-course-lessons.mjs && node scripts/build-k12-lessons.mjs && node scripts/build-school-lessons.mjs && next build && node scripts/promote-default-locale.mjs",
     "dev": "next dev --turbopack",
     "lint": "eslint .",
     "check:learning": "node scripts/check-learning-catalog.mjs",
@@ -13,7 +13,7 @@
     "preview": "npx serve out",
     "test:course-maps": "node scripts/check-course-maps.mjs",
     "test:math-map": "node scripts/check-course-maps.mjs && node scripts/check-math-map.mjs && node scripts/check-math-lesson-examples.mjs",
-    "test:k12": "node scripts/build-k12-lessons.mjs && node scripts/check-k12.mjs && node scripts/check-factorization.mjs && node scripts/check-k12-subjects.mjs"
+    "test:k12": "node scripts/build-k12-lessons.mjs && node scripts/check-k12.mjs && node scripts/check-factorization.mjs && node scripts/check-k12-subjects.mjs && node scripts/build-school-lessons.mjs && node scripts/check-school-atlases.mjs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",

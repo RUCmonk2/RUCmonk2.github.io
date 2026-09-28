@@ -1,0 +1,875 @@
+{
+  "subject": "foreign-languages",
+  "modules": [
+    {
+      "stage": "primary",
+      "id": "sounds",
+      "nodes": [
+        {
+          "id": "primary-sounds-1",
+          "title": "字母与常见音",
+          "intuition": "字母是写下来的符号，声音是说出来的东西。读字母名称与读它在单词里的音，不是同一个动作。",
+          "formal": "英语有26个字母，但字母与音素并非一一对应。先区分大小写、字母名称和常见发音，再在具体词中学习；一个字母可能表示不同音，多个字母也可组合表示一个音。",
+          "example": "字母b的名称读作“bee”，在bat开头却只发辅音/b/；不要把bat逐个读成三个字母名称。",
+          "question": "拼读cat时，应该把三个字母名称直接连起来吗？",
+          "answer": "不应该。应学习它们在该词中的声音并合成完整单词，字母名称主要用于拼写和报字母。",
+          "pitfall": "汉语拼音与英语字母有相同字形，但发音规则不同，不能直接套用。"
+        },
+        {
+          "id": "primary-sounds-2",
+          "title": "音形对应",
+          "intuition": "音形对应像一套常用线索：看到一组字母，尝试读出相应声音，再用已知词和语境核对。它能帮助识词，但不是没有例外的密码。",
+          "formal": "自然拼读学习常见字母或字母组合与语音的对应，包括辅音、元音和组合形式。规则通常有适用环境，需结合听音、词义与例外词积累。",
+          "example": "cat、hat、map中的a常有相同读音；cake中的a因词形环境不同而变音。先比较一组词，再总结规律。",
+          "question": "认识cat后遇到hat，可以怎样尝试读？",
+          "answer": "保留at的声音，把开头/c/对应的音换成h的音，再合成并核对词义“帽子”。",
+          "pitfall": "知道一种读音不能假定该字母在所有单词中都这样读，拼写也不总能唯一确定发音。"
+        },
+        {
+          "id": "primary-sounds-3",
+          "title": "重音与节奏",
+          "intuition": "一句话不是每个音节都同样用力。把重要词说清、把词连成意群，会比逐字等速朗读更容易听懂。",
+          "formal": "单词重音指多音节词中相对突出的音节；句子重音常突出信息焦点。节奏和弱读受语境影响，学习时先保证清晰，再模仿自然语流。",
+          "example": "“I want a RED bag.”强调颜色；“I want TWO bags.”强调数量。同一句型可以因重音不同传达不同对比。",
+          "question": "对方听成你要蓝袋子，纠正时“a red bag”里哪个词适合突出？",
+          "answer": "red，因为需要纠正的是颜色，而不是数量或物品种类。",
+          "pitfall": "突出不只是喊得更响，也涉及时长、音高和清晰度；弱读不能让关键意思丢失。"
+        },
+        {
+          "id": "primary-sounds-4",
+          "title": "主题词汇",
+          "intuition": "词汇围绕生活任务学，更容易记住和使用。学“食物”时，除了apple，还应知道怎样说喜欢、数量和请求。",
+          "formal": "主题词汇组织应包含词义、发音、拼写、常见搭配与使用情境。一个词可有多个义项，初学先掌握当前语境中的核心用法，再逐渐扩展。",
+          "example": "学school时，把classroom、teacher、book放进“I have a book.”等短句，再在教室里指认实物，比只抄孤立词表多了一层联系。",
+          "question": "只会把apple译成“苹果”，怎样再进一步检验是否会用？",
+          "answer": "能听出并说出该词，辨认拼写，并在“an apple”或“I like apples.”等适当语境中使用。",
+          "pitfall": "知道中文释义并不等于掌握发音和搭配，词汇量不能只按背过的词表长度计算。"
+        },
+        {
+          "id": "primary-sounds-5",
+          "title": "图片和实物",
+          "intuition": "图片和实物让新词先连到真实意义，再连到中文。可以指、比、摆放和描述，让语言对应一个可观察动作。",
+          "formal": "多模态学习用图像、实物、动作与语言建立联系，但图像可能含糊，需通过具体指示和对比明确所指。图片提供线索，不能替代听读文本中的全部信息。",
+          "example": "把玩具放在盒子里说“in the box”，再放到盒子上说“on the box”，位置变化帮助区分介词。",
+          "question": "图片中有男孩、球和狗，听到“ball”时为什么不能只记“这张图”？",
+          "answer": "因为词对应的是具体物体而非整幅场景，应明确指向球，并换另一张图再次识别。",
+          "pitfall": "图像猜测要由语言验证，同一张图可以表达不同动作、人物关系和时间。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "primary-sounds-1",
+          "target": "primary-sounds-2",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-sounds-2",
+          "target": "primary-sounds-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-sounds-2",
+          "target": "primary-sounds-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-sounds-4",
+          "target": "primary-sounds-5",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "primary",
+      "id": "sentences",
+      "nodes": [
+        {
+          "id": "primary-sentences-1",
+          "title": "自我介绍",
+          "intuition": "自我介绍的目标是让听者知道与你这次交流有关的信息，不必背一长段与场景无关的话。",
+          "formal": "基础表达可包括称呼、姓名、兴趣等，注意主语与be动词搭配。个人信息按场景选择；公开场合无需透露住址、电话等私密信息。",
+          "example": "“Hello. I’m Lin. I like drawing.”已经完成问候、姓名与兴趣三个功能；向新同学介绍时可以接一句“What do you like?”。",
+          "question": "“I is Mei.”应怎样改，为什么？",
+          "answer": "改为“I am Mei.”，因为主语I在一般现在时与am搭配；口语可缩写为“I’m Mei.”。",
+          "pitfall": "年龄、学校和家庭信息不是每次都必须说，自我介绍应考虑交流对象和隐私。"
+        },
+        {
+          "id": "primary-sentences-2",
+          "title": "问答与礼貌",
+          "intuition": "礼貌不只是句尾加please，还包括是否给对方选择、有没有听懂对方回答。先完成真实交流，再关注措辞。",
+          "formal": "基础问答通常形成相邻话轮，例如问候回应、请求接受或婉拒。Can I…?常用于请求许可，Can you…?常用于询问能力或提出请求，具体功能依语境决定。",
+          "example": "“Can I use your pencil?”—“Yes, here you are.”—“Thank you.”形成完整交换；对方也可以说“Sorry, I need it now.”。",
+          "question": "别人说“Thank you”，回答“Yes”通常自然吗？可以怎样答？",
+          "answer": "通常可说“You’re welcome.”或其他合适回应；Yes主要回答是否问题，不能机械对应所有话轮。",
+          "pitfall": "礼貌表达受关系和场合影响，不能把一种固定句式当作任何文化中的唯一正确方式。"
+        },
+        {
+          "id": "primary-sentences-3",
+          "title": "数量和位置",
+          "intuition": "数量回答有多少，位置回答在哪里。把两者放进一句话，能让别人准确找到东西。",
+          "formal": "可数名词常有单复数变化，数量词与名词形式要匹配；in、on、under等介词表达空间关系。there is/are用于描述某处存在什么，单复数需协调。",
+          "example": "“There are two books on the desk.”表示桌上有两本书，two决定books用复数，are与复数主语相配。",
+          "question": "把“桌下有一只猫”写成一句简单英语。",
+          "answer": "“There is a cat under the desk.”一只猫用a cat，存在句用is，under表示在下方。",
+          "pitfall": "on通常表达与表面接触的“在……上”，不等于所有悬在上方的情况。"
+        },
+        {
+          "id": "primary-sentences-4",
+          "title": "日常活动",
+          "intuition": "谈日常活动时，先把“谁、做什么、什么时候”说完整，再扩展地点和频率。重复使用自己的真实生活更容易掌握。",
+          "formal": "一般现在时可表达习惯或常态；第三人称单数主语通常要求实义动词作相应变化。时间表达和频率副词帮助限定活动，具体时态还要由语境判断。",
+          "example": "“I walk to school.”与“She walks to school.”都谈习惯，主语变化使walk变为walks；不是因为活动发生次数改变。",
+          "question": "将“I play football after school.”改成以“He”开头。",
+          "answer": "“He plays football after school.”主语为第三人称单数，play加s。",
+          "pitfall": "一般现在时不只表示“此刻正在做”；描述正在发生的活动常需其他结构。"
+        },
+        {
+          "id": "primary-sentences-5",
+          "title": "基本句序",
+          "intuition": "英语句子像有位置规则的积木。先找谁，再找动作，再看动作涉及谁或什么，能避免直接照搬中文词序。",
+          "formal": "基本陈述句常用主语—谓语—宾语结构，也有主语—系动词—表语等类型。疑问句、否定句有相应规则，不能把所有句子都套进同一种顺序。",
+          "example": "“Mia likes music.”中Mia是主语，likes为谓语，music是宾语；“Mia is happy.”中happy描述主语状态，不是被作用的对象。",
+          "question": "把“like / I / apples”组成陈述句。",
+          "answer": "“I like apples.”先写主语I，再写谓语like，最后是宾语apples，并补首字母大写和句号。",
+          "pitfall": "单词都对不代表句子就对；词序、动词形式和标点共同构成句意。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "primary-sentences-1",
+          "target": "primary-sentences-2",
+          "kind": "related"
+        },
+        {
+          "source": "primary-sentences-3",
+          "target": "primary-sentences-5",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-sentences-4",
+          "target": "primary-sentences-5",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-sentences-5",
+          "target": "primary-sentences-1",
+          "kind": "related"
+        },
+        {
+          "source": "primary-sentences-2",
+          "target": "primary-sentences-4",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "primary",
+      "id": "stories",
+      "nodes": [
+        {
+          "id": "primary-stories-1",
+          "title": "图片预测",
+          "intuition": "看图预测是带着问题开始阅读：谁在场、可能发生什么。预测允许修改，读到新信息后改变判断正是理解的一部分。",
+          "formal": "阅读前预测依据标题、插图和已有经验形成假设；阅读中需用文字证据确认、修正或放弃。预测与作者明确写出的事实应分开记录。",
+          "example": "图片里孩子拿着雨伞，你可预测要下雨；读到“He uses it for shade.”后应改为遮阳，而非坚持最初猜测。",
+          "question": "预测错了是否说明不会阅读？",
+          "answer": "不一定。若能指出原线索、找到新证据并修正，反而体现了主动理解。",
+          "pitfall": "图片可能只表现故事一部分，不要在未读文本时把推测写成确定事实。"
+        },
+        {
+          "id": "primary-stories-2",
+          "title": "故事顺序",
+          "intuition": "故事顺序帮你把零散句子连成事件。先区分“先后发生”与“因为所以”，两者有关但不相同。",
+          "formal": "可用first、then、after that、finally梳理事件；人物目标、行动和结果能形成基本故事链。叙述顺序有时不同于事件真实发生顺序。",
+          "example": "“First, Ben plants a seed. Then he waters it. Finally, a plant grows.”展示顺序；生长还依赖时间、光照等条件，并非只浇一次水就立即完成。",
+          "question": "故事先写结尾再回忆过去，复述时必须照原段落顺序吗？",
+          "answer": "不一定。可以按事件时间顺序复述，但应说明调整后的顺序，保留关键因果与人物关系。",
+          "pitfall": "then只表顺序时，不能自动理解为“所以”。"
+        },
+        {
+          "id": "primary-stories-3",
+          "title": "高频词",
+          "intuition": "有些短词在文章里反复出现，认得它们能腾出注意力理解故事。但短词也承担重要语法和意义。",
+          "formal": "高频词包括冠词、代词、介词和常见动词等；学习需在短语和句子中辨认，而非只做字形记忆。部分词的拼读不完全规则，需要额外练习。",
+          "example": "在“The dog is in the box.”里，the、is、in帮助确定对象、建立句子和表达位置；删掉后信息会不完整。",
+          "question": "认识the、a之后，为什么还要在句子里比较？",
+          "answer": "因为a常用于引入一个未特指的对象，the常涉及特指或语境已知，实际用法需要上下文。",
+          "pitfall": "高频不等于每次同义；in在时间和地点表达中的搭配不同。"
+        },
+        {
+          "id": "primary-stories-4",
+          "title": "句子书写",
+          "intuition": "书写先让读者能辨认边界：哪里开始、哪里结束、谁的名字。再检查语序与词形，漂亮字体不能代替正确表达。",
+          "formal": "基础书写包括首字母大写、专名大写、词间空格与句末标点；句子需有适当语法结构。抄写、听写和自主造句训练不同能力。",
+          "example": "“my name is li.”可改为“My name is Li.”，句首和姓名首字母大写，末尾保留句号。",
+          "question": "“Ilikemusic”主要缺少什么？怎样改？",
+          "answer": "缺少词间空格与句末标点，应写“I like music.”，让读者识别三个词及句子边界。",
+          "pitfall": "不能只检查拼写而忽略漏词；英文标点与空格规则也不要完全照中文排版。"
+        },
+        {
+          "id": "primary-stories-5",
+          "title": "简短留言",
+          "intuition": "留言是在对方不在场时完成沟通。写清给谁、什么事、需要做什么，比堆复杂单词更有用。",
+          "formal": "简短留言需结合对象与目的安排信息，常包含称呼、核心事项、时间地点或行动要求以及署名。表达应简洁明确，避免不清楚的代词和时间词。",
+          "example": "“Hi Leo, Please bring your notebook on Friday. Thanks, Amy.”交代对象、物品、时间和发送者；若跨周发送，还可补具体日期。",
+          "question": "“Come there tomorrow.”为什么可能让人困惑？",
+          "answer": "there没有明确地点，tomorrow依赖读取时间。应补地点和可确认日期或时间，减少歧义。",
+          "pitfall": "短不等于省掉关键信息，是否完整由读者能否采取正确行动来判断。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "primary-stories-1",
+          "target": "primary-stories-2",
+          "kind": "related"
+        },
+        {
+          "source": "primary-stories-2",
+          "target": "primary-stories-3",
+          "kind": "related"
+        },
+        {
+          "source": "primary-stories-3",
+          "target": "primary-stories-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "primary-stories-4",
+          "target": "primary-stories-5",
+          "kind": "prereq"
+        }
+      ]
+    },
+    {
+      "stage": "middle",
+      "id": "grammar",
+      "nodes": [
+        {
+          "id": "middle-grammar-1",
+          "title": "词性与句子成分",
+          "intuition": "词性回答“这个词是什么类”，句子成分回答“它在这句里做什么工作”。同一个名词可以做主语，也可以做宾语。",
+          "formal": "词性包括名词、动词、形容词等；句子成分包括主语、谓语、宾语、表语、定语、状语等。判定成分需看结构关系，不能只凭词义或词性。",
+          "example": "“Books help me.”中Books是名词、作主语；“I read books.”中books仍是名词、却作宾语。",
+          "question": "“She is happy.”中的happy是宾语吗？",
+          "answer": "不是。happy是形容词，作表语，经系动词is说明主语状态。",
+          "pitfall": "谓语与动词不是简单一一对应，一个谓语可包含助动词和主要动词。"
+        },
+        {
+          "id": "middle-grammar-2",
+          "title": "时态与语态",
+          "intuition": "时态组织事件与时间的关系，语态改变说话时把谁放到中心。先确定想表达的时间和焦点，再选择形式。",
+          "formal": "英语时态与体共同表达时间定位和完成、进行等视角；被动语态常由be加过去分词构成，用于突出承受者或省略不重要的施事者。具体形式须配合语境。",
+          "example": "“They built the bridge in 2010.”可改为“The bridge was built in 2010.”，事件时间不变，叙述焦点由建造者转向桥。",
+          "question": "“The room is cleaned every day.”能说明此刻正在打扫吗？",
+          "answer": "不能。every day表习惯，这句说明日常清扫；正在进行需结合语境采用相应进行结构。",
+          "pitfall": "过去分词不等于过去时，被动中的时间主要由助动词形式和语境共同表达。"
+        },
+        {
+          "id": "middle-grammar-3",
+          "title": "主谓一致",
+          "intuition": "动词形式要跟真正的主语协调，不能被中间离它更近的词带跑。先找主语中心词，再看时态和数。",
+          "formal": "一般现在时中，第三人称单数主语的实义动词通常加-s或-es；be等有特殊形式。复杂主语和并列结构需按实际语法关系判断，一致规则不是“最近名词决定”。",
+          "example": "“The color of the flowers is bright.”主语中心是单数color，flowers在介词短语中，因此用is。",
+          "question": "“My brother and I ___ ready.”填am、is还是are？",
+          "answer": "填are，brother and I组成并列复数主语，而非只根据I选am。",
+          "pitfall": "主语后的修饰成分可能很长，先去掉修饰看主干有助于判断。"
+        },
+        {
+          "id": "middle-grammar-4",
+          "title": "非谓语初步",
+          "intuition": "一句话可以提到多个动作，但不是每个动作词都独立承担谓语。非谓语让动作作为目标、活动或修饰内容进入句子。",
+          "formal": "常见非谓语形式包括不定式、动名词和分词。它们可承担不同句子成分，但不能单独替代有限谓语；具体选用受动词搭配和意义限制。",
+          "example": "“I want to read.”中want是谓语，to read说明想做的事；“Reading is fun.”中Reading整体作主语，is为谓语。",
+          "question": "“He enjoys to swim.”通常怎样改？",
+          "answer": "改为“He enjoys swimming.”，enjoy常接动名词作宾语，不能只按中文“想做”类比所有动词。",
+          "pitfall": "不是所有动词后都能互换to do和doing；搭配变化有时还改变意义。"
+        },
+        {
+          "id": "middle-grammar-5",
+          "title": "从句初步",
+          "intuition": "从句是在大句子里承担一个成分的小结构。先找到整个句子的主干，再看从句是补内容、说明时间还是修饰名词。",
+          "formal": "从句通常含主谓结构，可作宾语、定语、状语等。连接词引入结构并表达关系；从句内部词序不一定与独立疑问句相同。",
+          "example": "“I know where she lives.”中where she lives整体作know的宾语；从句用she lives的陈述语序。",
+          "question": "“I wonder where does he live.”应如何修改？",
+          "answer": "改为“I wonder where he lives.”，嵌入式疑问内容采用陈述语序，去掉does并调整live。",
+          "pitfall": "不要见到问词就自动使用疑问句倒装，还要判断它是否位于从句。"
+        },
+        {
+          "id": "middle-grammar-6",
+          "title": "词块",
+          "intuition": "词块像经常一起出现的小零件，能减轻临时逐词拼装的负担。记住形式时也要记住使用条件。",
+          "formal": "词块包括固定表达、常见搭配和句型框架，如make a decision、be interested in。理解组成和可替换部分有助于灵活使用，不能把所有短语都当完全固定。",
+          "example": "“be interested in music”可把music换为science，但in通常保留；主语和时态变化时be也要调整。",
+          "question": "“She interested in art.”缺少什么？",
+          "answer": "需要系动词，如“She is interested in art.”。记词块时要同时检查它在完整句子里的结构。",
+          "pitfall": "熟记词块不能代替理解语气和语域，同义中文可能对应不同英语搭配。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "middle-grammar-1",
+          "target": "middle-grammar-2",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-grammar-1",
+          "target": "middle-grammar-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-grammar-1",
+          "target": "middle-grammar-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-grammar-1",
+          "target": "middle-grammar-5",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-grammar-2",
+          "target": "middle-grammar-4",
+          "kind": "related"
+        },
+        {
+          "source": "middle-grammar-5",
+          "target": "middle-grammar-6",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "middle",
+      "id": "reading",
+      "nodes": [
+        {
+          "id": "middle-reading-1",
+          "title": "主旨与细节",
+          "intuition": "主旨是文章主要在说什么，细节是用来展开或支持它的信息。一个醒目的例子可能很重要，却不一定等于全文主旨。",
+          "formal": "主旨概括应覆盖主要内容并与范围相称；细节定位需核对人物、时间、条件及否定限制。主题句可能显明，也可能需综合多个段落推断。",
+          "example": "文章先谈骑车节能，再谈健康和拥堵，主旨更可能是骑车的多方面益处，而非只谈某位骑车者的经历。",
+          "question": "原文说“Some students cycle twice a week”，能改写成“All students cycle every day”吗？",
+          "answer": "不能。some变all扩大范围，twice a week变every day改变频率，两个限定都丢失了。",
+          "pitfall": "主旨不是把标题换个说法，也不是选文中出现次数最多的孤立词。"
+        },
+        {
+          "id": "middle-reading-2",
+          "title": "代词指代",
+          "intuition": "代词帮作者避免重复，也要求读者记住前文对象。找指代时，不只看最近的名词，还要核对数、语义和逻辑。",
+          "formal": "it、they、this、that等可指向名词、事件或前文观点。确定先行项需要结合语法一致、语境和篇章关系，有些指代本身确有歧义。",
+          "example": "“Anna lent Mia a book because Mia needed it.”中it指a book；because说明借书原因，而不是指Anna或Mia。",
+          "question": "“The road was closed. This delayed us.”中的This指什么？",
+          "answer": "主要指“道路被封闭”这件事，而不只是名词road。代词可以概括整个前述命题。",
+          "pitfall": "最近词原则不是万能的；无法唯一确定时应承认歧义，不要硬猜。"
+        },
+        {
+          "id": "middle-reading-3",
+          "title": "上下文猜词",
+          "intuition": "猜词是用证据缩小意义范围，不是看到相似拼写就随意翻译。定义、举例、对比和构词都能提供线索。",
+          "formal": "语境推断结合句法位置、词根词缀及前后逻辑，形成暂定词义，再代回全文检验。若该词影响关键判断而线索不足，应查词典确认。",
+          "example": "“Unlike the crowded square, the garden was tranquil.”由unlike和crowded对比，可推测tranquil与安静、平静有关。",
+          "question": "猜出的词义代回句子后与下一句矛盾，怎么办？",
+          "answer": "修正猜测，寻找新的语法和语义线索；不能因为第一次猜得顺口就忽略后续证据。",
+          "pitfall": "词根只能给线索，不能保证现代词义等于各部分中文意思相加。"
+        },
+        {
+          "id": "middle-reading-4",
+          "title": "逻辑连接",
+          "intuition": "连接词像路标，告诉你作者在补充、转折、举例还是推出结果。读懂关系，比只翻译词义更重要。",
+          "formal": "常见关系包括并列、转折、因果、条件、让步和顺序。连接词的功能需看完整句子；语篇也可能不用显式连接词而表达关系。",
+          "example": "“It was raining, but we continued.”的but突出继续行动与通常预期不同；换成so会改变两句的逻辑关系。",
+          "question": "“The battery was empty, so the lamp went out.”中哪部分是原因？",
+          "answer": "电池没电是原因，灯熄灭是结果；so引出结果，但现实因果还需由语境与事实支持。",
+          "pitfall": "because和so在基本英语连接中通常不同时重复标记同一对主从关系，不能直接照搬中文“因为……所以……”。"
+        },
+        {
+          "id": "middle-reading-5",
+          "title": "听力笔记",
+          "intuition": "听力笔记不是逐字速记，而是抓住任务需要的信息。先知道要找什么，再用简短符号保留关键内容。",
+          "formal": "笔记可记录主题、人物、时间、数量、转折和行动要求。应保留单位、否定与修正信息；听者可用缩写，但事后须能还原含义。",
+          "example": "听到“Meet at three—sorry, at three thirty.”应记录最终时间3:30，而不是第一个听见的数字。",
+          "question": "听力中出现“not Tuesday but Thursday”，笔记应保留哪一天？",
+          "answer": "Thursday，否定与更正是关键信息；可以划掉Tuesday并写最终日期，避免残留冲突。",
+          "pitfall": "写得越多不一定理解越好，忙于抄词可能漏掉后面的转折和结论。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "middle-reading-2",
+          "target": "middle-reading-3",
+          "kind": "related"
+        },
+        {
+          "source": "middle-reading-4",
+          "target": "middle-reading-1",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-reading-3",
+          "target": "middle-reading-1",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-reading-1",
+          "target": "middle-reading-5",
+          "kind": "related"
+        },
+        {
+          "source": "middle-reading-2",
+          "target": "middle-reading-4",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "middle",
+      "id": "communication",
+      "nodes": [
+        {
+          "id": "middle-communication-1",
+          "title": "邀请与建议",
+          "intuition": "邀请让对方决定是否参与，建议提供可选行动。表达需要明确活动与时间，也要允许对方婉拒。",
+          "formal": "Would you like to…?常用于邀请；You could…或Why not…?可提出建议。语气、关系和场景影响合适程度，回应可接受、拒绝或协商。",
+          "example": "“Would you like to join our reading group on Friday?”比“Come on Friday.”提供了更清楚的邀请语气和活动内容。",
+          "question": "对邀请无法参加时，怎样既清楚又礼貌？",
+          "answer": "可说“Thanks for inviting me, but I can’t come on Friday.”，先回应邀请，再明确无法参加，必要时提出另一时间。",
+          "pitfall": "礼貌不要求编造理由，也不意味着邀请后对方必须接受。"
+        },
+        {
+          "id": "middle-communication-2",
+          "title": "叙事和说明",
+          "intuition": "叙事让读者理解发生了什么，说明让读者理解某物是什么或怎样运作。明确目的后，才选择时态、顺序与细节。",
+          "formal": "叙事常围绕事件、人物和变化组织；说明常按分类、步骤、空间或因果展开。二者可以结合，但每段应有清楚功能，时间表达与逻辑连接需一致。",
+          "example": "写一次种植经历可以按日期叙述；写“如何种植”则应列材料、步骤和条件，不必保留个人当天的所有插曲。",
+          "question": "“我上周怎样做蛋糕”与“怎样制作蛋糕”在组织上有什么差异？",
+          "answer": "前者以个人过去经历为主，后者以可重复步骤为主，关注一般材料、动作与注意条件。",
+          "pitfall": "叙事不等于只用过去时，说明也不等于堆百科名词；表达形式应由内容决定。"
+        },
+        {
+          "id": "middle-communication-3",
+          "title": "段落组织",
+          "intuition": "一个段落最好让读者抓住一件主要的事。主题句提出方向，后面的例子、理由或细节都应为它服务。",
+          "formal": "段落连贯依赖中心一致、逻辑顺序、指代清楚和衔接适当。主题句位置可变化，支持句需与主旨相关，结尾可总结或过渡而非机械重复。",
+          "example": "段落讨论校园阅读角的好处，可依次写可达性、同伴交流和一个具体例子；突然插入周末旅行会破坏中心。",
+          "question": "如何判断一句内容精彩的话是否应该留在本段？",
+          "answer": "看它是否推进本段主旨；若只与大主题松散相关，可移到别段或删去，而不是因句式漂亮就保留。",
+          "pitfall": "连接词很多不等于逻辑连贯，句子间必须真的存在相应关系。"
+        },
+        {
+          "id": "middle-communication-4",
+          "title": "邮件格式",
+          "intuition": "邮件同时传递内容和行动要求。清楚的主题、称呼和结尾，能帮助对方快速理解为何联系以及怎样回应。",
+          "formal": "基本邮件包括主题、称呼、正文、结束语和署名；正式程度依据对象与目的调整。正文应交代背景、核心事项和必要时间信息，附件需在文中说明。",
+          "example": "给老师询问作业，可用主题“Question about the science project”，正文说明具体不理解的要求，而不是只写“Help!”。",
+          "question": "邮件写完后，为什么还要检查附件与日期？",
+          "answer": "读者需要实际材料和明确截止时间才能行动；正文说有附件却未附上，会使信息链断裂。",
+          "pitfall": "不要把聊天缩写直接用于所有正式邮件，也不必为了正式而使用难懂的长句。"
+        },
+        {
+          "id": "middle-communication-5",
+          "title": "口语轮次",
+          "intuition": "交流是共同搭建意义，不是轮流背稿。听见对方说了什么，再追问、回应或澄清，才会形成真正对话。",
+          "formal": "话轮管理包括适时接话、让出发言、澄清误解和确认理解。可使用“What do you mean by…?”或“So you mean…?”等策略，注意语气与场合。",
+          "example": "同伴说“The model is too heavy.”，回应“How can we make it lighter?”比突然切换到自己的旅游经历更能推进讨论。",
+          "question": "没听清时假装听懂，可能造成什么问题？怎样处理？",
+          "answer": "后续回答可能偏离或执行错误；可请求重复、放慢或确认关键词，例如“Did you say Thursday?”。",
+          "pitfall": "流利不等于一直不停说，留出回应空间也是沟通能力。"
+        },
+        {
+          "id": "middle-communication-6",
+          "title": "修改反馈",
+          "intuition": "修改是检查读者能否理解，不只是找拼写红线。先改内容与结构，再改句子，效率通常更高。",
+          "formal": "反馈应具体、可操作并有优先级，区分意义、组织、语法和表达问题。作者需判断建议是否适合写作目的，并说明接受或保留的理由。",
+          "example": "“这段不好”难以使用；“第二句的they可能指两组人，请改成具体名词”能直接帮助修订。",
+          "question": "文章论点前后矛盾但拼写完全正确，修改应先处理什么？",
+          "answer": "先澄清论点和论证关系，再处理局部语言；表面正确不能弥补意义冲突。",
+          "pitfall": "同伴意见不是命令，也不是越多越好，应结合证据和写作目标选择。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "middle-communication-1",
+          "target": "middle-communication-5",
+          "kind": "related"
+        },
+        {
+          "source": "middle-communication-2",
+          "target": "middle-communication-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-communication-3",
+          "target": "middle-communication-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-communication-3",
+          "target": "middle-communication-6",
+          "kind": "prereq"
+        },
+        {
+          "source": "middle-communication-4",
+          "target": "middle-communication-6",
+          "kind": "related"
+        },
+        {
+          "source": "middle-communication-5",
+          "target": "middle-communication-6",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "high",
+      "id": "language",
+      "nodes": [
+        {
+          "id": "high-language-1",
+          "title": "复杂句结构",
+          "intuition": "长句不一定难在生词，常常难在修饰层次。先圈出主句谓语，再把插入和从属部分放回各自位置。",
+          "formal": "复杂句由主句和从属结构等组成。解析时识别有限谓语、连接标记与成分边界，区分并列和从属；理解修饰范围后再决定翻译顺序。",
+          "example": "“The book that you lent me yesterday is useful.”主干是“The book is useful”，that从句限定是哪本书，yesterday修饰借书事件。",
+          "question": "删去修饰后只剩“The students who…”，为什么还不是完整主干？",
+          "answer": "who引导部分属于修饰，主句仍需要自己的谓语；不能把从句谓语误当整个句子的谓语。",
+          "pitfall": "长句分析不是把所有逗号都当句子边界，非限定从句和插入语也会使用逗号。"
+        },
+        {
+          "id": "high-language-2",
+          "title": "定语从句与名词性从句",
+          "intuition": "两种从句都可能由that引导，但工作不同：一种修饰名词，一种整体占据名词性成分的位置。",
+          "formal": "定语从句与先行词建立修饰关系；名词性从句可作主语、宾语、表语或同位语。判断需看从句在主句中的功能，以及引导词是否在从句内部承担成分。",
+          "example": "“The news that surprised me was true.”中that指news并作从句主语；“The news that he won was true.”中that引出news的具体内容。",
+          "question": "“I believe that she is right.”里的从句修饰哪个名词？",
+          "answer": "它不修饰名词，而是整体作believe的宾语，属于宾语从句。",
+          "pitfall": "不能见到that就称定语从句，要检查先行词、成分和语义关系。"
+        },
+        {
+          "id": "high-language-3",
+          "title": "非谓语",
+          "intuition": "高级非谓语学习关注的不只是形式，还包括逻辑主语、主动被动及时间关系。改写时要确保动作仍由正确的人承担。",
+          "formal": "不定式、分词与动名词结构可承担多种功能；分词状语的逻辑主语通常与主句主语一致。完成或被动形式用来表达相对时间和语态，具体选择受语义制约。",
+          "example": "“Walking home, I saw a bird.”说明我在步行；“Walking home, a bird caught my attention.”容易产生鸟在步行回家的悬垂歧义。",
+          "question": "怎样修改“Looking out of the window, the rain was heavy.”？",
+          "answer": "可写“Looking out of the window, I saw heavy rain.”，明确looking的执行者是I；或改用完整从句。",
+          "pitfall": "形式简洁不代表意义正确，非谓语改写必须保留动作主体与时间关系。"
+        },
+        {
+          "id": "high-language-4",
+          "title": "语气与情态",
+          "intuition": "情态表达不仅谈能不能，还能表达可能性、义务、推断和委婉程度。相同词形在不同语境中会承担不同功能。",
+          "formal": "can、may、must、should等情态动词依语境表达能力、许可、义务或认识判断。条件与假设结构需区分现实可能、反事实和礼貌距离，不能只靠中文一词对应。",
+          "example": "“You must wear a helmet.”表达要求；“She must be at home.”通常表达较强推断，二者的must不是同一功能。",
+          "question": "“He may be late.”能改写成“He is certainly late.”吗？",
+          "answer": "不能。may保留可能性，certainly把不确定判断变成确定判断，改变了证据强度。",
+          "pitfall": "推断语气强并不保证事实为真，读者仍应检查支持信息。"
+        },
+        {
+          "id": "high-language-5",
+          "title": "衔接与语域",
+          "intuition": "语域是语言对场合的适配：同一请求向朋友、教师和陌生机构表达时，内容可相同，措辞和组织却应调整。",
+          "formal": "衔接通过指代、连接、词汇复现等实现；语域涉及正式程度、领域术语与人际关系。连贯还依赖真实逻辑，不能由表面连接词自动保证。",
+          "example": "给朋友可写“Can you send it today?”；正式工作邮件可能写“Could you send the revised file by 5 p.m.?”，后者还明确对象和时间。",
+          "question": "把普通词全部换成生僻词，就能得到更正式的文本吗？",
+          "answer": "不能。正式表达更重视准确、清楚和合适语气，生僻替换可能造成搭配错误或装饰性冗长。",
+          "pitfall": "缩写不是绝对错误，正式也不是绝对优越，应与读者和任务匹配。"
+        },
+        {
+          "id": "high-language-6",
+          "title": "词汇搭配",
+          "intuition": "搭配解释为什么两个词单独都正确，放在一起却不自然。它是长期语言使用形成的倾向，需要通过真实例句学习。",
+          "formal": "搭配包括动词—名词、形容词—名词、介词结构等，可有不同固定程度。使用词典或语料时应核对义项、语域与语境，频率高不等于任何场景都适合。",
+          "example": "英语常说“make a decision”和“heavy rain”，直接按中文逐词组成“do a decision”或“strong rain”往往不自然。",
+          "question": "学会“pay attention to”后遇到过去经历，应该保持所有词不变吗？",
+          "answer": "不应机械保持；谓语需随时态变成“paid attention to”，核心搭配关系保留，语法形式仍要调整。",
+          "pitfall": "搭配学习不只是背同义词表，同义词未必能在同一结构中自由替换。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "high-language-1",
+          "target": "high-language-2",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-language-1",
+          "target": "high-language-3",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-language-2",
+          "target": "high-language-4",
+          "kind": "related"
+        },
+        {
+          "source": "high-language-3",
+          "target": "high-language-5",
+          "kind": "related"
+        },
+        {
+          "source": "high-language-4",
+          "target": "high-language-5",
+          "kind": "related"
+        },
+        {
+          "source": "high-language-5",
+          "target": "high-language-6",
+          "kind": "related"
+        }
+      ]
+    },
+    {
+      "stage": "high",
+      "id": "critical",
+      "nodes": [
+        {
+          "id": "high-critical-1",
+          "title": "作者态度",
+          "intuition": "作者态度不总藏在某个明显形容词里，也可能通过例子选择、让步和语气强度体现。判断时要能指出文本证据。",
+          "formal": "态度分析区分作者、引用者和叙述人物的声音，结合评价词、情态、结构与修辞。支持、保留、讽刺或中立等判断应限定对象，不能只凭读者自己的赞成与否。",
+          "example": "作者先认可新技术的便利，再强调隐私条件，可能是有条件支持，而非全盘赞成或反对。",
+          "question": "文章引用某人的激烈批评，就能认定作者持同样立场吗？",
+          "answer": "不能。需看引用目的与作者后续回应，引用可能是为了反驳、比较或提供背景。",
+          "pitfall": "语气克制不代表没有立场，强烈词汇也可能属于被引用的他人。"
+        },
+        {
+          "id": "high-critical-2",
+          "title": "论证结构",
+          "intuition": "读论证时可以画三栏：主张是什么、用什么理由、证据怎样支持理由。发现缺失环节，比只记结论更有价值。",
+          "formal": "论证由结论、前提、支持关系及可能的反驳构成。事实例证、统计资料和类比各有适用边界，需检查代表性、替代解释与推论跨度。",
+          "example": "“学生喜欢这个软件，所以软件一定提高成绩”从喜好跳到学习效果，缺少成绩变化和其他因素的证据。",
+          "question": "一篇文章给出三个成功个案，能否证明方法对所有人有效？",
+          "answer": "不能。个案可说明可能性，却不足以估计普遍效果；需要样本选择和失败情况等信息。",
+          "pitfall": "理由数量多不等于论证强，几个理由可能都依赖同一个未经证明的前提。"
+        },
+        {
+          "id": "high-critical-3",
+          "title": "事实与推断",
+          "intuition": "事实陈述需要可核查依据，推断则在证据上多走一步。两者都可能有价值，关键是不要把推断伪装成已经观察到的事实。",
+          "formal": "阅读中区分文本明示信息、合理推论与无依据猜测。推论应受证据约束，保留不确定性；事实性陈述也需检查真实性与来源。",
+          "example": "“灯亮着”是观察；“有人在家”是可能推断；“主人一定正在读书”增加了未被支持的具体内容。",
+          "question": "原文说销量下降，能否推断顾客都讨厌产品？",
+          "answer": "不能。价格、供给、季节和竞争等都可能影响销量，情感原因需要额外证据。",
+          "pitfall": "“听起来合理”不是证据，题目要求推断时也不能超出材料允许的范围。"
+        },
+        {
+          "id": "high-critical-4",
+          "title": "文体特征",
+          "intuition": "新闻、广告、研究摘要和故事有不同目的，因此组织和语言选择也不同。识别文体能帮助判断该向文本索取什么。",
+          "formal": "文体分析关注交际目的、受众、结构与语言特征。实际文本可能混合多种功能，不能仅因有数据就判为学术研究，或因有第一人称就判为日记。",
+          "example": "广告中的“最好”常服务劝服，需要证据核查；研究摘要通常交代问题、方法和结果，但仍可能存在夸大。",
+          "question": "为什么读操作说明时，步骤和条件比作者个人经历更关键？",
+          "answer": "说明的核心目标是支持正确行动，读者需要可执行顺序、限制和结果验证，而非人物叙事。",
+          "pitfall": "文体标签是分析起点，不保证内容可靠，也不能替代逐句理解。"
+        },
+        {
+          "id": "high-critical-5",
+          "title": "文化语境",
+          "intuition": "语言背后有社会习惯和历史背景，但文化知识应帮助理解具体语境，不能用来给整个人群贴标签。",
+          "formal": "跨文化阅读需区分约定、个体差异和情境选择，对陌生表达先查其使用背景。文化比较应基于具体资料，避免把某个案例推广为群体本质。",
+          "example": "同一句“How are you?”在走廊寒暄中可能只需简短回应，在关心近况的谈话中则可展开，场景影响交际期待。",
+          "question": "遇到与自己习惯不同的礼貌方式，第一步应是什么？",
+          "answer": "先了解关系、场景与对方意图，必要时礼貌询问；不要立即判定对方失礼或整个文化如此。",
+          "pitfall": "“某国人都……”通常过度概括，文化内部也有代际、地区和个体差异。"
+        },
+        {
+          "id": "high-critical-6",
+          "title": "信息评价",
+          "intuition": "阅读外语资料时，语言流畅不能代替可信度。要追踪谁说的、依据是什么、何时发布、是否有利益关系。",
+          "formal": "信息评价包括来源资质、原始证据、发布时间、方法透明度、交叉核验与适用范围。区分原创研究、新闻转述、评论和广告，对关键数字尽量追溯原出处。",
+          "example": "一篇文章称“研究证明”，却没有研究名称、样本或链接，应暂缓接受强结论，并寻找原始报告。",
+          "question": "多个网站重复同一句话，就算多方独立证实了吗？",
+          "answer": "不一定。它们可能都复制同一来源，应检查信息传播链和是否存在独立证据。",
+          "pitfall": "域名、排版和专业术语只是线索，不能单独保证准确。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "high-critical-2",
+          "target": "high-critical-1",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-critical-3",
+          "target": "high-critical-1",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-critical-4",
+          "target": "high-critical-1",
+          "kind": "related"
+        },
+        {
+          "source": "high-critical-5",
+          "target": "high-critical-4",
+          "kind": "related"
+        },
+        {
+          "source": "high-critical-3",
+          "target": "high-critical-6",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-critical-2",
+          "target": "high-critical-6",
+          "kind": "prereq"
+        }
+      ]
+    },
+    {
+      "stage": "high",
+      "id": "production",
+      "nodes": [
+        {
+          "id": "high-production-1",
+          "title": "摘要与改写",
+          "intuition": "摘要压缩主要意思，改写换一种表达保留原意。两者都要求先理解，再用自己的结构组织，而不是只替换几个同义词。",
+          "formal": "摘要需保留中心结论、关键理由与必要限制；改写必须忠实于原义并按用途标明来源。删除限定词、改变因果或提高确定性都会造成失真。",
+          "example": "原文说“部分参与者在短期内有所改善”，摘要不能变成“该方法对所有人长期有效”；范围和时间都是核心信息。",
+          "question": "为什么把每个词换成近义词仍可能构成不合格改写？",
+          "answer": "句式和组织可能仍照搬，而且近义替换可能改变意义；应重建表达并标明所依据信息来源。",
+          "pitfall": "摘要通常不加入作者未提出的个人结论；需要评论时应分开标示。"
+        },
+        {
+          "id": "high-production-2",
+          "title": "议论与应用文",
+          "intuition": "议论要让读者相信理由，应用文要让读者完成行动。先确定对象与目标，再决定信息次序和证据。",
+          "formal": "议论文通常包括明确主张、支持、反驳与结论；应用文围绕真实任务组织必要信息。评价既看语言准确，也看内容完整、逻辑和语域适切。",
+          "example": "倡议延长图书馆开放时间，可说明需求、成本与执行方案；只写“阅读很重要”不能回答如何落实。",
+          "question": "写投诉邮件时，只有愤怒形容词为什么不够？",
+          "answer": "对方还需要具体事件、时间、可核查事实与合理诉求，才能理解并处理问题。",
+          "pitfall": "复杂句数量不是质量指标，清晰的短句可能更适合紧急通知或操作要求。"
+        },
+        {
+          "id": "high-production-3",
+          "title": "续写的情节约束",
+          "intuition": "续写可以创造，但要对前文负责。人物知道什么、想要什么、已经做了什么，会限定后续可能性。",
+          "formal": "续写需保持人物动机、时间地点、叙述视角与文体一致，并让新增事件与伏笔或冲突形成合理联系。情节转折需要铺垫，结局不能依赖无来源的万能解救。",
+          "example": "前文人物怕水且没有学过游泳，续写不能突然让他毫无解释地潜水救援；可让他求助、抛救援物或在适当铺垫下成长。",
+          "question": "续写出现新人物解决所有问题，怎样判断是否合理？",
+          "answer": "检查前文是否有身份、到场方式和能力线索，且原人物是否仍作出关键行动；否则容易破坏因果与主题。",
+          "pitfall": "追求戏剧性不能牺牲人物一致性，安全情节也不应鼓励现实中的危险模仿。"
+        },
+        {
+          "id": "high-production-4",
+          "title": "展示与答辩",
+          "intuition": "展示让听众理解你的问题和发现，答辩让他们检验你的理由。好的回答可以明确承认不知道，再说明下一步怎样查证。",
+          "formal": "展示需有目标、结构、证据与时间控制；答辩应听清问题、直接回应、给出依据并说明限制。视觉材料辅助理解，不应变成整页文字朗读。",
+          "example": "介绍一次阅读调查，可先说问题，再展示样本与结果，最后说明样本小的限制；被问及其他学校时不应冒称结论普遍适用。",
+          "question": "遇到提问涉及未测量的变量，怎样回应？",
+          "answer": "明确说本次未收集该数据，因此不能下结论；可提出后续测量或查证方案。",
+          "pitfall": "语速快和使用术语不等于有说服力，听众需要能跟上的证据链。"
+        },
+        {
+          "id": "high-production-5",
+          "title": "引用与查证",
+          "intuition": "引用让别人找到你所依赖的材料，查证检查材料是否真的支持你的说法。两项都做，才能避免“有参考文献却没证据”。",
+          "formal": "直接引语应保持原文并标示，转述也需按使用场景注明来源。查证关注原始出处、上下文、日期、数据口径和结论范围，不能引用未读过的材料冒充核验。",
+          "example": "看到二手文章中的数字，应尽量找到原报告，确认它指的是哪一年、哪个群体和哪种指标，再决定如何使用。",
+          "question": "搜索结果摘要写了一个结论，可以直接当作读过原文来引用吗？",
+          "answer": "不应。摘要可能截断条件或转述错误，需要打开并核对原文相关部分，再准确说明来源。",
+          "pitfall": "引用数量不是可信度本身，来源必须与具体主张相对应。"
+        }
+      ],
+      "edges": [
+        {
+          "source": "high-production-1",
+          "target": "high-production-2",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-production-2",
+          "target": "high-production-3",
+          "kind": "related"
+        },
+        {
+          "source": "high-production-2",
+          "target": "high-production-4",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-production-5",
+          "target": "high-production-1",
+          "kind": "prereq"
+        },
+        {
+          "source": "high-production-5",
+          "target": "high-production-4",
+          "kind": "related"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "source": "primary-sounds-2",
+      "target": "primary-stories-3",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-sounds-4",
+      "target": "primary-sentences-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-sentences-5",
+      "target": "primary-stories-4",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-stories-5",
+      "target": "middle-communication-4",
+      "kind": "prereq"
+    },
+    {
+      "source": "primary-sentences-5",
+      "target": "middle-grammar-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-grammar-5",
+      "target": "high-language-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-reading-4",
+      "target": "high-critical-2",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-reading-1",
+      "target": "high-production-1",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-communication-3",
+      "target": "high-production-2",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-grammar-1",
+      "target": "middle-reading-2",
+      "kind": "prereq"
+    },
+    {
+      "source": "middle-reading-1",
+      "target": "middle-communication-2",
+      "kind": "prereq"
+    },
+    {
+      "source": "high-language-2",
+      "target": "high-critical-3",
+      "kind": "related"
+    },
+    {
+      "source": "high-critical-2",
+      "target": "high-production-2",
+      "kind": "prereq"
+    },
+    {
+      "source": "high-critical-6",
+      "target": "high-production-5",
+      "kind": "prereq"
+    }
+  ],
+  "bridges": []
+}

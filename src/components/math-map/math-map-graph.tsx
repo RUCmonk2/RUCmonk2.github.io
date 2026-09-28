@@ -1125,9 +1125,13 @@ export function MathMapGraph({
               <pre className="mathmap-code-preview" tabIndex={0}>
                 <code>{current.code}</code>
               </pre>
-            ) : (
+            ) : current.formula ? (
               <Formula value={current.formula} />
-            )}
+            ) : current.preview ? (
+              <div className="mathmap-concept-preview">
+                <MathProse>{current.preview[locale]}</MathProse>
+              </div>
+            ) : null}
             <button
               type="button"
               className="mathmap-open-lesson"
@@ -1230,7 +1234,8 @@ export function MathMapGraph({
             </button>
             <span className="mathmap-section-label">
               {domain.label[locale]} /{" "}
-              {en ? "READ & WORK THROUGH" : "理解 · 演算 · 练习"}
+              {atlas.lessonKicker?.[locale] ??
+                (en ? "READ & WORK THROUGH" : "理解 · 演算 · 练习")}
             </span>
             <h2>{current.label[locale]}</h2>
             <ReadingModes
@@ -1240,13 +1245,14 @@ export function MathMapGraph({
               label={en ? "Lesson reading mode" : "讲解阅读模式"}
             />
             <p>
-              {readingMode === "beginner"
-                ? en
-                  ? "Start with intuition, decode the notation, then calculate and practise."
-                  : "先建立直觉，再读懂每个符号，跟着算例动手，最后用题目检查理解。"
-                : en
-                  ? "Definitions, assumptions, derivations and connections."
-                  : "定义、适用条件、推导与知识联系。"}
+              {atlas.readingGuide?.[readingMode][locale] ??
+                (readingMode === "beginner"
+                  ? en
+                    ? "Start with intuition, decode the notation, then calculate and practise."
+                    : "先建立直觉，再读懂每个符号，跟着算例动手，最后用题目检查理解。"
+                  : en
+                    ? "Definitions, assumptions, derivations and connections."
+                    : "定义、适用条件、推导与知识联系。")}
             </p>
           </header>
           <LessonBody

@@ -965,3 +965,21 @@
     display: none;
   }
 }
+
+.subject-map-tabs {
+  margin-top: 26px;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.subject-map-tabs a[aria-current] {
+  background: var(--note-tint);
+  border-color: var(--note-accent);
+}
+.subject-topic-link {
+  color: var(--note-accent);
+  text-underline-offset: 4px;
+}
+.subject-map-entry {
+  display: inline-flex;
+  margin-top: 18px;
+}

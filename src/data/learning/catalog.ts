@@ -88,13 +88,13 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "中小学全科学习导航", en: "School Learning Atlas" },
     description: {
-      zh: "16 个学科入口，按小学、初中、高中整理知识主线、学习任务与检查要点，连接六个跨学科项目。",
-      en: "Sixteen subject entries with stage-based learning frameworks, original tasks, checkpoints and interdisciplinary projects in Chinese.",
+      zh: "16 个学科入口、40 张学段知识图谱、870 个知识点，提供双模式讲解、例子、自测与跨学科项目。",
+      en: "Sixteen subjects, forty stage maps and 870 concepts with two reading modes, examples, practice and interdisciplinary projects in Chinese.",
     },
     topic: { zh: "全科学习", en: "School subjects" },
     scope: {
-      zh: "学科框架 · 自学与家教",
-      en: "Frameworks · study and tutoring",
+      zh: "全科知识图谱 · 自学与家教",
+      en: "Knowledge maps · study and tutoring",
     },
     updated: "2026-09-28",
   },

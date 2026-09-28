@@ -3,6 +3,7 @@ import { MetadataRoute } from "next";
 import { courseAtlases } from "@/data/course-maps";
 import { k12Atlases, k12LessonHref, k12Topics, k12Updated } from "@/data/k12";
 import { schoolSubjects, subjectHref } from "@/data/k12-subjects";
+import { subjectAtlases } from "@/data/k12-subjects/atlas";
 import { chapterPath, learningCourses } from "@/data/learning";
 import {
   getLearningItem,
@@ -104,6 +105,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...LOCALES.flatMap((locale) =>
       [
         ...k12Atlases.map((atlas) => atlas.href),
+        ...subjectAtlases.map((atlas) => atlas.href),
         ...schoolSubjects.map((subject) => subjectHref(subject.id)),
         ...k12Topics.map((topic) => k12LessonHref(topic.id)),
         "/learning/math-lab/factorization",

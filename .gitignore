@@ -44,3 +44,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 /public/assets/k12-lessons/
+/public/assets/school-lessons/

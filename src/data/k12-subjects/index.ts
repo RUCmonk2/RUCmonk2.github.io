@@ -80,8 +80,32 @@ export const subjectModuleCount = schoolSubjects.reduce(
 export function subjectStageHref(id: string, stage: SchoolStage) {
   return id === "mathematics"
     ? `/learning/k12/${stage}`
-    : subjectHref(id) + "#" + stage;
+    : subjectAtlasHref(id, stage);
 }
+export function subjectAtlasHref(id: string, stage: SchoolStage) {
+  return `${subjectHref(id)}/knowledge-map/${stage}`;
+}
+export function subjectConceptHref(
+  id: string,
+  stage: SchoolStage,
+  module: string,
+  index: number,
+) {
+  return `${subjectAtlasHref(id, stage)}#${stage}-${module}-${index + 1}`;
+}
+export const subjectMapCount = schoolSubjects.reduce(
+  (n, s) => n + s.stages.length,
+  0,
+);
+export const subjectConceptCount = schoolSubjects.reduce(
+  (n, s) =>
+    n +
+    s.stages.reduce(
+      (n, stage) => n + stage.modules.reduce((n, m) => n + m.topics.length, 0),
+      0,
+    ),
+  0,
+);
 export function moduleHref(id: string, stage: SchoolStage, module: string) {
   return id === "mathematics"
     ? `/learning/k12/lesson/${module}`

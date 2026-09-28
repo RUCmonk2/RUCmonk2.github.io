@@ -7,6 +7,7 @@ export type AtlasNode = {
   shortLabel?: Localized;
   blurb: Localized;
   formula: string;
+  preview?: Localized;
   code?: string;
   insight: Localized;
   example?: string;
@@ -31,6 +32,8 @@ export type KnowledgeAtlas = {
   id: string;
   title: Localized;
   description: Localized;
+  readingGuide?: { beginner: Localized; formal: Localized };
+  lessonKicker?: Localized;
   href: string;
   courseHref?: string;
   updated: string;
