@@ -185,6 +185,39 @@ for (const file of pages) {
 }
 
 const sitemap = readFileSync(path.join(root, "sitemap.xml"), "utf8");
+for (const prefix of ["", "/en"]) {
+  const route = `${prefix}/learning/math-lab/rotations`;
+  const file = path.join(root, route, "index.html");
+  assert(existsSync(file), `Rotation workshop missing: ${route}`);
+  const canonical = html(file).tags.find(
+    (tag) => /^<link\b/i.test(tag) && attr(tag, "rel") === "canonical",
+  );
+  assert.equal(
+    new URL(attr(canonical ?? "", "href") ?? "", base).pathname.replace(
+      /\/$/,
+      "",
+    ),
+    route,
+    `Wrong rotation workshop canonical: ${route}`,
+  );
+  const lab = html(path.join(root, prefix + "/learning/math-lab/index.html"));
+  assert(
+    lab.tags.some(
+      (tag) =>
+        /^<a\b/i.test(tag) && [route, route + "/"].includes(attr(tag, "href")),
+    ),
+    `Mathematics lab omits rotation workshop: ${route}`,
+  );
+  const mapEntry = [...sitemap.matchAll(/<url>([^]*?)<\/url>/g)].find(
+    (entry) =>
+      entry[1].includes(`${route}</loc>`) ||
+      entry[1].includes(`${route}/</loc>`),
+  );
+  assert(
+    mapEntry?.[1].includes("<lastmod>2026-10-06T00:00:00.000Z</lastmod>"),
+    `Rotation workshop sitemap entry missing or outdated: ${route}`,
+  );
+}
 const feed = readFileSync(path.join(root, "api/feed/atom.xml"), "utf8");
 const feedEntries = [...feed.matchAll(/<entry>([^]*?)<\/entry>/g)].map(
   (entry) => entry[1],

@@ -125,15 +125,15 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "数学实验室", en: "Mathematics Lab" },
     description: {
-      zh: "用面积理解因式分解，从基础二次式进阶到高次、多字母与根式题；按因式填空，逐层查看提示并分享同一道题。",
-      en: "Explore factorization from quadratics to higher powers, multiple variables and radicals, with factor blanks, progressive hints and shareable questions. Activities are in Chinese.",
+      zh: "用面积拼图理解因式分解，用三维姿态探索四元数、旋转次序与平滑插值。亲手操作，配合分层提示和练习建立数学直觉。",
+      en: "Build mathematical intuition with area-based factorization and interactive 3D experiments on quaternions, rotation order and smooth interpolation. Activities are in Chinese.",
     },
     topic: { zh: "动手探索", en: "Hands-on exploration" },
     scope: {
-      zh: "因式工坊 · 基础与进阶",
-      en: "Factorization · basic & advanced",
+      zh: "因式工坊 · 旋转工坊",
+      en: "Factorization · 3D rotations",
     },
-    updated: "2026-09-28",
+    updated: "2026-10-06",
   },
   {
     id: "math-map",
