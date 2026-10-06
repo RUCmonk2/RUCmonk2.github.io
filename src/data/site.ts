@@ -10,6 +10,8 @@ export const siteConfig = {
   lastUpdated: "2026.08",
   avatarUrl: "/images/yaozhi-avatar.jpg",
   blog: {
+    // Article publication is controlled individually by each MDX status.
+    visible: true,
     /* Number of posts per page on the blog list */
     postsPerPage: 6,
   },

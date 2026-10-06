@@ -11,6 +11,8 @@
 
 ## 文章发布边界
 
+当前写作只公开《第二次工业革命中的知识分工与社会分层》（`knowledge-networks-and-social-stratification`）。2026-07-09 的交接文章中英文版，以及本地的 Codex 高效使用文章均设为 `status: draft`；原稿保留，列表、详情、语言切换、Atom 和 sitemap 统一排除草稿。`src/data/site.ts` 的 `blog.visible` 已恢复为 `true`。以后恢复旧文时逐篇调整状态，避免一次开放全部旧稿。
+
 文章放在 `content/blog/zh` 或 `content/blog/en`，同一篇的不同语言使用同一个 slug。公开元数据示例：
 
 ```yaml
