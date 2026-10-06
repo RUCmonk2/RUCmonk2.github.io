@@ -64,6 +64,7 @@ export default async function BlogLayout(props: {
   }
 
   const blogPostingJsonLd = await generateBlogPostingJsonLd(post);
+  const hasHeadings = /<h[1-6]\b/i.test(post.source);
 
   return (
     <main
@@ -72,13 +73,15 @@ export default async function BlogLayout(props: {
     >
       {jsonldScript(blogPostingJsonLd)}
 
-      {/* Desktop Table of Contents - Fixed on the left side */}
-      <div className="fixed top-32 left-6 z-10 hidden xl:block">
-        <TableOfContents content={post.source} />
-      </div>
-
-      {/* Mobile Table of Contents */}
-      <MobileTOC content={post.source} />
+      {hasHeadings && (
+        <>
+          {/* Desktop Table of Contents - Fixed on the left side */}
+          <div className="fixed top-32 left-6 z-10 hidden xl:block">
+            <TableOfContents content={post.source} />
+          </div>
+          <MobileTOC content={post.source} />
+        </>
+      )}
 
       {props.children}
     </main>
