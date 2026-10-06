@@ -1,0 +1,279 @@
+.gs-subnav {
+  scroll-margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 24px 0 16px;
+  border: 1px solid var(--note-line);
+}
+.gs-subnav button {
+  background: var(--note-paper);
+  color: var(--note-muted);
+  border: 0;
+  padding: 15px 10px;
+}
+.gs-subnav button + button {
+  border-left: 1px solid var(--note-line);
+}
+.gs-subnav button[aria-pressed="true"] {
+  color: var(--note-accent);
+  background: var(--note-tint);
+  font-weight: 600;
+}
+.gs-lesson {
+  padding: clamp(18px, 3vw, 32px);
+}
+.gs-lesson h3 {
+  font-size: 22px;
+  margin: 10px 0 18px;
+  line-height: 1.6;
+}
+.gs-lesson h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 12px 0;
+}
+.gs-buckets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+}
+.gs-bucket {
+  padding: 12px 20px;
+  background: var(--note-bg);
+  border: 1px solid var(--note-line);
+}
+.gs-bucket:first-child {
+  background: var(--note-tint);
+  border-color: var(--note-accent);
+}
+.gs-operation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--note-line);
+}
+.gs-operation small {
+  display: block;
+  color: var(--note-muted);
+  font-size: 12px;
+}
+.gs-operation code {
+  white-space: nowrap;
+}
+.gs-lesson .galois-controls {
+  padding: 18px 0;
+  flex-wrap: wrap;
+}
+.gs-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+.gs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 14px;
+}
+.gs-table caption {
+  text-align: left;
+  color: var(--note-muted);
+  margin-bottom: 10px;
+}
+.gs-table th,
+.gs-table td {
+  padding: 12px 10px;
+  border: 1px solid var(--note-line);
+}
+.gs-table th {
+  background: var(--note-tint);
+  font-weight: 500;
+}
+.gs-lesson .galois-takeaway {
+  margin: 24px 0 0;
+}
+.gs-trace {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 0;
+}
+.gs-trace-frame {
+  flex: 1 1 150px;
+  background: var(--note-bg);
+  border: 1px solid var(--note-line);
+  padding: 14px;
+}
+.gs-trace-frame strong {
+  display: block;
+  font-size: 13px;
+}
+.gs-trace-frame small {
+  font-size: 11px;
+  color: var(--note-muted);
+}
+.gs-tokens {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+.gs-tokens span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 42px;
+  font:
+    20px Georgia,
+    serif;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+}
+.gs-tokens [data-card="1"] {
+  color: #925340;
+  background: #f5e8df;
+}
+.gs-tokens [data-card="2"] {
+  color: #466f71;
+  background: #e4eff0;
+}
+.gs-tokens [data-card="3"] {
+  color: #80719c;
+  background: #ede8f3;
+}
+.gs-chain {
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+  max-width: 750px;
+}
+.gs-chain li {
+  margin: 0;
+}
+.gs-chain li > div {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border: 1px solid var(--note-line);
+  background: var(--note-bg);
+}
+.gs-chain li > div.is-current {
+  border-color: var(--note-accent);
+  background: var(--note-tint);
+}
+.gs-chain li > div > span {
+  white-space: nowrap;
+  color: var(--note-muted);
+}
+.gs-chain b {
+  font:
+    30px Georgia,
+    serif;
+  color: var(--note-accent);
+  margin-right: 5px;
+}
+.gs-chain code {
+  margin-left: 12px;
+}
+.gs-chain-connector {
+  color: var(--note-muted);
+  font-size: 12px;
+  padding-left: 20px;
+}
+.gs-element-list {
+  line-height: 2.2;
+}
+.gs-pairings {
+  border-top: 1px solid var(--note-line);
+  margin-top: 24px;
+  padding-top: 20px;
+}
+.gs-pairings label {
+  display: grid;
+  gap: 8px;
+  max-width: 100%;
+  color: var(--note-muted);
+}
+.gs-pairings select {
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid var(--note-line);
+  background: var(--note-paper);
+  color: var(--note-ink);
+}
+.gs-pairing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+.gs-pairing-grid > div {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  background: var(--note-bg);
+  border: 1px solid var(--note-line);
+  padding: 15px 8px;
+}
+.gs-pairing-grid strong {
+  color: var(--note-accent);
+}
+.gs-pairing-grid svg {
+  transform: rotate(90deg);
+}
+.gs-lesson-nav {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.gs-lesson-nav > span {
+  color: var(--note-muted);
+}
+@media (max-width: 720px) {
+  .gs-subnav {
+    grid-template-columns: 1fr;
+  }
+  .gs-subnav button {
+    text-align: left;
+    padding: 12px 18px;
+  }
+  .gs-subnav button + button {
+    border-left: 0;
+    border-top: 1px solid var(--note-line);
+  }
+  .gs-buckets {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .gs-chain li > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+  .gs-chain-connector {
+    padding-left: 5px;
+  }
+  .gs-pairing-grid {
+    gap: 6px;
+    font-size: 11px;
+  }
+  .gs-pairing-grid > div {
+    padding: 12px 3px;
+  }
+  .gs-lesson-nav > button {
+    font-size: 12px;
+  }
+  .gs-table th,
+  .gs-table td {
+    padding: 10px 5px;
+    font-size: 12px;
+  }
+}

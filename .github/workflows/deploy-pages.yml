@@ -41,6 +41,8 @@ jobs:
         run: npm run test:math-map
       - name: Validate rotation workshop
         run: npm run test:rotations
+      - name: Validate group theory workshop
+        run: npm run test:galois
       - name: Validate K12 lessons and factor workshop
         run: npm run test:k12
       - name: Build static site

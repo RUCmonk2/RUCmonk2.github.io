@@ -218,6 +218,45 @@ for (const prefix of ["", "/en"]) {
     `Rotation workshop sitemap entry missing or outdated: ${route}`,
   );
 }
+for (const prefix of ["", "/en"]) {
+  const route = `${prefix}/learning/math-lab/galois`;
+  const file = path.join(root, route, "index.html");
+  assert(existsSync(file), `Group theory workshop missing: ${route}`);
+  const page = readFileSync(file, "utf8");
+  const title = prefix ? "Group Theory Workshop" : "群论工坊";
+  assert(
+    page.includes(`<title>${title}`) && page.includes("<h1>群论工坊</h1>"),
+    `Wrong group theory workshop title: ${route}`,
+  );
+  const canonical = html(file).tags.find(
+    (tag) => /^<link\b/i.test(tag) && attr(tag, "rel") === "canonical",
+  );
+  assert.equal(
+    new URL(attr(canonical ?? "", "href") ?? "", base).pathname.replace(
+      /\/$/,
+      "",
+    ),
+    route,
+    `Wrong group theory workshop canonical: ${route}`,
+  );
+  const lab = html(path.join(root, prefix + "/learning/math-lab/index.html"));
+  assert(
+    lab.tags.some(
+      (tag) =>
+        /^<a\b/i.test(tag) && [route, route + "/"].includes(attr(tag, "href")),
+    ),
+    `Mathematics lab omits group theory workshop: ${route}`,
+  );
+  const mapEntry = [...sitemap.matchAll(/<url>([^]*?)<\/url>/g)].find(
+    (entry) =>
+      entry[1].includes(`${route}</loc>`) ||
+      entry[1].includes(`${route}/</loc>`),
+  );
+  assert(
+    mapEntry?.[1].includes("<lastmod>2026-10-06T00:00:00.000Z</lastmod>"),
+    `Group theory workshop sitemap entry missing or outdated: ${route}`,
+  );
+}
 const feed = readFileSync(path.join(root, "api/feed/atom.xml"), "utf8");
 const feedEntries = [...feed.matchAll(/<entry>([^]*?)<\/entry>/g)].map(
   (entry) => entry[1],

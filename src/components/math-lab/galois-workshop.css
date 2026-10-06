@@ -1,0 +1,1010 @@
+.galois-hero {
+  position: relative;
+  padding-right: 170px;
+}
+.galois-hero::after {
+  content: "① ② ③";
+  white-space: pre;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  text-align: center;
+  color: var(--note-accent);
+  font:
+    italic 28px/1.15 Georgia,
+    serif;
+  opacity: 0.7;
+}
+.galois-hero .galois-hero-subtitle {
+  color: var(--note-accent);
+  font-size: 20px;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+}
+.galois-workshop {
+  --galois-rust: #925340;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.dark .galois-workshop {
+  --galois-rust: #e1a18b;
+}
+.galois-workshop section[hidden] {
+  display: none;
+}
+.galois-workshop h2,
+.galois-workshop h3 {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  text-wrap: pretty;
+}
+.galois-workshop button,
+.galois-workshop select,
+.galois-workshop input {
+  font: inherit;
+}
+.galois-workshop button {
+  cursor: pointer;
+}
+.galois-workshop button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.galois-workshop p {
+  margin: 10px 0;
+  overflow-wrap: anywhere;
+}
+.galois-workshop code {
+  color: var(--note-accent);
+  font-size: 0.95em;
+}
+.galois-scope {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 24px;
+  padding: 19px 24px;
+  border-left: 3px solid var(--note-accent);
+  background: var(--note-tint);
+  font-size: 13px;
+}
+.galois-scope > span {
+  color: var(--note-accent);
+  padding-top: 3px;
+  font-weight: 600;
+}
+.galois-scope p {
+  margin: 0;
+  line-height: 1.95;
+}
+.galois-scope strong {
+  font-weight: 600;
+}
+.galois-stage-nav {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: 32px 0 36px;
+  border: 1px solid var(--note-line);
+  background: var(--note-paper);
+  scroll-margin-top: 24px;
+}
+.galois-stage-nav button {
+  display: flex;
+  gap: 12px;
+  padding: 18px 14px;
+  text-align: left;
+  color: var(--note-muted);
+  border: 0;
+  border-right: 1px solid var(--note-line);
+  background: transparent;
+  position: relative;
+}
+.galois-stage-nav button:last-child {
+  border-right: 0;
+}
+.galois-stage-nav button[aria-pressed="true"] {
+  color: var(--note-accent);
+  background: var(--note-tint);
+}
+.galois-stage-nav button[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: currentColor;
+}
+.galois-stage-nav button > span {
+  font:
+    italic 23px/1.5 Georgia,
+    serif;
+  opacity: 0.75;
+}
+.galois-stage-nav strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+.galois-stage-nav small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 3px;
+}
+.galois-stage-nav button:hover,
+.galois-quiet:hover:not(:disabled),
+.galois-degree-buttons button:hover,
+.galois-quiz-options button:hover {
+  background: var(--note-tint);
+}
+.galois-stage-nav button:focus-visible {
+  outline-offset: -4px;
+}
+.galois-stage-heading {
+  margin: 0 0 26px;
+  max-width: 880px;
+}
+.galois-stage-heading h2 {
+  margin: 10px 0 12px;
+  font-size: clamp(23px, 2.6vw, 31px);
+  font-weight: 600;
+  line-height: 1.55;
+}
+.galois-stage-heading p {
+  color: var(--note-muted);
+  font-size: 14px;
+  line-height: 1.95;
+}
+.galois-workbench {
+  border: 1px solid var(--note-line);
+  background: var(--note-paper);
+  overflow: hidden;
+}
+.galois-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 26px;
+  padding: 19px 24px;
+  border-bottom: 1px solid var(--note-line);
+  font-size: 13px;
+}
+.galois-controls > label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.galois-controls select {
+  border: 1px solid var(--note-line);
+  border-radius: 3px;
+  background: var(--note-bg);
+  padding: 8px 26px 8px 10px;
+  color: var(--note-ink);
+  max-width: 100%;
+}
+.galois-primary,
+.galois-quiet {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--note-line);
+  border-radius: 3px;
+  font-size: 13px !important;
+  line-height: 1.6;
+}
+.galois-primary {
+  color: var(--note-paper);
+  background: var(--note-accent);
+  border-color: var(--note-accent);
+}
+.galois-primary:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+.galois-quiet {
+  color: var(--note-accent);
+  background: transparent;
+}
+.galois-two-up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+.galois-braids {
+  gap: 0;
+  background: var(--note-bg);
+}
+.galois-braid {
+  margin: 0;
+  padding: 25px 25px 18px;
+}
+.galois-braid + .galois-braid {
+  border-left: 1px solid var(--note-line);
+}
+.galois-braid figcaption {
+  font-weight: 500;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+}
+.galois-braid svg {
+  width: 100%;
+  height: auto;
+  max-height: 255px;
+  margin-top: 20px;
+}
+.galois-braid svg text {
+  font-size: 11px;
+  fill: var(--note-muted);
+}
+.galois-braid svg .galois-root-label {
+  fill: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+.galois-observation {
+  padding: 20px 24px;
+  border-top: 1px solid var(--note-line);
+}
+.galois-observation > strong {
+  color: var(--note-accent);
+  font-size: 15px;
+}
+.galois-observation p {
+  margin-bottom: 0;
+  color: var(--note-muted);
+  font-size: 13px;
+}
+.galois-definition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+.galois-definition-grid article > span {
+  color: var(--note-accent);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.galois-workshop h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+.galois-definition-grid p,
+.galois-explanation p {
+  font-size: 13px;
+  color: var(--note-muted);
+}
+.galois-details {
+  margin: 14px 0;
+  padding: 15px 20px;
+  border: 1px solid var(--note-line);
+  border-radius: 3px;
+  background: var(--note-paper);
+}
+.galois-workshop summary {
+  cursor: pointer;
+  color: var(--note-accent);
+  font-weight: 500;
+  font-size: 13px;
+}
+.galois-details[open] summary {
+  padding-bottom: 9px;
+}
+.galois-details p {
+  font-size: 13px;
+  line-height: 1.95;
+}
+.galois-theorem {
+  padding: 23px 30px;
+  margin: 0 0 24px;
+  text-align: center;
+  background: var(--note-tint);
+  border-block: 1px solid var(--note-line);
+}
+.galois-theorem > span {
+  display: block;
+  color: var(--note-muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.galois-theorem strong {
+  display: block;
+  color: var(--note-accent);
+  font:
+    600 clamp(18px, 2vw, 23px)/1.7 "Songti SC",
+    "STSong",
+    Georgia,
+    serif;
+  margin: 10px 0;
+}
+.galois-theorem strong span {
+  margin: 0 15px;
+}
+.galois-theorem p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--note-muted);
+}
+.galois-degree-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.galois-degree-buttons button {
+  border: 1px solid var(--note-line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--note-muted);
+  padding: 6px 18px;
+}
+.galois-degree-buttons button[aria-pressed="true"] {
+  background: var(--note-accent);
+  color: var(--note-paper);
+  border-color: var(--note-accent);
+}
+.galois-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 180px;
+  padding: 25px 28px;
+  gap: 14px 0;
+}
+.galois-chain-item {
+  display: flex;
+  align-items: center;
+}
+.galois-group {
+  min-width: 116px;
+  padding: 15px 18px;
+  border: 1px solid var(--note-line);
+  text-align: center;
+  background: var(--note-bg);
+}
+.galois-group strong {
+  display: block;
+  font:
+    32px/1.5 Georgia,
+    serif;
+}
+.galois-group > span {
+  display: block;
+  color: var(--note-muted);
+  font-size: 11px;
+}
+.galois-group.is-solved {
+  color: var(--note-accent);
+  border-color: var(--note-accent);
+  background: var(--note-tint);
+}
+.galois-group.is-stuck {
+  color: var(--galois-rust);
+  border-color: var(--galois-rust);
+}
+.galois-chain-arrow {
+  width: 90px;
+  text-align: center;
+  color: var(--note-muted);
+  font-size: 25px;
+}
+.galois-chain-arrow small {
+  display: block;
+  font-size: 10px;
+}
+.galois-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 0 24px 24px;
+}
+.galois-action-row > span {
+  color: var(--note-muted);
+  font-size: 11px;
+}
+.galois-formula {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3px;
+  margin: 10px 0;
+  font-size: 1em;
+}
+.galois-formula .katex-display {
+  margin: 0.4em 0;
+}
+.galois-formula .katex-display > .katex {
+  white-space: nowrap;
+}
+.galois-explanation {
+  margin: 30px 0;
+}
+.galois-explanation article {
+  min-width: 0;
+}
+.galois-explanation .galois-formula {
+  font-size: 0.86em;
+}
+.galois-proof-intro {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin: 0 0 20px;
+}
+.galois-proof-intro > span {
+  color: var(--galois-rust);
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.galois-proof-intro p {
+  margin: 0;
+  color: var(--note-muted);
+  font-size: 13px;
+}
+.galois-class-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  padding: 24px;
+}
+.galois-class {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--note-line);
+  background: var(--note-bg);
+  cursor: pointer;
+}
+.galois-class.is-selected {
+  border-color: var(--note-accent);
+  background: var(--note-tint);
+}
+.galois-class-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+}
+.galois-class input {
+  accent-color: var(--note-accent);
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+.galois-class > strong {
+  font:
+    32px/1.2 Georgia,
+    serif;
+}
+.galois-class > strong small {
+  font: 10px/1.5 sans-serif;
+  color: var(--note-muted);
+}
+.galois-class code {
+  font-size: 10px;
+  white-space: nowrap;
+}
+.galois-class > small {
+  color: var(--note-muted);
+  font-size: 10px;
+  margin-top: auto;
+}
+.galois-class-dots {
+  display: grid;
+  grid-template-columns: repeat(5, 7px);
+  grid-auto-rows: 7px;
+  gap: 5px;
+  min-height: 43px;
+  margin: 4px 0;
+}
+.galois-class-dots i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--note-muted);
+  opacity: 0.35;
+}
+.galois-class.is-selected .galois-class-dots i {
+  background: var(--note-accent);
+  opacity: 1;
+}
+.galois-class-result {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  align-items: center;
+  gap: 28px;
+  padding: 0 24px 24px;
+}
+.galois-class-result > div:first-child {
+  padding-right: 20px;
+  border-right: 1px solid var(--note-line);
+}
+.galois-class-result span {
+  display: block;
+  color: var(--note-muted);
+  font-size: 11px;
+}
+.galois-class-result strong {
+  color: var(--note-accent);
+  font:
+    42px/1.6 Georgia,
+    serif;
+}
+.galois-class-result strong small {
+  font-size: 20px;
+  color: var(--note-muted);
+}
+.galois-class-result b {
+  color: var(--galois-rust);
+  font-weight: 500;
+}
+.galois-class-result p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: var(--note-muted);
+}
+.galois-proof-steps {
+  margin: 32px 0;
+}
+.galois-proof-steps article {
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  gap: 14px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--note-line);
+}
+.galois-proof-steps article > span {
+  font:
+    italic 25px/1.5 Georgia,
+    serif;
+  color: var(--note-accent);
+}
+.galois-proof-steps h3 {
+  margin-top: 0;
+}
+.galois-proof-steps p {
+  font-size: 13px;
+}
+.galois-takeaway {
+  margin: 26px 0;
+  padding: 21px 25px;
+  background: var(--note-tint);
+  border-left: 3px solid var(--note-accent);
+}
+.galois-takeaway strong {
+  color: var(--note-accent);
+  font-size: 16px;
+}
+.galois-takeaway p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+.galois-controls > .galois-degree-slider {
+  display: grid;
+  gap: 10px;
+  min-width: 220px;
+  flex: 1;
+}
+.galois-degree-slider > span {
+  display: flex;
+  justify-content: space-between;
+}
+.galois-degree-slider output {
+  font:
+    22px/1 Georgia,
+    serif;
+  color: var(--note-accent);
+}
+.galois-degree-slider input {
+  accent-color: var(--note-accent);
+  width: 100%;
+}
+.galois-degree-slider + span {
+  color: var(--note-muted);
+  font-size: 11px;
+}
+.galois-root-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  padding: 26px 24px;
+}
+.galois-root-token {
+  display: grid;
+  text-align: center;
+  padding: 13px 8px;
+  border: 1px solid var(--note-accent);
+  background: var(--note-tint);
+  color: var(--note-accent);
+}
+.galois-root-token small,
+.galois-root-token span {
+  font-size: 10px;
+}
+.galois-root-token strong {
+  font:
+    26px/1.7 Georgia,
+    serif;
+}
+.galois-root-token.is-fixed {
+  color: var(--note-muted);
+  border-color: var(--note-line);
+  border-style: dashed;
+  background: transparent;
+}
+.galois-higher-proofs {
+  margin: 30px 0;
+}
+.galois-higher-proofs article {
+  min-width: 0;
+  padding: 24px;
+  background: var(--note-paper);
+  border: 1px solid var(--note-line);
+}
+.galois-higher-proofs h3 {
+  margin-top: 10px;
+}
+.galois-higher-proofs p,
+.galois-higher-proofs li {
+  font-size: 13px;
+}
+.galois-higher-proofs ol {
+  list-style: decimal;
+  padding-left: 20px;
+}
+.galois-higher-proofs li {
+  margin: 8px 0;
+}
+.galois-higher-proofs .galois-formula {
+  font-size: 0.88em;
+}
+.galois-workshop .galois-fineprint {
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--note-muted);
+  padding-top: 12px;
+  border-top: 1px solid var(--note-line);
+}
+.galois-example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.galois-example-grid article {
+  min-width: 0;
+  padding: 24px;
+  background: var(--note-paper);
+  border-top: 3px solid var(--note-accent);
+}
+.galois-example-grid article:nth-child(2) {
+  border-color: var(--galois-rust);
+}
+.galois-example-grid article > span {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+.galois-example-grid p {
+  font-size: 13px;
+}
+.galois-quiz {
+  margin: 32px 0;
+}
+.galois-quiz fieldset {
+  margin: 0 0 28px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.galois-quiz legend {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.galois-quiz legend > span {
+  margin-right: 14px;
+  color: var(--note-accent);
+  font:
+    italic 22px/1 Georgia,
+    serif;
+}
+.galois-quiz-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.galois-quiz-options button {
+  display: flex;
+  gap: 12px;
+  text-align: left;
+  align-items: baseline;
+  padding: 14px;
+  background: var(--note-paper);
+  border: 1px solid var(--note-line);
+  color: var(--note-ink);
+  font-size: 12px;
+}
+.galois-quiz-options button > span {
+  font:
+    italic 17px Georgia,
+    serif;
+  color: var(--note-accent);
+}
+.galois-quiz-options button[aria-pressed="true"] {
+  background: var(--note-tint);
+  border-color: var(--note-accent);
+}
+.galois-quiz-feedback {
+  padding: 14px 18px;
+  font-size: 13px;
+  background: var(--note-tint);
+}
+.galois-quiz-feedback strong {
+  color: var(--note-accent);
+}
+.galois-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--note-line);
+}
+.galois-pagination > span {
+  color: var(--note-muted);
+  font:
+    13px Georgia,
+    serif;
+}
+.galois-resources {
+  margin: 46px 0 22px;
+  padding-top: 26px;
+  border-top: 1px solid var(--note-line);
+  display: flex;
+  gap: 26px;
+  justify-content: space-between;
+  align-items: center;
+}
+.galois-resources h2 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+.galois-resources p,
+.galois-resources a {
+  font-size: 12px;
+}
+.galois-resources p {
+  color: var(--note-muted);
+}
+.galois-resources small {
+  display: block;
+  margin-top: 5px;
+  color: var(--note-muted);
+  font-size: 10px;
+}
+.galois-resources a {
+  color: var(--note-accent);
+  text-underline-offset: 4px;
+}
+.galois-resources > div:last-child {
+  display: grid;
+  gap: 15px;
+  flex-shrink: 0;
+}
+.galois-resources > div:last-child a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 1000px) {
+  .galois-stage-nav button {
+    gap: 8px;
+    padding: 15px 10px;
+  }
+  .galois-stage-nav button > span {
+    font-size: 19px;
+  }
+  .galois-stage-nav strong {
+    font-size: 13px;
+  }
+  .galois-class-grid {
+    gap: 7px;
+    padding: 16px;
+  }
+  .galois-class {
+    padding: 10px;
+  }
+  .galois-class-title {
+    font-size: 11px;
+  }
+  .galois-chain-arrow {
+    width: 65px;
+  }
+}
+@media (max-width: 720px) {
+  .galois-hero {
+    padding-right: 0;
+  }
+  .galois-hero::after {
+    display: none;
+  }
+  .galois-scope {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 16px 18px;
+  }
+  .galois-stage-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 24px 0;
+  }
+  .galois-stage-nav button {
+    border-bottom: 1px solid var(--note-line);
+    display: block;
+    padding: 12px 5px;
+    text-align: center;
+  }
+  .galois-stage-nav button > span {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  .galois-stage-nav strong {
+    font-size: 11px;
+  }
+  .galois-stage-nav small {
+    display: none;
+  }
+  .galois-stage-heading h2 {
+    font-size: 24px;
+  }
+  .galois-two-up,
+  .galois-definition-grid,
+  .galois-example-grid,
+  .galois-quiz-options {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .galois-braids {
+    gap: 0;
+  }
+  .galois-braid {
+    padding: 20px 14px 10px;
+  }
+  .galois-braid + .galois-braid {
+    border-left: 0;
+    border-top: 1px solid var(--note-line);
+  }
+  .galois-braid svg {
+    max-height: 215px;
+    margin-top: 10px;
+  }
+  .galois-controls {
+    padding: 16px;
+    gap: 12px;
+  }
+  .galois-controls > label {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .galois-controls select {
+    flex: 1;
+  }
+  .galois-observation,
+  .galois-theorem,
+  .galois-takeaway,
+  .galois-higher-proofs article {
+    padding: 18px;
+  }
+  .galois-theorem strong span {
+    display: block;
+    line-height: 1.2;
+    margin: 6px 0;
+  }
+  .galois-definition-grid article {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--note-line);
+  }
+  .galois-degree-buttons {
+    width: 100%;
+  }
+  .galois-degree-buttons button {
+    flex: 1;
+    padding: 7px 8px;
+  }
+  .galois-chain {
+    padding: 20px 16px;
+    min-height: 140px;
+  }
+  .galois-group {
+    min-width: 80px;
+    padding: 10px;
+  }
+  .galois-group strong {
+    font-size: 25px;
+  }
+  .galois-chain-arrow {
+    width: 50px;
+  }
+  .galois-chain-arrow small {
+    font-size: 9px;
+  }
+  .galois-action-row {
+    padding: 0 16px 20px;
+    gap: 10px;
+  }
+  .galois-action-row > span {
+    width: 100%;
+  }
+  .galois-class-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .galois-class:first-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .galois-class:first-child .galois-class-dots {
+    display: none;
+  }
+  .galois-class-title {
+    font-size: 12px;
+  }
+  .galois-class {
+    padding: 14px;
+  }
+  .galois-class-result {
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+    padding: 4px 16px 20px;
+  }
+  .galois-class-result strong {
+    font-size: 32px;
+  }
+  .galois-class-result strong small {
+    font-size: 15px;
+  }
+  .galois-class-result > div:first-child {
+    padding-right: 10px;
+  }
+  .galois-proof-intro {
+    display: block;
+  }
+  .galois-proof-intro p {
+    margin-top: 6px;
+  }
+  .galois-proof-steps article {
+    grid-template-columns: 30px 1fr;
+    gap: 10px;
+  }
+  .galois-root-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 20px 16px;
+    gap: 8px;
+  }
+  .galois-details {
+    padding: 14px 16px;
+  }
+  .galois-pagination .galois-primary,
+  .galois-pagination .galois-quiet {
+    font-size: 11px !important;
+    padding: 9px 10px;
+    gap: 5px;
+  }
+  .galois-pagination > span {
+    font-size: 11px;
+  }
+  .galois-resources {
+    display: block;
+    margin-top: 35px;
+  }
+  .galois-resources > div:last-child {
+    margin-top: 22px;
+  }
+}

@@ -19,6 +19,7 @@ export type MathMapNode = {
   insight: Localized;
   example?: string;
   href?: string;
+  hrefLabel?: Localized;
   sources?: string[];
 };
 export type MathMapEdge = {
@@ -692,21 +693,28 @@ export const mathMapNodes: readonly MathMapNode[] = [
     String.raw`f(x)=Ax:\quad\operatorname{VJP}(u)=A^Tu`,
   ),
 
-  concept(
-    "group",
-    "groups",
-    ["群与对称性", "Groups & symmetry"],
-    [
-      "可组合、可逆的对称操作形成群：运算封闭，满足结合律，具有单位元与逆元。",
-      "Composable, reversible symmetries form a group: closure, associativity, an identity and inverses.",
-    ],
-    String.raw`(ab)c=a(bc),\quad eg=ge=g,\quad gg^{-1}=g^{-1}g=e`,
-    [
-      "群运算不要求交换。一般旋转的组合顺序会影响结果。",
-      "Commutativity is not required. The order of general rotations affects their composition.",
-    ],
-    String.raw`(\mathbb Z,+),\qquad GL(n,\mathbb R)`,
-  ),
+  {
+    ...concept(
+      "group",
+      "groups",
+      ["群与对称性", "Groups & symmetry"],
+      [
+        "可组合、可逆的对称操作形成群：运算封闭，满足结合律，具有单位元与逆元。",
+        "Composable, reversible symmetries form a group: closure, associativity, an identity and inverses.",
+      ],
+      String.raw`(ab)c=a(bc),\quad eg=ge=g,\quad gg^{-1}=g^{-1}g=e`,
+      [
+        "群运算不要求交换。一般旋转的组合顺序会影响结果。",
+        "Commutativity is not required. The order of general rotations affects their composition.",
+      ],
+      String.raw`(\mathbb Z,+),\qquad GL(n,\mathbb R)`,
+    ),
+    href: "/learning/math-lab/galois",
+    hrefLabel: {
+      zh: "数学实验室 · 群论工坊",
+      en: "Mathematics Lab · Group Theory Workshop",
+    },
+  },
   concept(
     "subgroup",
     "groups",

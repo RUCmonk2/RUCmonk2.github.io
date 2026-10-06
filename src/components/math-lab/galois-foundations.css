@@ -1,0 +1,328 @@
+.gf-workbench + .gf-workbench {
+  margin-top: 30px;
+}
+.gf-eyebrow {
+  display: block;
+  color: var(--note-muted);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.gf-question,
+.gf-bridge-equation,
+.gf-bridge-step {
+  padding: 27px 30px;
+}
+.gf-question h3,
+.gf-bridge-step h3,
+.gf-naming h3,
+.gf-bridge-link h3 {
+  margin: 7px 0 12px;
+  color: var(--note-ink);
+  font-size: 21px;
+  line-height: 1.65;
+  font-weight: 600;
+}
+.gf-question p,
+.gf-bridge-equation p {
+  color: var(--note-muted);
+  max-width: 740px;
+}
+.gf-operation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 30px 25px;
+}
+.gf-operation {
+  border: 1px solid var(--note-line);
+  border-radius: 3px;
+  padding: 12px 14px;
+  color: var(--note-ink);
+  background: var(--note-bg);
+  text-align: left;
+}
+.gf-operation strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+.gf-operation span {
+  font-size: 11px;
+  color: var(--note-muted);
+}
+.gf-operation[aria-pressed="true"] {
+  border-color: var(--note-accent);
+  background: var(--note-tint);
+}
+.gf-operation[aria-pressed="true"] strong {
+  color: var(--note-accent);
+}
+.gf-card-comparison {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  background: var(--note-bg);
+  padding: 30px;
+  border-top: 1px solid var(--note-line);
+}
+.gf-card-row {
+  min-width: 0;
+}
+.gf-row-label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--note-muted);
+  font-size: 12px;
+  text-align: center;
+}
+.gf-cards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.gf-card-slot {
+  display: grid;
+  gap: 4px;
+  text-align: center;
+}
+.gf-card-slot small {
+  font-size: 10px;
+  color: var(--note-muted);
+}
+.gf-card {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 65px;
+  border-radius: 4px;
+  color: #fff;
+  font:
+    27px/1 Georgia,
+    serif;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+}
+.gf-card-1 {
+  background: #925340;
+}
+.gf-card-2 {
+  background: #466f71;
+}
+.gf-card-3 {
+  background: #78678f;
+}
+.gf-between-arrow {
+  flex: none;
+  color: var(--note-muted);
+}
+.gf-undo-controls {
+  border-top: 1px solid var(--note-line);
+  border-bottom: 0;
+}
+.gf-undo-controls > span {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+.gf-order-routes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: var(--note-bg);
+  border-top: 1px solid var(--note-line);
+  border-bottom: 1px solid var(--note-line);
+}
+.gf-order-route {
+  padding: 20px 20px 28px;
+}
+.gf-order-route + .gf-order-route {
+  border-left: 1px solid var(--note-line);
+}
+.gf-order-route h4 {
+  color: var(--note-ink);
+  text-align: center;
+  margin: 0 0 22px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.gf-order-route .gf-card-row + .gf-card-row {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--note-line);
+}
+.gf-bridge-equation {
+  text-align: center;
+}
+.gf-bridge-equation p {
+  margin-left: auto;
+  margin-right: auto;
+}
+.gf-step-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--note-line);
+  border-bottom: 1px solid var(--note-line);
+}
+.gf-step-tabs button {
+  border: 0;
+  border-right: 1px solid var(--note-line);
+  background: var(--note-bg);
+  color: var(--note-muted);
+  padding: 13px 10px;
+  font-size: 12px;
+  text-align: left;
+  line-height: 1.6;
+}
+.gf-step-tabs button:last-child {
+  border-right: 0;
+}
+.gf-step-tabs button span {
+  display: block;
+  font:
+    italic 19px/1.6 Georgia,
+    serif;
+}
+.gf-step-tabs button[aria-pressed="true"] {
+  color: var(--note-accent);
+  background: var(--note-tint);
+  box-shadow: inset 0 -2px var(--note-accent);
+}
+.gf-bridge-step {
+  min-height: 340px;
+}
+.gf-known-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 30px;
+  max-width: 440px;
+  margin: 25px auto;
+  padding: 16px 20px;
+  background: var(--note-tint);
+  font-size: 13px;
+}
+.gf-known-facts > span {
+  color: var(--note-muted);
+}
+.gf-known-facts > strong {
+  font-weight: 500;
+  color: var(--note-accent);
+}
+.gf-root-pair {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 22px 0;
+}
+.gf-root-pair > span {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border: 1px solid var(--note-accent);
+  border-radius: 4px;
+  background: var(--note-tint);
+  color: var(--note-accent);
+  font:
+    25px/1 Georgia,
+    serif;
+}
+.galois-workshop .gf-local-conclusion {
+  margin-top: 22px;
+  padding-left: 15px;
+  border-left: 2px solid var(--note-accent);
+  color: var(--note-accent);
+}
+.gf-swap-verdict {
+  padding: 18px 22px;
+  margin: 22px 0;
+  border: 1px solid var(--note-line);
+  background: var(--note-bg);
+}
+.gf-swap-verdict > strong {
+  color: var(--galois-rust);
+}
+.gf-step-controls {
+  justify-content: space-between;
+  border-top: 1px solid var(--note-line);
+  border-bottom: 0;
+}
+.gf-naming,
+.gf-bridge-link {
+  margin: 32px 0;
+  max-width: 900px;
+}
+.gf-theorem {
+  border-left: 3px solid var(--note-accent);
+  padding: 22px 26px;
+  margin-top: 24px;
+  background: var(--note-tint);
+}
+.gf-theorem strong {
+  color: var(--note-accent);
+  font-weight: 600;
+}
+.gf-proof-boundary {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+@media (max-width: 680px) {
+  .gf-question,
+  .gf-bridge-equation,
+  .gf-bridge-step {
+    padding: 22px 18px;
+  }
+  .gf-question h3,
+  .gf-bridge-step h3,
+  .gf-naming h3,
+  .gf-bridge-link h3 {
+    font-size: 19px;
+  }
+  .gf-operation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 18px 20px;
+    gap: 8px;
+  }
+  .gf-operation {
+    padding: 10px;
+  }
+  .gf-card-comparison {
+    gap: 16px;
+    padding: 24px 12px;
+  }
+  .gf-cards {
+    gap: 5px;
+  }
+  .gf-card {
+    width: 35px;
+    height: 49px;
+    font-size: 23px;
+  }
+  .gf-between-arrow {
+    width: 16px;
+  }
+  .gf-order-route {
+    padding: 18px 10px;
+  }
+  .gf-order-route h4 {
+    font-size: 12px;
+  }
+  .gf-step-tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .gf-step-tabs button {
+    flex: 1 0 100px;
+  }
+  .gf-known-facts {
+    padding: 14px;
+    column-gap: 10px;
+  }
+  .gf-bridge-step {
+    min-height: 0;
+  }
+  .gf-step-controls {
+    gap: 12px;
+  }
+  .gf-theorem {
+    padding: 19px 18px;
+  }
+}

@@ -1,0 +1,327 @@
+.go-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.go-comparison > div {
+  display: grid;
+  gap: 10px;
+  padding: 21px 24px;
+  border: 1px solid var(--note-line);
+  background: var(--note-paper);
+}
+.go-comparison > div:last-child {
+  background: var(--note-tint);
+  border-color: var(--note-accent);
+}
+.go-comparison span,
+.go-comparison small {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+.go-comparison strong {
+  color: var(--note-accent);
+  font:
+    28px/1.6 Georgia,
+    serif;
+  overflow-wrap: anywhere;
+}
+.go-bridge {
+  max-width: 850px;
+}
+.go-lesson {
+  margin: 40px 0;
+  padding-top: 30px;
+  border-top: 1px solid var(--note-line);
+}
+.go-step-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 17px;
+  margin-bottom: 14px;
+}
+.go-step-heading > span {
+  color: var(--note-accent);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.go-step-heading h3 {
+  font-size: 22px;
+  line-height: 1.6;
+  margin: 0;
+}
+.go-rename-workbench {
+  margin: 20px 0;
+}
+.go-relabel-map {
+  padding: 20px 24px;
+  background: var(--note-bg);
+  border-bottom: 1px solid var(--note-line);
+}
+.go-relabel-map > strong {
+  font-size: 13px;
+}
+.go-relabel-map > div {
+  display: flex;
+  gap: 10px 25px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.go-relabel-map > div span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--note-accent);
+  font:
+    21px/1.5 Georgia,
+    serif;
+}
+.go-relabel-map small {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+.go-cycle-display {
+  text-align: center;
+  padding: 26px 22px 12px;
+}
+.go-cycle-display > span {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+.go-cycle-route {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  margin: 19px 0 15px;
+}
+.go-route-pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  color: var(--note-muted);
+}
+.go-route-pair b {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--note-accent);
+  background: var(--note-tint);
+  color: var(--note-accent);
+  font:
+    24px/1 Georgia,
+    serif;
+}
+.go-cycle-display > p {
+  font-size: 13px;
+}
+.go-requirements {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin: 20px 0;
+}
+.go-requirements article {
+  border: 1px solid var(--note-line);
+  background: var(--note-paper);
+  padding: 22px;
+}
+.go-requirements article > span {
+  color: var(--note-accent);
+  font-size: 12px;
+}
+.go-requirements h4,
+.go-size-rule h4 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+.go-requirements p,
+.go-size-rule p {
+  font-size: 13px;
+}
+.go-key-sentence {
+  padding: 16px 20px;
+  background: var(--note-tint);
+  border-left: 2px solid var(--note-accent);
+}
+.go-size-rule {
+  margin: 26px 0 0;
+}
+.go-cosets {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.go-cosets > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--note-line);
+  background: var(--note-paper);
+}
+.go-cosets > div span {
+  width: 100%;
+  font-size: 11px;
+  color: var(--note-muted);
+}
+.go-cosets code {
+  padding: 5px 9px;
+  background: var(--note-tint);
+  font-size: 12px;
+}
+.go-cosets > strong {
+  color: var(--note-accent);
+  font:
+    21px/1.5 Georgia,
+    serif;
+}
+.go-class-grid {
+  align-items: stretch;
+}
+.go-class-grid .galois-class-title {
+  align-items: flex-start;
+  font-weight: 600;
+  line-height: 1.65;
+}
+.go-class-grid .galois-class-title input {
+  margin-top: 3px;
+}
+.go-class-description {
+  font-size: 12px;
+  line-height: 1.85;
+  color: var(--note-muted);
+}
+.go-class-grid .galois-class > strong {
+  margin-top: auto;
+}
+.go-term {
+  font-size: 10px;
+  color: var(--note-muted);
+}
+.go-all-choices {
+  padding: 18px 24px;
+  border-top: 1px solid var(--note-line);
+  font-size: 12px;
+}
+.go-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 15px 0;
+}
+.go-choice-grid > div {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--note-line);
+  background: var(--note-bg);
+}
+.go-choice-grid > div small {
+  color: var(--note-muted);
+  font-size: 10px;
+}
+.go-choice-grid .is-endpoint {
+  background: var(--note-tint);
+  border-color: var(--note-accent);
+}
+.go-choice-grid .is-endpoint small {
+  color: var(--note-accent);
+}
+.go-order-workbench {
+  margin-top: 20px;
+}
+.go-order-routes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 20px 24px;
+  gap: 25px;
+}
+.go-order-routes > div {
+  display: grid;
+  gap: 5px;
+}
+.go-order-routes span {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+.go-order-routes strong {
+  font:
+    25px/1.6 Georgia,
+    serif;
+  color: var(--note-accent);
+}
+.galois-workshop .go-order-result {
+  margin: 0;
+  padding: 16px 24px;
+  background: var(--note-tint);
+  border-top: 1px solid var(--note-line);
+  font-size: 13px;
+}
+.go-number-line {
+  text-align: center;
+  color: var(--note-muted);
+}
+@media (max-width: 760px) {
+  .go-comparison,
+  .go-requirements {
+    grid-template-columns: 1fr;
+  }
+  .go-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .go-step-heading h3 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .go-cycle-route,
+  .go-route-pair {
+    gap: 7px;
+  }
+  .go-route-pair b {
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+  }
+  .go-class-grid {
+    grid-template-columns: 1fr;
+  }
+  .go-class-grid .galois-class {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 14px;
+  }
+  .go-class-grid .galois-class > .galois-class-title,
+  .go-class-grid .galois-class > .go-class-description {
+    grid-column: 1 / -1;
+  }
+  .go-class-grid .galois-class > strong {
+    grid-column: 1;
+  }
+  .go-class-grid .galois-class > code {
+    grid-column: 1;
+    font-size: 12px;
+  }
+  .go-class-grid .galois-class > .galois-class-dots {
+    grid-column: 2;
+    grid-row: 3 / 6;
+    align-self: center;
+  }
+  .go-class-grid .galois-class > small {
+    grid-column: 1 / -1;
+  }
+  .go-order-routes {
+    gap: 16px;
+    padding: 18px;
+  }
+  .go-order-routes strong {
+    font-size: 21px;
+  }
+}

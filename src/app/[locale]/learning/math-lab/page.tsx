@@ -123,6 +123,50 @@ export default async function Page({ params }: Props) {
           </svg>
         </div>
       </section>
+      <section className="note-article k12-start">
+        <div>
+          <span className="notes-overline">03 / GROUP THEORY WORKSHOP</span>
+          <h2>群论工坊</h2>
+          <p>
+            方程的根，为什么在五次遇到边界？交换根的位置，拆解置换群，理解四次以内有根式通解、一般五次及更高次没有根式通解，并追问五次的障碍如何推向任意高次。
+          </p>
+          <Link
+            className="k12-button"
+            href={prefix + "/learning/math-lab/galois"}
+          >
+            开始探索
+            <ArrowRight size={15} />
+          </Link>
+        </div>
+        <div className="k12-start-equation" aria-hidden="true">
+          <svg width="240" height="160" viewBox="0 0 240 160" fill="none">
+            <text
+              x="120"
+              y="62"
+              textAnchor="middle"
+              fill="currentColor"
+              fontSize="25"
+            >
+              S₄ → ⋯ → {"{e}"}
+            </text>
+            <path
+              d="M34 81h172"
+              stroke="currentColor"
+              strokeWidth="1"
+              opacity="0.2"
+            />
+            <text
+              x="120"
+              y="116"
+              textAnchor="middle"
+              fill="currentColor"
+              fontSize="25"
+            >
+              S₅ → A₅ ↺
+            </text>
+          </svg>
+        </div>
+      </section>
       <section className="note-article k12-guidance">
         <div className="note-prose">
           <h2>让实验与知识连起来</h2>
