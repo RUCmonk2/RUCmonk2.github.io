@@ -156,6 +156,17 @@ export const DATA = {
       },
       url: "https://nevertheless.eu.cc/",
     },
+    {
+      name: { zh: "Wangles", en: "Wangles" },
+      handle: "wch727.github.io",
+      initials: "WA",
+      tone: "blue",
+      description: {
+        zh: "晴空、代码与一些喜欢的事。",
+        en: "Clear skies, code, and a few favorite things.",
+      },
+      url: "https://wch727.github.io/",
+    },
   ],
   contact: {
     social: {
