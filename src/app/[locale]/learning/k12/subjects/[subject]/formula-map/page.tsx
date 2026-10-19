@@ -36,7 +36,7 @@ export default async function Page({ params }: Props) {
   const prefix = language === "en" ? "/en" : "";
   return (
     <K12Shell locale={language} section="subjects" active="physics">
-      <div className={styles.page}>
+      <div className={`mathmap-page ${styles.page}`}>
         <header className="k12-hero k12-hero-compact">
           <span className="notes-overline">
             PHYSICS / FOLLOW THE DERIVATION

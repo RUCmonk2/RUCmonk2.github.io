@@ -86,7 +86,9 @@ export default async function Page({ params }: Props) {
       {subject === "physics" && stage === "high" && (
         <PhysicsFormulaEntry locale={language} />
       )}
-      <MathMapGraph key={subject + stage} locale={language} atlas={atlas} />
+      <div className={subject === "physics" ? "mathmap-page" : undefined}>
+        <MathMapGraph key={subject + stage} locale={language} atlas={atlas} />
+      </div>
       <section className="subject-sources">
         <h2>怎样读这些关系</h2>
         <p>
