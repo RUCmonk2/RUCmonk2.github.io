@@ -5,6 +5,7 @@ import type { Locale } from "next-intl";
 
 import { K12Shell } from "@/components/k12/k12-shell";
 import { MathMapGraph } from "@/components/math-map/math-map-graph";
+import { PhysicsFormulaEntry } from "@/components/physics/physics-formula-entry";
 import {
   type SchoolStage,
   schoolStages,
@@ -82,6 +83,9 @@ export default async function Page({ params }: Props) {
           ))}
         </nav>
       </header>
+      {subject === "physics" && stage === "high" && (
+        <PhysicsFormulaEntry locale={language} />
+      )}
       <MathMapGraph key={subject + stage} locale={language} atlas={atlas} />
       <section className="subject-sources">
         <h2>怎样读这些关系</h2>

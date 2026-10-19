@@ -17,7 +17,11 @@ const { k12Atlases } = await jiti.import("../src/data/k12/index.ts");
 const { subjectAtlases } = await jiti.import(
   "../src/data/k12-subjects/atlas.ts",
 );
+const { physicsFormulaAtlas } = await jiti.import(
+  "../src/data/physics-formulas.ts",
+);
 const allNodes = [
+  ...physicsFormulaAtlas.nodes,
   ...subjectAtlases.flatMap((atlas) => atlas.nodes),
   ...mathMapNodes,
   ...courseAtlases.flatMap((atlas) => atlas.nodes),

@@ -10,6 +10,10 @@ import {
   learningCatalog,
   learningItemHref,
 } from "@/data/learning/catalog";
+import {
+  physicsFormulaHref,
+  physicsFormulaUpdated,
+} from "@/data/physics-formulas";
 import { siteConfig } from "@/data/site";
 import { DEFAULT_LOCALE, LOCALES } from "@/i18n/routing";
 import { getBlogPosts } from "@/lib/blog";
@@ -102,6 +106,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pages,
     ...catalogPages,
     ...courseMapPages,
+    ...LOCALES.map((locale) => ({
+      url: siteUrl + localePathPrefix(locale) + physicsFormulaHref,
+      lastModified: new Date(physicsFormulaUpdated),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     ...LOCALES.map((locale) => ({
       url: siteUrl + localePathPrefix(locale) + "/learning/math-lab/rotations",
       lastModified: new Date("2026-10-06"),

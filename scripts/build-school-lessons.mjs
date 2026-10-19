@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
+import { createJiti } from "jiti";
 import katex from "katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -15,6 +16,12 @@ const subjects = JSON.parse(
 const mathTopics = JSON.parse(readFileSync("src/data/k12/topics.json", "utf8"));
 const partial = process.argv.includes("--partial");
 const parser = unified().use(remarkParse).use(remarkGfm).use(remarkMath);
+const {
+  physicsFormulas,
+  physicsLessonMarkdown,
+  legacyPhysicsDerivation,
+  formulaKinds,
+} = await createJiti(import.meta.url).import("../src/data/physics-formulas.ts");
 const documents = subjects.flatMap((subject) => {
   const file = `content/k12-atlas/${subject.id}.json`;
   if (partial && !existsSync(file)) return [];
@@ -183,8 +190,10 @@ for (const { subject, doc } of documents) {
           ? "\n\n[体育与健康课程标准：活动、健康与安全的学习范围](https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582362336303.pdf)。"
           : "";
       const references = `\n\n## 继续学习\n\n[课程范围依据：教育部课程方案与标准](${source})。概念解释、例子与练习由本站独立整理；课程安排按在用教材核对。${extraSource}`;
-      const beginner = `${node.intuition}\n\n## 把概念说清楚\n\n${node.formal}\n\n## 跟一个例子理解\n\n${node.example}\n\n## 容易混淆的地方\n\n${node.pitfall}${context}${references}\n\n## 自己试试\n\n${node.question}\n\n<!-- solutions -->\n\n### 参考解答与理由\n\n${node.answer}`;
-      const formal = `${node.formal}\n\n## 适用边界与辨析\n\n${node.pitfall}\n\n## 例证与检验\n\n${node.example}${context}${references}\n\n**检验问题：** ${node.question}\n\n<!-- solutions -->\n\n${node.answer}`;
+      const derivation =
+        subject.id === "physics" ? legacyPhysicsDerivation(node.id) : "";
+      const beginner = `${node.intuition}\n\n## 把概念说清楚\n\n${node.formal}\n\n## 跟一个例子理解\n\n${node.example}\n\n## 容易混淆的地方\n\n${node.pitfall}${derivation}${context}${references}\n\n## 自己试试\n\n${node.question}\n\n<!-- solutions -->\n\n### 参考解答与理由\n\n${node.answer}`;
+      const formal = `${node.formal}\n\n## 适用边界与辨析\n\n${node.pitfall}\n\n## 例证与检验\n\n${node.example}${derivation}${context}${references}\n\n**检验问题：** ${node.question}\n\n<!-- solutions -->\n\n${node.answer}`;
       const tree = parser.parse(beginner + "\n\n" + formal);
       function visit(n) {
         if (n.type === "math" || n.type === "inlineMath") {
@@ -234,10 +243,43 @@ function checkDag(key) {
   visited.add(key);
 }
 for (const key of conceptIndex.keys()) checkDag(key);
+const formulaOutput = "public/assets/physics-formulas/zh";
+mkdirSync(formulaOutput, { recursive: true });
+for (const node of physicsFormulas) {
+  const beginner = physicsLessonMarkdown(node, "beginner");
+  const formal = physicsLessonMarkdown(node, "formal");
+  function checkFormula(n) {
+    if (n.type === "math" || n.type === "inlineMath") {
+      katex.renderToString(n.value, {
+        displayMode: n.type === "math",
+        strict: "error",
+        throwOnError: true,
+        trust: false,
+      });
+      formulas++;
+    }
+    for (const child of n.children ?? []) checkFormula(child);
+  }
+  checkFormula(parser.parse(beginner + "\n\n" + formal));
+  writeFileSync(
+    path.join(formulaOutput, node.id + ".json"),
+    JSON.stringify({
+      beginner,
+      formal,
+      intro: {
+        beginner: node.intuition,
+        formal: `**${formulaKinds[node.kind]}** · ${node.summary}`,
+      },
+    }),
+  );
+}
 writeFileSync(
   "src/data/k12-subjects/atlas-manifest.json",
   JSON.stringify(records, null, 2) + "\n",
 );
 console.log(
   `School atlases: ${documents.length}/15 subjects, ${records.length}/37 maps, ${conceptIndex.size}/671 authored concept lessons, ${formulas} strict formula renderings${partial ? " (authoring preview)" : ""}.`,
+);
+console.log(
+  `Physics formula graph: ${physicsFormulas.length} dual-mode derivation lessons.`,
 );

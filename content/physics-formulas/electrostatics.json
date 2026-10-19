@@ -1,0 +1,925 @@
+[
+  {
+    "id": "coulomb",
+    "title": "库仑定律",
+    "domain": "field",
+    "kind": "law",
+    "summary": "电荷之间的静电力，是电荷量乘积与距离平方共同决定的实验规律。",
+    "intuition": "两电荷不必接触也能相互作用。电荷量变大，作用通常更强；距离变大，作用迅速减弱。距离加倍时，力只剩原来的四分之一。",
+    "formula": "F=k\\frac{|q_1q_2|}{r^2}",
+    "symbols": [
+      {
+        "symbol": "F",
+        "meaning": "静电力的大小，非负",
+        "unit": "\\mathrm N"
+      },
+      {
+        "symbol": "q_1,q_2",
+        "meaning": "两个点电荷的电荷量，带正负号",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "r",
+        "meaning": "两个点电荷之间的距离",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "k",
+        "meaning": "真空中的静电力常量，约为9.0×10⁹",
+        "unit": "\\mathrm{N\\cdot m^2/C^2}"
+      }
+    ],
+    "conditions": [
+      "研究真空中两个静止点电荷之间的静电力；高中题中空气环境常近似按真空处理。",
+      "带电体能否视为点电荷，取决于其大小、形状及电荷分布对当前作用的影响是否可忽略，不能只凭“体积很小”判断。",
+      "公式给出力的大小。方向另由两电荷连线及“同号相斥、异号相吸”确定。"
+    ],
+    "steps": [
+      {
+        "title": "先承认实验起点",
+        "equation": "",
+        "explanation": "库仑定律是通过静电力实验建立的规律，不能从动能公式或电荷守恒单独推出。接下来整理实验中发现的比例关系。"
+      },
+      {
+        "title": "固定电荷量，改变距离",
+        "equation": "F\\propto\\frac1{r^2}",
+        "explanation": "在模型条件成立时，保持两电荷量不变，距离变为原来的 $a$ 倍，力变为原来的 $1/a^2$。"
+      },
+      {
+        "title": "固定距离，改变电荷量",
+        "equation": "F\\propto |q_1q_2|",
+        "explanation": "固定距离，任一个电荷量的大小加倍，力的大小也加倍；两者同时加倍，力增为4倍。"
+      },
+      {
+        "title": "合并比例，确定常量",
+        "equation": "F=k\\frac{|q_1q_2|}{r^2}",
+        "explanation": "将两组比例合并，用 $k$ 表示比例系数。其数值依赖单位制和介质；这里使用真空中的SI值。"
+      },
+      {
+        "title": "把大小与方向合在一起判断",
+        "equation": "k\\approx9.0\\times10^9\\ \\mathrm{N\\cdot m^2/C^2}",
+        "explanation": "先用绝对值算出非负的力大小，再沿两电荷连线画方向：同号向外推开，异号相互吸引。两个电荷受到的相互作用力等大反向。"
+      }
+    ],
+    "example": {
+      "problem": "真空中两个点电荷分别为 $q_1=+2.0\\,\\mathrm{nC}$、$q_2=-5.0\\,\\mathrm{nC}$，相距 $3.0\\,\\mathrm{cm}$。求静电力的大小及作用类型。",
+      "steps": [
+        {
+          "equation": "q_1=2.0\\times10^{-9}\\,\\mathrm C,\\quad q_2=-5.0\\times10^{-9}\\,\\mathrm C,\\quad r=0.030\\,\\mathrm m",
+          "explanation": "先把纳库仑和厘米换成SI单位。"
+        },
+        {
+          "equation": "F=\\frac{9.0\\times10^9\\times|2.0\\times10^{-9}\\times(-5.0\\times10^{-9})|}{(0.030)^2}=1.0\\times10^{-4}\\,\\mathrm N",
+          "explanation": "电荷量乘积取绝对值，距离要平方。"
+        },
+        {
+          "equation": "q_1q_2<0",
+          "explanation": "两电荷异号，因此相互吸引。"
+        }
+      ],
+      "result": "静电力大小为 $1.0\\times10^{-4}\\,\\mathrm N$，两电荷相互吸引。"
+    },
+    "pitfalls": [
+      "把距离平方漏掉：应是 $r^2$，不是 $r$。",
+      "把负的电荷量代入后得到“负的力大小”。负号用于判方向，大小公式使用 $|q_1q_2|$。",
+      "把任何带电金属球都直接当点电荷；靠得很近时，静电感应可能使表面电荷分布明显改变。"
+    ],
+    "check": {
+      "question": "保持 $q_2$ 不变，把 $|q_1|$ 加倍、距离变为原来的3倍，静电力大小变为原来的多少？",
+      "answer": "$F_{\\text{新}}/F_{\\text{原}}=2/3^2=2/9$。先处理电荷量的一次比例，再处理距离的平方反比。"
+    },
+    "formalNote": "更完整的矢量表达可写为 $\\vec F_{1\\to2}=kq_1q_2\\hat r_{12}/r^2$，其中 $\\hat r_{12}$ 由电荷1指向电荷2。大小式中的绝对值与矢量式中的电荷符号承担不同任务。运动电荷的一般相互作用还涉及磁场与传播效应，超出这里的静电模型。"
+  },
+  {
+    "id": "electric-field",
+    "title": "电场强度",
+    "domain": "field",
+    "kind": "definition",
+    "summary": "把受力除以试探电荷量，得到描述空间位置本身的电场强度。",
+    "intuition": "同一个位置，电荷量大的试探电荷受到的力更大。把试探电荷自身的因素除去，才能公平比较不同位置的电场有多强、指向哪里。",
+    "formula": "\\vec E=\\frac{\\vec F_{\\text{电}}}{q},\\qquad \\vec F_{\\text{电}}=q\\vec E",
+    "symbols": [
+      {
+        "symbol": "\\vec E",
+        "meaning": "电场强度矢量，方向按正试探电荷受力方向规定",
+        "unit": "\\mathrm{N/C}"
+      },
+      {
+        "symbol": "E",
+        "meaning": "电场强度的大小",
+        "unit": "\\mathrm{N/C}"
+      },
+      {
+        "symbol": "\\vec F_{\\text{电}}",
+        "meaning": "试探电荷所受的电场力",
+        "unit": "\\mathrm N"
+      },
+      {
+        "symbol": "q",
+        "meaning": "试探电荷的电荷量，非零且带正负号",
+        "unit": "\\mathrm C"
+      }
+    ],
+    "conditions": [
+      "试探电荷足够小，不明显改变原电场及场源电荷分布。",
+      "定义式中的 $q\\ne0$ 且带符号；比较大小时改用 $F_{\\text{电}}=|q|E$。",
+      "这里讨论电场力本身，不能把重力等其他力也混入定义式的分子。"
+    ],
+    "steps": [
+      {
+        "title": "观察同一点的受力关系",
+        "equation": "\\vec F_{\\text{电}}\\propto q",
+        "explanation": "在同一原电场位置，用足够小的不同试探电荷比较，电场力随电荷量成比例改变。换成负电荷，力方向会反转。"
+      },
+      {
+        "title": "定义不依赖试探电荷的比值",
+        "equation": "\\vec E=\\frac{\\vec F_{\\text{电}}}{q}",
+        "explanation": "将力除以带符号的电荷量，用这个矢量比值定义电场强度。这一步是定义，不是从牛顿第二定律推出的新力学规律。"
+      },
+      {
+        "title": "确定方向与单位",
+        "equation": "[E]=\\frac{\\mathrm N}{\\mathrm C}",
+        "explanation": "正试探电荷受力方向就是场强方向；负试探电荷的受力反向，但除以负的电荷量后，定义出的场强方向仍相同。"
+      },
+      {
+        "title": "由定义返回受力",
+        "equation": "\\vec F_{\\text{电}}=q\\vec E,\\qquad F_{\\text{电}}=|q|E",
+        "explanation": "已知电场后，可以预测任意合适试探电荷所受的电场力。矢量式保留电荷正负号，大小式使用绝对值。"
+      },
+      {
+        "title": "需要运动时，再接牛顿第二定律",
+        "equation": "m\\vec a=q\\vec E+\\vec F_{\\text{其他}}",
+        "explanation": "场强描述环境，运动还取决于电荷、质量及其他力。只在仅受电场力时，才能直接写加速度为电场力除以质量。"
+      }
+    ],
+    "example": {
+      "problem": "某点电场水平向右，大小为 $3.0\\times10^3\\,\\mathrm{N/C}$。把电荷量为 $-4.0\\,\\mu\\mathrm C$ 的小试探电荷放在那里，求它受到的电场力。",
+      "steps": [
+        {
+          "equation": "q=-4.0\\times10^{-6}\\,\\mathrm C",
+          "explanation": "微库仑换成库仑，同时保留负号。"
+        },
+        {
+          "equation": "F_{\\text{电}}=|q|E=4.0\\times10^{-6}\\times3.0\\times10^3=1.2\\times10^{-2}\\,\\mathrm N",
+          "explanation": "先用绝对值计算力的大小。"
+        },
+        {
+          "equation": "F_x=qE_x=-1.2\\times10^{-2}\\,\\mathrm N",
+          "explanation": "取向右为正，力的分量为负，说明力向左。"
+        }
+      ],
+      "result": "电场力大小为 $1.2\\times10^{-2}\\,\\mathrm N$，水平向左。"
+    },
+    "pitfalls": [
+      "把 $E$ 和能量混淆。场强写 $E$ 或 $\\vec E$，动能写 $E_k$。",
+      "认为移走试探电荷，电场就消失；场强由场源和位置决定，试探电荷只是测量工具。",
+      "负电荷受力与场强反向；电场线箭头始终表示正电荷受力方向。"
+    ],
+    "check": {
+      "question": "原电场不变，把某位置的正试探电荷换成电荷量大小相同的负试探电荷，场强、受力大小和受力方向分别怎样变化？",
+      "answer": "场强不变；电场力大小不变；电场力方向反转。"
+    },
+    "formalNote": "理想定义可理解为试探电荷趋于零时的比值极限，以避免它改变场源分布。多个场源的场强按实验确认的叠加规律作矢量和：$\\vec E=\\sum_i\\vec E_i$；这个叠加规律应与场强定义分开认识。"
+  },
+  {
+    "id": "point-charge-field",
+    "title": "点电荷场强",
+    "domain": "field",
+    "kind": "derived",
+    "summary": "由库仑定律除去试探电荷量，得到场源点电荷产生的电场。",
+    "intuition": "离点电荷越远，影响分散到越大的空间范围。场强按距离的平方反比减弱；电荷的正负决定电场是向外还是向内。",
+    "formula": "E=k\\frac{|Q|}{r^2}",
+    "symbols": [
+      {
+        "symbol": "E",
+        "meaning": "场强的大小",
+        "unit": "\\mathrm{N/C}"
+      },
+      {
+        "symbol": "Q",
+        "meaning": "固定场源点电荷的电荷量，带符号",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "q",
+        "meaning": "用于推导的微小试探电荷量，非零",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "r",
+        "meaning": "研究位置到场源点电荷的距离",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "k",
+        "meaning": "真空静电力常量",
+        "unit": "\\mathrm{N\\cdot m^2/C^2}"
+      }
+    ],
+    "conditions": [
+      "固定场源在真空中可视为点电荷，研究点不与场源重合。",
+      "试探电荷足够小，不显著影响场源；这里求的是场源产生的场，不包含试探电荷自己的场。",
+      "多个场源时，先分别求场强，再按方向作矢量叠加。"
+    ],
+    "steps": [
+      {
+        "title": "在研究点放入试探电荷",
+        "equation": "F_{\\text{电}}=k\\frac{|Qq|}{r^2}",
+        "explanation": "先使用实验规律库仑定律，算出场源对试探电荷的作用力大小。"
+      },
+      {
+        "title": "调用场强的大小定义",
+        "equation": "E=\\frac{F_{\\text{电}}}{|q|}",
+        "explanation": "矢量定义用带符号的电荷量；现在比较大小，所以分母使用电荷量的绝对值。"
+      },
+      {
+        "title": "代入并消去试探电荷",
+        "equation": "E=\\frac{k|Qq|/r^2}{|q|}=k\\frac{|Q|}{r^2}",
+        "explanation": "试探电荷量消去了，说明原电场强度只由场源和研究位置决定。"
+      },
+      {
+        "title": "补上方向信息",
+        "equation": "\\vec E=k\\frac{Q}{r^2}\\hat r",
+        "explanation": "令 $\\hat r$ 从场源指向研究点。正场源使场强向外，负场源使场强向内。大小式和矢量式中的绝对值不能混用。"
+      },
+      {
+        "title": "检查距离缩放",
+        "equation": "\\frac{E_2}{E_1}=\\left(\\frac{r_1}{r_2}\\right)^2",
+        "explanation": "同一场源下比较不同半径时，静电力常量和电荷量可约去。若沿同一射线改变距离，场强的径向朝向保持不变。"
+      }
+    ],
+    "example": {
+      "problem": "一个固定点电荷 $Q=-8.0\\,\\mathrm{nC}$ 位于真空中。求距它 $0.20\\,\\mathrm m$ 处的场强大小和方向。",
+      "steps": [
+        {
+          "equation": "Q=-8.0\\times10^{-9}\\,\\mathrm C",
+          "explanation": "换算电荷量单位，负号保留用于方向判断。"
+        },
+        {
+          "equation": "E=\\frac{9.0\\times10^9\\times8.0\\times10^{-9}}{(0.20)^2}=1.8\\times10^3\\,\\mathrm{N/C}",
+          "explanation": "场强大小由电荷量绝对值与距离平方计算。"
+        },
+        {
+          "equation": "Q<0",
+          "explanation": "场源为负电荷，因此该点场强沿连线指向场源。"
+        }
+      ],
+      "result": "场强大小为 $1.8\\times10^3\\,\\mathrm{N/C}$，方向指向负场源。"
+    },
+    "pitfalls": [
+      "把试探电荷 $q$ 误当成场源电荷 $Q$。点电荷场强公式中的电荷量属于产生电场的场源。",
+      "从 $E=F/|q|$ 误推“试探电荷变大，场强变小”；同一位置的力也会随试探电荷量一起变化。",
+      "多个电荷产生的场有方向，不能总把各场强大小直接相加。"
+    ],
+    "check": {
+      "question": "沿同一射线把研究点到场源的距离减半，场强大小变为原来的多少？若场源是负电荷，方向呢？",
+      "answer": "场强大小变为4倍；方向仍沿连线指向负场源。"
+    },
+    "formalNote": "球对称的固定电荷分布，在其外部也可得到与中心点电荷相同的场；这需要额外的对称性结论，不能推广到任意带电物体。场强是矢量，不同位置即使场强大小相同，方向也未必相同。"
+  },
+  {
+    "id": "electric-potential",
+    "title": "电势能与电势",
+    "domain": "field",
+    "kind": "definition",
+    "summary": "电势能描述电荷与场源的相互作用；电势把试探电荷的因素除去。",
+    "intuition": "同一座山的高度不因搬上去的物体质量改变；类似地，同一个点的电势由电场决定，但放入不同电荷时，其电势能会不同。负电荷还会把电势高低与势能高低的对应关系反过来。",
+    "formula": "\\varphi=\\frac{E_{\\text{p电}}}{q},\\qquad E_{\\text{p电}}=q\\varphi",
+    "symbols": [
+      {
+        "symbol": "\\varphi",
+        "meaning": "选定零势点后的电势",
+        "unit": "\\mathrm V"
+      },
+      {
+        "symbol": "E_{\\text{p电}}",
+        "meaning": "电荷与场源相互作用的电势能",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "q",
+        "meaning": "试探电荷的电荷量，非零且带符号",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "W_{\\text{电}}",
+        "meaning": "电场力在指定过程中的功",
+        "unit": "\\mathrm J"
+      }
+    ],
+    "conditions": [
+      "讨论场源固定的静电场，并把试探电荷对原场的影响忽略。",
+      "先选定共同的零势点；该点处试探电荷的电势能也取零。",
+      "$q$ 带正负号。电势由原电场和所选零势点决定，不依赖试探电荷的正负或大小；电势能 $E_{\\text{p电}}=q\\varphi$ 还取决于电荷量。电势和电势能的数值都可以为负。"
+    ],
+    "steps": [
+      {
+        "title": "采用静电场的保守性",
+        "equation": "",
+        "explanation": "静电场力的功只取决于初、末位置。这是静电场的性质，不是仅靠与重力类比就证明的结论。它使我们能够用初末状态的势能差记录电场力做功。"
+      },
+      {
+        "title": "用功定义势能的差",
+        "equation": "W_{\\text{电},A\\to B}=E_{\\text{p电},A}-E_{\\text{p电},B}=-\\Delta E_{\\text{p电}}",
+        "explanation": "变化量是末减初。电场力做正功时，电势能减少；做负功时，电势能增加。"
+      },
+      {
+        "title": "选零点，再把电荷因素除去",
+        "equation": "\\varphi=\\frac{E_{\\text{p电}}}{q}",
+        "explanation": "在同一原电场位置，相对于同一零势点，电势能随试探电荷量成比例变化。把比例系数定义为电势。"
+      },
+      {
+        "title": "得到势能并核对单位",
+        "equation": "E_{\\text{p电}}=q\\varphi,\\qquad 1\\,\\mathrm V=1\\,\\mathrm{J/C}",
+        "explanation": "电势属于场中位置，电势能还取决于放入的电荷。负电荷在较高电势处的电势能反而较低。"
+      },
+      {
+        "title": "区分零点与可比较的变化",
+        "equation": "\\varphi_{\\text{新}}=\\varphi_{\\text{原}}+c,\\qquad E_{\\text{p电,新}}=E_{\\text{p电,原}}+qc",
+        "explanation": "整体改变零势点，相当于给各点电势都加同一个常数；两点电势差、同一电荷的势能变化和电场力做功均不变。这里常数$c$的单位是伏特。"
+      }
+    ],
+    "example": {
+      "problem": "同一静电场中，$\\varphi_A=120\\,\\mathrm V$、$\\varphi_B=40\\,\\mathrm V$。电荷 $q=-3.0\\,\\mu\\mathrm C$ 从 $A$ 移到 $B$，求两点的电势能和势能变化。",
+      "steps": [
+        {
+          "equation": "E_{\\text{p电},A}=(-3.0\\times10^{-6})\\times120=-3.6\\times10^{-4}\\,\\mathrm J",
+          "explanation": "负电荷量乘正电势，得到相对所选零点的负势能。"
+        },
+        {
+          "equation": "E_{\\text{p电},B}=(-3.0\\times10^{-6})\\times40=-1.2\\times10^{-4}\\,\\mathrm J",
+          "explanation": "第二个数虽然绝对值较小，但数值更大。"
+        },
+        {
+          "equation": "\\Delta E_{\\text{p电}}=E_{\\text{p电},B}-E_{\\text{p电},A}=+2.4\\times10^{-4}\\,\\mathrm J",
+          "explanation": "始终按末减初计算变化量。"
+        }
+      ],
+      "result": "电势从120 V降低到40 V，但负电荷的电势能增加 $2.4\\times10^{-4}\\,\\mathrm J$。"
+    },
+    "pitfalls": [
+      "把“电势高”直接等同于“电势能高”，忘记检查电荷正负。",
+      "把负势能理解成不可能。势能数值依赖选定零点；有直接物理意义的是相应变化和做功。",
+      "认为场强越大，电势就越高。场强与电势的空间变化有关，不能只比较电势数值。"
+    ],
+    "check": {
+      "question": "把所有位置的电势统一增加10 V，会改变同一个电荷从$A$到$B$的电势能变化和电场力做功吗？",
+      "answer": "不会。每一点的势能都增加相同的 $q\\times10\\,\\mathrm V$，相减后抵消；但各点势能的单独数值会改变。"
+    },
+    "formalNote": "教师选读：固定点电荷 $Q$ 的径向场为 $E_r=kQ/r^2$，故 $W_{A\\to B}=q\\int_{r_A}^{r_B}E_r\\,dr=kQq(1/r_A-1/r_B)$。路径的切向位移不产生功，结果仅与端点有关；多个固定场源可叠加。取无穷远电势为零时，有 $\\varphi=kQ/r$、$E_{\\text{p电}}=kQq/r$。这给出了保守性的一个具体来源；高中主线不必先掌握积分。"
+  },
+  {
+    "id": "electric-work",
+    "title": "电场力做功",
+    "domain": "field",
+    "kind": "derived",
+    "summary": "先固定电势差的下标顺序，再用带符号的电荷量计算电场力做功。",
+    "intuition": "电场力做功直接对应电势能的反向变化。若还有重力或外力做功，动能变化要把这些功一并计算。经过相同的非零电势差时，正、负电荷的电场力功符号相反。",
+    "formula": "W_{\\text{电},A\\to B}=qU_{AB}=-\\Delta E_{\\text{p电}}",
+    "symbols": [
+      {
+        "symbol": "W_{\\text{电},A\\to B}",
+        "meaning": "电场力从$A$到$B$所做的功，带符号",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "q",
+        "meaning": "移动电荷的电荷量，带符号",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "U_{AB}",
+        "meaning": "$A$点电势减$B$点电势",
+        "unit": "\\mathrm V"
+      },
+      {
+        "symbol": "\\varphi_A,\\varphi_B",
+        "meaning": "两点相对于同一零势点的电势",
+        "unit": "\\mathrm V"
+      },
+      {
+        "symbol": "\\Delta E_{\\text{p电}}",
+        "meaning": "电势能的末值减初值",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "W_{\\text{非电场力}}",
+        "meaning": "除电场力之外各力的总功，包括可能存在的重力功、阻力功和其他外力功",
+        "unit": "\\mathrm J"
+      }
+    ],
+    "conditions": [
+      "场源固定，研究静电场中的移动过程，不要求电场均匀。",
+      "移动电荷的电荷量保持不变，且对原电场的影响可忽略。",
+      "电势差定义固定为 $U_{AB}=\\varphi_A-\\varphi_B$，电荷量 $q$ 必须带符号。"
+    ],
+    "steps": [
+      {
+        "title": "定义电势差的顺序",
+        "equation": "U_{AB}=\\varphi_A-\\varphi_B,\\qquad U_{BA}=-U_{AB}",
+        "explanation": "从下标读出减法顺序。这个顺序不要与“变化量末减初”混为一谈。"
+      },
+      {
+        "title": "写出静电势能与功的关系",
+        "equation": "W_{\\text{电},A\\to B}=E_{\\text{p电},A}-E_{\\text{p电},B}",
+        "explanation": "静电场力做正功时，电势能减少，所以功等于初势能减末势能。"
+      },
+      {
+        "title": "把势能换成电势",
+        "equation": "W_{\\text{电},A\\to B}=q\\varphi_A-q\\varphi_B=q(\\varphi_A-\\varphi_B)",
+        "explanation": "同一个移动电荷在两点的电荷量相同，因此可以提出公因子$q$。"
+      },
+      {
+        "title": "得到做功公式",
+        "equation": "W_{\\text{电},A\\to B}=qU_{AB}=-\\Delta E_{\\text{p电}}",
+        "explanation": "公式保留两个符号来源：电荷量的符号，以及两点电势差的符号。单位满足库仑乘伏特等于焦耳。"
+      },
+      {
+        "title": "需要动能时，再调用动能定理",
+        "equation": "\\Delta E_k=qU_{AB}+W_{\\text{非电场力}}",
+        "explanation": "这里 $W_{\\text{非电场力}}$ 包括重力等一切非电场力的功；只有这一总功为零时，电场力的功才等于动能变化。使用动能定理时仍采用质量不变的质点和同一惯性参考系。电势能减少量不能与同一份电场力功重复相加。"
+      }
+    ],
+    "example": {
+      "problem": "电荷 $q=-5.0\\,\\mathrm{nC}$ 由 $A$ 移到 $B$，已知 $U_{AB}=-200\\,\\mathrm V$。求电场力做功和电势能变化；若仅电场力做功，初动能为 $2.0\\times10^{-6}\\,\\mathrm J$，求末动能。",
+      "steps": [
+        {
+          "equation": "W_{\\text{电}}=(-5.0\\times10^{-9})\\times(-200)=1.0\\times10^{-6}\\,\\mathrm J",
+          "explanation": "两个负号相乘，电场力做正功。"
+        },
+        {
+          "equation": "\\Delta E_{\\text{p电}}=-W_{\\text{电}}=-1.0\\times10^{-6}\\,\\mathrm J",
+          "explanation": "对应的电势能减少。"
+        },
+        {
+          "equation": "E_{k,B}=E_{k,A}+W_{\\text{电}}=3.0\\times10^{-6}\\,\\mathrm J",
+          "explanation": "先求变化量，再在初动能上增加；不能把功直接当作末动能。"
+        }
+      ],
+      "result": "电场力做功 $+1.0\\times10^{-6}\\,\\mathrm J$，电势能减少同样数值，末动能为 $3.0\\times10^{-6}\\,\\mathrm J$。"
+    },
+    "pitfalls": [
+      "把所有题目的电荷量都当成正数。只有明确计算大小时才使用 $|q|$。",
+      "把“从$A$到$B$”误写为 $U_{AB}=\\varphi_B-\\varphi_A$。",
+      "把 $W_{\\text{电}}$ 直接等同于动能变化，却漏掉阻力、重力或其他外力做功。"
+    ],
+    "check": {
+      "question": "正电荷 $q=1.0\\,\\mu\\mathrm C$ 从电势200 V的位置移动到电势50 V的位置，电场力做多少功？",
+      "answer": "$U_{AB}=200-50=150\\,\\mathrm V$，故 $W_{\\text{电}}=+1.5\\times10^{-4}\\,\\mathrm J$。"
+    },
+    "formalNote": "在静电场中，$U_{AB}=\\int_A^B\\vec E\\cdot d\\vec\\ell$，因此电场力功与路径无关。这个结论不意味着粒子一定能靠电场力从静止走完所指定的路径；运动是否可达还要检查初速度、其他力和途中动能。时变电磁场中则不能普遍用一个静电势差代替全部电场功。"
+  },
+  {
+    "id": "uniform-field",
+    "title": "匀强场与电势差",
+    "domain": "field",
+    "kind": "derived",
+    "summary": "把恒力做功与电场力做功对照，得到位移沿场方向的投影关系。",
+    "intuition": "在匀强电场中，沿电场走得越远，电势降低越多；横着走不改变电势。关键是沿场方向走了多少，不是总路程有多长。",
+    "formula": "U_{AB}=\\vec E\\cdot\\vec s=Es\\cos\\theta",
+    "symbols": [
+      {
+        "symbol": "U_{AB}",
+        "meaning": "$A$点电势减$B$点电势，带符号",
+        "unit": "\\mathrm V"
+      },
+      {
+        "symbol": "\\vec E",
+        "meaning": "方向和大小均不随位置改变的场强",
+        "unit": "\\mathrm{V/m}"
+      },
+      {
+        "symbol": "\\vec s",
+        "meaning": "从初点$A$指向末点$B$的位移",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "\\theta",
+        "meaning": "场强与位移的夹角，不是负电荷受力与位移的夹角",
+        "unit": "\\mathrm{rad}"
+      },
+      {
+        "symbol": "d_{\\parallel}",
+        "meaning": "位移沿场强方向的带符号投影",
+        "unit": "\\mathrm m"
+      }
+    ],
+    "conditions": [
+      "沿研究区域的电场方向、大小保持不变，即匀强电场。",
+      "从$A$到$B$的位移必须用首末点连线，不能用曲线运动的总路程代替。",
+      "$E$、$s$ 是大小，正负信息来自 $\\cos\\theta$；等价地可以使用带符号的投影 $d_{\\parallel}$。"
+    ],
+    "steps": [
+      {
+        "title": "从恒力做功开始",
+        "equation": "W=\\vec F\\cdot\\vec s",
+        "explanation": "匀强电场中，电荷量不变的粒子所受电场力为恒力，因此可以使用恒力做功的位移公式。"
+      },
+      {
+        "title": "把力换成电场力",
+        "equation": "W_{\\text{电}}=(q\\vec E)\\cdot\\vec s=qEs\\cos\\theta",
+        "explanation": "电荷量$q$带符号，场强方向与位移方向的夹角是$\\theta$。即使是负电荷，也不需要再额外翻转一次角度。"
+      },
+      {
+        "title": "与电势差做功公式对照",
+        "equation": "qU_{AB}=qEs\\cos\\theta\\quad\\Longrightarrow\\quad U_{AB}=Es\\cos\\theta",
+        "explanation": "使用非零试探电荷约去$q$。结果只含电场和两个位置，与选哪种试探电荷无关。"
+      },
+      {
+        "title": "读出沿场方向的投影",
+        "equation": "d_{\\parallel}=s\\cos\\theta,\\qquad U_{AB}=Ed_{\\parallel}",
+        "explanation": "沿场移动时投影为正，电势降低；逆场移动时投影为负，电势升高；位移垂直于场强时两点等势。"
+      },
+      {
+        "title": "应用到理想平行板",
+        "equation": "U=Ed\\quad\\Longrightarrow\\quad E=\\frac Ud",
+        "explanation": "若忽略边缘效应，两板间的场近似均匀。这里$U$为板间电势差大小，$d$为沿场方向的板距，因此可以直接相除求场强大小。"
+      }
+    ],
+    "example": {
+      "problem": "匀强电场水平向右，大小 $E=400\\,\\mathrm{N/C}$。从$A$到$B$的位移为向右3.0 cm、向上4.0 cm。求 $U_{AB}$；若移动电荷为 $-2.0\\,\\mu\\mathrm C$，求电场力做功。",
+      "steps": [
+        {
+          "equation": "d_{\\parallel}=0.030\\,\\mathrm m",
+          "explanation": "场强水平向右，只取水平位移。向上4.0 cm的分量不贡献电势差。"
+        },
+        {
+          "equation": "U_{AB}=Ed_{\\parallel}=400\\times0.030=12\\,\\mathrm V",
+          "explanation": "沿场位移为正，所以$A$点电势高于$B$点。"
+        },
+        {
+          "equation": "W_{\\text{电}}=qU_{AB}=(-2.0\\times10^{-6})\\times12=-2.4\\times10^{-5}\\,\\mathrm J",
+          "explanation": "负电荷的受力向左，向右位移对应负功。"
+        }
+      ],
+      "result": "$U_{AB}=+12\\,\\mathrm V$，电场力做功 $-2.4\\times10^{-5}\\,\\mathrm J$。"
+    },
+    "pitfalls": [
+      "把两点距离或实际路程直接当作沿场方向的距离。",
+      "已经在$q$中保留负号，又用负电荷受力方向重新定义$\\theta$，造成重复变号。",
+      "在任意非匀强场中把两点电势差除以距离，得到的平均量误当成每一点的局部场强。"
+    ],
+    "check": {
+      "question": "在例题中把起点和终点交换，场强与电势差分别怎样变化？",
+      "answer": "原电场不变；$U_{BA}=-U_{AB}=-12\\,\\mathrm V$。"
+    },
+    "formalNote": "一般静电场中应使用 $U_{AB}=\\int_A^B\\vec E\\cdot d\\vec\\ell$。一维情况下有 $E_x=-d\\varphi/dx$：电势随$x$下降，场强指向$x$正向。等势面间的小法向距离可给局部近似 $E\\approx|\\Delta\\varphi|/\\Delta\\ell$，不应把有限间隔的平均关系无条件当成点值。"
+  },
+  {
+    "id": "combined-energy",
+    "title": "含电势能的能量关系",
+    "domain": "energy",
+    "kind": "derived",
+    "summary": "从动能定理出发，把重力功和电场力功分别换成相应势能变化。",
+    "intuition": "做功可以看作不同能量账户之间的转移。把某种力的功已经改写成势能变化后，就不能在等式另一边再把同一份功加一遍。",
+    "formula": "\\Delta\\left(E_k+E_{\\mathrm{pG}}+E_{\\text{p电}}\\right)=W_{\\text{其他}}",
+    "symbols": [
+      {
+        "symbol": "E_k",
+        "meaning": "动能，等于质量乘速率平方的一半",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "E_{\\mathrm{pG}}",
+        "meaning": "近地面重力势能，选定零面后为$mgh$",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "E_{\\text{p电}}",
+        "meaning": "选定零势点后的电势能$q\\varphi$",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "W_{\\text{其他}}",
+        "meaning": "除重力、电场力之外的其他力总功",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "m",
+        "meaning": "研究物体的质量",
+        "unit": "\\mathrm{kg}"
+      },
+      {
+        "symbol": "h",
+        "meaning": "相对选定零高度的竖直高度",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "q",
+        "meaning": "物体电荷量，带符号",
+        "unit": "\\mathrm C"
+      }
+    ],
+    "conditions": [
+      "在同一惯性参考系内，使用非相对论质点力学，质量、电荷量保持不变。",
+      "近地面重力场的 $g$ 可视为常量；静电场及场源固定，不随时间由外界主动改变。",
+      "$W_{\\text{其他}}$ 只包含除重力、电场力之外各力的总功；所有这些力的功都必须计入右端。",
+      "若存在弹簧，可以先把弹力功保留在右端。将弹性势能加入左端前，须正确选择相互作用系统，并从右端剔除已改写的弹力功；两端都运动的弹簧不能只配给一端物体的能量变化。",
+      "一段过程的其他力总功为零，只保证该段初末三种能量之和相等；若要判断全过程持续守恒，条件须对任意子过程成立。"
+    ],
+    "steps": [
+      {
+        "title": "先完整写动能定理",
+        "equation": "\\Delta E_k=W_G+W_{\\text{电}}+W_{\\text{其他}}",
+        "explanation": "先列全所有力的功，不要一开始就假设机械能守恒。"
+      },
+      {
+        "title": "用对应势能替换两种功",
+        "equation": "W_G=-\\Delta E_{\\mathrm{pG}},\\qquad W_{\\text{电}}=-\\Delta E_{\\text{p电}}",
+        "explanation": "重力做正功对应重力势能减少；电场力做正功对应电势能减少。两种对应关系彼此独立。"
+      },
+      {
+        "title": "移项得到总关系",
+        "equation": "\\Delta E_k+\\Delta E_{\\mathrm{pG}}+\\Delta E_{\\text{p电}}=W_{\\text{其他}}",
+        "explanation": "左端记录三种状态能量的总变化，右端只保留还未用势能表示的力做功。"
+      },
+      {
+        "title": "先判断初末相等，再判断全过程守恒",
+        "equation": "W_{\\text{其他}}=0\\quad\\Longrightarrow\\quad E_{k,A}+mgh_A+q\\varphi_A=E_{k,B}+mgh_B+q\\varphi_B",
+        "explanation": "所研究这一段的其他力总功为零时，三种能量之和在初末相等。若在任意子过程中，其他力总功都为零，这个和才在全过程持续守恒；不能仅凭全程正负功恰好抵消就作此判断。只把动能与重力势能相加称为机械能时，电场力做功一般仍会改变这部分机械能。"
+      },
+      {
+        "title": "把末动能单独解出来",
+        "equation": "E_{k,B}=E_{k,A}+mg(h_A-h_B)+qU_{AB}+W_{\\text{其他}}",
+        "explanation": "这一写法直接用于求末值，保留初动能及电荷、电势差的符号。若求速率，再由末动能求平方根；负的末动能说明过程不可达或列式有误。"
+      }
+    ],
+    "example": {
+      "problem": "一个质量20 g、带电量 $-10\\,\\mu\\mathrm C$ 的小球，从速率 $2.0\\,\\mathrm{m/s}$ 的$A$点下降0.50 m到$B$点。已知 $U_{AB}=-2000\\,\\mathrm V$，阻力做功 $-0.030\\,\\mathrm J$，除重力、电场力、阻力外的其他力不做功，取 $g=10\\,\\mathrm{m/s^2}$。求末动能和末速率。",
+      "steps": [
+        {
+          "equation": "E_{k,A}=\\frac12\\times0.020\\times2.0^2=0.040\\,\\mathrm J",
+          "explanation": "质量先由克换成千克，保留非零初动能。"
+        },
+        {
+          "equation": "W_G=0.020\\times10\\times0.50=0.100\\,\\mathrm J,\\qquad W_{\\text{电}}=(-10\\times10^{-6})\\times(-2000)=0.020\\,\\mathrm J",
+          "explanation": "小球下降，重力做正功；负电荷乘负电势差，电场力也做正功。"
+        },
+        {
+          "equation": "E_{k,B}=0.040+0.100+0.020-0.030=0.130\\,\\mathrm J",
+          "explanation": "阻力做负功，只计一次；这里没有再额外加入电势能减少量。"
+        },
+        {
+          "equation": "v_B=\\sqrt{\\frac{2E_{k,B}}m}=\\sqrt{13}\\,\\mathrm{m/s}\\approx3.61\\,\\mathrm{m/s}",
+          "explanation": "动能由完整速率决定，不是某一个方向的速度分量。"
+        }
+      ],
+      "result": "末动能为 $0.130\\,\\mathrm J$，末速率约为 $3.61\\,\\mathrm{m/s}$。"
+    },
+    "pitfalls": [
+      "在左边加入电势能变化，又在右边保留同一份电场力功，造成重复计入。",
+      "看到重力和电场力都是保守力，就直接说“机械能守恒”；必须先说明统计了哪些势能。",
+      "算出总功后直接当作末动能，漏掉初动能。",
+      "把全程其他力总功恰好为零，误认为中途所列能量和始终不变；初末相等与全过程持续守恒要分开判断。"
+    ],
+    "check": {
+      "question": "若已经写成 $\\Delta E_k+\\Delta E_{\\mathrm{pG}}+\\Delta E_{\\text{p电}}=W_{\\text{阻}}$，还能在右边再加 $qU_{AB}$ 吗？",
+      "answer": "不能。电场力功已经由左边的 $\\Delta E_{\\text{p电}}$ 表示，再加入 $qU_{AB}$ 会重复计算同一能量转移。"
+    },
+    "formalNote": "电势能对应移动电荷与固定场源的相互作用；此处将场源作为固定背景处理。若电场由时变电源主动改变，或场源显著运动，就要扩展系统并分析外界及电磁场能量，不能原样套用固定静电场中的简单守恒式。对于一端固定、另一端随研究物体运动的理想弹簧，可以把该物体所受弹力的功改写为弹性势能的减少；若弹簧两端都运动，应把相关物体的动能与弹簧势能纳入同一个恰当系统，再列能量关系。不能把弹簧总势能变化只对应一端物体受到的弹力功。"
+  },
+  {
+    "id": "acceleration",
+    "title": "带电粒子加速",
+    "domain": "field",
+    "kind": "model",
+    "summary": "先用电场力功求动能变化，再从动能得到加速后的速率。",
+    "intuition": "粒子都从静止出发、只由电场力做功，经过相同大小的加速电压时，电荷量大小决定获得多少动能，比荷 $|q|/m$ 决定末速率。若初速不为零，末动能还包含原有的初动能，不能只按比荷比较末速率。",
+    "formula": "\\frac12m(v_B^2-v_A^2)=qU_{AB}",
+    "symbols": [
+      {
+        "symbol": "m",
+        "meaning": "粒子质量",
+        "unit": "\\mathrm{kg}"
+      },
+      {
+        "symbol": "q",
+        "meaning": "粒子电荷量，带符号",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "U_{AB}",
+        "meaning": "起点$A$电势减终点$B$电势",
+        "unit": "\\mathrm V"
+      },
+      {
+        "symbol": "v_A,v_B",
+        "meaning": "粒子在起点和终点的速率",
+        "unit": "\\mathrm{m/s}"
+      },
+      {
+        "symbol": "U",
+        "meaning": "加速电压的正大小，仅在明确加速情景时使用",
+        "unit": "\\mathrm V"
+      },
+      {
+        "symbol": "e",
+        "meaning": "元电荷的正大小，约为1.60×10⁻¹⁹",
+        "unit": "\\mathrm C"
+      }
+    ],
+    "conditions": [
+      "只由电场力做功，或其他力的总功可忽略；电场是固定静电场，不必匀强。",
+      "使用非相对论力学，粒子速度远小于光速。",
+      "通用式允许非零初速；从静止的简式需另满足 $v_A=0$。",
+      "所称“加速”要求 $qU_{AB}>0$，且粒子能通过实际路径到达终点。"
+    ],
+    "steps": [
+      {
+        "title": "先确定电势差符号",
+        "equation": "U_{AB}=\\varphi_A-\\varphi_B",
+        "explanation": "正电荷沿降低电势的方向运动可获得动能；电子带负电，向较高电势处运动时可获得动能。不要先把所有电压都无条件当正数。"
+      },
+      {
+        "title": "由功求动能变化",
+        "equation": "E_{k,B}-E_{k,A}=W_{\\text{电}}=qU_{AB}",
+        "explanation": "这是动能定理与静电场做功公式的直接结合，电场是否均匀不影响这个端点关系。"
+      },
+      {
+        "title": "代入动能表达式",
+        "equation": "\\frac12m(v_B^2-v_A^2)=qU_{AB}",
+        "explanation": "动能与速率平方有关。初速不是零时，初动能项不能删去。"
+      },
+      {
+        "title": "在从静止的加速模型下化简",
+        "equation": "v_A=0\\quad\\Longrightarrow\\quad v_B=\\sqrt{\\frac{2qU_{AB}}m}=\\sqrt{\\frac{2|q|U}{m}}",
+        "explanation": "后一等号中的$U$专指正的加速电压大小，因此电场做的正功可以写成电荷量大小乘$U$。"
+      },
+      {
+        "title": "比较相同电压下的速度",
+        "equation": "v_B\\propto\\sqrt{\\frac{|q|}{m}}",
+        "explanation": "初速都为零且加速电压大小相同时，比较比荷的大小。动能增加相同与速度相同是两件事。"
+      }
+    ],
+    "example": {
+      "problem": "电子从电势0 V处由静止运动到电势100 V处，只有电场力做功。取 $e=1.60\\times10^{-19}\\,\\mathrm C$、$m=9.11\\times10^{-31}\\,\\mathrm{kg}$，求获得的动能及末速率。",
+      "steps": [
+        {
+          "equation": "q=-e,\\qquad U_{AB}=0-100=-100\\,\\mathrm V",
+          "explanation": "电子电荷和起末电势差都为负，不能漏掉其中任何一个符号。"
+        },
+        {
+          "equation": "E_{k,B}=qU_{AB}=1.60\\times10^{-17}\\,\\mathrm J",
+          "explanation": "负负得正，电子确实获得动能。"
+        },
+        {
+          "equation": "v_B=\\sqrt{\\frac{2\\times1.60\\times10^{-17}}{9.11\\times10^{-31}}}\\approx5.93\\times10^6\\,\\mathrm{m/s}",
+          "explanation": "用动能求速率，结果远小于光速，非相对论近似适用。"
+        }
+      ],
+      "result": "电子获得动能 $1.60\\times10^{-17}\\,\\mathrm J$，末速率约为 $5.93\\times10^6\\,\\mathrm{m/s}$。"
+    },
+    "pitfalls": [
+      "把电子的 $q=-e$ 与正的加速电压大小混用，算出负的末动能。先明确电压是 $U_{AB}$ 还是正大小$U$。",
+      "把只有匀强场才能求出的匀加速度过程，误当成能量法成立的必要条件。能量法不要求场强恒定。",
+      "非零初速时仍套从静止的简式，或在很高电压下忽略相对论限制。"
+    ],
+    "check": {
+      "question": "两粒子电荷量大小相同、都从静止经过相同加速电压。第二个粒子质量是第一个的4倍，它的末速率是多少倍？",
+      "answer": "末速率为原来的 $1/2$。两者获得的动能相同，但 $v\\propto1/\\sqrt m$。"
+    },
+    "formalNote": "通用解为 $v_B^2=v_A^2+2qU_{AB}/m$。右端必须非负；实际能否抵达终点还应检查途中是否先发生转向。相对论效应显著时应改用 $\\Delta E_k=(\\gamma_B-\\gamma_A)mc^2=qU_{AB}$，不能继续使用动能等于 $mv^2/2$ 的近似。"
+  },
+  {
+    "id": "deflection",
+    "title": "带电粒子偏转",
+    "domain": "field",
+    "kind": "model",
+    "summary": "把匀强电场中的运动分解为水平匀速与竖直匀加速，再求偏移、出口方向和动能。",
+    "intuition": "横向速度把粒子带过极板，电场力不断增加另一个方向的速度。飞得越慢，在电场里停留越久，偏移就越明显。",
+    "formula": "y=\\frac{eU_2L^2}{2mdv_0^2},\\qquad \\tan\\theta=\\frac{eU_2L}{mdv_0^2}",
+    "symbols": [
+      {
+        "symbol": "y",
+        "meaning": "电子离开极板时向下的偏移量",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "\\theta",
+        "meaning": "出口速度相对原水平入射方向向下偏转的角度",
+        "unit": "\\mathrm{rad}"
+      },
+      {
+        "symbol": "v_0",
+        "meaning": "电子进入偏转场时的水平速度大小",
+        "unit": "\\mathrm{m/s}"
+      },
+      {
+        "symbol": "L",
+        "meaning": "偏转极板沿水平方向的长度",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "d",
+        "meaning": "两平行板的间距",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "U_2",
+        "meaning": "偏转板间电压的正大小",
+        "unit": "\\mathrm V"
+      },
+      {
+        "symbol": "q",
+        "meaning": "电子电荷，等于$-e$",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "e",
+        "meaning": "元电荷的正大小",
+        "unit": "\\mathrm C"
+      },
+      {
+        "symbol": "m",
+        "meaning": "电子质量",
+        "unit": "\\mathrm{kg}"
+      },
+      {
+        "symbol": "E_y",
+        "meaning": "以向下为正时的场强竖直分量",
+        "unit": "\\mathrm{N/C}"
+      },
+      {
+        "symbol": "U_1",
+        "meaning": "若有前置加速区，该区的加速电压正大小",
+        "unit": "\\mathrm V"
+      }
+    ],
+    "conditions": [
+      "电子 $q=-e$ 水平入射，初始竖直速度为零；取向右为$x$正方向，向下为$y$正方向。",
+      "上板带负电、下板带正电，电场向上，因此 $E_y=-U_2/d$。换极性或换粒子时，应重列带符号的分运动方程。",
+      "理想平行板间电场均匀且稳定，忽略边缘效应、重力及其他力，采用非相对论力学。",
+      "粒子必须能够通过整个板长，途中不撞极板；从板间中线入射时，应检查出口偏移小于半个板距。",
+      "若把入射速度进一步写成加速电压的函数，另要求电子此前从静止仅由电场力加速。"
+    ],
+    "steps": [
+      {
+        "title": "固定坐标，先定加速度符号",
+        "equation": "a_x=0,\\qquad a_y=\\frac{qE_y}{m}=\\frac{(-e)(-U_2/d)}m=\\frac{eU_2}{md}>0",
+        "explanation": "场强向上而电子带负电，所以电子受力向下。两次负号相乘给出向下为正的加速度。"
+      },
+      {
+        "title": "用水平运动求在场时间",
+        "equation": "x=v_0t,\\qquad t=\\frac L{v_0}",
+        "explanation": "水平没有力，水平速度保持$v_0$。时间由板长与水平速度决定，不能用弯曲轨迹长度除以入口速度。"
+      },
+      {
+        "title": "用竖直匀加速运动求偏移和速度",
+        "equation": "y=\\frac12a_yt^2=\\frac{eU_2L^2}{2mdv_0^2},\\qquad v_y=a_yt=\\frac{eU_2L}{mdv_0}",
+        "explanation": "竖直初速度为零，偏移含时间平方和二分之一；竖直末速度只含一次时间。"
+      },
+      {
+        "title": "用出口速度分量求偏角",
+        "equation": "\\tan\\theta=\\frac{v_y}{v_x}=\\frac{eU_2L}{mdv_0^2}=\\frac{2y}{L}",
+        "explanation": "角度由出口瞬时速度方向决定。$y/L$表示入口与出口连线的斜率，并不等于出口偏角的正切。"
+      },
+      {
+        "title": "若有从静止的加速区，再代入其结果",
+        "equation": "v_0^2=\\frac{2eU_1}{m}\\quad\\Longrightarrow\\quad y=\\frac{U_2L^2}{4dU_1},\\qquad\\tan\\theta=\\frac{U_2L}{2dU_1}",
+        "explanation": "$U_1$决定入射速度，$U_2$决定偏转加速度。只有满足此前从静止加速的条件时，才可以使用这组简式。"
+      },
+      {
+        "title": "用完整末速度核对动能",
+        "equation": "v_{\\text{出}}=\\sqrt{v_0^2+v_y^2},\\qquad E_{k,\\text{出}}=\\frac12m(v_0^2+v_y^2),\\qquad\\Delta E_k=\\frac12mv_y^2=eEy",
+        "explanation": "这里$\\Delta E_k$只指偏转段的动能变化，$E$为场强大小。电子与电场力都向下位移，电场力做正功$eEy$；不能因为水平速度不变就说动能不变。"
+      }
+    ],
+    "example": {
+      "problem": "电子先从静止经过加速电压 $U_1=800\\,\\mathrm V$，再从板间中线水平进入偏转区。偏转电压 $U_2=80\\,\\mathrm V$，板长 $L=0.040\\,\\mathrm m$，板距 $d=0.020\\,\\mathrm m$，上板负、下板正。求出口偏移、偏角正切和末动能，并检查是否撞板。取 $e=1.60\\times10^{-19}\\,\\mathrm C$。",
+      "steps": [
+        {
+          "equation": "E_{k,\\text{入}}=eU_1=1.28\\times10^{-16}\\,\\mathrm J",
+          "explanation": "前置加速区从静止开始，入射动能等于电场做的正功。"
+        },
+        {
+          "equation": "y=\\frac{80\\times0.040^2}{4\\times0.020\\times800}=0.0020\\,\\mathrm m",
+          "explanation": "出口向下偏移2.0 mm。"
+        },
+        {
+          "equation": "\\tan\\theta=\\frac{80\\times0.040}{2\\times0.020\\times800}=0.10",
+          "explanation": "偏角是出口速度相对水平方向向下的夹角。"
+        },
+        {
+          "equation": "y=0.0020\\,\\mathrm m<\\frac d2=0.010\\,\\mathrm m",
+          "explanation": "电子从中线入射，向下偏移随时间单调增大，出口仍未到下板，故整段都不会撞板。"
+        },
+        {
+          "equation": "E_{k,\\text{出}}=E_{k,\\text{入}}(1+\\tan^2\\theta)=1.2928\\times10^{-16}\\,\\mathrm J",
+          "explanation": "完整速率平方比入口增加了竖直分量的平方，末动能比入口增加1%。"
+        }
+      ],
+      "result": "出口向下偏移2.0 mm，$\\tan\\theta=0.10$，末动能约为 $1.29\\times10^{-16}\\,\\mathrm J$；能完整通过极板而不撞板。"
+    },
+    "pitfalls": [
+      "把$U_1$与$U_2$混用：前者决定入射速度，后者决定偏转区的电场力。",
+      "用 $y/L$ 作为偏角正切，漏掉出口速度与平均运动方向的区别；本模型满足 $\\tan\\theta=2y/L$。",
+      "忽略不撞板条件。如果先撞板，实际运动时间不是$L/v_0$。",
+      "只用水平速度计算末动能，漏掉竖直速度分量；斜射入或初始竖直速度非零时也不能照套简式。"
+    ],
+    "check": {
+      "question": "入口速度、板距、板长都不变，仅把偏转电压大小加倍，且仍不撞板，偏移和偏角正切各变为几倍？偏转段的动能增加量呢？",
+      "answer": "偏移和 $\\tan\\theta$ 都变为2倍；竖直末速度变为2倍，因此偏转段动能增加量 $mv_y^2/2$ 变为4倍。"
+    },
+    "formalNote": "一般带电粒子在所选$y$方向上应先用 $a_y=qE_y/m$，再写 $y=v_{y0}t+a_yt^2/2$ 与 $v_y=v_{y0}+a_yt$。本节点取电子、向下为正、上负下正和 $v_{y0}=0$，才得到正的偏移简式。离开理想电场后若再无其他力，粒子沿出口速度方向匀速直线运动。"
+  }
+]

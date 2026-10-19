@@ -23,7 +23,11 @@ const { layoutGraph, fitCamera, visibleLabels, labelBox } = await jiti.import(
   "../src/components/math-map/layout.ts",
 );
 const parser = unified().use(remarkParse).use(remarkMath);
+const { physicsFormulaHref, physicsFormulas } = await jiti.import(
+  "../src/data/physics-formulas.ts",
+);
 const targets = new Map();
+targets.set(physicsFormulaHref, new Set(physicsFormulas.map((n) => n.id)));
 for (const atlas of subjectAtlases)
   targets.set(atlas.href, new Set(atlas.nodes.map((n) => n.id)));
 for (const subject of schoolSubjects)
@@ -159,9 +163,10 @@ for (const subject of schoolSubjects) {
     relations += atlas.edges.length;
   }
 }
-const labels = subjectAtlases
-  .flatMap((a) => a.nodes.map((n) => n.label.zh))
-  .join("");
+const labels = [
+  ...subjectAtlases.flatMap((a) => a.nodes.map((n) => n.label.zh)),
+  ...physicsFormulas.map((n) => n.title),
+].join("");
 execFileSync("python3", [
   "-c",
   "from fontTools.ttLib import TTFont; import sys; f=TTFont('public/fonts/math-map/kai-labels.woff'); missing=set(map(ord,sys.argv[1]))-set(f.getBestCmap()); assert not missing, ''.join(map(chr,sorted(missing)))",
@@ -170,3 +175,5 @@ execFileSync("python3", [
 console.log(
   `School atlas integration verified: 37 maps, ${payloads.size} dual-mode lessons, ${relations} visible relations, ${links} lesson links, deterministic layouts and complete label font coverage.`,
 );
+await import("./check-atlas-relations.mjs");
+await import("./check-physics-formulas.mjs");

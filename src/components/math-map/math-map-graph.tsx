@@ -58,6 +58,7 @@ import {
   ReadingModes,
   useMathLesson,
 } from "./lesson-reader";
+import { atlasRelationsFor } from "./relations";
 import { useDwellFocus } from "./use-dwell-focus";
 
 function Formula({ value }: { value: string }) {
@@ -223,7 +224,7 @@ export function MathMapGraph({
   const current = mathMapNode(selected)!;
   const domain = mathMapDomains.find((d) => d.id === current.domain)!;
   const path = mathMapPaths.find((p) => p.id === filter.path);
-  const neighbors = mathMapNeighbors(selected);
+  const relations = atlasRelationsFor(selected, mathMapNodes, mathMapEdges);
   const visible = useMemo(() => {
     const query = filter.query.trim().toLowerCase();
     const neighborhood = new Set([
@@ -998,12 +999,22 @@ export function MathMapGraph({
                               edge.kind,
                               "is-active",
                             ].join(" ")}
+                            data-relation={edge.relation}
                             markerEnd={
                               edge.kind === "prereq"
                                 ? `url(#${uid}-arrow)`
                                 : undefined
                             }
-                          />
+                          >
+                            {edge.explanation && (
+                              <title>
+                                {mathMapNode(edge.source)!.label[locale]} →{" "}
+                                {mathMapNode(edge.target)!.label[locale]} ·{" "}
+                                {edge.label?.[locale]}：
+                                {edge.explanation[locale]}
+                              </title>
+                            )}
+                          </path>
                         );
                       })}
                     </g>
@@ -1143,19 +1154,43 @@ export function MathMapGraph({
               </small>
             </div>
             <div className="mathmap-legend">
-              <span>
-                <i className="mathmap-line-sample" />
-                {en ? "Suggested prerequisite →" : "建议先修 →"}
-              </span>
-              <span>
-                <i className="mathmap-line-sample related" />
-                {en ? "Connection" : "相关概念"}
-              </span>
-              <p>
-                {en
-                  ? "Edges suggest a study order, not a complete list of logical dependencies."
-                  : "连线是建议学习顺序与关联，不是完整的逻辑依赖。"}
-              </p>
+              {atlas.relationGuide ? (
+                <>
+                  {Array.from(
+                    new Map(
+                      mathMapEdges
+                        .filter((edge) => edge.label)
+                        .map((edge) => [edge.relation, edge]),
+                    ).values(),
+                  ).map((edge) => (
+                    <span key={edge.relation}>
+                      <i
+                        className="mathmap-line-sample"
+                        data-relation={edge.relation}
+                      />
+                      {edge.label?.[locale]}
+                      {edge.kind === "prereq" ? " →" : ""}
+                    </span>
+                  ))}
+                  <p>{atlas.relationGuide[locale]}</p>
+                </>
+              ) : (
+                <>
+                  <span>
+                    <i className="mathmap-line-sample" />
+                    {en ? "Suggested prerequisite →" : "建议先修 →"}
+                  </span>
+                  <span>
+                    <i className="mathmap-line-sample related" />
+                    {en ? "Connection" : "相关概念"}
+                  </span>
+                  <p>
+                    {en
+                      ? "Edges suggest a study order, not a complete list of logical dependencies."
+                      : "连线是建议学习顺序与关联，不是完整的逻辑依赖。"}
+                  </p>
+                </>
+              )}
             </div>
           </div>
           <aside
@@ -1205,6 +1240,9 @@ export function MathMapGraph({
             </div>
             <h2>{current.label[locale]}</h2>
             {renderNodeMeta?.(current)}
+            {current.nature && (
+              <span className="mathmap-nature">{current.nature[locale]}</span>
+            )}
             <ReadingModes
               mode={readingMode}
               labels={readingLabels}
@@ -1246,41 +1284,69 @@ export function MathMapGraph({
             </button>
             <div className="mathmap-neighbors">
               {(["before", "after", "related"] as const).map((kind) => {
-                const matches = neighbors.filter(({ edge }) =>
-                  kind === "related"
-                    ? edge.kind === "related"
-                    : edge.kind === "prereq" &&
-                      (kind === "before"
-                        ? edge.target === selected
-                        : edge.source === selected),
-                );
+                const matches = relations[kind];
                 if (!matches.length) return null;
                 return (
                   <section key={kind}>
                     <h3>
-                      {kind === "before"
-                        ? en
-                          ? "Build on"
-                          : "建议先学"
-                        : kind === "after"
+                      {atlas.relationHeadings?.[kind]?.[locale] ??
+                        (kind === "before"
                           ? en
-                            ? "Continue to"
-                            : "接着探索"
-                          : en
-                            ? "Also connected"
-                            : "关联概念"}
+                            ? "Build on"
+                            : "建议先学"
+                          : kind === "after"
+                            ? en
+                              ? "Continue to"
+                              : "接着探索"
+                            : en
+                              ? "Also connected"
+                              : "关联概念")}
                     </h3>
                     <div>
-                      {matches.map(({ node }) => (
-                        <button
-                          type="button"
-                          key={node.id}
-                          onClick={() => choose(node.id)}
-                        >
-                          {node.label[locale]}
-                          <ArrowRight size={12} />
-                        </button>
-                      ))}
+                      {matches.map((node) => {
+                        const edge = mathMapEdges.find((item) =>
+                          kind === "before"
+                            ? item.kind === "prereq" &&
+                              item.source === node.id &&
+                              item.target === current.id
+                            : kind === "after"
+                              ? item.kind === "prereq" &&
+                                item.source === current.id &&
+                                item.target === node.id
+                              : item.kind === "related" &&
+                                ((item.source === node.id &&
+                                  item.target === current.id) ||
+                                  (item.source === current.id &&
+                                    item.target === node.id)),
+                        );
+                        if (edge?.label)
+                          return (
+                            <div
+                              className="mathmap-relation-item"
+                              key={node.id}
+                            >
+                              <button
+                                type="button"
+                                onClick={() => choose(node.id)}
+                              >
+                                <span>{node.label[locale]}</span>
+                                <small>{edge.label[locale]}</small>
+                                <ArrowRight size={12} />
+                              </button>
+                              <p>{edge.explanation?.[locale]}</p>
+                            </div>
+                          );
+                        return (
+                          <button
+                            type="button"
+                            key={node.id}
+                            onClick={() => choose(node.id)}
+                          >
+                            {node.label[locale]}
+                            <ArrowRight size={12} />
+                          </button>
+                        );
+                      })}
                     </div>
                   </section>
                 );
@@ -1359,6 +1425,16 @@ export function MathMapGraph({
                     : "定义、适用条件、推导与知识联系。")}
             </p>
           </header>
+          {atlas.relationGuide && (
+            <button
+              type="button"
+              className="mathmap-print"
+              disabled={!lessonState.lesson}
+              onClick={() => window.print()}
+            >
+              {en ? "Print this lesson" : "打印当前讲解"}
+            </button>
+          )}
           <LessonBody
             key={selected + readingMode + locale}
             {...lessonState}

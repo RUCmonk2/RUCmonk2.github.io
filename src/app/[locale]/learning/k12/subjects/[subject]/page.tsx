@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Locale } from "next-intl";
 
 import { K12Shell } from "@/components/k12/k12-shell";
+import { PhysicsFormulaEntry } from "@/components/physics/physics-formula-entry";
 import {
   curriculumSources,
   schoolDirectory,
@@ -66,6 +67,7 @@ export default async function Page({ params }: Props) {
           严谨表述」，阅读每个知识点的解释、例子、辨析与自测。下面保留模块任务，适合串联练习和备课。
         </p>
       </section>
+      {id === "physics" && <PhysicsFormulaEntry locale={language} />}
       <div className="k12-reader-layout subject-layout">
         <aside className="k12-reader-sidebar">
           <h2>学习路线</h2>

@@ -8,6 +8,7 @@ export type AtlasNode = {
   blurb: Localized;
   formula: string;
   preview?: Localized;
+  nature?: Localized;
   code?: string;
   insight: Localized;
   example?: string;
@@ -27,6 +28,9 @@ export type AtlasEdge = {
   source: string;
   target: string;
   kind: "prereq" | "related";
+  relation?: "definition" | "deduction" | "condition" | "analogy";
+  label?: Localized;
+  explanation?: Localized;
 };
 export type AtlasDomain = {
   id: string;
@@ -44,6 +48,8 @@ export type KnowledgeAtlas = {
   readingModeLabels?: { beginner: Localized; formal: Localized };
   readingModeStorageKey?: string;
   screenSpaceLabels?: boolean;
+  relationGuide?: Localized;
+  relationHeadings?: Record<"before" | "after" | "related", Localized>;
   href: string;
   courseHref?: string;
   updated: string;

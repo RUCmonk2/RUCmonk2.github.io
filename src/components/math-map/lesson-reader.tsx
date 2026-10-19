@@ -19,7 +19,17 @@ export function MathProse({ children }: { children: string }) {
       remarkPlugins={[remarkGfm, remarkMath]}
       rehypePlugins={[[rehypeKatex, { strict: "error", throwOnError: true }]]}
       components={{
-        a: (props) => <a {...props} target="_blank" rel="noreferrer" />,
+        a: (props) => {
+          const internal =
+            props.href?.startsWith("/") || props.href?.startsWith("#");
+          return (
+            <a
+              {...props}
+              target={internal ? undefined : "_blank"}
+              rel={internal ? undefined : "noreferrer"}
+            />
+          );
+        },
         pre: (props) => <pre {...props} tabIndex={0} />,
         table: (props) => (
           <div className="mathmap-notation-scroll" tabIndex={0}>

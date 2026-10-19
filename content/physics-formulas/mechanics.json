@@ -1,0 +1,672 @@
+[
+  {
+    "id": "motion",
+    "title": "匀变速运动关系",
+    "domain": "motion",
+    "kind": "derived",
+    "summary": "从恒定加速度和位移关系出发，消去时间，连接初末速度与位移。",
+    "intuition": "把一段直线运动画成速度—时间图：加速度不变时，速度图线是一条直线；图线与时间轴之间的带符号面积给出位移。",
+    "formula": "\\begin{aligned}v_B&=v_A+at\\\\ \\Delta x&=v_At+\\frac12at^2\\\\ v_B^2-v_A^2&=2a\\Delta x\\end{aligned}",
+    "symbols": [
+      {
+        "symbol": "v_A,v_B",
+        "meaning": "初、末时刻的一维速度，按坐标正方向带符号",
+        "unit": "\\mathrm{m/s}"
+      },
+      {
+        "symbol": "a",
+        "meaning": "这段运动中不变的加速度分量",
+        "unit": "\\mathrm{m/s^2}"
+      },
+      {
+        "symbol": "t",
+        "meaning": "从状态A到状态B经历的时间",
+        "unit": "\\mathrm s"
+      },
+      {
+        "symbol": "\\Delta x=x_B-x_A",
+        "meaning": "末位置减初位置得到的位移分量",
+        "unit": "\\mathrm m"
+      }
+    ],
+    "conditions": [
+      "研究一条直线上的运动，先固定参考系、坐标轴及正方向。",
+      "所研究时间段内，加速度 $a$ 为常量；各个分量公式必须使用同一坐标方向。",
+      "$v_A,v_B,a,\\Delta x$ 可以为负，经历时间 $t\\geq0$；速率与一维速度的符号含义不同。",
+      "这些是运动学关系，不需要先假定机械能守恒；合力是否恒定属于进一步的动力学判断。"
+    ],
+    "steps": [
+      {
+        "title": "先固定初末状态和方向",
+        "equation": "\\Delta x=x_B-x_A,\\qquad \\Delta v=v_B-v_A",
+        "explanation": "标出A、B两个状态，选定一个正方向。位移和速度变化都采用末减初；向反方向运动时速度为负，不能把所有速度都当成正的速率。"
+      },
+      {
+        "title": "使用恒定加速度的含义",
+        "equation": "a=\\frac{v_B-v_A}{t}\\quad\\Longrightarrow\\quad v_B=v_A+at",
+        "explanation": "在 $t>0$ 的运动区间内，加速度不变，速度在相等时间内发生相等的变化。因此速度随时间线性变化。$t=0$ 时初末状态重合，所得公式同样成立。"
+      },
+      {
+        "title": "由速度图线求位移",
+        "equation": "\\Delta x=\\frac{v_A+v_B}{2}\\,t",
+        "explanation": "速度—时间图线为直线，带符号面积等于两端速度的平均值乘时间。图线在时间轴下方的部分按负面积计入；即使中途反向，这里得到的仍是位移。"
+      },
+      {
+        "title": "得到含时间的位移公式",
+        "equation": "\\Delta x=\\frac{v_A+(v_A+at)}{2}t=v_At+\\frac12at^2",
+        "explanation": "把刚得到的末速度表达式代入位移式。两项分别对应初速度保持不变所产生的位移，以及加速度额外带来的位移。"
+      },
+      {
+        "title": "不除以加速度，直接消去时间",
+        "equation": "\\begin{aligned}v_B^2-v_A^2&=(v_B-v_A)(v_B+v_A)\\\\&=at(2v_A+at)\\\\&=2a\\left(v_At+\\frac12at^2\\right)=2a\\Delta x\\end{aligned}",
+        "explanation": "利用平方差和前两条关系，得到不含时间的公式。这个推导没有除以 $a$，所以不会遗漏 $a=0$ 的情形；不过在 $a=0$ 时，最后一式不能单独确定运动时间或位移。"
+      }
+    ],
+    "example": {
+      "problem": "一辆小车沿选定正方向做匀变速直线运动，初速度 $v_A=2.0\\,\\mathrm{m/s}$，加速度 $a=1.5\\,\\mathrm{m/s^2}$，持续 $4.0\\,\\mathrm s$。求末速度和位移，并用不含时间的关系核对。",
+      "steps": [
+        {
+          "equation": "v_B=v_A+at=2.0+1.5\\times4.0=8.0\\,\\mathrm{m/s}",
+          "explanation": "先由加速度求速度变化，再与初速度相加。这里末速度为正，表示仍沿正方向运动。"
+        },
+        {
+          "equation": "\\Delta x=v_At+\\frac12at^2=2.0\\times4.0+\\frac12\\times1.5\\times(4.0)^2=20\\,\\mathrm m",
+          "explanation": "代入位移公式，各量已经使用国际单位制。"
+        },
+        {
+          "equation": "v_B^2-v_A^2=8.0^2-2.0^2=60\\,\\mathrm{m^2/s^2}=2\\times1.5\\times20=2a\\Delta x",
+          "explanation": "用另一条关系检查初末速度和位移是否相互一致。"
+        }
+      ],
+      "result": "末速度为 $+8.0\\,\\mathrm{m/s}$，位移为 $+20\\,\\mathrm m$。这段时间内没有反向，路程也为 $20\\,\\mathrm m$。"
+    },
+    "pitfalls": [
+      "把匀变速公式直接用于加速度随时间或位置改变的整个过程；应先判断条件，或分段处理。",
+      "把 $\\Delta x$ 当成路程。中途反向时，位移按方向相加，路程按每段距离相加。",
+      "只从 $v_B^2$ 开平方就决定速度方向。平方关系丢失方向信息，必要时应结合 $v_B=v_A+at$ 或运动过程判断。"
+    ],
+    "check": {
+      "question": "初速度为 $+4.0\\,\\mathrm{m/s}$，恒定加速度为 $-2.0\\,\\mathrm{m/s^2}$，运动 $3.0\\,\\mathrm s$ 后，速度和位移分别是多少？位移大小等于路程吗？",
+      "answer": "$v_B=4.0-2.0\\times3.0=-2.0\\,\\mathrm{m/s}$，$\\Delta x=4.0\\times3.0-\\frac12\\times2.0\\times3.0^2=+3.0\\,\\mathrm m$。物体在 $2.0\\,\\mathrm s$ 时停止并反向，先走 $4.0\\,\\mathrm m$，再反向走 $1.0\\,\\mathrm m$；路程为 $5.0\\,\\mathrm m$，不等于位移大小。"
+    },
+    "formalNote": "这些关系描述运动本身，不是力学定律。更一般地，位移是速度对时间的积分，速度变化是加速度对时间的积分；这里因为加速度恒定，图线与面积都能用高中代数求出。质量、受力和能量尚未进入这一步推导。"
+  },
+  {
+    "id": "newton",
+    "title": "牛顿第二定律",
+    "domain": "motion",
+    "kind": "law",
+    "summary": "合力决定加速度；这条实验规律把受力分析与运动变化联系起来。",
+    "intuition": "物体受到几种力时，决定速度如何改变的是所有力的矢量和。同样的合力作用于不同质量的物体，加速度大小不同；物体此刻向哪边运动，还要看已有的速度。",
+    "formula": "\\sum_i\\vec F_i=\\vec F_{\\text{合}}=m\\vec a",
+    "symbols": [
+      {
+        "symbol": "\\vec F_i",
+        "meaning": "作用在研究对象上的第i个力",
+        "unit": "\\mathrm N"
+      },
+      {
+        "symbol": "\\vec F_{\\text{合}}",
+        "meaning": "各力的矢量和",
+        "unit": "\\mathrm N"
+      },
+      {
+        "symbol": "m",
+        "meaning": "保持不变的物体质量",
+        "unit": "\\mathrm{kg}"
+      },
+      {
+        "symbol": "\\vec a",
+        "meaning": "速度对时间变化的加速度矢量",
+        "unit": "\\mathrm{m/s^2}"
+      }
+    ],
+    "conditions": [
+      "在惯性参考系中讨论质量不变的质点，使用非相对论力学。",
+      "先明确同一个研究对象；受力图只画其他物体对它施加的力。",
+      "各力需要按矢量相加。一个坐标方向上的方程只使用该方向的力与加速度分量。",
+      "本节点把牛顿第二定律作为实验规律使用，不从运动学定义或机械能守恒反向把它当作已被证明的结论。"
+    ],
+    "steps": [
+      {
+        "title": "选对象并画完整受力图",
+        "equation": "\\vec F_{\\text{合}}=\\vec F_1+\\vec F_2+\\cdots",
+        "explanation": "把物体从周围环境中单独取出来，列出重力、接触力、拉力等实际作用。不要把物体对别人的反作用力也画到它自己的受力图中。"
+      },
+      {
+        "title": "把方向带入合力计算",
+        "equation": "F_{\\text{合},x}=\\sum_i F_{i,x}",
+        "explanation": "选定坐标轴，将力分解到同一方向。反向分量取负；不能在不看方向时把所有力的大小直接相加。"
+      },
+      {
+        "title": "引入实验确认的动力学规律",
+        "equation": "\\vec F_{\\text{合}}=m\\vec a",
+        "explanation": "这一步是物理规律的起点。实验支持：在适用范围内，加速度与合力同向，大小与合力成正比、与质量成反比；它不是由前面的矢量求和定义自动推出的。"
+      },
+      {
+        "title": "按分量求加速度",
+        "equation": "a_x=\\frac{\\sum_iF_{i,x}}m,\\qquad a_y=\\frac{\\sum_iF_{i,y}}m",
+        "explanation": "将已知各力代入所需方向的方程。某方向合力为零，只说明该方向加速度为零，并不说明该方向速度必为零。"
+      },
+      {
+        "title": "再选择对应的运动学关系",
+        "equation": "F_{\\text{合},x}\\text{为常量},\\ m\\text{不变}\\quad\\Longrightarrow\\quad a_x\\text{为常量}",
+        "explanation": "确定加速度后，才判断能否用匀变速公式。若合力随位置或速度改变，加速度通常也会变化，不能把初始加速度当成全过程的常量。"
+      }
+    ],
+    "example": {
+      "problem": "质量为 $2.0\\,\\mathrm{kg}$ 的滑块在水平面上向右运动，受向右的 $10\\,\\mathrm N$ 拉力和向左的 $4.0\\,\\mathrm N$ 摩擦力；竖直方向没有加速度。求滑块的加速度。",
+      "steps": [
+        {
+          "equation": "F_{\\text{合},x}=10-4.0=6.0\\,\\mathrm N",
+          "explanation": "取向右为正方向，拉力与摩擦力的分量分别取正、负。"
+        },
+        {
+          "equation": "F_{\\mathrm N}-mg=0",
+          "explanation": "竖直加速度为零，支持力与重力平衡；这两个力不贡献水平合力。"
+        },
+        {
+          "equation": "a_x=\\frac{F_{\\text{合},x}}m=\\frac{6.0}{2.0}=3.0\\,\\mathrm{m/s^2}",
+          "explanation": "用合力而非某一个力计算加速度。"
+        }
+      ],
+      "result": "滑块加速度为 $3.0\\,\\mathrm{m/s^2}$，方向向右。"
+    },
+    "pitfalls": [
+      "把一个力的方向当成加速度方向；加速度与合力同向。",
+      "把速度方向当成合力方向。物体向右运动而合力向左时，可以正在减速。",
+      "把一对相互作用力画在同一个物体上并相互抵消；作用力和反作用力分别作用于不同物体。",
+      "对存在转动或明显形变的物体，忽略研究对象与模型范围，直接把全部运动当成单个质点的运动。"
+    ],
+    "check": {
+      "question": "小车正在向右运动，某段时间内合力为零。它会立刻停下吗？",
+      "answer": "不会。合力为零意味着加速度为零，在该段时间内速度保持不变。只要初速度向右且不为零，它就继续向右做匀速运动。"
+    },
+    "formalNote": "对质量不变的质点，牛顿第二定律写成 $\\vec F_{\\text{合}}=m\\vec a$。变质量系统不能把这一形式不加说明地直接套用；非惯性参考系也需要相应处理。这里仅建立后续功与动能推导所用的经典质点模型。"
+  },
+  {
+    "id": "work",
+    "title": "恒力做功",
+    "domain": "energy",
+    "kind": "definition",
+    "summary": "功用力在位移方向上的分量与位移相乘，记录这个力在该过程中的作用。",
+    "intuition": "同样大小的力，沿着位移推、反着位移拉、垂直位移支撑，作用方式不同。功把这种方向差别一起计入，因此它可能为正、为负或为零。",
+    "formula": "W=\\vec F\\cdot\\Delta\\vec r=Fs\\cos\\theta",
+    "symbols": [
+      {
+        "symbol": "W",
+        "meaning": "这个力在所研究过程中的功",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "\\vec F,\\ F",
+        "meaning": "恒力矢量及其大小",
+        "unit": "\\mathrm N"
+      },
+      {
+        "symbol": "\\Delta\\vec r,\\ s=\\lvert \\Delta\\vec r\\rvert ",
+        "meaning": "位移矢量及其大小，s不一定等于路程",
+        "unit": "\\mathrm m"
+      },
+      {
+        "symbol": "\\theta",
+        "meaning": "力与位移之间的夹角",
+        "unit": "\\mathrm{rad}"
+      }
+    ],
+    "conditions": [
+      "公式直接适用于大小、方向都不变的恒力；角度必须是该力与该段位移的夹角。",
+      "力与位移属于同一个研究对象、同一参考系和同一过程。",
+      "$F$ 和 $s$ 表示大小，不带负号；功的正负由 $\\cos\\theta$ 决定。使用一维分量式 $W=F_x\\Delta x$ 时，两个分量则都按坐标方向带符号。",
+      "若力变化，应逐小段计算并相加，不能随意选一个力的大小乘总路程。"
+    ],
+    "steps": [
+      {
+        "title": "明确过程与位移",
+        "equation": "\\Delta\\vec r=\\vec r_B-\\vec r_A,\\qquad s=|\\Delta\\vec r|",
+        "explanation": "功描述从A到B的一段过程，不是物体在某个位置固有的一份量。恒力公式使用初末位置给出的位移。"
+      },
+      {
+        "title": "取出沿位移的力分量",
+        "equation": "F_{\\parallel}=F\\cos\\theta",
+        "explanation": "将力投影到位移方向。朝位移方向的分量为正，背离位移方向的分量为负；垂直于位移的分量不贡献恒力的功。"
+      },
+      {
+        "title": "采用功的定义",
+        "equation": "W=F_{\\parallel}s=Fs\\cos\\theta=\\vec F\\cdot\\Delta\\vec r",
+        "explanation": "这一步给出功的定义，并把前面的投影写成数量积。它不是先假设动能变化后倒推出来的结论；功与动能的关系将在动能定理中建立。"
+      },
+      {
+        "title": "由夹角判断功的正负",
+        "equation": "\\begin{cases}W>0,&0\\leq\\theta<90^\\circ,\\\\W=0,&\\theta=90^\\circ,\\\\W<0,&90^\\circ<\\theta\\leq180^\\circ.\\end{cases}",
+        "explanation": "表中假定 $F,s>0$。若力为零或位移为零，恒力的功也为零。单位由定义得到：$1\\,\\mathrm J=1\\,\\mathrm{N\\cdot m}$。"
+      },
+      {
+        "title": "多个力的功可以代数相加",
+        "equation": "W_{\\text{合}}=\\left(\\sum_i\\vec F_i\\right)\\cdot\\Delta\\vec r=\\sum_iW_i",
+        "explanation": "对同一物体的同一过程，若各力均为恒力，数量积的分配关系直接给出此式。正功、负功按代数相加；一般变力过程也可以逐小段计算后再求和。"
+      }
+    ],
+    "example": {
+      "problem": "一个恒定拉力大小为 $20\\,\\mathrm N$，方向与水平向右的位移成 $60^\\circ$。物体水平向右移动 $2.0\\,\\mathrm m$。求这个拉力做的功。",
+      "steps": [
+        {
+          "equation": "F_{\\parallel}=20\\cos60^\\circ=10\\,\\mathrm N",
+          "explanation": "先求拉力沿水平位移方向的分量。"
+        },
+        {
+          "equation": "W_{\\text{拉}}=F_{\\parallel}s=10\\times2.0=20\\,\\mathrm J",
+          "explanation": "水平分量与位移同向，因此做正功；拉力的垂直分量不贡献这段水平位移上的功。"
+        }
+      ],
+      "result": "拉力做功为 $+20\\,\\mathrm J$。这是拉力这一项的功；没有其他力的信息，不能把它直接当成所有力的总功。"
+    },
+    "pitfalls": [
+      "把功只看成力的大小乘距离，遗漏夹角或负号。",
+      "把恒力公式中的位移大小换成任意曲线路程；恒力的功由该力与总位移的数量积决定。",
+      "把“克服阻力做功”写成阻力做正功。该表述给出损耗的正数大小，阻力本身的功应为负。",
+      "因为力在某一瞬间与速度垂直，就断定它在任意长过程中都不做功；必须检查全过程或逐段判断。"
+    ],
+    "check": {
+      "question": "一个 $8.0\\,\\mathrm N$ 的恒力与物体 $3.0\\,\\mathrm m$ 的位移方向相反。这个力做的功是多少？",
+      "answer": "$W=8.0\\times3.0\\times\\cos180^\\circ=-24\\,\\mathrm J$。负号表示该力做负功，不表示力的大小或位移大小是负数。"
+    },
+    "formalNote": "一般力的功定义为沿实际路径逐段累加的数量积：$W=\\int_A^B\\vec F\\cdot\\mathrm d\\vec r$。恒力可以从积分中提出，才得到 $W=\\vec F\\cdot(\\vec r_B-\\vec r_A)$。无需先学积分，也可以用“短段上的力近似不变，算完每段再相加”理解推广。"
+  },
+  {
+    "id": "kinetic-energy",
+    "title": "动能",
+    "domain": "energy",
+    "kind": "definition",
+    "summary": "动能描述物体在某个状态的运动能量；变化量必须用末动能减初动能。",
+    "intuition": "同一物体跑得越快，运动状态对应的动能越大，而且速度加倍时动能不是加倍，而是变为四倍。动能是状态量，求末动能与求动能变化量是两个不同问题。",
+    "formula": "E_k=\\frac12mv^2,\\qquad \\Delta E_k=E_{k,B}-E_{k,A}",
+    "symbols": [
+      {
+        "symbol": "E_k",
+        "meaning": "物体在指定状态的动能",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "m",
+        "meaning": "物体质量",
+        "unit": "\\mathrm{kg}"
+      },
+      {
+        "symbol": "v=\\lvert \\vec v\\rvert ",
+        "meaning": "在指定参考系中测得的速率",
+        "unit": "\\mathrm{m/s}"
+      },
+      {
+        "symbol": "\\Delta E_k",
+        "meaning": "末动能减初动能得到的变化量",
+        "unit": "\\mathrm J"
+      }
+    ],
+    "conditions": [
+      "使用非相对论质点模型；本组学习内容讨论质量不变的物体。",
+      "初末速度必须相对于同一参考系测量，代入前统一单位。",
+      "$E_k$ 中的下标 $k$ 不能省略。场强 $E$ 的单位是 $\\mathrm{N/C}$ 或 $\\mathrm{V/m}$，动能 $E_k$ 的单位是 $\\mathrm J$。",
+      "若物体有明显转动或形变，单个质点的动能式不能直接代表其所有形式的运动能量。"
+    ],
+    "steps": [
+      {
+        "title": "先说明哪个状态、相对谁的速度",
+        "equation": "v_A=|\\vec v_A|,\\qquad v_B=|\\vec v_B|",
+        "explanation": "动能需要一个明确的状态和参考系。这里代入的是速率；若使用一维带符号速度，平方后数值与速率平方相同。"
+      },
+      {
+        "title": "采用经典动能的定义",
+        "equation": "E_k=\\frac12mv^2",
+        "explanation": "在经典质点力学中，将这个状态量定义为动能。系数与平方形式和牛顿定律、功的定义相容；后续动能定理会说明为什么合力做功恰好对应它的变化。此处不先假定任何能量守恒。"
+      },
+      {
+        "title": "检查单位与可能的数值",
+        "equation": "[E_k]=\\mathrm{kg}\\cdot\\mathrm{m^2/s^2}=\\mathrm J,\\qquad E_k\\geq0",
+        "explanation": "质量为正、速度平方不小于零，因此动能不能为负。静止时动能为零，但加速度不一定为零。"
+      },
+      {
+        "title": "分别计算初末状态，再求变化",
+        "equation": "\\Delta E_k=\\frac12mv_B^2-\\frac12mv_A^2=\\frac12m(v_B^2-v_A^2)",
+        "explanation": "变化量可以为正、负或零。注意 $v_B^2-v_A^2$ 不等于 $(v_B-v_A)^2$，不能先把速度变化平方。"
+      },
+      {
+        "title": "需要速率时再反解",
+        "equation": "E_{k,B}=E_{k,A}+\\Delta E_k,\\qquad v_B=\\sqrt{\\frac{2E_{k,B}}m}",
+        "explanation": "先分清题目给的是末动能还是动能变化。由动能反解得到速率大小，不能仅凭动能确定速度方向。"
+      }
+    ],
+    "example": {
+      "problem": "质量为 $0.50\\,\\mathrm{kg}$ 的小球，速率由 $4.0\\,\\mathrm{m/s}$ 变为 $6.0\\,\\mathrm{m/s}$。分别求初动能、末动能和动能变化量。",
+      "steps": [
+        {
+          "equation": "E_{k,A}=\\frac12\\times0.50\\times4.0^2=4.0\\,\\mathrm J",
+          "explanation": "用初速度计算初动能。"
+        },
+        {
+          "equation": "E_{k,B}=\\frac12\\times0.50\\times6.0^2=9.0\\,\\mathrm J",
+          "explanation": "用末速度计算末动能，仍使用同一个质量和参考系。"
+        },
+        {
+          "equation": "\\Delta E_k=9.0-4.0=+5.0\\,\\mathrm J",
+          "explanation": "变化量按末减初计算，正号表示动能增加。"
+        }
+      ],
+      "result": "初动能 $4.0\\,\\mathrm J$，末动能 $9.0\\,\\mathrm J$，动能增加 $5.0\\,\\mathrm J$。"
+    },
+    "pitfalls": [
+      "把 $E_k$ 和场强 $E$ 看作同一个量；应连同下标、名称、单位一起读。",
+      "把“动能增加5J”写成“末动能为5J”；除非初动能为零，否则两者不同。",
+      "将 $\\frac12m(v_B^2-v_A^2)$ 错写成 $\\frac12m(v_B-v_A)^2$。",
+      "由动能为零推出物体不受合力；某一瞬间速度为零，并不能推出加速度为零。"
+    ],
+    "check": {
+      "question": "同一物体的初动能为 $2.0\\,\\mathrm J$。若速率变为原来的2倍，末动能是多少？动能增加多少？",
+      "answer": "质量不变时，动能与速率平方成正比。末动能为 $4\\times2.0=8.0\\,\\mathrm J$，增加量为 $8.0-2.0=6.0\\,\\mathrm J$。"
+    },
+    "formalNote": "动能随参考系改变；所谓“同一物体的动能”必须配合参考系才有确定含义。本节点采用经典质点动能，不涉及相对论修正或刚体转动能。定义给出状态量，动能定理才建立这个状态量的变化与总功的联系。"
+  },
+  {
+    "id": "work-energy",
+    "title": "动能定理",
+    "domain": "energy",
+    "kind": "derived",
+    "summary": "所有力的总功等于动能变化；它不以机械能守恒为前提。",
+    "intuition": "把每一种力在同一过程中的功记成一笔带正负号的账，全部相加，就知道动能改变了多少。知道初动能后，才能继续得到末动能。",
+    "formula": "W_{\\text{合}}=\\sum_iW_i=\\Delta E_k=E_{k,B}-E_{k,A}",
+    "symbols": [
+      {
+        "symbol": "W_{\\text{合}}=\\sum_iW_i",
+        "meaning": "作用在同一物体上的所有力在同一过程中的总功",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "E_{k,A},E_{k,B}",
+        "meaning": "初、末状态的动能",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "m",
+        "meaning": "不变的质点质量",
+        "unit": "\\mathrm{kg}"
+      },
+      {
+        "symbol": "v_A,v_B",
+        "meaning": "同一参考系中初末速度的大小；一维推导中也可用带符号速度",
+        "unit": "\\mathrm{m/s}"
+      }
+    ],
+    "conditions": [
+      "研究质量不变的质点，采用同一惯性参考系和非相对论力学。",
+      "所有力的功必须对应同一个物体、同一段过程，不能遗漏阻力、外力或其他实际做功项。",
+      "入门推导先采用一维恒合力；动能定理的一般形式不要求恒力、不要求直线运动，也不要求机械能守恒。",
+      "若把对象扩展为多个物体、带转动或形变的物体，应重新明确总动能和各力功的系统账，不能直接沿用单质点式。"
+    ],
+    "steps": [
+      {
+        "title": "先在一维恒合力模型中建立桥梁",
+        "equation": "v_B^2-v_A^2=2a\\Delta x,\\qquad F_{\\text{合}}=ma",
+        "explanation": "取同一惯性系，质量不变，合力的方向和大小保持不变，先研究一维运动。运动学与牛顿第二定律分别提供速度—位移关系和力—加速度关系。"
+      },
+      {
+        "title": "乘以质量的一半",
+        "equation": "F_{\\text{合}}\\Delta x=ma\\Delta x=\\frac12mv_B^2-\\frac12mv_A^2",
+        "explanation": "将运动学等式两边乘以质量的一半，再用合力替换质量乘加速度。一维的合力分量和位移分量都按选定方向带符号。"
+      },
+      {
+        "title": "认出两边对应的物理量",
+        "equation": "W_{\\text{合}}=E_{k,B}-E_{k,A}=\\Delta E_k",
+        "explanation": "在当前一维恒力情形中，左边是恒合力做功，右边是已定义的动能变化。这一步把功与状态量连接起来。"
+      },
+      {
+        "title": "把合力功写成每个力的功",
+        "equation": "W_{\\text{合}}=W_1+W_2+\\cdots=\\sum_iW_i",
+        "explanation": "各力作用于同一物体的同一过程，功按代数相加。做负功的项必须保留负号；电场力或重力的功通常只是其中一项。"
+      },
+      {
+        "title": "说明怎样推广到曲线或变力运动",
+        "equation": "\\sum_j\\Delta E_{k,j}=E_{k,B}-E_{k,A}",
+        "explanation": "保持质量不变和惯性系条件，把运动分成极短的段。每段由沿瞬时运动方向的切向合力改变速率，法向分力不做功；在分段趋于无限细的极限下，各段功对应各段动能变化。逐段相加时中间状态抵消，得到同一条一般关系。这里不是把有限长曲线硬当成一维匀变速。"
+      },
+      {
+        "title": "形成规范的计算顺序",
+        "equation": "\\begin{aligned}\\frac12mv_B^2-\\frac12mv_A^2&=\\sum_iW_i,\\\\E_{k,B}&=E_{k,A}+\\sum_iW_i\\end{aligned}",
+        "explanation": "先写对象与初末状态，统一单位；各力功分行列出，先定正负；写原始关系后再代数值。若还要求速率，最后由末动能反解，并检查末动能是否非负。"
+      }
+    ],
+    "example": {
+      "problem": "质量为 $2.0\\,\\mathrm{kg}$ 的滑块在水平面上向右运动，初速为 $3.0\\,\\mathrm{m/s}$。在接下来的 $2.0\\,\\mathrm m$ 位移中，恒定拉力 $8.0\\,\\mathrm N$ 向右，恒定摩擦力 $3.0\\,\\mathrm N$ 向左；重力和支持力均不做功。求末动能和末速率。",
+      "steps": [
+        {
+          "equation": "W_{\\text{拉}}=8.0\\times2.0=16\\,\\mathrm J,\\qquad W_{\\text{摩}}=-3.0\\times2.0=-6.0\\,\\mathrm J",
+          "explanation": "先逐项列功。摩擦力与位移反向，因此摩擦力做负功。"
+        },
+        {
+          "equation": "W_{\\text{合}}=16-6.0+0+0=10\\,\\mathrm J",
+          "explanation": "把所有力的功相加；总功为正，预期动能增加。"
+        },
+        {
+          "equation": "E_{k,A}=\\frac12\\times2.0\\times3.0^2=9.0\\,\\mathrm J",
+          "explanation": "题目并非从静止开始，初动能不能省去。"
+        },
+        {
+          "equation": "E_{k,B}-E_{k,A}=W_{\\text{合}}\\quad\\Longrightarrow\\quad E_{k,B}=9.0+10=19\\,\\mathrm J",
+          "explanation": "先写动能定理，再得到末动能。10J是增加量，19J才是末动能。"
+        },
+        {
+          "equation": "v_B=\\sqrt{\\frac{2E_{k,B}}m}=\\sqrt{\\frac{2\\times19}{2.0}}=\\sqrt{19}\\,\\mathrm{m/s}\\approx4.36\\,\\mathrm{m/s}",
+          "explanation": "最后由末动能求速率。它比初速大，与总功为正相符。"
+        }
+      ],
+      "result": "末动能为 $19\\,\\mathrm J$，末速率约为 $4.36\\,\\mathrm{m/s}$。"
+    },
+    "pitfalls": [
+      "将某一种力的功直接等同于动能变化，却没有检查其他力的总功是否为零。",
+      "因为有摩擦或机械能不守恒，就认为动能定理不能使用。",
+      "只记住入门推导的一维恒力条件，误以为一般曲线运动不能用动能定理。",
+      "算出负的末动能仍继续开平方求速度；负结果通常意味着所设终点不可达，或列式、符号、条件存在问题。"
+    ],
+    "check": {
+      "question": "物体初动能为 $5.0\\,\\mathrm J$。假设走完整段路径时，所有力的总功将为 $-8.0\\,\\mathrm J$。在这些条件不变的情况下，它能走完整段路径吗？",
+      "answer": "不能。若走完，动能定理会给出 $E_{k,B}=5.0-8.0=-3.0\\,\\mathrm J$，而动能不可能为负。说明该终点在所设运动条件下不可达；应回查停下或反向的位置，不能把负动能当成合法答案。"
+    },
+    "formalNote": "更严格的经典证明为：$\\mathrm dW=\\vec F_{\\text{合}}\\cdot\\mathrm d\\vec r=m(\\mathrm d\\vec v/\\mathrm dt)\\cdot\\vec v\\,\\mathrm dt=m\\vec v\\cdot\\mathrm d\\vec v=\\mathrm d(\\frac12m|\\vec v|^2)$，沿过程积分即得动能定理。这里使用恒定质量、惯性系和牛顿第二定律；并没有使用机械能守恒。高中读者可先掌握分段相加的含义。"
+  },
+  {
+    "id": "gravitational-energy",
+    "title": "重力功与势能",
+    "domain": "energy",
+    "kind": "derived",
+    "summary": "近地面重力功只取决于高度差，由此建立重力势能变化与功的关系。",
+    "intuition": "在同一近地面重力场中，横着绕路不会额外增加重力做功；重力账只看起点和终点的高度。选好零高度以后，才能给每个位置写出势能数值。",
+    "formula": "W_G=mg(h_A-h_B)=-\\Delta E_{\\mathrm{pG}},\\qquad E_{\\mathrm{pG}}=mgh",
+    "symbols": [
+      {
+        "symbol": "W_G",
+        "meaning": "重力在从A到B过程中的功",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "E_{\\mathrm{pG}}",
+        "meaning": "相对于选定零势能面的重力势能",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "m",
+        "meaning": "物体质量",
+        "unit": "\\mathrm{kg}"
+      },
+      {
+        "symbol": "g",
+        "meaning": "近地面重力加速度的大小",
+        "unit": "\\mathrm{m/s^2}"
+      },
+      {
+        "symbol": "h,h_A,h_B",
+        "meaning": "相对于同一零高度面的带符号高度",
+        "unit": "\\mathrm m"
+      }
+    ],
+    "conditions": [
+      "采用近地面范围内大小、方向近似不变的重力场，重力大小为mg。",
+      "初末高度使用同一个零高度面，且高度正方向向上。",
+      "物体质量不变；高中记作物体的重力势能，实质上对应物体与地球的相互作用。",
+      "不能把mgh直接用于跨越很大高度、重力明显变化的整个过程。"
+    ],
+    "steps": [
+      {
+        "title": "把重力写成竖直分量",
+        "equation": "G_y=-mg,\\qquad \\Delta h=h_B-h_A",
+        "explanation": "取竖直向上为正方向，重力始终向下。水平位移与重力垂直，不贡献重力功。"
+      },
+      {
+        "title": "由恒力做功求初末高度差",
+        "equation": "W_G=G_y\\Delta h=-mg(h_B-h_A)=mg(h_A-h_B)",
+        "explanation": "近地面重力可按恒力处理，因此功只由竖直位移决定。路径即使弯曲，逐段高度变化相加也只剩末高度减初高度。"
+      },
+      {
+        "title": "为位置引入势能变化",
+        "equation": "\\Delta E_{\\mathrm{pG}}=-W_G=mg(h_B-h_A)",
+        "explanation": "重力功只取决于初末位置，可以用一个位置状态量记录它。势能变化采用负的重力功，这是势能与保守力功的定义关系，不是额外再计算一次功。"
+      },
+      {
+        "title": "选零势能面，得到势能表达式",
+        "equation": "h=0\\text{时取 }E_{\\mathrm{pG}}=0\\quad\\Longrightarrow\\quad E_{\\mathrm{pG}}=mgh",
+        "explanation": "从零高度位置移到高度h，按上一条关系得到势能差mgh，因此当前势能可记为mgh。零势能位置必须明确，不能只记公式而不认参考面。"
+      },
+      {
+        "title": "用初末势能核对功的符号",
+        "equation": "W_G=E_{\\mathrm{pG},A}-E_{\\mathrm{pG},B}=-\\Delta E_{\\mathrm{pG}}",
+        "explanation": "下降时重力做正功、重力势能减少；上升时相反。改变统一的零势能面会改变两端势能数值，却不会改变势能差和重力功。"
+      }
+    ],
+    "example": {
+      "problem": "质量为 $0.40\\,\\mathrm{kg}$ 的物体，从离选定水平面 $1.5\\,\\mathrm m$ 高处，沿任意路径到达 $0.50\\,\\mathrm m$ 高处。取 $g=10\\,\\mathrm{m/s^2}$。求重力功、初末重力势能及其变化量。",
+      "steps": [
+        {
+          "equation": "W_G=mg(h_A-h_B)=0.40\\times10\\times(1.5-0.50)=4.0\\,\\mathrm J",
+          "explanation": "初位置更高、末位置更低，重力做正功。所走路径不影响这一结果。"
+        },
+        {
+          "equation": "E_{\\mathrm{pG},A}=0.40\\times10\\times1.5=6.0\\,\\mathrm J,\\qquad E_{\\mathrm{pG},B}=0.40\\times10\\times0.50=2.0\\,\\mathrm J",
+          "explanation": "两端都使用题目指定的同一个水平面作为零势能面。"
+        },
+        {
+          "equation": "\\Delta E_{\\mathrm{pG}}=2.0-6.0=-4.0\\,\\mathrm J=-W_G",
+          "explanation": "按末减初计算变化量，与负的重力功核对一致。"
+        }
+      ],
+      "result": "重力做功 $+4.0\\,\\mathrm J$；初末重力势能分别为 $6.0\\,\\mathrm J$、$2.0\\,\\mathrm J$，重力势能减少 $4.0\\,\\mathrm J$。"
+    },
+    "pitfalls": [
+      "看到物体下降，就把重力功写成负数；应比较力与位移方向，或直接写初高度减末高度。",
+      "求重力功时使用路径长度，而不是竖直高度差。",
+      "给初末状态使用不同的零势能面，造成不能比较的势能数值。",
+      "已经把重力功写成负的势能变化，随后又把同一份重力功加一次。"
+    ],
+    "check": {
+      "question": "质量为 $0.20\\,\\mathrm{kg}$ 的物体上升 $2.5\\,\\mathrm m$，取 $g=10\\,\\mathrm{m/s^2}$。重力做功和重力势能变化量分别是多少？",
+      "answer": "$W_G=-mg\\Delta h=-0.20\\times10\\times2.5=-5.0\\,\\mathrm J$，$\\Delta E_{\\mathrm{pG}}=+5.0\\,\\mathrm J$。重力做负功，重力势能增加。"
+    },
+    "formalNote": "本节点的“推导”包含两个不同环节：先由近地面重力和功的定义得到路径无关的重力功，再选取势能零点，把势能定义关系写成 $E_{\\mathrm{pG}}=mgh$。势能可以为负，只有差值具有与功直接对应的意义。更大尺度上的重力场需要使用随位置变化的重力关系，不能继续把g当成常量。"
+  },
+  {
+    "id": "mechanical-energy",
+    "title": "机械能与守恒条件",
+    "domain": "energy",
+    "kind": "derived",
+    "summary": "将重力功改写为势能变化，再检查非重力总功，决定机械能是否守恒。",
+    "intuition": "先说明能量账包含哪些项目：这里把动能和重力势能相加。重力造成的转移已经记在这两项之间，剩下各力的功才会改变这个和。",
+    "formula": "\\Delta(E_k+E_{\\mathrm{pG}})=W_{\\text{非重力}},\\qquad W_{\\text{非重力}}=0\\ \\Longrightarrow\\ E_{k,A}+E_{\\mathrm{pG},A}=E_{k,B}+E_{\\mathrm{pG},B}",
+    "symbols": [
+      {
+        "symbol": "E_k",
+        "meaning": "物体的动能",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "E_{\\mathrm{pG}}",
+        "meaning": "相对于同一零势能面的重力势能",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "W_G",
+        "meaning": "重力功，改写成势能变化后不能再重复计入",
+        "unit": "\\mathrm J"
+      },
+      {
+        "symbol": "W_{\\text{非重力}}",
+        "meaning": "本节点中除重力外各力的总功，电场力功若存在也包含在内",
+        "unit": "\\mathrm J"
+      }
+    ],
+    "conditions": [
+      "本节点按无弹簧的高中模型，将动能与重力势能之和作为机械能；采用近地面恒定重力场。",
+      "使用质量不变的质点、同一惯性参考系和统一的势能零点。",
+      "一段过程的非重力总功为零，可以推出该段初末机械能相等；若要称机械能在全过程持续守恒，该条件应对过程中的任意小段成立。",
+      "有支持力或拉力并不自动破坏守恒，关键是它们在所研究过程中的功。运动约束或支点发生位移时，应重新检查。",
+      "若加入弹簧的弹性势能，必须正确选取包含相应相互作用的系统，并从右侧剩余功中去掉已经改写成势能变化的弹力功。"
+    ],
+    "steps": [
+      {
+        "title": "从动能定理出发，先把功列全",
+        "equation": "\\Delta E_k=W_G+W_{\\text{非重力}}",
+        "explanation": "先不假定守恒。把重力功单列出来，其余所有力的功都放入非重力总功；其中可能包括摩擦力、拉力、电场力等。"
+      },
+      {
+        "title": "用重力势能变化替换重力功",
+        "equation": "\\Delta E_k=-\\Delta E_{\\mathrm{pG}}+W_{\\text{非重力}}",
+        "explanation": "利用已经建立的关系：重力做正功，重力势能减少。此处是同一项的等价改写，不是新添一笔能量。"
+      },
+      {
+        "title": "移项，得到机械能变化的一般关系",
+        "equation": "\\boxed{\\Delta(E_k+E_{\\mathrm{pG}})=W_{\\text{非重力}}}",
+        "explanation": "在本节点无弹簧模型下，括号中的和就是机械能。关系同时适用于机械能不变、增加或减少的情形，不需要先选守恒。"
+      },
+      {
+        "title": "检查剩余总功，再决定能否写相等",
+        "equation": "W_{\\text{非重力}}=0\\quad\\Longrightarrow\\quad E_{k,A}+E_{\\mathrm{pG},A}=E_{k,B}+E_{\\mathrm{pG},B}",
+        "explanation": "若非重力总功为零，这段过程的初末机械能相等。常见充分情形是只有重力做功，其他力始终不做功。若只知道全程正负功恰好抵消，不能进一步断言中途机械能从未改变。"
+      },
+      {
+        "title": "展开成可代入的初末状态式",
+        "equation": "\\frac12mv_A^2+mgh_A+W_{\\text{非重力}}=\\frac12mv_B^2+mgh_B",
+        "explanation": "统一高度零点和单位，把已知量代入。守恒时剩余总功为零；有阻力或其他做功时则保留该项。已经写出两端重力势能，就不要再额外加重力功。"
+      }
+    ],
+    "example": {
+      "problem": "质量为 $0.50\\,\\mathrm{kg}$ 的小球，在固定光滑轨道上由A运动到B；只有重力和轨道支持力，轨道支持力始终垂直速度。已知 $v_A=2.0\\,\\mathrm{m/s}$，$h_A=1.8\\,\\mathrm m$，$h_B=0.20\\,\\mathrm m$，取 $g=10\\,\\mathrm{m/s^2}$。求B点动能和速率。",
+      "steps": [
+        {
+          "equation": "W_{\\text{非重力}}=W_{\\mathrm N}=0",
+          "explanation": "固定光滑轨道的支持力在每一小段都与运动方向垂直，不做功，因此可以使用机械能守恒。"
+        },
+        {
+          "equation": "E_{k,A}=\\frac12\\times0.50\\times2.0^2=1.0\\,\\mathrm J,\\qquad E_{\\mathrm{pG},A}=0.50\\times10\\times1.8=9.0\\,\\mathrm J",
+          "explanation": "先分别计算初态动能、重力势能，初态机械能为10J。"
+        },
+        {
+          "equation": "E_{k,B}+0.50\\times10\\times0.20=1.0+9.0",
+          "explanation": "保持统一的高度零点，将末态势能代入守恒式。"
+        },
+        {
+          "equation": "E_{k,B}=10-1.0=9.0\\,\\mathrm J,\\qquad v_B=\\sqrt{\\frac{2\\times9.0}{0.50}}=6.0\\,\\mathrm{m/s}",
+          "explanation": "先求末动能，再反解速率。下落过程中重力势能减少，动能增加，两者的和不变。"
+        }
+      ],
+      "result": "B点动能为 $9.0\\,\\mathrm J$，速率为 $6.0\\,\\mathrm{m/s}$。"
+    },
+    "pitfalls": [
+      "看见重力就直接写机械能守恒，遗漏摩擦力、外力或电场力做功。",
+      "把“存在其他力”当成“机械能一定不守恒”；其他力可能始终与速度垂直而不做功。",
+      "只知道初末机械能相同，就断言中途机械能一直不变。",
+      "在初末状态式里已经计入重力势能，又额外加入一次重力功。",
+      "机械能减少时，就认为能量守恒规律失效；需要把环境和其他形式的能量交换纳入更完整的能量账。"
+    ],
+    "check": {
+      "question": "一小球下落过程中，重力做功 $4.0\\,\\mathrm J$，空气阻力做功 $-1.0\\,\\mathrm J$，无其他力做功。动能变化量与机械能变化量分别是多少？",
+      "answer": "$\\Delta E_k=4.0-1.0=+3.0\\,\\mathrm J$；$\\Delta(E_k+E_{\\mathrm{pG}})=W_{\\text{非重力}}=-1.0\\,\\mathrm J$。动能增加，但机械能减少。"
+    },
+    "formalNote": "重力势能对应物体与地球的相互作用，高中固定重力场模型常把它记入物体的能量账。在固定的静电场中，若以后同时计入电势能 $E_{\\text{p电}}$，电场力功就要从右侧剩余功中移出，改写成 $-\\Delta E_{\\text{p电}}$。若加入理想弹簧，固定一端、另一端随研究物体运动时，可将弹力功改写成该弹簧势能的减少；若两端都运动，应把相关物体的动能和弹簧势能放入同一个恰当的系统账，不能把总弹性势能变化只配给一端物体受到的弹力功。机械能是否守恒，与包含环境在内的完整能量守恒不是同一个判断。"
+  }
+]
