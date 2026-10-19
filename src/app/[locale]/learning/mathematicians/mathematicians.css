@@ -1459,3 +1459,16 @@
 .dark .lives-page[data-atlas="computer-scientists"] {
   --lives-green: #c5b9dd;
 }
+.lives-person-heading img[data-person="cook"],
+.lives-chronology img[data-person="cook"] {
+  transform: scale(3);
+  transform-origin: 47% 11%;
+}
+.lives-person-heading img[data-person="xia-peisu"] {
+  transform: scale(3);
+  transform-origin: 66% 48%;
+}
+.lives-chronology img[data-person="xia-peisu"] {
+  transform: scale(3);
+  transform-origin: 66% 60%;
+}

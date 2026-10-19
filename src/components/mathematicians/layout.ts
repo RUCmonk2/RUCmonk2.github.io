@@ -99,22 +99,22 @@ export function nodeAppearance(
 export const eras = [
   {
     id: "origins",
-    zh: "古代与中世纪",
+    zh: "1500年以前",
     en: "Before 1500",
     from: -Infinity,
     to: 1500,
   },
-  { id: "early", zh: "微积分的时代", en: "1500–1749", from: 1500, to: 1750 },
+  { id: "early", zh: "1500—1749", en: "1500–1749", from: 1500, to: 1750 },
   {
     id: "classical",
-    zh: "十九世纪的转向",
+    zh: "1750—1849",
     en: "1750–1849",
     from: 1750,
     to: 1850,
   },
   {
     id: "modern",
-    zh: "走向现代数学",
+    zh: "1850年以后",
     en: "From 1850",
     from: 1850,
     to: Infinity,

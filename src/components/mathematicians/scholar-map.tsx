@@ -39,6 +39,8 @@ const portraitWindows: Record<
 > = {
   dedekind: { x: -107, y: -69, width: 210, height: 350 },
   noether: { x: -77, y: -45, width: 160, height: 244 },
+  cook: { x: -100, y: -54, width: 210, height: 254 },
+  "xia-peisu": { x: -127, y: -118, width: 210, height: 280 },
 };
 
 export function ScholarMap({

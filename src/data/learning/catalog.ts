@@ -185,6 +185,23 @@ export const learningCatalog: readonly LearningItem[] = [
     updated: "2026-10-19",
   },
   {
+    id: "chemists",
+    category: "people",
+    href: "/learning/chemists",
+    localized: true,
+    title: { zh: "化学家人物志", en: "Lives of Chemists" },
+    description: {
+      zh: "从元素、原子和化学键，到反应、结构与生命分子，沿50位化学家的成果与学术联系探索。",
+      en: "Explore fifty chemists through elements, atoms, bonds, reactions, structures and the molecules of life.",
+    },
+    topic: { zh: "化学史", en: "History of chemistry" },
+    scope: {
+      zh: "50位人物 · 6张主题子图",
+      en: "50 lives · 6 thematic subgraphs",
+    },
+    updated: "2026-10-19",
+  },
+  {
     id: "shanhai",
     category: "guide",
     href: "/learning/shanhai",
