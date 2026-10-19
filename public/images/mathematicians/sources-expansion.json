@@ -1,0 +1,408 @@
+[
+  {
+    "id": "euler",
+    "localFile": "public/images/mathematicians/euler.jpg",
+    "commonsTitle": "File:Leonhard Euler - Jakob Emanuel Handmann (Kunstmuseum Basel).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg/500px-Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leonhard_Euler_-_Jakob_Emanuel_Handmann_(Kunstmuseum_Basel).jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 66899,
+    "sha256": "0cca7ca86dfdae7bb9ae316aaf4fde8d16b174c0e247471c7c7588d76e657120",
+    "metadata": {
+      "Artist": {
+        "value": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Jakob_Emanuel_Handmann\" class=\"extiw\" title=\"w:en:Jakob Emanuel Handmann\"><span title=\"Swiss painter specialised in portrait painting (1718–1781)\">Jakob Emanuel Handmann</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1753 <span class=\"mw-valign-text-top noprint\" typeof=\"mw:File/Frameless\"><a href=\"https://www.wikidata.org/wiki/Q113080531#P571\" title=\"Edit this at Wikidata\"><img alt=\"Edit this at Wikidata\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/20px-OOjs_UI_icon_edit-ltr-progressive.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"10\" height=\"10\" class=\"mw-file-element\" data-file-width=\"20\" data-file-height=\"20\"></a></span>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<p>This file was derived from:  <a href=\"//commons.wikimedia.org/wiki/File:Leonhard_Euler.jpg\" title=\"File:Leonhard Euler.jpg\">Leonhard Euler.jpg</a><br>\nEdited by: <a href=\"//commons.wikimedia.org/wiki/User:Bammesk\" title=\"User:Bammesk\">Bammesk</a>\n</p>\nOriginal source: <a rel=\"nofollow\" class=\"external text\" href=\"http://sammlungonline.kunstmuseumbasel.ch/eMuseumPlus?service=ExternalInterface&amp;module=collection&amp;objectId=1429&amp;viewType=detailView\">Kunstmuseum Basel</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "notes": "Pastel on paper in Kunstmuseum Basel. Commons derivative removes lighting artifacts; no local image edits.",
+    "portrait": {
+      "src": "/images/mathematicians/euler.jpg",
+      "alt": {
+        "zh": "戴灰色头巾、穿蓝色外衣的欧拉粉彩肖像",
+        "en": "Pastel portrait of Euler in a gray headwrap and blue coat"
+      },
+      "credit": {
+        "zh": "Jakob Emanuel Handmann，1753 · 公共领域",
+        "en": "Jakob Emanuel Handmann, 1753 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Leonhard_Euler_-_Jakob_Emanuel_Handmann_(Kunstmuseum_Basel).jpg"
+    },
+    "displayRecommendation": {
+      "objectFit": "cover",
+      "objectPosition": "center top",
+      "notes": "Preserve the full historical image; use layout cropping only."
+    }
+  },
+  {
+    "id": "lagrange",
+    "localFile": "public/images/mathematicians/lagrange.jpg",
+    "commonsTitle": "File:Joseph Louis Lagrange.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Joseph_Louis_Lagrange.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Joseph_Louis_Lagrange.jpg/500px-Joseph_Louis_Lagrange.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joseph_Louis_Lagrange.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 97421,
+    "sha256": "2dafdcad0203147a1d29d2b68663c93f81b6fada9bcf8358f3adceea04dc02fc",
+    "metadata": {
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "notes": "Commons source is the Smithsonian Libraries scientific-identity collection. Its description does not name the artist or date the original work. Do not mistake upload dates or the 2012 crop metadata for the original creation date.",
+    "portrait": {
+      "src": "/images/mathematicians/lagrange.jpg",
+      "alt": {
+        "zh": "穿深色礼服、佩戴勋章的拉格朗日版画肖像",
+        "en": "Engraved portrait of Lagrange wearing a dark coat and decorations"
+      },
+      "credit": {
+        "zh": "佚名版画，原作年代未详 · 公共领域",
+        "en": "Anonymous engraving, original date unrecorded · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Joseph_Louis_Lagrange.jpg"
+    },
+    "displayRecommendation": {
+      "objectFit": "cover",
+      "objectPosition": "center top",
+      "notes": "Preserve the full historical image; use layout cropping only."
+    }
+  },
+  {
+    "id": "cauchy",
+    "localFile": "public/images/mathematicians/cauchy.jpg",
+    "commonsTitle": "File:French School - Portrait of Augustin-Louis Cauchy (1789-1857).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/French_School_-_Portrait_of_Augustin-Louis_Cauchy_%281789-1857%29.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/French_School_-_Portrait_of_Augustin-Louis_Cauchy_%281789-1857%29.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:French_School_-_Portrait_of_Augustin-Louis_Cauchy_(1789-1857).jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 101515,
+    "sha256": "70d57ebd53683bf3bc27da28d5c835dc6f5bf340b206bac4c1beda59dd201c8e",
+    "metadata": {
+      "Artist": {
+        "value": "<div class=\"fn value\">\n<a rel=\"mw:WikiLink/Interwiki\" href=\"https://fr.wikipedia.org/wiki/Jean%20Roller\" title=\"fr:Jean Roller\" class=\"extiw\">Jean Roller</a> (1798–1866)</div>",
+        "source": "commons-desc-page"
+      },
+      "ImageDescription": {
+        "value": "Portrait of Augustin-Louis Cauchy (1789-1857). Château de Sceaux.<sup about=\"#mwt4\" class=\"mw-ref reference\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-mw='{\"name\":\"ref\",\"attrs\":{},\"body\":{\"id\":\"mw-reference-text-cite_note-1\"}}'><a href=\"#cite_note-1\" id=\"mwBQ\"><span class=\"mw-reflink-text\" id=\"mwBg\"><span class=\"cite-bracket\" id=\"mwBw\">[</span>1<span class=\"cite-bracket\" id=\"mwCA\">]</span></span></a></sup>",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "circa 1840",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"mw:ExtLink nofollow\" href=\"https://www.meisterdrucke.uk/fine-art-prints/French-School/99330/Portrait-of-Louis-Cauchy-(1789-1857).html\" class=\"external text\">meisterdrucke.uk</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "notes": "The filename retains the older French School attribution. The current Commons description names Jean Roller and links the Domaine de Sceaux collection record.",
+    "portrait": {
+      "src": "/images/mathematicians/cauchy.jpg",
+      "alt": {
+        "zh": "穿黑色外衣、系白色领巾的柯西油画肖像",
+        "en": "Painted portrait of Cauchy in a black coat and white cravat"
+      },
+      "credit": {
+        "zh": "Jean Roller，约1840 · 公共领域",
+        "en": "Jean Roller, c. 1840 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:French_School_-_Portrait_of_Augustin-Louis_Cauchy_(1789-1857).jpg"
+    },
+    "displayRecommendation": {
+      "objectFit": "cover",
+      "objectPosition": "center top",
+      "notes": "Preserve the full historical image; use layout cropping only."
+    }
+  },
+  {
+    "id": "dirichlet",
+    "localFile": "public/images/mathematicians/dirichlet.jpg",
+    "commonsTitle": "File:Peter Gustav Lejeune Dirichlet.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Peter_Gustav_Lejeune_Dirichlet.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Peter_Gustav_Lejeune_Dirichlet.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peter_Gustav_Lejeune_Dirichlet.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 77954,
+    "sha256": "9166d6bd32b66bcc45797c135fa36fbfc8b575816f3da9f46324beb131a0351e",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Peter Gustav Lejeune Dirichlet",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "before 1859<div style=\"display: none;\">date QS:P,+1859-00-00T00:00:00Z/7,P1326,+1859-00-00T00:00:00Z/9</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "Unknown source<span style=\"display: none;\">Unknown source</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "notes": "Commons does not identify the artist or original source; its recorded original date is before 1859.",
+    "portrait": {
+      "src": "/images/mathematicians/dirichlet.jpg",
+      "alt": {
+        "zh": "留胡须、双臂交叠的狄利克雷历史肖像",
+        "en": "Historical portrait of Dirichlet with a beard and folded arms"
+      },
+      "credit": {
+        "zh": "佚名，1859年以前 · 公共领域",
+        "en": "Unknown artist, before 1859 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Peter_Gustav_Lejeune_Dirichlet.jpg"
+    },
+    "displayRecommendation": {
+      "objectFit": "cover",
+      "objectPosition": "center top",
+      "notes": "Preserve the full historical image; use layout cropping only."
+    }
+  },
+  {
+    "id": "klein",
+    "localFile": "public/images/mathematicians/klein.jpg",
+    "commonsTitle": "File:Felix Klein, ante 1897 - Accademia delle Scienze di Torino 0078 B.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Felix_Klein%2C_ante_1897_-_Accademia_delle_Scienze_di_Torino_0078_B.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Felix_Klein%2C_ante_1897_-_Accademia_delle_Scienze_di_Torino_0078_B.jpg/500px-Felix_Klein%2C_ante_1897_-_Accademia_delle_Scienze_di_Torino_0078_B.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Felix_Klein,_ante_1897_-_Accademia_delle_Scienze_di_Torino_0078_B.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 713175,
+    "sha256": "11aa4cd91bcb28fab217e601b450a5e9baf7c6566b83e275131f81f00e7023bb",
+    "metadata": {
+      "Artist": {
+        "value": "<div class=\"fn value\">\nGebruder Noelle (m. 1917, attivo a Gottingen)</div>",
+        "source": "commons-desc-page"
+      },
+      "ImageDescription": {
+        "value": "Portrait of Felix Klein, before 1897.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "before 1897<div style=\"display: none;\">date QS:P571,+1897-00-00T00:00:00Z/7,P1326,+1897-00-00T00:00:00Z/9</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "Archivio storico dell'Accademia delle Scienze - <a rel=\"nofollow\" class=\"external text\" href=\"https://www.accademiadellescienze.it/accademia/soci/Felix-Klein\">Catalogo digitale</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "notes": "Historical photograph from the Accademia delle Scienze di Torino archive, item 0078 B. The Commons Artist field spells the studio name Gebruder Noelle.",
+    "portrait": {
+      "src": "/images/mathematicians/klein.jpg",
+      "alt": {
+        "zh": "留胡须、侧身望向左方的克莱因照片",
+        "en": "Photograph of Klein with a beard, looking left"
+      },
+      "credit": {
+        "zh": "Gebrüder Noelle，1897年以前 · 公共领域",
+        "en": "Gebrüder Noelle, before 1897 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Felix_Klein,_ante_1897_-_Accademia_delle_Scienze_di_Torino_0078_B.jpg"
+    },
+    "displayRecommendation": {
+      "objectFit": "cover",
+      "objectPosition": "center top",
+      "notes": "Preserve the full historical image; use layout cropping only."
+    }
+  },
+  {
+    "id": "hilbert",
+    "localFile": "public/images/mathematicians/hilbert.jpg",
+    "commonsTitle": "File:Hilbert.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Hilbert.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Hilbert.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hilbert.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 104667,
+    "sha256": "e0510813434980c4f93329694b0816770d388aacb27f0d83b88588cbc119a930",
+    "metadata": {
+      "ImageDescription": {
+        "value": "David Hilbert, wearing a dashing hat",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "before 1912<div style=\"display: none;\">date QS:P,+1912-00-00T00:00:00Z/7,P1326,+1912-00-00T00:00:00Z/9</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "Possibly <cite class=\"book\" style=\"font-style:normal\" id=\"harv\">Reid, Constance (1970)      <i> Hilbert</i>, Berlin, Heidelberg:  Springer Berlin Heidelberg Imprint Springer, p. 230  <small><span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/ISBN\" class=\"extiw\" title=\"en:ISBN\"><span lang=\"en\" dir=\"ltr\">ISBN</span></a></span>:  <a href=\"//commons.wikimedia.org/wiki/Special:BookSources/978-3-662-27132-2\" title=\"Special:BookSources/978-3-662-27132-2\">978-3-662-27132-2</a>. </small></cite>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "notes": "Commons dates the photograph to before 1912 and names no photographer. Its reference to Constance Reid is a possible publication source, not an original creation date.",
+    "portrait": {
+      "src": "/images/mathematicians/hilbert.jpg",
+      "alt": {
+        "zh": "戴宽檐帽与眼镜的希尔伯特照片",
+        "en": "Photograph of Hilbert wearing a broad-brimmed hat and glasses"
+      },
+      "credit": {
+        "zh": "摄影者不详，1912年以前 · 公共领域",
+        "en": "Unknown photographer, before 1912 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Hilbert.jpg"
+    },
+    "displayRecommendation": {
+      "objectFit": "cover",
+      "objectPosition": "center top",
+      "notes": "Preserve the full historical image; use layout cropping only."
+    }
+  }
+]

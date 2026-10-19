@@ -1,0 +1,1403 @@
+[
+  {
+    "id": "leibniz",
+    "localFile": "public/images/mathematicians/analysis/leibniz.jpg",
+    "src": "/images/mathematicians/analysis/leibniz.jpg",
+    "originalTitle": "Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_(ca._1695).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_(ca._1695).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg/500px-Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 47136,
+    "sha256": "e8d2d511d0b148b7b3992c646e659e942cd897595e65ecd3f34f5cf9bca4157b",
+    "width": 500,
+    "height": 617,
+    "metadata": {
+      "DateTime": {
+        "value": "2016-11-14 17:52:39",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "<div class=\"fn\">\n<div style=\"font-size:0.9em;display:inline-block;\">German:  <div style=\"display:inline-block\" dir=\"ltr\" lang=\"de\"><i>Bildnis des Philosophen Gottfried Wilhelm Freiherr von Leibniz</i></div></div><br><div style=\"font-weight:bold;display:inline-block;\"><div style=\"display:inline-block\" dir=\"ltr\" lang=\"en\"><i>Portrait of Gottfried Leibniz (1646-1716), German philosopher</i></div></div><div style=\"display: none;\">title QS:P1476,de:\"Bildnis des Philosophen Gottfried Wilhelm Freiherr von Leibniz\"</div><div style=\"display: none;\">label QS:Lde,\"Bildnis des Philosophen Gottfried Wilhelm Freiherr von Leibniz\"</div><div style=\"display: none;\">label QS:Len,\"Portrait of Gottfried Leibniz (1646-1716), German philosopher\"</div><div style=\"display: none;\">label QS:Luk,\"Портрет Лейбніца\"</div></div>",
+        "source": "commons-desc-page"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "17th-century portrait paintings in Germany|Portrait of Gottfried Wilhelm Leibniz by Francke|Calculus|PD-old-100-expired|PD-Art (PD-old-100-expired)|Artworks with Wikidata item|Artworks with known accession number|Images with extracted images|CC-PD-Mark|Artworks with accession number from Wikidata|17th-century oil portraits of men at half length|1690s oil on canvas paintings|1690s portrait paintings of men|Artworks digital representation of 2D work",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Artist": {
+        "value": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Christoph_Bernhard_Francke\" class=\"extiw\" title=\"w:en:Christoph Bernhard Francke\"><span title=\"German painter (1665–1729)\">Christoph Bernhard Francke</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1695 <span class=\"mw-valign-text-top noprint\" typeof=\"mw:File/Frameless\"><a href=\"https://www.wikidata.org/wiki/Q29171873#P571\" title=\"Edit this at Wikidata\"><img alt=\"Edit this at Wikidata\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/20px-OOjs_UI_icon_edit-ltr-progressive.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"10\" height=\"10\" class=\"mw-file-element\" data-file-width=\"20\" data-file-height=\"20\"></a></span>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external text\" href=\"http://www.3landesmuseen.de/Gemaeldegalerie-Bilder.1483.0.html\">Herzog Anton Ulrich-Museum, online</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/leibniz.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "戴深色长假发的莱布尼茨油画肖像",
+        "en": "Painted portrait of Leibniz with a long dark wig"
+      },
+      "credit": {
+        "zh": "Christoph Bernhard Francke，约 1695 · 公共领域",
+        "en": "Christoph Bernhard Francke, c. 1695 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Christoph%20Bernhard%20Francke%20-%20Bildnis%20des%20Philosophen%20Leibniz%20(ca.%201695).jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Christoph Bernhard Francke, c. 1695 · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Christoph Bernhard Francke",
+    "originalDate": "c. 1695",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "jacob-bernoulli",
+    "localFile": "public/images/mathematicians/analysis/jacob-bernoulli.jpg",
+    "src": "/images/mathematicians/analysis/jacob-bernoulli.jpg",
+    "originalTitle": "Jakob_Bernoulli.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Jakob_Bernoulli.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Jakob_Bernoulli.jpg/500px-Jakob_Bernoulli.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 61122,
+    "sha256": "2434da9822bc5b920e7c687320545819469ccb1f756ffa07188b54ba5a3f8245",
+    "width": 500,
+    "height": 584,
+    "metadata": {
+      "DateTime": {
+        "value": "2021-01-12 15:07:26",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Jakob Bernoulli",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Jakob Bernoulli|PD-old-100-expired|CC-PD-Mark|Scientists in 1687|PD-old missing SDC copyright status|Portraits at the Old Aula of University of Basel",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Jacob Bernoulli (also known as James or Jacques) (1654 – 1705)",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1687",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external autonumber\" href=\"http://www.maa.org/EulerTour/Basel_Talks_by_Fred_and_Joel_in_Old_Aula/index.htm\">[2]</a> <a rel=\"nofollow\" class=\"external autonumber\" href=\"http://www.unigeschichte.unibas.ch/materialien/rektoren/jakob-bernoulli.html\">[3]</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Niklaus Bernoulli (1662-1716)",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/jacob-bernoulli.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "戴白色领圈、手扶地球仪的雅各布·伯努利肖像",
+        "en": "Portrait of Jacob Bernoulli with a white collar and a globe"
+      },
+      "credit": {
+        "zh": "Niklaus Bernoulli，1687 · 公共领域",
+        "en": "Niklaus Bernoulli, 1687 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Jakob%20Bernoulli.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Niklaus Bernoulli, 1687 · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Niklaus Bernoulli (1662–1716)",
+    "originalDate": "1687",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "johann-bernoulli",
+    "localFile": "public/images/mathematicians/analysis/johann-bernoulli.jpg",
+    "src": "/images/mathematicians/analysis/johann-bernoulli.jpg",
+    "originalTitle": "Johann_Bernoulli2.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johann_Bernoulli2.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Bernoulli2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Johann_Bernoulli2.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 94081,
+    "sha256": "faf91888f5a5c28b9052bb9d8c3c329230c77d8eb2aa249b68a6a48cb149df36",
+    "width": 500,
+    "height": 620,
+    "metadata": {
+      "DateTime": {
+        "value": "2011-07-18 12:03:45",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "<div class=\"fn\">\n<div style=\"font-weight:bold;display:inline-block;\">Johann Bernoulli (1667 – 1748)</div></div>",
+        "source": "commons-desc-page"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Johann Bernoulli|PD-old-100-expired|PD-Art (PD-old-100-expired)|Artworks with known accession number|CC-PD-Mark|18th-century oil portraits of men at half length|18th-century portrait paintings in Switzerland|1740s oil on canvas paintings|Paintings without Wikidata item|1740s portrait paintings of men|Male portrait paintings by Johann Rudolf Huber|PD-Art missing SDC copyright status|PD-old missing SDC copyright status|PD-art-old-100-expired missing SDC copyright status|Portrait paintings of men with white allonge wigs|Waistcoats in portrait paintings|Portraits at the Old Aula of University of Basel",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Artist": {
+        "value": "<bdi><a rel=\"mw:WikiLink/Interwiki\" href=\"https://en.wikipedia.org/wiki/en:Johann%20Rudolf%20Huber\" title=\"w:en:Johann Rudolf Huber\" class=\"extiw\"><span title=\"Swiss painter (1668-1748)\">Johann Rudolf Huber</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "circa 1740<div style=\"display: none;\">date QS:P571,+1740-00-00T00:00:00Z/9,P1480,Q5727902</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"mw:ExtLink nofollow\" href=\"http://test.maa.org/EulerTour/Basel_Talks_by_Fred_and_Joel_in_Old_Aula/image005.htm\" class=\"external text\">http://test.maa.org</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "localProcessing": "JPEG recompression at quality 85 only; no crop or generative alteration.",
+    "portrait": {
+      "src": "/images/mathematicians/analysis/johann-bernoulli.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "戴浅色长假发、手持书卷的约翰·伯努利肖像",
+        "en": "Portrait of Johann Bernoulli with a pale wig and an open book"
+      },
+      "credit": {
+        "zh": "Johann Rudolf Huber，约 1740 · 公共领域；JPEG 压缩",
+        "en": "Johann Rudolf Huber, c. 1740 · Public domain; JPEG recompressed"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Johann%20Bernoulli2.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Johann Rudolf Huber, c. 1740 · Public domain; JPEG recompressed",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "originalAuthor": "Johann Rudolf Huber",
+    "originalDate": "c. 1740",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "laplace",
+    "localFile": "public/images/mathematicians/analysis/laplace.jpg",
+    "src": "/images/mathematicians/analysis/laplace.jpg",
+    "originalTitle": "Laplace,_Pierre-Simon,_marquis_de.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laplace,_Pierre-Simon,_marquis_de.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Laplace%2C_Pierre-Simon%2C_marquis_de.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Laplace%2C_Pierre-Simon%2C_marquis_de.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 14035,
+    "sha256": "ba1edd97f295cab066cbdf3c9936400592cd242c5ae71c7d00d6df248f9d11b8",
+    "width": 256,
+    "height": 300,
+    "metadata": {
+      "DateTime": {
+        "value": "2010-08-09 05:10:24",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "<div class=\"fn\">\n<i>Portrait of Pierre-Simon de Laplace (1745-1827)</i></div>",
+        "source": "commons-desc-page"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "James Posselwhite|Artworks without Wikidata item|PD-old-100-expired|PD-Art (PD-old-auto-expired)|PD-old files by User:Jimmy from fr.wikipedia|CC-PD-Mark|Ceremonial clothing of politicians of the First French Empire in portraits|19th-century engraved portraits of men at bust length|Sash of the Order of the Reunion in portrait paintings|Stars of chivalric orders in portrait paintings|Jabots in portrait paintings|People with medals in art|Pierre Simon Laplace, 1st Marquis of Laplace|PD-Art missing SDC copyright status|PD-old missing SDC copyright status|Badges of the Legion of Honour in portraits|Men with medals with rosettes",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Artist": {
+        "value": "<bdi><a href=\"https://www.wikidata.org/wiki/Q29365085\" class=\"extiw\" title=\"d:Q29365085\"><span title=\"British engraver (1798–1884)\">James Posselwhite</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "ImageDescription": {
+        "value": "<a href=\"https://fr.wikipedia.org/wiki/Pierre-Simon_de_Laplace\" class=\"extiw\" title=\"fr:Pierre-Simon de Laplace\">Pierre-Simon de Laplace</a>, mathématicien et astronome, en habit de chancelier du Sénat sous l'Empire",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "19<sup>th</sup> century<div style=\"display: none;\">date QS:P571,+1850-00-00T00:00:00Z/7</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external text\" href=\"http://www.britannica.com/EBchecked/topic-art/330320/15466/Pierre-Simon-marquis-de-Laplace-coloured-engraving-19th-century\">www.britannica.com</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/laplace.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "穿礼服、佩戴勋章的拉普拉斯历史肖像",
+        "en": "Historical portrait of Laplace in a decorated formal coat"
+      },
+      "credit": {
+        "zh": "图源署名 James Posselwhite，19 世纪 · 公共领域",
+        "en": "Source attribution: James Posselwhite, 19th century · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Laplace%2C%20Pierre-Simon%2C%20marquis%20de.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Source attribution: James Posselwhite, 19th century · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "James Posselwhite (Commons attribution)",
+    "originalDate": "19th century",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "fourier",
+    "localFile": "public/images/mathematicians/analysis/fourier.jpg",
+    "src": "/images/mathematicians/analysis/fourier.jpg",
+    "originalTitle": "Fourier2_-_restoration1.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fourier2_-_restoration1.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Fourier2_-_restoration1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Fourier2_-_restoration1.jpg/500px-Fourier2_-_restoration1.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 111252,
+    "sha256": "77e690ebf3ca836c42e04ee2f978028e5e24911f5ef98489af4182d9cdd832fc",
+    "width": 500,
+    "height": 632,
+    "metadata": {
+      "DateTime": {
+        "value": "2022-01-16 23:43:06",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "<div class=\"fn\">\n<div style=\"font-weight:bold;display:inline-block;\">Portrait of Joseph Fourier</div></div>",
+        "source": "commons-desc-page"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Joseph Fourier|Retouched pictures|Artworks without Wikidata item|Featured pictures on Wikipedia, English|PD-Art (PD-old-100)|Derivative versions|CC-PD-Mark|Ceremonial clothing of politicians of the First French Empire in portraits|Files with Assessments template missing SDC Commons no value quality assessment|Portraits by Julien Léopold Boilly",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Artist": {
+        "value": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Julien-L%C3%A9opold_Boilly\" class=\"extiw\" title=\"w:en:Julien-Léopold Boilly\"><span title=\"painter (1796-1874)\">Julien-Léopold Boilly</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "ImageDescription": {
+        "value": "Engraved portrait of French mathematician Jean Baptiste Joseph Fourier (1768 - 1830), early 19th century.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "early 19<sup>th</sup> century<div style=\"display: none;\">date QS:P571,+1850-00-00T00:00:00Z/7,P4241,Q40719727</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<p>This file was derived from:  <a href=\"//commons.wikimedia.org/wiki/File:Fourier2.jpg\" title=\"File:Fourier2.jpg\">Fourier2.jpg</a><br>\nRestored by: <a href=\"//commons.wikimedia.org/wiki/User:Bammesk\" title=\"User:Bammesk\">Bammesk</a><br>\nOriginal source:\n</p>\n<ul><li><a rel=\"nofollow\" class=\"external free\" href=\"https://www.gettyimages.com.au/license/169251384\">https://www.gettyimages.com.au/license/169251384</a></li>\n<li><a rel=\"nofollow\" class=\"external free\" href=\"https://wellcomecollection.org/works/b4qh352u\">https://wellcomecollection.org/works/b4qh352u</a></li></ul>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/fourier.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "卷发、围白色领巾的傅里叶版画肖像",
+        "en": "Engraved portrait of Fourier with curled hair and a white cravat"
+      },
+      "credit": {
+        "zh": "Julien-Léopold Boilly 原绘，19 世纪早期 · 公共领域；Commons 修复版",
+        "en": "After Julien-Léopold Boilly, early 19th century · Public domain; Commons restoration"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Fourier2%20-%20restoration1.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "After Julien-Léopold Boilly, early 19th century · Public domain; Commons restoration",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Julien-Léopold Boilly (original drawing); Commons restoration",
+    "originalDate": "early 19th century",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "germain",
+    "localFile": "public/images/mathematicians/analysis/germain.jpg",
+    "src": "/images/mathematicians/analysis/germain.jpg",
+    "originalTitle": "Germain_-_Œuvres_philosophiques,_1896_(Illustration_page_4).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Germain_-_%C5%92uvres_philosophiques,_1896_(Illustration_page_4).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Germain_-_%C5%92uvres_philosophiques%2C_1896_%28Illustration_page_4%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Germain_-_%C5%92uvres_philosophiques%2C_1896_%28Illustration_page_4%29.jpg/500px-Germain_-_%C5%92uvres_philosophiques%2C_1896_%28Illustration_page_4%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 50798,
+    "sha256": "0c77cf4368b3b9ad40e1d5ecddb9b73c1b2157d79208b2786f302982a794ec92",
+    "width": 500,
+    "height": 491,
+    "metadata": {
+      "DateTime": {
+        "value": "2016-11-21 08:01:15",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Germain - Œuvres philosophiques, 1896 (Illustration page 4)",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Sophie Germain|Book illustrations|PD Old|Extracted images|CC-PD-Mark|Files from Gallica|PD-old missing SDC copyright status",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Œuvres_philosophiques",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1896",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "Bibliothèque nationale de France",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a href=\"https://en.wikisource.org/wiki/fr:Auteur:Sophie_Germain\" class=\"extiw\" title=\"s:fr:Auteur:Sophie Germain\">s:fr:Auteur:Sophie Germain</a>",
+        "source": "commons-desc-page"
+      },
+      "Permission": {
+        "value": "<table class=\"licensetpl\" style=\"display:none\">\n<tbody><tr>\n<td><span class=\"licensetpl_short\">Public domain</span><span class=\"licensetpl_long\">Public domain</span><span class=\"licensetpl_link_req\">false</span><span class=\"licensetpl_attr_req\">false</span>\n</td></tr></tbody></table>\n<table style=\"width: 100%; clear: both; margin: 0.5em auto; background-color: var(--background-color-progressive-subtle, #f7f8ff); color: var(--color-base, #202122); border: var(--border-subtle, 2px solid #8888aa); border-spacing: 8px; padding: 0px;\" dir=\"ltr\" class=\"layouttemplate\" lang=\"en\">\n<tbody><tr>\n<td rowspan=\"2\"><span typeof=\"mw:File\"><span title=\"Public domain\"><img alt=\"Public domain\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/PD-icon.svg/120px-PD-icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"64\" height=\"64\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/PD-icon.svg/250px-PD-icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"196\" data-file-height=\"196\"></span></span>\n</td>\n<td>\n<p>This work is in the <b><a href=\"https://en.wikipedia.org/wiki/public_domain\" class=\"extiw\" title=\"en:public domain\">public domain</a></b> in its country of origin and other countries and areas where the <a href=\"https://en.wikipedia.org/wiki/List_of_countries%27_copyright_lengths\" class=\"extiw\" title=\"w:List of countries' copyright lengths\">copyright term</a> is the author's <b>life plus 70 years or fewer</b>.\n</p>\n<hr>\n<span typeof=\"mw:File\"><span><img src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Dialog-warning.svg/40px-Dialog-warning.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"25\" height=\"25\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Dialog-warning.svg/60px-Dialog-warning.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"48\" data-file-height=\"48\"></span></span> <small>You must also include a <a href=\"//commons.wikimedia.org/wiki/Commons:Copyright_tags/Country-specific_tags#United_States_of_America\" title=\"Commons:Copyright tags/Country-specific tags\">United States public domain tag</a> to indicate why this work is in the public domain in the United States.<div class=\"navigation-not-searchable\"> Note that a few countries have copyright terms longer than 70 years: Mexico has 100 years, Jamaica has 95 years, Colombia has 80 years, and Guatemala and Samoa have 75 years. This image may <i>not</i> be in the public domain in these countries, which moreover do <i>not</i> implement the <a href=\"https://en.wikipedia.org/wiki/rule_of_the_shorter_term\" class=\"extiw\" title=\"w:rule of the shorter term\">rule of the shorter term</a>. Honduras has a general copyright term of 75 years, but it <i>does</i> implement the rule of the shorter term. Copyright may extend on works created by French who died for France in <a href=\"https://en.wikipedia.org/wiki/World_War_II\" class=\"extiw\" title=\"w:World War II\">World War II</a> (<a href=\"//commons.wikimedia.org/wiki/Commons:Copyright_rules_by_territory/France\" title=\"Commons:Copyright rules by territory/France\">more information</a>), Russians who served in <a href=\"https://en.wikipedia.org/wiki/Eastern_Front_(World_War_II)\" class=\"extiw\" title=\"w:Eastern Front (World War II)\">the Eastern Front of World War II</a> (known as the Great Patriotic War in Russia) and posthumously <a href=\"https://en.wikipedia.org/wiki/Rehabilitation_(Soviet)\" class=\"extiw\" title=\"w:Rehabilitation (Soviet)\">rehabilitated</a> victims of Soviet repressions (<a href=\"//commons.wikimedia.org/wiki/Template:PD-Russia\" title=\"Template:PD-Russia\">more information</a>).</div></small>\n</td></tr>\n<tr>\n<td colspan=\"2\" style=\"text-align:center;font-size:x-small;line-height:140%;\"><a href=\"https://creativecommons.org/publicdomain/mark/1.0/deed.en\" class=\"extiw\" title=\"ccorg:publicdomain/mark/1.0/deed.en\">This file has been identified as being free of known restrictions under copyright law, including all related and neighboring rights.</a>\n</td></tr></tbody></table><span class=\"licensetpl_link\" style=\"display:none;\">https://creativecommons.org/publicdomain/mark/1.0/</span><span class=\"licensetpl_short\" style=\"display:none;\">PDM</span><span class=\"licensetpl_long\" style=\"display:none;\">Creative Commons Public Domain Mark 1.0</span><span class=\"licensetpl_link_req\" style=\"display:none;\">false</span><span class=\"licensetpl_attr_req\" style=\"display:none;\">false</span>",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/germain.jpg",
+      "kind": "later-depiction",
+      "alt": {
+        "zh": "1896 年书中收录的热尔曼线描肖像",
+        "en": "Line portrait of Germain reproduced in an 1896 book"
+      },
+      "credit": {
+        "zh": "佚名图像，1896 年《哲学著作》所载 · 公共领域；非生前照片",
+        "en": "Anonymous image reproduced in Œuvres philosophiques (1896) · Public domain; not a lifetime photograph"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Germain%20-%20%C5%92uvres%20philosophiques%2C%201896%20(Illustration%20page%204).jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Anonymous image reproduced in Œuvres philosophiques (1896) · Public domain; not a lifetime photograph",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "metadataCaveat": "The Commons Artist field identifies the book author Sophie Germain, not the portrait artist; artist is treated as unknown. 1896 is the reproduction date, not a verified lifetime sitting.",
+    "originalAuthor": "Unknown portrait artist; do not confuse with author of the reproduced book",
+    "originalDate": "Reproduced 1896; original depiction date unrecorded",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "jacobi",
+    "localFile": "public/images/mathematicians/analysis/jacobi.jpg",
+    "src": "/images/mathematicians/analysis/jacobi.jpg",
+    "originalTitle": "Carl_Jacobi.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carl_Jacobi.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Carl_Jacobi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Carl_Jacobi.jpg/500px-Carl_Jacobi.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 36885,
+    "sha256": "c21972dc69cbbb058631a6a4cf92e59953b4361294d425599dc289bc985717fe",
+    "width": 500,
+    "height": 573,
+    "metadata": {
+      "DateTime": {
+        "value": "2005-05-14 15:00:13",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Carl Jacobi",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Carl Gustav Jacob Jacobi|PD Old|Images with extracted images|Unknown date|Template Unknown (author)|CC-PD-Mark|PD-old missing SDC copyright status",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Carl Gustav Jacob Jacobi was not only a great German mathematician but also considered by many as the most inspiring teacher of his time.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "Unknown date",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.sil.si.edu/digitalcollections/hst/scientific-identity/explore.htm\">http://www.sil.si.edu/digitalcollections/hst/scientific-identity/explore.htm</a> (reworked)",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/jacobi.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "围白色领巾的雅可比黑白肖像",
+        "en": "Black-and-white portrait of Jacobi with a white cravat"
+      },
+      "credit": {
+        "zh": "作者与原作年代未详 · 公共领域",
+        "en": "Artist and original date unrecorded · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Carl%20Jacobi.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Artist and original date unrecorded · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Unknown artist",
+    "originalDate": "Unknown original date",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "weierstrass",
+    "localFile": "public/images/mathematicians/analysis/weierstrass.jpg",
+    "src": "/images/mathematicians/analysis/weierstrass.jpg",
+    "originalTitle": "Karl_Weierstrass.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karl_Weierstrass.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Karl_Weierstrass.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Karl_Weierstrass.jpg/500px-Karl_Weierstrass.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 44717,
+    "sha256": "b6ce17d7dbdb524cc866ac4766ef5cc074d908e0a65813fb0060b8af52815aa9",
+    "width": 500,
+    "height": 734,
+    "metadata": {
+      "DateTime": {
+        "value": "2008-02-18 15:08:56",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Karl Weierstrass",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Karl Weierstraß|Rectors of Humboldt-Universität zu Berlin|Files with no machine-readable author|Files with no machine-readable source|PD-Art (PD-old-70)|CC-PD-Mark|Artworks missing infobox template|PD-Art missing SDC copyright status|PD-old missing SDC copyright status",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/weierstrass.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "白发、佩领结的魏尔斯特拉斯肖像",
+        "en": "Portrait of a white-haired Weierstrass wearing a bow tie"
+      },
+      "credit": {
+        "zh": "作者与原作年代未详 · 公共领域",
+        "en": "Artist and original date unrecorded · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Karl%20Weierstrass.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Artist and original date unrecorded · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Unknown artist",
+    "originalDate": "Unknown original date",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "kovalevskaya",
+    "localFile": "public/images/mathematicians/analysis/kovalevskaya.jpg",
+    "src": "/images/mathematicians/analysis/kovalevskaya.jpg",
+    "originalTitle": "Sofja_Wassiljewna_Kowalewskaja_1.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sofja_Wassiljewna_Kowalewskaja_1.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Sofja_Wassiljewna_Kowalewskaja_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Sofja_Wassiljewna_Kowalewskaja_1.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 59668,
+    "sha256": "5241e396a8d2b158c4b8c310043cb0265d038615792e77f6af14bdfdc2962cd4",
+    "width": 345,
+    "height": 420,
+    "metadata": {
+      "DateTime": {
+        "value": "2022-06-08 14:27:11",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Sofja Wassiljewna Kowalewskaja 1",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Sofia Kovalevskaya|PD Old|Template Unknown (author)|CC-PD-Mark|PD-old missing SDC copyright status",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Photographie der russischen Mathematikerin <a href=\"https://de.wikipedia.org/wiki/Sofja_Wassiljewna_Kowalewskaja\" class=\"extiw\" title=\"de:Sofja Wassiljewna Kowalewskaja\">Sofja Wassiljewna Kowalewskaja</a>. Das Foto entstand kurz nach 1880 und stammt vermutlich aus der Sammlung des <a href=\"https://de.wikipedia.org/wiki/Mittag-Leffler-Institut\" class=\"extiw\" title=\"de:Mittag-Leffler-Institut\">Mittag-Leffler-Instituts</a> der Schwedischen Akademie der Wissenschaften, Stockholm.\nSiehe auch: <a href=\"https://de.wikipedia.org/wiki/Cordula_Tollmien\" class=\"extiw\" title=\"de:Cordula Tollmien\">Cordula Tollmien</a>: <i>Fürstin der Wissenschaft. Die lebensgeschichte der Sofja Kowalewskaja</i>. <a href=\"https://de.wikipedia.org/wiki/Beltz_%26_Gelberg\" class=\"extiw\" title=\"de:Beltz &amp; Gelberg\">Beltz &amp; Gelberg</a>, 1995. S.112, 191.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1888",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.goettinger-tageblatt.de/newsroom/wissen/dezentral/wissenlokal/art4263,603649\">http://www.goettinger-tageblatt.de/newsroom/wissen/dezentral/wissenlokal/art4263,603649</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/kovalevskaya.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "侧身、穿高领衣裙的柯瓦列夫斯卡娅照片",
+        "en": "Photograph of Kovalevskaya in a high-collared dress"
+      },
+      "credit": {
+        "zh": "摄影者不详，1888 · 公共领域",
+        "en": "Unknown photographer, 1888 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Sofja%20Wassiljewna%20Kowalewskaja%201.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Unknown photographer, 1888 · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Unknown photographer",
+    "originalDate": "1888",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "cantor",
+    "localFile": "public/images/mathematicians/analysis/cantor.jpg",
+    "src": "/images/mathematicians/analysis/cantor.jpg",
+    "originalTitle": "Georg_Cantor_(Porträt).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Georg_Cantor_(Portr%C3%A4t).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Georg_Cantor_%28Portr%C3%A4t%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Georg_Cantor_%28Portr%C3%A4t%29.jpg/500px-Georg_Cantor_%28Portr%C3%A4t%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 96554,
+    "sha256": "9a3db265b4e840da01619a0915eb66d0a4c1a17bcad54125c01e654716eecd11",
+    "width": 500,
+    "height": 676,
+    "metadata": {
+      "DateTime": {
+        "value": "2018-12-03 11:49:20",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Georg Cantor (Porträt)",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Georg Cantor|Retouched pictures|PD Old|Template Unknown (author)|CC-PD-Mark|Scientists in 1910|PD-old missing SDC copyright status",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Der deutsche Matematiker <a href=\"https://de.wikipedia.org/wiki/Georg_Cantor\" class=\"extiw\" title=\"de:Georg Cantor\">Georg Cantor</a> (1845-1918)",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "circa 1910<div style=\"display: none;\">date QS:P,+1910-00-00T00:00:00Z/9,P1480,Q5727902</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<p><a rel=\"nofollow\" class=\"external free\" href=\"https://www.math.cmu.edu/~rcristof/pdf/Cantor_pubblicato.pdf\">https://www.math.cmu.edu/~rcristof/pdf/Cantor_pubblicato.pdf</a> \n</p>\nand they had it from <a rel=\"nofollow\" class=\"external free\" href=\"https://photos.aip.org/history-programs/niels-bohr-library/photos/cantor-georg-a1\">https://photos.aip.org/history-programs/niels-bohr-library/photos/cantor-georg-a1</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "Permission": {
+        "value": "<table class=\"licensetpl\" style=\"display:none\">\n<tbody><tr>\n<td><span class=\"licensetpl_short\">Public domain</span><span class=\"licensetpl_long\">Public domain</span><span class=\"licensetpl_link_req\">false</span><span class=\"licensetpl_attr_req\">false</span>\n</td></tr></tbody></table>\n<table style=\"width: 100%; clear: both; margin: 0.5em auto; background-color: var(--background-color-progressive-subtle, #f7f8ff); color: var(--color-base, #202122); border: var(--border-subtle, 2px solid #8888aa); border-spacing: 8px; padding: 0px;\" dir=\"ltr\" class=\"layouttemplate\" lang=\"en\">\n<tbody><tr>\n<td rowspan=\"2\"><span typeof=\"mw:File\"><span title=\"Public domain\"><img alt=\"Public domain\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/PD-icon.svg/120px-PD-icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"64\" height=\"64\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/PD-icon.svg/250px-PD-icon.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"196\" data-file-height=\"196\"></span></span>\n</td>\n<td>\n<p>This work is in the <b><a href=\"https://en.wikipedia.org/wiki/public_domain\" class=\"extiw\" title=\"en:public domain\">public domain</a></b> in its country of origin and other countries and areas where the <a href=\"https://en.wikipedia.org/wiki/List_of_countries%27_copyright_lengths\" class=\"extiw\" title=\"w:List of countries' copyright lengths\">copyright term</a> is the author's <b>life plus 70 years or fewer</b>.\n</p>\n<hr>\n<span typeof=\"mw:File\"><span><img src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Dialog-warning.svg/40px-Dialog-warning.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"25\" height=\"25\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Dialog-warning.svg/60px-Dialog-warning.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"48\" data-file-height=\"48\"></span></span> <small>You must also include a <a href=\"//commons.wikimedia.org/wiki/Commons:Copyright_tags/Country-specific_tags#United_States_of_America\" title=\"Commons:Copyright tags/Country-specific tags\">United States public domain tag</a> to indicate why this work is in the public domain in the United States.<div class=\"navigation-not-searchable\"> Note that a few countries have copyright terms longer than 70 years: Mexico has 100 years, Jamaica has 95 years, Colombia has 80 years, and Guatemala and Samoa have 75 years. This image may <i>not</i> be in the public domain in these countries, which moreover do <i>not</i> implement the <a href=\"https://en.wikipedia.org/wiki/rule_of_the_shorter_term\" class=\"extiw\" title=\"w:rule of the shorter term\">rule of the shorter term</a>. Honduras has a general copyright term of 75 years, but it <i>does</i> implement the rule of the shorter term. Copyright may extend on works created by French who died for France in <a href=\"https://en.wikipedia.org/wiki/World_War_II\" class=\"extiw\" title=\"w:World War II\">World War II</a> (<a href=\"//commons.wikimedia.org/wiki/Commons:Copyright_rules_by_territory/France\" title=\"Commons:Copyright rules by territory/France\">more information</a>), Russians who served in <a href=\"https://en.wikipedia.org/wiki/Eastern_Front_(World_War_II)\" class=\"extiw\" title=\"w:Eastern Front (World War II)\">the Eastern Front of World War II</a> (known as the Great Patriotic War in Russia) and posthumously <a href=\"https://en.wikipedia.org/wiki/Rehabilitation_(Soviet)\" class=\"extiw\" title=\"w:Rehabilitation (Soviet)\">rehabilitated</a> victims of Soviet repressions (<a href=\"//commons.wikimedia.org/wiki/Template:PD-Russia\" title=\"Template:PD-Russia\">more information</a>).</div></small>\n</td></tr>\n<tr>\n<td colspan=\"2\" style=\"text-align:center;font-size:x-small;line-height:140%;\"><a href=\"https://creativecommons.org/publicdomain/mark/1.0/deed.en\" class=\"extiw\" title=\"ccorg:publicdomain/mark/1.0/deed.en\">This file has been identified as being free of known restrictions under copyright law, including all related and neighboring rights.</a>\n</td></tr></tbody></table><span class=\"licensetpl_link\" style=\"display:none;\">https://creativecommons.org/publicdomain/mark/1.0/</span><span class=\"licensetpl_short\" style=\"display:none;\">PDM</span><span class=\"licensetpl_long\" style=\"display:none;\">Creative Commons Public Domain Mark 1.0</span><span class=\"licensetpl_link_req\" style=\"display:none;\">false</span><span class=\"licensetpl_attr_req\" style=\"display:none;\">false</span>",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/cantor.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "留胡须、身穿深色西装的康托尔照片",
+        "en": "Photograph of Cantor with a beard and dark suit"
+      },
+      "credit": {
+        "zh": "摄影者不详，约 1910 · 公共领域",
+        "en": "Unknown photographer, c. 1910 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Georg%20Cantor%20(Portr%C3%A4t).jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Unknown photographer, c. 1910 · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Unknown photographer",
+    "originalDate": "c. 1910",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "poincare",
+    "localFile": "public/images/mathematicians/analysis/poincare.png",
+    "src": "/images/mathematicians/analysis/poincare.png",
+    "originalTitle": "PSM_V82_D416_Henri_Poincare.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:PSM_V82_D416_Henri_Poincare.png",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/PSM_V82_D416_Henri_Poincare.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/PSM_V82_D416_Henri_Poincare.png/500px-PSM_V82_D416_Henri_Poincare.png",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 149005,
+    "sha256": "1c0c04c9b6d2e370a34192e13db4cb3ebda6f5bbf1fa6228cc88c47a95b2df4a",
+    "width": 500,
+    "height": 640,
+    "metadata": {
+      "DateTime": {
+        "value": "2012-08-13 05:49:40",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "PSM V82 D416 Henri Poincare",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Henri Poincaré|PD US|Images created or edited with IrfanView|Popular Science Monthly illustrations/Volume 82|Template Unknown (author)",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Henri Poincaré",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1913",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://archive.org/details/popularsciencemo82newy\">Popular Science Monthly Volume 82</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/poincare.png",
+      "kind": "portrait",
+      "alt": {
+        "zh": "戴圆眼镜、留胡须的庞加莱肖像",
+        "en": "Portrait of Poincaré wearing round glasses and a beard"
+      },
+      "credit": {
+        "zh": "原摄影者不详，1913 年《Popular Science Monthly》刊载 · 公共领域",
+        "en": "Unknown photographer; reproduced in Popular Science Monthly (1913) · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:PSM%20V82%20D416%20Henri%20Poincare.png"
+    },
+    "visuallyInspected": true,
+    "creator": "Unknown photographer; reproduced in Popular Science Monthly (1913) · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "metadataCaveat": "1913 is publication in Popular Science Monthly, not the original exposure date.",
+    "originalAuthor": "Unknown photographer",
+    "originalDate": "Published 1913; original exposure date unrecorded",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "ramanujan",
+    "localFile": "public/images/mathematicians/analysis/ramanujan.jpg",
+    "src": "/images/mathematicians/analysis/ramanujan.jpg",
+    "originalTitle": "Srinivasa_Ramanujan-Add._MS_a94_version2_(cropped).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Srinivasa_Ramanujan-Add._MS_a94_version2_(cropped).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Srinivasa_Ramanujan-Add._MS_a94_version2_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Srinivasa_Ramanujan-Add._MS_a94_version2_%28cropped%29.jpg/500px-Srinivasa_Ramanujan-Add._MS_a94_version2_%28cropped%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 50156,
+    "sha256": "6f3c4329738a9d3be70f0be4fc9290d490798ef2aea6d45de57ddd73c5f04cd2",
+    "width": 500,
+    "height": 667,
+    "metadata": {
+      "DateTime": {
+        "value": "2024-10-10 23:09:59",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Srinivasa Ramanujan-Add. MS a94 version2 (cropped)",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "Srinivasa Ramanujan|Extracted images|Template Unknown (author)",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "Passport photograph of Ramanujan created in 1913",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1913",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://mss-cat.trin.cam.ac.uk/manuscripts/uv/view.php?n=Add.Ms.a.94.7#?c=0&amp;m=0&amp;s=0&amp;cv=6&amp;xywh=-2849%2C-273%2C9238%2C5258\">https://mss-cat.trin.cam.ac.uk/manuscripts/uv/view.php?n=Add.Ms.a.94.7#?c=0&amp;m=0&amp;s=0&amp;cv=6&amp;xywh=-2849%2C-273%2C9238%2C5258</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Creative Commons Attribution 4.0",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/ramanujan.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "1913 年拉马努金护照照片的裁切版",
+        "en": "Cropped version of Ramanujan’s 1913 passport photograph"
+      },
+      "credit": {
+        "zh": "摄影者不详，1913；剑桥三一学院；Goszei 裁切 · CC BY 4.0；缩小展示",
+        "en": "Unknown photographer, 1913; Trinity College Cambridge; crop by Goszei · CC BY 4.0; reduced for display"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Srinivasa%20Ramanujan-Add.%20MS%20a94%20version2%20(cropped).jpg",
+      "license": {
+        "label": "CC BY 4.0",
+        "href": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    "visuallyInspected": true,
+    "creator": "Unknown photographer, 1913; Trinity College Cambridge; crop by Goszei · CC BY 4.0; reduced for display",
+    "license": {
+      "label": "CC BY 4.0",
+      "href": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "attribution": "Unknown photographer (1913); The Master and Fellows of Trinity College, Cambridge; crop by Goszei on Wikimedia Commons. CC BY 4.0. Wikimedia thumbnail reduction only.",
+    "originalAuthor": "Unknown photographer; The Master and Fellows of Trinity College, Cambridge; crop by Goszei",
+    "originalDate": "1913",
+    "requestedThumbnailWidth": 500
+  },
+  {
+    "id": "hardy",
+    "localFile": "public/images/mathematicians/analysis/hardy.jpg",
+    "src": "/images/mathematicians/analysis/hardy.jpg",
+    "originalTitle": "Ghhardy@72.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ghhardy@72.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Ghhardy%4072.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Ghhardy%4072.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 50025,
+    "sha256": "65ea584d5ef14fe51b470995cf9b549d1e5a7373186ed2ac18595d0a1293da40",
+    "width": 312,
+    "height": 368,
+    "metadata": {
+      "DateTime": {
+        "value": "2008-03-26 16:59:21",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+      },
+      "ObjectName": {
+        "value": "Ghhardy@72",
+        "source": "mediawiki-metadata"
+      },
+      "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+      },
+      "Categories": {
+        "value": "G. H. Hardy|Mathematicians from the United Kingdom|PD-Art (PD-old-70)|PD-Art (PD-old default)|Template Unknown (author)|CC-PD-Mark|Scientists in 1927|PD-Art missing SDC copyright status|PD-old missing SDC copyright status",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+      },
+      "ImageDescription": {
+        "value": "photograph of Hardy",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "circa 1927<div style=\"display: none;\">date QS:P,+1927-00-00T00:00:00Z/9,P1480,Q5727902</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "A mathematician's apology",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<link rel=\"mw:PageProp/Category\" href=\"./Category:Template_Unknown_(author)\"><span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "UsageTerms": {
+        "value": "Public domain",
+        "source": "commons-desc-page"
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/analysis/hardy.jpg",
+      "kind": "portrait",
+      "alt": {
+        "zh": "戴眼镜、坐在扶手椅上的哈代照片",
+        "en": "Photograph of Hardy wearing glasses and seated in an armchair"
+      },
+      "credit": {
+        "zh": "摄影者不详，图源标为约 1927 · 公共领域",
+        "en": "Unknown photographer; source dates image c. 1927 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Ghhardy%4072.jpg"
+    },
+    "visuallyInspected": true,
+    "creator": "Unknown photographer; source dates image c. 1927 · Public domain",
+    "license": {
+      "label": "Public domain",
+      "href": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "localProcessing": "Downloaded Wikimedia thumbnail or original where smaller; no local crop, recoloring or generated reconstruction.",
+    "originalAuthor": "Unknown photographer",
+    "originalDate": "c. 1927 according to Commons",
+    "requestedThumbnailWidth": 500
+  }
+]

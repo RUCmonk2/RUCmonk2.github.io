@@ -1,0 +1,1340 @@
+import type { Mathematician, ScholarRelation } from "./mathematicians";
+
+const l = (zh: string, en: string) => ({ zh, en });
+const bio = (name: string) =>
+  `https://mathshistory.st-andrews.ac.uk/Biographies/${name}/`;
+const pd = {
+  label: "Public domain",
+  href: "https://creativecommons.org/publicdomain/mark/1.0/",
+};
+const item = (
+  year: string,
+  zh: string,
+  en: string,
+  dzh: string,
+  den: string,
+  formula?: string,
+): Mathematician["achievements"][number] => ({
+  year,
+  title: l(zh, en),
+  description: l(dzh, den),
+  ...(formula ? { formula } : {}),
+});
+const event = (year: string, zh: string, en: string) => ({
+  year,
+  text: l(zh, en),
+});
+const source = (title: string, href: string) => ({ title, href });
+const monogram = (
+  id: string,
+  zh: string,
+  en: string,
+  href: string,
+): Mathematician["portrait"] => ({
+  src: `/images/mathematicians/origins/${id}.svg`,
+  alt: l(`${zh}的姓名字标，非人物肖像`, `Name mark for ${en}, not a likeness`),
+  credit: l(
+    "无可靠在世肖像，采用姓名字标 · 本站原创矢量图",
+    "No reliable lifetime portrait; original vector name mark for this site",
+  ),
+  href,
+  kind: "monogram",
+  license: {
+    label: "CC0",
+    href: "https://creativecommons.org/publicdomain/zero/1.0/",
+  },
+});
+
+// Ancient birth/death numbers are layout estimates. lifeDates is the public label.
+// A dated work or later transmission is explicitly identified when biography is sparse.
+export const originsMathematicians: Mathematician[] = [
+  {
+    id: "euclid",
+    name: l("欧几里得", "Euclid"),
+    fullName: "Euclid of Alexandria",
+    born: -325,
+    died: -265,
+    lifeDates: l(
+      "约公元前300年活动；生卒不详",
+      "Active c. 300 BCE; life dates unknown",
+    ),
+    place: l("亚历山大里亚", "Alexandria"),
+    field: l("几何 · 证明体系", "Geometry · Deductive structure"),
+    hook: l(
+      "把一个个结论，组织成可以追问依据的体系。",
+      "Organize results so that every step has a reason.",
+    ),
+    summary: l(
+      "《几何原本》汇集并组织前人的几何与数论，影响来自证明的安排，而非其中每条定理都由欧几里得首次发现。他的个人生平几乎无可靠细节；这里从留存的著作认识他。",
+      "The Elements organized earlier geometry and number theory into a deductive whole. Its results were not all Euclid’s inventions. His personal biography is poorly documented; the surviving work is the firmer guide.",
+    ),
+    portrait: monogram("euclid", "欧几里得", "Euclid", bio("Euclid")),
+    achievements: [
+      item(
+        "约前300",
+        "《几何原本》的证明结构",
+        "The architecture of the Elements",
+        "从定义、公设与共同概念出发组织十三卷内容。它提供了可检查的推理范式，但不能等同于今日完整形式化的公理系统。",
+        "Definitions, postulates and common notions organize thirteen books. This is a model of deductive reasoning, though not a fully formal axiomatic system in the modern sense.",
+      ),
+      item(
+        "约前300",
+        "保存求最大公因数的方法",
+        "An algorithm for the greatest common divisor",
+        "第七卷给出以反复减法寻找公因数的程序。对正整数，今天的辗转相除法是同一思想的高效表述；展示著作中的方法，不断言首创。",
+        "Book VII gives a repeated-subtraction procedure. For positive integers, today’s remainder-based Euclidean algorithm expresses the same idea efficiently; inclusion is not a claim of first invention.",
+        "\\gcd(a,b)=\\gcd(b,a\\bmod b)",
+      ),
+      item(
+        "约前300",
+        "素数不会穷尽",
+        "Primes cannot be exhausted",
+        "第九卷证明：给定任意有限组素数，总还能找到不在其中的素数。论证不需要列出全部素数，就能排除一张最终名单。",
+        "Book IX shows that any finite collection of primes can be exceeded. The proof rules out a final list without needing to enumerate every prime.",
+      ),
+    ],
+    timeline: [
+      event(
+        "约前300",
+        "通常认为在亚历山大里亚从事数学；确切生卒年未知。",
+        "Usually placed in Alexandria around this time; exact life dates are unknown.",
+      ),
+      event(
+        "约前300",
+        "《几何原本》形成，整理更早的希腊数学。",
+        "The Elements assembled and organized earlier Greek mathematics.",
+      ),
+      event(
+        "4世纪（身后）",
+        "塞翁编订《几何原本》，成为重要传本来源。",
+        "Theon’s later edition became an important line of transmission.",
+      ),
+      event(
+        "1482（身后）",
+        "《几何原本》在威尼斯出现首个印刷版。",
+        "The first printed edition of the Elements appeared in Venice.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Euclid", bio("Euclid")),
+      source(
+        "Euclid’s Elements · David Joyce edition",
+        "https://mathcs.clarku.edu/~djoyce/elements/bookI/bookI.html",
+      ),
+      source(
+        "Elements IX.20 · Infinitude of primes",
+        "https://webspace.ship.edu/mrcohe/inside-out/vu1/d_joyce/elements/bookIX/propIX20.html",
+      ),
+    ],
+  },
+  {
+    id: "archimedes",
+    name: l("阿基米德", "Archimedes"),
+    fullName: "Archimedes of Syracuse",
+    born: -287,
+    died: -212,
+    lifeDates: l("约公元前287—前212", "c. 287–212 BCE"),
+    place: l("叙拉古", "Syracuse"),
+    field: l("面积 · 体积 · 力学", "Area · Volume · Mechanics"),
+    hook: l(
+      "怎样用有限的证明，抓住无限细分的结果？",
+      "How can a finite proof control an indefinitely refined shape?",
+    ),
+    summary: l(
+      "阿基米德把几何逼近、比例与力学直觉结合起来，再用论证约束直觉。圆、抛物线和球都成为精确求量的对象；他的著作比围绕他的传奇故事更能说明工作方法。",
+      "Archimedes combined geometric approximation, proportion and mechanical intuition with careful proof. Circles, parabolas and spheres became objects of exact measurement; his texts are more reliable guides than later legends.",
+    ),
+    portrait: monogram(
+      "archimedes",
+      "阿基米德",
+      "Archimedes",
+      bio("Archimedes"),
+    ),
+    achievements: [
+      item(
+        "前3世纪",
+        "给圆周率夹出上下界",
+        "Bounding the circle ratio",
+        "用内接与外切正多边形逐步逼近圆，得到严格上下界。他没有把 22/7 当成圆周率的精确值。",
+        "Inscribed and circumscribed polygons give rigorous bounds. He did not identify 22/7 with the exact value of π.",
+        "\\frac{223}{71}<\\pi<\\frac{22}{7}",
+      ),
+      item(
+        "前3世纪",
+        "求抛物线弓形面积",
+        "Measuring a parabolic segment",
+        "证明抛物线弓形面积是其中最大内接三角形面积的 4/3。把剩余部分不断分解成三角形，再控制未计入的面积。",
+        "A parabolic segment has four-thirds the area of its largest inscribed triangle. Repeated triangular subdivisions and control of the remainder establish the result.",
+        "A_{\\mathrm{segment}}=\\frac43 A_{\\mathrm{triangle}}",
+      ),
+      item(
+        "前3世纪",
+        "球与外切圆柱的比例",
+        "A sphere and its enclosing cylinder",
+        "同半径、圆柱高等于球直径时，球体积为圆柱体积的 2/3。比较简单立体，让曲面围成的体积可以精确计算。",
+        "A sphere has two-thirds the volume of its circumscribed cylinder of height equal to the sphere’s diameter. Comparing solids yields an exact volume.",
+        "V_{\\mathrm{sphere}}=\\frac43\\pi r^3",
+      ),
+    ],
+    timeline: [
+      event(
+        "约前287",
+        "一般据后世记载推定出生年代。",
+        "Birth is conventionally estimated from later accounts.",
+      ),
+      event(
+        "前3世纪",
+        "在叙拉古研究几何、力学，并与亚历山大里亚学者通信。",
+        "Worked in Syracuse and corresponded with Alexandrian scholars.",
+      ),
+      event(
+        "前212",
+        "罗马攻陷叙拉古时遇害；具体场景来自后世叙述。",
+        "Killed during the Roman capture of Syracuse; detailed scenes are later accounts.",
+      ),
+      event(
+        "1906（身后）",
+        "重写本中的《方法》等文本被重新辨识。",
+        "His Method and other texts were identified in a palimpsest.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Archimedes", bio("Archimedes")),
+      source(
+        "Archimedes · Quadrature of the Parabola, translation",
+        "https://web.calstatela.edu/faculty/hmendel/Ancient%20Mathematics/Archimedes/QuadraturaParabolae/QP.contents.html",
+      ),
+      source(
+        "MacTutor · A history of Pi",
+        "https://mathshistory.st-andrews.ac.uk/HistTopics/Pi_through_the_ages/",
+      ),
+    ],
+  },
+  {
+    id: "liu-hui",
+    name: l("刘徽", "Liu Hui"),
+    fullName: "刘徽 · Liu Hui",
+    born: 220,
+    died: 280,
+    lifeDates: l(
+      "3世纪；263年有著述，生卒不详",
+      "3rd century; documented work in 263, life dates unknown",
+    ),
+    place: l("曹魏时期的中国", "China during the Cao Wei period"),
+    field: l("算法论证 · 测量", "Justifying algorithms · Surveying"),
+    hook: l(
+      "不只给出怎么算，还要讲清为什么这样算。",
+      "Explain why a procedure works, not only how to use it.",
+    ),
+    summary: l(
+      "刘徽通过注释《九章算术》，解释算法背后的数量关系与图形理由。他的生平记载很少，263 年的著述是可靠的时间锚点；割圆与重差测量展示了算法、图形和论证怎样协作。",
+      "Liu Hui’s commentary on the Nine Chapters explains the numerical and geometric reasons behind procedures. Biography is sparse; work dated 263 provides a firm anchor. His circle approximation and surveying join algorithms with argument.",
+    ),
+    portrait: monogram(
+      "liu-hui",
+      "刘徽",
+      "Liu Hui",
+      "https://ihns.cas.cn/xwdt/xsdt/202604/t20260408_8182719.html",
+    ),
+    achievements: [
+      item(
+        "263",
+        "为《九章算术》解释原理",
+        "Explaining the Nine Chapters",
+        "通过图形分割、移补与数量关系论证既有算法。贡献包含解释和改进，并不是把《九章算术》整部著作归为他原创。",
+        "Dissection, rearrangement and numerical relations justify existing procedures. His contributions include explanation and improvement; he did not author the entire Nine Chapters.",
+      ),
+      item(
+        "263",
+        "割圆术与逐步逼近",
+        "Approximating circles with polygons",
+        "从内接正多边形出发，反复倍增边数，控制圆与多边形之间的差。这把求圆周率变成可以继续推进的计算程序。",
+        "Repeatedly doubling an inscribed polygon’s sides controls the gap to the circle, turning circle measurement into a repeatable procedure.",
+      ),
+      item(
+        "263",
+        "隔着距离也能测量",
+        "Surveying inaccessible places",
+        "《重差》通过多次观测与勾股、相似关系求海岛高度和距离。后世称《海岛算经》，其九题把测量条件转成可计算的关系。",
+        "Repeated observations and right-triangle relations determine inaccessible heights and distances. The nine problems later circulated as the Sea Island Mathematical Manual.",
+      ),
+    ],
+    timeline: [
+      event(
+        "3世纪",
+        "活动于曹魏时期；出生地与确切生卒年缺乏可靠记录。",
+        "Active in the Cao Wei period; birthplace and exact life dates lack secure records.",
+      ),
+      event(
+        "263",
+        "完成《九章算术》注释，序文留下纪年。",
+        "Dated his commentary on the Nine Chapters.",
+      ),
+      event(
+        "263",
+        "撰写重差测量问题，附于勾股研究之后。",
+        "Composed surveying problems using repeated observations.",
+      ),
+      event(
+        "唐代（身后）",
+        "《重差》以《海岛算经》之名进入数学教学传统。",
+        "The surveying work entered the Tang mathematical curriculum as the Sea Island Manual.",
+      ),
+    ],
+    sources: [
+      source(
+        "中国科学院自然科学史所 · 刘徽研究专刊",
+        "https://ihns.cas.cn/xwdt/xsdt/202604/t20260408_8182719.html",
+      ),
+      source(
+        "中国科学院自然科学史所 ·《析理以辞——刘徽传》",
+        "https://www.ihns.cas.cn/yjcg/xszz/zztj/202604/t20260408_8182760.html",
+      ),
+      source(
+        "Sea Island Mathematical Manual · Original Chinese text",
+        "https://zh.wikisource.org/zh-hans/海島算經",
+      ),
+      source(
+        "Swetz · A Chinese mathematical classic (1986)",
+        "https://www.sciencedirect.com/science/article/pii/0315086086900248",
+      ),
+    ],
+  },
+  {
+    id: "zu-chongzhi",
+    name: l("祖冲之", "Zu Chongzhi"),
+    fullName: "祖冲之 · Zu Chongzhi",
+    born: 429,
+    died: 500,
+    lifeDates: l(
+      "429—500/501（卒年记载有异）",
+      "429–500/501 (sources differ on the death year)",
+    ),
+    place: l(
+      "建康及刘宋、南齐朝廷",
+      "Jiankang; Liu Song and Southern Qi courts",
+    ),
+    field: l("圆周率 · 体积 · 历法", "Pi · Volume · Calendars"),
+    hook: l(
+      "让近似值带着误差，也让历法接受观测检验。",
+      "Control approximation errors and test calendars against observations.",
+    ),
+    summary: l(
+      "祖冲之在数学、天文与工程之间工作，研读刘徽注释，并与儿子祖暅合作。他的《缀术》已失传，因此有些结果可以确认，完整推导却不能凭后人的重构当作原文。",
+      "Zu Chongzhi worked across mathematics, astronomy and engineering, studied Liu Hui’s commentary and collaborated with his son Zu Geng. His Zhui Shu is lost: surviving results should be distinguished from reconstructed proofs.",
+    ),
+    portrait: monogram(
+      "zu-chongzhi",
+      "祖冲之",
+      "Zu Chongzhi",
+      bio("Zu_Chongzhi"),
+    ),
+    achievements: [
+      item(
+        "5世纪",
+        "圆周率的精密界限与密率",
+        "Tight bounds and a rational approximation to pi",
+        "史料记录圆周率位于 3.1415926 与 3.1415927 之间，并给出密率 355/113。密率是非常好的近似分数，不是 π 的精确值。",
+        "Historical records give the bounds 3.1415926 and 3.1415927 and the approximation 355/113. The fraction is an approximation, not an exact value of π.",
+        "3.1415926<\\pi<3.1415927",
+      ),
+      item(
+        "5世纪",
+        "与祖暅合作研究球体积",
+        "Sphere volume with Zu Geng",
+        "传世注释把球体积研究与父子二人联系起来。利用相应高度截面积的比较来求体积，不能把祖暅的贡献全部归到父亲名下。",
+        "Later commentary links both father and son to sphere-volume work. Comparing cross-sectional areas supports the calculation; Zu Geng’s contribution must remain visible.",
+        "V=\\frac43\\pi r^3",
+      ),
+      item(
+        "462",
+        "《大明历》的精密推算",
+        "A more precise calendar",
+        "区分回归年等天文周期，并用更合适的置闰周期协调太阳年与朔望月。数学服务于观测与时间制度；历法后来才正式施行。",
+        "More precise astronomical periods and intercalation reconciled the solar year with lunar months. The calendar connected calculation with observation and was adopted only later.",
+      ),
+    ],
+    timeline: [
+      event(
+        "429",
+        "出生于具有天文、历法传统的家族。",
+        "Born into a family with astronomical and calendrical expertise.",
+      ),
+      event(
+        "462",
+        "向朝廷提出《大明历》。",
+        "Submitted the Daming calendar to the court.",
+      ),
+      event(
+        "500/501",
+        "去世；不同参考资料的卒年相差一年。",
+        "Died; reference sources differ by one year.",
+      ),
+      event(
+        "510（身后）",
+        "《大明历》正式施行。",
+        "The Daming calendar entered official use.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Zu Chongzhi", bio("Zu_Chongzhi")),
+      source(
+        "香港教育局 · 祖冲之《大明历》算法选释",
+        "https://www.edb.gov.hk/attachment/tc/curriculum-development/kla/ma/res/smn_29.pdf",
+      ),
+    ],
+  },
+  {
+    id: "aryabhata",
+    name: l("阿耶波多", "Aryabhata"),
+    fullName: "Āryabhaṭa",
+    born: 476,
+    died: 550,
+    lifeDates: l("476—约550（卒年未详）", "476–c. 550 (death date uncertain)"),
+    place: l(
+      "印度拘苏摩补罗，通常对应今巴特那附近",
+      "Kusumapura, usually associated with the Patna region",
+    ),
+    field: l("计算天文 · 三角学", "Mathematical astronomy · Trigonometry"),
+    hook: l(
+      "把天空的周期，写成可以反复执行的算法。",
+      "Turn celestial cycles into procedures that can be repeated.",
+    ),
+    summary: l(
+      "阿耶波多在《阿耶波多历数书》中用简练诗句组织数学与天文规则。499 年与当时自述年龄帮助确定其出生年；出生地点和卒年仍有不确定性，不能把现代传说补成生平。",
+      "The Aryabhatiya organizes mathematical and astronomical rules in compact verses. Its date of 499 and the author’s stated age support his birth year; birthplace and death date remain uncertain.",
+    ),
+    portrait: monogram(
+      "aryabhata",
+      "阿耶波多",
+      "Aryabhata",
+      bio("Aryabhata_I"),
+    ),
+    achievements: [
+      item(
+        "499",
+        "明确标为近似的圆周率",
+        "An explicitly approximate circle ratio",
+        "给出直径 20000 时圆周约为 62832，即 3.1416。这个精确近似不等于已经证明 π 是无理数。",
+        "A diameter of 20000 corresponds approximately to circumference 62832, giving 3.1416. This accurate approximation is not a proof that π is irrational.",
+        "\\pi\\approx\\frac{62832}{20000}=3.1416",
+      ),
+      item(
+        "499",
+        "正弦表与差分计算",
+        "A sine table built through differences",
+        "将四分之一圆周分为 24 份，列出与正弦有关的表值。通过相邻差值组织计算，为天文位置推算提供工具。",
+        "A table divides a quadrant into 24 intervals. Organizing sine values through successive differences provides a tool for astronomical calculations.",
+      ),
+      item(
+        "499",
+        "把整数方程逐步化小",
+        "Reducing integer equations",
+        "碎散术处理一次不定方程，把较大的系数化为较小问题。现代语言中，对非零整数 a、b，ax+by=c 有整数解当且仅当 gcd(a,b) 整除整数 c。",
+        "Kuttaka reduces linear indeterminate equations to smaller problems. For nonzero integers a,b and integer c, ax+by=c has integer solutions exactly when gcd(a,b) divides c.",
+        "ax+by=c",
+      ),
+    ],
+    timeline: [
+      event(
+        "476",
+        "出生年可据其著作中的年龄与纪年推算。",
+        "Birth year is inferred from the age and date given in his work.",
+      ),
+      event(
+        "499",
+        "在拘苏摩补罗撰成《阿耶波多历数书》。",
+        "Composed the Aryabhatiya in Kusumapura.",
+      ),
+      event(
+        "6世纪",
+        "其余生经历缺乏足够可靠的记载。",
+        "Reliable details of his later life are sparse.",
+      ),
+      event(
+        "629（后世）",
+        "婆什迦罗一世为该书作重要注释。",
+        "Bhaskara I produced an important commentary on the work.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Aryabhata I", bio("Aryabhata_I")),
+      source(
+        "Aryabhatiya · W. E. Clark’s 1930 translation",
+        "https://en.wikisource.org/wiki/Āryabhaṭīya_of_Āryabhaṭa",
+      ),
+    ],
+  },
+  {
+    id: "brahmagupta",
+    name: l("婆罗摩笈多", "Brahmagupta"),
+    fullName: "Brahmagupta",
+    born: 598,
+    died: 670,
+    lifeDates: l("598—约670（卒年未详）", "598–c. 670 (death date uncertain)"),
+    place: l("毗罗摩罗与优禅尼，印度", "Bhillamala and Ujjain, India"),
+    field: l(
+      "零与负数 · 代数 · 天文",
+      "Zero and negatives · Algebra · Astronomy",
+    ),
+    hook: l(
+      "把亏欠、盈余与零放进同一套运算规则。",
+      "Bring debts, fortunes and zero into a common arithmetic.",
+    ),
+    summary: l(
+      "婆罗摩笈多的天文著作保留了丰富的算术、几何与不定方程研究。他讨论正负数和零，也提出适用范围需要仔细辨认的规则；这是一段发展过程，不能倒写成完整的现代数系理论。",
+      "Brahmagupta’s astronomical works contain arithmetic, geometry and indeterminate equations. He gave rules for signs and zero, but their limitations matter: this was a developing theory, not the finished modern number system.",
+    ),
+    portrait: monogram(
+      "brahmagupta",
+      "婆罗摩笈多",
+      "Brahmagupta",
+      bio("Brahmagupta"),
+    ),
+    achievements: [
+      item(
+        "628",
+        "正负数与零的运算法则",
+        "Arithmetic with signs and zero",
+        "以盈余和债务解释正负数，给出加、减、乘的规则。他关于除以零的处理并不符合现代定义，因此不沿用为今天的运算规则。",
+        "Fortunes and debts explain positive and negative quantities, with rules for addition, subtraction and multiplication. His treatment of division by zero is not valid modern arithmetic.",
+      ),
+      item(
+        "628",
+        "圆内接四边形的面积",
+        "Area of a cyclic quadrilateral",
+        "四边形内接于同一圆时，面积可由四条边和半周长 s 求出。必须保留圆内接条件，不能给任意四边形直接套用。",
+        "For a cyclic quadrilateral, its four sides and semiperimeter s determine the area. The cyclic condition is essential.",
+        "A=\\sqrt{(s-a)(s-b)(s-c)(s-d)}",
+      ),
+      item(
+        "628",
+        "合成不定方程的解",
+        "Composing solutions of indeterminate equations",
+        "利用平方差型表达式的乘法关系，从已有解构造新解。这使找整数解成为可以延伸的过程，而不只是逐个猜测。",
+        "Composition identities for expressions of the form x²−Ny² construct new solutions from known ones, making integer equations a systematic subject.",
+        "(a^2-Nb^2)(c^2-Nd^2)=(ac+Nbd)^2-N(ad+bc)^2",
+      ),
+    ],
+    timeline: [
+      event(
+        "598",
+        "出生年由著作所述年龄推定。",
+        "Birth year is inferred from the age stated in his work.",
+      ),
+      event(
+        "628",
+        "在毗罗摩罗撰写《婆罗摩修正体系》。",
+        "Composed the Brahmasphutasiddhanta at Bhillamala.",
+      ),
+      event(
+        "665",
+        "撰写天文计算手册《食块》。",
+        "Wrote the Khandakhadyaka astronomical handbook.",
+      ),
+      event(
+        "8世纪（身后）",
+        "相关天文学传统经翻译进入阿拉伯语学术世界。",
+        "Related astronomical traditions entered Arabic scholarship through translation.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Brahmagupta", bio("Brahmagupta")),
+      source(
+        "Brahmagupta and Bhaskara · Colebrooke’s 1817 translation",
+        "https://en.wikisource.org/wiki/Algebra,_with_Arithmetic_and_Mensuration",
+      ),
+      source(
+        "Indian mathematics · Brahmagupta and Arabic transmission",
+        "https://mathshistory.st-andrews.ac.uk/Projects/Pearce/chapter-11/",
+      ),
+    ],
+  },
+  {
+    id: "al-khwarizmi",
+    name: l("花拉子米", "Al-Khwarizmi"),
+    fullName: "Muḥammad ibn Mūsā al-Khwārizmī",
+    born: 780,
+    died: 850,
+    lifeDates: l("约780—约850", "c. 780–c. 850"),
+    place: l("巴格达", "Baghdad"),
+    field: l(
+      "代数 · 计算 · 天文表",
+      "Algebra · Arithmetic · Astronomical tables",
+    ),
+    hook: l(
+      "把不同的实际问题，归约成几类可以重复求解的方程。",
+      "Reduce practical problems to a few repeatable equation types.",
+    ),
+    summary: l(
+      "花拉子米在阿拔斯王朝的学术环境中整理代数和计算方法，以交易、分配与测量问题说明用途。他采用文字推演与几何证明；书名中的 al-jabr 和其姓名的拉丁形式，后来留下 algebra 与 algorithm 两个词。",
+      "Working in Abbasid Baghdad, al-Khwarizmi organized algebra and arithmetic for practical problems. His exposition used words and geometry. Al-jabr and the Latin form of his name later gave rise to algebra and algorithm.",
+    ),
+    portrait: monogram(
+      "al-khwarizmi",
+      "花拉子米",
+      "Al-Khwarizmi",
+      bio("Al-Khwarizmi"),
+    ),
+    achievements: [
+      item(
+        "约820",
+        "整理一次与二次方程",
+        "Classifying linear and quadratic equations",
+        "在正数量的框架中将方程分成六类，以还原、对消和几何配方求解。现代符号可以帮助阅读，但并非原著采用的写法。",
+        "Within a framework of positive quantities, six equation types are solved by restoration, balancing and geometric completion of the square. Modern notation is a translation aid.",
+        "x^2+10x=39",
+      ),
+      item(
+        "9世纪",
+        "系统讲解印度位值计算",
+        "Explaining Indian place-value arithmetic",
+        "介绍以印度数字进行十进位计算的方法，经拉丁译本广泛流传。他是传播与组织者，不能据此说他发明了零或十进制。",
+        "He explained decimal place-value computation using Indian numerals. Latin versions spread these methods; this does not make him the inventor of zero or decimal notation.",
+      ),
+      item(
+        "9世纪",
+        "以表格组织天文计算",
+        "Organizing astronomy in tables",
+        "《信德天文表》吸收印度等传统，汇集历日与天体位置的计算规则。数学知识通过翻译、修订与表格，在不同语言之间迁移。",
+        "The Zij al-Sindhind organized calendrical and planetary calculations using Indian and other traditions. Tables, translations and revisions carried mathematics across languages.",
+      ),
+    ],
+    timeline: [
+      event(
+        "约780",
+        "生年与出生地均不十分确定。",
+        "Birth date and birthplace are uncertain.",
+      ),
+      event(
+        "9世纪前期",
+        "在巴格达受哈里发马蒙赞助从事学术工作。",
+        "Worked in Baghdad under the patronage of al-Ma’mun.",
+      ),
+      event(
+        "约820",
+        "完成关于还原与对消的代数著作。",
+        "Produced his treatise on algebra by completion and balancing.",
+      ),
+      event(
+        "12世纪（身后）",
+        "算术、代数著作经拉丁翻译继续传播。",
+        "Latin translations carried his arithmetic and algebra into new readerships.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Al-Khwarizmi", bio("Al-Khwarizmi")),
+      source(
+        "The Algebra of Mohammed Ben Musa · Rosen translation, ETH",
+        "https://www.e-rara.ch/zut/doi/10.3931/e-rara-56713",
+      ),
+    ],
+  },
+  {
+    id: "fibonacci",
+    name: l("斐波那契", "Fibonacci"),
+    fullName: "Leonardo of Pisa (Fibonacci)",
+    born: 1170,
+    died: 1250,
+    lifeDates: l(
+      "约1170—约1250；1240年仍有活动记录",
+      "c. 1170–c. 1250; documented as active in 1240",
+    ),
+    place: l("比萨与地中海商贸网络", "Pisa and Mediterranean trading networks"),
+    field: l("计算传播 · 数论", "Arithmetic transmission · Number theory"),
+    hook: l(
+      "把商人的算法与学者的数学，写进同一本书。",
+      "Bring merchants’ calculations and scholarly mathematics together.",
+    ),
+    summary: l(
+      "斐波那契在北非接触印度—阿拉伯数字和计算传统，将其整理进拉丁文数学著作。他既研究实际交易，也研究平方数；兔子数列只是其中一道题，不是他全部贡献。",
+      "Fibonacci encountered Indo-Arabic arithmetic in North Africa and organized it for Latin readers. His work ranges from commerce to square-number problems; the rabbit sequence is only one example.",
+    ),
+    portrait: monogram("fibonacci", "斐波那契", "Fibonacci", bio("Fibonacci")),
+    achievements: [
+      item(
+        "1202 / 1228",
+        "《计算之书》的数字与算法",
+        "Numerals and algorithms in Liber abaci",
+        "系统展示位值记数、分数与商业算术，连接地中海不同计算传统。他帮助传播这些知识，并非欧洲最早见到这些数字的人。",
+        "Place-value notation, fractions and commercial arithmetic connect Mediterranean traditions. He was an influential transmitter, not the first European ever to encounter these numerals.",
+      ),
+      item(
+        "约1220",
+        "《几何实践》的测量方法",
+        "Practical geometry and measurement",
+        "把几何命题与田地测量、距离和体积计算结合，为测量者提供算法。它显示理论证明与实用计算并不互相排斥。",
+        "Geometric propositions support surveying, distances and volumes. The work connects practical algorithms with theoretical geometry.",
+      ),
+      item(
+        "1225",
+        "《平方数书》的整数研究",
+        "Integer problems in the Book of Squares",
+        "研究平方数的组合与勾股数构造，把具体算题发展成数论。这里的重点是整数条件，不能把任意实数代数解都当作答案。",
+        "The Liber quadratorum studies square-number combinations and Pythagorean triples. Its integer restrictions matter; an arbitrary real solution is not sufficient.",
+      ),
+    ],
+    timeline: [
+      event(
+        "约1170",
+        "生于比萨，具体年份未定。",
+        "Born in Pisa; the precise year is uncertain.",
+      ),
+      event(
+        "12世纪末",
+        "在布贾亚及旅行中学习不同计算方法。",
+        "Learned methods in Bugia and through Mediterranean travel.",
+      ),
+      event(
+        "1202–1228",
+        "写作并修订《计算之书》，另著几何与平方数作品。",
+        "Wrote and revised Liber abaci alongside works on geometry and squares.",
+      ),
+      event(
+        "1240",
+        "比萨的津贴记录表明他此时仍在服务城市；确切卒年未知。",
+        "A Pisan payment record shows him serving the city; the exact death year is unknown.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Fibonacci", bio("Fibonacci")),
+      source(
+        "ETH Library · Fibonacci as mathematician",
+        "https://library.ethz.ch/en/collections-and-archives/platforms/virtual-exhibitions/fibonacci-un-ponte-sul-mediterraneo/fibonacci-as-mathematician.html",
+      ),
+    ],
+  },
+  {
+    id: "descartes",
+    name: l("笛卡尔", "Descartes"),
+    fullName: "René Descartes",
+    born: 1596,
+    died: 1650,
+    place: l("法国 → 荷兰 → 斯德哥尔摩", "France → Netherlands → Stockholm"),
+    field: l(
+      "代数几何方法 · 方程",
+      "Algebraic methods in geometry · Equations",
+    ),
+    hook: l(
+      "把一条曲线翻译成方程，会多出哪些办法？",
+      "What changes when a curve becomes an equation?",
+    ),
+    summary: l(
+      "笛卡尔用代数处理几何构造，使原本看起来不同的曲线问题能够共同计算。《几何学》的传播也依赖范斯霍滕等人的译注；今天熟悉的直角坐标图并不是原书中已经完备的样式。",
+      "Descartes brought algebra into geometric construction. Van Schooten’s translations and commentary helped spread the method; the familiar modern Cartesian diagram was not already complete in the original book.",
+    ),
+    portrait: {
+      src: "/images/mathematicians/origins/descartes.jpg",
+      alt: l(
+        "笛卡尔穿深色衣服、戴白领的历史油画",
+        "Historical painted portrait of Descartes with a white collar",
+      ),
+      credit: l(
+        "据 Frans Hals 肖像的摹本；原型标为1649年 · 公共领域",
+        "After a portrait by Frans Hals, dated to 1649 · Public domain",
+      ),
+      href: "https://commons.wikimedia.org/wiki/File:Frans_Hals_-_Portret_van_René_Descartes.jpg",
+      kind: "portrait",
+      license: pd,
+    },
+    achievements: [
+      item(
+        "1637",
+        "用方程研究轨迹",
+        "Studying loci through equations",
+        "《几何学》把长度关系转成代数方程，使求交点、构造与曲线分类可以共同处理。这是解析几何发展的关键工作之一。",
+        "La Géométrie turns length relations into equations, connecting intersections, constructions and curve classification. It is a major contribution to analytic geometry.",
+      ),
+      item(
+        "1637",
+        "组织代数符号与幂",
+        "Organizing symbols and powers",
+        "系统使用字母表示已知量、未知量，并推广幂的简洁记法。记号让推理可以压缩和迁移，但不是这些符号都由他独自发明。",
+        "Letters for known and unknown quantities and compact power notation made arguments easier to reuse. The contribution is systematic use and dissemination, not sole invention of every symbol.",
+      ),
+      item(
+        "1637",
+        "用符号变化约束正根数",
+        "Bounding positive roots by sign changes",
+        "非零实系数多项式忽略零系数后，正根数（计重数）不超过系数符号变化次数，且相差偶数。这给出限制，不直接给出全部根。",
+        "For a nonzero real polynomial, ignoring zero coefficients, the number of positive roots counted with multiplicity is at most the sign changes and differs by an even number.",
+      ),
+    ],
+    timeline: [
+      event("1596", "生于法国拉艾。", "Born in La Haye, France."),
+      event(
+        "1628",
+        "定居荷兰，继续数学与哲学研究。",
+        "Settled in the Netherlands to pursue mathematics and philosophy.",
+      ),
+      event(
+        "1637",
+        "发表《方法谈》及附录《几何学》。",
+        "Published the Discourse on Method with La Géométrie.",
+      ),
+      event("1650", "在斯德哥尔摩去世。", "Died in Stockholm."),
+    ],
+    sources: [
+      source("MacTutor · René Descartes", bio("Descartes")),
+      source(
+        "Descartes · La Géométrie, original text",
+        "https://www.gutenberg.org/ebooks/26400",
+      ),
+      source(
+        "Library of Congress · 1637 edition",
+        "https://www.loc.gov/item/32034972/",
+      ),
+    ],
+  },
+  {
+    id: "fermat",
+    name: l("费马", "Fermat"),
+    fullName: "Pierre de Fermat",
+    born: 1607,
+    died: 1665,
+    lifeDates: l(
+      "17世纪初—1665（生年有1601、1607等说）",
+      "Early 1600s–1665 (birth year disputed: 1601 or c. 1607)",
+    ),
+    place: l("博蒙德洛马涅 → 图卢兹", "Beaumont-de-Lomagne → Toulouse"),
+    field: l("数论 · 极值 · 概率", "Number theory · Extrema · Probability"),
+    hook: l(
+      "一封信里的问题，能让一门学科继续生长。",
+      "A problem in a letter can open a long research program.",
+    ),
+    summary: l(
+      "费马任司法官，通过书信与手稿参与数学研究。他的数论问题、极值方法和概率通信影响深远；有些断言当时没有留下证明，应把提出问题与证明定理分清。",
+      "Fermat worked as a magistrate and pursued mathematics through letters and manuscripts. His number theory, methods for extrema and probability correspondence were influential; some assertions lacked surviving proofs.",
+    ),
+    portrait: {
+      src: "/images/mathematicians/origins/fermat.jpg",
+      alt: l("费马的历史肖像", "Historical portrait of Pierre de Fermat"),
+      credit: l(
+        "佚名，17世纪肖像 · 公共领域",
+        "Unknown artist, seventeenth-century portrait · Public domain",
+      ),
+      href: "https://commons.wikimedia.org/wiki/File:Pierre_de_Fermat.jpg",
+      kind: "portrait",
+      license: pd,
+    },
+    achievements: [
+      item(
+        "1630年代",
+        "寻找极值与切线的方法",
+        "Methods for extrema and tangents",
+        "比较相近输入下的表达式，消去公共项来定位极值或切线。这是微积分形成前的重要方法，不直接等同于今日完备的极限论证。",
+        "Comparing nearby expressions and cancelling terms locates extrema or tangents. This anticipates calculus without already providing a modern limit-based foundation.",
+      ),
+      item(
+        "1640",
+        "费马小定理的陈述",
+        "Stating Fermat’s little theorem",
+        "对素数 p，若整数 a 不被 p 整除，则 a 的 p−1 次幂模 p 余1。他在信中陈述结果，现存信件没有给出完整证明。",
+        "For prime p and integer a not divisible by p, a^(p−1) is congruent to 1 modulo p. His surviving letter states the result without a full proof.",
+        "a^{p-1}\\equiv1\\pmod p\\quad(p\\nmid a)",
+      ),
+      item(
+        "1654",
+        "与帕斯卡讨论公平分配",
+        "Fair division with Pascal",
+        "比赛提前结束时，应按未来获胜机会分配赌注。两人的通信通过计数和递推讨论问题，成为概率史的重要文献。",
+        "When a game ends early, stakes should reflect future winning chances. Their letters use counting and recursion and became important documents in probability.",
+      ),
+    ],
+    timeline: [
+      event(
+        "17世纪初",
+        "出生于博蒙德洛马涅；出生年仍有史料争议。",
+        "Born in Beaumont-de-Lomagne; the year remains disputed.",
+      ),
+      event(
+        "1631",
+        "进入图卢兹高等法院任职。",
+        "Entered the Parlement of Toulouse.",
+      ),
+      event(
+        "1654",
+        "与帕斯卡就概率问题通信。",
+        "Corresponded with Pascal on probability.",
+      ),
+      event(
+        "1665",
+        "卒于卡斯特尔，部分作品随后由家人整理出版。",
+        "Died in Castres; family members later edited some of his work.",
+      ),
+    ],
+    sources: [
+      source("MacTutor · Pierre de Fermat", bio("Fermat")),
+      source(
+        "MAA · When was Pierre de Fermat born?",
+        "https://old.maa.org/press/periodicals/convergence/when-was-pierre-de-fermat-born",
+      ),
+      source(
+        "Pascal–Fermat correspondence · University of York",
+        "https://www.york.ac.uk/depts/maths/histstat/pascal.htm",
+      ),
+    ],
+  },
+  {
+    id: "pascal",
+    name: l("帕斯卡", "Pascal"),
+    fullName: "Blaise Pascal",
+    born: 1623,
+    died: 1662,
+    place: l("克莱蒙 → 鲁昂与巴黎", "Clermont → Rouen & Paris"),
+    field: l(
+      "射影几何 · 组合 · 概率",
+      "Projective geometry · Combinatorics · Probability",
+    ),
+    hook: l(
+      "几何的交点、数表与公平赌局，可以怎样相遇？",
+      "What connects geometric intersections, number tables and fair games?",
+    ),
+    summary: l(
+      "帕斯卡同时研究数学、机械与自然哲学。他整理算术三角形的性质，也与费马讨论机会的计算。数学之外的宗教与哲学写作是生平的一部分，不需要把多方面工作压成单一的神童故事。",
+      "Pascal worked in mathematics, machines and natural philosophy. He organized properties of the arithmetic triangle and exchanged ideas on chance with Fermat; religious and philosophical writing also shaped his life.",
+    ),
+    portrait: {
+      src: "/images/mathematicians/origins/pascal.jpg",
+      alt: l(
+        "约1690年绘制的帕斯卡身后肖像",
+        "Posthumous portrait of Pascal, around 1690",
+      ),
+      credit: l(
+        "佚名，约1690年身后肖像 · 凡尔赛宫藏 · 公共领域",
+        "Unknown artist, c. 1690 posthumous portrait · Versailles · Public domain",
+      ),
+      href: "https://commons.wikimedia.org/wiki/File:Blaise_Pascal_Versailles.JPG",
+      kind: "later-depiction",
+      license: pd,
+    },
+    achievements: [
+      item(
+        "1640",
+        "圆锥曲线上六点的共线关系",
+        "A collinearity theorem on conics",
+        "六个互异点位于一条非退化圆锥曲线上时，六边形三组对边的交点共线。在射影平面中，平行边的交点也能统一处理。",
+        "For six distinct points on a nondegenerate conic, intersections of opposite sides of the hexagon are collinear. The projective formulation also handles parallel sides.",
+      ),
+      item(
+        "1654 / 1665",
+        "算术三角形的系统研究",
+        "A systematic study of the arithmetic triangle",
+        "组织二项式系数、组合与递推的关系。数表在其他传统中早已出现；他的贡献是研究和应用，不是独自发明这张三角形。",
+        "He organized relations among binomial coefficients, combinations and recurrences. The triangle predates him in other traditions; his contribution was systematic study and application.",
+        "\\binom nk=\\binom{n-1}{k-1}+\\binom{n-1}k",
+      ),
+      item(
+        "1654",
+        "中断比赛的分赌注问题",
+        "The problem of points",
+        "与费马分别用递推和计数分析尚未进行的公平比赛。把每种可能结果的权重算清楚，就能讨论合理的当前价值。",
+        "Pascal and Fermat used recursion and counting for unfinished fair games. Weighting possible outcomes yields a defensible present value.",
+      ),
+    ],
+    timeline: [
+      event(
+        "1623",
+        "生于克莱蒙，父亲参与其教育。",
+        "Born in Clermont; educated with his father’s involvement.",
+      ),
+      event(
+        "1640",
+        "发表关于圆锥曲线的短文。",
+        "Published an essay on conics.",
+      ),
+      event(
+        "1654",
+        "研究算术三角形，并与费马通信讨论概率。",
+        "Worked on the arithmetic triangle and corresponded with Fermat.",
+      ),
+      event("1662", "卒于巴黎，享年39岁。", "Died in Paris, aged 39."),
+    ],
+    sources: [
+      source("MacTutor · Blaise Pascal", bio("Pascal")),
+      source(
+        "Pascal to Fermat · Letter of 24 August 1654",
+        "https://fr.wikisource.org/wiki/Œuvres_de_Blaise_Pascal/Lettre_de_Pascal_à_Fermat_(24_août_1654)",
+      ),
+      source(
+        "Pascal–Fermat correspondence · University of York",
+        "https://www.york.ac.uk/depts/maths/histstat/pascal.htm",
+      ),
+    ],
+  },
+  {
+    id: "huygens",
+    name: l("惠更斯", "Huygens"),
+    fullName: "Christiaan Huygens",
+    born: 1629,
+    died: 1695,
+    place: l("海牙 → 巴黎 → 海牙", "The Hague → Paris → The Hague"),
+    field: l(
+      "概率 · 曲线 · 数学物理",
+      "Probability · Curves · Mathematical physics",
+    ),
+    hook: l(
+      "让一条曲线解释钟摆，也让一个数衡量机会。",
+      "Let a curve explain a pendulum and a number measure chance.",
+    ),
+    summary: l(
+      "惠更斯把几何用于钟摆、光与运动，也将赌局问题写成可供学习的论著。他的国际通信和巴黎工作影响了莱布尼茨等人；实验装置、数学证明与学者交流相互推动。",
+      "Huygens applied geometry to pendulums, light and motion and wrote a teachable account of games of chance. His correspondence and Paris work influenced Leibniz and others, connecting apparatus, proof and discussion.",
+    ),
+    portrait: {
+      src: "/images/mathematicians/origins/huygens.jpg",
+      alt: l(
+        "惠更斯的历史油画肖像",
+        "Historical painted portrait of Christiaan Huygens",
+      ),
+      credit: l(
+        "Caspar Netscher，1671年 · 公共领域",
+        "Caspar Netscher, 1671 · Public domain",
+      ),
+      href: "https://commons.wikimedia.org/wiki/File:Christiaan_Huygens-painting.jpeg",
+      kind: "portrait",
+      license: pd,
+    },
+    achievements: [
+      item(
+        "1657",
+        "机会的期望价值",
+        "The expected value of a chance",
+        "《论赌博中的计算》用公平交换来讨论机会的价值。现代有限情形中，期望是各收益按其概率加权的和。",
+        "His treatise on games of chance studies value through fair exchanges. For finitely many outcomes, modern expectation is the probability-weighted sum of payoffs.",
+        "\\mathbb E[X]=\\sum_i p_i x_i",
+      ),
+      item(
+        "1673",
+        "摆线的等时下降",
+        "The cycloid’s equal-time descent",
+        "在无摩擦、重力均匀的理想模型中，沿倒置摆线从静止滑到底部的时间与起点无关。《摆钟论》将此与曲线几何、计时联系起来。",
+        "With uniform gravity and no friction, descent from rest to the bottom of an inverted cycloid takes the same time from different starting points.",
+      ),
+      item(
+        "1690",
+        "用波前构造解释光传播",
+        "Explaining propagation with wavefronts",
+        "《光论》把波前各点看作次级波的来源，用几何构造讨论传播、反射与折射。这是历史模型，不等于完整的现代电磁波理论。",
+        "The Treatise on Light constructs propagation, reflection and refraction from secondary waves. This historical model is not the full modern electromagnetic theory.",
+      ),
+    ],
+    timeline: [
+      event("1629", "生于海牙。", "Born in The Hague."),
+      event(
+        "1657",
+        "取得摆钟专利，并发表概率论著。",
+        "Patented a pendulum clock and published his treatise on chance.",
+      ),
+      event(
+        "1666–1681",
+        "主要在巴黎科学院工作，1672年结识莱布尼茨。",
+        "Worked mainly at the Paris Academy and met Leibniz in 1672.",
+      ),
+      event("1695", "卒于海牙。", "Died in The Hague."),
+    ],
+    sources: [
+      source("MacTutor · Christiaan Huygens", bio("Huygens")),
+      source(
+        "ETH · Horologium oscillatorium (1673)",
+        "https://www.e-rara.ch/zut/content/titleinfo/3347187",
+      ),
+      source(
+        "Library of Congress · Horologium oscillatorium",
+        "https://www.loc.gov/item/83461961/",
+      ),
+    ],
+  },
+  {
+    id: "newton",
+    name: l("牛顿", "Newton"),
+    fullName: "Isaac Newton",
+    born: 1643,
+    died: 1727,
+    lifeDates: l(
+      "1643—1727（公历；旧历生年1642）",
+      "1643–1727 (Gregorian; born 1642 in the old calendar)",
+    ),
+    place: l("伍尔索普 → 剑桥 → 伦敦", "Woolsthorpe → Cambridge → London"),
+    field: l("微积分 · 级数 · 力学", "Calculus · Series · Mechanics"),
+    hook: l(
+      "把瞬时变化与累积联系起来，再用它们追问天体运动。",
+      "Connect instantaneous change and accumulation, then study motion.",
+    ),
+    summary: l(
+      "牛顿把级数、流数方法与运动问题结合，形成长期修改的研究计划。《原理》的完成依靠与哈雷等人的交流；微积分与莱布尼茨的独立工作及后续传播共同构成历史。",
+      "Newton connected series, fluxions and motion in work developed over many years. The Principia grew through exchanges including Halley’s support; calculus history also includes Leibniz’s independent work and its later dissemination.",
+    ),
+    portrait: {
+      src: "/images/mathematicians/origins/newton.jpg",
+      alt: l(
+        "据1689年克内勒原作复制的牛顿肖像",
+        "Portrait of Newton copied after Kneller’s 1689 painting",
+      ),
+      credit: l(
+        "据 Godfrey Kneller 1689年原作的复制像 · 公共领域",
+        "Copy after Godfrey Kneller’s 1689 portrait · Public domain",
+      ),
+      href: "https://commons.wikimedia.org/wiki/File:GodfreyKneller-IsaacNewton-1689.jpg",
+      kind: "portrait",
+      license: pd,
+    },
+    achievements: [
+      item(
+        "1660年代",
+        "流数与反流数的联系",
+        "Fluxions and inverse operations",
+        "把变化率与求面积等逆问题联系起来。用现代语言，在 f 连续时，累积积分的导数等于 f；这一基本关系成为微积分的核心。",
+        "He connected rates of change with inverse problems such as quadrature. In modern language, for continuous f, differentiating its accumulated integral recovers f.",
+        "\\frac{d}{dx}\\int_a^x f(t)\\,dt=f(x)",
+      ),
+      item(
+        "1660年代",
+        "广义二项式级数",
+        "The generalized binomial series",
+        "把整数次幂的有限展开推广到一般指数的无穷级数。非负整数指数时终止；一般实指数使用下式时需保证 |x|<1。",
+        "Finite integer-power expansions extend to infinite series. Nonnegative integer exponents terminate; for general real exponents, the displayed series is valid for |x|<1.",
+        "(1+x)^\\alpha=\\sum_{k=0}^{\\infty}\\binom\\alpha k x^k\\quad(|x|<1)",
+      ),
+      item(
+        "1687",
+        "《原理》的数学运动理论",
+        "A mathematical theory of motion",
+        "以运动定律与引力统一解释地面和天体问题。平方反比引力公式用于质点，或球对称物体外部；不能不加条件地用于任意形状物体。",
+        "The Principia connects terrestrial and celestial motion. The inverse-square force applies to point masses or externally to spherically symmetric bodies, not indiscriminately to every shape.",
+        "F=G\\frac{m_1m_2}{r^2}",
+      ),
+    ],
+    timeline: [
+      event(
+        "1643（公历）",
+        "生于伍尔索普；当时英国旧历记为1642年。",
+        "Born in Woolsthorpe; the English old calendar recorded 1642.",
+      ),
+      event(
+        "1661–1669",
+        "在剑桥学习，后任卢卡斯数学教授。",
+        "Studied at Cambridge and became Lucasian Professor of Mathematics.",
+      ),
+      event(
+        "1687",
+        "在哈雷推动与资助下出版《自然哲学的数学原理》。",
+        "Published the Principia with Halley’s encouragement and financial support.",
+      ),
+      event("1727", "卒于伦敦。", "Died in London."),
+    ],
+    sources: [
+      source("MacTutor · Isaac Newton", bio("Newton")),
+      source(
+        "Cambridge University Library · The Principia and its publication",
+        "https://wwwe.lib.cam.ac.uk/CUL/exhibitions/Footprints_of_the_Lion/gravity_glory.html",
+      ),
+      source(
+        "Cambridge Digital Library · Principia",
+        "https://www.repository.cam.ac.uk/items/4e101d5e-b2d2-4e27-a189-3229f4f0938b",
+      ),
+    ],
+  },
+];
+
+const relation = (
+  id: string,
+  source: string,
+  target: string,
+  kind: ScholarRelation["kind"],
+  zh: string,
+  en: string,
+  dzh: string,
+  den: string,
+  sourceUrl: string,
+): ScholarRelation => ({
+  id,
+  source,
+  target,
+  kind,
+  label: l(zh, en),
+  description: l(dzh, den),
+  sourceUrl,
+});
+
+export const originsRelations: ScholarRelation[] = [
+  relation(
+    "euclid-newton",
+    "euclid",
+    "newton",
+    "influence",
+    "《原本》的研读",
+    "Reading the Elements",
+    "牛顿学习过巴罗版《几何原本》，再进入更高深的代数与几何。这条线记录著作学习，不能理解为跨时代的直接师承。",
+    "Newton studied Barrow’s edition of the Elements before more advanced algebra and geometry. This is a link through a text, not personal instruction.",
+    bio("Newton"),
+  ),
+  relation(
+    "euclid-hilbert",
+    "euclid",
+    "hilbert",
+    "influence",
+    "重新审视几何公理",
+    "Reworking geometric axioms",
+    "希尔伯特《几何基础》重新组织欧氏几何的公理与关系，检视传统证明中的隐含假设。这里表示对一套理论的重建。",
+    "Hilbert’s Foundations of Geometry reorganized Euclidean axioms and examined implicit assumptions. The connection is a reconstruction of a theory.",
+    bio("Hilbert"),
+  ),
+  relation(
+    "archimedes-liu-hui",
+    "archimedes",
+    "liu-hui",
+    "parallel",
+    "同题：圆的逐步逼近",
+    "Shared problem: approximating the circle",
+    "两人都用多边形逼近圆并讨论误差，但方法与文献传统不同。本图作问题层面的比较，没有足够证据把它画成直接传播或师承。",
+    "Both used polygons to approximate circles and control error in different textual traditions. This is a comparison of problems, not a claim of direct transmission.",
+    "https://www.ihns.cas.cn/yjcg/xszz/zztj/202604/t20260408_8182760.html",
+  ),
+  relation(
+    "liu-hui-zu-chongzhi",
+    "liu-hui",
+    "zu-chongzhi",
+    "influence",
+    "研读《九章算术注》",
+    "Studying the Nine Chapters commentary",
+    "祖冲之从刘徽的《九章算术注》中学习数学，继续研究圆周率与立体体积。相隔近两个世纪，是文本传承。",
+    "Zu Chongzhi studied Liu Hui’s commentary and continued work on pi and volume. Separated by nearly two centuries, this is transmission through writings.",
+    bio("Zu_Chongzhi"),
+  ),
+  relation(
+    "zu-chongzhi-aryabhata",
+    "zu-chongzhi",
+    "aryabhata",
+    "parallel",
+    "同题：圆周率的精密近似",
+    "Shared problem: accurate approximations to pi",
+    "祖冲之给出界限与密率，阿耶波多记载3.1416的近似。相近时代处理相同问题并不证明彼此接触；本线不主张技术直接传递。",
+    "Zu supplied bounds and a rational approximation; Aryabhata recorded 3.1416. Similar problems in nearby periods do not establish contact or direct transmission.",
+    bio("Aryabhata_I"),
+  ),
+  relation(
+    "aryabhata-brahmagupta",
+    "aryabhata",
+    "brahmagupta",
+    "parallel",
+    "同题：天文计算与正弦表",
+    "Shared problems in mathematical astronomy",
+    "两人的著作都以数学处理天体周期、正弦表与不定方程。这里比较研究议题，不把对前说的争论概括成单向继承或正式师承。",
+    "Both works address astronomical cycles, sine tables and indeterminate equations. This edge compares research questions without turning debate into simple inheritance or supervision.",
+    bio("Brahmagupta"),
+  ),
+  relation(
+    "brahmagupta-al-khwarizmi",
+    "brahmagupta",
+    "al-khwarizmi",
+    "influence",
+    "印度天文学的翻译传播",
+    "Translation of Indian astronomy",
+    "与婆罗摩笈多相关的天文学传统经翻译进入巴格达，成为花拉子米天文表的重要背景。传递经过译者与修订，不代表两人直接联系。",
+    "Astronomical traditions associated with Brahmagupta reached Baghdad through translations and informed al-Khwarizmi’s tables. Translators and revisions mediated the connection.",
+    "https://mathshistory.st-andrews.ac.uk/Projects/Pearce/chapter-11/",
+  ),
+  relation(
+    "al-khwarizmi-fibonacci",
+    "al-khwarizmi",
+    "fibonacci",
+    "influence",
+    "代数与算法的跨语种传播",
+    "Algebra across languages",
+    "《计算之书》可辨认出花拉子米及阿布·卡米尔的来源。这条线包含翻译和中间文本，不把斐波那契称为花拉子米的学生。",
+    "Liber abaci draws on traditions associated with al-Khwarizmi and Abu Kamil, including translations and intermediary texts. Fibonacci was not his personal student.",
+    "https://library.ethz.ch/en/collections-and-archives/platforms/virtual-exhibitions/fibonacci-un-ponte-sul-mediterraneo/fibonacci-as-mathematician.html",
+  ),
+  relation(
+    "fibonacci-fermat",
+    "fibonacci",
+    "fermat",
+    "parallel",
+    "同题：平方数与整数解",
+    "Shared problems: squares and integer solutions",
+    "《平方数书》和费马的数论都研究平方数的组合与整数限制。这是跨时代的问题对照，不表示已经查明费马直接读过该书。",
+    "The Book of Squares and Fermat’s number theory both study square combinations and integer restrictions. This comparison does not assert that Fermat read the book.",
+    bio("Fibonacci"),
+  ),
+  relation(
+    "descartes-fermat",
+    "descartes",
+    "fermat",
+    "parallel",
+    "解析几何的不同路径",
+    "Different paths to analytic geometry",
+    "笛卡尔与费马都发展了用代数处理几何的方法，侧重点和写作方式不同。他们的交流与争论不能简化成一人是另一人的学生。",
+    "Descartes and Fermat developed algebraic approaches to geometry with different emphases. Their exchanges and disputes were not a teacher–student relationship.",
+    bio("Fermat"),
+  ),
+  {
+    ...relation(
+      "fermat-pascal",
+      "fermat",
+      "pascal",
+      "support",
+      "1654年概率通信",
+      "Probability correspondence in 1654",
+      "两人就分赌注等问题相互解释计数与递推思路。这是一段双向研究通信，不表示成果单向归属。",
+      "They exchanged counting and recursive approaches to the problem of points. The correspondence was reciprocal, without one-way ownership.",
+      "https://www.york.ac.uk/depts/maths/histstat/pascal.htm",
+    ),
+    direction: "both",
+  },
+  relation(
+    "pascal-huygens",
+    "pascal",
+    "huygens",
+    "influence",
+    "从通信问题到概率论著",
+    "From letters to a probability treatise",
+    "惠更斯1655年在巴黎获知帕斯卡与费马的概率工作，随后按自己的方式整理为1657年论著。",
+    "Huygens learned of Pascal and Fermat’s probability work in Paris in 1655 and developed his own 1657 account.",
+    bio("Huygens"),
+  ),
+  relation(
+    "huygens-leibniz",
+    "huygens",
+    "leibniz",
+    "support",
+    "巴黎时期的数学指导",
+    "Mathematical guidance in Paris",
+    "1672年相识后，惠更斯帮助莱布尼茨学习较高深的数学。这是个人指导与交流，不是博士论文的正式师承。",
+    "After meeting in 1672, Huygens helped Leibniz learn advanced mathematics. This was personal guidance, not doctoral supervision.",
+    bio("Huygens"),
+  ),
+  relation(
+    "descartes-newton",
+    "descartes",
+    "newton",
+    "influence",
+    "研读《几何学》及译注",
+    "Studying La Géométrie and its commentaries",
+    "牛顿学习笛卡尔《几何学》与范斯霍滕的扩充译注，从这些材料进入当时前沿的代数和解析几何。",
+    "Newton studied La Géométrie and Van Schooten’s expanded editions, encountering advanced algebra and analytic geometry through them.",
+    bio("Newton"),
+  ),
+  relation(
+    "newton-euler",
+    "newton",
+    "euler",
+    "influence",
+    "把运动理论写成分析",
+    "Recasting mechanics through analysis",
+    "欧拉的《力学》把牛顿运动理论更系统地写成分析与微分方程形式。这是理论与方法的继续发展。",
+    "Euler’s Mechanica developed Newtonian motion through analysis and differential equations, extending its methods and organization.",
+    bio("Euler"),
+  ),
+  relation(
+    "fermat-euler",
+    "fermat",
+    "euler",
+    "influence",
+    "数论断言成为研究问题",
+    "Number-theoretic claims become research problems",
+    "欧拉研究费马提出的数论问题，给出证明，也推翻过某些猜想，例如费马数总为素数的断言。继承也包括检验和纠正。",
+    "Euler proved and tested Fermat’s number-theoretic claims, including disproving that every Fermat number is prime. Inheritance includes correction.",
+    bio("Euler"),
+  ),
+];

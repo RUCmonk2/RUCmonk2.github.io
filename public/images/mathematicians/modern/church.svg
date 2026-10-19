@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 620" role="img" aria-labelledby="title desc">
+  <title id="title">Alonzo Church — lettermark</title>
+  <desc id="desc">A typographic lambda and the initials AC, not a portrait of Alonzo Church.</desc>
+  <rect width="500" height="620" fill="#e8e4db"/>
+  <path d="M42 42h416v536H42z" fill="none" stroke="#b0aa9c" stroke-width="2"/>
+  <text x="250" y="342" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="265" fill="#424b53">λ</text>
+  <path d="M180 415h140" stroke="#989482" stroke-width="2"/>
+  <text x="250" y="473" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" letter-spacing="12" fill="#424b53">AC</text>
+  <text x="250" y="533" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" letter-spacing="2" fill="#6b706e">LETTERMARK · NOT A PORTRAIT</text>
+</svg>

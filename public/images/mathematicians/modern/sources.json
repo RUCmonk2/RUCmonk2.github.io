@@ -1,0 +1,761 @@
+[
+  {
+    "id": "russell",
+    "localFile": "public/images/mathematicians/modern/russell.jpg",
+    "src": "/images/mathematicians/modern/russell.jpg",
+    "commonsTitle": "File:Bertrand Russell in 1936.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bertrand_Russell_in_1936.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Bertrand_Russell_in_1936.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Bertrand_Russell_in_1936.jpg/500px-Bertrand_Russell_in_1936.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 68857,
+    "sha256": "fb15ee9f0f8a8a5cbe6134a4c8bdf5d71f65476dc229a620ee5832510c19a7c2",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Bertrand Arthur William Russell (1872–1970), 3rd Earl Russell. Philosopher, mathematician, social reformer, peer (1931–70). Photograph by Bassano Ltd, purchased by the NPG 1996. Bromide print.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1936-10-23",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "one or more <b>third parties have made copyright claims against Wikimedia Commons in relation to the work from which this is sourced or a purely mechanical reproduction thereof</b>. This may be due to recognition of the \"<a href=\"https://en.wikipedia.org/wiki/sweat_of_the_brow\" class=\"extiw\" title=\"w:sweat of the brow\">sweat of the brow</a>\" doctrine, allowing works to be eligible for protection through skill and labour, and not purely by originality as is the case in the United States (where this website is hosted). These claims may or may not be valid in all jurisdictions.\nAs such, use of this image in the jurisdiction of the claimant or other countries <i>may</i> be regarded as <b>copyright infringement</b>. Please see <a href=\"//commons.wikimedia.org/wiki/Commons:When_to_use_the_PD-Art_tag\" title=\"Commons:When to use the PD-Art tag\">Commons:When to use the PD-Art tag</a> for more information.",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<bdi><a href=\"https://www.wikidata.org/wiki/Q64919076\" class=\"extiw\" title=\"d:Q64919076\"><span title=\"British photographic portrait studio\">Bassano Ltd</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/russell.jpg",
+      "alt": {
+        "zh": "白发、身穿西装的罗素照片",
+        "en": "Photograph of Russell with white hair, wearing a suit"
+      },
+      "credit": {
+        "zh": "Bassano Ltd，1936 · 公共领域",
+        "en": "Bassano Ltd, 1936 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Bertrand_Russell_in_1936.jpg",
+      "kind": "portrait"
+    }
+  },
+  {
+    "id": "godel",
+    "localFile": "public/images/mathematicians/modern/godel.jpg",
+    "src": "/images/mathematicians/modern/godel.jpg",
+    "commonsTitle": "File:Kurt gödel.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kurt_g%C3%B6del.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Kurt_g%C3%B6del.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Kurt_g%C3%B6del.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 25000,
+    "sha256": "80cec481f244fd84a9790e924fd8d25cb1d540b51ccf403fcd8fff5f7d756b69",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Kurt Friedrich Gödel (1906 – 1978)",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "circa 1926<div style=\"display: none;\">date QS:P,+1926-00-00T00:00:00Z/9,P1480,Q5727902</div>",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external free\" href=\"http://www.arithmeum.uni-bonn.de/en/events/285\">http://www.arithmeum.uni-bonn.de/en/events/285</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/godel.jpg",
+      "alt": {
+        "zh": "戴圆框眼镜的哥德尔青年照片",
+        "en": "Photograph of a young Gödel wearing round glasses"
+      },
+      "credit": {
+        "zh": "摄影者不详，约1926 · 公共领域",
+        "en": "Unknown photographer, c. 1926 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Kurt_g%C3%B6del.jpg",
+      "kind": "portrait"
+    }
+  },
+  {
+    "id": "turing",
+    "localFile": "public/images/mathematicians/modern/turing.jpg",
+    "src": "/images/mathematicians/modern/turing.jpg",
+    "commonsTitle": "File:Alan turing header.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alan_turing_header.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Alan_turing_header.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Alan_turing_header.jpg/500px-Alan_turing_header.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 82804,
+    "sha256": "7951a9408f6b34c82a512bf0e0fe2ea31a599bb0884f93810262c546985dfb46",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Photograph portrait of Alan Turing, taken on 29 March 1951.",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1951-03-29",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a class=\"external free\" href=\"https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951).jpg\">https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951).jpg</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Elliott &amp; Fry",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "Public domain",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "Copyrighted": {
+        "value": "False",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "pd",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/turing.jpg",
+      "alt": {
+        "zh": "身穿外衣和领带的图灵照片",
+        "en": "Photograph of Turing in a jacket and tie"
+      },
+      "credit": {
+        "zh": "Elliott & Fry，1951 · 公共领域",
+        "en": "Elliott & Fry, 1951 · Public domain"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Alan_turing_header.jpg",
+      "kind": "portrait"
+    }
+  },
+  {
+    "id": "von-neumann",
+    "localFile": "public/images/mathematicians/modern/von-neumann.jpg",
+    "src": "/images/mathematicians/modern/von-neumann.jpg",
+    "commonsTitle": "File:JohnvonNeumann-LosAlamos.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:JohnvonNeumann-LosAlamos.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/JohnvonNeumann-LosAlamos.jpg/500px-JohnvonNeumann-LosAlamos.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 71824,
+    "sha256": "310a676ba9c8b8e8ee50ec03c93fb644303adf6c22a1e5a450b12e828339dcfc",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "LicenseShortName": {
+        "value": "Attribution",
+        "source": "commons-desc-page",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/von-neumann.jpg",
+      "alt": {
+        "zh": "冯·诺伊曼的黑白肖像照片",
+        "en": "Black-and-white portrait photograph of von Neumann"
+      },
+      "credit": {
+        "zh": "Los Alamos National Laboratory · 须署名，详见许可声明",
+        "en": "Los Alamos National Laboratory · Attribution required; see notice"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:JohnvonNeumann-LosAlamos.jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "LANL attribution notice",
+        "href": "/images/mathematicians/modern/von-neumann-NOTICE.txt"
+      }
+    },
+    "licenseNoticeFile": "public/images/mathematicians/modern/von-neumann-NOTICE.txt"
+  },
+  {
+    "id": "kolmogorov",
+    "localFile": "public/images/mathematicians/modern/kolmogorov.jpg",
+    "src": "/images/mathematicians/modern/kolmogorov.jpg",
+    "commonsTitle": "File:Andrej Nikolajewitsch Kolmogorov.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andrej_Nikolajewitsch_Kolmogorov.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Andrej_Nikolajewitsch_Kolmogorov.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Andrej_Nikolajewitsch_Kolmogorov.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 43656,
+    "sha256": "f17b8446214d528ded6d8a662f234e915616b66499a0ec41afff84e7fbd2ef59",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Andrej Nikolajewitsch Kolmogorov",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "17 April 2008 (original upload date)",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://opc.mfo.de/detail?photoID=7493\">https://opc.mfo.de/detail?photoID=7493</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Konrad Jacobs",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 2.0 de",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-2.0-de",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/kolmogorov.jpg",
+      "alt": {
+        "zh": "手拿书本的柯尔莫哥洛夫照片",
+        "en": "Photograph of Kolmogorov holding a book"
+      },
+      "credit": {
+        "zh": "Konrad Jacobs / MFO · 拍摄年份未记载 · CC BY-SA 2.0 DE",
+        "en": "Konrad Jacobs / MFO · Photo date unrecorded · CC BY-SA 2.0 DE"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Andrej_Nikolajewitsch_Kolmogorov.jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "CC BY-SA 2.0 de",
+        "href": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+      }
+    },
+    "dateNote": "The metadata date 17 April 2008 is an upload date, not the photograph date. No original photograph year is asserted."
+  },
+  {
+    "id": "chern",
+    "localFile": "public/images/mathematicians/modern/chern.jpg",
+    "src": "/images/mathematicians/modern/chern.jpg",
+    "commonsTitle": "File:Shiing-shen Chern 1988 (re-scanned) (cropped-1).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shiing-shen_Chern_1988_(re-scanned)_(cropped-1).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Shiing-shen_Chern_1988_%28re-scanned%29_%28cropped-1%29.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Shiing-shen_Chern_1988_%28re-scanned%29_%28cropped-1%29.jpg/500px-Shiing-shen_Chern_1988_%28re-scanned%29_%28cropped-1%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 74266,
+    "sha256": "52fc8a67144716f2d32c7cfd5854b84952c2b59630a2110482fbb2d704edcc38",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Shiing-shen Chern at Berkeley, California",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1988",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "Scanned via Epson Perfection V370; see also <a rel=\"nofollow\" class=\"external free\" href=\"https://opc.mfo.de/detail?photo_id=14459\">https://opc.mfo.de/detail?photo_id=14459</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:George_Bergman\" class=\"extiw\" title=\"w:en:George Bergman\"><span title=\"American mathematician\">George Bergman</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/chern.jpg",
+      "alt": {
+        "zh": "陈省身的彩色肖像照片",
+        "en": "Color portrait photograph of Shiing-Shen Chern"
+      },
+      "credit": {
+        "zh": "George Bergman，1988 · Commons 裁切版 · CC BY-SA 4.0",
+        "en": "George Bergman, 1988 · Commons crop · CC BY-SA 4.0"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Shiing-shen_Chern_1988_(re-scanned)_(cropped-1).jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "CC BY-SA 4.0",
+        "href": "https://creativecommons.org/licenses/by-sa/4.0"
+      }
+    }
+  },
+  {
+    "id": "weil",
+    "localFile": "public/images/mathematicians/modern/weil.jpg",
+    "src": "/images/mathematicians/modern/weil.jpg",
+    "commonsTitle": "File:André Weil, 1968 (cropped).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andr%C3%A9_Weil,_1968_(cropped).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Andr%C3%A9_Weil%2C_1968_%28cropped%29.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Andr%C3%A9_Weil%2C_1968_%28cropped%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 7420,
+    "sha256": "8953163efb5cbfd4bb329f836dd1f73fa9b352f514d2a6e8daff2b1a34cd6baa",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "André Weil (left) and Atle Selberg at Oberwolfach, 1968",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1968",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"url\"><a rel=\"nofollow\" class=\"external text\" href=\"https://opc.mfo.de/detail?would_like_to_publish=1&amp;photo_id=8654\">opc.mfo.de/detail?would like to publish=1&amp;photo id=8654</a></span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<bdi><a href=\"https://www.wikidata.org/wiki/Q105394\" class=\"extiw\" title=\"d:Q105394\"><span title=\"German mathematician (1928–2015)\">Konrad Jacobs</span></a></bdi>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 2.0 de",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-2.0-de",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/weil.jpg",
+      "alt": {
+        "zh": "戴眼镜、在户外的安德烈·韦伊照片",
+        "en": "Photograph of André Weil outdoors wearing glasses"
+      },
+      "credit": {
+        "zh": "Konrad Jacobs / MFO，1968 · Commons 裁切版 · CC BY-SA 2.0 DE",
+        "en": "Konrad Jacobs / MFO, 1968 · Commons crop · CC BY-SA 2.0 DE"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Andr%C3%A9_Weil,_1968_(cropped).jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "CC BY-SA 2.0 de",
+        "href": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+      }
+    }
+  },
+  {
+    "id": "grothendieck",
+    "localFile": "public/images/mathematicians/modern/grothendieck.jpg",
+    "src": "/images/mathematicians/modern/grothendieck.jpg",
+    "commonsTitle": "File:Alexander Grothendieck.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alexander_Grothendieck.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Alexander_Grothendieck.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Alexander_Grothendieck.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 14417,
+    "sha256": "9be130d9a00a5e8d52ef8821cdade34114e6a654908faa8b2e7b90fe377572f2",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "<a href=\"https://en.wikipedia.org/wiki/Alexander_Grothendieck\" class=\"extiw\" title=\"w:Alexander Grothendieck\">Alexander Grothendieck</a>",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1970",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://opc.mfo.de/detail?photoID=1452\">https://opc.mfo.de/detail?photoID=1452</a> / Transferred from <a class=\"external text\" data-mw-original-href=\"http://it.wikipedia.org\" href=\"https://it.wikipedia.org\">it.wikipedia</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Konrad Jacobs, Erlangen, Copyright by MFO / Original uploader was <a href=\"https://it.wikipedia.org/wiki/User:AEDP\" class=\"extiw\" title=\"it:User:AEDP\">AEDP</a> at <a class=\"external text\" data-mw-original-href=\"http://it.wikipedia.org\" href=\"https://it.wikipedia.org\">it.wikipedia</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 2.0 de",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-2.0-de",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/grothendieck.jpg",
+      "alt": {
+        "zh": "戴眼镜、侧身而坐的格罗滕迪克照片",
+        "en": "Photograph of Grothendieck seated in profile with glasses"
+      },
+      "credit": {
+        "zh": "Konrad Jacobs / MFO，1970 · CC BY-SA 2.0 DE",
+        "en": "Konrad Jacobs / MFO, 1970 · CC BY-SA 2.0 DE"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Alexander_Grothendieck.jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "CC BY-SA 2.0 de",
+        "href": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+      }
+    }
+  },
+  {
+    "id": "erdos",
+    "localFile": "public/images/mathematicians/modern/erdos.jpg",
+    "src": "/images/mathematicians/modern/erdos.jpg",
+    "commonsTitle": "File:Erdos budapest fall 1992 (cropped).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erdos_budapest_fall_1992_(cropped).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Erdos_budapest_fall_1992_%28cropped%29.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Erdos_budapest_fall_1992_%28cropped%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 67268,
+    "sha256": "c0ff9e1f7870b455739a3454bbe65a57e969c3c70cb8db401811d80a66fd6852",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Paul Erdős at a student seminar in Budapest (fall 1992)",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "1992",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Kmhkmh",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY 3.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by/3.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-3.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/erdos.jpg",
+      "alt": {
+        "zh": "戴大框眼镜的埃尔德什照片",
+        "en": "Photograph of Erdős wearing large glasses"
+      },
+      "credit": {
+        "zh": "Kmhkmh，1992 · Commons 裁切版 · CC BY 3.0",
+        "en": "Kmhkmh, 1992 · Commons crop · CC BY 3.0"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Erdos_budapest_fall_1992_(cropped).jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "CC BY 3.0",
+        "href": "https://creativecommons.org/licenses/by/3.0"
+      }
+    }
+  },
+  {
+    "id": "shannon",
+    "localFile": "public/images/mathematicians/modern/shannon.jpg",
+    "src": "/images/mathematicians/modern/shannon.jpg",
+    "commonsTitle": "File:C.E. Shannon. Tekniska museet 43069 (2x3 crop).jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:C.E._Shannon._Tekniska_museet_43069_(2x3_crop).jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/C.E._Shannon._Tekniska_museet_43069_%282x3_crop%29.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/C.E._Shannon._Tekniska_museet_43069_%282x3_crop%29.jpg/500px-C.E._Shannon._Tekniska_museet_43069_%282x3_crop%29.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 85207,
+    "sha256": "8582f700c7e4c97d4a52f2eb030c15a88db7c69887580ce323b96e49ca0b7985",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Claude Elwood Shannon",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "Unknown date",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a href=\"https://en.wikipedia.org/wiki/Swedish_National_Museum_of_Science_and_Technology\" class=\"extiw\" title=\"w:Swedish National Museum of Science and Technology\">Tekniska Museet</a> of Sweden, <a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/tekniskamuseet/6832884236/\">Item 43069 via Flickr</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY 2.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by/2.0",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-2.0",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/shannon.jpg",
+      "alt": {
+        "zh": "身穿西装的香农黑白肖像",
+        "en": "Black-and-white portrait of Shannon wearing a suit"
+      },
+      "credit": {
+        "zh": "摄影者不详 / 瑞典技术博物馆 · Commons 裁切版 · CC BY 2.0",
+        "en": "Unknown photographer / Tekniska museet · Commons crop · CC BY 2.0"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:C.E._Shannon._Tekniska_museet_43069_(2x3_crop).jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "CC BY 2.0",
+        "href": "https://creativecommons.org/licenses/by/2.0"
+      }
+    }
+  },
+  {
+    "id": "mirzakhani",
+    "localFile": "public/images/mathematicians/modern/mirzakhani.jpg",
+    "src": "/images/mathematicians/modern/mirzakhani.jpg",
+    "commonsTitle": "File:Maryam Mirzakhani in Seoul 2014.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maryam_Mirzakhani_in_Seoul_2014.jpg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Maryam_Mirzakhani_in_Seoul_2014.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Maryam_Mirzakhani_in_Seoul_2014.jpg",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 7824,
+    "sha256": "91c4fc2b6b508d399cc2163a2d502dba8201940235498f0c34e714d7994315f7",
+    "modifications": "No local edits. Wikimedia thumbnail or original served with layout cropping only.",
+    "metadata": {
+      "ImageDescription": {
+        "value": "Maryam Mirzakhani at the Seoul convention of the <a href=\"https://en.wikipedia.org/wiki/International_Congress_of_Mathematicians\" class=\"extiw\" title=\"en:International Congress of Mathematicians\">International Congress of Mathematicians</a> (ICM)",
+        "source": "commons-desc-page"
+      },
+      "DateTimeOriginal": {
+        "value": "August 13–21 2014",
+        "source": "commons-desc-page"
+      },
+      "Credit": {
+        "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://opc.mfo.de/detail?photo_id=19099\">Archives of the Mathematisches Forschungsinstitut Oberwolfach</a>",
+        "source": "commons-desc-page"
+      },
+      "Artist": {
+        "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://opc.mfo.de/pictures_of_author?id=1428\">Gert-Martin Greuel</a>",
+        "source": "commons-desc-page"
+      },
+      "LicenseShortName": {
+        "value": "CC BY-SA 2.0 de",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+        "source": "commons-desc-page"
+      },
+      "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+      },
+      "License": {
+        "value": "cc-by-sa-2.0-de",
+        "source": "commons-templates",
+        "hidden": ""
+      }
+    },
+    "portrait": {
+      "src": "/images/mathematicians/modern/mirzakhani.jpg",
+      "alt": {
+        "zh": "米尔扎哈尼在2014年首尔国际数学家大会的照片",
+        "en": "Photograph of Mirzakhani at the 2014 ICM in Seoul"
+      },
+      "credit": {
+        "zh": "Gert-Martin Greuel，2014 · CC BY-SA 2.0 DE",
+        "en": "Gert-Martin Greuel, 2014 · CC BY-SA 2.0 DE"
+      },
+      "href": "https://commons.wikimedia.org/wiki/File:Maryam_Mirzakhani_in_Seoul_2014.jpg",
+      "kind": "portrait",
+      "license": {
+        "label": "CC BY-SA 2.0 de",
+        "href": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+      }
+    }
+  },
+  {
+    "id": "church",
+    "localFile": "public/images/mathematicians/modern/church.svg",
+    "src": "/images/mathematicians/modern/church.svg",
+    "kind": "monogram",
+    "creator": "Original typographic lettermark created for this site",
+    "verifiedOn": "2026-10-19",
+    "localBytes": 906,
+    "sha256": "a75930451b360c6c1f55eb131e75ad3899c4d04c314b4283aaacd04efdf5e4f8",
+    "reason": "No verified freely licensed photograph of the logician was found. The Commons portrait of Alonzo Church (University of Georgia President) depicts a different person and was deliberately rejected. This graphic makes no claim to depict Church.",
+    "portrait": {
+      "src": "/images/mathematicians/modern/church.svg",
+      "kind": "monogram",
+      "alt": {
+        "zh": "丘奇的姓名首字母与λ符号标记，非人物肖像",
+        "en": "Church’s initials and a lambda symbol; not a portrait"
+      },
+      "credit": {
+        "zh": "原创字母标记；未找到可核实开放授权的本人照片",
+        "en": "Original lettermark; no verified openly licensed portrait located"
+      },
+      "href": "https://www.princeton.edu/news/2003/05/06/library-acquires-papers-eminent-mathematician"
+    }
+  }
+]

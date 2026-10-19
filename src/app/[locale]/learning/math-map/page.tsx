@@ -52,6 +52,15 @@ export default async function MathMapPage({
                 ? "Follow a derivative into a matrix, a symmetry into a model. Trace how mathematical ideas meet."
                 : "从一个导数走向矩阵，从一种对称走向模型。沿着关系，理解数学概念如何相遇。"}
             </p>
+            <Link
+              className="mathmap-course-link"
+              href={(en ? "/en" : "") + "/learning/mathematicians"}
+            >
+              {en
+                ? "Lives of Mathematicians · 50 lives and their ideas"
+                : "数学家人物志 · 50 个人物与思想的来路"}
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
           </div>
           <div className="mathmap-hero-figure" aria-hidden="true">
             <svg viewBox="0 0 400 240">

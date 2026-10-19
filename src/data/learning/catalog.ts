@@ -150,6 +150,23 @@ export const learningCatalog: readonly LearningItem[] = [
     updated: "2026-09-27",
   },
   {
+    id: "mathematicians",
+    category: "math",
+    href: "/learning/mathematicians",
+    localized: true,
+    title: { zh: "数学家人物志", en: "Lives of Mathematicians" },
+    description: {
+      zh: "从欧几里得、刘徽、牛顿到高斯、诺特、图灵与米尔扎哈尼。沿学术关系探索50位人物的成果与人生，按年代筛选，也可沿问题阅读。",
+      en: "Explore 50 mathematical lives across civilizations, from Euclid and Liu Hui to Newton, Noether, Turing and Mirzakhani. Follow academic connections, periods and shared questions.",
+    },
+    topic: { zh: "数学史", en: "History of mathematics" },
+    scope: {
+      zh: "50 位人物 · 关系图谱与分期阅读",
+      en: "50 lives · connections and historical periods",
+    },
+    updated: "2026-10-19",
+  },
+  {
     id: "shanhai",
     category: "guide",
     href: "/learning/shanhai",
