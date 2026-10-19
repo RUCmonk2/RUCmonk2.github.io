@@ -9,6 +9,7 @@ import {
 } from "d3-force";
 
 import type { Mathematician, ScholarRelation } from "@/data/mathematicians";
+import type { ScholarVisuals } from "@/data/scientist-atlas";
 export type Point = { x: number; y: number };
 export type Camera = Point & { zoom: number };
 export const GRAPH_WIDTH = 1360,
@@ -45,27 +46,45 @@ const accents = new Set([
   "mirzakhani",
   "liu-hui",
 ]);
-export function portraitTier(id: string) {
+export function portraitTier(id: string, visual?: ScholarVisuals) {
+  if (visual)
+    return visual.landmarks.includes(id)
+      ? 3
+      : visual.accents.includes(id)
+        ? 2
+        : 1;
   return landmarks.has(id) ? 3 : accents.has(id) ? 2 : 1;
 }
-export function portraitRadius(id: string) {
-  return portraitTier(id) === 3 ? 43 : portraitTier(id) === 2 ? 36 : 31;
+export function portraitRadius(id: string, visual?: ScholarVisuals) {
+  return portraitTier(id, visual) === 3
+    ? 43
+    : portraitTier(id, visual) === 2
+      ? 36
+      : 31;
 }
-export function labelSize(id: string) {
-  return portraitTier(id) === 3 ? 25 : portraitTier(id) === 2 ? 22 : 20;
+export function labelSize(id: string, visual?: ScholarVisuals) {
+  return portraitTier(id, visual) === 3
+    ? 25
+    : portraitTier(id, visual) === 2
+      ? 22
+      : 20;
 }
-export function nodeAppearance(id: string, scale: number) {
+export function nodeAppearance(
+  id: string,
+  scale: number,
+  visual?: ScholarVisuals,
+) {
   const safeScale = Math.max(0.05, scale),
-    tier = portraitTier(id);
+    tier = portraitTier(id, visual);
   const minRadius = tier === 3 ? 25 : tier === 2 ? 22 : 19;
   const maxRadius = tier === 3 ? 35 : tier === 2 ? 31 : 27;
   const radiusPx = Math.max(
     minRadius,
-    Math.min(maxRadius, portraitRadius(id) * safeScale),
+    Math.min(maxRadius, portraitRadius(id, visual) * safeScale),
   );
   const fontPx = Math.max(
     13,
-    Math.min(tier === 3 ? 18 : 16, labelSize(id) * safeScale),
+    Math.min(tier === 3 ? 18 : 16, labelSize(id, visual) * safeScale),
   );
   return {
     radius: radiusPx / safeScale,
@@ -203,9 +222,10 @@ type LayoutNode = SimulationNodeDatum & Point & { id: string; anchor: Point };
 export function layoutScholars(
   people: Mathematician[],
   relations: ScholarRelation[],
+  visual?: ScholarVisuals,
 ) {
   const nodes: LayoutNode[] = people.map((p) => {
-    const c = clusters.find((g) => g.ids.includes(p.id)),
+    const c = (visual?.groups ?? clusters).find((g) => g.ids.includes(p.id)),
       i = c?.ids.indexOf(p.id) ?? 0,
       anchor = c
         ? {
@@ -237,16 +257,24 @@ export function layoutScholars(
     )
     .force(
       "collision",
-      forceCollide<LayoutNode>((n) => portraitRadius(n.id) + 75)
+      forceCollide<LayoutNode>((n) => portraitRadius(n.id, visual) + 75)
         .strength(1)
         .iterations(3),
     );
   sim.tick(350);
   sim.stop();
-  const minX = Math.min(...nodes.map((n) => n.x - portraitRadius(n.id) - 20)),
-    maxX = Math.max(...nodes.map((n) => n.x + portraitRadius(n.id) + 20)),
-    minY = Math.min(...nodes.map((n) => n.y - portraitRadius(n.id) - 20)),
-    maxY = Math.max(...nodes.map((n) => n.y + portraitRadius(n.id) + 65));
+  const minX = Math.min(
+      ...nodes.map((n) => n.x - portraitRadius(n.id, visual) - 20),
+    ),
+    maxX = Math.max(
+      ...nodes.map((n) => n.x + portraitRadius(n.id, visual) + 20),
+    ),
+    minY = Math.min(
+      ...nodes.map((n) => n.y - portraitRadius(n.id, visual) - 20),
+    ),
+    maxY = Math.max(
+      ...nodes.map((n) => n.y + portraitRadius(n.id, visual) + 65),
+    );
   const cx = (minX + maxX) / 2,
     cy = (minY + maxY) / 2;
   return Object.fromEntries(
@@ -329,6 +357,7 @@ export function labelsFor(
   locale: "zh" | "en",
   maxLabelSize = Infinity,
   screenScale?: number,
+  visual?: ScholarVisuals,
 ) {
   type Placement = {
     dx: number;
@@ -343,14 +372,17 @@ export function labelsFor(
       ? -1
       : b.id === priority
         ? 1
-        : portraitTier(b.id) - portraitTier(a.id),
+        : portraitTier(b.id, visual) - portraitTier(a.id, visual),
   )) {
     if (!candidates.has(person.id)) continue;
     const point = positions[person.id],
-      appearance = screenScale ? nodeAppearance(person.id, screenScale) : null,
+      appearance = screenScale
+        ? nodeAppearance(person.id, screenScale, visual)
+        : null,
       size =
-        appearance?.fontSize ?? Math.min(labelSize(person.id), maxLabelSize),
-      radius = appearance?.radius ?? portraitRadius(person.id),
+        appearance?.fontSize ??
+        Math.min(labelSize(person.id, visual), maxLabelSize),
+      radius = appearance?.radius ?? portraitRadius(person.id, visual),
       gap = appearance?.labelGap ?? 12,
       clearance = screenScale ? 9 / screenScale : 7;
     const width = [...person.name[locale]].reduce(
@@ -391,8 +423,8 @@ export function labelsFor(
           const q = positions[other.id],
             r =
               (screenScale
-                ? nodeAppearance(other.id, screenScale).radius
-                : portraitRadius(other.id)) + clearance;
+                ? nodeAppearance(other.id, screenScale, visual).radius
+                : portraitRadius(other.id, visual)) + clearance;
           return (
             box.left < q.x + r &&
             box.right > q.x - r &&

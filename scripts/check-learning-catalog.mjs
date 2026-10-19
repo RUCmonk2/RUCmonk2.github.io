@@ -30,7 +30,7 @@ for (const item of learningCatalog) {
   ids.add(item.id);
   hrefs.add(item.href);
   assert(
-    ["course", "guide", "math", "school"].includes(item.category),
+    ["course", "guide", "math", "school", "people"].includes(item.category),
     item.id,
   );
   assert.match(item.updated, /^\d{4}-\d{2}-\d{2}$/);

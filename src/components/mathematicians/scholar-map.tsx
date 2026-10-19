@@ -9,11 +9,8 @@ import {
   useState,
 } from "react";
 
-import {
-  type Mathematician,
-  mathematicians,
-  scholarRelations,
-} from "@/data/mathematicians";
+import type { Mathematician, ScholarRelation } from "@/data/mathematicians";
+import type { ScholarVisuals } from "@/data/scientist-atlas";
 
 import {
   type Camera,
@@ -36,7 +33,6 @@ import {
 } from "./layout";
 import { revealPeople } from "./visibility";
 
-const overviewPositions = layoutScholars(mathematicians, scholarRelations);
 const portraitWindows: Record<
   string,
   { x: number; y: number; width: number; height: number }
@@ -47,6 +43,9 @@ const portraitWindows: Record<
 
 export function ScholarMap({
   people,
+  allPeople,
+  relations,
+  visual,
   selected,
   mode,
   kind,
@@ -58,6 +57,9 @@ export function ScholarMap({
   onReset,
 }: {
   people: Mathematician[];
+  allPeople: Mathematician[];
+  relations: ScholarRelation[];
+  visual?: ScholarVisuals;
   selected: string;
   mode: "connections" | "time";
   kind: string;
@@ -70,20 +72,22 @@ export function ScholarMap({
 }) {
   const en = locale === "en",
     uid = useId().replaceAll(":", "");
+  const overviewPositions = useMemo(
+    () => layoutScholars(allPeople, relations, visual),
+    [allPeople, relations, visual],
+  );
   const peopleKey = people.map((p) => p.id).join(",");
   const scopedLayout =
     explicitScope && people.length > 0 && people.length <= 18;
   const positions = useMemo(
     () =>
-      scopedLayout
-        ? layoutSubgraph(people, scholarRelations)
-        : overviewPositions,
-    [peopleKey, scopedLayout],
+      scopedLayout ? layoutSubgraph(people, relations) : overviewPositions,
+    [peopleKey, scopedLayout, overviewPositions, relations],
   );
   const allCurves = useMemo(() => {
     const ids = new Set(people.map((p) => p.id));
     return Object.fromEntries(
-      scholarRelations
+      relations
         .filter((e) => ids.has(e.source) && ids.has(e.target))
         .map((edge) => [
           edge.id,
@@ -94,15 +98,15 @@ export function ScholarMap({
               .filter((p) => p.id !== edge.source && p.id !== edge.target)
               .map((p) => ({
                 ...positions[p.id],
-                radius: portraitRadius(p.id),
+                radius: portraitRadius(p.id, visual),
               })),
             GRAPH_HEIGHT,
-            portraitRadius(edge.source),
-            portraitRadius(edge.target),
+            portraitRadius(edge.source, visual),
+            portraitRadius(edge.target, visual),
           ),
         ]),
     );
-  }, [peopleKey, positions]);
+  }, [peopleKey, positions, relations, visual]);
   const [camera, setCamera] = useState<Camera>(() =>
     fitPeople(people, positions),
   );
@@ -111,7 +115,7 @@ export function ScholarMap({
   const [viewportWidth, setViewportWidth] = useState(800);
   const screenScale = (viewportWidth / GRAPH_WIDTH) * camera.zoom;
   const overviewZoom = fitPeople(
-    scopedLayout ? people : mathematicians,
+    scopedLayout ? people : allPeople,
     positions,
     viewportWidth,
   ).zoom;
@@ -143,7 +147,7 @@ export function ScholarMap({
   useEffect(() => {
     if (mode !== "connections") return;
     const point = positions[selected],
-      margin = portraitRadius(selected) + 45;
+      margin = portraitRadius(selected, visual) + 45;
     if (!point) return;
     setCamera((old) => {
       const cx = GRAPH_WIDTH / 2 + old.x,
@@ -209,7 +213,7 @@ export function ScholarMap({
   }, [mode, Boolean(people.length)]);
   const neighbors = new Set([
     selected,
-    ...scholarRelations
+    ...relations
       .filter((edge) => edge.source === selected || edge.target === selected)
       .flatMap((edge) => [edge.source, edge.target]),
   ]);
@@ -223,10 +227,11 @@ export function ScholarMap({
     focused,
     neighbors,
     explicitScope,
+    visual,
   );
   const drawnPeople = revealed.people;
   const ids = new Set(drawnPeople.map((person) => person.id));
-  const edges = scholarRelations.filter(
+  const edges = relations.filter(
     (edge) =>
       ids.has(edge.source) &&
       ids.has(edge.target) &&
@@ -251,6 +256,7 @@ export function ScholarMap({
     locale,
     Infinity,
     screenScale,
+    visual,
   );
   function focusLocal(id: string) {
     const center = positions[id];
@@ -355,8 +361,8 @@ export function ScholarMap({
                       <span
                         className="lives-chronology-photo"
                         style={{
-                          width: portraitRadius(p.id) + 5,
-                          height: portraitRadius(p.id) + 5,
+                          width: portraitRadius(p.id, visual) + 5,
+                          height: portraitRadius(p.id, visual) + 5,
                         }}
                       >
                         <img
@@ -423,16 +429,14 @@ export function ScholarMap({
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               onReset();
-              setCamera(
-                fitPeople(mathematicians, overviewPositions, viewportWidth),
-              );
+              setCamera(fitPeople(allPeople, overviewPositions, viewportWidth));
             }
           }}
         >
           <defs>
             {drawnPeople.map((p) => (
               <clipPath key={p.id} id={`${uid}-${p.id}`}>
-                <circle r={nodeAppearance(p.id, screenScale).radius} />
+                <circle r={nodeAppearance(p.id, screenScale, visual).radius} />
               </clipPath>
             ))}
             {["mentorship", "influence", "parallel", "support"].map((type) => (
@@ -478,8 +482,8 @@ export function ScholarMap({
                     positions[edge.source],
                     positions[edge.target],
                     curve.control,
-                    nodeAppearance(edge.source, screenScale).radius,
-                    nodeAppearance(edge.target, screenScale).radius,
+                    nodeAppearance(edge.source, screenScale, visual).radius,
+                    nodeAppearance(edge.target, screenScale, visual).radius,
                     8 / screenScale,
                   )}
                   vectorEffect="non-scaling-stroke"
@@ -507,7 +511,7 @@ export function ScholarMap({
           })}
           {drawnPeople.map((p) => {
             const q = positions[p.id],
-              appearance = nodeAppearance(p.id, screenScale),
+              appearance = nodeAppearance(p.id, screenScale, visual),
               r = appearance.radius,
               active = p.id === selected,
               crop = portraitWindows[p.id],
@@ -523,7 +527,7 @@ export function ScholarMap({
                 aria-pressed={active}
                 aria-label={`${p.name[locale]}, ${lifeLabel(p, locale)}, ${p.field[locale]}`}
                 data-person={p.id}
-                data-tier={portraitTier(p.id)}
+                data-tier={portraitTier(p.id, visual)}
                 className={`lives-node ${active ? "is-selected" : ""} ${!allLines && !neighbors.has(p.id) ? "is-distant" : ""}`}
                 style={{
                   opacity:

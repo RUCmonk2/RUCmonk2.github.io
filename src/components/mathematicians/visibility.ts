@@ -1,4 +1,5 @@
 import type { Mathematician } from "@/data/mathematicians";
+import type { ScholarVisuals } from "@/data/scientist-atlas";
 
 import {
   type Camera,
@@ -21,19 +22,26 @@ export function revealPeople(
   focused: string | null,
   neighbors: ReadonlySet<string>,
   explicitScope: boolean,
+  visual?: ScholarVisuals,
 ) {
   const zoom = camera.zoom / overviewZoom;
   const scoped = explicitScope && people.length <= 18;
   const pinned = new Set([selected, focused].filter(Boolean));
   const opacityAt = (person: Mathematician, z: number) => {
-    if (scoped || pinned.has(person.id) || portraitTier(person.id) === 3)
+    if (
+      scoped ||
+      pinned.has(person.id) ||
+      portraitTier(person.id, visual) === 3
+    )
       return 1;
     const fade = (start: number, end: number) => {
       const t = Math.max(0, Math.min(1, (z - start) / (end - start)));
       return t * t * (3 - 2 * t);
     };
     const ordinary =
-      portraitTier(person.id) === 2 ? fade(1.28, 1.62) : fade(1.78, 2.12);
+      portraitTier(person.id, visual) === 2
+        ? fade(1.28, 1.62)
+        : fade(1.78, 2.12);
     return neighbors.has(person.id)
       ? Math.max(ordinary, fade(1.22, 1.55))
       : ordinary;
@@ -42,7 +50,7 @@ export function revealPeople(
     const rank = (id: string) =>
       pinned.has(id)
         ? 100
-        : portraitTier(id) * 10 + (neighbors.has(id) ? 1 : 0);
+        : portraitTier(id, visual) * 10 + (neighbors.has(id) ? 1 : 0);
     return rank(b.id) - rank(a.id);
   });
   const chosen: Mathematician[] = [];
@@ -69,8 +77,8 @@ export function revealPeople(
           const q = positions[other.id];
           return (
             Math.hypot(p.x - q.x, p.y - q.y) <
-            nodeAppearance(person.id, scale).radius +
-              nodeAppearance(other.id, scale).radius +
+            nodeAppearance(person.id, scale, visual).radius +
+              nodeAppearance(other.id, scale, visual).radius +
               gap
           );
         });
@@ -88,8 +96,11 @@ export function revealPeople(
   for (const person of chosen) {
     const p = positions[person.id],
       margin =
-        nodeAppearance(person.id, (viewportWidth / GRAPH_WIDTH) * camera.zoom)
-          .radius + 40;
+        nodeAppearance(
+          person.id,
+          (viewportWidth / GRAPH_WIDTH) * camera.zoom,
+          visual,
+        ).radius + 40;
     const inFrame =
       Math.abs(p.x - cx) <= halfWidth + margin &&
       Math.abs(p.y - cy) <= halfHeight + margin;

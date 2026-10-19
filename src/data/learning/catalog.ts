@@ -1,6 +1,7 @@
 import type { LearningLocale, Localized } from "./types";
 
-export type LearningCategory = "course" | "guide" | "math" | "school";
+export type LearningCategory =
+  "course" | "guide" | "math" | "school" | "people";
 export type LearningItem = {
   id: string;
   category: LearningCategory;
@@ -151,7 +152,7 @@ export const learningCatalog: readonly LearningItem[] = [
   },
   {
     id: "mathematicians",
-    category: "math",
+    category: "people",
     href: "/learning/mathematicians",
     localized: true,
     title: { zh: "数学家人物志", en: "Lives of Mathematicians" },
@@ -163,6 +164,23 @@ export const learningCatalog: readonly LearningItem[] = [
     scope: {
       zh: "50 位人物 · 关系图谱与分期阅读",
       en: "50 lives · connections and historical periods",
+    },
+    updated: "2026-10-19",
+  },
+  {
+    id: "physicists",
+    category: "people",
+    href: "/learning/physicists",
+    localized: true,
+    title: { zh: "物理学家人物志", en: "Lives of Physicists" },
+    description: {
+      zh: "从力、电磁与热，到量子、粒子和宇宙，沿50位物理学家的发现与学术关系阅读。",
+      en: "Explore fifty physicists through mechanics, electromagnetism, heat, quantum theory, particles and cosmology.",
+    },
+    topic: { zh: "物理学史", en: "History of physics" },
+    scope: {
+      zh: "50位人物 · 6张主题子图",
+      en: "50 lives · 6 thematic subgraphs",
     },
     updated: "2026-10-19",
   },
@@ -296,6 +314,11 @@ export const learningCategories = [
     id: "math",
     anchor: "mathematics",
     title: { zh: "数学探索", en: "Mathematics" },
+  },
+  {
+    id: "people",
+    anchor: "people",
+    title: { zh: "科学人物志", en: "Scientific lives" },
   },
   {
     id: "guide",

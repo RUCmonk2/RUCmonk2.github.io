@@ -13,12 +13,8 @@ import {
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
-import {
-  type Mathematician,
-  mathematicians,
-  scholarRelations,
-} from "@/data/mathematicians";
-import { mathSubgraphs } from "@/data/scholar-subgraphs";
+import type { Mathematician } from "@/data/mathematicians";
+import type { ScientistAtlas } from "@/data/scientist-atlas";
 
 import { eraOf, eras, lifeLabel } from "./layout";
 import { ScholarMap } from "./scholar-map";
@@ -31,77 +27,6 @@ const names = {
   parallel: { zh: "同题研究", en: "Shared problem" },
   support: { zh: "学术支持", en: "Academic support" },
 };
-const routes = [
-  {
-    id: "equations",
-    zh: "方程为什么解不出来？",
-    en: "When equations resist solutions",
-    ids: ["lagrange", "abel", "galois", "klein"],
-  },
-  {
-    id: "space",
-    zh: "空间可以是弯曲的吗？",
-    en: "What if space is curved?",
-    ids: ["gauss", "riemann", "poincare", "chern", "mirzakhani"],
-  },
-  {
-    id: "structure",
-    zh: "从数走向结构",
-    en: "From numbers to structures",
-    ids: ["dedekind", "noether", "weil", "grothendieck"],
-  },
-  {
-    id: "analysis",
-    zh: "计算怎样变成严格的分析？",
-    en: "How did calculation become rigorous analysis?",
-    ids: ["fourier", "cauchy", "dirichlet", "weierstrass"],
-  },
-  {
-    id: "origins",
-    zh: "不同文明，怎样计算与证明？",
-    en: "Calculation and proof across civilizations",
-    ids: [
-      "euclid",
-      "archimedes",
-      "liu-hui",
-      "aryabhata",
-      "al-khwarizmi",
-      "fibonacci",
-    ],
-  },
-  {
-    id: "calculus",
-    zh: "变化怎样被计算？",
-    en: "How can we calculate change?",
-    ids: ["descartes", "newton", "leibniz", "euler"],
-  },
-  {
-    id: "chance",
-    zh: "怎样给不确定性立规则？",
-    en: "Giving uncertainty a mathematical language",
-    ids: ["pascal", "huygens", "jacob-bernoulli", "laplace", "kolmogorov"],
-  },
-  {
-    id: "computation",
-    zh: "数学能证明和计算到哪里？",
-    en: "The limits of proof and computation",
-    ids: ["cantor", "russell", "godel", "church", "turing", "shannon"],
-  },
-  {
-    id: "numbers",
-    zh: "素数为什么总有新问题？",
-    en: "Why do primes keep posing new questions?",
-    ids: ["fermat", "gauss", "ramanujan", "hardy", "erdos"],
-  },
-]
-  .map((route) => ({
-    ...route,
-    ids: route.ids.filter((id) =>
-      mathematicians.some((person) => person.id === id),
-    ),
-  }))
-  .filter((route) => route.ids.length > 1);
-
 function matchesPerson(person: Mathematician, query: string) {
   return [
     person.name.zh,
@@ -133,10 +58,22 @@ function Formula({ value }: { value: string }) {
   );
 }
 
-export function MathematiciansAtlas({ locale }: { locale: "zh" | "en" }) {
+export function MathematiciansAtlas({
+  locale,
+  atlas,
+}: {
+  locale: "zh" | "en";
+  atlas: ScientistAtlas;
+}) {
+  const {
+    people: mathematicians,
+    relations: scholarRelations,
+    subgraphs,
+    routes,
+  } = atlas;
   const en = locale === "en";
   const uid = useId().replaceAll(":", "");
-  const [selected, setSelected] = useState("gauss");
+  const [selected, setSelected] = useState(atlas.defaultPerson);
   const [selectionRequest, setSelectionRequest] = useState(0);
   const [mode, setMode] = useState<Mode>("connections");
   const [tab, setTab] = useState<Tab>("work");
@@ -146,7 +83,7 @@ export function MathematiciansAtlas({ locale }: { locale: "zh" | "en" }) {
   const [showAllLines, setShowAllLines] = useState(false);
   const [era, setEra] = useState("all");
   const [subgraph, setSubgraph] = useState("all");
-  const activeSubgraph = mathSubgraphs.find((item) => item.id === subgraph);
+  const activeSubgraph = subgraphs.find((item) => item.id === subgraph);
   const [onlyNeighbors, setOnlyNeighbors] = useState(false);
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">(
     "idle",
@@ -183,7 +120,7 @@ export function MathematiciansAtlas({ locale }: { locale: "zh" | "en" }) {
     setSubgraph(id);
     setKind("all");
     setShowAllLines(id !== "all");
-    const group = mathSubgraphs.find((item) => item.id === id);
+    const group = subgraphs.find((item) => item.id === id);
     if (group && !group.people.includes(selected)) choose(group.people[0]);
   }
   function changeEra(value: string) {
@@ -200,7 +137,7 @@ export function MathematiciansAtlas({ locale }: { locale: "zh" | "en" }) {
       const id = window.location.hash.slice(1);
       if (mathematicians.some((person) => person.id === id)) {
         setSelected(id);
-      } else if (!id) setSelected("gauss");
+      } else if (!id) setSelected(atlas.defaultPerson);
       setQuery("");
       setRoute("");
       setEra("all");
@@ -280,7 +217,7 @@ export function MathematiciansAtlas({ locale }: { locale: "zh" | "en" }) {
             >
               {en ? "All lives" : "全部人物"}
             </button>
-            {mathSubgraphs.map((item) => (
+            {subgraphs.map((item) => (
               <button
                 key={item.id}
                 aria-pressed={subgraph === item.id}
@@ -417,6 +354,9 @@ export function MathematiciansAtlas({ locale }: { locale: "zh" | "en" }) {
           </div>
           <ScholarMap
             people={visible}
+            allPeople={mathematicians}
+            relations={scholarRelations}
+            visual={atlas.visual}
             selected={selected}
             mode={mode}
             kind={kind}
@@ -571,7 +511,7 @@ export function MathematiciansAtlas({ locale }: { locale: "zh" | "en" }) {
           >
             <div className="lives-dossier-top">
               <span className="lives-eyebrow">
-                {en ? "A LIFE IN MATHEMATICS" : "人物档案"} /{" "}
+                {en ? atlas.dossierLabel : "人物档案"} /{" "}
                 {String(mathematicians.indexOf(current) + 1).padStart(2, "0")}
               </span>
               <button

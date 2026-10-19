@@ -1425,3 +1425,37 @@
 .lives-page .lives-node:focus-visible {
   outline: none;
 }
+.lives-atlas-directory {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 26px;
+  padding: 0 0 22px;
+}
+.lives-atlas-directory a {
+  color: var(--lives-muted);
+  font-size: 12px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid transparent;
+}
+.lives-atlas-directory a[aria-current="page"] {
+  color: var(--lives-green);
+  border-color: var(--lives-green);
+}
+.lives-page[data-atlas="physicists"] {
+  --lives-green: #42677b;
+}
+.lives-page[data-atlas="chemists"] {
+  --lives-green: #87614a;
+}
+.lives-page[data-atlas="computer-scientists"] {
+  --lives-green: #6e6082;
+}
+.dark .lives-page[data-atlas="physicists"] {
+  --lives-green: #a5c7d8;
+}
+.dark .lives-page[data-atlas="chemists"] {
+  --lives-green: #d8b99f;
+}
+.dark .lives-page[data-atlas="computer-scientists"] {
+  --lives-green: #c5b9dd;
+}
