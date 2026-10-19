@@ -150,6 +150,23 @@ export const learningCatalog: readonly LearningItem[] = [
     updated: "2026-09-27",
   },
   {
+    id: "shanhai",
+    category: "guide",
+    href: "/learning/shanhai",
+    localized: true,
+    title: { zh: "山海经", en: "Shanhaijing" },
+    description: {
+      zh: "沿山川、异兽、草木与神话的关系，探索 32 则原典条目；有今译、细读与三条导读路线。",
+      en: "Explore 32 connected entries from the Classic of Mountains and Seas, with original passages, reading notes and three guided paths. Content is in Chinese.",
+    },
+    topic: { zh: "古籍阅读", en: "Reading a Chinese classic" },
+    scope: {
+      zh: "水墨图谱 · 原典伴读",
+      en: "Interactive atlas · Chinese reading guide",
+    },
+    updated: "2026-10-19",
+  },
+  {
     id: "vscode-cpp",
     category: "guide",
     href: "/tutorials/vscode-cpp",
