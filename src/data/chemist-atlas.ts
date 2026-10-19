@@ -73,7 +73,16 @@ export const chemistAtlas: ScientistAtlas = completeAtlas({
       "Organic chemistry",
       "从结构式到复杂分子的合成，问题和方法如何演进？",
       "Follow molecular structure into the synthesis of complex compounds.",
-      ["wohler", "liebig", "kekule", "robinson", "woodward", "huang-minglong"],
+      [
+        "wohler",
+        "liebig",
+        "kekule",
+        "van-t-hoff",
+        "le-bel",
+        "robinson",
+        "woodward",
+        "huang-minglong",
+      ],
     ),
     sub(
       "life",

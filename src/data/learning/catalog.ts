@@ -202,6 +202,23 @@ export const learningCatalog: readonly LearningItem[] = [
     updated: "2026-10-19",
   },
   {
+    id: "computer-scientists",
+    category: "people",
+    href: "/learning/computer-scientists",
+    localized: true,
+    title: { zh: "信息学家人物志", en: "Computer & Information Scientists" },
+    description: {
+      zh: "从逻辑与计算，到算法、软件、网络和人工智能，沿50位计算机科学与信息论人物的工作探索。",
+      en: "Explore fifty pioneers of computer science and information theory through logic, algorithms, software, networks and AI.",
+    },
+    topic: { zh: "计算机与信息科学史", en: "History of computing" },
+    scope: {
+      zh: "50位人物 · 6张主题子图",
+      en: "50 lives · 6 thematic subgraphs",
+    },
+    updated: "2026-10-19",
+  },
+  {
     id: "shanhai",
     category: "guide",
     href: "/learning/shanhai",
