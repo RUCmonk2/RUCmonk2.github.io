@@ -35,6 +35,8 @@ jobs:
         run: python -m pip install fonttools==4.62.1
       - name: Lint source
         run: npm run lint
+      - name: Validate artificial intelligence atlas
+        run: node scripts/check-ai-atlas.mjs
       - name: Test publication rules
         run: npm run test:content
       - name: Validate mathematics map

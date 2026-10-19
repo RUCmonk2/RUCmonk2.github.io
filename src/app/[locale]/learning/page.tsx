@@ -43,6 +43,7 @@ export default async function LearningPage({
     (item) => item.category === "math",
   );
   const schools = learningCatalog.filter((item) => item.category === "school");
+  const atlases = learningCatalog.filter((item) => item.category === "atlas");
   const people = learningCatalog.filter((item) => item.category === "people");
   const guides = learningCatalog.filter((item) => item.category === "guide");
 
@@ -235,12 +236,53 @@ export default async function LearningPage({
         </section>
         <section
           className="learning-section"
+          id="atlases"
+          aria-labelledby="atlases-title"
+        >
+          <header className="learning-section-heading">
+            <div>
+              <span>04 / KNOWLEDGE ATLASES</span>
+              <h2 id="atlases-title">
+                {isEnglish ? "Knowledge atlases" : "专业知识网络"}
+              </h2>
+            </div>
+            <p>
+              {isEnglish
+                ? "Connect professional foundations with advanced study, one prerequisite at a time."
+                : "从本科主干到研究专题，沿着先修关系找到下一步。"}
+            </p>
+          </header>
+          <div className="learning-guide-grid">
+            {atlases.map((item) => (
+              <Link
+                key={item.id}
+                href={learningItemHref(item, language)}
+                className="learning-guide-card"
+              >
+                <div className="learning-guide-topline">
+                  <span>{item.topic[language]}</span>
+                  <ArrowRight size={16} />
+                </div>
+                <h3>{item.title[language]}</h3>
+                <p>{item.description[language]}</p>
+                <div className="learning-guide-meta">
+                  <span>{item.scope[language]}</span>
+                  <time dateTime={item.updated}>
+                    {item.updated.replaceAll("-", ".")}
+                  </time>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section
+          className="learning-section"
           id="people"
           aria-labelledby="people-title"
         >
           <header className="learning-section-heading">
             <div>
-              <span>04 / SCIENTIFIC LIVES</span>
+              <span>05 / SCIENTIFIC LIVES</span>
               <h2 id="people-title">
                 {isEnglish ? "Scientific lives" : "科学人物志"}
               </h2>
@@ -281,7 +323,7 @@ export default async function LearningPage({
         >
           <header className="learning-section-heading">
             <div>
-              <span>05 / PRACTICE</span>
+              <span>06 / PRACTICE</span>
               <h2 id="guides-title">
                 {isEnglish ? "Practical guides" : "实践指南"}
               </h2>

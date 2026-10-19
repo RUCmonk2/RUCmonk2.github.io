@@ -1,7 +1,7 @@
 import type { LearningLocale, Localized } from "./types";
 
 export type LearningCategory =
-  "course" | "guide" | "math" | "school" | "people";
+  "course" | "guide" | "math" | "school" | "people" | "atlas";
 export type LearningItem = {
   id: string;
   category: LearningCategory;
@@ -149,6 +149,20 @@ export const learningCatalog: readonly LearningItem[] = [
     topic: { zh: "数学基础", en: "Mathematical foundations" },
     scope: { zh: "交互图谱 · 7 个领域", en: "Interactive map · 7 subjects" },
     updated: "2026-09-27",
+  },
+  {
+    id: "ai-map",
+    category: "atlas",
+    href: "/learning/ai-map",
+    localized: true,
+    title: { zh: "人工智能知识地图", en: "Artificial Intelligence Knowledge Atlas" },
+    description: {
+      zh: "从本科基础到博士研究起步，连接数学、机器学习、深度学习、大模型、视觉、强化学习、系统与研究方法，沿先修关系逐步学习。",
+      en: "Connected AI foundations and research topics, with prerequisites, examples and study paths. Explanatory notes are in Chinese.",
+    },
+    topic: { zh: "人工智能专业体系", en: "AI curriculum" },
+    scope: { zh: "14 个领域 · 194 个知识点 · 6 条阅读路线", en: "14 fields · 194 concepts · 6 study paths" },
+    updated: "2026-10-19",
   },
   {
     id: "mathematicians",
@@ -349,6 +363,7 @@ export const learningCategories = [
     anchor: "mathematics",
     title: { zh: "数学探索", en: "Mathematics" },
   },
+  { id: "atlas", anchor: "atlases", title: { zh: "专业知识网络", en: "Knowledge atlases" } },
   {
     id: "people",
     anchor: "people",
