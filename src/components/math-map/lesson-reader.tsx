@@ -38,11 +38,13 @@ export function ReadingModes({
   onChange,
   en,
   label,
+  labels,
 }: {
   mode: ReadingMode;
   onChange: (mode: ReadingMode) => void;
   en: boolean;
   label: string;
+  labels?: { beginner: string; formal: string };
 }) {
   return (
     <div className="mathmap-reading-modes" role="group" aria-label={label}>
@@ -53,13 +55,14 @@ export function ReadingModes({
           aria-pressed={mode === value}
           onClick={() => onChange(value)}
         >
-          {value === "beginner"
-            ? en
-              ? "Guided learning"
-              : "从零理解"
-            : en
-              ? "Formal treatment"
-              : "严谨表述"}
+          {labels?.[value] ??
+            (value === "beginner"
+              ? en
+                ? "Guided learning"
+                : "从零理解"
+              : en
+                ? "Formal treatment"
+                : "严谨表述")}
         </button>
       ))}
     </div>
@@ -71,6 +74,7 @@ export function useMathLesson(
   id: string,
   locale: "zh" | "en",
   namespace = "math-lessons",
+  enabled = true,
 ) {
   const key = `${namespace}/${locale}/${id}`;
   const [loaded, setLoaded] = useState<{ key: string; lesson: Lesson } | null>(
@@ -79,6 +83,7 @@ export function useMathLesson(
   const [failed, setFailed] = useState<string | null>(null);
   const [retry, setRetry] = useState(0);
   useEffect(() => {
+    if (!enabled) return;
     const controller = new AbortController();
     const known = cache.get(key);
     if (known) {
@@ -100,7 +105,7 @@ export function useMathLesson(
         if (!controller.signal.aborted) setFailed(key);
       });
     return () => controller.abort();
-  }, [key, retry]);
+  }, [key, retry, enabled]);
   return {
     lesson: loaded?.key === key ? loaded.lesson : null,
     error: failed === key,

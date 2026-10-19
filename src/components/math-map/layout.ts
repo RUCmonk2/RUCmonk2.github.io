@@ -71,13 +71,16 @@ export function nodeLabelSize(p: PositionedNode) {
   return nodeTier(p) === "hub" ? 23 : nodeTier(p) === "branch" ? 20 : 18;
 }
 export function labelBox(p: PositionedNode) {
-  const width = (p.width * nodeLabelSize(p)) / 16;
-  const y = p.y + p.radius + 19;
+  return scaledLabelBox(p, 1);
+}
+function scaledLabelBox(p: PositionedNode, scale: number) {
+  const width = (p.width * nodeLabelSize(p) * scale) / 16;
+  const y = p.y + p.radius + 19 * scale;
   return {
     left: p.x - width / 2,
     right: p.x + width / 2,
-    top: y - 13,
-    bottom: y + 13,
+    top: y - 13 * scale,
+    bottom: y + 13 * scale,
   };
 }
 // Semantic zoom chooses candidates; the active label wins any collision.
@@ -86,6 +89,7 @@ export function visibleLabels(
   points: readonly PositionedNode[],
   candidates: ReadonlySet<string>,
   active: string | null,
+  scale = 1,
 ) {
   const boxes: ReturnType<typeof labelBox>[] = [];
   const shown = new Set<string>();
@@ -95,7 +99,7 @@ export function visibleLabels(
       a.id === active ? -1 : b.id === active ? 1 : b.importance - a.importance,
     );
   for (const p of ordered) {
-    const box = labelBox(p);
+    const box = scaledLabelBox(p, scale);
     const overlapsLabel = boxes.some(
       (b) =>
         box.left < b.right + 10 &&
@@ -238,10 +242,10 @@ export function snapshotSimulation(
     .nodes()
     .map(({ id, x, y, width, radius, importance, domain, landmark }) => ({
       id,
-      x,
-      y,
+      x: Number(x.toFixed(4)),
+      y: Number(y.toFixed(4)),
       width,
-      radius,
+      radius: Number(radius.toFixed(5)),
       importance,
       domain,
       landmark,
@@ -272,7 +276,10 @@ export function layoutGraph(
     subjectCounts.set(node.domain, index + 1);
     const angle = index * Math.PI * (3 - Math.sqrt(5));
     const distance = 36 * Math.sqrt(index + 0.5);
-    const importance = (degrees.get(node.id) ?? 0) / maxDegree;
+    const importance = Math.max(
+      (degrees.get(node.id) ?? 0) / maxDegree,
+      Math.min(1, Math.max(0, node.mapImportance ?? 0)),
+    );
     const center = centers[node.domain];
     return {
       id: node.id,

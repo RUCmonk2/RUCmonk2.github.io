@@ -18,6 +18,7 @@ import {
 import Link from "next/link";
 import {
   type PointerEvent,
+  type ReactNode,
   useCallback,
   useEffect,
   useId,
@@ -26,7 +27,7 @@ import {
   useState,
 } from "react";
 
-import type { KnowledgeAtlas } from "@/data/knowledge-atlas";
+import type { AtlasNode, KnowledgeAtlas } from "@/data/knowledge-atlas";
 import { mathAtlas } from "@/data/math-atlas";
 import { mathMapLabel } from "@/data/math-map";
 
@@ -94,9 +95,15 @@ const allFilter: Filter = {
 export function MathMapGraph({
   locale,
   atlas = mathAtlas,
+  nodeFilter,
+  renderNodeMeta,
+  onReset,
 }: {
   locale: "zh" | "en";
   atlas?: KnowledgeAtlas;
+  nodeFilter?: (node: AtlasNode) => boolean;
+  renderNodeMeta?: (node: AtlasNode) => ReactNode;
+  onReset?: () => void;
 }) {
   const {
     nodes: mathMapNodes,
@@ -143,19 +150,45 @@ export function MathMapGraph({
     moved: boolean;
     origin?: Point;
   } | null>(null);
-  const [positions, setPositions] = useState(() =>
-    layoutGraph(mathMapNodes, mathMapEdges, locale, centers),
+  const initialPositions = useMemo(
+    () => layoutGraph(mathMapNodes, mathMapEdges, locale, centers),
+    [mathMapNodes, mathMapEdges, locale, centers],
   );
+  const [positions, setPositions] = useState(initialPositions);
   const [camera, setCamera] = useState<Camera>(() => fitCamera(positions));
   const [selected, setSelected] = useState(atlas.defaultNode);
   const [readingMode, setReadingMode] = useState<ReadingMode>("beginner");
+  const inlineLesson = mathMapNode(selected)?.inlineLesson;
   const lessonRef = mathMapNode(selected)?.lesson;
   const lessonLocale = lessonRef?.locale ?? locale;
-  const lessonState = useMathLesson(
+  const fetchedLesson = useMathLesson(
     lessonRef?.id ?? selected,
     lessonLocale,
     lessonRef?.namespace,
+    !inlineLesson,
   );
+  const lessonState = inlineLesson
+    ? {
+        ...fetchedLesson,
+        lesson: {
+          beginner: inlineLesson.beginner,
+          formal: inlineLesson.formal,
+          intro: {
+            beginner: inlineLesson.intro.beginner[locale],
+            formal: inlineLesson.intro.formal[locale],
+          },
+        },
+        error: false,
+      }
+    : fetchedLesson;
+  const readingLabels = atlas.readingModeLabels
+    ? {
+        beginner: atlas.readingModeLabels.beginner[locale],
+        formal: atlas.readingModeLabels.formal[locale],
+      }
+    : undefined;
+  const readingStorageKey =
+    atlas.readingModeStorageKey ?? "mathmap-reading-mode";
   const [focused, setFocused] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>(allFilter);
   const [view, setView] = useState<"graph" | "list">("graph");
@@ -164,16 +197,16 @@ export function MathMapGraph({
   const [forces, setForces] = useState(DEFAULT_FORCES);
   useEffect(() => {
     try {
-      const stored = window.localStorage.getItem("mathmap-reading-mode");
+      const stored = window.localStorage.getItem(readingStorageKey);
       if (stored === "formal" || stored === "beginner") setReadingMode(stored);
     } catch {
       /* Reading remains available when storage is disabled. */
     }
-  }, []);
+  }, [readingStorageKey]);
   function changeReadingMode(mode: ReadingMode) {
     setReadingMode(mode);
     try {
-      window.localStorage.setItem("mathmap-reading-mode", mode);
+      window.localStorage.setItem(readingStorageKey, mode);
     } catch {
       /* Optional preference. */
     }
@@ -199,6 +232,7 @@ export function MathMapGraph({
     ]);
     return mathMapNodes.filter(
       (node) =>
+        (!nodeFilter || nodeFilter(node)) &&
         (filter.domain === "all" || node.domain === filter.domain) &&
         (!path || path.nodes.includes(node.id)) &&
         (!filter.neighborhood || neighborhood.has(node.id)) &&
@@ -211,7 +245,7 @@ export function MathMapGraph({
             node.blurb.en,
           ].some((text) => text.toLowerCase().includes(query))),
     );
-  }, [filter, path, selected, mathMapNodes, mathMapNeighbors]);
+  }, [filter, path, selected, mathMapNodes, mathMapNeighbors, nodeFilter]);
   const visibleIds = new Set(visible.map((n) => n.id));
   const visibleEdges = mathMapEdges.filter(
     (e) => visibleIds.has(e.source) && visibleIds.has(e.target),
@@ -224,6 +258,9 @@ export function MathMapGraph({
   ]);
   const activeVisible = active !== null && visibleIds.has(active);
   const relativeZoom = camera.zoom / fitCamera(positions).zoom;
+  const labelScale = atlas.screenSpaceLabels
+    ? 1 / Math.min(1, Math.max(0.1, camera.zoom))
+    : 1;
   const labelCandidates = new Set(
     visible
       .filter((node) => {
@@ -243,10 +280,14 @@ export function MathMapGraph({
     positions.filter(
       (p) =>
         visibleIds.has(p.id) &&
+        (!atlas.screenSpaceLabels ||
+          activeVisible ||
+          labelCandidates.has(p.id)) &&
         (!activeVisible || focusIds.has(p.id) || p.id === pending),
     ),
     labelCandidates,
     active,
+    labelScale,
   );
   const drawnEdges = activeVisible
     ? visibleEdges.filter((e) => e.source === active || e.target === active)
@@ -255,7 +296,7 @@ export function MathMapGraph({
 
   useEffect(() => {
     const simulation = createGraphSimulation(
-      layoutGraph(mathMapNodes, mathMapEdges, locale, centers),
+      initialPositions,
       mathMapEdges,
       DEFAULT_FORCES,
       centers,
@@ -280,7 +321,7 @@ export function MathMapGraph({
       simulationRef.current = null;
       preference.removeEventListener("change", syncMotion);
     };
-  }, [locale, mathMapNodes, mathMapEdges, centers]);
+  }, [locale, mathMapNodes, mathMapEdges, centers, initialPositions]);
 
   useEffect(() => {
     if (window.matchMedia("(max-width: 600px)").matches) setView("list");
@@ -291,6 +332,34 @@ export function MathMapGraph({
         setSelected(id);
         setFocused(id);
         setFilter(allFilter);
+      } else if (
+        id.startsWith("domain:") &&
+        mathMapDomains.some((d) => d.id === id.slice(7))
+      ) {
+        const domain = id.slice(7);
+        setFilter({ ...allFilter, domain });
+        setSelected(mathMapNodes.find((node) => node.domain === domain)!.id);
+        setFocused(null);
+        setCamera(
+          fitCamera(
+            initialPositions.filter(
+              (point) => mathMapNode(point.id)!.domain === domain,
+            ),
+          ),
+        );
+      } else if (
+        id.startsWith("route:") &&
+        mathMapPaths.some((path) => path.id === id.slice(6))
+      ) {
+        const path = mathMapPaths.find((path) => path.id === id.slice(6))!;
+        setFilter({ ...allFilter, path: path.id });
+        setSelected(path.nodes[0]);
+        setFocused(null);
+        setCamera(
+          fitCamera(
+            initialPositions.filter((point) => path.nodes.includes(point.id)),
+          ),
+        );
       } else {
         setFocused(null);
       }
@@ -299,6 +368,15 @@ export function MathMapGraph({
     window.addEventListener("hashchange", restoreHash);
     return () => window.removeEventListener("hashchange", restoreHash);
   }, [cancelDwell, mathMapNode]);
+  useEffect(() => {
+    if (!nodeFilter || nodeFilter(mathMapNode(selected)!)) return;
+    const next = mathMapNodes.find(nodeFilter);
+    if (next) {
+      setSelected(next.id);
+      setFocused(null);
+      window.history.replaceState(null, "", "#" + next.id);
+    }
+  }, [nodeFilter, mathMapNode, mathMapNodes, selected]);
   const hasVisibleNodes = visible.length > 0;
   useEffect(() => {
     const svg = svgRef.current;
@@ -349,6 +427,7 @@ export function MathMapGraph({
     settleSimulation();
   }
   function choose(id: string) {
+    if (nodeFilter && !nodeFilter(mathMapNode(id)!)) onReset?.();
     recordSelection(id);
     if (!visibleIds.has(id)) {
       setFilter(allFilter);
@@ -463,6 +542,7 @@ export function MathMapGraph({
   }
 
   function reset() {
+    onReset?.();
     const next = layoutGraph(mathMapNodes, mathMapEdges, locale, centers);
     const simulation = simulationRef.current;
     if (simulation) {
@@ -528,7 +608,9 @@ export function MathMapGraph({
                   ? "Search a concept or keyword…"
                   : atlas.id === "math-map"
                     ? "搜索概念：梯度、Jacobian、群…"
-                    : "搜索本课程的概念或关键词…"
+                    : atlas.id === "ai-map"
+                      ? "搜索概念：Transformer、因果、强化学习…"
+                      : "搜索本课程的概念或关键词…"
               }
               aria-label={en ? "Search concepts" : "搜索概念"}
               type="search"
@@ -584,10 +666,19 @@ export function MathMapGraph({
               data-domain={colorOf(d.id)}
               aria-pressed={filter.domain === d.id}
               key={d.id}
+              disabled={
+                !!nodeFilter &&
+                !mathMapNodes.some(
+                  (node) => node.domain === d.id && nodeFilter(node),
+                )
+              }
               onClick={() => {
                 changeFilter({ ...allFilter, domain: d.id });
                 recordSelection(
-                  mathMapNodes.find((node) => node.domain === d.id)!.id,
+                  mathMapNodes.find(
+                    (node) =>
+                      node.domain === d.id && (!nodeFilter || nodeFilter(node)),
+                  )!.id,
                 );
                 setFocused(null);
                 setCamera(
@@ -897,7 +988,9 @@ export function MathMapGraph({
                         const bend = edge.kind === "prereq" ? 0.055 : -0.07;
                         return (
                           <path
-                            key={edge.source + edge.target}
+                            key={
+                              edge.source + ":" + edge.target + ":" + edge.kind
+                            }
                             d={`M${x1},${y1} Q${(x1 + x2) / 2 - dy * bend},${(y1 + y2) / 2 + dx * bend} ${x2},${y2}`}
                             fill="none"
                             className={[
@@ -959,18 +1052,18 @@ export function MathMapGraph({
                           <rect
                             x={
                               -(shownLabels.has(node.id)
-                                ? (p.width * nodeLabelSize(p)) / 16
+                                ? (p.width * nodeLabelSize(p) * labelScale) / 16
                                 : Math.max(36, p.radius * 2 + 12)) / 2
                             }
                             y={-Math.max(18, p.radius + 7)}
                             width={
                               shownLabels.has(node.id)
-                                ? (p.width * nodeLabelSize(p)) / 16
+                                ? (p.width * nodeLabelSize(p) * labelScale) / 16
                                 : Math.max(36, p.radius * 2 + 12)
                             }
                             height={
                               shownLabels.has(node.id)
-                                ? p.radius * 2 + 60
+                                ? p.radius * 2 + 60 * labelScale
                                 : Math.max(36, p.radius * 2 + 14)
                             }
                           />
@@ -1010,9 +1103,11 @@ export function MathMapGraph({
                           </g>
                           {shownLabels.has(node.id) && (
                             <text
-                              style={{ fontSize: nodeLabelSize(p) }}
+                              style={{
+                                fontSize: nodeLabelSize(p) * labelScale,
+                              }}
                               x={0}
-                              y={p.radius + 19}
+                              y={p.radius + 19 * labelScale}
                               textAnchor="middle"
                               dominantBaseline="middle"
                             >
@@ -1109,8 +1204,10 @@ export function MathMapGraph({
               / {mathMapNodes.length}
             </div>
             <h2>{current.label[locale]}</h2>
+            {renderNodeMeta?.(current)}
             <ReadingModes
               mode={readingMode}
+              labels={readingLabels}
               onChange={changeReadingMode}
               en={en}
               label={en ? "Preview reading mode" : "预览阅读模式"}
@@ -1138,7 +1235,13 @@ export function MathMapGraph({
               onClick={readDetails}
             >
               <BookOpen size={15} />
-              {en ? "Read the full lesson" : "阅读完整讲解"}
+              {inlineLesson
+                ? en
+                  ? "Read concept notes"
+                  : "阅读概念详解"
+                : en
+                  ? "Read the full lesson"
+                  : "阅读完整讲解"}
               <ArrowRight size={14} />
             </button>
             <div className="mathmap-neighbors">
@@ -1240,6 +1343,7 @@ export function MathMapGraph({
             <h2>{current.label[locale]}</h2>
             <ReadingModes
               mode={readingMode}
+              labels={readingLabels}
               onChange={changeReadingMode}
               en={en}
               label={en ? "Lesson reading mode" : "讲解阅读模式"}
@@ -1293,6 +1397,7 @@ export function MathMapGraph({
               type="button"
               aria-pressed={filter.path === route.id}
               onClick={() => {
+                onReset?.();
                 changeFilter({ ...allFilter, path: route.id });
                 recordSelection(route.nodes[0]);
                 document

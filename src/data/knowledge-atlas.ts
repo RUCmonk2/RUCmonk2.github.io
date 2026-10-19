@@ -14,6 +14,13 @@ export type AtlasNode = {
   href?: string;
   hrefLabel?: Localized;
   sources?: string[];
+  inlineLesson?: {
+    beginner: string;
+    formal: string;
+    intro: { beginner: Localized; formal: Localized };
+  };
+  badges?: Localized[];
+  mapImportance?: number;
   lesson?: { namespace: string; id: string; locale?: "zh" | "en" };
 };
 export type AtlasEdge = {
@@ -34,6 +41,9 @@ export type KnowledgeAtlas = {
   description: Localized;
   readingGuide?: { beginner: Localized; formal: Localized };
   lessonKicker?: Localized;
+  readingModeLabels?: { beginner: Localized; formal: Localized };
+  readingModeStorageKey?: string;
+  screenSpaceLabels?: boolean;
   href: string;
   courseHref?: string;
   updated: string;
