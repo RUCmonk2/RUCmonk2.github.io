@@ -304,6 +304,7 @@ export const physicsFormulaAtlas: KnowledgeAtlas = {
   courseHref: "/learning/k12/subjects/physics",
   updated: physicsFormulaUpdated,
   defaultNode: "work-energy",
+  lessonOutline: true,
   lessonKicker: {
     zh: "符号 · 条件 · 推导 · 应用",
     en: "SYMBOLS · CONDITIONS · DERIVATION · APPLICATION",

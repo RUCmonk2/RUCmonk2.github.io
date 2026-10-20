@@ -51,6 +51,7 @@ import {
   snapshotSimulation,
   visibleLabels,
 } from "./layout";
+import { LessonOutline } from "./lesson-outline";
 import {
   LessonBody,
   MathProse,
@@ -1392,65 +1393,73 @@ export function MathMapGraph({
           lang={lessonLocale}
           aria-label={en ? "Concept details" : "概念详情"}
         >
-          <header className="mathmap-lesson-header">
-            <button
-              type="button"
-              className="mathmap-return"
-              onClick={returnToMap}
-            >
-              <ArrowLeft size={14} />
-              {en ? "Back to map" : "返回图谱"}
-            </button>
-            <span className="mathmap-section-label">
-              {domain.label[locale]} /{" "}
-              {atlas.lessonKicker?.[locale] ??
-                (en ? "READ & WORK THROUGH" : "理解 · 演算 · 练习")}
-            </span>
-            <h2>{current.label[locale]}</h2>
-            <ReadingModes
-              mode={readingMode}
-              labels={readingLabels}
-              onChange={changeReadingMode}
-              en={en}
-              label={en ? "Lesson reading mode" : "讲解阅读模式"}
-            />
-            <p>
-              {atlas.readingGuide?.[readingMode][locale] ??
-                (readingMode === "beginner"
-                  ? en
-                    ? "Start with intuition, decode the notation, then calculate and practise."
-                    : "先建立直觉，再读懂每个符号，跟着算例动手，最后用题目检查理解。"
-                  : en
-                    ? "Definitions, assumptions, derivations and connections."
-                    : "定义、适用条件、推导与知识联系。")}
-            </p>
-          </header>
-          {atlas.relationGuide && (
-            <button
-              type="button"
-              className="mathmap-print"
-              disabled={!lessonState.lesson}
-              onClick={() => window.print()}
-            >
-              {en ? "Print this lesson" : "打印当前讲解"}
-            </button>
-          )}
-          <LessonBody
-            key={selected + readingMode + locale}
-            {...lessonState}
-            mode={readingMode}
+          <LessonOutline
+            enabled={!!atlas.lessonOutline}
+            contentVersion={
+              selected + (lessonState.lesson?.[readingMode] ?? "")
+            }
             en={en}
-          />
-          <footer className="mathmap-lesson-footer">
-            <button
-              type="button"
-              className="mathmap-return"
-              onClick={returnToMap}
-            >
-              <ArrowLeft size={14} />
-              {en ? "Explore another concept" : "回到图谱，探索下一个概念"}
-            </button>
-          </footer>
+          >
+            <header className="mathmap-lesson-header">
+              <button
+                type="button"
+                className="mathmap-return"
+                onClick={returnToMap}
+              >
+                <ArrowLeft size={14} />
+                {en ? "Back to map" : "返回图谱"}
+              </button>
+              <span className="mathmap-section-label">
+                {domain.label[locale]} /{" "}
+                {atlas.lessonKicker?.[locale] ??
+                  (en ? "READ & WORK THROUGH" : "理解 · 演算 · 练习")}
+              </span>
+              <h2>{current.label[locale]}</h2>
+              <ReadingModes
+                mode={readingMode}
+                labels={readingLabels}
+                onChange={changeReadingMode}
+                en={en}
+                label={en ? "Lesson reading mode" : "讲解阅读模式"}
+              />
+              <p>
+                {atlas.readingGuide?.[readingMode][locale] ??
+                  (readingMode === "beginner"
+                    ? en
+                      ? "Start with intuition, decode the notation, then calculate and practise."
+                      : "先建立直觉，再读懂每个符号，跟着算例动手，最后用题目检查理解。"
+                    : en
+                      ? "Definitions, assumptions, derivations and connections."
+                      : "定义、适用条件、推导与知识联系。")}
+              </p>
+            </header>
+            {atlas.relationGuide && (
+              <button
+                type="button"
+                className="mathmap-print"
+                disabled={!lessonState.lesson}
+                onClick={() => window.print()}
+              >
+                {en ? "Print this lesson" : "打印当前讲解"}
+              </button>
+            )}
+            <LessonBody
+              key={selected + readingMode + locale}
+              {...lessonState}
+              mode={readingMode}
+              en={en}
+            />
+            <footer className="mathmap-lesson-footer">
+              <button
+                type="button"
+                className="mathmap-return"
+                onClick={returnToMap}
+              >
+                <ArrowLeft size={14} />
+                {en ? "Explore another concept" : "回到图谱，探索下一个概念"}
+              </button>
+            </footer>
+          </LessonOutline>
         </article>
       </section>
       <section

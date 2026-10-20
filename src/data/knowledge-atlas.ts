@@ -48,6 +48,7 @@ export type KnowledgeAtlas = {
   readingModeLabels?: { beginner: Localized; formal: Localized };
   readingModeStorageKey?: string;
   screenSpaceLabels?: boolean;
+  lessonOutline?: boolean;
   relationGuide?: Localized;
   relationHeadings?: Record<"before" | "after" | "related", Localized>;
   href: string;

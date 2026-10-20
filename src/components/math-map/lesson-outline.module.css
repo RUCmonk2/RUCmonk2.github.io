@@ -1,0 +1,117 @@
+:global(.mathmap-lesson):has(> .layout) {
+  padding-left: 0;
+  padding-right: 0;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 820px);
+  gap: 40px;
+  align-items: start;
+}
+.content {
+  min-width: 0;
+}
+.content :global(.mathmap-lesson-header h2),
+.content :global(.mathmap-lesson-prose > h2) {
+  scroll-margin-top: 120px;
+}
+.content h2:focus-visible {
+  outline: 1px solid var(--note-accent);
+  outline-offset: 6px;
+}
+.sidebar {
+  position: sticky;
+  top: 112px;
+  max-height: calc(100svh - 144px);
+  overflow-y: auto;
+  padding: 10px 8px 10px 0;
+}
+.label {
+  margin: 0 0 16px;
+  color: var(--note-muted);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+.outline ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--note-line);
+}
+.outline button {
+  display: block;
+  width: calc(100% + 1px);
+  margin-left: -1px;
+  padding: 9px 12px;
+  border-left: 2px solid transparent;
+  background: transparent;
+  color: var(--note-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: left;
+  cursor: pointer;
+}
+.outline button:hover,
+.outline button:focus-visible {
+  color: var(--note-accent);
+  background: var(--note-tint);
+}
+.outline button[aria-current] {
+  color: var(--note-accent);
+  border-left-color: var(--note-accent);
+  background: var(--note-tint);
+  font-weight: 600;
+}
+.outline button:focus-visible {
+  outline: 1px solid var(--note-accent);
+  outline-offset: -1px;
+}
+.mobile {
+  display: none;
+}
+@media (max-width: 900px) {
+  .layout {
+    display: block;
+  }
+  .sidebar {
+    display: none;
+  }
+  .mobile {
+    display: block;
+    position: sticky;
+    top: 76px;
+    z-index: 15;
+    margin-bottom: 24px;
+    border: 1px solid var(--note-line);
+    background: var(--note-paper);
+  }
+  .mobile summary {
+    padding: 12px 14px;
+    color: var(--note-ink);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .current {
+    margin-left: 14px;
+    color: var(--note-muted);
+    font-size: 12px;
+  }
+  .mobile nav {
+    max-height: min(55svh, 430px);
+    overflow-y: auto;
+    padding: 0 14px 14px;
+  }
+  .content :global(.mathmap-lesson-header h2),
+  .content :global(.mathmap-lesson-prose > h2) {
+    scroll-margin-top: 150px;
+  }
+}
+@media print {
+  .layout {
+    display: block;
+  }
+  .sidebar,
+  .mobile {
+    display: none;
+  }
+}
