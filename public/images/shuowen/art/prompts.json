@@ -1,0 +1,92 @@
+{
+  "tool": "Built-in image_gen",
+  "created": "2026-10-27",
+  "identity": "AI-generated contemporary interpretations, not historical evidence",
+  "style": "Traditional Chinese literati ink wash on warm ivory xuan paper (#f3f0e7), museum bookplate, charcoal ink and pale moss-grey wash, delicate dry brush, subtle paper fibres, approximately 60–65% untouched paper. Wide 4:3 composition, quiet and contemplative. No text, characters, seals, logo, frame or watermark.",
+  "assets": [
+    {
+      "id": "dao",
+      "file": "dao.webp",
+      "subject": "A thin winding mountain path leading through layered mist toward a tiny distant pass; Dao as a way and an open question.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "water",
+      "file": "water.webp",
+      "subject": "A narrow stream curves around two dark worn stones. A reed bends gracefully beside flowing water and one tiny vermilion fallen leaf. Yielding and patient movement.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "valley",
+      "file": "valley.webp",
+      "subject": "A profound empty valley between misty mountain slopes, a tiny spring at its lower edge. Luminous empty space and depth.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "stillness",
+      "file": "stillness.webp",
+      "subject": "A single slender pine by a still lake, its reflection dissolving into unpainted paper, a distant mountain as one pale brushstroke.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "return",
+      "file": "return.webp",
+      "subject": "An old tree on a riverbank with exposed roots, fresh tiny spring leaves on one branch and a fallen leaf near the roots. Natural renewal without diagram or arrows.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "mirror",
+      "file": "mirror.webp",
+      "subject": "A still round pool among low rocks reflects one distant branch. Mountains and mist vanish into open paper. A clear mind without human figures.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "vessel",
+      "file": "vessel.webp",
+      "subject": "A humble unglazed ceramic bowl viewed from above at three quarters, its empty interior gently lit, thin ink outlines and a reed beside it.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "butterfly",
+      "file": "butterfly.webp",
+      "subject": "Two delicate butterflies, one near a flowering branch and another dissolving into mist over a barely suggested sleeping rock. Dream and waking ambiguously adjacent.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "bamboo",
+      "file": "bamboo.webp",
+      "subject": "Three graceful bamboo stems bending in a breeze, exquisite ink leaves, one dark rock at their base. The lowest stem curves without breaking.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "leaf",
+      "file": "leaf.webp",
+      "subject": "A young branch with three leaves, one leaf foreground with visible veins, soft moss-grey washes and a dew drop, distant misty forest.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "light",
+      "file": "light.webp",
+      "subject": "A low sun behind mountain mist, pale warm light touches a leaf and a faint river. Gentle illumination, no neon or glaring rays.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    },
+    {
+      "id": "journey",
+      "file": "journey.webp",
+      "subject": "A winding footpath begins near reeds and disappears over a pale hill into mist, with one tiny solitary traveler far away. Direction and possibility.",
+      "source": "Individually generated for this atlas",
+      "processing": "Lossy WebP export, width 1440, quality 84; no creative alteration"
+    }
+  ]
+}

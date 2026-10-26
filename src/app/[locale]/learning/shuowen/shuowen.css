@@ -1,0 +1,2049 @@
+@font-face {
+  font-family: "Shuowen Kai";
+  src: url("/fonts/shuowen/characters.woff2") format("woff2");
+  font-display: swap;
+}
+.sw-page {
+  --sw-paper: #f5f2e9;
+  --sw-ink: #303a34;
+  --sw-muted: #747a6e;
+  --sw-line: #deded1;
+  --sw-red: #a74f3c;
+  color: var(--sw-ink);
+  background: var(--sw-paper);
+  color-scheme: light;
+  min-height: 100vh;
+  padding: 0 44px;
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.025' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.sw-page * {
+  box-sizing: border-box;
+}
+.sw-shell {
+  max-width: 1480px;
+  margin: auto;
+}
+.sw-page button,
+.sw-page input,
+.sw-page select {
+  font: inherit;
+}
+.sw-page button {
+  cursor: pointer;
+}
+.sw-page button:disabled {
+  cursor: default;
+  opacity: 0.28;
+}
+.sw-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.sw-page :is(button, a, input, select, [role="button"]):focus-visible {
+  outline: 2px solid var(--sw-red);
+  outline-offset: 4px;
+}
+.sw-page button {
+  -webkit-tap-highlight-color: transparent;
+}
+.sw-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 27px 0 0;
+  color: var(--sw-muted);
+  font:
+    10px/1.6 system-ui,
+    sans-serif;
+  letter-spacing: 1.5px;
+}
+.sw-topline a,
+.sw-topline > span {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.sw-topline a {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.sw-topline i {
+  height: 10px;
+  border-left: 1px solid var(--sw-line);
+  margin: 0 7px;
+}
+.sw-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 358px;
+  padding: 48px 18px 48px 4px;
+  overflow: hidden;
+}
+.sw-hero-landscape {
+  position: absolute;
+  right: 8%;
+  top: -18%;
+  width: 65%;
+  height: 132%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  z-index: -1;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 1%,
+    #000 25%,
+    #000 65%,
+    transparent 100%
+  );
+}
+.sw-kicker {
+  font:
+    10px/1.7 system-ui,
+    sans-serif;
+  letter-spacing: 2px;
+  color: var(--sw-muted);
+}
+.sw-hero-copy > .sw-kicker {
+  letter-spacing: 4px;
+  margin: 0 0 21px 72px;
+}
+.sw-title-line {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.sw-title-seal {
+  color: var(--sw-red);
+  border: 1px solid;
+  outline: 1px solid;
+  outline-offset: 3px;
+  padding: 5px 6px;
+  font:
+    18px/1.35 "Shuowen Kai",
+    "Kaiti SC",
+    serif;
+  letter-spacing: 3px;
+  transform: rotate(-3deg);
+}
+.sw-title-line h1 {
+  margin: 0;
+  font-family: "Shuowen Kai", "Songti SC", serif;
+  font-size: clamp(52px, 5.8vw, 78px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 10px;
+}
+.sw-hero-tagline {
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin: 19px 0 0 72px;
+}
+.sw-hero-description {
+  color: #666e62;
+  font-size: 13px;
+  line-height: 1.9;
+  letter-spacing: 0.7px;
+  margin: 13px 0 0 72px;
+}
+.sw-mobile-break {
+  display: none;
+}
+.sw-hero-counts {
+  display: flex;
+  gap: 26px;
+  margin: 24px 0 0 72px;
+}
+.sw-hero-counts span {
+  font-size: 10px;
+  color: var(--sw-muted);
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.sw-hero-counts b {
+  font:
+    23px/1 Georgia,
+    serif;
+  color: var(--sw-ink);
+}
+.sw-name-entry {
+  align-self: center;
+  padding: 16px 0 14px 26px;
+  border-left: 1px solid var(--sw-line);
+  min-width: 225px;
+  margin-top: 12px;
+}
+.sw-name-entry > .sw-kicker {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+.sw-name-entry > div {
+  display: flex;
+  gap: 25px;
+  margin: 20px 0 18px;
+}
+.sw-name-entry > div button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition:
+    color 0.2s,
+    transform 0.2s;
+}
+.sw-name-entry > div button:hover {
+  color: var(--sw-red);
+  transform: translateY(-3px);
+}
+.sw-name-entry b {
+  font:
+    37px/1.1 "Shuowen Kai",
+    "Songti SC",
+    serif;
+}
+.sw-name-entry small {
+  font:
+    10px/1 Georgia,
+    serif;
+  letter-spacing: 1px;
+  color: var(--sw-muted);
+}
+.sw-name-route {
+  font-size: 11px !important;
+  color: var(--sw-red);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  letter-spacing: 1px;
+}
+.sw-viewbar {
+  border-bottom: 1px solid var(--sw-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  scroll-margin-top: 78px;
+}
+.sw-viewbar nav {
+  display: flex;
+  gap: 32px;
+}
+.sw-viewbar nav button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 17px 0;
+  border-bottom: 2px solid transparent;
+  color: var(--sw-muted);
+  font-size: 14px;
+}
+.sw-viewbar nav button[aria-pressed="true"] {
+  color: var(--sw-ink);
+  border-color: var(--sw-ink);
+}
+.sw-viewbar nav small {
+  font:
+    10px/1.4 Georgia,
+    serif;
+  background: #e9e8de;
+  padding: 1px 4px;
+}
+.sw-viewbar > span {
+  font-size: 10px;
+  color: var(--sw-muted);
+  letter-spacing: 1.5px;
+}
+.sw-language-note {
+  font:
+    12px/1.8 system-ui,
+    sans-serif;
+  color: var(--sw-muted);
+}
+.sw-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 365px;
+  align-items: start;
+  border-bottom: 1px solid var(--sw-line);
+}
+.sw-explorer {
+  min-width: 0;
+  padding-right: 25px;
+}
+.sw-filters {
+  padding: 21px 0 12px;
+}
+.sw-theme-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 17px;
+  align-items: center;
+}
+.sw-theme-filters button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--sw-muted);
+  white-space: nowrap;
+  padding: 2px 0 5px;
+  border-bottom: 1px solid transparent;
+}
+.sw-theme-filters button[aria-pressed="true"] {
+  color: var(--sw-ink);
+  border-color: currentColor;
+}
+.sw-theme-filters i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--theme-color);
+}
+.sw-search {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  border-bottom: 1px solid var(--sw-line);
+  width: 220px;
+  margin: 15px 0 0 auto;
+  color: var(--sw-muted);
+}
+.sw-search input {
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 5px 0 7px;
+  font-size: 12px;
+}
+.sw-search input::placeholder {
+  color: #8b8f83;
+  letter-spacing: 1px;
+}
+.sw-search-results {
+  margin: 2px 0 15px;
+  padding: 12px 14px;
+  background: #ebece350;
+  border-left: 2px solid #89967c;
+  font-size: 11px;
+  color: var(--sw-muted);
+}
+.sw-search-results > div {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 9px 0;
+}
+.sw-search-results > div button {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 3px 7px;
+  font-size: 19px;
+  color: var(--sw-ink);
+  background: #ffffff50;
+}
+.sw-search-results > div button[aria-pressed="true"] {
+  color: var(--sw-red);
+}
+.sw-search-results small {
+  font-size: 10px;
+  color: var(--sw-muted);
+}
+.sw-clear-filters {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.sw-layerbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0 15px;
+}
+.sw-layer-switch {
+  display: flex;
+  background: #e9e9de;
+  padding: 3px;
+  gap: 2px;
+}
+.sw-layer-switch button {
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  padding: 5px 12px;
+  color: var(--sw-muted);
+}
+.sw-layer-switch button[aria-pressed="true"] {
+  background: var(--sw-paper);
+  color: var(--sw-ink);
+  box-shadow: 0 1px 3px #303a3410;
+}
+.sw-layerbar select {
+  background: transparent;
+  border: 0;
+  color: var(--sw-muted);
+  font-size: 11px;
+  padding: 5px;
+  max-width: 125px;
+}
+.sw-layer-note {
+  font-size: 11px;
+  color: var(--sw-muted);
+}
+.sw-map-wrap {
+  position: relative;
+}
+.sw-map-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font:
+    10px/1.5 system-ui,
+    sans-serif;
+  letter-spacing: 1px;
+  color: var(--sw-muted);
+  padding: 6px 0;
+}
+.sw-map-note label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.sw-map-note input {
+  accent-color: var(--sw-red);
+  width: 12px;
+  height: 12px;
+}
+.sw-map {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1080/820;
+  touch-action: none;
+  cursor: grab;
+  overflow: hidden;
+}
+.sw-map:active {
+  cursor: grabbing;
+}
+.sw-map-cluster text {
+  font:
+    15px "Shuowen Kai",
+    "Songti SC",
+    serif;
+  letter-spacing: 4px;
+  opacity: 0.65;
+  pointer-events: none;
+}
+.sw-node {
+  cursor: pointer;
+}
+.sw-node-halo {
+  fill: var(--sw-paper);
+}
+.sw-node-ring {
+  fill: transparent;
+  stroke: var(--node-color);
+  stroke-width: 1;
+  opacity: 0.2;
+  transition:
+    fill 0.2s,
+    opacity 0.2s;
+}
+.sw-node-char {
+  font:
+    28px "Shuowen Kai",
+    "Songti SC",
+    serif;
+  fill: var(--sw-ink);
+  transition: fill 0.2s;
+}
+.sw-node:hover .sw-node-ring,
+.sw-node:focus-visible .sw-node-ring {
+  opacity: 0.65;
+}
+.sw-node.is-related .sw-node-ring {
+  opacity: 0.4;
+}
+.sw-node.is-selected .sw-node-ring {
+  fill: var(--sw-red);
+  stroke: var(--sw-red);
+  opacity: 1;
+}
+.sw-node.is-selected .sw-node-char {
+  fill: var(--sw-paper);
+  font-size: 31px;
+}
+.sw-node-current {
+  font:
+    9px system-ui,
+    sans-serif;
+  letter-spacing: 2px;
+  fill: var(--sw-red);
+}
+.sw-edge {
+  cursor: pointer;
+}
+.sw-edge-hit {
+  stroke: transparent;
+  stroke-width: 14px;
+  fill: none;
+}
+.sw-edge-line {
+  stroke: #979e91;
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.sw-edge.is-active .sw-edge-line {
+  stroke: #a87e6a;
+  opacity: 0.7;
+  stroke-width: 1.25;
+}
+.sw-edge-contrast .sw-edge-line {
+  stroke-dasharray: 7 4;
+}
+.sw-edge-reading .sw-edge-line {
+  stroke-dasharray: 2 5;
+}
+.sw-edge:hover .sw-edge-line,
+.sw-edge:focus-visible .sw-edge-line {
+  stroke: var(--sw-red);
+  stroke-width: 2.2;
+  opacity: 1;
+}
+.sw-hover-card {
+  position: absolute;
+  top: 35px;
+  left: 12px;
+  max-width: 260px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  background: #faf8f0f5;
+  border: 1px solid var(--sw-line);
+  box-shadow: 0 7px 22px #303a3408;
+  pointer-events: none;
+}
+.sw-hover-card > b {
+  font:
+    38px "Shuowen Kai",
+    serif;
+  color: var(--sw-red);
+}
+.sw-hover-card span {
+  font:
+    10px Georgia,
+    serif;
+  color: var(--sw-muted);
+}
+.sw-hover-card p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 3px 0 0;
+}
+.sw-map-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0 16px;
+}
+.sw-map-bottom > p {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--sw-muted);
+}
+.sw-map-controls {
+  display: flex;
+  gap: 1px;
+  align-items: center;
+  border: 1px solid var(--sw-line);
+  background: #f8f6ee;
+}
+.sw-map-controls button {
+  padding: 8px;
+  color: var(--sw-muted);
+}
+.sw-map-controls button:hover {
+  color: var(--sw-red);
+  background: #ece9df;
+}
+.sw-map-controls output {
+  font:
+    10px Georgia,
+    serif;
+  min-width: 40px;
+  text-align: center;
+}
+.sw-map-legend {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border-top: 1px solid var(--sw-line);
+  padding: 15px 0 20px;
+  font-size: 10px;
+  color: var(--sw-muted);
+}
+.sw-map-legend > span {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  white-space: nowrap;
+}
+.sw-map-legend i {
+  width: 20px;
+  border-top: 1px solid #a98b76;
+}
+.sw-map-legend .sw-legend-contrast {
+  border-top-style: dashed;
+}
+.sw-map-legend .sw-legend-reading {
+  border-top-style: dotted;
+}
+.sw-map-legend small {
+  margin-left: auto;
+  font-size: 9px;
+}
+.sw-edge-card {
+  position: absolute;
+  bottom: 66px;
+  left: 18px;
+  width: min(380px, calc(100% - 36px));
+  padding: 19px 22px;
+  background: #faf8f0fa;
+  border: 1px solid var(--sw-line);
+  box-shadow: 0 10px 35px #303a3414;
+}
+.sw-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--sw-muted);
+}
+.sw-icon-button:hover {
+  color: var(--sw-red);
+}
+.sw-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+.sw-edge-card h3 {
+  font:
+    25px/1.7 "Shuowen Kai",
+    serif;
+  margin: 7px 0;
+}
+.sw-edge-card h3 span {
+  font:
+    11px "Songti SC",
+    serif;
+  color: var(--sw-muted);
+}
+.sw-edge-card p {
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 7px 0;
+}
+.sw-edge-card a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--sw-red);
+}
+.sw-formation-map {
+  padding-bottom: 20px;
+}
+.sw-formation-map > svg {
+  width: 100%;
+  display: block;
+}
+.sw-formation-center {
+  fill: #e9e5d8;
+  stroke: #d3cabc;
+}
+.sw-formation-char {
+  font:
+    84px "Shuowen Kai",
+    "Songti SC",
+    serif;
+  fill: var(--sw-red);
+}
+.sw-component-node {
+  cursor: pointer;
+}
+.sw-component-node line {
+  stroke: #8c9a82;
+  stroke-width: 1.4;
+}
+.sw-component-node circle {
+  fill: var(--sw-paper);
+  stroke: #8c9a82;
+}
+.sw-component-node > text {
+  font:
+    43px "Shuowen Kai",
+    serif;
+  fill: var(--sw-ink);
+}
+.sw-component-node .sw-component-role {
+  font:
+    15px "Songti SC",
+    serif;
+  fill: var(--sw-muted);
+}
+.sw-component-node.is-sound line {
+  stroke: #8b7e9c;
+  stroke-dasharray: 5 5;
+}
+.sw-component-node.is-sound circle {
+  stroke: #8b7e9c;
+}
+.sw-no-parts {
+  font:
+    13px "Songti SC",
+    serif;
+  fill: var(--sw-muted);
+}
+.sw-formation-caption {
+  max-width: 560px;
+  margin: 0 auto 15px;
+  padding: 0 25px;
+}
+.sw-formation-caption p {
+  font-size: 14px;
+  line-height: 2.1;
+  margin: 12px 0;
+}
+.sw-formation-caption small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--sw-muted);
+}
+.sw-formation-caption button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--sw-red);
+  margin: 12px 0;
+}
+.sw-reader {
+  border-left: 1px solid var(--sw-line);
+  padding: 22px 0 0 25px;
+  min-width: 0;
+  scroll-margin-top: 80px;
+  position: sticky;
+  top: 76px;
+  max-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+}
+.sw-reader-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+.sw-reader-heading > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  color: var(--sw-muted);
+  letter-spacing: 1px;
+}
+.sw-reader-heading i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+.sw-reader-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #c9c9bb transparent;
+  padding: 0 8px 0 0;
+  min-height: 0;
+  position: relative;
+}
+.sw-entry-title {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  margin: 9px 0 15px;
+}
+.sw-entry-title > div {
+  flex-shrink: 0;
+  min-width: 70px;
+  text-align: center;
+}
+.sw-entry-title h2 {
+  font:
+    76px/1.12 "Shuowen Kai",
+    "Songti SC",
+    serif;
+  margin: 0;
+  font-weight: 400;
+}
+.sw-entry-pinyin {
+  font:
+    11px/1.5 Georgia,
+    serif;
+  letter-spacing: 2px;
+  color: var(--sw-muted);
+}
+.sw-entry-title > p {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 1px;
+  max-width: 200px;
+  margin: 0;
+}
+.sw-entry-facts {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  color: var(--sw-muted);
+  padding-bottom: 17px;
+}
+.sw-entry-facts b {
+  color: var(--sw-ink);
+  font-weight: 400;
+  margin-left: 4px;
+  font-family: "Shuowen Kai", serif;
+}
+.sw-entry-facts .sw-related-headword {
+  color: var(--sw-red);
+}
+.sw-gallery-tabs {
+  display: flex;
+  gap: 21px;
+  border-bottom: 1px solid var(--sw-line);
+}
+.sw-gallery-tabs button {
+  padding: 8px 0;
+  font-size: 11px;
+  color: var(--sw-muted);
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+}
+.sw-gallery-tabs button[aria-pressed="true"] {
+  color: var(--sw-red);
+  border-color: var(--sw-red);
+}
+.sw-glyph-comparison {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  min-height: 155px;
+  padding: 21px 0 13px;
+}
+.sw-modern-character,
+.sw-old-character,
+.sw-no-glyph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 112px;
+}
+.sw-modern-character > span,
+.sw-no-glyph > span {
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  font:
+    70px/1 "Shuowen Kai",
+    "Songti SC",
+    serif;
+  background:
+    linear-gradient(
+      45deg,
+      transparent calc(50% - 0.5px),
+      #c4c8b92b 50%,
+      transparent calc(50% + 0.5px)
+    ),
+    linear-gradient(
+      -45deg,
+      transparent calc(50% - 0.5px),
+      #c4c8b92b 50%,
+      transparent calc(50% + 0.5px)
+    );
+  border: 1px solid #dadbce;
+}
+.sw-glyph-comparison small {
+  font-size: 9px;
+  color: var(--sw-muted);
+  text-align: center;
+}
+.sw-glyph-arrow {
+  flex-shrink: 0;
+  color: #abae9f;
+}
+.sw-evidence-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+.sw-evidence-image > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+.sw-evidence-image.is-glyph {
+  width: 100px;
+  height: 100px;
+  padding: 8px;
+  background: #fbf9f1;
+  border: 1px solid #dadbce;
+}
+.sw-evidence-image.is-glyph > img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.sw-image-expand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  right: 7px;
+  bottom: 6px;
+  font:
+    9px/1.2 system-ui,
+    sans-serif;
+  color: #747a6e;
+  opacity: 0;
+  background: #faf8efc9;
+  padding: 3px;
+}
+.sw-evidence-image:hover .sw-image-expand,
+.sw-evidence-image:focus-visible .sw-image-expand {
+  opacity: 1;
+}
+.sw-image-caption {
+  font-size: 10px;
+  color: var(--sw-muted);
+  line-height: 1.8;
+  margin: 0 0 7px;
+}
+.sw-glyph-footnote {
+  color: #858a7c;
+  font-size: 9px;
+  line-height: 1.8;
+  margin: 8px 0 12px;
+}
+.sw-more-glyphs summary {
+  font-size: 10px;
+  color: var(--sw-red);
+  cursor: pointer;
+  padding: 7px 0;
+}
+.sw-more-glyphs figure {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  padding: 10px 0;
+}
+.sw-more-glyphs .sw-evidence-image {
+  flex-shrink: 0;
+  width: 75px;
+  height: 75px;
+}
+.sw-more-glyphs figcaption {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--sw-muted);
+}
+.sw-source-fallback {
+  padding: 25px 16px;
+  text-align: center;
+  background: #ebe9df50;
+}
+.sw-source-fallback h4 {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 13px 0 8px;
+}
+.sw-source-fallback p {
+  font-size: 11px;
+  color: var(--sw-muted);
+  line-height: 1.9;
+  margin: 10px 0;
+}
+.sw-source-fallback a {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--sw-red);
+}
+.sw-art-figure,
+.sw-archive-figure {
+  margin: 12px 0;
+}
+.sw-art-figure figcaption,
+.sw-archive-figure figcaption {
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 9px 0;
+}
+.sw-art-figure figcaption small,
+.sw-archive-figure figcaption small {
+  display: block;
+  color: var(--sw-muted);
+  font-size: 9px;
+  line-height: 1.8;
+  letter-spacing: 0.2px;
+  margin-top: 4px;
+}
+.sw-reader-jumps {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--sw-line);
+  border-bottom: 1px solid var(--sw-line);
+  margin: 15px 0 0;
+}
+.sw-reader-jumps button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--sw-muted);
+  font-size: 10px;
+  padding: 9px 12px;
+}
+.sw-reading-section {
+  padding: 22px 0 3px;
+}
+.sw-reading-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  margin: 0 0 15px;
+  font-weight: 500;
+}
+.sw-reading-section h3 > span {
+  color: #929887;
+  font:
+    10px Georgia,
+    serif;
+}
+.sw-reading-section h3 > a {
+  margin-left: auto;
+  color: var(--sw-muted);
+}
+.sw-reading-section h3 > small {
+  font-size: 9px;
+  color: var(--sw-muted);
+  margin-left: auto;
+  letter-spacing: 0;
+}
+.sw-reading-section p {
+  font-size: 13px;
+  line-height: 2.1;
+  text-align: justify;
+  margin: 12px 0;
+}
+.sw-reading-section blockquote {
+  margin: 10px 0 13px;
+  padding: 11px 14px;
+  background: #e9e8de70;
+  border-left: 2px solid #a89a7e;
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: 1px;
+  font-family: "Shuowen Kai", "Songti SC", serif;
+}
+.sw-reading-section .sw-headword-note {
+  font-size: 11px;
+  color: var(--sw-red);
+  line-height: 1.9;
+}
+.sw-reading-detail {
+  margin: 14px 0 3px;
+  padding: 10px 0;
+  border-top: 1px dashed var(--sw-line);
+  border-bottom: 1px dashed var(--sw-line);
+}
+.sw-reading-detail summary {
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--sw-muted);
+}
+.sw-reading-detail p {
+  font-size: 12px;
+}
+.sw-reading-detail ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+.sw-reading-detail li {
+  font-size: 11px;
+  line-height: 1.9;
+  margin: 8px 0;
+}
+.sw-reading-detail li strong {
+  font:
+    19px "Shuowen Kai",
+    serif;
+  margin-right: 6px;
+}
+.sw-role {
+  font-size: 9px;
+  color: #6f7f66;
+  border: 1px solid #abb59d;
+  padding: 1px 3px;
+  margin-right: 6px;
+}
+.sw-role.is-sound {
+  color: #82738d;
+  border-color: #b8adbd;
+}
+.sw-passage + .sw-passage {
+  border-top: 1px solid var(--sw-line);
+  margin-top: 16px;
+  padding-top: 14px;
+}
+.sw-passage-source {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 10px;
+  color: var(--sw-muted) !important;
+}
+.sw-reflection {
+  border-top: 1px solid var(--sw-line);
+  margin-top: 16px;
+}
+.sw-reflection p {
+  color: #626b5d;
+}
+.sw-caution {
+  background: #edeadf;
+  padding: 11px 13px;
+  margin: 14px 0;
+}
+.sw-caution summary {
+  color: #8f604f;
+  font-size: 11px;
+  cursor: pointer;
+}
+.sw-caution p {
+  font-size: 11px;
+  line-height: 2;
+  color: #737569;
+  margin: 11px 0 1px;
+}
+.sw-related > button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid var(--sw-line);
+  padding: 9px 2px;
+}
+.sw-related > button > b {
+  font:
+    26px "Shuowen Kai",
+    serif;
+  color: var(--sw-red);
+  min-width: 27px;
+}
+.sw-related > button > span {
+  font-size: 11px;
+  flex: 1;
+}
+.sw-related > button small {
+  display: block;
+  font-size: 9px;
+  color: var(--sw-muted);
+  margin-top: 4px;
+}
+.sw-related > button > svg {
+  color: var(--sw-muted);
+}
+.sw-sources {
+  margin-top: 23px;
+  font-size: 10px;
+  line-height: 1.9;
+  color: var(--sw-muted);
+}
+.sw-sources summary {
+  cursor: pointer;
+}
+.sw-sources ol {
+  padding-left: 16px;
+  margin: 12px 0;
+}
+.sw-sources li {
+  margin: 8px 0;
+}
+.sw-sources a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.sw-sources p {
+  margin: 10px 0;
+}
+.sw-sources small {
+  display: block;
+  font-size: 9px;
+}
+.sw-reader-end {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #949a89;
+  margin: 35px 0 25px;
+}
+.sw-share-fallback {
+  font:
+    10px/1.8 system-ui,
+    sans-serif;
+  color: var(--sw-muted);
+}
+.sw-share-fallback input {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--sw-line);
+  background: #fff9;
+  padding: 5px;
+  margin: 4px 0 8px;
+  font-size: 11px;
+}
+.sw-route-progress {
+  flex-shrink: 0;
+  border-top: 1px solid var(--sw-line);
+  background: var(--sw-paper);
+  padding: 12px 0;
+}
+.sw-route-progress > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--sw-muted);
+}
+.sw-route-progress > div > button {
+  font-size: 9px;
+  border-bottom: 1px solid #bbbfb0;
+}
+.sw-route-progress nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 11px;
+}
+.sw-route-progress nav > span {
+  display: flex;
+  gap: 7px;
+}
+.sw-route-progress nav > span > button {
+  font:
+    20px "Shuowen Kai",
+    serif;
+  color: var(--sw-muted);
+  padding: 3px;
+}
+.sw-route-progress nav > span > button[aria-current="step"] {
+  color: var(--sw-red);
+  border-bottom: 1px solid var(--sw-red);
+}
+.sw-character-index {
+  padding: 8px 0 30px;
+}
+.sw-character-index section + section {
+  margin-top: 24px;
+}
+.sw-character-index header {
+  border-top: 1px solid var(--sw-line);
+  padding-top: 15px;
+  margin-bottom: 14px;
+}
+.sw-character-index h3 {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+}
+.sw-character-index h3 i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.sw-character-index header p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--sw-muted);
+  margin: 7px 0 0;
+}
+.sw-index-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--sw-line);
+  border: 1px solid var(--sw-line);
+}
+.sw-index-grid button {
+  background: var(--sw-paper);
+  padding: 14px 12px;
+  text-align: left;
+  transition: background 0.2s;
+  min-width: 0;
+}
+.sw-index-grid button:hover,
+.sw-index-grid button[aria-pressed="true"] {
+  background: #eae6d9;
+}
+.sw-index-grid button > span {
+  font:
+    32px "Shuowen Kai",
+    serif;
+}
+.sw-index-grid button[aria-pressed="true"] > span {
+  color: var(--sw-red);
+}
+.sw-index-grid small {
+  font:
+    10px Georgia,
+    serif;
+  color: var(--sw-muted);
+  margin-left: 9px;
+}
+.sw-index-grid p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--sw-muted);
+  margin: 5px 0 0;
+}
+.sw-routes-view {
+  padding: 25px 0;
+}
+.sw-routes-view > h2 {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 12px 0;
+}
+.sw-routes-view > p:not(.sw-kicker) {
+  font-size: 12px;
+  color: var(--sw-muted);
+  line-height: 1.9;
+}
+.sw-route-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px 22px;
+  margin-top: 25px;
+}
+.sw-route-card {
+  text-align: left;
+  border-bottom: 1px solid var(--sw-line);
+  padding-bottom: 20px;
+  min-width: 0;
+}
+.sw-route-art {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2.2;
+  background: #eeeade;
+}
+.sw-route-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  transition: transform 0.6s;
+}
+.sw-route-card:hover .sw-route-art img {
+  transform: scale(1.035);
+}
+.sw-route-art > span {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font:
+    15px Georgia,
+    serif;
+  color: #6b7563;
+}
+.sw-route-body {
+  padding-top: 13px;
+}
+.sw-route-body > .sw-kicker {
+  font-size: 9px;
+}
+.sw-route-body h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 7px 0 9px;
+}
+.sw-route-body h3 svg {
+  color: var(--sw-red);
+  flex-shrink: 0;
+}
+.sw-route-body p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--sw-muted);
+  margin: 0;
+}
+.sw-route-characters {
+  display: flex;
+  gap: 15px;
+  margin-top: 14px;
+}
+.sw-route-characters span {
+  font:
+    20px "Shuowen Kai",
+    serif;
+  color: #8d7664;
+}
+.sw-guides {
+  padding: 45px 0 40px;
+}
+.sw-guides > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sw-guides h2 {
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  margin: 12px 0 0;
+}
+.sw-guides > header > p {
+  font-size: 12px;
+  color: var(--sw-muted);
+  line-height: 1.9;
+  letter-spacing: 0.5px;
+}
+.sw-route-cards.is-compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+.sw-route-cards.is-compact .sw-route-art {
+  aspect-ratio: 2.7;
+}
+.sw-colophon {
+  border-top: 1px solid var(--sw-line);
+  padding: 35px 0;
+}
+.sw-colophon-intro {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.sw-small-seal {
+  display: inline-block;
+  padding: 4px 5px;
+  border: 1px solid #a16955;
+  color: #a16955;
+  font:
+    15px/1.2 "Shuowen Kai",
+    serif;
+  letter-spacing: 2px;
+}
+.sw-colophon h2 {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 0 0 10px;
+}
+.sw-colophon p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--sw-muted);
+  margin: 0;
+}
+.sw-colophon > details {
+  margin-top: 25px;
+}
+.sw-colophon summary {
+  font-size: 11px;
+  color: var(--sw-muted);
+  cursor: pointer;
+  padding: 12px 0;
+}
+.sw-method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  padding-top: 14px;
+}
+.sw-method-grid h3 {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+.sw-method-grid p {
+  font-size: 11px;
+}
+.sw-method-grid a {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 10px;
+  color: var(--sw-red);
+  margin-top: 10px;
+}
+.sw-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--sw-line);
+  padding: 20px 0 27px;
+  font-size: 10px;
+  color: var(--sw-muted);
+  letter-spacing: 1px;
+}
+.sw-bottom > a {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.sw-image-dialog {
+  background: #f5f2e9 !important;
+  color: #303a34 !important;
+  max-width: min(960px, 94vw) !important;
+  max-height: 92vh;
+  overflow-y: auto;
+  border-color: #deded1 !important;
+  font-family: "Songti SC", "STSong", serif;
+  border-radius: 2px !important;
+  padding: 25px !important;
+}
+.sw-image-dialog h2 {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  letter-spacing: 2px;
+}
+.sw-image-dialog > p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #747a6e;
+}
+.sw-dialog-image {
+  max-height: 65vh;
+  overflow: auto;
+  background: #faf8f0;
+}
+.sw-dialog-image img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+.sw-dialog-image.is-glyph {
+  display: flex;
+  justify-content: center;
+  padding: 35px;
+  min-height: 300px;
+}
+.sw-dialog-image.is-glyph img {
+  width: auto;
+  max-height: 50vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+.sw-image-dialog > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #a74f3c;
+  font-size: 12px;
+}
+@media (min-width: 1500px) {
+  .sw-workspace {
+    grid-template-columns: minmax(0, 1fr) 400px;
+  }
+  .sw-reader {
+    padding-left: 32px;
+  }
+  .sw-explorer {
+    padding-right: 32px;
+  }
+}
+@media (max-width: 1100px) {
+  .sw-page {
+    padding: 0 28px;
+  }
+  .sw-workspace {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+  .sw-reader {
+    padding-left: 20px;
+  }
+  .sw-explorer {
+    padding-right: 20px;
+  }
+  .sw-hero {
+    padding-right: 0;
+  }
+  .sw-name-entry {
+    min-width: 200px;
+    padding-left: 20px;
+  }
+  .sw-title-line h1 {
+    font-size: 59px;
+  }
+  .sw-hero-tagline {
+    font-size: 17px;
+  }
+  .sw-hero-description {
+    font-size: 12px;
+    max-width: 360px;
+  }
+  .sw-name-entry > div {
+    gap: 20px;
+  }
+  .sw-map-legend {
+    gap: 11px;
+  }
+  .sw-map-legend small {
+    display: none;
+  }
+  .sw-route-cards.is-compact {
+    gap: 24px;
+  }
+}
+@media (max-width: 850px) {
+  .sw-workspace {
+    grid-template-columns: 1fr;
+  }
+  .sw-explorer {
+    padding-right: 0;
+  }
+  .sw-reader {
+    position: relative;
+    top: auto;
+    border-left: 0;
+    border-top: 1px solid var(--sw-line);
+    padding: 24px 0 0;
+    max-height: none;
+  }
+  .sw-reader-scroll {
+    max-height: 790px;
+    padding-right: 12px;
+  }
+  .sw-reader-heading {
+    padding-right: 12px;
+  }
+  .sw-entry-title {
+    gap: 25px;
+  }
+  .sw-entry-title > p {
+    max-width: none;
+  }
+  .sw-glyph-comparison {
+    justify-content: flex-start;
+    padding-left: 20px;
+    gap: 25px;
+  }
+  .sw-gallery-tabs {
+    gap: 30px;
+  }
+  .sw-reader-jumps {
+    justify-content: flex-start;
+    gap: 25px;
+  }
+  .sw-reading-section p {
+    font-size: 14px;
+  }
+  .sw-art-figure .sw-evidence-image {
+    max-height: 350px;
+  }
+  .sw-art-figure img {
+    object-fit: cover;
+    max-height: 350px;
+  }
+  .sw-route-progress {
+    padding-right: 12px;
+  }
+  .sw-map {
+    max-height: 650px;
+  }
+  .sw-hero {
+    min-height: 340px;
+  }
+  .sw-hero-counts {
+    gap: 18px;
+  }
+  .sw-hero-copy > .sw-kicker,
+  .sw-hero-description,
+  .sw-hero-tagline,
+  .sw-hero-counts {
+    margin-left: 65px;
+  }
+  .sw-name-entry {
+    min-width: 172px;
+  }
+  .sw-name-entry > div {
+    gap: 15px;
+  }
+  .sw-name-entry b {
+    font-size: 31px;
+  }
+  .sw-name-entry > .sw-kicker {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+  .sw-hero-landscape {
+    width: 80%;
+    right: 0;
+    opacity: 0.4;
+  }
+  .sw-route-cards.is-compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sw-method-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .sw-page {
+    padding: 0 19px;
+  }
+  .sw-topline {
+    padding-top: 21px;
+  }
+  .sw-topline > span {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .sw-topline > span i {
+    display: none;
+  }
+  .sw-topline > span {
+    max-width: 150px;
+    text-align: right;
+  }
+  .sw-hero {
+    display: block;
+    padding: 38px 0 28px;
+    min-height: 0;
+  }
+  .sw-hero-copy > .sw-kicker {
+    margin: 0 0 17px 51px;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+  .sw-title-line {
+    gap: 19px;
+  }
+  .sw-title-seal {
+    font-size: 14px;
+    padding: 4px;
+    letter-spacing: 2px;
+  }
+  .sw-title-line h1 {
+    font-size: 48px;
+    letter-spacing: 5px;
+  }
+  .sw-hero-tagline {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    margin: 18px 0 0 51px;
+  }
+  .sw-hero-description {
+    font-size: 11px;
+    margin: 12px 0 0 51px;
+  }
+  .sw-mobile-break {
+    display: block;
+  }
+  .sw-hero-counts {
+    margin: 21px 0 0 51px;
+    gap: 18px;
+  }
+  .sw-hero-counts span {
+    font-size: 9px;
+    gap: 6px;
+  }
+  .sw-hero-counts b {
+    font-size: 20px;
+  }
+  .sw-hero-landscape {
+    width: 110%;
+    right: -30%;
+    top: -3%;
+    height: 85%;
+    opacity: 0.35;
+  }
+  .sw-name-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-left: 0;
+    border-top: 1px solid var(--sw-line);
+    padding: 18px 0 0;
+    margin: 28px 0 0;
+  }
+  .sw-name-entry > .sw-kicker {
+    display: none;
+  }
+  .sw-name-entry > div {
+    margin: 0;
+    gap: 22px;
+  }
+  .sw-name-entry > div button {
+    flex-direction: row;
+    gap: 5px;
+  }
+  .sw-name-entry b {
+    font-size: 25px;
+  }
+  .sw-name-entry small {
+    font-size: 9px;
+  }
+  .sw-name-route {
+    font-size: 9px !important;
+    gap: 8px;
+    letter-spacing: 0;
+  }
+  .sw-viewbar nav {
+    gap: 23px;
+  }
+  .sw-viewbar nav button {
+    font-size: 12px;
+    gap: 6px;
+    padding: 15px 0;
+  }
+  .sw-viewbar > span {
+    display: none;
+  }
+  .sw-theme-filters {
+    gap: 7px 14px;
+  }
+  .sw-theme-filters button {
+    font-size: 10px;
+  }
+  .sw-search {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .sw-filters {
+    padding-top: 17px;
+  }
+  .sw-layerbar {
+    padding: 6px 0 8px;
+  }
+  .sw-map-note {
+    font-size: 9px;
+  }
+  .sw-map {
+    aspect-ratio: 1080/900;
+    min-height: 320px;
+  }
+  .sw-map-bottom {
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .sw-map-bottom > p {
+    font-size: 8px;
+    letter-spacing: 0;
+    max-width: 105px;
+    line-height: 1.7;
+  }
+  .sw-map-controls button {
+    padding: 8px;
+  }
+  .sw-map-controls output {
+    min-width: 32px;
+    font-size: 9px;
+  }
+  .sw-map-legend {
+    font-size: 9px;
+    gap: 18px;
+    padding-top: 12px;
+  }
+  .sw-map-legend i {
+    width: 16px;
+  }
+  .sw-hover-card {
+    display: none;
+  }
+  .sw-reader-scroll {
+    max-height: 760px;
+    padding-right: 7px;
+  }
+  .sw-entry-title h2 {
+    font-size: 73px;
+  }
+  .sw-entry-title > p {
+    font-size: 16px;
+  }
+  .sw-reading-section p {
+    font-size: 14px;
+    line-height: 2.15;
+  }
+  .sw-reading-section blockquote {
+    font-size: 18px;
+  }
+  .sw-glyph-comparison {
+    justify-content: center;
+    padding-left: 0;
+  }
+  .sw-reading-section h3 {
+    font-size: 13px;
+  }
+  .sw-reader-jumps {
+    justify-content: space-between;
+    gap: 0;
+  }
+  .sw-route-progress nav > span {
+    gap: 12px;
+  }
+  .sw-formation-caption {
+    padding: 0 8px;
+  }
+  .sw-formation-caption p {
+    font-size: 13px;
+  }
+  .sw-index-grid button {
+    padding: 13px 10px;
+  }
+  .sw-index-grid p {
+    font-size: 10px;
+  }
+  .sw-index-grid small {
+    display: block;
+    margin: 4px 0 0;
+  }
+  .sw-index-grid button > span {
+    font-size: 34px;
+  }
+  .sw-routes-view > h2 {
+    font-size: 23px;
+  }
+  .sw-route-cards {
+    gap: 22px 18px;
+  }
+  .sw-route-body h3 {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+  }
+  .sw-route-body p {
+    font-size: 11px;
+  }
+  .sw-route-characters {
+    gap: 11px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .sw-route-characters span {
+    font-size: 18px;
+  }
+  .sw-route-art {
+    aspect-ratio: 1.65;
+  }
+  .sw-route-cards.is-compact .sw-route-art {
+    aspect-ratio: 1.8;
+  }
+  .sw-guides {
+    padding: 34px 0;
+  }
+  .sw-guides > header {
+    display: block;
+  }
+  .sw-guides h2 {
+    font-size: 25px;
+    letter-spacing: 2px;
+  }
+  .sw-guides > header > p {
+    margin-top: 14px;
+    font-size: 11px;
+  }
+  .sw-guides > header > p br {
+    display: none;
+  }
+  .sw-colophon-intro {
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .sw-colophon h2 {
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .sw-colophon p {
+    font-size: 11px;
+  }
+  .sw-method-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .sw-bottom {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+  .sw-bottom > span:nth-child(2) {
+    display: none;
+  }
+  .sw-image-dialog {
+    padding: 20px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sw-page *,
+  .sw-page *::before,
+  .sw-page *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.sw-reading-section {
+  scroll-margin-top: 90px;
+}
+@media (max-width: 850px) {
+  .sw-reader-scroll {
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+}
+
+.sw-inline-glyph {
+  display: inline-block;
+  vertical-align: -0.18em;
+  width: 1.15em;
+  height: 1.15em;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.sw-rare-note {
+  font-size: 0.85em;
+  color: #8f604f;
+}

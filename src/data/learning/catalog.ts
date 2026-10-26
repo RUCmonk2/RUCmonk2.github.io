@@ -155,13 +155,19 @@ export const learningCatalog: readonly LearningItem[] = [
     category: "atlas",
     href: "/learning/ai-map",
     localized: true,
-    title: { zh: "人工智能知识地图", en: "Artificial Intelligence Knowledge Atlas" },
+    title: {
+      zh: "人工智能知识地图",
+      en: "Artificial Intelligence Knowledge Atlas",
+    },
     description: {
       zh: "从本科基础到博士研究起步，连接数学、机器学习、深度学习、大模型、视觉、强化学习、系统与研究方法，沿先修关系逐步学习。",
       en: "Connected AI foundations and research topics, with prerequisites, examples and study paths. Explanatory notes are in Chinese.",
     },
     topic: { zh: "人工智能专业体系", en: "AI curriculum" },
-    scope: { zh: "14 个领域 · 194 个知识点 · 6 条阅读路线", en: "14 fields · 194 concepts · 6 study paths" },
+    scope: {
+      zh: "14 个领域 · 194 个知识点 · 6 条阅读路线",
+      en: "14 fields · 194 concepts · 6 study paths",
+    },
     updated: "2026-10-19",
   },
   {
@@ -231,6 +237,23 @@ export const learningCatalog: readonly LearningItem[] = [
       en: "50 lives · 6 thematic subgraphs",
     },
     updated: "2026-10-19",
+  },
+  {
+    id: "shuowen",
+    category: "atlas",
+    href: "/learning/shuowen",
+    localized: true,
+    title: { zh: "说文解字 · 字里观道", en: "Shuowen · A Character Atlas" },
+    description: {
+      zh: "从72个精选汉字进入说文与老庄：对照小篆字形、原典与哲理解读，沿义理关系和六条阅读路线探索，附叶耀之三字专线。",
+      en: "Explore 72 Chinese characters through historical forms, Shuowen entries, Laozi and Zhuangzi, with six guided reading paths. Notes are in Chinese.",
+    },
+    topic: { zh: "汉字与道家", en: "Chinese characters and Daoist thought" },
+    scope: {
+      zh: "72字 · 字形与义理图谱 · 6条路线",
+      en: "72 characters · 6 reading paths",
+    },
+    updated: "2026-10-27",
   },
   {
     id: "shanhai",
@@ -363,7 +386,11 @@ export const learningCategories = [
     anchor: "mathematics",
     title: { zh: "数学探索", en: "Mathematics" },
   },
-  { id: "atlas", anchor: "atlases", title: { zh: "专业知识网络", en: "Knowledge atlases" } },
+  {
+    id: "atlas",
+    anchor: "atlases",
+    title: { zh: "专业知识网络", en: "Knowledge atlases" },
+  },
   {
     id: "people",
     anchor: "people",

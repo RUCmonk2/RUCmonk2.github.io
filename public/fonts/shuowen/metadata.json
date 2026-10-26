@@ -1,0 +1,39 @@
+{
+  "family": "Shuowen Kai",
+  "postscriptName": "ShuowenKai-Regular",
+  "upstream": "LXGW WenKai Regular 1.522",
+  "upstreamUrl": "https://github.com/lxgw/LxgwWenKai/releases/download/v1.522/LXGWWenKai-Regular.ttf",
+  "upstreamSha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+  "license": "SIL Open Font License 1.1",
+  "licenseUrl": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/v1.522/OFL.txt",
+  "licenseSha256": "c38b1994a5e48ac30ac7d1da7d0409fd8fd8127dfe28a13d6e787d5b1ef34a5e",
+  "sha256": "f404f077375c1888743c8a4671cc09e94ca2f746c01fb9e44f016d1230078dcc",
+  "changes": "Subset and rename only; retained glyph outlines are unchanged. No invented glyphs.",
+  "requiredCharacters": 1803,
+  "coveredCharacters": 1801,
+  "mappedCodepoints": 1801,
+  "missingCharacters": [
+    "𠂹",
+    "𣠮"
+  ],
+  "bytes": 401512,
+  "fontToolsVersion": "4.62.1",
+  "exceptions": {
+    "𠂹": "U+200B9, the old form in 素's quotation; display a sourced glyph or a clearly labelled textual explanation.",
+    "𣠮": "U+2382E, the headword for 無; a verified local glyph image is available in shuowenGlyphs."
+  },
+  "sourceFiles": [
+    "src/app/[locale]/learning/shuowen/page.tsx",
+    "src/components/shuowen/character-map.tsx",
+    "src/components/shuowen/character-reader.tsx",
+    "src/components/shuowen/layout.ts",
+    "src/components/shuowen/scholarly-text.tsx",
+    "src/components/shuowen/shuowen-atlas.tsx",
+    "src/data/shuowen/characters-a.ts",
+    "src/data/shuowen/characters-b.ts",
+    "src/data/shuowen/glyphs.ts",
+    "src/data/shuowen/index.ts",
+    "src/data/shuowen/relations.ts",
+    "src/data/shuowen/types.ts"
+  ]
+}
