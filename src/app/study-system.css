@@ -58,6 +58,32 @@ body.study-site {
   text-underline-offset: 7px;
   text-decoration-color: var(--study-seal);
 }
+.study-site .pure-mobile-brief {
+  min-width: 28px;
+  padding-inline: 0.3rem;
+}
+.study-site .pure-mobile-brief[aria-current="page"] {
+  color: var(--study-seal);
+}
+@media (min-width: 761px) and (max-width: 1020px) {
+  .study-site .pure-brand span {
+    display: none;
+  }
+  .study-site .pure-nav-inner {
+    gap: 0.8rem;
+  }
+  .study-site .pure-nav-links a {
+    padding-inline: 0.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 380px) {
+  .study-site .pure-nav-inner {
+    gap: 0.3rem;
+    padding-inline: 0.5rem;
+  }
+}
 .study-site .pure-footer {
   background: var(--study-paper);
   color: var(--study-muted);

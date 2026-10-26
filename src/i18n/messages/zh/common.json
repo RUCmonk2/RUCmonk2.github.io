@@ -29,7 +29,12 @@
     "schedule": "预约"
   },
   "showAll": "查看全部",
-  "navigation": { "about": "关于", "learning": "学习", "friends": "友链" },
+  "navigation": {
+    "about": "关于",
+    "learning": "学习",
+    "friends": "友链",
+    "morningBrief": "每日晨报（测试版）"
+  },
   "navbar": {
     "items": [
       { "href": "/", "icon": "home", "label": "首页" },

@@ -38,7 +38,7 @@ type ChangeFrequency =
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages
-  const staticPages = ["", "/blog", "/links", "/learning"];
+  const staticPages = ["", "/blog", "/links", "/learning", "/morning-brief"];
 
   const chapterPages = LOCALES.flatMap((locale) =>
     learningCourses.flatMap((course) =>
@@ -74,9 +74,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = LOCALES.flatMap((locale) => {
     return staticPages.map((page) => ({
       url: `${siteUrl}${locale === DEFAULT_LOCALE ? "" : `/${locale}`}${page}`,
-      changeFrequency: (["", "/blog"].includes(page)
-        ? "weekly"
-        : "monthly") as ChangeFrequency,
+      changeFrequency: (page === "/morning-brief"
+        ? "daily"
+        : ["", "/blog"].includes(page)
+          ? "weekly"
+          : "monthly") as ChangeFrequency,
       priority: page === "" ? 1.0 : page === "/blog" ? 0.8 : 0.5,
     }));
   });

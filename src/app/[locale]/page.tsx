@@ -250,6 +250,24 @@ export default async function Page({
           </div>
         </section>
 
+        <Link
+          href={isEnglish ? "/en/morning-brief/" : "/morning-brief/"}
+          className="study-brief-entry"
+        >
+          <span className="study-brief-entry-label">MORNING NOTES</span>
+          <span className="study-brief-entry-copy">
+            <strong>
+              {isEnglish ? "Morning brief (Beta)" : "每日晨报（测试版）"}
+            </strong>
+            <span>
+              {isEnglish
+                ? "A concise research brief, published in Chinese."
+                : "与研究方向有关的进展，宁缺毋滥。"}
+            </span>
+          </span>
+          <ArrowUpRight size={20} aria-hidden="true" />
+        </Link>
+
         <section
           hidden={hideHomepageShowcaseSections}
           id="research"

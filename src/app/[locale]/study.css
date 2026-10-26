@@ -380,3 +380,57 @@ body:has(.study-home) .pure-brand span {
     scroll-behavior: auto !important;
   }
 }
+.study-brief-entry {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--study-line);
+  border-bottom: 1px solid var(--study-line);
+  color: var(--study-ink);
+  text-decoration: none;
+}
+
+.study-brief-entry-label {
+  color: var(--study-seal);
+  font-size: 0.63rem;
+  letter-spacing: 0.13em;
+}
+
+.study-brief-entry-copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.study-brief-entry-copy strong {
+  font-family: var(--study-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.study-brief-entry-copy > span {
+  color: var(--study-muted);
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+
+.study-brief-entry:hover strong {
+  color: var(--study-seal);
+}
+
+.study-brief-entry:focus-visible {
+  outline: 2px solid var(--study-seal);
+  outline-offset: 6px;
+}
+
+@media (max-width: 600px) {
+  .study-brief-entry {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.8rem;
+  }
+
+  .study-brief-entry-label {
+    grid-column: 1 / -1;
+  }
+}

@@ -9,6 +9,12 @@
 
 学习内容分类规则见 [learning-catalog.md](learning-catalog.md)。公共 HTML 中的导航也使用这套称呼；教程正文里的“博客”“教程”等一般名词不需机械替换。
 
+## 每日晨报（测试版）
+
+独立入口 `/morning-brief/`，英文壳页面 `/en/morning-brief/`，报告保持中文。首页与导航提供入口，不纳入课程目录、写作列表或 Atom。
+
+`src/components/morning-brief/` 匿名读取 `morning-brief-data` 分支的白名单 JSON，保留最多 14 期、每期 0–3 条。状态区分有精选、正常无事、未完成、未生成、网络错误和旧日报。只有日期匹配今天且状态为正常空缺，才显示“今日没有大事发生”；旧日报明确日期。正文由 Codex 阅读原始资料并复核后更新；浏览器不调用模型、不访问私有仓库。
+
 ## 文章发布边界
 
 当前写作公开《第二次工业革命中的知识分工与社会分层》（`knowledge-networks-and-social-stratification`）和《大学里的绩点与精力分配》（`university-study-and-energy`）。2026-07-09 的交接文章中英文版，以及本地的 Codex 高效使用文章均设为 `status: draft`；原稿保留，列表、详情、语言切换、Atom 和 sitemap 统一排除草稿。`src/data/site.ts` 的 `blog.visible` 已恢复为 `true`。以后恢复旧文时逐篇调整状态，避免一次开放全部旧稿。
