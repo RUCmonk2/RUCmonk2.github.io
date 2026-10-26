@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-26T16:03:38.491943+00:00",
+  "reports": [
+    {
+      "date": "2026-10-26",
+      "generatedAt": "2026-10-26T16:03:38.491943+00:00",
+      "status": "ready",
+      "message": "",
+      "items": [
+        {
+          "id": "53aee701d51408d4",
+          "title": "SemantEq：防止形式化陈述靠“都可证明”蒙混过关",
+          "summary": "两条已被证明的命题即使意思无关，也能轻易通过逻辑等价检查。SemantEq 限制允许的变换步骤，并审计 Lean 实际检查的证明项；作者报告，ProofAudit 拒绝了测试中的全部 104 对非等价陈述，最佳提示下对 407 对等价陈述的召回率为 81.1%。结果依赖作者裁定的标签与该测试集，尚不能视为通用保证。",
+          "researchRelevance": "自动形式化的验收应检查陈述是否忠实，不能仅看证明器能否给出等价证明；这直接关系到 AI4Math 验证流程的接受标准。",
+          "track": "math_tcs_sketch",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "公告时间",
+          "url": "https://arxiv.org/abs/2610.32919",
+          "publishedAt": "2026-10-26T04:00:00+00:00",
+          "evidenceKind": "abstract",
+          "evidenceQuote": "split under our adjudicated labels, against 95.8% and 61.8% for BEq+, and an 8.9-fold increase in its CPU time adds at most three pairs. A…"
+        }
+      ]
+    }
+  ]
+}
