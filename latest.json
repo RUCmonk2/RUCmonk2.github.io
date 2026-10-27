@@ -1,7 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T23:24:57.381441+00:00",
+  "updatedAt": "2026-10-27T23:23:22.448219+00:00",
   "reports": [
+    {
+      "date": "2026-10-28",
+      "generatedAt": "2026-10-27T23:23:22.448219+00:00",
+      "status": "ready",
+      "message": "",
+      "items": [
+        {
+          "id": "8eb6001a836a6e50",
+          "title": "ETH反证稿与Lean材料公开，独立核查启动",
+          "summary": "OpenAI公开了声称反驳指数时间假设（ETH）的研究稿与Lean形式化。Impagliazzo、Paturi和Williams组织公开核查，并明确参与不代表认证。当前可以确认的是材料公开与核查启动，不能据此把ETH被推翻或P=NP写成已确立结论。",
+          "researchRelevance": "直接关系以ETH为前提的条件下界与AI生成证明的规格审计；现阶段保留假设标签，等待独立核查。",
+          "track": "math_tcs_sketch",
+          "sourceName": "OpenAI 一手研究更新",
+          "dateLabel": "原始研究公开时间",
+          "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities",
+          "publishedAt": "2026-10-26T14:30:00+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "For the computer science collaboration, the group has decided to make the natural language proof and Lean formalization public immediately,…"
+        },
+        {
+          "id": "b055359fe809287d",
+          "title": "ARC探索过程数据：把机制认识与观察、动作对齐",
+          "summary": "公开数据包含64人在25个ARC游戏中的144条成功轨迹，配合同步口述、动作及机制识别与纠错标注，另有250条智能体轨迹。它能支持逐步追踪假设、证据与认识变化；但人类样本只保留成功轨迹，标注主要由模型辅助并抽查，人机比较不能当作一般认知能力的因果结论。",
+          "researchRelevance": "可直接用作“概念适用条件—诊断动作—反例—认识修订”的过程标注参照；在线评测须防止完整轨迹泄露未来证据。",
+          "track": "scientific_discovery",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "公告时间",
+          "url": "https://arxiv.org/abs/2610.34523",
+          "publishedAt": "2026-10-27T04:00:00+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "We annotate mechanism triggers and recognition, action purposes, and errors and recovery, linking changes in understanding to the observatio…"
+        },
+        {
+          "id": "d8dfc2d4db4135ca",
+          "title": "Gobble-Prover：用“双答案获证”找形式化反例",
+          "summary": "对于原题答案唯一的题目，若同一Lean模板让两个数学上不同的答案均获证，就暴露了形式化失真。Gobble-Prover将这种检查并入证明生成；主实验与消融合并标出225个模板，主要经模型复评，仅部分人工抽查。它是错误探针，未检出不代表陈述忠实。",
+          "researchRelevance": "可为自动形式化验收增加一种能实际检查的反例，而不是仅凭“代码通过”或语言模型裁判判定翻译正确。",
+          "track": "math_tcs_sketch",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "公告时间",
+          "url": "https://arxiv.org/abs/2610.34490",
+          "publishedAt": "2026-10-27T04:00:00+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "For problems with a unique answer, if two distinct answers both obtain verifiable proofs under the same formal statement, this confirms the…"
+        }
+      ]
+    },
     {
       "date": "2026-10-27",
       "generatedAt": "2026-10-26T23:24:57.381441+00:00",
