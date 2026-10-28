@@ -14,6 +14,8 @@ export type BriefItem = {
   evidenceKind: string;
   evidenceQuote: string;
   discoveryUrl?: string;
+  contentType?: "perspective";
+  datePrecision?: "day";
 };
 
 export type BriefReport = {
@@ -89,6 +91,12 @@ function publicUrl(value: unknown): string {
 
 function parseItem(value: unknown): BriefItem {
   const item = record(value);
+  if (
+    (item.contentType !== undefined && item.contentType !== "perspective") ||
+    (item.datePrecision !== undefined && item.datePrecision !== "day")
+  ) {
+    throw new Error("Invalid report content type or date precision");
+  }
   return {
     id: text(item.id, 128),
     title: text(item.title, 240),
@@ -101,6 +109,10 @@ function parseItem(value: unknown): BriefItem {
     dateLabel: text(item.dateLabel, 40),
     evidenceKind: text(item.evidenceKind, 80),
     evidenceQuote: text(item.evidenceQuote, 1200, true),
+    ...(item.contentType === "perspective"
+      ? { contentType: "perspective" as const }
+      : {}),
+    ...(item.datePrecision === "day" ? { datePrecision: "day" as const } : {}),
     ...(item.discoveryUrl
       ? { discoveryUrl: publicUrl(item.discoveryUrl) }
       : {}),
@@ -133,6 +145,15 @@ export function parseBriefFeed(value: unknown): BriefFeed {
     }
     dates.add(date);
     const items = report.items.map(parseItem);
+    if (
+      items.filter(
+        (item) =>
+          item.contentType === "perspective" ||
+          item.track === "research_perspectives",
+      ).length > 1
+    ) {
+      throw new Error("Too many perspective articles");
+    }
     if (new Set(items.map((item) => item.id)).size !== items.length) {
       throw new Error("Duplicate report items");
     }

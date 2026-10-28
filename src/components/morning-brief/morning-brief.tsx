@@ -20,6 +20,8 @@ const trackNames: Record<string, string> = {
   residual_architecture: "残差连接与深度信息混合",
   math_tcs_sketch: "AI4Math · AI4TCS · 图流 Sketch",
   calligraphy: "书法生成、评价与最小修改",
+  foundational_science: "AI 与基础科学重大进展",
+  research_perspectives: "研究思想与智能系统架构",
 };
 
 function ResearchItem({ item, index }: { item: BriefItem; index: number }) {
@@ -31,6 +33,9 @@ function ResearchItem({ item, index }: { item: BriefItem; index: number }) {
       <article>
         <p className="brief-item-track">
           {trackNames[item.track] ?? "研究进展"}
+          {(item.contentType === "perspective" ||
+            item.track === "research_perspectives") &&
+            " · 观点长文"}
         </p>
         <h3>
           <a href={item.url} target="_blank" rel="noopener noreferrer">
@@ -50,7 +55,9 @@ function ResearchItem({ item, index }: { item: BriefItem; index: number }) {
           <span>
             {item.dateLabel}：
             <time dateTime={item.publishedAt}>
-              {briefTime(item.publishedAt)}
+              {item.datePrecision === "day"
+                ? readableDate(item.publishedAt.slice(0, 10))
+                : briefTime(item.publishedAt)}
             </time>
           </span>
         </div>
