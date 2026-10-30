@@ -14,6 +14,7 @@ import {
   physicsFormulaHref,
   physicsFormulaUpdated,
 } from "@/data/physics-formulas";
+import { midtermHref, midtermUpdated } from "@/data/physics-midterm";
 import { siteConfig } from "@/data/site";
 import { DEFAULT_LOCALE, LOCALES } from "@/i18n/routing";
 import { getBlogPosts } from "@/lib/blog";
@@ -106,6 +107,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...pages,
+    ...LOCALES.map((locale) => ({
+      url: siteUrl + localePathPrefix(locale) + midtermHref,
+      lastModified: new Date(midtermUpdated),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     ...catalogPages,
     ...courseMapPages,
     ...LOCALES.map((locale) => ({

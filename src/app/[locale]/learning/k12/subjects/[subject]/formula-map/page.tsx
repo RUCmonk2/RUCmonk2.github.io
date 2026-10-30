@@ -5,6 +5,7 @@ import type { Locale } from "next-intl";
 
 import { K12Shell } from "@/components/k12/k12-shell";
 import { MathMapGraph } from "@/components/math-map/math-map-graph";
+import { PhysicsMidtermEntry } from "@/components/physics/physics-formula-entry";
 import styles from "@/components/physics/physics-formulas.module.css";
 import {
   physicsFormulaAtlas,
@@ -65,6 +66,7 @@ export default async function Page({ params }: Props) {
             <a href="#mathmap-routes">按学习路线读 ↓</a>
           </nav>
         </header>
+        <PhysicsMidtermEntry locale={language} />
         <details className={styles.notation}>
           <summary>先分清：场强 E 与能量 Eₖ，功与动能变化</summary>
           <p>

@@ -1,0 +1,482 @@
+.page {
+  min-width: 0;
+  color: var(--note-ink);
+}
+.page p {
+  line-height: 1.85;
+}
+.page :global(.katex-display) {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 0;
+}
+.page :global(.katex) {
+  font-size: 1.08em;
+}
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 10px;
+}
+.page .small {
+  color: var(--note-muted);
+  font-size: 13px;
+  max-width: 850px;
+}
+.jumpNav {
+  display: flex;
+  gap: 8px 22px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid var(--note-line);
+  border-bottom: 1px solid var(--note-line);
+}
+.jumpNav a {
+  font-size: 14px;
+  color: var(--note-accent);
+  padding: 5px 0;
+  text-decoration: none;
+}
+.jumpNav a:hover,
+.nextLinks a:hover {
+  text-decoration: underline;
+}
+.section {
+  margin: 56px 0;
+  scroll-margin-top: 100px;
+}
+.sectionHeading {
+  display: flex;
+  gap: 18px;
+  margin: 0 0 26px;
+}
+.sectionHeading > span {
+  font-size: 12px;
+  color: var(--note-accent);
+  padding-top: 8px;
+  letter-spacing: 0.08em;
+}
+.sectionHeading h2 {
+  font-size: clamp(21px, 3vw, 28px);
+  line-height: 1.5;
+  margin: 0 0 9px;
+}
+.sectionHeading p {
+  font-size: 14px;
+  color: var(--note-muted);
+  margin: 0;
+  max-width: 850px;
+}
+.schedule {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--note-line);
+}
+.schedule li {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 22px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--note-line);
+}
+.schedule li:last-child {
+  border-bottom: 0;
+}
+.schedule li > span {
+  color: var(--note-accent);
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
+.schedule small {
+  display: block;
+  font-size: 11px;
+  color: var(--note-muted);
+  margin-top: 4px;
+}
+.schedule a {
+  font-weight: 650;
+  font-size: 16px;
+}
+.schedule p {
+  font-size: 14px;
+  color: var(--note-muted);
+  margin: 7px 0 0;
+}
+.questionStack {
+  display: grid;
+  gap: 18px;
+}
+.question {
+  border: 1px solid var(--note-line);
+  background: var(--note-paper);
+  padding: 24px 28px;
+  scroll-margin-top: 100px;
+  min-width: 0;
+}
+.question > header {
+  display: flex;
+  align-items: baseline;
+  gap: 13px;
+  margin-bottom: 14px;
+}
+.question > header span {
+  color: var(--note-accent);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+}
+.question h3 {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+}
+.question > header a {
+  margin-left: auto;
+  color: var(--note-muted);
+}
+.question p {
+  font-size: 15px;
+  margin: 10px 0;
+}
+.question ol {
+  padding-left: 24px;
+}
+.question ul {
+  padding-left: 20px;
+}
+.answer {
+  border-top: 1px solid var(--note-line);
+  margin: 20px 0 0;
+  padding: 16px 0 0;
+}
+.answer summary {
+  color: var(--note-accent);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.answer[open] summary {
+  margin-bottom: 18px;
+}
+.answer .result {
+  border-left: 2px solid var(--note-accent);
+  padding-left: 16px;
+  margin: 0 0 18px;
+}
+.pitfalls {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--note-line);
+  font-size: 13px;
+  color: var(--note-muted);
+}
+.pitfalls p {
+  font-size: 14px;
+}
+.conceptGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.conceptGrid > div {
+  border: 1px solid var(--note-line);
+  padding: 21px 24px;
+}
+.conceptGrid h3 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+.conceptGrid p {
+  font-size: 14px;
+  margin: 0;
+  color: var(--note-muted);
+}
+.questionPair {
+  display: grid;
+  gap: 0;
+  margin-top: 28px;
+}
+.questionPair > article + article {
+  border-top: 0;
+  background: transparent;
+}
+.questionPair > article + article > header span {
+  color: var(--note-muted);
+}
+.experiment {
+  border: 1px solid var(--note-line);
+  padding: 28px;
+  margin-bottom: 26px;
+  background: var(--note-paper);
+  scroll-margin-top: 100px;
+}
+.eyebrow {
+  color: var(--note-accent);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.experiment h3 {
+  font-size: 22px;
+  line-height: 1.5;
+  margin: 9px 0;
+}
+.experiment p {
+  font-size: 14px;
+}
+.experiment > header > p {
+  color: var(--note-muted);
+  margin: 0 0 22px;
+}
+.experimentGrid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 1.2fr);
+  gap: 30px;
+  align-items: center;
+}
+.modeSwitch {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.modeSwitch button {
+  border: 1px solid var(--note-line);
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--note-muted);
+  cursor: pointer;
+}
+.modeSwitch button[aria-pressed="true"] {
+  color: var(--note-paper);
+  background: var(--note-accent);
+  border-color: var(--note-accent);
+}
+.control {
+  display: block;
+  margin: 20px 0;
+}
+.control > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.control strong {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.control input {
+  width: 100%;
+  accent-color: var(--note-accent);
+  cursor: pointer;
+  height: 28px;
+}
+.control small {
+  display: flex;
+  justify-content: space-between;
+  color: var(--note-muted);
+  font-size: 10px;
+  margin-top: 4px;
+}
+.readouts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin: 20px 0;
+}
+.readouts > div {
+  border: 1px solid var(--note-line);
+  padding: 10px 5px;
+  text-align: center;
+}
+.readouts span {
+  display: block;
+  font-size: 11px;
+  color: var(--note-muted);
+}
+.readouts strong {
+  display: block;
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  margin-top: 7px;
+}
+.experiment figure {
+  margin: 0;
+  min-width: 0;
+}
+.experiment svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  color: var(--note-ink);
+}
+.experiment svg text {
+  font-family: inherit;
+  font-size: 14px;
+  fill: currentColor;
+}
+.experiment figcaption {
+  color: var(--note-muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 6px;
+}
+.experiment .status {
+  border-left: 2px solid var(--note-accent);
+  padding: 8px 0 8px 14px;
+  color: var(--note-muted);
+  font-size: 13px;
+}
+.status strong {
+  color: var(--note-ink);
+}
+.checklist {
+  padding: 0;
+  list-style: none;
+  counter-reset: review;
+}
+.checklist > li {
+  counter-increment: review;
+  position: relative;
+  border-top: 1px solid var(--note-line);
+  padding: 20px 0 20px 40px;
+  line-height: 1.9;
+  font-size: 15px;
+}
+.checklist > li::before {
+  content: counter(review, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 23px;
+  font-size: 12px;
+  color: var(--note-accent);
+}
+.checklist p {
+  display: inline;
+  margin: 0;
+}
+.nextLinks {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 24px 0;
+  border-top: 1px solid var(--note-line);
+  color: var(--note-accent);
+  font-size: 14px;
+}
+.page a:focus-visible,
+.page button:focus-visible,
+.page input:focus-visible,
+.page summary:focus-visible {
+  outline: 2px solid var(--note-accent);
+  outline-offset: 5px;
+}
+@media (max-width: 780px) {
+  .experimentGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .experiment figure {
+    max-width: 550px;
+    width: 100%;
+    justify-self: center;
+  }
+  .section {
+    margin: 40px 0;
+  }
+}
+@media (max-width: 520px) {
+  .downloads > a {
+    width: 100%;
+  }
+  .jumpNav {
+    gap: 8px 18px;
+  }
+  .jumpNav a {
+    font-size: 13px;
+  }
+  .schedule li {
+    grid-template-columns: 65px 1fr;
+    padding: 17px 15px;
+    gap: 15px;
+  }
+  .schedule li > span {
+    font-size: 16px;
+  }
+  .question {
+    padding: 20px 17px;
+  }
+  .question h3 {
+    font-size: 17px;
+  }
+  .question p {
+    font-size: 14px;
+  }
+  .conceptGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .conceptGrid > div {
+    padding: 18px;
+  }
+  .experiment {
+    padding: 20px 16px;
+  }
+  .experiment h3 {
+    font-size: 19px;
+  }
+  .modeSwitch button {
+    flex: 1;
+    padding: 11px 7px;
+  }
+  .sectionHeading {
+    gap: 12px;
+  }
+  .control > span {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .readouts strong {
+    font-size: 18px;
+  }
+}
+@media print {
+  .jumpNav,
+  .downloads {
+    display: none;
+  }
+  .question,
+  .experiment {
+    break-inside: avoid;
+  }
+  .section {
+    margin: 25px 0;
+  }
+}
+
+.questionDiagram {
+  max-width: 540px;
+  margin: 22px auto 8px;
+}
+.questionDiagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--note-ink);
+}
+.questionDiagram text {
+  fill: currentColor;
+  font-family: inherit;
+  font-size: 14px;
+}
+.questionDiagram figcaption {
+  text-align: center;
+  font-size: 12px;
+  color: var(--note-muted);
+  margin-top: 6px;
+}

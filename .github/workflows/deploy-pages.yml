@@ -49,6 +49,8 @@ jobs:
         run: npm run test:galois
       - name: Validate K12 lessons and factor workshop
         run: npm run test:k12
+      - name: Validate physics midterm review
+        run: npm run test:physics-midterm
       - name: Build static site
         run: npm run build
       - name: Check exported pages and links
