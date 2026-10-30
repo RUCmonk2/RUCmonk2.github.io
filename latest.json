@@ -1,13 +1,27 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-29T23:21:09.498294+00:00",
+  "updatedAt": "2026-10-30T03:37:32.107728+00:00",
   "reports": [
     {
       "date": "2026-10-30",
-      "generatedAt": "2026-10-29T23:21:09.498294+00:00",
-      "status": "incomplete",
-      "message": "今日晨报暂未完成，请稍后再看。",
-      "items": []
+      "generatedAt": "2026-10-30T03:37:32.107728+00:00",
+      "status": "ready",
+      "message": "",
+      "items": [
+        {
+          "id": "45e3ed9d47e9bf12",
+          "title": "相邻层抵消：门控收缩不等于选择性纠错",
+          "summary": "论文分解相邻层写入，发现10个受测门控模型的主要衰减来自SiLU/GELU负半轴。对0.5B和1B模型做匹配续训，逐步移除负半轴后，受测层段的平均抵消消失，但语言建模损失上升。主实验覆盖至8B，核心测量为16篇192-token文本，另有扩样复核；方向层面的结果不能排除具体语义特征的选择性纠错。",
+          "researchRelevance": "深度信息混合实验可加入随机方向和同层其他词元写入作对照，分别度量衰减与同向写入，避免把负余弦直接当作纠错。",
+          "track": "residual_architecture",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "首次提交时间",
+          "url": "https://arxiv.org/abs/2610.39068",
+          "publishedAt": "2026-10-28T23:59:49+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "In gated MLPs the damping is carried by neurons whose gates are closed."
+        }
+      ]
     },
     {
       "date": "2026-10-29",
