@@ -11,6 +11,7 @@ import {
   DeflectionExperiment,
 } from "@/components/physics/midterm-experiments";
 import { MidtermQuestionDiagram } from "@/components/physics/midterm-question-diagram";
+import { MidtermVideo } from "@/components/physics/midterm-video";
 import { MockExamEntry } from "@/components/physics/mock-exam-entry";
 import { physicsFormulaHref } from "@/data/physics-formulas";
 import {
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return constructMetadata({
     title: "必修三第九、十章 · 期中复习",
     description:
-      "120 分钟串起静电场中的力、功与能。含同编号例题与变式、独立检测、平行板电容器与粒子偏转实验、教师和学生 PDF。",
+      "11 分 10 秒动画与 120 分钟课堂路线，串起静电场中的力、功与能。含分章视频、例题与变式、互动实验、模拟卷及教师和学生 PDF。",
     path: midtermHref,
     locale: locale as Locale,
   });
@@ -125,6 +126,7 @@ export default async function Page({ params }: Props) {
         </header>
         <MockExamEntry locale={language} />
         <nav className={styles.jumpNav} aria-label="本页复习目录">
+          <a href="#video">动画串讲</a>
           <a href="#schedule">课堂路线</a>
           <a href="#diagnosis">开场诊断</a>
           <a href="#core">例题与变式</a>
@@ -132,6 +134,7 @@ export default async function Page({ params }: Props) {
           <a href="#exit">独立检测</a>
           <a href="#review">考前速查</a>
         </nav>
+        <MidtermVideo />
         <section className={styles.section} id="schedule">
           <div className={styles.sectionHeading}>
             <span>01</span>

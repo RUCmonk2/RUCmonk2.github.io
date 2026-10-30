@@ -1,5 +1,5 @@
 export const midtermHref = "/learning/k12/subjects/physics/midterm";
-export const midtermUpdated = "2026-10-30";
+export const midtermUpdated = "2026-10-31";
 export const midtermSchedule = [
   {
     time: "0–10",

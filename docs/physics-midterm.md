@@ -28,3 +28,14 @@ Node.js 22 下运行 `npm run test:physics-midterm`，检查题号、KaTeX、定
 - 附件：`public/assets/physics/mock-ch9-10-student.pdf` 与 `mock-ch9-10-solutions.pdf`。
 - 评分：单选选对3分；多选全对4分、漏选且无错选2分、错选或未选0分。主观题由教师按物理依据与过程判分，合理其他解法参照给分，同一错误不重复扣分。
 - 检查：`npm run test:physics-midterm` 同时检查串讲及模拟卷；模拟卷检查题号、题型、100分总分、每小问与评分项分值、公式和图示覆盖。网页需核对折叠状态、手机长公式和PDF下载。
+
+## 数心动画串讲
+
+专题内 `#video` 为11分10秒的Manim纯音乐串讲。物理学科目录的期中复习入口注明动画，专题导航可直达播放器。视频不自动播放，使用海报与metadata预加载；章节按钮支持元数据尚未载入时的延后定位，并有暂停、回退8秒和下载。
+
+- 组件：`src/components/physics/midterm-video.tsx`；章节数据：`src/data/physics-midterm/video-chapters.json`。
+- 公开资产：`public/assets/physics/video/`，仅上传完整MP4、封面、章节/画面提示VTT及音乐署名信息，不重复存储10段相同视频内容。
+- 成片：1920×1080、30fps、670秒、20100帧。SHA-256为578792b88f901619f3179668ce8490329fa0086e7af681d20e039e27949137dd。
+- 音乐：Scott Buckley《Reverie》，CC BY 4.0，页面直接保留作者、来源、许可和修改说明；许可记录在credits.json。
+- 画面提示字幕提取自实际渲染事件；无口播，不宣称逐字旁白转写。
+- 验证重点：未播放时不自动发声、从静止状态直接选后段章节、暂停与8秒回退、手机宽度、生产环境HTTP字节范围响应。

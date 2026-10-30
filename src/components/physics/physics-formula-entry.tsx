@@ -31,8 +31,8 @@ export function PhysicsMidtermEntry({ locale }: { locale: "zh" | "en" }) {
         <span className="notes-overline">MIDTERM / 120 MINUTES</span>
         <h2>期中前，把静电场的力与能串起来</h2>
         <p>
-          人教版必修三第九、十章。开场诊断、四组例题与变式、两项互动实验，配教师横屏与学生
-          A4 讲义。
+          人教版必修三第九、十章。11 分 10
+          秒分章动画、例题与互动实验，配教师与学生讲义、90 分钟模拟卷。
         </p>
       </div>
       <Link className="k12-button" href={prefix + midtermHref}>
