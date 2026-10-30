@@ -17,3 +17,14 @@
 ## 验证
 
 Node.js 22 下运行 `npm run test:physics-midterm`，检查题号、KaTeX、定 U/Q 不变量、符号反转、速度缩放与碰板边界。随后执行站点 lint、构建、导出链接检查。桌面和手机需人工检查：下载入口、答案折叠、范围滑杆和碰板提示。
+
+## 90 分钟原创模拟卷
+
+子页 `/learning/k12/subjects/physics/midterm/mock-exam/` 从串讲页面进入。20题、100分：12道单选36分、4道多选16分、1道实验12分、3道解答36分。公开说明是按北京地区高中常见考查方式独立编写的模拟题，不称为北京统一卷或历年真题。
+
+- 题库：`src/data/physics-midterm/mock-exam/mcq.json` 与 `written.json`，与PDF使用相同源稿。主观题各小问含独立分值、答案、步骤和rubric，评分默认折叠，不做自动主观评分。
+- 页面与目录：`src/app/[locale]/learning/k12/subjects/[subject]/midterm/mock-exam/page.tsx`；题型与题号跳转同时提供，手机上目录可以折叠。
+- 关键题图：`src/components/physics/mock-exam-diagram.tsx`。图示几何和参数必须与题干一致；不得在题面预画待求的场强方向、受力、轨迹或落点。
+- 附件：`public/assets/physics/mock-ch9-10-student.pdf` 与 `mock-ch9-10-solutions.pdf`。
+- 评分：单选选对3分；多选全对4分、漏选且无错选2分、错选或未选0分。主观题由教师按物理依据与过程判分，合理其他解法参照给分，同一错误不重复扣分。
+- 检查：`npm run test:physics-midterm` 同时检查串讲及模拟卷；模拟卷检查题号、题型、100分总分、每小问与评分项分值、公式和图示覆盖。网页需核对折叠状态、手机长公式和PDF下载。

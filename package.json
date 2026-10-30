@@ -7,7 +7,7 @@
     "dev": "next dev --turbopack",
     "lint": "eslint .",
     "check:learning": "node scripts/check-learning-catalog.mjs",
-    "test:physics-midterm": "node scripts/check-physics-midterm.mjs",
+    "test:physics-midterm": "node scripts/check-physics-midterm.mjs && node scripts/check-physics-mock.mjs",
     "test:content": "node scripts/check-blog-content.mjs",
     "check:site": "node scripts/check-site-export.mjs",
     "check:export": "npm run check:learning && npm run check:site",

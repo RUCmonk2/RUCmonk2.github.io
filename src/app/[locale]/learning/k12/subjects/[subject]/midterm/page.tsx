@@ -11,6 +11,7 @@ import {
   DeflectionExperiment,
 } from "@/components/physics/midterm-experiments";
 import { MidtermQuestionDiagram } from "@/components/physics/midterm-question-diagram";
+import { MockExamEntry } from "@/components/physics/mock-exam-entry";
 import { physicsFormulaHref } from "@/data/physics-formulas";
 import {
   midtermHref,
@@ -122,6 +123,7 @@ export default async function Page({ params }: Props) {
             网页与两份讲义沿用相同题号；解析默认折叠。先在纸上画图、列式，再展开核对。
           </p>
         </header>
+        <MockExamEntry locale={language} />
         <nav className={styles.jumpNav} aria-label="本页复习目录">
           <a href="#schedule">课堂路线</a>
           <a href="#diagnosis">开场诊断</a>

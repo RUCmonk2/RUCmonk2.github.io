@@ -1,0 +1,304 @@
+.page {
+  min-width: 0;
+}
+.examLayout {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 38px;
+  align-items: start;
+}
+.directory {
+  position: sticky;
+  top: 100px;
+  color: var(--note-ink);
+  border: 1px solid var(--note-line);
+  padding: 18px 16px;
+  scroll-margin-top: 100px;
+}
+.directory summary {
+  list-style: none;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  line-height: 1.7;
+}
+.directory summary::-webkit-details-marker {
+  display: none;
+}
+.directory nav {
+  display: grid;
+  gap: 5px;
+  margin: 18px 0;
+}
+.directory nav a {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  padding: 9px 0;
+  color: var(--note-accent);
+  border-bottom: 1px solid var(--note-line);
+}
+.directory small {
+  font-size: 11px;
+  color: var(--note-muted);
+}
+.directory p {
+  font-size: 11px;
+  color: var(--note-muted);
+  margin: 16px 0 0;
+}
+.numberLinks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+.numberLinks a {
+  text-align: center;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid var(--note-line);
+  padding: 7px 0;
+}
+.numberLinks a:hover {
+  background: var(--note-paper);
+  color: var(--note-accent);
+}
+.examBody {
+  min-width: 0;
+}
+.examSection {
+  margin-bottom: 48px;
+  scroll-margin-top: 100px;
+}
+.examSection h2 small {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--note-muted);
+  margin-left: 10px;
+}
+.question .points {
+  margin-left: auto;
+  color: var(--note-muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+.question > header > a {
+  margin-left: 0;
+}
+.question > header {
+  gap: 12px;
+}
+.options {
+  list-style: none;
+  padding: 0 !important;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.options > li {
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+}
+.options > li > strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.options p {
+  margin: 0;
+}
+.parts > div {
+  padding: 14px 0 0;
+}
+.parts > div > span {
+  display: block;
+  font-size: 14px;
+  color: var(--note-accent);
+  margin-bottom: 5px;
+}
+.parts small {
+  font-size: 12px;
+  color: var(--note-muted);
+}
+.parts p {
+  margin: 0;
+}
+.solutionPart {
+  margin-top: 24px;
+  border-bottom: 1px solid var(--note-line);
+  padding-bottom: 16px;
+}
+.solutionPart h4,
+.analysis h4 {
+  font-size: 15px;
+  margin: 0 0 16px;
+  font-weight: 650;
+}
+.solutionPart h5 {
+  font-size: 13px;
+  margin: 20px 0 10px;
+  font-weight: 650;
+  color: var(--note-muted);
+}
+.rubric {
+  padding: 0 !important;
+  list-style: none;
+}
+.rubric > li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 10px;
+  border-top: 1px dashed var(--note-line);
+  padding: 9px 0;
+  align-items: baseline;
+}
+.rubric > li > strong {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--note-accent);
+}
+.rubric p {
+  margin: 0;
+  font-size: 13px;
+}
+.analysis {
+  margin-top: 24px;
+}
+.question .topic {
+  font-size: 12px;
+  margin-top: 15px;
+}
+.question :global(.mathmap-notation-scroll) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.question :global(table) {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+  margin: 18px 0;
+}
+.question :global(th),
+.question :global(td) {
+  border: 1px solid var(--note-line);
+  padding: 9px 12px;
+  text-align: center;
+  min-width: 60px;
+}
+.question :global(.katex) {
+  max-width: 100%;
+}
+.backToDirectory {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--note-accent);
+  margin-top: 18px;
+}
+.finish {
+  border-top: 1px solid var(--note-line);
+  padding-top: 30px;
+  margin-top: 12px;
+}
+.finish h2 {
+  font-size: 23px;
+  margin: 0 0 16px;
+}
+.finish p {
+  font-size: 14px;
+  color: var(--note-muted);
+  max-width: 850px;
+}
+.finish a {
+  margin-top: 18px;
+}
+.diagram {
+  margin: 24px auto;
+  width: 100%;
+  max-width: 590px;
+}
+.diagram svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  color: var(--note-ink);
+}
+.diagram text {
+  fill: currentColor;
+  font-family: inherit;
+  font-size: 14px;
+}
+.diagram figcaption {
+  font-size: 12px;
+  color: var(--note-muted);
+  line-height: 1.8;
+  margin-top: 10px;
+}
+@media (max-width: 850px) {
+  .examLayout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .directory {
+    position: static;
+    padding: 16px 18px;
+  }
+  .directory summary::after {
+    content: " ↕";
+    color: var(--note-accent);
+  }
+  .directory nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 22px;
+    margin: 10px 0 18px;
+  }
+  .numberLinks {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
+  .directory p {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 520px) {
+  .numberLinks {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .question {
+    padding: 20px 16px;
+  }
+  .question > header {
+    gap: 9px;
+  }
+  .question :global(th),
+  .question :global(td) {
+    padding: 7px 8px;
+  }
+  .options > li {
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 5px;
+  }
+  .options > li > strong {
+    font-size: 13px;
+  }
+  .diagram {
+    margin: 20px auto;
+  }
+  .diagram text {
+    font-size: 20px;
+  }
+}
+@media print {
+  .directory,
+  .backToDirectory,
+  .finish {
+    display: none;
+  }
+  .examLayout {
+    display: block;
+  }
+  .question {
+    break-inside: avoid;
+  }
+}
