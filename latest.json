@@ -1,7 +1,41 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T05:04:23.153138+00:00",
+  "updatedAt": "2026-10-31T02:13:58.545051+00:00",
   "reports": [
+    {
+      "date": "2026-10-31",
+      "generatedAt": "2026-10-31T02:13:58.545051+00:00",
+      "status": "ready",
+      "message": "",
+      "items": [
+        {
+          "id": "5f11a72077e1152d",
+          "title": "Murty–Simon猜想：AI论证经人类简化与补全",
+          "summary": "Das与Fox公开完整证明稿：所有n≥3的直径2临界图至多有⌊n²/4⌋条边，等号仅由平衡完全二部图取得。作者称AI先找到边数界及偶数等号证明；他们简化论证，并另证覆盖奇偶n的等号分类。目前为预印本，数学工作早于本次arXiv公开。",
+          "researchRelevance": "提供AI找到核心论证、人类简化并补全边界情形的具体案例，可检查从候选证明到完整定理的贡献划分。",
+          "track": "foundational_science",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "arXiv首次提交",
+          "url": "https://arxiv.org/abs/2610.39032",
+          "publishedAt": "2026-10-28T23:04:24+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "In this paper, we present a full proof of the Murty–Simon conjecture."
+        },
+        {
+          "id": "f69a2924ccfb9079",
+          "title": "AWM：模型内证明成立，仍须检验环境前提",
+          "summary": "AWM把探索得到的规则写成模型，再用Lean证明预算内无解。作者报告两个封闭关卡的6次运行均有模型内证明，但初始仅4次费用下界与引擎相符，获“存在更便宜解”的反馈后才修正至6次。另做的固定起点、限定预算的事后引擎核查仅5次通过；形式证明不能替代对环境模型的检验。",
+          "researchRelevance": "将“模型内推导有效”和“规则符合观测”分开评测；保存证明依赖，围绕被依赖的规则主动寻找反例。",
+          "track": "math_tcs_sketch",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "arXiv首次提交",
+          "url": "https://arxiv.org/abs/2610.40503",
+          "publishedAt": "2026-10-29T17:20:31+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "This establishes model-relative impossibility rather than inferring it from unsuccessful play (§4)."
+        }
+      ]
+    },
     {
       "date": "2026-10-30",
       "generatedAt": "2026-10-30T05:04:23.153138+00:00",
