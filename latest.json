@@ -1,7 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T23:34:09.020517+00:00",
+  "updatedAt": "2026-11-02T23:41:32.065676+00:00",
   "reports": [
+    {
+      "date": "2026-11-03",
+      "generatedAt": "2026-11-02T23:41:32.065676+00:00",
+      "status": "ready",
+      "message": "",
+      "items": [
+        {
+          "id": "d2bcc4ef032d07f9",
+          "title": "EDB-Bio：分开评测证据更新与实验选择",
+          "summary": "EDB-Bio用三类生物数据逐条揭示证据，预测目标测量是否支持假设；后训练改善校准。选择实验在16条既有证据池中回放；“2.5倍”是共享分类器估计的首步信息增益，并非实验数节省。GWAS中53.2%的测试目标测量曾出现在训练/验证证据中；未报告去重后的选择结果。",
+          "researchRelevance": "可用概率轨迹、证据权重和换序对照评估信念修订；拆分数据时须按测量去重，并将预测校准与实验选择分别验收。",
+          "track": "scientific_discovery",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "公告时间",
+          "url": "https://arxiv.org/abs/2610.41015",
+          "publishedAt": "2026-11-02T05:00:00+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "EDB-Bio scores a calibrated probability that a hypothesis will be supported by an experiment whose result is not yet observed."
+        },
+        {
+          "id": "891cf40b21af12b8",
+          "title": "HiRes：分开残差宽度与层内计算宽度",
+          "summary": "HiRes在层块之间保留宽残差，用读写投影和边界归一化连接，块内计算宽度不变。500B tokens的OLMoE实验中，较普通残差平均准确率增1.14个百分点，但增加83.9M参数。与mHC、AttnRes比较非等FLOPs；1.30倍仅为缩放拟合估计，宽状态保存何种信息仍未解释。",
+          "researchRelevance": "可加入HiNorm、等宽HiRes与宽HiRes对照，分别控制边界归一化、读写学习和总算力，检验收益来自容量还是混合方式。",
+          "track": "residual_architecture",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "公告时间",
+          "url": "https://arxiv.org/abs/2610.41711",
+          "publishedAt": "2026-11-02T05:00:00+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "HiNorm isolates regulation from residual expansion and serves as a control in our experiments."
+        },
+        {
+          "id": "5a967c215cb402dc",
+          "title": "ETH：新增编码与机器模型的形式化衔接材料",
+          "summary": "社区贡献者公开把OpenAI的SAT算法接到另一套ETH形式化定义的代码，补上输入转换、机器模拟与开销界。材料11月1日（UTC）提交、2日分享；最终Lean构建和标准公理检查为作者报告，本轮未复跑。该定义与通常ETH的语义对应仍待独立审查，不能据此宣布ETH已获认证。",
+          "researchRelevance": "把先前文字中的编码与机器模型转换变成具体可审计对象；检查精确陈述、模拟开销与依赖，仍需区别代码通过和语义忠实。",
+          "track": "math_tcs_sketch",
+          "sourceName": "ETH社区一手研究材料",
+          "dateLabel": "社区公告（材料11/1 UTC提交）",
+          "url": "https://github.com/thinkthoughts/math/blob/81708f93fa4a4f72931ebf87aaefeaa602f85ab2/docs/ETH_BRIDGE_REPORT.md",
+          "publishedAt": "2026-11-02T06:06:19+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "The bridge supplies everything in between: an exact input-format converter with a polynomial time bound, a step-for-step machine translation…"
+        }
+      ]
+    },
     {
       "date": "2026-11-02",
       "generatedAt": "2026-11-01T23:34:09.020517+00:00",
