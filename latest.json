@@ -1,7 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T23:41:32.065676+00:00",
+  "updatedAt": "2026-11-04T03:36:31.475314+00:00",
   "reports": [
+    {
+      "date": "2026-11-04",
+      "generatedAt": "2026-11-04T03:36:31.475314+00:00",
+      "status": "ready",
+      "message": "",
+      "items": [
+        {
+          "id": "6fdf4658933d3853",
+          "title": "LUCA：把干预成功与病因诊断分开评测",
+          "summary": "在60个合成调控系统、7模型共420次会话中，各模型的救援成功率均高于病因诊断。对有可区分替代病因的43个系统，91%的已提交诊断会话见过区分性证据，其中诊断正确率仅30%。给出竞争病因及预测读数后表现改善。结论限该合成环境；双向干预与诊断成功的相关性不等于因果。",
+          "researchRelevance": "过程评测可分别记录竞争假设、预测读数、诊断性实验与信念修订，加入不可辨识和非证据对照，避免只按任务修复率评科学理解。",
+          "track": "scientific_discovery",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "首次提交时间",
+          "url": "https://arxiv.org/abs/2611.04473",
+          "publishedAt": "2026-11-03T08:02:24+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "Scientific agents can restore a system’s behaviour without identifying the underlying cause."
+        },
+        {
+          "id": "e4b6746245c152d8",
+          "title": "线性Sketch：何时保留原坐标已是最优",
+          "summary": "论文证明：均匀二进制输入下，计算unate布尔函数（翻转部分输入位后单调）时，任意秩k二进制线性Sketch都不优于选取合适的k个原坐标。对特定随机二分图分布下的一向通信连通性问题，常数误差时线性需Θ(n log n)位，非线性仅O(log n)位。结论依赖相应分布与单调条件。",
+          "researchRelevance": "为线性摘要下界提供可分析的坐标投影对照；先核验输入分布和单调性，再判断非线性或学习增强编码是否确有必要。",
+          "track": "math_tcs_sketch",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "首次提交时间",
+          "url": "https://arxiv.org/abs/2611.03979",
+          "publishedAt": "2026-11-02T21:20:23+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "We provide a sufficient monotonicity condition"
+        },
+        {
+          "id": "1b61d9926b31407d",
+          "title": "ETH：第三方复跑新增跨模型桥接链",
+          "summary": "Toledo公开11月3日的新记录，报告含OpenAI原证明的Hawkley链及跨模型桥接通过Lean与nanoda，前者另经空环境回放。链在OpenAI工具链内接到Anthropic的ETHIsFalse。跨版本定义对应和教科书语义仍需人工审查；本轮未复跑，不能据此宣布数学界已认证ETH被推翻。",
+          "researchRelevance": "相比作者自报构建，新增第三方对依赖闭包的复跑；审计应继续分开内核接受、工具链版本对应和形式化陈述的数学含义。",
+          "track": "math_tcs_sketch",
+          "sourceName": "ETH第三方公开复核记录",
+          "dateLabel": "复跑记录提交",
+          "url": "https://github.com/carlostoledo1891/cert-machine/blob/323d75058e8c14f5054d526033a44dd998045159/certs/eth-hawkley-heavy.json",
+          "publishedAt": "2026-11-03T14:00:23+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "nanoda accepts the theorem’s closure exported by lean4export"
+        }
+      ]
+    },
     {
       "date": "2026-11-03",
       "generatedAt": "2026-11-02T23:41:32.065676+00:00",
