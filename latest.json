@@ -1,7 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-04T03:36:31.475314+00:00",
+  "updatedAt": "2026-11-04T23:26:15.912728+00:00",
   "reports": [
+    {
+      "date": "2026-11-05",
+      "generatedAt": "2026-11-04T23:26:15.912728+00:00",
+      "status": "ready",
+      "message": "",
+      "items": [
+        {
+          "id": "f9cb0fd548b97ed7",
+          "title": "Axiom公开Stacks Project的Lean形式化代码",
+          "summary": "Axiom于11月4日公开代数几何参考书Stacks Project的Lean库，声称覆盖所有可形式化标签，例题、习题及部分注记仍待补充。代码分人工审阅的StacksCore与AI生成、仍待同等审阅的StacksFrontier。团队称证明均过内核且无sorry；本轮未重建全库，语义忠实仍需独立审查。",
+          "researchRelevance": "从单一定理扩展到可复用的定义与定理依赖库；可按原文标签核验陈述、假设及下游接口，不能把内核通过等同于人工语义审阅。",
+          "track": "foundational_science",
+          "sourceName": "Axiom 一手研究更新",
+          "dateLabel": "代码发布提交",
+          "url": "https://github.com/AxiomMath/Stacks/blob/f8e70c5dd04bfabcb423d5e325461f527c85a5d6/README.md",
+          "publishedAt": "2026-11-04T04:54:55+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "A Lean 4 (v4.34.0-rc2) formalization of [the Stacks Project](https://stacks.math.columbia.edu/), the open-source reference work on algebraic…"
+        },
+        {
+          "id": "f4f89aea1cfb6c99",
+          "title": "图流可达性：遍数上界从平方根降至立方根",
+          "summary": "预印本给出随机化半流算法：在Õ(n)空间内，用n^(1/3+o(1))遍计算有向图单源可达性和精确最短路，改进此前n^(1/2+o(1))遍上界。关键是将大型hopset隐式表示在近线性空间内。最短路要求非负、多项式有界整数权重，保证为高概率正确。",
+          "researchRelevance": "更新图流算法的遍数—空间比较基准；可研究隐式捷径的压缩表示，但该结果没有给出单遍线性Sketch或学习增强保证。",
+          "track": "math_tcs_sketch",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "公告时间",
+          "url": "https://arxiv.org/abs/2611.05061",
+          "publishedAt": "2026-11-04T05:00:00+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "computes exact single-source shortest paths using O~​(n)\\widetilde{O}(n) space and n1/3+o⁡(1)n^{1/3+o(1)} passes in nn-vertex directed graph…"
+        },
+        {
+          "id": "1afc5db13dcf50e7",
+          "title": "Unsatz：先发现模型结构，再拟合参数",
+          "summary": "Unsatz让模型自行提出变量、隐藏状态及作用机制，购买实验后由统一拟合器估参，以未见干预、外推和长时预测评分。80个合成系统中，9模型通过率21%–60%。识别隐藏变量数不等于找对动力学，降低训练误差也常损害预测。结论限生成器、建模语言和拟合器；预测通过不等于结构唯一。",
+          "researchRelevance": "可将变量选择、隐藏状态、机制修订与实验选择分别留痕；用未见条件下的预测检验假设，避免把拟合改善直接算作科学发现。",
+          "track": "scientific_discovery",
+          "sourceName": "arXiv 科研方向论文公告",
+          "dateLabel": "公告时间",
+          "url": "https://arxiv.org/abs/2611.03713",
+          "publishedAt": "2026-11-04T05:00:00+00:00",
+          "evidenceKind": "article",
+          "evidenceQuote": "Across 80 systems in 20 domains, nine language models solve between 21% and 60%."
+        }
+      ]
+    },
     {
       "date": "2026-11-04",
       "generatedAt": "2026-11-04T03:36:31.475314+00:00",
