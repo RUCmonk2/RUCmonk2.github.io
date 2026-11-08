@@ -10,6 +10,7 @@ export type CourseChapter = {
   body: string;
   checks: { question: string; answer: string }[];
   source: string;
+  study?: StudySet;
   lab?:
     | "backprop"
     | "gradient"
@@ -32,3 +33,4 @@ export type LearningCourse = {
   scope: Localized;
   chapters: readonly CourseChapter[];
 };
+import type { StudySet } from "./exam-types";

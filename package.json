@@ -16,7 +16,8 @@
     "test:math-map": "node scripts/check-course-maps.mjs && node scripts/check-math-map.mjs && node scripts/check-math-lesson-examples.mjs",
     "test:rotations": "node scripts/check-rotations.mjs",
     "test:galois": "node scripts/check-galois.mjs",
-    "test:k12": "node scripts/build-k12-lessons.mjs && node scripts/check-k12.mjs && node scripts/check-factorization.mjs && node scripts/check-k12-subjects.mjs && node scripts/build-school-lessons.mjs && node scripts/check-school-atlases.mjs"
+    "test:k12": "node scripts/build-k12-lessons.mjs && node scripts/check-k12.mjs && node scripts/check-factorization.mjs && node scripts/check-k12-subjects.mjs && node scripts/build-school-lessons.mjs && node scripts/check-school-atlases.mjs",
+    "test:deep-learning": "node scripts/build-course-lessons.mjs && node scripts/check-deep-learning-exam.mjs && node scripts/check-deep-learning-core.mjs && node scripts/check-deep-learning-sequence.mjs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",

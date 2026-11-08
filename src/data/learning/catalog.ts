@@ -25,15 +25,15 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "深度学习导论", en: "Introduction to Deep Learning" },
     description: {
-      zh: "更新至第四周：逐步推导矩阵链式法则、BP 与自动微分，补充批量梯度、数值校验和可操作的六权重实验。",
-      en: "Through week 4: matrix chain rules, backpropagation, automatic differentiation, batch gradients and an interactive training example. Notes are in Chinese.",
+      zh: "前七周考前复习：公式与推导分层展开，配手算题、CNN/RNN关键图及六小时复习路线。",
+      en: "Weeks 1–7: formulas, hidden derivations, worked problems, CNN/RNN diagrams, and a six-hour review route. Notes are in Chinese.",
     },
     topic: { zh: "机器学习", en: "Machine learning" },
     scope: {
-      zh: "更新至第四周 · BP 算法详解",
-      en: "Through week 4 · backpropagation",
+      zh: "前七周 · 公式自推与考前练习",
+      en: "Weeks 1–7 · derivations and exam practice",
     },
-    updated: "2026-09-28",
+    updated: "2026-11-08",
     featuredOrder: 1,
   },
   {

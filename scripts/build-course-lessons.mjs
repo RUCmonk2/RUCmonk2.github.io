@@ -74,6 +74,46 @@ for (const atlas of courseAtlases) {
       const reference = `\n\n## 对应章节与整理依据\n\n[${chapter.title}](${chapterPath(atlas.id, chapter.id)})\n\n${chapter.source}`;
       beginner = beginner.replace("## 自己试试", reference + "\n\n## 自己试试");
       formal += reference;
+      if (chapter.study) {
+        // One content source: preserve the exam reader's answer boundary in both map modes.
+        const study = chapter.study;
+        const picture = (f) =>
+          f ? `![${f.alt}](${f.src})\n\n${f.caption}\n\n` : "";
+        const notation =
+          "| 约定 | 核对要点 |\n| --- | --- |\n| 单样本列向量 | 梯度与参数同形状，先检查转置 |\n| 损失归约 | 区分求和与平均，保留正则系数 |\n| 独立练习 | 题目在前，提示和推导统一位于答案折叠区 |";
+        const visible =
+          study.formulas
+            .map(
+              (f) =>
+                `### ${f.title}\n\n${f.formula}\n\n${f.context}\n\n**自己推导：** ${f.task}\n\n${picture(f.figure)}来源：${f.source}`,
+            )
+            .join("\n\n") +
+          "\n\n## 先独立作答\n\n" +
+          study.exercises
+            .map(
+              (e, i) =>
+                `### ${i + 1}. ${e.title}\n\n${e.prompt}\n\n${picture(e.figure)}来源：${e.source}`,
+            )
+            .join("\n\n");
+        const solutions =
+          "\n\n<!-- solutions -->\n\n" +
+          study.formulas
+            .map(
+              (f) =>
+                `### ${f.title}：推导\n\n**提示：** ${f.hint}\n\n${f.derivation}\n\n**易错点：** ${f.pitfall}`,
+            )
+            .join("\n\n") +
+          "\n\n" +
+          study.exercises
+            .map(
+              (e, i) =>
+                `### 练习 ${i + 1}：${e.title}\n\n**提示：** ${e.hint}\n\n**结果：** ${e.answer}\n\n${e.solution}`,
+            )
+            .join("\n\n");
+        const pictures = (study.figures ?? []).map(picture).join("\n");
+        beginner = `## ${chapter.title}\n\n${chapter.lead}\n\n${notation}\n\n${chapter.id === "review" ? chapter.body : "先看图与公式，在纸上完成推导任务，再展开下方答案。完整章节支持逐题提示、隐藏公式结论和手动重做标记。"}\n\n${pictures}\n\n${visible}${reference}${solutions}`;
+        formal = `## ${chapter.title}：条件与推导\n\n从函数定义出发，逐项固定变量、形状和归约约定。标量损失的参数梯度与参数具有相同形状；如果同一参数沿多条路径影响损失，各路径贡献相加。先说明适用条件，再核对每个中间量，不能仅凭最终数值相近断言推导正确。\n\n${notation}\n\n${visible}${reference}${solutions}`;
+      }
     } else {
       const selected = examples.filter((e) =>
         examplePages[id].some((p) => e.filename.startsWith(`slides${p}_`)),

@@ -146,6 +146,41 @@ const topics: Record<CourseSlug, Topic[]> = {
       String.raw`\nabla_\theta J=J_f(\theta)^\top\nabla_f\ell`,
     ],
     [
+      "convolution",
+      "卷积与池化",
+      "Convolution & pooling",
+      "third",
+      String.raw`H_o=\lfloor(H+2P-K)/S\rfloor+1`,
+    ],
+    [
+      "cnn-architectures",
+      "残差网络",
+      "CNN architectures",
+      "third",
+      String.raw`y=x+F(x)`,
+    ],
+    [
+      "rnn",
+      "循环网络",
+      "Recurrent networks",
+      "third",
+      String.raw`h_t=\tanh(Wx_t+Uh_{t-1}+b)`,
+    ],
+    [
+      "bptt",
+      "时间反传",
+      "Backpropagation through time",
+      "third",
+      String.raw`\nabla_U L=\sum_t\delta_t h_{t-1}^{\top}`,
+    ],
+    [
+      "gated-rnn",
+      "门控记忆",
+      "LSTM & GRU",
+      "third",
+      String.raw`c_t=f_t\odot c_{t-1}+i_t\odot\tilde c_t`,
+    ],
+    [
       "review",
       "训练自检",
       "Training checks",
@@ -439,6 +474,14 @@ const links: Record<CourseSlug, [string, string][]> = {
     ["entropy", "softmax"],
     ["matrix-differential", "matrix-chain-rule"],
     ["math:softmax", "softmax"],
+    ["networks", "convolution"],
+    ["convolution", "cnn-architectures"],
+    ["cnn-architectures", "review"],
+    ["networks", "rnn"],
+    ["rnn", "bptt"],
+    ["backprop", "bptt"],
+    ["bptt", "gated-rnn"],
+    ["gated-rnn", "review"],
   ],
   robotics: [
     ["embodied", "hardware"],
@@ -493,6 +536,25 @@ const routeSpecs: Record<
   { label: Localized; description: Localized; nodes: string[] }[]
 > = {
   "deep-learning": [
+    {
+      label: t("前七周：考前两轮", "Weeks 1–7: exam review"),
+      description: t(
+        "四个模块都练：先理解图与公式，再独立推导核对。",
+        "Understand diagrams and formulas, then derive and check independently.",
+      ),
+      nodes: [
+        "losses",
+        "softmax",
+        "backprop",
+        "autodiff",
+        "convolution",
+        "cnn-architectures",
+        "rnn",
+        "bptt",
+        "gated-rnn",
+        "review",
+      ],
+    },
     {
       label: t("从样本到可靠评价", "Data to evaluation"),
       description: t(

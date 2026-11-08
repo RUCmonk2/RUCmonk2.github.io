@@ -10,6 +10,7 @@ import remarkMath from "remark-math";
 
 import { CourseLab } from "@/components/learning/course-lab";
 import { CourseReader } from "@/components/learning/course-reader";
+import { ExamStudy, type StudyOrigins } from "@/components/learning/exam-study";
 import {
   chapterPath,
   type CourseSlug,
@@ -83,6 +84,28 @@ export function CoursePage({
   const previous = course.chapters[index - 1];
   const next = course.chapters[index + 1];
   const groups = [...new Set(course.chapters.map((item) => item.group))];
+  const study = slug === "deep-learning" ? chapter.study : undefined;
+  const isReview = chapter.id === "review";
+  const showStudyIntro =
+    isReview ||
+    ["convolution", "cnn-architectures", "rnn", "bptt", "gated-rnn"].includes(
+      chapter.id,
+    );
+  const origins: StudyOrigins = {};
+  if (study && isReview) {
+    for (const sourceChapter of course.chapters) {
+      if (sourceChapter.id === "review" || !sourceChapter.study) continue;
+      for (const item of [
+        ...sourceChapter.study.formulas,
+        ...sourceChapter.study.exercises,
+      ]) {
+        origins[item.id] = {
+          href: prefix + chapterPath(slug, sourceChapter.id),
+          title: sourceChapter.title,
+        };
+      }
+    }
+  }
 
   const contents = (
     <nav aria-label={isEnglish ? "Course chapters" : "课程章节"}>
@@ -104,6 +127,55 @@ export function CoursePage({
         </div>
       ))}
     </nav>
+  );
+
+  const originalContent = (
+    <>
+      {chapter.figure && (
+        <figure className="note-slide-figure">
+          <a
+            href={chapter.figure.src}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={chapter.figure.src}
+              alt={chapter.figure.alt}
+              loading="lazy"
+            />
+          </a>
+          <figcaption>
+            {chapter.figure.caption} <span>点击图片查看大图</span>
+          </figcaption>
+        </figure>
+      )}
+      <div className="note-prose">
+        <NoteMarkdown>{chapter.body}</NoteMarkdown>
+      </div>
+      {chapter.lab && <CourseLab kind={chapter.lab} />}
+      <section className="note-checks" aria-labelledby="checks-title">
+        <div className="note-section-heading">
+          <h2 id="checks-title">停一下，自己试试</h2>
+          <span>先想答案，再展开</span>
+        </div>
+        {chapter.checks.map((check, checkIndex) => (
+          <details key={check.question}>
+            <summary>
+              <span className="note-check-number">
+                {String(checkIndex + 1).padStart(2, "0")}
+              </span>
+              <span>
+                <NoteMarkdown inline>{check.question}</NoteMarkdown>
+              </span>
+              <ChevronDown size={16} aria-hidden="true" />
+            </summary>
+            <div className="note-answer note-prose">
+              <NoteMarkdown>{check.answer}</NoteMarkdown>
+            </div>
+          </details>
+        ))}
+      </section>
+    </>
   );
 
   return (
@@ -141,50 +213,32 @@ export function CoursePage({
             <small lang="en">The course notes are written in Chinese.</small>
           )}
         </header>
-        {chapter.figure && (
-          <figure className="note-slide-figure">
-            <a
-              href={chapter.figure.src}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={chapter.figure.src}
-                alt={chapter.figure.alt}
-                loading="lazy"
-              />
-            </a>
-            <figcaption>
-              {chapter.figure.caption} <span>点击图片查看大图</span>
-            </figcaption>
-          </figure>
+        {slug === "deep-learning" && !isReview && (
+          <Link
+            className="exam-course-link"
+            href={prefix + "/learning/deep-learning/review"}
+          >
+            前七周考前复习 · 全部公式、题目与六小时路线 →
+          </Link>
         )}
-        <div className="note-prose">
-          <NoteMarkdown>{chapter.body}</NoteMarkdown>
-        </div>
-        {chapter.lab && <CourseLab kind={chapter.lab} />}
-        <section className="note-checks" aria-labelledby="checks-title">
-          <div className="note-section-heading">
-            <h2 id="checks-title">停一下，自己试试</h2>
-            <span>先想答案，再展开</span>
-          </div>
-          {chapter.checks.map((check, checkIndex) => (
-            <details key={check.question}>
-              <summary>
-                <span className="note-check-number">
-                  {String(checkIndex + 1).padStart(2, "0")}
-                </span>
-                <span>
-                  <NoteMarkdown inline>{check.question}</NoteMarkdown>
-                </span>
-                <ChevronDown size={16} aria-hidden="true" />
-              </summary>
-              <div className="note-answer note-prose">
-                <NoteMarkdown>{check.answer}</NoteMarkdown>
+        {study ? (
+          <>
+            {showStudyIntro && (
+              <div className="note-prose">
+                <NoteMarkdown>{chapter.body}</NoteMarkdown>
               </div>
-            </details>
-          ))}
-        </section>
+            )}
+            <ExamStudy study={study} origins={origins} key={chapter.id} />
+            {!showStudyIntro && (
+              <details className="exam-original">
+                <summary>展开原有讲解与实验</summary>
+                {originalContent}
+              </details>
+            )}
+          </>
+        ) : (
+          originalContent
+        )}
         <details className="note-source">
           <summary>
             整理依据 <ChevronDown size={13} aria-hidden="true" />

@@ -1,6 +1,9 @@
 import "./build-course-lessons.mjs";
 import "./check-robotics.mjs";
 import "./check-deep-learning.mjs";
+import "./check-deep-learning-exam.mjs";
+import "./check-deep-learning-core.mjs";
+import "./check-deep-learning-sequence.mjs";
 
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";

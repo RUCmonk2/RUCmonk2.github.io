@@ -1,7 +1,8 @@
+import { assembleExamChapters } from "./deep-learning-exam";
 import { deepLearningWeek4Chapters } from "./deep-learning-week4";
 import type { CourseChapter } from "./types";
 
-export const deepLearningChapters = [
+const originalDeepLearningChapters = [
   {
     id: "foundations",
     title: "先读懂一个学习问题",
@@ -167,3 +168,7 @@ export const deepLearningChapters = [
     ],
   },
 ] satisfies CourseChapter[];
+
+export const deepLearningChapters = assembleExamChapters(
+  originalDeepLearningChapters,
+);
