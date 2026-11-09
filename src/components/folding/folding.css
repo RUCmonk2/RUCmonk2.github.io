@@ -887,3 +887,330 @@
     transition: none !important;
   }
 }
+
+/* In-view feedback and an optional focused playing surface. */
+.fold-mode-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 0 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--note-line);
+}
+.fold-mode-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--study-serif);
+  font-size: 17px;
+}
+.fold-mode-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.fold-mode-actions .fold-button {
+  font-size: 12px;
+  padding: 8px 11px;
+}
+.fold-pending-label {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 11px;
+  color: var(--note-warm);
+}
+.fold-settings[hidden] {
+  display: none;
+}
+.fold-settings-pending {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--note-warm);
+}
+.fold-toast {
+  position: absolute;
+  z-index: 4;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 20px);
+  padding: 10px 16px;
+  border: 1px solid var(--note-line);
+  border-radius: 6px;
+  background: var(--note-paper);
+  box-shadow: 0 4px 18px #16271d18;
+  color: var(--note-ink);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: center;
+  pointer-events: none;
+  animation: fold-feedback-in 0.18s ease-out;
+}
+.fold-demo-finished {
+  position: absolute;
+  inset: auto 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--note-paper);
+  border: 1px solid var(--note-line);
+  padding: 12px;
+  font-size: 12px;
+  color: var(--note-accent);
+}
+.fold-moves {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.fold-completed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--note-accent);
+  margin-right: 9px;
+}
+.fold-complete-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: var(--note-tint);
+  border-radius: 4px;
+}
+.fold-complete-strip > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--note-accent);
+}
+.fold-completion-dialog {
+  width: min(450px, calc(100% - 32px));
+  margin: auto;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--note-line);
+  border-radius: 12px;
+  color: var(--note-ink);
+  background: var(--note-paper);
+}
+.fold-completion-dialog::backdrop {
+  background: #14221e99;
+  backdrop-filter: blur(3px);
+}
+.fold-completion-dialog[open] {
+  animation: fold-completion-in 0.22s ease-out;
+}
+.fold-completion-body {
+  padding: 32px 26px 26px;
+  text-align: center;
+}
+.fold-completion-mark {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--note-tint);
+  color: var(--note-accent);
+}
+.fold-completion-body h2 {
+  font-family: var(--study-serif);
+  font-size: 36px;
+  font-weight: 400;
+  margin: 9px 0 8px;
+  letter-spacing: 0.06em;
+}
+.fold-completion-kind {
+  color: var(--note-muted);
+  font-size: 13px;
+  margin: 0;
+}
+.fold-completion-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 25px 0 18px;
+  border-top: 1px solid var(--note-line);
+  border-bottom: 1px solid var(--note-line);
+  padding: 20px 0;
+}
+.fold-completion-stats > div {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
+}
+.fold-completion-stats > div + div {
+  border-left: 1px solid var(--note-line);
+}
+.fold-completion-stats span {
+  color: var(--note-muted);
+  font-size: 11px;
+}
+.fold-completion-stats strong {
+  font-family: var(--study-serif);
+  font-weight: 400;
+  font-size: 27px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.fold-completion-stats small {
+  font-family: inherit;
+  font-size: 12px;
+}
+.fold-completion-best {
+  color: var(--note-accent);
+  font-size: 12px;
+  margin: 12px 0 20px;
+}
+.fold-completion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+@keyframes fold-feedback-in {
+  from {
+    opacity: 0;
+    translate: 0 5px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes fold-completion-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+body.fold-focus-active
+  :is(.pure-nav, .pure-footer, .reader-topbar, .folding-hero, .mathmap-footer) {
+  display: none;
+}
+body.fold-focus-active .k12-shell {
+  width: min(1440px, calc(100% - 32px));
+  padding-bottom: 10px;
+}
+body.fold-focus-active .fold-workshop {
+  padding-bottom: 0;
+}
+body.fold-focus-active .fold-mode-bar {
+  position: sticky;
+  top: 0;
+  z-index: 14;
+  background: var(--note-bg);
+  padding: 10px 0;
+  margin-bottom: 0;
+  min-height: 58px;
+}
+body.fold-focus-active .fold-settings:not([hidden]) {
+  padding-top: 16px;
+}
+body.fold-focus-active .fold-game {
+  padding-top: 18px;
+  gap: 30px;
+}
+body.fold-focus-active .fold-board-stage {
+  height: clamp(250px, calc(100dvh - 260px), 740px);
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+body.fold-focus-active .fold-target {
+  top: 76px;
+}
+body.fold-focus-active .fold-rules {
+  display: none;
+}
+body.fold-focus-active .fold-board-heading h2 {
+  font-size: 22px;
+}
+body.fold-focus-active .fold-notice {
+  margin: 8px 0;
+  min-height: 0;
+}
+@media (max-width: 700px) {
+  .fold-mode-label {
+    font-size: 15px;
+  }
+  .fold-mode-actions .fold-button {
+    padding: 8px;
+  }
+  .fold-mode-bar {
+    gap: 8px;
+  }
+  .fold-completion-body {
+    padding: 25px 18px;
+  }
+  .fold-completion-stats strong {
+    font-size: 25px;
+  }
+  .fold-completion-actions .fold-button {
+    flex: 1;
+    padding: 11px 8px;
+  }
+  body.fold-focus-active .k12-shell {
+    width: calc(100% - 24px);
+  }
+  body.fold-focus-active .fold-game {
+    gap: 12px;
+    padding-top: 0;
+    scroll-margin-top: 60px;
+  }
+  body.fold-focus-active .fold-target {
+    top: 58px;
+    grid-template-columns: minmax(0, 1fr) 78px;
+    padding: 8px 0;
+    gap: 3px 12px;
+  }
+  body.fold-focus-active .fold-target h2,
+  body.fold-focus-active .fold-puzzle-meta {
+    display: none;
+  }
+  body.fold-focus-active .fold-target-art {
+    width: 78px;
+    height: 78px;
+  }
+  body.fold-focus-active .fold-options label {
+    min-height: 27px;
+  }
+  body.fold-focus-active .fold-board-stage {
+    height: clamp(200px, calc(100dvh - 365px), min(88vw, 440px));
+  }
+  body.fold-focus-active .fold-board-heading h2 {
+    margin-top: 2px;
+    font-size: 20px;
+  }
+  body.fold-focus-active .fold-eyebrow {
+    font-size: 9px;
+  }
+  body.fold-focus-active .fold-direct-instruction {
+    font-size: 11px;
+    margin: 4px 0;
+  }
+  body.fold-focus-active .fold-toolbar {
+    margin-top: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fold-toast,
+  .fold-completion-dialog[open] {
+    animation: none;
+  }
+}

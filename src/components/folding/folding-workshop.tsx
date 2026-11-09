@@ -8,9 +8,12 @@ import {
   ChevronRight,
   Copy,
   Lightbulb,
+  Maximize2,
+  Minimize2,
   Pause,
   Play,
   RotateCcw,
+  Settings2,
   Shuffle,
   Undo2,
 } from "lucide-react";
@@ -192,6 +195,17 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
     null,
   );
   const [best, setBest] = useState<number | null>(null);
+  const [focusMode, setFocusMode] = useState(false);
+  const [focusSettings, setFocusSettings] = useState(false);
+  const [toast, setToast] = useState<{
+    message: string;
+    serial: number;
+  } | null>(null);
+  const toastSerial = useRef(0);
+  const completionDialog = useRef<HTMLDialogElement>(null);
+  const completionClose = useRef<HTMLButtonElement>(null);
+  const completionPending = useRef(false);
+  const completionShown = useRef(false);
   const worker = useRef<Worker | null>(null);
   const targetDialog = useRef<HTMLDialogElement>(null);
   const request = useRef(0);
@@ -337,6 +351,58 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       )
     : 0;
 
+  const settingsChanged = Boolean(
+    puzzle &&
+    (draft.shape !== puzzle.config.shape ||
+      draft.size !== puzzle.config.size ||
+      draft.level !== puzzle.config.level),
+  );
+  useEffect(() => {
+    document.body.classList.toggle("fold-focus-active", focusMode);
+    const escape = (event: KeyboardEvent) => {
+      if (
+        event.key === "Escape" &&
+        !document.querySelector("dialog[open]") &&
+        !document.querySelector(".fold-grabbing")
+      )
+        setFocusMode(false);
+    };
+    if (focusMode) document.addEventListener("keydown", escape);
+    return () => {
+      document.body.classList.remove("fold-focus-active");
+      document.removeEventListener("keydown", escape);
+    };
+  }, [focusMode]);
+  useEffect(() => {
+    if (!toast) return;
+    const timer = window.setTimeout(() => setToast(null), 2400);
+    return () => clearTimeout(timer);
+  }, [toast]);
+  useEffect(() => {
+    if (
+      completionPending.current &&
+      solved &&
+      !animation &&
+      !demo &&
+      !generating &&
+      completionDialog.current
+    ) {
+      completionPending.current = false;
+      completionDialog.current.showModal();
+      completionClose.current?.focus();
+    }
+  }, [solved, animation, demo, generating]);
+  function notify(message: string) {
+    setNotice("");
+    setToast({ message, serial: ++toastSerial.current });
+  }
+  function clearCompletion() {
+    completionPending.current = false;
+    completionShown.current = false;
+    completionDialog.current?.close();
+    setToast(null);
+  }
+
   useEffect(() => {
     if (!session || generating) return;
     const saved: Saved = {
@@ -415,6 +481,8 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       return;
     }
     cancelAnimation();
+    clearCompletion();
+    setFocusSettings(false);
     busy.current = true;
     restoring.current = null;
     setGenerating(true);
@@ -438,9 +506,14 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
     }
     const next = applyFold(board, action);
     if (boardsEqual(next, board)) {
-      setNotice("这一折不会改变图案，换一条折线试试。没有计步。");
+      notify("图案没有变化，未计步。换一条折线试试。");
       return;
     }
+    if (boardsEqual(next, session.puzzle.target) && !completionShown.current) {
+      completionPending.current = true;
+      completionShown.current = true;
+    }
+    setToast(null);
     busy.current = true;
     setAnimation({
       action,
@@ -466,6 +539,8 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
   function undo() {
     if (!session || !session.moves.length || generating) return;
     cancelAnimation();
+    completionPending.current = false;
+    completionDialog.current?.close();
     setDemo(null);
     setHint(null);
     setSelectedId(null);
@@ -475,11 +550,12 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       moves: session.moves.slice(0, -1),
       boards: session.boards.slice(0, -1),
     });
-    setNotice("已撤销上一折，可以试另一条路。");
+    notify("已撤销上一折。");
   }
   function reset() {
     if (!session) return;
     cancelAnimation();
+    clearCompletion();
     setDemo(null);
     setHint(null);
     setSelectedId(null);
@@ -490,7 +566,7 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       boards: [session.puzzle.initial],
       elapsed: 0,
     });
-    setNotice("回到起点，再试一次。已使用的提示标记会保留。");
+    notify("已回到起点，提示使用记录保留。");
   }
   function askHint() {
     if (!session || !geometry || generating || demo || solved) return;
@@ -560,9 +636,9 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
     updateUrl(puzzle.config, puzzle.version);
     try {
       await navigator.clipboard.writeText(window.location.href);
-      setNotice("题目链接已复制，打开就是同一道题。");
+      notify("题目链接已复制。");
     } catch {
-      setNotice("复制未成功，可以直接复制浏览器地址栏里的题目链接。");
+      notify("复制未成功，可以复制地址栏里的链接。");
     }
   }
   const hintAction =
@@ -582,7 +658,45 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
 
   return (
     <section className="fold-workshop" lang="zh" aria-label="折叠益智游戏">
-      <div className="fold-settings">
+      <div className="fold-mode-bar">
+        <div className="fold-mode-label">
+          <span>折叠工坊</span>
+          {settingsChanged && (
+            <span className="fold-pending-label" role="status">
+              设置待应用
+            </span>
+          )}
+        </div>
+        <div className="fold-mode-actions">
+          {focusMode && (
+            <button
+              className="fold-button"
+              aria-expanded={focusSettings}
+              aria-controls="fold-settings"
+              onClick={() => setFocusSettings(!focusSettings)}
+            >
+              <Settings2 size={14} />
+              {focusSettings ? "收起设置" : "设置"}
+            </button>
+          )}
+          <button
+            className="fold-button"
+            aria-pressed={focusMode}
+            onClick={() => {
+              setFocusMode(!focusMode);
+              setFocusSettings(false);
+            }}
+          >
+            {focusMode ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+            {focusMode ? "退出专注" : "专注模式"}
+          </button>
+        </div>
+      </div>
+      <div
+        id="fold-settings"
+        className="fold-settings"
+        hidden={focusMode && !focusSettings}
+      >
         <div className="fold-setting-fields">
           <label>
             棋盘
@@ -646,7 +760,7 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
             disabled={generating}
           >
             <Shuffle size={15} />
-            换一题
+            {settingsChanged ? "按新设置开始" : "换一题"}
           </button>
           <button
             className="fold-button"
@@ -664,6 +778,12 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
           </button>
         </div>
       </div>
+      {settingsChanged && (!focusMode || focusSettings) && (
+        <p className="fold-settings-pending" role="status">
+          新设置尚未应用，当前盘面仍是{SHAPE_LABELS[puzzle!.config.shape]} ·{" "}
+          {LEVEL_LABELS[puzzle!.config.level - 1]}。点击「按新设置开始」换题。
+        </p>
+      )}
 
       {!puzzle || !geometry ? (
         <div className="fold-loading" role="status">
@@ -679,9 +799,21 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
                   <span className="fold-eyebrow">
                     {demo ? "SOLUTION / 解答演示" : "YOUR FOLDS / 当前盘面"}
                   </span>
-                  <h2>{demo ? "看一次，再自己试。" : "从这一折开始。"}</h2>
+                  <h2>
+                    {demo
+                      ? "看一次，再自己试。"
+                      : solved
+                        ? "这一幅，完成了。"
+                        : "从这一折开始。"}
+                  </h2>
                 </div>
                 <span className="fold-moves">
+                  {solved && !demo && (
+                    <span className="fold-completed-badge">
+                      <Check size={13} />
+                      已完成
+                    </span>
+                  )}
                   <b>{demo ? demo.index : session.moves.length}</b> 折
                 </span>
               </div>
@@ -715,6 +847,19 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
                     setAnimation(null);
                   }}
                 />
+                {toast && !generating && !demo && (
+                  <div className="fold-toast" key={toast.serial} role="status">
+                    {toast.message}
+                  </div>
+                )}
+                {demo &&
+                  demo.index === puzzle.solution.length &&
+                  !animation && (
+                    <div className="fold-demo-finished" role="status">
+                      <Check size={16} />
+                      演示结束，可回到自己的盘面继续。
+                    </div>
+                  )}
                 {generating && (
                   <div className="fold-board-loading" role="status">
                     正在生成新题…
@@ -857,6 +1002,21 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
                   参考解答
                 </button>
               </div>
+              {solved && !animation && !demo && !generating && (
+                <div className="fold-complete-strip" role="status">
+                  <span>
+                    <Check size={16} />
+                    已完成 · {session.moves.length} 折 ·{" "}
+                    {clock(session.elapsed)}
+                  </span>
+                  <button
+                    className="fold-text-button"
+                    onClick={() => completionDialog.current?.showModal()}
+                  >
+                    查看成绩
+                  </button>
+                </div>
+              )}
             </div>
             <aside className="fold-target">
               <div className="fold-target-heading">
@@ -930,28 +1090,6 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
           <p className="fold-notice" role="status">
             {notice}
           </p>
-          {solved && !animation && !demo && !generating && (
-            <div className="fold-success" role="status">
-              <Check size={22} />
-              <div>
-                <h3>这一幅，完成了。</h3>
-                <p>
-                  你用了 {session.moves.length} 折 · {clock(session.elapsed)} ·{" "}
-                  {session.assisted ? "借助提示完成" : "独立完成"}。
-                  {puzzle.shortest ? "最短解" : "参考解"}为{" "}
-                  {puzzle.solution.length} 折。
-                  {best !== null && `你的独立最佳：${best} 折。`}
-                </p>
-              </div>
-              <button
-                className="fold-button"
-                onClick={() => generate({ ...puzzle.config, seed: newSeed() })}
-              >
-                再来一幅
-                <ArrowRight size={14} />
-              </button>
-            </div>
-          )}
           {hint && (
             <div className="fold-hint" role="status">
               <Lightbulb size={18} />
@@ -1033,6 +1171,67 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
             </div>
           )}
         </>
+      )}
+      {puzzle && session && (
+        <dialog
+          ref={completionDialog}
+          className="fold-completion-dialog"
+          aria-labelledby="fold-completion-title"
+          onClick={(event) => {
+            if (event.target === event.currentTarget)
+              completionDialog.current?.close();
+          }}
+        >
+          <div className="fold-completion-body">
+            <div className="fold-completion-mark">
+              <Check size={28} />
+            </div>
+            <p className="fold-eyebrow">PATTERN COMPLETE</p>
+            <h2 id="fold-completion-title">完成了。</h2>
+            <p className="fold-completion-kind">
+              {session.assisted ? "借助提示完成" : "独立完成"}
+            </p>
+            <div className="fold-completion-stats">
+              <div>
+                <span>你的步数</span>
+                <strong>
+                  {session.moves.length}
+                  <small> 折</small>
+                </strong>
+              </div>
+              <div>
+                <span>本次用时</span>
+                <strong>{clock(session.elapsed)}</strong>
+              </div>
+              <div>
+                <span>{puzzle.shortest ? "最短解" : "参考解"}</span>
+                <strong>
+                  {puzzle.solution.length}
+                  <small> 折</small>
+                </strong>
+              </div>
+            </div>
+            {best !== null && (
+              <p className="fold-completion-best">你的独立最佳：{best} 折</p>
+            )}
+            <div className="fold-completion-actions">
+              <button
+                className="fold-button fold-primary"
+                onClick={() => generate({ ...puzzle.config, seed: newSeed() })}
+              >
+                下一题
+                <ArrowRight size={15} />
+              </button>
+              <button
+                ref={completionClose}
+                className="fold-button"
+                onClick={() => completionDialog.current?.close()}
+              >
+                留在这里看看
+              </button>
+            </div>
+          </div>
+        </dialog>
       )}
       {puzzle && geometry && (
         <dialog
