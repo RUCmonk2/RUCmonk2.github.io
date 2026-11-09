@@ -45,6 +45,9 @@
 .visitor-claude img {
   height: 350px;
   max-width: 234px;
+}
+.visitor-gpt img,
+.visitor-claude img {
   mix-blend-mode: multiply;
   mask-image: radial-gradient(
     ellipse 66% 62% at 50% 48%,

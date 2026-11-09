@@ -10,11 +10,7 @@ GPT 娘出现在学习精选的侧边留白；Claude 娘出现在写作之后（
 
 ## 素材
 
-用户提供《GPT娘白大褂.png》和《花枝间的claude新娘.png》。原图保持不变，网页使用压缩后的 640 × 960 WebP：
+用户提供两幅花枝间的婚纱人物原图。原图保持不变，网页使用压缩后的 640 × 960 WebP；用 multiply 混合与椭圆遮罩柔化边缘，保留花枝、头纱与裙摆。
 
-- [GPT 娘](../public/images/visitors/gpt-lab.webp)：内置 imagegen 去背景，保留真实透明通道。
-- [Claude 娘](../public/images/visitors/claude-bride.webp)：原图缩放压缩；网页用 multiply 混合与椭圆遮罩柔化边缘，保留花枝。
-
-GPT 去背景的最终提示词（内置工具模式）：
-
-> Use case: background-extraction. Edit target: the provided GPT girl illustration. Remove only the white background and floor shadow, produce a clean full-body cutout with real alpha transparency. Preserve the original character identity, face, mask, lavender eyes, white hair, horns, hair ornament, white lab coat, clipboard, name badge, legs, shoes and dragon tail exactly, retaining all original colors, proportions, pose and fine linework. Keep the full character within the frame, no cropping, no new text or objects, no redraw or restyling. This will be a small website illustration on a warm ivory background.
+- [GPT 娘](../public/images/visitors/gpt-bride.webp)：银紫长发、龙角与龙尾的婚纱版本。
+- [Claude 娘](../public/images/visitors/claude-bride.webp)：橙色长发的婚纱版本。

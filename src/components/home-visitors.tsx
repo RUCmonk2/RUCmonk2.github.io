@@ -56,7 +56,7 @@ export function HomeVisitors({
     }
   }, []);
   const choose = (visitor: Visit) => {
-    setInView(false);
+    if (visitor !== active) setInView(false);
     setActive(visitor);
     try {
       sessionStorage.setItem(sessionKey, visitor);
@@ -128,15 +128,15 @@ export function VisitorScene({
       className={`visitor-scene visitor-${visitor} ${revealed ? "is-revealed" : ""}`}
     >
       <Image
-        src={`/images/visitors/${visitor === "gpt" ? "gpt-lab" : "claude-bride"}.webp`}
+        src={`/images/visitors/${visitor === "gpt" ? "gpt-bride" : "claude-bride"}.webp`}
         width={640}
         height={960}
         unoptimized
         alt={
           visitor === "gpt"
             ? english
-              ? "GPT girl in a white lab coat, holding a clipboard"
-              : "穿白大褂、拿着记录板的 GPT 娘"
+              ? "GPT girl in a wedding dress among flowering branches"
+              : "花枝间身着婚纱的 GPT 娘"
             : english
               ? "Claude girl in a wedding dress among flowering branches"
               : "花枝间身着婚纱的 Claude 娘"
