@@ -126,15 +126,15 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "数学实验室", en: "Mathematics Lab" },
     description: {
-      zh: "用面积拼图理解因式分解，用三维姿态探索四元数，用根的置换理解四次以内有根式通解、一般五次及更高次没有根式通解。亲手操作，建立数学直觉。",
-      en: "Explore factorization, 3D rotations and Galois theory: why general radical formulas exist through degree four, but not for degree five and higher. Activities are in Chinese.",
+      zh: "用面积拼图理解因式分解，用三维姿态探索四元数，用根的置换理解四次以内有根式通解、一般五次及更高次没有根式通解，再用彩色折叠练习镜像与空间推理。亲手操作，建立数学直觉。",
+      en: "Explore factorization, 3D rotations and Galois theory: why general radical formulas exist through degree four, but not for degree five and higher. Practice reflection and spatial reasoning with color-folding puzzles. Activities are in Chinese.",
     },
     topic: { zh: "动手探索", en: "Hands-on exploration" },
     scope: {
-      zh: "因式工坊 · 旋转工坊 · 群论工坊",
-      en: "Factorization · 3D rotations · Group theory",
+      zh: "因式工坊 · 旋转工坊 · 群论工坊 · 折叠工坊",
+      en: "Factorization · 3D rotations · Group theory · Folding",
     },
-    updated: "2026-10-06",
+    updated: "2026-11-09",
   },
   {
     id: "math-map",

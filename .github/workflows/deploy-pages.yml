@@ -47,6 +47,8 @@ jobs:
         run: npm run test:rotations
       - name: Validate group theory workshop
         run: npm run test:galois
+      - name: Validate folding workshop
+        run: npm run test:folding
       - name: Validate K12 lessons and factor workshop
         run: npm run test:k12
       - name: Validate physics midterm review

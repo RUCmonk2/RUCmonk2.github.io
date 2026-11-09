@@ -167,6 +167,59 @@ export default async function Page({ params }: Props) {
           </svg>
         </div>
       </section>
+      <section className="note-article k12-start">
+        <div>
+          <span className="notes-overline">04 / FOLDING WORKSHOP</span>
+          <h2>折叠工坊</h2>
+          <p>
+            沿一条折线，让色彩找到新的位置。在方形、长方形与正三角形棋盘上，通过镜像覆盖拼出目标图案。五档难度，随时撤销，也能逐步查看参考解法。
+          </p>
+          <Link
+            className="k12-button"
+            href={prefix + "/learning/math-lab/folding"}
+          >
+            开始折叠
+            <ArrowRight size={15} />
+          </Link>
+        </div>
+        <div className="k12-start-equation" aria-hidden="true">
+          <svg width="240" height="170" viewBox="0 0 240 170" fill="none">
+            {Array.from({ length: 4 }, (_, index) => {
+              const x = 60 + (index % 2) * 60;
+              const y = 25 + Math.floor(index / 2) * 60;
+              const vertices = [
+                [x, y],
+                [x + 60, y],
+                [x + 60, y + 60],
+                [x, y + 60],
+              ];
+              const colors = [
+                "#7ca9d8",
+                "#e8a052",
+                "#ce6384",
+                "#63a995",
+                "#9686c4",
+              ];
+              return vertices.map((vertex, side) => (
+                <polygon
+                  key={`${index}-${side}`}
+                  points={`${vertex.join(",")} ${vertices[(side + 1) % 4].join(",")} ${x + 30},${y + 30}`}
+                  fill={colors[(index + Math.floor(side / 2)) % colors.length]}
+                  stroke="var(--note-paper)"
+                  strokeWidth="1.5"
+                />
+              ));
+            })}
+            <path
+              d="M120 16v138"
+              stroke="var(--note-ink)"
+              strokeWidth="1.5"
+              strokeDasharray="4 4"
+              opacity="0.6"
+            />
+          </svg>
+        </div>
+      </section>
       <section className="note-article k12-guidance">
         <div className="note-prose">
           <h2>让实验与知识连起来</h2>

@@ -143,6 +143,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.5,
     })),
+    ...LOCALES.map((locale) => ({
+      url: siteUrl + localePathPrefix(locale) + "/learning/math-lab/folding",
+      lastModified: new Date("2026-11-10"),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
     ...LOCALES.flatMap((locale) =>
       [
         ...k12Atlases.map((atlas) => atlas.href),
