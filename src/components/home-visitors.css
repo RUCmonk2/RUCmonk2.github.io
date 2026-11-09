@@ -80,7 +80,7 @@
   opacity: 1;
 }
 .visitor-controls {
-  align-self: flex-end;
+  align-self: flex-start;
   margin-top: -22px;
   color: var(--pure-muted-fg);
   font-size: 12px;
