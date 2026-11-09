@@ -1,0 +1,149 @@
+.home-visitors[data-visitor-in-view] .study-companion {
+  visibility: hidden;
+  pointer-events: none;
+}
+.visitor-scene {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(9px);
+  transition:
+    opacity 850ms ease,
+    transform 850ms ease;
+  scroll-margin-block: 100px;
+}
+.visitor-scene.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+.visitor-scene img {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+.study-content .visitor-learning > .pure-section-label {
+  grid-area: 1 / 1;
+}
+.study-content .visitor-learning > .pure-section-body {
+  grid-area: 1 / 2;
+}
+.study-content .visitor-learning > .visitor-gpt {
+  grid-area: 1 / 1;
+  align-self: start;
+  margin: 105px -18px 0;
+}
+.visitor-gpt img {
+  height: 280px;
+  max-width: 187px;
+}
+.visitor-claude {
+  justify-self: end;
+  margin: 0 42px 0 auto;
+}
+.visitor-claude img {
+  height: 350px;
+  max-width: 234px;
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(
+    ellipse 66% 62% at 50% 48%,
+    #000 53%,
+    transparent 83%
+  );
+}
+.visitor-scene figcaption {
+  margin-top: 8px;
+  color: var(--pure-muted-fg);
+  text-align: center;
+  font:
+    11px/1.8 "Songti SC",
+    serif;
+  letter-spacing: 0.08em;
+}
+.visitor-dismiss {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--pure-border);
+  border-radius: 50%;
+  color: var(--pure-muted-fg);
+  background: var(--pure-bg);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.visitor-scene:hover .visitor-dismiss,
+.visitor-scene:focus-within .visitor-dismiss {
+  opacity: 1;
+}
+.visitor-controls {
+  align-self: flex-end;
+  margin-top: -22px;
+  color: var(--pure-muted-fg);
+  font-size: 12px;
+}
+.visitor-controls summary {
+  cursor: pointer;
+  padding: 10px 0 10px 16px;
+}
+.visitor-controls summary::marker {
+  font-size: 9px;
+}
+.visitor-controls summary span {
+  color: #9b6e53;
+}
+.visitor-controls > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 4px 0 10px;
+}
+.visitor-controls button {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--pure-border);
+  cursor: pointer;
+}
+.visitor-controls button[aria-pressed="true"] {
+  color: var(--pure-fg);
+  border-color: currentColor;
+}
+.visitor-controls button:focus-visible,
+.visitor-controls summary:focus-visible,
+.visitor-dismiss:focus-visible {
+  outline: 2px solid var(--pure-primary);
+  outline-offset: 4px;
+}
+@media (max-width: 760px) {
+  .study-content .visitor-learning > .pure-section-body {
+    grid-area: 2 / 1;
+  }
+  .study-content .visitor-learning > .visitor-gpt {
+    grid-area: 3 / 1;
+    justify-self: center;
+    margin: 8px 0 0;
+  }
+  .visitor-gpt img {
+    height: 230px;
+    max-width: 154px;
+  }
+  .visitor-claude {
+    margin: 0 auto;
+    align-self: center;
+  }
+  .visitor-claude img {
+    height: 280px;
+    max-width: 187px;
+  }
+  .visitor-dismiss {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .visitor-scene {
+    transform: none;
+    transition: none;
+  }
+}

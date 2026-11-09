@@ -5,8 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
+import {
+  HomeVisitors,
+  VisitorControls,
+  VisitorScene,
+} from "@/components/home-visitors";
 import { CustomReactMarkdown } from "@/components/react-markdown";
-import { StudyCompanion } from "@/components/study-companion";
 import { getFeaturedLearning, learningItemHref } from "@/data/learning/catalog";
 import { siteConfig } from "@/data/site";
 import { getBlogPosts, sortPostsByDate } from "@/lib/blog";
@@ -172,9 +176,8 @@ export default async function Page({
   ];
 
   return (
-    <main className="pure-home study-home">
+    <HomeVisitors english={isEnglish}>
       {jsonldScript(personJsonLd)}
-      <StudyCompanion english={isEnglish} />
       <section id="about" className="study-hero scroll-mt-24">
         <div className="study-landscape" aria-hidden="true">
           <div className="study-mist" />
@@ -380,7 +383,7 @@ export default async function Page({
           </div>
         </section>
 
-        <section className="pure-section">
+        <section className="pure-section visitor-learning">
           <header className="pure-section-label">
             <span>02</span>
             <h2>{isEnglish ? "Learning picks" : "学习精选"}</h2>
@@ -403,6 +406,7 @@ export default async function Page({
               </Link>
             ))}
           </div>
+          <VisitorScene visitor="gpt" english={isEnglish} />
         </section>
 
         {latestPost && (
@@ -429,6 +433,9 @@ export default async function Page({
           </section>
         )}
 
+        <VisitorScene visitor="claude" english={isEnglish} />
+        <VisitorControls english={isEnglish} />
+
         {!hideHomepageContactSection && (
           <section id="contact" className="pure-section scroll-mt-24">
             <header className="pure-section-label">
@@ -448,6 +455,6 @@ export default async function Page({
           </section>
         )}
       </div>
-    </main>
+    </HomeVisitors>
   );
 }
