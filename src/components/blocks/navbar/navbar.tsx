@@ -4,6 +4,7 @@ import { Newspaper } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 import { LanguageToggle } from "@/components/blocks/navbar/language-toggle";
 import { ModeToggle } from "@/components/blocks/navbar/mode-toggle";
@@ -25,8 +26,54 @@ export default function Navbar({
   const isBriefPage = pathname.includes("/morning-brief");
   const t = useTranslations();
 
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    let previousY = window.scrollY;
+    let distance = 0;
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const y = Math.max(0, window.scrollY);
+      const delta = y - previousY;
+      previousY = y;
+
+      // Accumulate deliberate movement; ignore small trackpad reversals.
+      if (delta === 0) return;
+      if (Math.sign(delta) !== Math.sign(distance)) distance = 0;
+      distance += delta;
+      if (y < 96) {
+        setIsHidden(false);
+        distance = 0;
+      } else if (distance > 32) {
+        setIsHidden(true);
+        distance = 0;
+      } else if (distance < -16) {
+        setIsHidden(false);
+        distance = 0;
+      }
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    const reveal = () => setIsHidden(false);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("hashchange", reveal);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("hashchange", reveal);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+
   return (
-    <header className="pure-nav">
+    <header
+      className="pure-nav"
+      data-hidden={isHidden}
+      onFocusCapture={() => setIsHidden(false)}
+    >
       <div className="pure-nav-inner">
         <Link
           href={homeHref}

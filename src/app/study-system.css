@@ -35,9 +35,29 @@ body.study-site {
   border: 0;
   border-bottom: 1px solid var(--study-line);
   border-radius: 0;
-  background: color-mix(in srgb, var(--study-paper) 94%, transparent);
-  box-shadow: none;
+  background: var(--study-paper);
+  box-shadow: 0 4px 18px rgb(20 35 28 / 4%);
   color: var(--study-ink);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .study-site .pure-nav {
+    background: color-mix(in srgb, var(--study-paper) 72%, transparent);
+  }
+}
+.study-site .pure-nav[data-hidden="true"]:not(:focus-within) {
+  transform: translateY(calc(-100% - 1.25rem));
+  opacity: 0;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .study-site .pure-nav {
+    transition: none;
+  }
 }
 .study-site .pure-brand b {
   font-family: var(--study-serif);
