@@ -30,12 +30,16 @@ export type FoldAnimation = {
   serial: number;
   fromProgress?: number;
 };
+export type FoldHistoryStep = { number: number; action: FoldAction };
 type Drag = {
   start: Point;
   current: Point;
   pointerId: number;
   scale: number;
   result: FoldGesture | null;
+  historyStep?: number;
+  allowDrag: boolean;
+  hasMoved: boolean;
 };
 type Preview = {
   action: FoldAction | null;
@@ -55,6 +59,128 @@ export function sameLine(a: FoldAction, b: FoldAction) {
   return lineKey(a) === lineKey(b);
 }
 
+function FoldHistoryOverlay({
+  steps,
+  viewedStep,
+  geometry,
+}: {
+  steps: FoldHistoryStep[];
+  viewedStep?: number;
+  geometry: Geometry;
+}) {
+  const groups = new Map<string, FoldHistoryStep[]>();
+  for (const step of steps) {
+    const key = lineKey(step.action);
+    const group = groups.get(key);
+    if (group) group.push(step);
+    else groups.set(key, [step]);
+  }
+  const badges: { x: number; y: number; width: number }[] = [];
+  return (
+    <g className="fold-history-overlay" pointerEvents="none" aria-hidden="true">
+      {[...groups.entries()].map(([key, group]) => {
+        const recent = group[group.length - 1];
+        const selected = group.find((step) => step.number === viewedStep);
+        const displayed = selected ?? recent;
+        const emphasized =
+          displayed.number === (viewedStep ?? steps.at(-1)?.number);
+        const [a, b] = displayed.action.line;
+        const { x: nx, y: ny } = displayed.action.direction;
+        const text =
+          group.length > 3
+            ? `${displayed.number} · +${group.length - 1}`
+            : group.map((step) => step.number).join(" · ");
+        const width = 0.48 + text.length * 0.115;
+        const anchors = [0.38, 0.64, 0.22, 0.78, 0.5].map((t) => ({
+          x: Math.max(
+            width / 2 + 0.02,
+            Math.min(geometry.width - width / 2 - 0.02, a.x + (b.x - a.x) * t),
+          ),
+          y: Math.max(
+            0.17,
+            Math.min(geometry.height - 0.17, a.y + (b.y - a.y) * t),
+          ),
+        }));
+        const anchor =
+          anchors.find(({ x, y }) =>
+            badges.every(
+              (badge) =>
+                Math.abs(x - badge.x) > (width + badge.width) / 2 + 0.08 ||
+                Math.abs(y - badge.y) > 0.36,
+            ),
+          ) ?? anchors[0];
+        const { x, y } = anchor;
+        badges.push({ x, y, width });
+        const arrowX = x + width / 2 - 0.18;
+        return (
+          <g
+            key={key}
+            data-steps={group.map((step) => step.number).join(",")}
+            className={
+              emphasized
+                ? "fold-history-mark fold-history-mark-active"
+                : "fold-history-mark"
+            }
+          >
+            <line
+              className="fold-history-line"
+              x1={a.x}
+              y1={a.y}
+              x2={b.x}
+              y2={b.y}
+              vectorEffect="non-scaling-stroke"
+            />
+            <rect
+              className="fold-history-badge"
+              data-history-step={displayed.number}
+              pointerEvents="all"
+              x={x - width / 2}
+              y={y - 0.15}
+              width={width}
+              height={0.3}
+              rx={0.1}
+              vectorEffect="non-scaling-stroke"
+            />
+            <text
+              x={x - 0.14}
+              y={y}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontSize={0.21}
+            >
+              {group.length > 3 ? (
+                <tspan data-history-step={displayed.number} pointerEvents="all">
+                  {text}
+                </tspan>
+              ) : (
+                group.map((step, index) => (
+                  <tspan
+                    key={step.number}
+                    data-history-step={step.number}
+                    pointerEvents="all"
+                  >
+                    {index > 0 ? " · " : ""}
+                    {step.number}
+                  </tspan>
+                ))
+              )}
+            </text>
+            <g
+              transform={`translate(${arrowX} ${y}) rotate(${(Math.atan2(ny, nx) * 180) / Math.PI})`}
+            >
+              <path
+                className="fold-history-arrow"
+                d="M-.1 0H.1M.03 -.065L.1 0L.03 .065"
+                vectorEffect="non-scaling-stroke"
+              />
+            </g>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
 export function FoldingBoard({
   geometry,
   board,
@@ -64,10 +190,14 @@ export function FoldingBoard({
   differences = false,
   selected,
   animation,
+  history,
+  viewedStep,
+  reviewedCells,
   disabled = false,
   onSelect,
   onFold,
   onAnimationEnd,
+  onReview,
 }: {
   geometry: Geometry;
   board: number[];
@@ -77,10 +207,14 @@ export function FoldingBoard({
   differences?: boolean;
   selected?: FoldAction;
   animation?: FoldAnimation | null;
+  history?: FoldHistoryStep[];
+  viewedStep?: number;
+  reviewedCells?: number[];
   disabled?: boolean;
   onSelect?: (action: FoldAction | null) => void;
   onFold?: (action: FoldAction, progress?: number) => void;
   onAnimationEnd?: () => void;
+  onReview?: (step: number) => void;
 }) {
   const svg = useRef<SVGSVGElement>(null);
   const moving = useRef<SVGGElement>(null);
@@ -262,19 +396,19 @@ export function FoldingBoard({
       svg.current.releasePointerCapture(state.pointerId);
   }
   function pointerDown(event: PointerEvent<SVGSVGElement>) {
-    if (
-      miniature ||
-      disabled ||
-      event.button !== 0 ||
-      !event.isPrimary ||
-      drag.current
-    )
+    if (miniature || event.button !== 0 || !event.isPrimary || drag.current)
       return;
     const position = coordinates(event);
-    if (!position || !pointInsideBoard(geometry, position.point)) return;
+    const marker = (event.target as Element).closest("[data-history-step]");
+    const historyStep = marker
+      ? Number(marker.getAttribute("data-history-step"))
+      : undefined;
+    if (!position) return;
+    const allowDrag = !disabled && pointInsideBoard(geometry, position.point);
+    if (!allowDrag && historyStep === undefined) return;
     event.preventDefault();
     setReturning(null);
-    onSelect?.(null);
+    if (historyStep === undefined) onSelect?.(null);
     svg.current?.focus({ preventScroll: true });
     svg.current?.setPointerCapture(event.pointerId);
     drag.current = {
@@ -283,21 +417,33 @@ export function FoldingBoard({
       scale: position.scale,
       pointerId: event.pointerId,
       result: null,
+      historyStep,
+      allowDrag,
+      hasMoved: false,
     };
-    setPreview({
-      action: null,
-      ready: false,
-      start: position.point,
-      moved: false,
-      allowed: false,
-    });
+    if (allowDrag)
+      setPreview({
+        action: null,
+        ready: false,
+        start: position.point,
+        moved: false,
+        allowed: false,
+      });
   }
   function pointerMove(event: PointerEvent<SVGSVGElement>) {
     const state = drag.current;
-    if (!state || state.pointerId !== event.pointerId || disabled) return;
+    if (!state || state.pointerId !== event.pointerId) return;
     const position = coordinates(event);
     if (!position) return;
     state.current = position.point;
+    state.hasMoved ||=
+      Math.hypot(
+        state.current.x - state.start.x,
+        state.current.y - state.start.y,
+      ) *
+        state.scale >=
+      8;
+    if (!state.allowDrag || disabled) return;
     if (!frame.current)
       frame.current = requestAnimationFrame(() => {
         frame.current = 0;
@@ -307,12 +453,26 @@ export function FoldingBoard({
   function pointerUp(event: PointerEvent<SVGSVGElement>) {
     const state = drag.current;
     if (!state || state.pointerId !== event.pointerId) return;
-    if (disabled) {
+    const position = coordinates(event);
+    if (position) state.current = position.point;
+    if (
+      state.historyStep !== undefined &&
+      !state.hasMoved &&
+      Math.hypot(
+        state.current.x - state.start.x,
+        state.current.y - state.start.y,
+      ) *
+        state.scale <
+        8
+    ) {
+      cancelGesture();
+      onReview?.(state.historyStep);
+      return;
+    }
+    if (!state.allowDrag || disabled) {
       cancelGesture();
       return;
     }
-    const position = coordinates(event);
-    if (position) state.current = position.point;
     refreshGesture();
     const result = state.result;
     if (!result?.ready) {
@@ -385,6 +545,13 @@ export function FoldingBoard({
             : "抓住一侧的色块，拖向另一侧。手势决定折线，跨过后松手翻折；按 Escape 取消。"}
         </title>
         <g>{shownBoard.map((color, id) => polygon(id, color))}</g>
+        {!preview && !returning && !animation && reviewedCells && (
+          <g pointerEvents="none" aria-hidden="true">
+            {reviewedCells.map((id) =>
+              polygon(id, board[id], "fold-history-cell"),
+            )}
+          </g>
+        )}
         {differences && target && !animation && (
           <g pointerEvents="none">
             {geometry.cells
@@ -468,6 +635,13 @@ export function FoldingBoard({
               />
             ))}
           </g>
+        )}
+        {history && history.length > 0 && !animation && (
+          <FoldHistoryOverlay
+            steps={history}
+            viewedStep={viewedStep}
+            geometry={geometry}
+          />
         )}
         {preview && (
           <g

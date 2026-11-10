@@ -37,6 +37,7 @@ import {
   COLOR_NAMES,
   COLORS,
   type FoldAnimation,
+  type FoldHistoryStep,
   FoldingBoard,
   sameLine,
 } from "./folding-board";
@@ -185,6 +186,8 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
   const [draft, setDraft] = useState(DEFAULT_CONFIG);
   const [generating, setGenerating] = useState(true);
   const [notice, setNotice] = useState("正在准备你的第一张折叠图…");
+  const [showHistory, setShowHistory] = useState(true);
+  const [viewedStep, setViewedStep] = useState<number>();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [symbols, setSymbols] = useState(false);
   const [differences, setDifferences] = useState(false);
@@ -351,6 +354,27 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       )
     : 0;
 
+  const moves = session?.moves;
+  const history = useMemo(() => {
+    if (!geometry || !moves) return [];
+    const actions = new Map(
+      geometry.actions.map((action) => [action.id, action]),
+    );
+    return moves.flatMap((id, index): FoldHistoryStep[] => {
+      const action = actions.get(id);
+      return action ? [{ number: index + 1, action }] : [];
+    });
+  }, [geometry, moves]);
+  const reviewed = history.find((step) => step.number === viewedStep);
+  const reviewedCells =
+    showHistory && reviewed && session
+      ? reviewed.action.mapping.flatMap(([, id]) =>
+          session.boards[reviewed.number - 1][id] !==
+          session.boards[reviewed.number][id]
+            ? [id]
+            : [],
+        )
+      : undefined;
   const settingsChanged = Boolean(
     puzzle &&
     (draft.shape !== puzzle.config.shape ||
@@ -485,6 +509,7 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
     setFocusSettings(false);
     busy.current = true;
     restoring.current = null;
+    setViewedStep(undefined);
     setGenerating(true);
     setDemo(null);
     setAnswerOpen(false);
@@ -497,6 +522,10 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       config,
       version: CURRENT_PUZZLE_VERSION,
     });
+  }
+  function reviewStep(number: number) {
+    setSelectedId(null);
+    setViewedStep((current) => (current === number ? undefined : number));
   }
   function execute(action: FoldAction, assisted = false, fromProgress = 0) {
     if (!session || busy.current || generating || demo || solved) return;
@@ -514,6 +543,7 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       completionShown.current = true;
     }
     setToast(null);
+    setViewedStep(undefined);
     busy.current = true;
     setAnimation({
       action,
@@ -550,6 +580,7 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       moves: session.moves.slice(0, -1),
       boards: session.boards.slice(0, -1),
     });
+    setViewedStep(undefined);
     notify("已撤销上一折。");
   }
   function reset() {
@@ -566,6 +597,7 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
       boards: [session.puzzle.initial],
       elapsed: 0,
     });
+    setViewedStep(undefined);
     notify("已回到起点，提示使用记录保留。");
   }
   function askHint() {
@@ -613,6 +645,7 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
         });
         setHint(null);
         setSelectedId(null);
+        setViewedStep(undefined);
         setNotice(`已回到第 ${i} 步，可以继续查看提示。`);
         return;
       }
@@ -832,9 +865,18 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
                   differences={differences}
                   selected={selected}
                   animation={animation}
+                  history={
+                    showHistory && !demo && !generating ? history : undefined
+                  }
+                  viewedStep={viewedStep}
+                  onReview={reviewStep}
+                  reviewedCells={
+                    !demo && !generating ? reviewedCells : undefined
+                  }
                   disabled={disabled || Boolean(animation)}
                   onSelect={(action) => {
                     setSelectedId(action?.id ?? null);
+                    setViewedStep(undefined);
                     setNotice(
                       "蓝色虚线是起点与落点的中垂线，白色亮线是匹配到的折线。",
                     );
@@ -1002,6 +1044,43 @@ export function FoldingWorkshop({ locale }: { locale: "zh" | "en" }) {
                   参考解答
                 </button>
               </div>
+              {!demo && (
+                <section className="fold-history" aria-label="折叠历史">
+                  <label className="fold-history-toggle">
+                    <input
+                      type="checkbox"
+                      checked={showHistory}
+                      onChange={(event) => setShowHistory(event.target.checked)}
+                    />
+                    显示折叠历史
+                  </label>
+                  {showHistory && history.length > 0 && (
+                    <>
+                      <ol className="fold-history-steps">
+                        {history.map((step) => (
+                          <li key={step.number}>
+                            <button
+                              type="button"
+                              className="fold-button"
+                              aria-pressed={viewedStep === step.number}
+                              disabled={Boolean(animation) || generating}
+                              onClick={() => reviewStep(step.number)}
+                            >
+                              第 {step.number} 折 · {step.action.label}
+                            </button>
+                          </li>
+                        ))}
+                      </ol>
+                      {reviewed && (
+                        <p className="fold-history-detail">
+                          第 {reviewed.number} 折改变了{" "}
+                          {reviewedCells?.length ?? 0} 个色块，已在棋盘标出。
+                        </p>
+                      )}
+                    </>
+                  )}
+                </section>
+              )}
               {solved && !animation && !demo && !generating && (
                 <div className="fold-complete-strip" role="status">
                   <span>

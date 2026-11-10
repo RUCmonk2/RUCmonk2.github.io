@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-math-lessons.mjs && node scripts/build-course-lessons.mjs && node scripts/build-k12-lessons.mjs && node scripts/build-school-lessons.mjs && next build && node scripts/promote-default-locale.mjs",
+    "build": "node scripts/build-math-lessons.mjs && node scripts/build-course-lessons.mjs && node scripts/build-k12-lessons.mjs && node scripts/build-school-lessons.mjs && node scripts/build-klotski.mjs && next build && node scripts/promote-default-locale.mjs",
     "dev": "next dev --turbopack",
     "lint": "eslint .",
     "check:learning": "node scripts/check-learning-catalog.mjs",

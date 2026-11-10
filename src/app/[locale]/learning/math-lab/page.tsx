@@ -220,6 +220,24 @@ export default async function Page({ params }: Props) {
           </svg>
         </div>
       </section>
+      <section className="note-article k12-start">
+        <div>
+          <span className="notes-overline">05 / HUARONG DAO</span>
+          <h2>华容道</h2>
+          <p>
+            让曹操出关，或把 1–15 排回原位。再用染色和状态图研究局面是否有解。
+          </p>
+          <Link
+            className="k12-button"
+            href={prefix + "/learning/math-lab/klotski"}
+          >
+            开始闯关 <ArrowRight size={15} />
+          </Link>
+        </div>
+        <div className="k12-start-equation" aria-hidden="true">
+          曹操 ↓
+        </div>
+      </section>
       <section className="note-article k12-guidance">
         <div className="note-prose">
           <h2>让实验与知识连起来</h2>
