@@ -126,8 +126,8 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "数学实验室", en: "Mathematics Lab" },
     description: {
-      zh: "折五次圆盘算出 32 点 FFT，转动方块理解四元数，再到因式、群论、折纸和华容道工坊动手试试。",
-      en: "Fold a disk to compute a 32-point FFT. Try the other workshops on 3D rotations, factorization, Galois theory, paper folding, and sliding puzzles.",
+      zh: "从 4 点例题看懂 FFT 的算式和矩阵，也可以体验旋转、因式、群论、折纸和华容道。",
+      en: "Work through a 4-point FFT with equations and matrices, or explore 3D rotations, factorization, Galois theory, paper folding, and sliding puzzles.",
     },
     topic: { zh: "动手探索", en: "Hands-on exploration" },
     scope: {

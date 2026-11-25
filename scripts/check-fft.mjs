@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 
 import { createJiti } from "jiti";
 
-const { FFT_FOLDS, FFT_SIZE, buildLayers, getOneSidedSpectrum, getSamples } =
+const { FFT_EXAMPLE, FFT_SIZE, buildLayers, getOneSidedSpectrum, getSamples } =
   await createJiti(import.meta.url).import("../src/lib/math-lab/fft.ts");
 
 function checkValue(actual, expected) {
@@ -11,9 +11,10 @@ function checkValue(actual, expected) {
 
 function checkLayers(samples) {
   const layers = buildLayers(samples);
-  assert.equal(layers.length, FFT_FOLDS + 1);
-  for (let level = 0; level <= FFT_FOLDS; level += 1) {
-    const stride = FFT_SIZE >> level;
+  const folds = Math.log2(samples.length);
+  assert.equal(layers.length, folds + 1);
+  for (let level = 0; level <= folds; level += 1) {
+    const stride = samples.length >> level;
     const terms = 1 << level;
     assert.equal(layers[level].length, stride);
     for (let j = 0; j < stride; j += 1) {
@@ -37,6 +38,27 @@ function checkLayers(samples) {
   return getOneSidedSpectrum(layers.at(-1)[0]);
 }
 
+const worked = buildLayers(FFT_EXAMPLE);
+assert.deepEqual(worked[1], [
+  [
+    [4, 0],
+    [-2, 0],
+  ],
+  [
+    [6, 0],
+    [-2, 0],
+  ],
+]);
+assert.deepEqual(worked[2][0], [
+  [10, 0],
+  [-2, 2],
+  [-2, 0],
+  [-2, -2],
+]);
+checkLayers(FFT_EXAMPLE);
+checkLayers([0.25, -3, 7.5, 0]);
+assert.throws(() => buildLayers([1, 2, 3]), RangeError);
+
 const mixture = checkLayers(getSamples("mix"));
 for (let k = 0; k <= FFT_SIZE / 2; k += 1) {
   checkValue(mixture[k], { 0: 0.25, 5: 0.9, 7: 0.7, 12: 0.45 }[k] ?? 0);
@@ -54,5 +76,5 @@ const nyquist = Array.from({ length: FFT_SIZE }, (_, n) => (-1) ** n);
 checkValue(checkLayers(nyquist).at(-1), 1);
 
 console.log(
-  "FFT verified against independent DFTs at all six layers; one-sided amplitude scaling checked.",
+  "4- and 32-point FFTs verified against independent DFTs at every layer; worked values and one-sided amplitude scaling checked.",
 );

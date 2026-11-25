@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { Locale } from "next-intl";
 
-import { FFT_SIZE } from "@/lib/math-lab/fft";
 import { constructMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -113,18 +112,8 @@ function DiskPoster() {
   return (
     <div className="lab-poster" aria-hidden="true">
       <div className="lab-poster-disc">
-        {Array.from({ length: FFT_SIZE }, (_, k) => (
-          <span
-            key={k}
-            className={
-              k < FFT_SIZE / 2 ? "lab-poster-teal" : "lab-poster-coral"
-            }
-            style={{ rotate: `${(360 * k) / FFT_SIZE}deg` }}
-          >
-            <i data-peak={[0, 5, 7, 12, 20, 25, 27].includes(k)} />
-          </span>
-        ))}
-        <b />
+        <div className="lab-disc-lobe lab-disc-lobe-paper" />
+        <div className="lab-disc-lobe lab-disc-lobe-ink" />
       </div>
     </div>
   );
@@ -171,11 +160,11 @@ export default async function Page({ params }: Props) {
         <Link className="lab-feature" href={labHref + "/fft/"}>
           <div className="lab-feature-copy">
             <p>{english ? "Fast Fourier Transform" : "快速傅里叶变换"}</p>
-            <h2>{english ? "Fold the circle five times" : "把圆折五次"}</h2>
+            <h2>{english ? "Four numbers, two folds" : "四个数，折两次"}</h2>
             <div className="lab-feature-description">
               {english
-                ? "Follow 32 samples from the folding disk to the frequency spectrum."
-                : "看 32 个采样怎样两两配对，从时域折出频谱。"}
+                ? "Work out every sum and difference, then unfold the result as a vector."
+                : "从 [1, 2, 3, 4] 出发，逐项看圆盘怎么折、矩阵怎么算。"}
             </div>
             <span className="lab-feature-cta">
               {english ? "Open the FFT experiment" : "进入 FFT 实验"}{" "}
@@ -221,6 +210,13 @@ export default async function Page({ params }: Props) {
         </section>
 
         <div className="lab-related">
+          <Link
+            className="lab-derivation-link"
+            href={labHref + "/fft/#derivation"}
+          >
+            {english ? "FFT derivation and matrices" : "FFT 完整推导与矩阵"}{" "}
+            <ArrowRight size={14} aria-hidden="true" />
+          </Link>
           <Link href={prefix + "/learning/math-map/"}>
             {english ? "Mathematics Map" : "数学知识网"}{" "}
             <ArrowRight size={14} aria-hidden="true" />

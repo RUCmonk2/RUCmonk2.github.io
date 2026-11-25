@@ -1,32 +1,47 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 
-import { FFT_FOLDS, FFT_SIZE, type FftLayers } from "@/lib/math-lab/fft";
+import {
+  type Complex,
+  type FftLayers,
+  formatComplex,
+} from "@/lib/math-lab/fft";
 
 const tau = Math.PI * 2;
-const spacing = tau / FFT_SIZE;
-const colors = {
-  teal: "#6ce5d4",
-  orange: "#ff9e77",
-  gold: "#f4d18a",
-  dim: "#778b9c",
-  ring: "#293948",
+const paper = {
+  teal: "#315e53",
+  orange: "#9c4635",
+  gold: "#855e25",
+  dim: "#4d6158",
+  ring: "#b9c4b5",
+  grid: "#c9d0c3",
+  tick: "#829485",
+  surface: "#faf7ef",
+  needle: "#fff9ef",
 };
+const ink = {
+  teal: "#92cdba",
+  orange: "#eda68e",
+  gold: "#f0cc8c",
+  dim: "#b3c1b4",
+  ring: "#485d50",
+  grid: "#384b41",
+  tick: "#7e9484",
+  surface: "#20332b",
+  needle: "#1a3027",
+};
+type Palette = typeof paper;
 const width = 500;
-const height = 408;
+const height = 350;
 const cx = width / 2;
 const cy = height / 2 + 3;
-const radius = 155;
+const radius = 117;
 const tilt = 0.94;
 
-type DiskProps = {
-  layers: FftLayers;
-  step: number;
-  pair: number;
-  bin: number;
-  label: string;
-};
+type DiskState = { layers: FftLayers; step: number; pair: number; bin: number };
+type DiskProps = DiskState & { label: string; replay: number };
 
 function point(r: number, theta: number, lift = 0) {
   return [
@@ -89,6 +104,7 @@ function signalSector(
   ctx: CanvasRenderingContext2D,
   theta: number,
   color: string,
+  spacing: number,
 ) {
   ctx.beginPath();
   ctx.moveTo(cx, cy);
@@ -113,12 +129,18 @@ function callout(
   combined: boolean,
   angle: number,
   color: string,
+  colors: Palette,
+  value?: Complex,
 ) {
-  const name = combined ? (moving ? "A − WB" : "A + WB") : moving ? "B" : "A";
+  const symbol = combined ? (moving ? "a − Wb" : "a + Wb") : moving ? "b" : "a";
+  const name = value ? `${symbol} = ${formatComplex(value, 6)}` : symbol;
+  ctx.font = "600 16px ui-monospace, monospace";
+  const labelWidth = ctx.measureText(name).width + 15;
+  const inset = labelWidth / 2 + 6;
   const x = Math.min(
-    width - 47,
+    width - inset,
     Math.max(
-      47,
+      inset,
       dot[0] + (combined ? (moving ? 58 : -58) : 33 * Math.cos(angle)),
     ),
   );
@@ -134,13 +156,11 @@ function callout(
     dot[0] + 7 * Math.cos(direction),
     dot[1] + 7 * Math.sin(direction),
   ] as const;
-  line(ctx, edge, [x, y], "#101d28", 4);
+  line(ctx, edge, [x, y], colors.surface, 5);
   line(ctx, edge, [x, y], color, 1.7);
-  ctx.font = "600 16px ui-monospace, monospace";
-  const labelWidth = ctx.measureText(name).width + 15;
   ctx.beginPath();
   ctx.roundRect(x - labelWidth / 2, y - 13, labelWidth, 26, 4);
-  ctx.fillStyle = "#101d28";
+  ctx.fillStyle = colors.surface;
   ctx.fill();
   ctx.strokeStyle = color;
   ctx.lineWidth = 1;
@@ -151,42 +171,42 @@ function callout(
   ctx.fillText(name, x, y + 1);
 }
 
-function guides(ctx: CanvasRenderingContext2D) {
+function guides(ctx: CanvasRenderingContext2D, size: number, colors: Palette) {
   ctx.clearRect(0, 0, width, height);
-  ring(ctx, radius + 32, "#344759");
-  ring(ctx, radius + 20, "#243442");
+  ring(ctx, radius + 29, colors.ring);
+  ring(ctx, radius + 15, colors.grid);
   ring(ctx, radius, colors.ring);
-  ring(ctx, radius - 36, "#243442");
-  ring(ctx, radius - 72, "#243442");
-  for (let n = 0; n < FFT_SIZE; n += 1) {
-    const theta = Math.PI / 2 + n * spacing;
+  ring(ctx, radius - 37, colors.grid);
+  ring(ctx, radius - 70, colors.grid);
+  for (let n = 0; n < size; n += 1) {
+    const theta = Math.PI / 2 + (n * tau) / size;
     line(
       ctx,
-      point(radius + 24, theta),
-      point(radius + (n % 4 ? 27 : 32), theta),
-      "#516476",
+      point(radius + 23, theta),
+      point(radius + (n % 4 ? 26 : 29), theta),
+      colors.tick,
     );
-    if (n % 4 === 0)
-      line(ctx, point(13, theta), point(radius - 36, theta), "#1f2f3d");
   }
-  disc(ctx, cx, cy, 2.5, "#536577");
+  disc(ctx, cx, cy, 2.5, colors.tick);
 }
 
 function drawSpectrum(
   ctx: CanvasRenderingContext2D,
   output: FftLayers[number][number],
   bin: number,
+  colors: Palette,
 ) {
   const strengths = output.map(([re, im]) => Math.hypot(re, im));
-  const max = Math.max(...strengths, 1);
-  for (let k = 0; k < FFT_SIZE; k += 1) {
-    const theta = Math.PI / 2 + k * spacing;
+  const max = Math.max(...strengths) || 1;
+  const size = output.length;
+  for (let k = 0; k < size; k += 1) {
+    const theta = Math.PI / 2 + (k * tau) / size;
     const color =
-      k === bin ? colors.gold : k <= FFT_SIZE / 2 ? colors.teal : colors.orange;
-    const hasAmplitude = strengths[k] > 1e-10;
-    const tip = radius + (hasAmplitude ? (strengths[k] / max) * 49 : 0);
+      k === bin ? colors.gold : k <= size / 2 ? colors.teal : colors.orange;
+    const hasAmplitude = strengths[k] > max * 1e-10;
+    const tip = radius + (hasAmplitude ? (strengths[k] / max) * 27 : 0);
     ctx.globalAlpha = k === bin ? 1 : hasAmplitude ? 0.86 : 0.45;
-    if (hasAmplitude) {
+    if (hasAmplitude)
       line(
         ctx,
         point(radius, theta),
@@ -194,26 +214,30 @@ function drawSpectrum(
         color,
         k === bin ? 3 : 1.6,
       );
-    }
     disc(
       ctx,
       ...point(tip, theta),
-      k === bin ? 4 : hasAmplitude ? 2.5 : 1.6,
+      k === bin ? 5 : hasAmplitude ? 3 : 1.8,
       color,
     );
+    if (size === 4) mark(ctx, String(k), ...point(radius + 49, theta), color);
   }
   ctx.globalAlpha = 1;
-  mark(ctx, `k = ${bin}`, cx, cy + 25, colors.gold);
+  mark(ctx, `k = ${bin}`, cx, cy + 11, colors.gold);
 }
 
 function drawFold(
   ctx: CanvasRenderingContext2D,
-  { layers, step, pair, bin }: DiskProps,
+  { layers, step, pair, bin }: DiskState,
   amount: number,
+  colors: Palette,
 ) {
-  guides(ctx);
-  if (step > FFT_FOLDS) {
-    drawSpectrum(ctx, layers[FFT_FOLDS][0], bin);
+  const size = layers[0].length;
+  const folds = layers.length - 1;
+  const spacing = tau / size;
+  guides(ctx, size, colors);
+  if (step > folds) {
+    drawSpectrum(ctx, layers[folds][0], bin, colors);
     return;
   }
 
@@ -224,9 +248,11 @@ function drawFold(
   const values = layers[level];
   const outputs = layers[level + 1];
   const center =
-    Math.PI / 2 -
-    ((stations - 1) * spacing) / 2 +
-    (half * spacing * amount) / 2;
+    size === 4
+      ? Math.PI / 2
+      : Math.PI / 2 -
+        ((stations - 1) * spacing) / 2 +
+        (half * spacing * amount) / 2;
   const maxValue = Math.max(
     1,
     ...values.flat().map(([re, im]) => Math.hypot(re, im)),
@@ -237,6 +263,7 @@ function drawFold(
     moving: boolean;
     angle: number;
     color: string;
+    value?: Complex;
   }[] = [];
 
   for (let j = 0; j < stations; j += 1) {
@@ -247,10 +274,17 @@ function drawFold(
     const theta = initial - (moving ? half * spacing * amount : 0);
     const lift = moving ? Math.sin(Math.PI * amount) * (selected ? 40 : 24) : 0;
     const stack = Math.min(44, (terms - 1) * 3);
-    const base = point(radius - 10, theta, lift + (moving ? 13 * amount : 0));
+    const origin = point(radius - 10, theta, lift + (moving ? 14 * amount : 0));
+    const base =
+      size === 4 && amount >= 1
+        ? ([
+            origin[0] + (moving ? 9 : -9),
+            origin[1] + (moving ? 0 : 5),
+          ] as const)
+        : origin;
 
     ctx.globalAlpha = selected ? 0.13 : 0.032;
-    signalSector(ctx, theta, color);
+    signalSector(ctx, theta, color, spacing);
     ctx.globalAlpha = selected ? 0.65 : 0.14;
     line(ctx, [cx, cy], base, color);
     if (moving && amount > 0 && amount < 1) {
@@ -291,21 +325,38 @@ function drawFold(
           ctx,
           [base[0], y],
           [base[0] + 10 * Math.cos(phase), y - 10 * Math.sin(phase)],
-          "#fff5df",
+          colors.needle,
           1.5,
         );
       }
     }
 
-    if (selected) {
-      if (step === 0) mark(ctx, String(j), ...point(radius + 43, theta), color);
-      else annotations.push({ dot: base, moving, angle: theta, color });
+    if (size === 4 && amount >= 1 && !moving) {
+      mark(ctx, `j=${j}`, ...point(radius + 39, theta), colors.dim);
+    }
+    if (step === 0 && (size === 4 || selected)) {
+      ctx.globalAlpha = selected ? 1 : 0.85;
+      const label =
+        size === 4 ? `x[${j}] = ${formatComplex(values[j][0], 6)}` : String(j);
+      mark(ctx, label, ...point(radius + (size === 4 ? 39 : 43), theta), color);
+    } else if (selected) {
+      const value =
+        amount >= 1
+          ? outputs[j % half][(moving ? terms : 0) + bin]
+          : values[j][bin];
+      annotations.push({
+        dot: base,
+        moving,
+        angle: theta,
+        color,
+        value: size === 4 ? value : undefined,
+      });
     }
   }
 
   ctx.globalAlpha = 1;
-  for (const { dot, moving, angle, color } of annotations) {
-    callout(ctx, dot, moving, amount >= 1, angle, color);
+  for (const { dot, moving, angle, color, value } of annotations) {
+    callout(ctx, dot, moving, amount >= 1, angle, color, colors, value);
   }
   mark(
     ctx,
@@ -316,9 +367,10 @@ function drawFold(
   );
 }
 
-export function FftDisk(props: DiskProps) {
+export function FftDisk({ layers, step, pair, bin, label, replay }: DiskProps) {
   const ref = useRef<HTMLCanvasElement>(null);
-  const lastStep = useRef(0);
+  const lastFrame = useRef({ step: 0, replay: 0 });
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = ref.current;
@@ -326,9 +378,12 @@ export function FftDisk(props: DiskProps) {
     if (!canvas || !ctx) return;
     let frame = 0;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const isFold = props.step > 0 && props.step <= FFT_FOLDS;
-    const shouldAnimate = isFold && props.step !== lastStep.current;
-    lastStep.current = props.step;
+    const isFold = step > 0 && step < layers.length;
+    const shouldAnimate =
+      isFold &&
+      (step !== lastFrame.current.step || replay !== lastFrame.current.replay);
+    lastFrame.current = { step: step, replay: replay };
+    const colors = resolvedTheme === "dark" ? ink : paper;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -339,13 +394,13 @@ export function FftDisk(props: DiskProps) {
       const elapsed =
         motion.matches || !shouldAnimate ? 1 : Math.min(1, (now - start) / 950);
       const amount = isFold ? (1 - Math.cos(elapsed * Math.PI)) / 2 : 0;
-      drawFold(ctx, props, amount);
+      drawFold(ctx, { layers, step, pair, bin }, amount, colors);
       if (shouldAnimate && elapsed < 1) frame = requestAnimationFrame(paint);
     };
 
     paint(start);
     return () => cancelAnimationFrame(frame);
-  }, [props]);
+  }, [layers, step, pair, bin, replay, resolvedTheme]);
 
   return (
     <canvas
@@ -354,7 +409,7 @@ export function FftDisk(props: DiskProps) {
       width={width}
       height={height}
       role="img"
-      aria-label={props.label}
+      aria-label={label}
     />
   );
 }

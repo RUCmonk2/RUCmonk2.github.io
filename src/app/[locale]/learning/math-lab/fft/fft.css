@@ -1,418 +1,527 @@
 .fft-page {
-  padding-top: 33px;
+  --fft-paper: #fbf8ef;
+  --fft-wash: #eeefe4;
+  --fft-green: #315e53;
+  --fft-red: #99482f;
+  --fft-rule: #cdd4c7;
+  --fft-soft-green: #e4ece0;
+  --fft-soft-red: #f4e8de;
+  --fft-mono: "SFMono-Regular", Consolas, ui-monospace, monospace;
+  padding-top: 32px;
+}
+
+.dark .fft-page {
+  --fft-paper: #1b2b24;
+  --fft-wash: #24362c;
+  --fft-green: #a4d0bb;
+  --fft-red: #eda78f;
+  --fft-rule: #405448;
+  --fft-soft-green: #284338;
+  --fft-soft-red: #49342c;
 }
 
 .fft-intro {
-  margin: 18px 0 23px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 16px 0 24px;
 }
 
 .fft-intro h1 {
-  font-size: clamp(34px, 5vw, 60px);
+  font-size: clamp(36px, 5vw, 66px);
+}
+.fft-intro p {
+  max-width: 600px;
+}
+
+.fft-proof-link {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  color: var(--fft-green);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .fft-workbench {
-  --fft-line: #354754;
-  --fft-soft: #203140;
-  --fft-dim: #afbec7;
-  overflow: hidden;
-  border: 1px solid #374a57;
-  border-radius: 18px;
-  background: var(--lab-night);
-  color: var(--lab-light);
-  box-shadow: 0 18px 56px -33px #07162791;
+  border: 1px solid var(--fft-rule);
+  border-radius: 13px;
+  background: var(--fft-paper);
+  box-shadow: 0 14px 40px -35px #31433888;
+  color: var(--study-ink);
+  font-size: 14px;
 }
 
-.fft-workbench :focus-visible {
-  outline-color: var(--lab-gold);
-  outline-offset: -1px;
+.fft-modes,
+.fft-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--fft-rule);
 }
 
-.fft-controls {
+.fft-choice {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 20px;
-  align-items: end;
-  justify-content: space-between;
-  padding: 15px 22px;
-  border-bottom: 1px solid var(--fft-line);
-}
-
-.fft-presets {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.fft-presets legend {
-  margin-bottom: 6px;
-  color: var(--fft-dim);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-}
-
-.fft-presets > div,
-.fft-play {
-  display: flex;
   gap: 6px;
-  align-items: center;
 }
 
-.fft-presets button,
-.fft-icon-button,
-.fft-play-button,
-.fft-first-fold {
-  min-height: 35px;
-  padding: 6px 11px;
-  border: 1px solid var(--fft-line);
+.fft-choice button,
+.fft-route li button,
+.fft-next,
+.fft-icon,
+.fft-edit button {
+  min-height: 38px;
+  padding: 7px 12px;
+  border: 1px solid var(--fft-rule);
   border-radius: 6px;
-  color: var(--fft-dim);
-  font-size: 12px;
+  color: var(--study-muted);
+  background: transparent;
+  font-size: 13px;
   white-space: nowrap;
   cursor: pointer;
 }
 
-.fft-presets button:hover,
-.fft-icon-button:hover:not(:disabled),
-.fft-play-button:hover,
-.fft-timeline li button:hover {
-  color: var(--lab-light);
-  background: var(--fft-soft);
+.fft-choice button:hover,
+.fft-route button:hover,
+.fft-edit button:hover {
+  border-color: var(--fft-green);
+  color: var(--fft-green);
 }
 
-.fft-presets button[aria-pressed="true"] {
-  border-color: #6bada0;
-  color: var(--lab-teal);
-  background: #1e3b41;
+.fft-choice button[aria-pressed="true"],
+.fft-route button[aria-current="step"] {
+  border-color: var(--fft-green);
+  color: var(--fft-green);
+  background: var(--fft-soft-green);
+  font-weight: 600;
 }
 
-.fft-play-button,
-.fft-first-fold {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--lab-light);
-}
-
-.fft-play-button {
-  min-width: 78px;
-  justify-content: center;
-}
-.fft-play-button svg {
-  color: var(--lab-teal);
-}
-.fft-first-fold {
-  background: var(--lab-teal);
-  color: #102521;
-  border-color: transparent;
-}
-.fft-first-fold:hover {
-  background: #b2f1e3;
-}
-
-.fft-icon-button {
+.fft-journey {
   display: grid;
-  min-width: 35px;
-  place-items: center;
-  padding: 0;
-}
-
-.fft-icon-button:disabled {
-  color: #768896;
-  border-color: #2a3a46;
-  cursor: default;
-}
-
-.fft-workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
-}
-
-.fft-stage {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  background:
-    radial-gradient(ellipse at center 48%, #23444b81 0%, transparent 63%),
-    linear-gradient(#8ba6b709 1px, transparent 1px) center / 28px 28px,
-    linear-gradient(90deg, #8ba6b709 1px, transparent 1px) center / 28px 28px;
-}
-
-.fft-stage-top {
-  display: flex;
-  justify-content: space-between;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
-  min-height: 72px;
-  padding: 13px 22px 0;
+  gap: 13px 20px;
+  padding: 18px 22px;
+  background: linear-gradient(
+    105deg,
+    var(--fft-wash),
+    var(--fft-paper) 57%,
+    var(--fft-soft-green)
+  );
+  border-bottom: 1px solid var(--fft-rule);
 }
 
-.fft-stage-top p {
-  color: var(--lab-teal);
-  font-size: 11px;
-  letter-spacing: 0.08em;
+.fft-journey > div > span {
+  color: var(--study-muted);
+  font: 600 14px/1.25 var(--study-serif);
 }
 
-.fft-stage-top h2,
-.fft-panel h2 {
-  font: 500 clamp(21px, 2.6vw, 29px)/1.22 var(--study-serif);
-}
-
-.fft-stage-top h2 {
-  margin-top: 4px;
-}
-
-.fft-stage-count {
-  padding: 4px 8px;
-  border: 1px solid var(--fft-line);
-  border-radius: 4px;
-  color: #e4c992;
-  font:
-    11px ui-monospace,
-    monospace;
-  white-space: nowrap;
-}
-
-.fft-disk {
-  display: block;
-  width: min(100%, 500px);
-  height: auto;
-  aspect-ratio: 500 / 408;
-  margin: -9px auto -12px;
-}
-
-.fft-legend {
+.fft-vector {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 7px 18px;
-  padding: 0 12px 14px;
-  color: var(--fft-dim);
-  font-size: 12px;
-}
-
-.fft-legend span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.fft-legend i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--lab-teal);
-}
-.fft-legend span:nth-child(2) i {
-  background: var(--lab-coral);
-}
-
-.fft-panel {
-  padding: 25px 24px 19px;
-  border-left: 1px solid var(--fft-line);
-  background: #172532;
-}
-
-.fft-panel > p {
-  margin: 8px 0 14px;
-  color: var(--fft-dim);
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.fft-panel-ranges {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 13px;
-}
-
-.fft-range {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2px 4px;
-  align-items: center;
-  color: var(--fft-dim);
-  font-size: 13px;
-}
-
-.fft-range output {
-  color: var(--lab-teal);
-  font:
-    13px ui-monospace,
-    monospace;
-}
-
-.fft-range input {
-  width: 100%;
-  min-height: 24px;
-  grid-column: 1 / -1;
-  accent-color: var(--lab-teal);
-}
-
-.fft-range input:disabled {
-  opacity: 0.53;
-}
-
-.fft-readout {
-  margin-top: 9px;
-  border-top: 1px solid var(--fft-line);
-}
-
-.fft-readout > div {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
-  gap: 4px 12px;
-  padding-block: 9px;
-  border-bottom: 1px solid var(--fft-line);
-  font:
-    12px/1.4 ui-monospace,
-    monospace;
+  gap: 0 0.25em;
+  margin-top: 6px;
+  color: var(--study-ink);
+  font: clamp(13px, 1.7vw, 20px)/1.55 var(--fft-mono);
 }
 
-.fft-readout :is(dt, dd) {
-  margin: 0;
+.fft-vector var,
+.fft-long-vector var {
+  color: var(--fft-green);
 }
-.fft-readout dt small {
-  margin-left: 4px;
-  font-size: 10px;
-  color: var(--fft-dim);
+.fft-vector-entries {
+  overflow-wrap: anywhere;
 }
-.fft-readout dd {
-  text-align: right;
-  color: #e7eef1;
+.fft-vector-arrow {
+  color: var(--fft-green);
 }
-.fft-readout .fft-plus :is(dt, dd) {
-  color: var(--lab-teal);
+
+.fft-long-vector {
+  margin-top: 5px;
+  font: 13px/1.55 var(--fft-mono);
 }
-.fft-readout .fft-minus :is(dt, dd) {
-  color: var(--lab-coral);
+
+.fft-long-vector summary {
+  color: var(--study-ink);
+  cursor: pointer;
 }
-.fft-panel .fft-panel-note {
-  margin-bottom: 0;
+
+.fft-long-vector summary span {
+  display: block;
+  color: var(--fft-green);
+  font:
+    12px/1.4 var(--font-sans),
+    sans-serif;
+}
+
+.fft-long-vector p {
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.fft-edit {
+  padding: 9px 22px;
+  border-bottom: 1px solid var(--fft-rule);
+  color: var(--fft-green);
+}
+
+.fft-edit summary {
+  width: fit-content;
+  cursor: pointer;
+}
+.fft-edit form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 7px;
+  padding-top: 9px;
+}
+.fft-edit label,
+.fft-selectors label {
+  display: grid;
+  gap: 4px;
+  color: var(--study-muted);
   font-size: 12px;
 }
-
-.fft-timeline {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  margin-top: auto;
-  border-top: 1px solid var(--fft-line);
-  padding: 11px 18px;
-  background: #152431;
+.fft-edit input,
+.fft-selectors select {
+  min-height: 36px;
+  padding: 5px 8px;
+  border: 1px solid var(--fft-rule);
+  border-radius: 5px;
+  background: var(--fft-paper);
+  color: var(--study-ink);
+  font: 14px var(--fft-mono);
+}
+.fft-edit input {
+  width: 76px;
+}
+.fft-edit p {
+  margin-top: 5px;
+  color: var(--fft-red);
 }
 
-.fft-timeline ol {
+.fft-route ol,
+.fft-actions {
   display: flex;
-  justify-content: center;
-  flex: 1;
-  gap: 3px;
-  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.fft-timeline li {
-  display: grid;
-  flex: 0 1 46px;
-  min-width: 0;
-}
-.fft-timeline li:is(:first-child, :last-child) {
-  flex: 0 1 72px;
+.fft-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-color: transparent;
+  background: var(--fft-green);
+  color: var(--fft-paper);
+  font-weight: 600;
 }
 
-.fft-timeline li button {
+.fft-route .fft-next:hover {
+  background: var(--fft-red);
+  color: var(--fft-paper);
+}
+.fft-icon {
+  display: inline-grid;
+  place-items: center;
+  padding: 7px 10px;
+}
+
+.fft-workspace {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.16fr) minmax(0, 1fr);
+  min-height: 326px;
+}
+
+.fft-operation {
+  position: relative;
+  padding: clamp(18px, 2.1vw, 27px);
+}
+
+.fft-operation h2 {
+  color: var(--study-ink);
+  font: 500 clamp(21px, 2.7vw, 31px)/1.25 var(--study-serif);
+}
+
+.fft-operation > p {
+  max-width: 540px;
+  margin: 7px 0 13px;
+  line-height: 1.65;
+  color: var(--study-muted);
+}
+
+.fft-pair-list {
+  display: grid;
+  gap: 8px;
+}
+
+.fft-pair-list div {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  border: 1px solid var(--fft-rule);
+  border-radius: 6px;
+  padding: 10px 11px;
+}
+
+.fft-pair-list span {
+  color: var(--fft-green);
+  font-weight: 600;
+}
+
+.fft-pair-choice {
+  margin-bottom: 9px;
+}
+.fft-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 16px;
+  margin: 0 0 10px;
+}
+.fft-selectors select {
+  min-width: 72px;
+}
+.fft-math-note {
+  font-size: 13px;
+}
+
+.fft-equations {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+}
+
+.fft-equations > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3px 12px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--fft-rule);
+  font: 13px/1.42 var(--fft-mono);
+}
+
+.fft-equations :is(dt, dd) {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.fft-equations dt {
+  color: var(--study-muted);
+}
+.fft-equations dd {
+  color: var(--study-ink);
+}
+.fft-equations sup {
+  font-size: 0.74em;
+}
+.fft-equations .fft-eq-plus {
+  background: var(--fft-soft-green);
+}
+.fft-equations .fft-eq-minus {
+  background: var(--fft-soft-red);
+}
+.fft-eq-plus b {
+  color: var(--fft-green);
+}
+.fft-eq-minus b {
+  color: var(--fft-red);
+}
+
+.fft-map {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
   min-width: 0;
-  min-height: 34px;
-  padding: 3px 4px;
-  border-radius: 5px;
-  color: var(--fft-dim);
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 1px solid var(--fft-rule);
+  background:
+    radial-gradient(ellipse at center, var(--fft-paper) 16%, transparent 69%),
+    radial-gradient(ellipse at 80% 92%, var(--fft-soft-green), transparent 73%),
+    var(--fft-wash);
+}
+
+.fft-map header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 33px;
+  color: var(--study-muted);
   font-size: 12px;
-  white-space: nowrap;
+}
+
+.fft-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 33px;
+  color: var(--fft-green);
   cursor: pointer;
 }
 
-.fft-timeline li button[aria-current="step"] {
-  background: #ffdc9740;
-  color: #ffe2a9;
-  box-shadow: inset 0 -1px #f3ca82;
+.fft-replay:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fft-disk {
+  display: block;
+  width: min(100%, 430px);
+  height: auto;
+  aspect-ratio: 500 / 350;
+  margin-inline: auto;
+}
+
+.fft-map figcaption {
+  text-align: center;
+  color: var(--study-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.fft-matrix {
+  padding: 15px 22px 18px;
+  border-top: 1px solid var(--fft-rule);
+}
+
+.fft-matrix header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 7px;
+}
+.fft-matrix h3 {
+  font: 600 19px/1.3 var(--study-serif);
+}
+.fft-matrix p {
+  margin: 4px 0 0;
+  color: var(--study-muted);
+  font-size: 13px;
+}
+.fft-matrix code {
+  color: var(--fft-green);
+  white-space: nowrap;
+}
+
+.fft-table-scroll {
+  max-height: 268px;
+  overflow: auto;
+  border: 1px solid var(--fft-rule);
+  border-radius: 6px;
+}
+.fft-table-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font: 13px var(--fft-mono);
+}
+.fft-table-scroll :is(th, td) {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--fft-rule);
+  white-space: nowrap;
+}
+.fft-table-scroll thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--fft-wash);
+  color: var(--study-muted);
+}
+.fft-table-scroll tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.fft-table-scroll tr[data-selected="true"] th {
+  color: var(--fft-green);
+}
+.fft-table-scroll td[data-mark="1"] {
+  background: var(--fft-soft-green);
+  color: var(--fft-green);
+  font-weight: 600;
+}
+.fft-table-scroll td[data-mark="2"] {
+  background: var(--fft-soft-red);
+  color: var(--fft-red);
+  font-weight: 600;
+}
+.fft-table-scroll .fft-source-indices {
+  color: var(--study-muted);
+  white-space: normal;
+  min-width: 87px;
+}
+.fft-matrix .fft-table-hint {
+  font-size: 12px;
 }
 
 .fft-chart {
   margin: 0;
-  padding: 13px 22px 15px;
-  border-top: 1px solid var(--fft-line);
-  background: #14212b;
+  padding: 12px 22px;
+  border-top: 1px solid var(--fft-rule);
+  background: var(--fft-wash);
 }
-
 .fft-chart figcaption,
 .fft-chart-axis {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 10px;
-}
-
-.fft-chart figcaption strong {
-  font-size: 13px;
-  font-weight: 600;
 }
 .fft-chart figcaption span,
 .fft-chart-axis {
-  color: var(--fft-dim);
-  font:
-    10px ui-monospace,
-    monospace;
+  color: var(--study-muted);
+  font: 11px var(--fft-mono);
 }
-
 .fft-stems {
   --zero-line: 50%;
   display: grid;
   grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
-  height: 63px;
-  margin-top: 3px;
+  height: 65px;
+  margin-top: 5px;
   background: linear-gradient(
-    to bottom,
     transparent var(--zero-line),
-    #647d8a 0 calc(var(--zero-line) + 1px),
+    var(--fft-rule) 0 calc(var(--zero-line) + 1px),
     transparent 0
   );
 }
-
 .fft-chart[data-frequency="true"] .fft-stems {
   --zero-line: 90%;
 }
-
 .fft-stem {
-  --fft-stem-color: var(--lab-teal);
+  --fft-stem: var(--fft-green);
   position: relative;
   display: flex;
   justify-content: center;
-  min-width: 0;
 }
-
 .fft-stem[data-negative="true"] {
-  --fft-stem-color: var(--lab-coral);
+  --fft-stem: var(--fft-red);
 }
-.fft-stem[data-active="true"] {
-  --fft-stem-color: var(--lab-gold);
-}
-
 .fft-stem i {
   position: absolute;
   width: 1.5px;
   height: max(1px, calc(var(--magnitude) * (var(--zero-line) - 3px)));
   bottom: calc(100% - var(--zero-line));
-  background: var(--fft-stem-color);
+  background: var(--fft-stem);
 }
-
 .fft-stem[data-negative="true"] i {
   top: var(--zero-line);
   bottom: auto;
 }
-
 .fft-stem i::before {
   position: absolute;
   top: -2px;
@@ -420,107 +529,324 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--fft-stem-color);
+  background: var(--fft-stem);
   content: "";
   transform: translateX(-50%);
 }
-
 .fft-stem[data-negative="true"] i::before {
   top: auto;
   bottom: -2px;
 }
-.fft-stem[data-active="true"] i::before {
-  box-shadow: 0 0 8px var(--fft-stem-color);
-}
-.fft-chart-axis {
-  margin-top: 2px;
-}
-
-.fft-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.fft-explanation {
-  max-width: 720px;
-  margin: 38px 0 0;
-}
-
-.fft-explanation h2 {
-  font: 500 clamp(24px, 3vw, 34px)/1.25 var(--study-serif);
-}
-.fft-explanation p {
-  margin: 11px 0 0;
+.fft-precision {
   color: var(--study-muted);
-  font-size: 14px;
-  line-height: 1.8;
+  padding: 7px 22px;
+  font-size: 11px;
 }
-.fft-explanation .fft-source {
+
+.fft-proof {
+  margin: 43px 0 0;
+  max-width: 940px;
+  scroll-margin-top: 83px;
+}
+
+.fft-proof > header {
+  margin-bottom: 21px;
+  border-bottom: 1px solid var(--fft-rule);
+  padding-bottom: 12px;
+}
+.fft-proof h2 {
+  color: var(--study-ink);
+  font: 500 clamp(30px, 4.8vw, 51px)/1.2 var(--study-serif);
+}
+.fft-proof h3 {
+  color: var(--study-ink);
+  font: 600 clamp(20px, 3vw, 28px)/1.3 var(--study-serif);
+}
+.fft-proof p {
+  margin-top: 9px;
+  color: var(--study-muted);
+  font-size: 15px;
+  line-height: 1.76;
+}
+.fft-proof section + section {
+  margin-top: 25px;
+}
+.fft-proof-equation {
+  max-width: 100%;
+  overflow: auto;
+  padding-inline: 10px;
+  margin: 11px 0;
+  border-left: 2px solid var(--fft-rule);
+  background: var(--fft-paper);
+  color: var(--study-ink);
+  font-size: 15px;
+}
+.fft-proof-equation .katex-display {
+  width: max-content;
+  max-width: none;
+  margin: 0.72em 0.32em;
+}
+.fft-proof footer {
+  margin-top: 28px;
+  color: var(--study-muted);
   font-size: 12px;
 }
 
 @media (max-width: 740px) {
+  .fft-intro {
+    align-items: start;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 14px;
+  }
   .fft-workspace {
     grid-template-columns: minmax(0, 1fr);
   }
-  .fft-panel {
+  .fft-map {
+    border-top: 1px solid var(--fft-rule);
     border-left: 0;
-    border-top: 1px solid var(--fft-line);
-    padding: 18px;
+    justify-content: space-between;
   }
-  .fft-controls {
-    padding: 12px;
-    gap: 8px;
+  .fft-modes,
+  .fft-route,
+  .fft-journey,
+  .fft-edit,
+  .fft-matrix,
+  .fft-chart,
+  .fft-precision {
+    padding-inline: 13px;
   }
-  .fft-stage-top {
-    min-height: 66px;
-    padding-inline: 14px;
+  .fft-journey {
+    grid-template-columns: 1fr;
+    gap: 7px;
   }
-  .fft-chart {
-    padding-inline: 14px;
+  .fft-vector-arrow {
+    display: none;
   }
-  .fft-timeline {
-    padding-inline: 10px;
-    gap: 4px;
+  .fft-journey > div + div {
+    border-top: 1px solid var(--fft-rule);
+    padding-top: 7px;
   }
-  .fft-timeline ol {
-    gap: 2px;
+  .fft-route li button,
+  .fft-choice button {
+    padding-inline: 8px;
   }
-  .fft-timeline .fft-icon-button {
-    min-width: 29px;
+  .fft-table-scroll :is(th, td) {
+    padding-inline: 6px;
+  }
+  .fft-proof-equation {
+    font-size: 13px;
   }
 }
 
-@media (max-width: 420px) {
-  .fft-page .fft-intro {
-    margin-bottom: 17px;
+.fft-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 11px 0;
+}
+
+.fft-proof-grid-pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fft-proof-grid .fft-proof-equation {
+  margin: 0;
+}
+
+@media (max-width: 580px) {
+  .fft-proof-grid,
+  .fft-proof-grid-pair {
+    grid-template-columns: 1fr;
   }
-  .fft-presets > div {
-    gap: 3px;
+  .fft-journey > div:last-child {
+    border-top: 1px solid var(--fft-rule);
+    padding-top: 7px;
   }
-  .fft-presets button,
-  .fft-play-button {
-    padding-inline: 6px;
+}
+
+.fft-calculation {
+  min-width: 0;
+}
+.fft-map {
+  justify-content: flex-start;
+}
+.fft-calculation .fft-matrix {
+  padding-inline: clamp(18px, 2.1vw, 27px);
+}
+.fft-step-footer {
+  display: none;
+}
+@media (max-width: 740px) {
+  .fft-step-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 13px 13px;
   }
-  .fft-play-button {
-    min-width: 58px;
-  }
-  .fft-play {
-    gap: 3px;
-  }
-  .fft-play .fft-icon-button {
-    min-width: 30px;
-  }
-  .fft-first-fold {
-    gap: 4px;
-    padding-inline: 6px;
-  }
-  .fft-timeline li button {
-    padding-inline: 1px;
-    font-size: 11px;
+}
+
+.fft-operation > .fft-current {
+  margin-block: 9px;
+  font-size: 13px;
+  color: var(--fft-green);
+}
+
+.fft-origin {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 3px;
+}
+
+.fft-origin > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 6px 8px;
+  border-left: 2px solid var(--fft-green);
+  background: var(--fft-soft-green);
+  color: var(--fft-green);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.fft-origin > div[data-side="1"] {
+  border-color: var(--fft-red);
+  background: var(--fft-soft-red);
+  color: var(--fft-red);
+}
+
+.fft-origin strong {
+  font: 600 14px var(--fft-mono);
+}
+.fft-origin small {
+  color: var(--study-muted);
+  font-size: 11px;
+}
+
+.fft-phase {
+  display: grid;
+  grid-template-columns: 79px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 3px auto 9px;
+  width: min(100%, 350px);
+  padding: 4px 8px 4px 4px;
+  border: 1px solid var(--fft-rule);
+  border-radius: 6px;
+  background: var(--fft-paper);
+}
+
+.fft-phase-plane {
+  position: relative;
+  width: 75px;
+  aspect-ratio: 1;
+  background:
+    linear-gradient(
+      to right,
+      transparent 49%,
+      var(--fft-rule) 49% 51%,
+      transparent 51%
+    ),
+    linear-gradient(transparent 49%, var(--fft-rule) 49% 51%, transparent 51%);
+}
+.fft-phase-plane :is(span, b, i) {
+  position: absolute;
+}
+.fft-phase-plane span {
+  color: var(--study-muted);
+  font: 9px var(--fft-mono);
+}
+.fft-phase-real {
+  right: 0;
+  top: 53%;
+}
+.fft-phase-imaginary {
+  left: 54%;
+  top: 0;
+}
+.fft-phase-plane b {
+  inset: 48%;
+  background: var(--study-muted);
+  border-radius: 50%;
+}
+.fft-phase-plane i {
+  top: calc(50% - 1px);
+  left: 50%;
+  width: 31%;
+  border-top: 2px dashed var(--fft-red);
+  color: var(--fft-red);
+  rotate: var(--phase-angle);
+  transform-origin: left center;
+}
+.fft-phase-plane i[data-rotated="true"] {
+  border-top: 2px solid var(--fft-green);
+  color: var(--fft-green);
+}
+.fft-phase-plane i::after {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  rotate: 45deg;
+  content: "";
+}
+.fft-phase strong,
+.fft-phase code,
+.fft-phase small {
+  display: block;
+}
+.fft-phase strong {
+  font-size: 13px;
+}
+.fft-phase code {
+  margin-block: 4px;
+  font: 12px var(--fft-mono);
+  overflow-wrap: anywhere;
+}
+.fft-phase code span {
+  color: var(--fft-green);
+}
+.fft-phase small {
+  color: var(--study-muted);
+  font-size: 11px;
+}
+
+.fft-symbols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px 15px;
+  margin-bottom: 19px;
+  padding: 8px 11px;
+  border-block: 1px solid var(--fft-rule);
+  background: var(--fft-wash);
+}
+.fft-symbols div {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 5px;
+  padding: 4px 0;
+}
+.fft-symbols dt {
+  color: var(--fft-green);
+  font: 600 13px var(--fft-mono);
+}
+.fft-symbols dd {
+  margin: 0;
+  color: var(--study-muted);
+  font-size: 13px;
+}
+.fft-equations .fft-eq-plus dt {
+  color: var(--fft-green);
+}
+.fft-equations .fft-eq-minus dt {
+  color: var(--fft-red);
+}
+@media (max-width: 520px) {
+  .fft-symbols {
+    grid-template-columns: 1fr;
   }
 }
