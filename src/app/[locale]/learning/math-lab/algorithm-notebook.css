@@ -1,0 +1,495 @@
+.algo-page {
+  --algo-paper: #faf8ef;
+  --algo-wash: #eaf0e5;
+  --algo-rule: #cbd5c9;
+  --algo-ink: #385f50;
+  --algo-seal: #9e4936;
+  --algo-sample: #805f28;
+  --algo-mono: "SFMono-Regular", Consolas, ui-monospace, monospace;
+  padding-top: 32px;
+}
+
+.dark .algo-page {
+  --algo-paper: #1d2e25;
+  --algo-wash: #273b30;
+  --algo-rule: #41594b;
+  --algo-ink: #a5d0bc;
+  --algo-seal: #efa990;
+  --algo-sample: #e3c07f;
+}
+
+.algo-intro {
+  margin: 17px 0 25px;
+}
+.algo-intro h1 {
+  font: 500 clamp(34px, 5.4vw, 69px)/1.12 var(--study-serif);
+}
+.algo-intro p {
+  margin-top: 10px;
+  color: var(--study-muted);
+  line-height: 1.7;
+  max-width: 740px;
+}
+.algo-skip {
+  display: inline-flex;
+  margin-top: 8px;
+  color: var(--algo-seal);
+  align-items: center;
+  gap: 6px;
+  min-height: 35px;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.algo-notebook {
+  overflow: clip;
+  border: 1px solid var(--algo-rule);
+  border-radius: 13px;
+  background: var(--algo-paper);
+  box-shadow: 0 13px 32px -28px #44655480;
+}
+
+.algo-toolbar,
+.algo-definition,
+.algo-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  padding: 12px 21px;
+  border-bottom: 1px solid var(--algo-rule);
+}
+
+.algo-definition {
+  background: linear-gradient(115deg, var(--algo-wash), var(--algo-paper));
+}
+.algo-definition p {
+  flex: 1 1 500px;
+  color: var(--study-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.algo-definition code {
+  color: var(--algo-ink);
+  font: 600 12px/1.5 var(--algo-mono);
+}
+
+.algo-choices,
+.algo-step-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.algo-notebook button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid var(--algo-rule);
+  border-radius: 6px;
+  color: var(--study-ink);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.algo-notebook button:hover:not(:disabled) {
+  border-color: var(--algo-ink);
+}
+.algo-notebook button[aria-pressed="true"] {
+  background: var(--algo-wash);
+  border-color: var(--algo-ink);
+  color: var(--algo-ink);
+  font-weight: 650;
+}
+.algo-notebook .algo-primary {
+  background: var(--algo-ink);
+  border-color: transparent;
+  color: var(--algo-paper);
+}
+.algo-notebook button:disabled {
+  opacity: 0.52;
+  cursor: default;
+}
+.algo-notebook .algo-sample {
+  color: var(--algo-sample);
+}
+
+.algo-track {
+  display: flex;
+  align-items: center;
+  flex: 0 1 290px;
+  gap: 10px;
+  color: var(--study-muted);
+  font-size: 12px;
+}
+.algo-track span {
+  white-space: nowrap;
+}
+.algo-track strong {
+  font: 600 13px var(--algo-mono);
+  color: var(--algo-ink);
+}
+.algo-track input {
+  accent-color: var(--algo-ink);
+  flex: 1;
+  min-width: 62px;
+  min-height: 32px;
+}
+
+.algo-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+
+.algo-explanation,
+.algo-matrix-stage {
+  padding: 19px 22px;
+  min-width: 0;
+}
+.algo-explanation h2,
+.algo-matrix-stage h2 {
+  font: 550 clamp(23px, 3vw, 32px)/1.24 var(--study-serif);
+}
+.algo-explanation p,
+.algo-matrix-stage p {
+  color: var(--study-muted);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-top: 8px;
+}
+.algo-facts {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+.algo-facts > div {
+  padding: 6px 8px;
+  border-left: 2px solid var(--algo-rule);
+  background: var(--algo-wash);
+}
+.algo-facts dt {
+  color: var(--study-muted);
+  font-size: 12px;
+}
+.algo-facts dd {
+  margin: 3px 0 0;
+  color: var(--study-ink);
+  font: 13px/1.55 var(--algo-mono);
+  overflow-wrap: anywhere;
+}
+
+.algo-figure {
+  min-width: 0;
+  margin: 0;
+  padding: 12px 14px;
+  border-right: 1px solid var(--algo-rule);
+  background: radial-gradient(
+    ellipse at 53% 40%,
+    var(--algo-paper),
+    var(--algo-wash)
+  );
+}
+.algo-graph {
+  position: relative;
+  width: min(100%, 550px);
+  aspect-ratio: 2;
+  margin-inline: auto;
+}
+.algo-edge {
+  --edge-color: var(--study-muted);
+  position: absolute;
+  border-top: 1.5px solid var(--edge-color);
+  color: var(--edge-color);
+  transform-origin: left center;
+  z-index: 1;
+}
+.algo-edge[data-directed="true"]::after {
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-block: 3.5px solid transparent;
+  border-left: 7px solid currentColor;
+  content: "";
+}
+
+.algo-edge[data-kind="kept"] {
+  --edge-color: var(--algo-ink);
+  border-top-width: 2px;
+  z-index: 2;
+}
+.algo-edge[data-kind="sampled"] {
+  --edge-color: var(--algo-sample);
+  border-top-style: dashed;
+  z-index: 2;
+}
+.algo-edge[data-kind="rejected"] {
+  border-top-style: dashed;
+  opacity: 0.55;
+}
+.algo-edge[data-active="true"] {
+  --edge-color: var(--algo-seal);
+  z-index: 3;
+  opacity: 1;
+}
+.algo-edge > span {
+  position: absolute;
+  top: -9px;
+  left: calc(50% - 7px);
+  min-width: 14px;
+  border-radius: 3px;
+  background: var(--algo-paper);
+  text-align: center;
+  font: 600 clamp(9px, 1.4vw, 12px)/1.3 var(--algo-mono);
+}
+.algo-node {
+  position: absolute;
+  z-index: 4;
+  translate: -50% -50%;
+  display: grid;
+  width: clamp(17px, 4.9%, 29px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--algo-ink);
+  border-radius: 50%;
+  background: var(--algo-paper);
+  color: var(--algo-ink);
+  font: 600 clamp(10px, 1.55vw, 15px) var(--algo-mono);
+}
+.algo-node[data-active="true"] {
+  background: var(--algo-ink);
+  color: var(--algo-paper);
+}
+.algo-figure figcaption {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+  color: var(--study-muted);
+  font-size: 11px;
+}
+
+.algo-equation {
+  margin: 11px 0;
+  padding: 9px 11px;
+  border-left: 2px solid var(--algo-seal);
+  background: var(--algo-wash);
+  color: var(--study-ink);
+  font: 14px/1.55 var(--algo-mono);
+  overflow-wrap: anywhere;
+}
+.algo-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: 7px;
+  margin-top: 12px;
+}
+.algo-matrix {
+  margin: 0;
+  padding: 8px;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 6px;
+  border: 1px solid var(--algo-rule);
+  border-radius: 6px;
+}
+.algo-matrix figcaption {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  align-items: baseline;
+  font: 13px/1.3 var(--algo-mono);
+}
+.algo-matrix figcaption small {
+  color: var(--study-muted);
+  white-space: nowrap;
+}
+.algo-matrix-brackets {
+  padding-inline: 4px;
+  border: 1px solid var(--algo-ink);
+  border-block-width: 0;
+  position: relative;
+}
+.algo-matrix-brackets::before,
+.algo-matrix-brackets::after {
+  position: absolute;
+  inset: 0 -1px;
+  content: "";
+  pointer-events: none;
+}
+.algo-matrix-brackets::before {
+  background:
+    linear-gradient(var(--algo-ink), var(--algo-ink)) left top/5px 1px no-repeat,
+    linear-gradient(var(--algo-ink), var(--algo-ink)) left bottom/5px 1px
+      no-repeat;
+}
+.algo-matrix-brackets::after {
+  background:
+    linear-gradient(var(--algo-ink), var(--algo-ink)) right top/5px 1px
+      no-repeat,
+    linear-gradient(var(--algo-ink), var(--algo-ink)) right bottom/5px 1px
+      no-repeat;
+}
+.algo-matrix td {
+  padding: 4px clamp(2px, 0.4vw, 8px);
+  text-align: center;
+  font: 13px var(--algo-mono);
+}
+.algo-matrix td[data-selected="true"] {
+  background: var(--algo-wash);
+  font-weight: 650;
+  color: var(--algo-seal);
+}
+
+.algo-note {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+  gap: 14px 23px;
+  align-items: start;
+  margin-top: 29px;
+  scroll-margin-top: 80px;
+}
+.algo-note h2 {
+  font: 550 clamp(25px, 3.4vw, 36px)/1.2 var(--study-serif);
+}
+.algo-note p {
+  margin: 9px 0;
+  color: var(--study-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.algo-note a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--algo-ink);
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.algo-note pre {
+  min-width: 0;
+  margin: 0;
+  padding: 14px;
+  border-left: 2px solid var(--algo-ink);
+  background: var(--algo-wash);
+  font: 13px/1.6 var(--algo-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 740px) {
+  .algo-page {
+    padding-top: 23px;
+  }
+  .algo-workspace,
+  .algo-note {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .algo-figure {
+    border-right: 0;
+    border-bottom: 1px solid var(--algo-rule);
+    padding: 11px 8px;
+  }
+  .algo-toolbar,
+  .algo-definition,
+  .algo-stepper,
+  .algo-explanation,
+  .algo-matrix-stage {
+    padding-inline: 11px;
+  }
+  .algo-toolbar,
+  .algo-definition,
+  .algo-stepper {
+    gap: 6px;
+  }
+  .algo-track {
+    flex-basis: 245px;
+  }
+  .algo-notebook button {
+    padding-inline: 7px;
+  }
+  .algo-matrix-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .algo-matrix td {
+    font-size: 12px;
+  }
+}
+@media (max-width: 355px) {
+  .algo-matrix {
+    padding: 5px;
+  }
+  .algo-matrix td {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
+
+.algo-node[data-group="true"] {
+  width: auto;
+  min-width: 30px;
+  min-height: 25px;
+  padding: 0 4px;
+  aspect-ratio: auto;
+  border-radius: 7px;
+  font-size: clamp(10px, 1.55vw, 13px);
+}
+
+.algo-facts dd {
+  white-space: pre-line;
+}
+.algo-page .algo-note pre {
+  padding: 14px;
+}
+.algo-page .algo-note pre code {
+  display: block;
+  padding-inline: 13px;
+  font: inherit;
+  color: inherit;
+}
+
+.algo-figure figcaption [data-legend] {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.algo-figure figcaption [data-legend]::before {
+  content: "";
+  width: 13px;
+  border-top: 2px solid var(--algo-ink);
+}
+.algo-figure figcaption [data-legend="active"]::before {
+  border-color: var(--algo-seal);
+}
+.algo-figure figcaption [data-legend="sampled"]::before {
+  border-color: var(--algo-sample);
+  border-top-style: dashed;
+}
+.algo-figure figcaption [data-legend="rejected"]::before {
+  border-color: var(--study-muted);
+  border-top-style: dashed;
+  opacity: 0.55;
+}
+
+.algo-matrix table {
+  border-collapse: separate;
+  border-spacing: 3px 0;
+}
+
+.algo-edge[data-paired="true"] > span {
+  left: calc(37% - 7px);
+}
+
+.algo-note pre code > span {
+  display: block;
+  white-space: pre-wrap;
+}

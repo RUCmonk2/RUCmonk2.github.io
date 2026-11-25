@@ -47,6 +47,8 @@ jobs:
         run: npm run test:rotations
       - name: Validate group theory workshop
         run: npm run test:galois
+      - name: Validate graph and matrix experiments
+        run: npm run test:algorithm-labs
       - name: Validate FFT experiment
         run: npm run test:fft
       - name: Validate folding workshop

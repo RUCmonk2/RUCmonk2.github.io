@@ -52,6 +52,33 @@ const experiments = [
   },
 ] as const;
 
+const algorithmLabs = [
+  {
+    path: "mst",
+    title: { zh: "最小生成树", en: "Minimum spanning trees" },
+    summary: {
+      zh: "同图比较 Kruskal、Prim、Borůvka，再看 KKT 的采样和删边。",
+      en: "Compare Kruskal, Prim, and Borůvka, then trace KKT sampling and pruning.",
+    },
+  },
+  {
+    path: "matrices",
+    title: { zh: "矩阵运算与分解", en: "Matrix operations" },
+    summary: {
+      zh: "逐格算乘法，分步做带主元 LU，再看 SVD 的秩与重构。",
+      en: "Compute product entries, follow pivoted LU, and reconstruct with SVD.",
+    },
+  },
+  {
+    path: "directed-graphs",
+    title: { zh: "有向图算法", en: "Directed graphs" },
+    summary: {
+      zh: "DAG 排序和最短路、Tarjan SCC、有向生成树 DST。",
+      en: "DAG ordering and shortest paths, Tarjan SCCs, and rooted arborescences.",
+    },
+  },
+] as const;
+
 function LabIllustration({
   type,
 }: {
@@ -125,8 +152,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: locale === "en" ? "Mathematics Lab" : "数学实验室",
     description:
       locale === "en"
-        ? "Interactive experiments in Fourier transforms, algebra, geometry, and sliding puzzles."
-        : "用六个交互实验探索快速傅里叶变换、代数、几何与益智谜题。",
+        ? "Interactive experiments in Fourier transforms, graph algorithms, matrix factorization, geometry, and sliding puzzles."
+        : "交互探索 FFT、图算法、矩阵分解、代数、几何和益智谜题。",
     path: "/learning/math-lab",
     locale: locale as Locale,
   });
@@ -177,8 +204,33 @@ export default async function Page({ params }: Props) {
         <section
           className="lab-shelf"
           id="experiments"
-          aria-labelledby="lab-experiments-title"
+          aria-labelledby="lab-algorithms-title"
         >
+          <div className="lab-shelf-heading">
+            <h2 id="lab-algorithms-title">
+              {english ? "Algorithms and matrices" : "算法与矩阵"}
+            </h2>
+          </div>
+          <div className="lab-algorithm-grid">
+            {algorithmLabs.map((lab) => (
+              <Link
+                className="lab-card lab-algorithm-card"
+                key={lab.path}
+                href={`${labHref}/${lab.path}/`}
+              >
+                <div className="lab-card-copy">
+                  <div className="lab-card-title">
+                    <h3>{lab.title[language]}</h3>
+                    <ArrowUpRight size={16} aria-hidden="true" />
+                  </div>
+                  <p>{lab.summary[language]}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="lab-shelf" aria-labelledby="lab-experiments-title">
           <div className="lab-shelf-heading">
             <h2 id="lab-experiments-title">
               {english ? "More experiments" : "更多实验"}

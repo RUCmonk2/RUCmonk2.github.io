@@ -126,13 +126,13 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "数学实验室", en: "Mathematics Lab" },
     description: {
-      zh: "从 4 点例题看懂 FFT 的算式和矩阵，也可以体验旋转、因式、群论、折纸和华容道。",
-      en: "Work through a 4-point FFT with equations and matrices, or explore 3D rotations, factorization, Galois theory, paper folding, and sliding puzzles.",
+      zh: "从算例做 FFT、最小生成树、DAG、SCC、有向生成树、矩阵乘法和 LU／SVD，也可以体验旋转、代数与谜题。",
+      en: "Work through FFT, spanning trees, directed graph algorithms, and matrix multiplication or LU and SVD, then explore geometry, algebra, and puzzles.",
     },
     topic: { zh: "动手探索", en: "Hands-on exploration" },
     scope: {
-      zh: "6 个交互实验",
-      en: "Six interactive experiments",
+      zh: "9 个交互实验",
+      en: "Nine interactive experiments",
     },
     updated: "2026-11-26",
   },

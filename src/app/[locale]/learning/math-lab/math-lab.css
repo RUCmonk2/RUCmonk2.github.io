@@ -528,3 +528,31 @@
     transition: none;
   }
 }
+
+.lab-algorithm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lab-algorithm-card {
+  background: linear-gradient(120deg, var(--study-soft), var(--study-paper));
+  border-top: 2px solid var(--study-link);
+}
+
+.lab-algorithm-card .lab-card-copy {
+  padding: 14px;
+}
+
+.lab-algorithm-card .lab-card-title h3 {
+  font-size: 21px;
+}
+
+@media (max-width: 680px) {
+  .lab-algorithm-grid {
+    grid-template-columns: 1fr;
+  }
+  .lab-algorithm-card .lab-card-title h3 {
+    font-size: 19px;
+  }
+}
