@@ -19,7 +19,10 @@ export default function Navbar({
   const homeHref = isEnglish ? "/en" : "/";
   const blogHref = isEnglish ? "/en/blog" : "/blog";
   const learningHref = isEnglish ? "/en/learning" : "/learning";
-  const isLearningPage = /\/(learning|tutorials|teaching)(\/|$)/.test(pathname);
+  const labHref = learningHref + "/math-lab";
+  const isLabPage = /\/learning\/math-lab(?:\/|$)/.test(pathname);
+  const isLearningPage =
+    !isLabPage && /\/(learning|tutorials|teaching)(\/|$)/.test(pathname);
   const linksHref = isEnglish ? "/en/links" : "/links";
   const t = useTranslations();
 
@@ -95,6 +98,9 @@ export default function Navbar({
           >
             {t("navigation.learning")}
           </Link>
+          <Link href={labHref} aria-current={isLabPage ? "page" : undefined}>
+            {isEnglish ? "Math Lab" : "数学实验室"}
+          </Link>
           <Link
             href={blogHref}
             aria-current={pathname.includes("/blog") ? "page" : undefined}
@@ -118,6 +124,14 @@ export default function Navbar({
             aria-current={isLearningPage ? "page" : undefined}
           >
             {t("navigation.learning")}
+          </Link>
+          <Link
+            href={labHref}
+            className="pure-mobile-blog"
+            aria-current={isLabPage ? "page" : undefined}
+            aria-label={isEnglish ? "Mathematics Lab" : "数学实验室"}
+          >
+            {isEnglish ? "Lab" : "实验"}
           </Link>
           <Link href={blogHref} className="pure-mobile-blog">
             {t("blog.title")}

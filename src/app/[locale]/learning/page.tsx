@@ -69,6 +69,20 @@ export default async function LearningPage({
               : "沿着课程打基础，也围绕一个具体问题，逐步理解、动手和验证。"}
           </p>
         </header>
+        <Link
+          className="learning-lab-entry"
+          href={prefix + "/learning/math-lab/"}
+        >
+          <span>
+            <strong>{isEnglish ? "Mathematics Lab" : "数学实验室"}</strong>
+            <small>
+              {isEnglish
+                ? "FFT, rotating cubes, paper folds, and sliding puzzles"
+                : "FFT、三维旋转、折纸和华容道"}
+            </small>
+          </span>
+          <ArrowRight size={17} aria-hidden="true" />
+        </Link>
         <nav
           className="learning-jump-links"
           aria-label={isEnglish ? "Learning categories" : "学习分类"}

@@ -91,10 +91,43 @@ body.study-site {
     white-space: nowrap;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 760px) {
   .study-site .pure-nav-inner {
-    gap: 0.3rem;
+    gap: 0.4rem;
     padding-inline: 0.5rem;
+  }
+  .study-site .pure-nav-tools a.pure-mobile-blog {
+    padding-inline: 0.32rem;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+  .study-site .pure-nav-tools button {
+    width: 1.9rem;
+  }
+  .study-site .pure-nav-tools a[aria-current="page"] {
+    color: var(--study-link);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--study-seal);
+  }
+}
+@media (max-width: 355px) {
+  .study-site .pure-nav-inner {
+    gap: 0.23rem;
+    padding-inline: 0.38rem;
+  }
+  .study-site .pure-nav .pure-brand b {
+    font-size: 0.93rem;
+  }
+  .study-site .pure-nav-tools {
+    gap: 0.1rem;
+  }
+  .study-site .pure-nav-tools a.pure-mobile-blog {
+    padding-inline: 0.2rem;
+    font-size: 0.69rem;
+  }
+  .study-site .pure-nav-tools button {
+    width: 1.65rem;
   }
 }
 .study-site .pure-footer {

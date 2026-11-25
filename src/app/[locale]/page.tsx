@@ -200,9 +200,12 @@ export default async function Page({
               {isEnglish ? "" : "也在笔墨与山水之间，安放好奇心。"}
             </p>
             <div className="study-actions">
-              <Link href={blogHref}>
-                {isEnglish ? "Read my notes" : "读些文字"}
-                <ArrowUpRight size={15} />
+              <Link
+                className="study-lab-action"
+                href={learningHref + "/math-lab/"}
+              >
+                {isEnglish ? "Mathematics Lab" : "数学实验室"}
+                <ArrowRight size={15} aria-hidden="true" />
               </Link>
               <a
                 href="https://github.com/RUCmonk2"

@@ -1,0 +1,526 @@
+.fft-page {
+  padding-top: 33px;
+}
+
+.fft-intro {
+  margin: 18px 0 23px;
+}
+
+.fft-intro h1 {
+  font-size: clamp(34px, 5vw, 60px);
+}
+
+.fft-workbench {
+  --fft-line: #354754;
+  --fft-soft: #203140;
+  --fft-dim: #afbec7;
+  overflow: hidden;
+  border: 1px solid #374a57;
+  border-radius: 18px;
+  background: var(--lab-night);
+  color: var(--lab-light);
+  box-shadow: 0 18px 56px -33px #07162791;
+}
+
+.fft-workbench :focus-visible {
+  outline-color: var(--lab-gold);
+  outline-offset: -1px;
+}
+
+.fft-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: end;
+  justify-content: space-between;
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--fft-line);
+}
+
+.fft-presets {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fft-presets legend {
+  margin-bottom: 6px;
+  color: var(--fft-dim);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.fft-presets > div,
+.fft-play {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.fft-presets button,
+.fft-icon-button,
+.fft-play-button,
+.fft-first-fold {
+  min-height: 35px;
+  padding: 6px 11px;
+  border: 1px solid var(--fft-line);
+  border-radius: 6px;
+  color: var(--fft-dim);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.fft-presets button:hover,
+.fft-icon-button:hover:not(:disabled),
+.fft-play-button:hover,
+.fft-timeline li button:hover {
+  color: var(--lab-light);
+  background: var(--fft-soft);
+}
+
+.fft-presets button[aria-pressed="true"] {
+  border-color: #6bada0;
+  color: var(--lab-teal);
+  background: #1e3b41;
+}
+
+.fft-play-button,
+.fft-first-fold {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--lab-light);
+}
+
+.fft-play-button {
+  min-width: 78px;
+  justify-content: center;
+}
+.fft-play-button svg {
+  color: var(--lab-teal);
+}
+.fft-first-fold {
+  background: var(--lab-teal);
+  color: #102521;
+  border-color: transparent;
+}
+.fft-first-fold:hover {
+  background: #b2f1e3;
+}
+
+.fft-icon-button {
+  display: grid;
+  min-width: 35px;
+  place-items: center;
+  padding: 0;
+}
+
+.fft-icon-button:disabled {
+  color: #768896;
+  border-color: #2a3a46;
+  cursor: default;
+}
+
+.fft-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+}
+
+.fft-stage {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse at center 48%, #23444b81 0%, transparent 63%),
+    linear-gradient(#8ba6b709 1px, transparent 1px) center / 28px 28px,
+    linear-gradient(90deg, #8ba6b709 1px, transparent 1px) center / 28px 28px;
+}
+
+.fft-stage-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 72px;
+  padding: 13px 22px 0;
+}
+
+.fft-stage-top p {
+  color: var(--lab-teal);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.fft-stage-top h2,
+.fft-panel h2 {
+  font: 500 clamp(21px, 2.6vw, 29px)/1.22 var(--study-serif);
+}
+
+.fft-stage-top h2 {
+  margin-top: 4px;
+}
+
+.fft-stage-count {
+  padding: 4px 8px;
+  border: 1px solid var(--fft-line);
+  border-radius: 4px;
+  color: #e4c992;
+  font:
+    11px ui-monospace,
+    monospace;
+  white-space: nowrap;
+}
+
+.fft-disk {
+  display: block;
+  width: min(100%, 500px);
+  height: auto;
+  aspect-ratio: 500 / 408;
+  margin: -9px auto -12px;
+}
+
+.fft-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 7px 18px;
+  padding: 0 12px 14px;
+  color: var(--fft-dim);
+  font-size: 12px;
+}
+
+.fft-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fft-legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lab-teal);
+}
+.fft-legend span:nth-child(2) i {
+  background: var(--lab-coral);
+}
+
+.fft-panel {
+  padding: 25px 24px 19px;
+  border-left: 1px solid var(--fft-line);
+  background: #172532;
+}
+
+.fft-panel > p {
+  margin: 8px 0 14px;
+  color: var(--fft-dim);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.fft-panel-ranges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+
+.fft-range {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 4px;
+  align-items: center;
+  color: var(--fft-dim);
+  font-size: 13px;
+}
+
+.fft-range output {
+  color: var(--lab-teal);
+  font:
+    13px ui-monospace,
+    monospace;
+}
+
+.fft-range input {
+  width: 100%;
+  min-height: 24px;
+  grid-column: 1 / -1;
+  accent-color: var(--lab-teal);
+}
+
+.fft-range input:disabled {
+  opacity: 0.53;
+}
+
+.fft-readout {
+  margin-top: 9px;
+  border-top: 1px solid var(--fft-line);
+}
+
+.fft-readout > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding-block: 9px;
+  border-bottom: 1px solid var(--fft-line);
+  font:
+    12px/1.4 ui-monospace,
+    monospace;
+}
+
+.fft-readout :is(dt, dd) {
+  margin: 0;
+}
+.fft-readout dt small {
+  margin-left: 4px;
+  font-size: 10px;
+  color: var(--fft-dim);
+}
+.fft-readout dd {
+  text-align: right;
+  color: #e7eef1;
+}
+.fft-readout .fft-plus :is(dt, dd) {
+  color: var(--lab-teal);
+}
+.fft-readout .fft-minus :is(dt, dd) {
+  color: var(--lab-coral);
+}
+.fft-panel .fft-panel-note {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.fft-timeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  border-top: 1px solid var(--fft-line);
+  padding: 11px 18px;
+  background: #152431;
+}
+
+.fft-timeline ol {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: 3px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fft-timeline li {
+  display: grid;
+  flex: 0 1 46px;
+  min-width: 0;
+}
+.fft-timeline li:is(:first-child, :last-child) {
+  flex: 0 1 72px;
+}
+
+.fft-timeline li button {
+  min-width: 0;
+  min-height: 34px;
+  padding: 3px 4px;
+  border-radius: 5px;
+  color: var(--fft-dim);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.fft-timeline li button[aria-current="step"] {
+  background: #ffdc9740;
+  color: #ffe2a9;
+  box-shadow: inset 0 -1px #f3ca82;
+}
+
+.fft-chart {
+  margin: 0;
+  padding: 13px 22px 15px;
+  border-top: 1px solid var(--fft-line);
+  background: #14212b;
+}
+
+.fft-chart figcaption,
+.fft-chart-axis {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.fft-chart figcaption strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.fft-chart figcaption span,
+.fft-chart-axis {
+  color: var(--fft-dim);
+  font:
+    10px ui-monospace,
+    monospace;
+}
+
+.fft-stems {
+  --zero-line: 50%;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  height: 63px;
+  margin-top: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent var(--zero-line),
+    #647d8a 0 calc(var(--zero-line) + 1px),
+    transparent 0
+  );
+}
+
+.fft-chart[data-frequency="true"] .fft-stems {
+  --zero-line: 90%;
+}
+
+.fft-stem {
+  --fft-stem-color: var(--lab-teal);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.fft-stem[data-negative="true"] {
+  --fft-stem-color: var(--lab-coral);
+}
+.fft-stem[data-active="true"] {
+  --fft-stem-color: var(--lab-gold);
+}
+
+.fft-stem i {
+  position: absolute;
+  width: 1.5px;
+  height: max(1px, calc(var(--magnitude) * (var(--zero-line) - 3px)));
+  bottom: calc(100% - var(--zero-line));
+  background: var(--fft-stem-color);
+}
+
+.fft-stem[data-negative="true"] i {
+  top: var(--zero-line);
+  bottom: auto;
+}
+
+.fft-stem i::before {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--fft-stem-color);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.fft-stem[data-negative="true"] i::before {
+  top: auto;
+  bottom: -2px;
+}
+.fft-stem[data-active="true"] i::before {
+  box-shadow: 0 0 8px var(--fft-stem-color);
+}
+.fft-chart-axis {
+  margin-top: 2px;
+}
+
+.fft-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.fft-explanation {
+  max-width: 720px;
+  margin: 38px 0 0;
+}
+
+.fft-explanation h2 {
+  font: 500 clamp(24px, 3vw, 34px)/1.25 var(--study-serif);
+}
+.fft-explanation p {
+  margin: 11px 0 0;
+  color: var(--study-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.fft-explanation .fft-source {
+  font-size: 12px;
+}
+
+@media (max-width: 740px) {
+  .fft-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fft-panel {
+    border-left: 0;
+    border-top: 1px solid var(--fft-line);
+    padding: 18px;
+  }
+  .fft-controls {
+    padding: 12px;
+    gap: 8px;
+  }
+  .fft-stage-top {
+    min-height: 66px;
+    padding-inline: 14px;
+  }
+  .fft-chart {
+    padding-inline: 14px;
+  }
+  .fft-timeline {
+    padding-inline: 10px;
+    gap: 4px;
+  }
+  .fft-timeline ol {
+    gap: 2px;
+  }
+  .fft-timeline .fft-icon-button {
+    min-width: 29px;
+  }
+}
+
+@media (max-width: 420px) {
+  .fft-page .fft-intro {
+    margin-bottom: 17px;
+  }
+  .fft-presets > div {
+    gap: 3px;
+  }
+  .fft-presets button,
+  .fft-play-button {
+    padding-inline: 6px;
+  }
+  .fft-play-button {
+    min-width: 58px;
+  }
+  .fft-play {
+    gap: 3px;
+  }
+  .fft-play .fft-icon-button {
+    min-width: 30px;
+  }
+  .fft-first-fold {
+    gap: 4px;
+    padding-inline: 6px;
+  }
+  .fft-timeline li button {
+    padding-inline: 1px;
+    font-size: 11px;
+  }
+}

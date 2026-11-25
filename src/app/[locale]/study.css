@@ -138,6 +138,10 @@ body:has(.study-home) .pure-brand span {
     color 0.2s,
     border-color 0.2s;
 }
+.study-actions .study-lab-action {
+  color: var(--pure-primary);
+  font-weight: 650;
+}
 .study-actions a:hover {
   color: #a14939;
   border-color: #a14939;
