@@ -288,7 +288,6 @@ export const learningCatalog: readonly LearningItem[] = [
     topic: { zh: "开发环境", en: "Development environments" },
     scope: { zh: "双平台 · 分步完成", en: "Two platforms · step by step" },
     updated: "2026-08-25",
-    featuredOrder: 3,
   },
   {
     id: "deepseek-harness",

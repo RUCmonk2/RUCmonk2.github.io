@@ -15,7 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return constructMetadata({
-    title: locale === "en" ? "Morning brief (Beta)" : "每日晨报（测试版）",
+    title: locale === "en" ? "Research brief archive" : "研究晨报归档",
     description:
       locale === "en"
         ? "A concise research brief, published in Chinese. Only substantive developments directly related to my research interests."
@@ -40,10 +40,7 @@ export default async function MorningBriefPage({
           {english ? "Back to the study" : "返回书斋"}
         </Link>
         <p className="brief-eyebrow">RESEARCH / MORNING NOTES</p>
-        <h1>
-          {english ? "Morning brief" : "每日晨报"}
-          <span>{english ? " (Beta)" : "（测试版）"}</span>
-        </h1>
+        <h1>{english ? "Research brief archive" : "研究晨报归档"}</h1>
         <p className="brief-introduction">
           {english
             ? "Only research that merits your attention. Three items at most; no filler."

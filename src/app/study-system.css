@@ -78,13 +78,6 @@ body.study-site {
   text-underline-offset: 7px;
   text-decoration-color: var(--study-seal);
 }
-.study-site .pure-mobile-brief {
-  min-width: 28px;
-  padding-inline: 0.3rem;
-}
-.study-site .pure-mobile-brief[aria-current="page"] {
-  color: var(--study-seal);
-}
 @media (min-width: 761px) and (max-width: 1020px) {
   .study-site .pure-brand span {
     display: none;

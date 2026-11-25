@@ -19,7 +19,10 @@
 .companion-character {
   position: relative;
   z-index: 1;
-  display: block;
+  display: grid;
+  width: var(--pet-w);
+  height: var(--pet-h);
+  place-items: center;
   border: 0;
   background: transparent;
   padding: 0;
@@ -38,6 +41,25 @@
   animation: companion-idle 4.8s steps(1, end) infinite;
   filter: drop-shadow(0 3px 3px #31453814);
 }
+.companion-portrait {
+  display: block;
+  width: 78%;
+  height: 92%;
+  border: 1px solid var(--pure-border);
+  border-radius: 45% 45% 18% 18%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: drop-shadow(0 3px 3px #31453826);
+  pointer-events: none;
+}
+.companion-portrait[data-reacting] {
+  animation: companion-portrait-nod 0.55s ease-in-out both;
+}
+@keyframes companion-portrait-nod {
+  45% {
+    transform: translateY(-4px) rotate(-4deg);
+  }
+}
 .companion-close {
   position: absolute;
   z-index: 3;
@@ -53,19 +75,22 @@
   cursor: pointer;
 }
 .companion-options {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
-  gap: 8px;
+  gap: 0 4px;
+  width: 100%;
   border: 1px solid var(--pure-border);
   background: color-mix(in srgb, var(--pure-bg) 94%, transparent);
   border-radius: 20px;
-  padding: 2px 10px;
+  padding: 2px 6px;
   font-size: 11px;
   box-shadow: 0 3px 14px #223f2b08;
 }
 .companion-options button {
-  min-height: 28px;
-  padding: 0 3px;
+  min-height: 30px;
+  padding: 0 2px;
+  white-space: nowrap;
   cursor: pointer;
   color: var(--pure-muted-fg);
 }
@@ -74,9 +99,6 @@
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: #a35b45;
-}
-.companion-options > span {
-  color: var(--pure-muted-fg);
 }
 .companion-bubble {
   position: absolute;
@@ -163,7 +185,7 @@
   }
   .companion-body {
     display: none;
-    width: 112px;
+    width: 128px;
   }
   .companion-reopen {
     display: flex;
@@ -268,6 +290,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .companion-character,
+  .companion-portrait,
   .companion-sprite {
     animation: none !important;
     transform: none !important;

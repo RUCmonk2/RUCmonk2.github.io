@@ -16,7 +16,7 @@
 2. 在目录登记唯一的 `id`、`href`、`category`，以及中英文标题、简介、主题和范围。
 3. `updated` 是内容更新时间，不随页面样式或目录调整而刷新。
 4. 有中英文路径的页面使用 `localized: true`；独立中文 HTML / PDF 伴读页使用 `false`，英文目录也指向原地址，并标注内容语言。
-5. 首页固定选三项，通过 `featuredOrder: 1/2/3` 决定；未推荐的条目仍自动进入总目录。
+5. 首页选两项，通过 `featuredOrder: 1/2` 决定；未推荐的条目仍自动进入总目录。
 6. 课程章节正文继续存放在 `src/data/learning/`，目录不保存正文副本。课程数量、阅读页课程切换、精选和站点地图由目录生成。程序设计页的标题也从目录读取。
 7. 独立 HTML 的标题无法直接读取 TypeScript 目录，修改目录标题时同步页面的 h1、title 和 Open Graph 标题；导出检查会核对 h1，防止两处逐渐分叉。
 
@@ -31,4 +31,4 @@
 
 运行 `npm run lint`、`npm run test:content`、`npm run build`、`npm run check:export`，与 CI 的发布检查顺序一致。
 
-目录检查会核对唯一 ID / 地址、三项精选、中英文必填字段、有效日期、实际导出的内容路径、页面标题、课程切换、旧目录兼容、canonical 和站点地图去重。站点检查会进一步检查导出 HTML 的本地链接与锚点。变更导航或布局时，额外检查手机与桌面显示。其他内容的维护边界见 [site-maintenance.md](site-maintenance.md)。
+目录检查会核对唯一 ID / 地址、两项精选、中英文必填字段、有效日期、实际导出的内容路径、页面标题、课程切换、旧目录兼容、canonical 和站点地图去重。站点检查会进一步检查导出 HTML 的本地链接与锚点。变更导航或布局时，额外检查手机与桌面显示。其他内容的维护边界见 [site-maintenance.md](site-maintenance.md)。

@@ -12,17 +12,16 @@ const ids = new Set();
 const hrefs = new Set();
 const featured = getFeaturedLearning();
 
-assert.equal(
-  featured.length,
-  3,
-  "The homepage should have three learning picks",
-);
+assert.equal(featured.length, 2, "The homepage should have two learning picks");
 assert.equal(
   learningCatalog.filter((item) => item.featuredOrder !== undefined).length,
   featured.length,
   "Do not silently hide additional featured entries",
 );
-assert.equal(new Set(featured.map((item) => item.featuredOrder)).size, 3);
+assert.equal(
+  new Set(featured.map((item) => item.featuredOrder)).size,
+  featured.length,
+);
 
 for (const item of learningCatalog) {
   assert(!ids.has(item.id), `Duplicate id: ${item.id}`);
@@ -87,7 +86,7 @@ for (const locale of ["zh", "en"]) {
   const prefix = locale === "en" ? "/en" : "";
   const home = await readFile(path.join(output, prefix, "index.html"), "utf8");
   const rows = [...home.matchAll(/<a\b[^>]*class="pure-resource-row"[^>]*>/g)];
-  assert.equal(rows.length, 3, `${locale}: homepage pick count`);
+  assert.equal(rows.length, featured.length, `${locale}: homepage pick count`);
   for (const item of featured) {
     const href = learningItemHref(item, locale);
     assert(
@@ -138,5 +137,5 @@ assert(
   "Standalone guides are not duplicated by locale",
 );
 console.log(
-  `Learning catalog verified: ${ids.size} unique entries, 3 homepage picks, both locales and legacy directory available.`,
+  `Learning catalog verified: ${ids.size} unique entries, ${featured.length} homepage picks, both locales and legacy directory available.`,
 );

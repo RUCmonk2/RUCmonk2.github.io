@@ -5,12 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-import {
-  HomeVisitors,
-  VisitorControls,
-  VisitorScene,
-} from "@/components/home-visitors";
 import { CustomReactMarkdown } from "@/components/react-markdown";
+import { StudyCompanion } from "@/components/study-companion";
 import { getFeaturedLearning, learningItemHref } from "@/data/learning/catalog";
 import { siteConfig } from "@/data/site";
 import { getBlogPosts, sortPostsByDate } from "@/lib/blog";
@@ -68,8 +64,6 @@ export default async function Page({
         eyebrow: "YAOZHI YE",
         role: "Undergraduate in Artificial Intelligence",
         institution: "Renmin University of China",
-        headline:
-          "My current interests center on AI4Math and AI4TCS. I remain curious about embodied intelligence and explore ideas such as AI for Chinese calligraphy.",
         intro:
           "I am learning how to read research carefully, formulate useful questions, and build technical workflows that remain clear over time.",
         email: "Email",
@@ -114,8 +108,6 @@ export default async function Page({
         eyebrow: "YAOZHI YE",
         role: "人工智能本科生",
         institution: "中国人民大学",
-        headline:
-          "目前主要关注AI4math和AI4TCS，并持续保持对具身智能的兴趣，也会有AI4中国书法等有意思的想法",
         intro:
           "我正在学习如何严谨地阅读论文、形成有价值的问题，并建立能够长期保持清晰的技术工作流。",
         email: "邮件",
@@ -176,7 +168,8 @@ export default async function Page({
   ];
 
   return (
-    <HomeVisitors english={isEnglish}>
+    <main className="pure-home study-home">
+      <StudyCompanion english={isEnglish} />
       {jsonldScript(personJsonLd)}
       <section id="about" className="study-hero scroll-mt-24">
         <div className="study-landscape" aria-hidden="true">
@@ -185,9 +178,6 @@ export default async function Page({
         </div>
         <div className="study-hero-inner">
           <div className="study-introduction">
-            <p className="study-kicker">
-              {isEnglish ? "A PERSONAL STUDY" : "山水之间 · 求索不止"}
-            </p>
             <Image
               className="study-avatar"
               src={siteConfig.avatarUrl}
@@ -228,10 +218,6 @@ export default async function Page({
             <span>立马昆仑</span>
             <i>耀之</i>
           </div>
-          <a href="#study-content" className="study-scroll">
-            {isEnglish ? "SCROLL TO EXPLORE" : "往下，慢慢读"}
-            <span>↓</span>
-          </a>
         </div>
       </section>
 
@@ -245,31 +231,12 @@ export default async function Page({
             <div className="pure-prose">
               <CustomReactMarkdown>{t("bioMarkdown")}</CustomReactMarkdown>
             </div>
-            <p className="pure-lead-note">{copy.headline}</p>
             <a className="pure-small-action" href="mailto:36231219360@qq.com">
               {copy.email}
               <ArrowUpRight aria-hidden="true" />
             </a>
           </div>
         </section>
-
-        <Link
-          href={isEnglish ? "/en/morning-brief/" : "/morning-brief/"}
-          className="study-brief-entry"
-        >
-          <span className="study-brief-entry-label">MORNING NOTES</span>
-          <span className="study-brief-entry-copy">
-            <strong>
-              {isEnglish ? "Morning brief (Beta)" : "每日晨报（测试版）"}
-            </strong>
-            <span>
-              {isEnglish
-                ? "A concise research brief, published in Chinese."
-                : "与研究方向有关的进展，宁缺毋滥。"}
-            </span>
-          </span>
-          <ArrowUpRight size={20} aria-hidden="true" />
-        </Link>
 
         <section
           hidden={hideHomepageShowcaseSections}
@@ -383,7 +350,7 @@ export default async function Page({
           </div>
         </section>
 
-        <section className="pure-section visitor-learning">
+        <section className="pure-section">
           <header className="pure-section-label">
             <span>02</span>
             <h2>{isEnglish ? "Learning picks" : "学习精选"}</h2>
@@ -406,7 +373,6 @@ export default async function Page({
               </Link>
             ))}
           </div>
-          <VisitorScene visitor="gpt" english={isEnglish} />
         </section>
 
         {latestPost && (
@@ -433,9 +399,6 @@ export default async function Page({
           </section>
         )}
 
-        <VisitorScene visitor="claude" english={isEnglish} />
-        <VisitorControls english={isEnglish} />
-
         {!hideHomepageContactSection && (
           <section id="contact" className="pure-section scroll-mt-24">
             <header className="pure-section-label">
@@ -455,6 +418,6 @@ export default async function Page({
           </section>
         )}
       </div>
-    </HomeVisitors>
+    </main>
   );
 }

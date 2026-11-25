@@ -2,10 +2,47 @@
 
 import "./study-companion.css";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+type Companion = {
+  id: string;
+  name: { zh: string; en: string };
+  fullChineseName?: string;
+  greeting: { zh: string; en: string };
+  image: { kind: "sprite" | "portrait"; src: string };
+};
+
+const companions: Companion[] = [
+  {
+    id: "yinyue",
+    name: { zh: "银月", en: "Yinyue" },
+    greeting: { zh: "慢慢读，银月陪你。", en: "Take your time. I’m here." },
+    image: { kind: "sprite", src: "/images/companions/yinyue.webp" },
+  },
+  {
+    id: "fusheng-charlotte",
+    name: { zh: "小夏", en: "Charlotte" },
+    fullChineseName: "浮生小夏",
+    greeting: { zh: "歇一歇，再赴山海。", en: "A little rest, then onward." },
+    image: { kind: "sprite", src: "/images/companions/fusheng-charlotte.webp" },
+  },
+  {
+    id: "gpt",
+    name: { zh: "GPT 娘", en: "GPT Girl" },
+    greeting: { zh: "我在这儿，陪你慢慢看。", en: "I’m here. Take your time." },
+    image: { kind: "portrait", src: "/images/visitors/gpt-bride.webp" },
+  },
+  {
+    id: "claude",
+    name: { zh: "Claude 娘", en: "Claude Girl" },
+    greeting: { zh: "读累了，就歇一会儿。", en: "Take a break if you need one." },
+    image: { kind: "portrait", src: "/images/visitors/claude-bride.webp" },
+  },
+];
+
 export function StudyCompanion({ english }: { english: boolean }) {
-  const [pet, setPet] = useState<"yinyue" | "fusheng-charlotte">("yinyue");
+  const [pet, setPet] = useState(companions[0]);
   const [closed, setClosed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [action, setAction] = useState<
@@ -17,14 +54,9 @@ export function StudyCompanion({ english }: { english: boolean }) {
   const nearby = useRef(false);
   const reacting = action === "wave" || action === "jump" || action === "tilt";
   const [paused, setPaused] = useState(false);
-  const name =
-    pet === "yinyue"
-      ? english
-        ? "Yinyue"
-        : "银月"
-      : english
-        ? "Charlotte"
-        : "浮生小夏";
+  const locale = english ? "en" : "zh";
+  const name = english ? pet.name.en : (pet.fullChineseName ?? pet.name.zh);
+  const isPortrait = pet.image.kind === "portrait";
 
   useEffect(() => {
     const sync = () => {
@@ -52,7 +84,7 @@ export function StudyCompanion({ english }: { english: boolean }) {
   }, [action, paused, closed]);
 
   useEffect(() => {
-    if (closed || paused) return;
+    if (isPortrait || closed || paused) return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const desktop = window.matchMedia("(min-width: 761px) and (pointer: fine)");
     let lastMove = 0;
@@ -96,10 +128,10 @@ export function StudyCompanion({ english }: { english: boolean }) {
       motion.removeEventListener("change", changed);
       desktop.removeEventListener("change", changed);
     };
-  }, [action, closed, paused]);
+  }, [action, closed, isPortrait, paused]);
 
   useEffect(() => {
-    if (closed || paused || action !== "idle") return;
+    if (isPortrait || closed || paused || action !== "idle") return;
     const timer = window.setInterval(() => {
       if (
         document.hidden ||
@@ -117,7 +149,7 @@ export function StudyCompanion({ english }: { english: boolean }) {
       setAction("walk-left");
     }, 45000);
     return () => window.clearInterval(timer);
-  }, [action, closed, paused]);
+  }, [action, closed, isPortrait, paused]);
 
   const greet = () => {
     const options = (["wave", "jump", "tilt"] as const).filter(
@@ -170,15 +202,7 @@ export function StudyCompanion({ english }: { english: boolean }) {
           ×
         </button>
         <div className="companion-bubble" role="status">
-          {reacting
-            ? pet === "yinyue"
-              ? english
-                ? "Take your time. I’m here."
-                : "慢慢读，银月陪你。"
-              : english
-                ? "A little rest, then onward."
-                : "歇一歇，再赴山海。"
-            : ""}
+          {reacting ? pet.greeting[locale] : ""}
         </div>
         <button
           ref={characterRef}
@@ -187,43 +211,49 @@ export function StudyCompanion({ english }: { english: boolean }) {
           onClick={greet}
           aria-label={english ? `Greet ${name}` : `和${name}打招呼`}
         >
-          <span
-            key={`${pet}-${action}`}
-            className={`companion-sprite sprite-${action} ${direction !== null ? "is-looking" : ""}`}
-            style={{
-              backgroundImage: `url(/images/companions/${pet}.webp)`,
-              animationPlayState: paused ? "paused" : "running",
-              backgroundPosition: spritePosition,
-            }}
-            aria-hidden="true"
-          />
+          {isPortrait ? (
+            <Image
+              key={`${pet.id}-${action}`}
+              className="companion-portrait"
+              data-reacting={reacting || undefined}
+              src={pet.image.src}
+              alt=""
+              width={640}
+              height={960}
+              unoptimized
+              style={{ animationPlayState: paused ? "paused" : "running" }}
+            />
+          ) : (
+            <span
+              key={`${pet.id}-${action}`}
+              className={`companion-sprite sprite-${action} ${direction !== null ? "is-looking" : ""}`}
+              style={{
+                backgroundImage: `url(${pet.image.src})`,
+                animationPlayState: paused ? "paused" : "running",
+                backgroundPosition: spritePosition,
+              }}
+              aria-hidden="true"
+            />
+          )}
         </button>
         <div
           className="companion-options"
           role="group"
           aria-label={english ? "Choose companion" : "选择小伴"}
         >
-          <button
-            type="button"
-            aria-pressed={pet === "yinyue"}
-            onClick={() => {
-              setPet("yinyue");
-              resetAction();
-            }}
-          >
-            {english ? "Yinyue" : "银月"}
-          </button>
-          <span aria-hidden="true">·</span>
-          <button
-            type="button"
-            aria-pressed={pet === "fusheng-charlotte"}
-            onClick={() => {
-              setPet("fusheng-charlotte");
-              resetAction();
-            }}
-          >
-            {english ? "Charlotte" : "小夏"}
-          </button>
+          {companions.map((companion) => (
+            <button
+              key={companion.id}
+              type="button"
+              aria-pressed={pet.id === companion.id}
+              onClick={() => {
+                setPet(companion);
+                resetAction();
+              }}
+            >
+              {companion.name[locale]}
+            </button>
+          ))}
         </div>
       </div>
     </aside>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Github, Mail, Rss } from "lucide-react";
+import Link from "next/link";
 import { useLocale } from "next-intl";
 
 import { DATA } from "@/data";
@@ -16,7 +17,13 @@ export default function Footer() {
         <p>
           © {currentYear} {isEnglish ? DATA.name : DATA.chinese.name}
         </p>
-        <nav aria-label={isEnglish ? "Contact links" : "联系方式"}>
+        <nav aria-label={isEnglish ? "Footer links" : "页脚链接"}>
+          <Link
+            className="footer-brief-link"
+            href={isEnglish ? "/en/morning-brief/" : "/morning-brief/"}
+          >
+            {isEnglish ? "Research brief archive" : "研究晨报归档"}
+          </Link>
           <a
             href="https://github.com/RUCmonk2"
             target="_blank"

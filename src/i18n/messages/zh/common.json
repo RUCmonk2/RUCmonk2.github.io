@@ -32,8 +32,7 @@
   "navigation": {
     "about": "关于",
     "learning": "学习",
-    "friends": "友链",
-    "morningBrief": "每日晨报（测试版）"
+    "friends": "友链"
   },
   "navbar": {
     "items": [

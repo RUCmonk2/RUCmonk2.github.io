@@ -32,8 +32,7 @@
   "navigation": {
     "about": "About",
     "learning": "Learning",
-    "friends": "Friends",
-    "morningBrief": "Morning brief (Beta)"
+    "friends": "Friends"
   },
   "navbar": {
     "items": [

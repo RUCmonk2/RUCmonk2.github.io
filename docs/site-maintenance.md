@@ -9,9 +9,9 @@
 
 学习内容分类规则见 [learning-catalog.md](learning-catalog.md)。公共 HTML 中的导航也使用这套称呼；教程正文里的“博客”“教程”等一般名词不需机械替换。
 
-## 每日晨报（测试版）
+## 研究晨报归档
 
-独立入口 `/morning-brief/`，英文壳页面 `/en/morning-brief/`，报告保持中文。首页与导航提供入口，不纳入课程目录、写作列表或 Atom。
+独立入口 `/morning-brief/`，英文壳页面 `/en/morning-brief/`，报告保持中文。页脚提供入口，不纳入课程目录、写作列表或 Atom。
 
 `src/components/morning-brief/` 匿名读取 `morning-brief-data` 分支的白名单 JSON，保留最多 14 期、每期 0–3 条。状态区分有精选、正常无事、未完成、未生成、网络错误和旧日报。只有日期匹配今天且状态为正常空缺，才显示“今日没有大事发生”；旧日报明确日期。正文由 Codex 阅读原始资料并复核后更新；浏览器不调用模型、不访问私有仓库。
 

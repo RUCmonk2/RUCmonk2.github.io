@@ -4144,16 +4144,6 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   text-underline-offset: 3px;
 }
 
-.pure-lead-note {
-  margin: 1.35rem 0 0;
-  border-left: 2px solid var(--pure-primary);
-  padding: 0.15rem 0 0.15rem 0.9rem;
-  color: var(--pure-fg);
-  font-size: 0.86rem;
-  font-weight: 500;
-  line-height: 1.75;
-}
-
 .pure-small-action {
   display: inline-flex;
   margin-top: 1.25rem;
@@ -4519,6 +4509,11 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   transition:
     color 160ms ease,
     transform 160ms ease;
+}
+
+.pure-footer-inner nav .footer-brief-link {
+  width: auto;
+  font-size: 0.7rem;
 }
 
 .pure-footer-inner nav a:hover {

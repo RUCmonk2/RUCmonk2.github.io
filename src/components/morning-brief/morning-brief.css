@@ -32,14 +32,6 @@
   line-height: 1.45;
 }
 
-.brief-masthead h1 span {
-  display: inline-block;
-  color: var(--study-muted);
-  font-size: 0.42em;
-  letter-spacing: 0.02em;
-  vertical-align: 0.15em;
-}
-
 .brief-introduction {
   margin: 1rem 0 0;
   color: var(--study-muted);

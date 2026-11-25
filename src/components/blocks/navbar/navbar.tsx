@@ -1,6 +1,5 @@
 "use client";
 
-import { Newspaper } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
@@ -22,8 +21,6 @@ export default function Navbar({
   const learningHref = isEnglish ? "/en/learning" : "/learning";
   const isLearningPage = /\/(learning|tutorials|teaching)(\/|$)/.test(pathname);
   const linksHref = isEnglish ? "/en/links" : "/links";
-  const briefHref = isEnglish ? "/en/morning-brief" : "/morning-brief";
-  const isBriefPage = pathname.includes("/morning-brief");
   const t = useTranslations();
 
   const [isHidden, setIsHidden] = useState(false);
@@ -106,13 +103,6 @@ export default function Navbar({
             {t("blog.title")}
           </Link>
           <Link
-            href={briefHref}
-            aria-current={isBriefPage ? "page" : undefined}
-            className=""
-          >
-            {t("navigation.morningBrief")}
-          </Link>
-          <Link
             href={linksHref}
             aria-current={pathname.includes("/links") ? "page" : undefined}
             className=""
@@ -131,15 +121,6 @@ export default function Navbar({
           </Link>
           <Link href={blogHref} className="pure-mobile-blog">
             {t("blog.title")}
-          </Link>
-          <Link
-            href={briefHref}
-            className="pure-mobile-blog pure-mobile-brief"
-            aria-current={isBriefPage ? "page" : undefined}
-            aria-label={t("navigation.morningBrief")}
-            title={t("navigation.morningBrief")}
-          >
-            <Newspaper size={16} aria-hidden="true" />
           </Link>
           <ModeToggle />
           <LanguageToggle translatedBlogSlugs={translatedBlogSlugs} />
