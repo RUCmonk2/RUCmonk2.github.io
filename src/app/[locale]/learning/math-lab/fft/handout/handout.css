@@ -282,3 +282,20 @@
   outline: 2px solid var(--reader-link);
   outline-offset: 2px;
 }
+
+.fft-reader-sheet-actions a {
+  color: var(--reader-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fft-reader-sheet-actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.fft-reader-sheet-actions a {
+  font-size: 12px;
+}

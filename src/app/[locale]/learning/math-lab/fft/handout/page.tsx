@@ -1,7 +1,13 @@
 import "../../math-lab.css";
 import "./handout.css";
 
-import { ArrowLeft, ArrowUpRight, Download, FileCode } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  BookOpen,
+  Download,
+  FileCode,
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { Locale } from "next-intl";
@@ -48,6 +54,10 @@ export default async function Page({ params }: Props) {
             </p>
           </div>
           <div className="fft-handout-downloads">
+            <Link href={prefix + "/learning/math-lab/fft/#derivation"}>
+              <BookOpen size={15} aria-hidden="true" />
+              {english ? "Read the web version" : "读网页讲义"}
+            </Link>
             <a
               className="fft-handout-primary"
               href={pdfHref}

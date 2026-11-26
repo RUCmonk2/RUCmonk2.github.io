@@ -2,6 +2,7 @@ import "katex/dist/katex.min.css";
 import "../math-lab.css";
 import "./fft.css";
 import "./fft-guided.css";
+import "./fft-web-handout.css";
 
 import { ArrowDown, ArrowLeft, FileText } from "lucide-react";
 import type { Metadata } from "next";
@@ -9,6 +10,7 @@ import Link from "next/link";
 import type { Locale } from "next-intl";
 
 import { FftDerivation } from "@/components/fft/fft-derivation";
+import { FftWebHandout } from "@/components/fft/fft-web-handout";
 import { FftWorkshop } from "@/components/fft/fft-workshop";
 import { constructMetadata } from "@/lib/metadata";
 
@@ -49,7 +51,7 @@ export default async function Page({ params }: Props) {
               {english ? "PDF handout" : "PDF 讲义"}
             </Link>
             <a className="fft-proof-link" href="#derivation">
-              {english ? "Full derivation" : "完整推导"}{" "}
+              {english ? "Web handout" : "网页讲义"}{" "}
               <ArrowDown size={15} aria-hidden="true" />
             </a>
           </div>
@@ -64,8 +66,16 @@ export default async function Page({ params }: Props) {
             </p>
           </div>
         </header>
-        <FftWorkshop english={english} />
-        <FftDerivation english={english} />
+        <div id="fft-experiment">
+          <FftWorkshop english={english} />
+        </div>
+        {english && (
+          <details className="fft-english-derivation">
+            <summary>Derivation in English</summary>
+            <FftDerivation english />
+          </details>
+        )}
+        <FftWebHandout english={english} />
       </div>
     </main>
   );

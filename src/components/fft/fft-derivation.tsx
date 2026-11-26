@@ -18,7 +18,7 @@ export function FftDerivation({ english }: { english: boolean }) {
   return (
     <article
       className="fft-proof"
-      id="derivation"
+      id="derivation-en"
       aria-labelledby="fft-derivation-title"
     >
       <header>

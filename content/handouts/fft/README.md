@@ -25,3 +25,5 @@
     python3 export-site.py fft-handout.pdf --repo-root /path/to/website
 
 发布资产位于站点的 /assets/fft-handout/。
+
+实验页的可选中正文由 `fft-web.zh.md` 渲染，章节顺序与 PDF 一致。式号、配对表和代码引用改动后，需同时对照 `fft-handout.tex`。网页代码块直接读取本目录的 `fft.c`，行号以源文件为准。
