@@ -1,6 +1,7 @@
 import "katex/dist/katex.min.css";
 import "../math-lab.css";
 import "./fft.css";
+import "./fft-guided.css";
 
 import { ArrowDown, ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
@@ -34,23 +35,25 @@ export default async function Page({ params }: Props) {
   return (
     <main className="math-lab fft-page">
       <div className="lab-shell">
-        <Link className="lab-back" href={prefix + "/learning/math-lab/"}>
-          <ArrowLeft size={16} aria-hidden="true" />
-          {english ? "Mathematics Lab" : "数学实验室"}
-        </Link>
+        <div className="fft-top-links">
+          <Link className="lab-back" href={prefix + "/learning/math-lab/"}>
+            <ArrowLeft size={16} aria-hidden="true" />
+            {english ? "Mathematics Lab" : "数学实验室"}
+          </Link>
+          <a className="fft-proof-link" href="#derivation">
+            {english ? "Full derivation" : "完整推导"}{" "}
+            <ArrowDown size={15} aria-hidden="true" />
+          </a>
+        </div>
         <header className="fft-intro">
           <div>
             <h1>{english ? "FFT · The folding disk" : "FFT 折叠实验"}</h1>
             <p>
               {english
-                ? "Start with four numbers. Follow two folds from x to the complex output X."
-                : "用四个数走一遍 FFT。顺着两次折叠，看采样值怎样变成四个复数频点。"}
+                ? "Four samples in, four frequency coefficients out."
+                : "把四个采样算成四个频点。"}
             </p>
           </div>
-          <a className="fft-proof-link" href="#derivation">
-            {english ? "Derivation and matrices" : "完整推导与矩阵"}{" "}
-            <ArrowDown size={15} aria-hidden="true" />
-          </a>
         </header>
         <FftWorkshop english={english} />
         <FftDerivation english={english} />

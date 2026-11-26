@@ -76,8 +76,7 @@
 .fft-choice button,
 .fft-route li button,
 .fft-next,
-.fft-icon,
-.fft-edit button {
+.fft-icon {
   min-height: 38px;
   padding: 7px 12px;
   border: 1px solid var(--fft-rule);
@@ -90,8 +89,7 @@
 }
 
 .fft-choice button:hover,
-.fft-route button:hover,
-.fft-edit button:hover {
+.fft-route button:hover {
   border-color: var(--fft-green);
   color: var(--fft-green);
 }
@@ -124,22 +122,8 @@
   font: 600 14px/1.25 var(--study-serif);
 }
 
-.fft-vector {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 0.25em;
-  margin-top: 6px;
-  color: var(--study-ink);
-  font: clamp(13px, 1.7vw, 20px)/1.55 var(--fft-mono);
-}
-
-.fft-vector var,
 .fft-long-vector var {
   color: var(--fft-green);
-}
-.fft-vector-entries {
-  overflow-wrap: anywhere;
 }
 .fft-vector-arrow {
   color: var(--fft-green);
@@ -168,31 +152,12 @@
   overflow-wrap: anywhere;
 }
 
-.fft-edit {
-  padding: 9px 22px;
-  border-bottom: 1px solid var(--fft-rule);
-  color: var(--fft-green);
-}
-
-.fft-edit summary {
-  width: fit-content;
-  cursor: pointer;
-}
-.fft-edit form {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  gap: 7px;
-  padding-top: 9px;
-}
-.fft-edit label,
 .fft-selectors label {
   display: grid;
   gap: 4px;
   color: var(--study-muted);
   font-size: 12px;
 }
-.fft-edit input,
 .fft-selectors select {
   min-height: 36px;
   padding: 5px 8px;
@@ -201,13 +166,6 @@
   background: var(--fft-paper);
   color: var(--study-ink);
   font: 14px var(--fft-mono);
-}
-.fft-edit input {
-  width: 76px;
-}
-.fft-edit p {
-  margin-top: 5px;
-  color: var(--fft-red);
 }
 
 .fft-route ol,
@@ -264,29 +222,6 @@
   color: var(--study-muted);
 }
 
-.fft-pair-list {
-  display: grid;
-  gap: 8px;
-}
-
-.fft-pair-list div {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 4px 12px;
-  border: 1px solid var(--fft-rule);
-  border-radius: 6px;
-  padding: 10px 11px;
-}
-
-.fft-pair-list span {
-  color: var(--fft-green);
-  font-weight: 600;
-}
-
-.fft-pair-choice {
-  margin-bottom: 9px;
-}
 .fft-selectors {
   display: flex;
   flex-wrap: wrap;
@@ -610,7 +545,6 @@
   .fft-modes,
   .fft-route,
   .fft-journey,
-  .fft-edit,
   .fft-matrix,
   .fft-chart,
   .fft-precision {
@@ -665,14 +599,8 @@
   }
 }
 
-.fft-calculation {
-  min-width: 0;
-}
 .fft-map {
   justify-content: flex-start;
-}
-.fft-calculation .fft-matrix {
-  padding-inline: clamp(18px, 2.1vw, 27px);
 }
 .fft-step-footer {
   display: none;
