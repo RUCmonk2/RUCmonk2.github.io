@@ -1,0 +1,313 @@
+.tcs-page {
+  background-color: var(--note-bg);
+  color: var(--note-ink);
+}
+
+.tcs-shell {
+  max-width: 1070px;
+}
+
+.tcs-hero {
+  margin: 30px 0 32px;
+}
+
+.tcs-hero h1 {
+  margin: 0 0 15px;
+  font:
+    500 clamp(34px, 5vw, 60px) / 1.16 "Songti SC",
+    STSong,
+    Georgia,
+    serif;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.tcs-hero p {
+  max-width: 64ch;
+  color: var(--note-muted);
+  line-height: 1.75;
+}
+
+.tcs-map {
+  scroll-margin-top: 88px;
+}
+
+.tcs-map:focus {
+  outline: none;
+}
+
+.tcs-map-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--note-line);
+}
+
+.tcs-map-heading h2,
+.tcs-reading h2 {
+  font:
+    500 clamp(21px, 3vw, 28px) / 1.35 "Songti SC",
+    STSong,
+    Georgia,
+    serif;
+}
+
+.tcs-map-heading p {
+  color: var(--note-muted);
+  font-size: 14px;
+}
+
+.tcs-map-stage {
+  position: relative;
+  height: 430px;
+  border-bottom: 1px solid var(--note-line);
+  background: radial-gradient(
+    ellipse at 49% 40%,
+    var(--note-paper),
+    transparent 72%
+  );
+}
+
+.tcs-map-connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.tcs-map-connections-narrow {
+  display: none;
+}
+
+.tcs-map-connections line {
+  stroke: var(--graph-line);
+  stroke-width: 1;
+  opacity: 0.27;
+  transition: opacity 150ms;
+}
+
+.tcs-map-connections line[data-related="true"] {
+  opacity: 0.82;
+}
+
+.tcs-map-node {
+  position: absolute;
+  top: calc(var(--y-wide) - 22px);
+  left: var(--x-wide);
+  display: flex;
+  width: min(26%, 180px);
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  color: var(--map-linear);
+  text-align: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tcs-map-node[data-kind="core"] {
+  color: var(--map-analysis);
+}
+
+.tcs-map-node[data-kind="case"] {
+  color: var(--map-matrix);
+}
+
+.tcs-map-node:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.tcs-node-mark {
+  display: block;
+  width: 44px;
+  height: 44px;
+  overflow: visible;
+}
+
+.tcs-node-mark path {
+  fill: currentColor;
+}
+
+.tcs-ink-edge {
+  opacity: 0.35;
+  filter: blur(0.11px);
+}
+
+.tcs-ink-body {
+  opacity: 0.86;
+}
+
+.tcs-ink-pool {
+  opacity: 0.5;
+  filter: blur(0.08px);
+}
+
+.tcs-node-progress {
+  opacity: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.tcs-map-node[data-pending="true"] .tcs-node-progress {
+  opacity: 1;
+  animation: tcs-fill-ring var(--tcs-dwell) linear forwards;
+}
+
+@keyframes tcs-fill-ring {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tcs-node-label {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0 4px 3px;
+  color: var(--note-ink);
+  font:
+    500 16px / 1.25 "Kaiti SC",
+    STKaiti,
+    "Songti SC",
+    Georgia,
+    serif;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  text-shadow:
+    0 0 5px var(--note-paper),
+    0 0 5px var(--note-paper);
+}
+
+.tcs-map-node[data-kind="case"] .tcs-node-label {
+  color: currentColor;
+}
+
+.tcs-reading {
+  margin-top: 34px;
+}
+
+.tcs-reading h2 {
+  margin-bottom: 14px;
+}
+
+.tcs-topics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+}
+
+.tcs-topic {
+  scroll-margin-top: 86px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 18px 12px 18px;
+  border-top: 1px solid var(--note-line);
+  line-height: 1.75;
+}
+
+.tcs-topic:target,
+.tcs-topic:focus-visible {
+  outline: 1px solid var(--note-accent);
+  outline-offset: -1px;
+  background: var(--note-paper);
+}
+
+.tcs-topic h3 {
+  margin-bottom: 5px;
+  font:
+    500 22px / 1.35 "Songti SC",
+    STSong,
+    Georgia,
+    serif;
+}
+
+.tcs-topic p + p {
+  margin-top: 8px;
+}
+
+.tcs-question {
+  color: var(--note-accent);
+  font-weight: 600;
+}
+
+.tcs-topic-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  margin: 12px 0 9px;
+  font-size: 13px;
+  color: var(--note-accent);
+}
+
+.tcs-topic-links a:hover,
+.tcs-return:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tcs-return {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  margin-top: auto;
+  color: var(--note-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 650px) {
+  .tcs-shell {
+    width: calc(100% - 32px);
+  }
+
+  .tcs-hero {
+    margin-block: 24px;
+  }
+
+  .tcs-map-stage {
+    height: 480px;
+  }
+
+  .tcs-map-connections-wide {
+    display: none;
+  }
+
+  .tcs-map-connections-narrow {
+    display: block;
+  }
+
+  .tcs-map-node {
+    top: calc(var(--y-narrow) - 22px);
+    left: var(--x-narrow);
+    width: 32%;
+  }
+
+  .tcs-node-label {
+    font-size: 14px;
+  }
+
+  .tcs-topics {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tcs-map-connections line {
+    transition: none;
+  }
+
+  .tcs-map-node[data-pending="true"] .tcs-node-progress {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

@@ -7,7 +7,11 @@ import { getTranslations } from "next-intl/server";
 
 import { CustomReactMarkdown } from "@/components/react-markdown";
 import { StudyCompanion } from "@/components/study-companion";
-import { getFeaturedLearning, learningItemHref } from "@/data/learning/catalog";
+import {
+  getFeaturedLearning,
+  getLearningItem,
+  learningItemHref,
+} from "@/data/learning/catalog";
 import { siteConfig } from "@/data/site";
 import { getBlogPosts, sortPostsByDate } from "@/lib/blog";
 import { generatePersonJsonLd } from "@/lib/jsonld";
@@ -38,6 +42,7 @@ export default async function Page({
   const isEnglish = locale === "en";
   const learningLocale = isEnglish ? "en" : "zh";
   const learningHref = isEnglish ? "/en/learning" : "/learning";
+  const tcsMap = getLearningItem("tcs-map");
   const t = await getTranslations({ locale });
   const personJsonLd = await generatePersonJsonLd(locale);
   const projects = (t.raw("projects.items") as Project[]) ?? [];
@@ -362,6 +367,13 @@ export default async function Page({
             </Link>
           </header>
           <div className="pure-section-body pure-row-list">
+            <Link
+              className="study-map-link"
+              href={`${learningItemHref(tcsMap, learningLocale)}/#tcs-map`}
+            >
+              {tcsMap.title[learningLocale]}
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
             {getFeaturedLearning().map((resource) => (
               <Link
                 className="pure-resource-row"

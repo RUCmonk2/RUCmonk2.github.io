@@ -222,6 +222,30 @@ body:has(.study-home) .pure-brand span {
   font-size: 12px;
   line-height: 1.8;
 }
+.study-map-link {
+  display: inline-flex;
+  justify-self: start;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 14px;
+  border: 1px solid var(--pure-border);
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.study-map-link::before {
+  width: 9px;
+  height: 9px;
+  border-radius: 57% 43% 53% 47%;
+  background: #527367;
+  box-shadow: 0 0 4px #5273678c;
+  content: "";
+  flex: 0 0 auto;
+}
+.study-map-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 .study-content .pure-writing-card {
   border-radius: 2px;
   background: #e9ece344;

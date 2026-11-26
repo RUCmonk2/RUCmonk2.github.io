@@ -165,6 +165,20 @@ export const learningCatalog: readonly LearningItem[] = [
     updated: "2026-09-27",
   },
   {
+    id: "tcs-map",
+    category: "atlas",
+    href: "/learning/tcs-map",
+    localized: true,
+    title: { zh: "TCS 学科地图", en: "Theoretical Computer Science Map" },
+    description: {
+      zh: "从图流与排序网络出发，认识可计算性、算法、复杂性、程序语言和其他理论计算机科学分支。",
+      en: "Explore computability, algorithms, complexity, programming languages, and their neighbors through graph streams and sorting networks.",
+    },
+    topic: { zh: "理论计算机科学", en: "Theoretical computer science" },
+    scope: { zh: "墨点图谱 · 图流与排序网络", en: "Interactive map · two case studies" },
+    updated: "2026-11-26",
+  },
+  {
     id: "ai-map",
     category: "atlas",
     href: "/learning/ai-map",
