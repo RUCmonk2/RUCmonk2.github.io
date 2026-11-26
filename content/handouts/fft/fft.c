@@ -57,22 +57,27 @@ static void bit_reverse_order(double complex *a, size_t n)
     }
 }
 
+static void merge_layer(double complex *a, size_t n, size_t len)
+{
+    size_t m = len / 2;
+    for (size_t start = 0; start < n; start += len) {
+        for (size_t q = 0; q < m; ++q) {
+            size_t u = start + q, v = u + m;
+            double complex saved = a[u];
+            double complex t = root_power(len, q) * a[v];
+            a[u] = saved + t;
+            a[v] = saved - t;
+        }
+    }
+}
+
 int fft_inplace(double complex *a, size_t n)
 {
     if (!a || !is_power_of_two(n))
         return 0;
     bit_reverse_order(a, n);
     for (size_t len = 2; len <= n;) {
-        size_t m = len / 2;
-        for (size_t start = 0; start < n; start += len) {
-            for (size_t q = 0; q < m; ++q) {
-                size_t u = start + q, v = u + m;
-                double complex saved = a[u];
-                double complex t = root_power(len, q) * a[v];
-                a[u] = saved + t;
-                a[v] = saved - t;
-            }
-        }
+        merge_layer(a, n, len);
         if (len == n)
             break;
         len *= 2;

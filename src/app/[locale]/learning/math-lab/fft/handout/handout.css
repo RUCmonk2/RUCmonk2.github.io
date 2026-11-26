@@ -1,4 +1,5 @@
 .fft-handout-page {
+  --reader-link: #185782;
   padding-top: 32px;
   color: var(--study-ink);
 }
@@ -41,8 +42,8 @@
   padding: 6px 9px;
   border: 1px solid var(--study-line);
   border-radius: 5px;
-  color: var(--study-link);
-  font-size: 12px;
+  color: var(--reader-link);
+  font-size: 13px;
 }
 
 .fft-handout-downloads a:hover {
@@ -56,7 +57,6 @@
 }
 
 .fft-handout-reader {
-  overflow: hidden;
   border: 1px solid var(--study-line);
   border-radius: 10px;
   background: var(--study-soft);
@@ -145,24 +145,97 @@
   font-size: 12px;
 }
 
-.fft-reader-viewport {
-  max-width: 820px;
-  max-height: min(76vh, 850px);
-  margin: 0 auto;
-  overflow: auto;
-  overscroll-behavior: contain;
-  background: #fff;
+.dark .fft-handout-page {
+  --reader-link: #a8cdef;
 }
 
-.fft-reader-viewport:focus-visible {
-  outline: 2px solid var(--study-link);
+.fft-reader-jump-area {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--study-line);
+  scroll-margin-top: 84px;
+}
+.fft-reader-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 15px;
+}
+.fft-reader-jump-area :is(a, summary),
+.fft-reader-end a,
+.fft-handout-downloads a:not(.fft-handout-primary) {
+  color: var(--reader-link);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.fft-reader-jump-area a,
+.fft-reader-end a {
+  font-size: 14px;
+}
+.fft-reader-contents {
+  margin-top: 6px;
+}
+.fft-reader-contents summary {
+  width: fit-content;
+  cursor: pointer;
+  font-size: 13px;
+}
+.fft-reader-contents ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 23px;
+  padding-left: 1.7em;
+  margin: 8px 0 0;
+  color: var(--study-muted);
+  list-style: decimal;
+}
+.fft-reader-contents a[aria-current="location"] {
+  font-weight: 700;
+}
+.fft-reader-controls {
+  position: sticky;
+  top: 73px;
+  z-index: 8;
+  background: var(--study-soft);
+  box-shadow: 0 2px 6px #20312916;
+}
+.fft-reader-document {
+  max-width: 820px;
+  margin: 0 auto;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+.fft-reader-document:focus-visible {
+  outline: 2px solid var(--reader-link);
   outline-offset: -2px;
 }
-
+.fft-reader-sheet {
+  margin: 0;
+  scroll-margin-top: 164px;
+  background: #fff;
+}
+.fft-reader-sheet + .fft-reader-sheet {
+  margin-top: 11px;
+}
+.fft-reader-sheet figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--study-line);
+  background: var(--study-paper);
+  color: var(--study-muted);
+  font-size: 12px;
+}
+.fft-reader-sheet small {
+  white-space: nowrap;
+}
 .fft-reader-page {
   display: block;
-  max-width: none;
+  width: 100%;
   height: auto;
+}
+.fft-reader-end {
+  padding: 12px;
+  text-align: center;
 }
 
 @media (max-width: 740px) {
@@ -186,7 +259,26 @@
   .fft-reader-picker > span {
     display: none;
   }
-  .fft-reader-viewport {
-    max-height: min(69vh, 740px);
+  .fft-reader-controls {
+    top: 66px;
   }
+  .fft-reader-sheet {
+    scroll-margin-top: 205px;
+  }
+  .fft-reader-contents ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.fft-reader-image-links {
+  position: relative;
+}
+.fft-reader-pdf-link {
+  position: absolute;
+  border-radius: 2px;
+}
+.fft-reader-pdf-link:hover,
+.fft-reader-pdf-link:focus-visible {
+  outline: 2px solid var(--reader-link);
+  outline-offset: 2px;
 }

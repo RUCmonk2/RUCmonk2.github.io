@@ -7,10 +7,11 @@ import Link from "next/link";
 import type { Locale } from "next-intl";
 
 import { FftHandoutReader } from "@/components/fft/fft-handout-reader";
+import handout from "@/data/fft-handout-links.json";
 import { constructMetadata } from "@/lib/metadata";
 
-const pdfHref = "/assets/fft-handout/fft-handout.pdf";
-const sourceHref = "/assets/fft-handout/fft-handout-source.zip";
+const pdfHref = `/assets/fft-handout/fft-handout.pdf?v=${handout.revision}`;
+const sourceHref = `/assets/fft-handout/fft-handout-source.zip?v=${handout.revision}`;
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

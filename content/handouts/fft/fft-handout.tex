@@ -4,23 +4,49 @@
 \hypersetup{pdftitle={FFT 从圆盘折叠到 C 代码},pdfauthor={数学实验室},pdfsubject={基 2 FFT 的完整推导与代码}}
 \HandoutHeader[数学实验室 · FFT 讲义]{\color{handoutmuted}快速傅里叶变换}{\color{handoutmuted}基 2 · DIT}
 
-\newcommand{\FFTPage}[3]{\clearpage\pdfbookmark[0]{#2}{#3}\HandoutLesson{#1}{#2}}
+\newcommand{\FFTLink}[2]{\hyperlink{fft-#1}{#2}}
+\newcommand{\FFTPage}[3]{%
+  \clearpage\phantomsection\hypertarget{fft-#3}{}%
+  \pdfbookmark[0]{#2}{bookmark-#3}\HandoutLesson{#1}{#2}}
+\newcommand{\FoldFan}[1]{%
+  \begin{tikzpicture}[scale=1.04,baseline=(current bounding box.north)]
+    \pgfmathtruncatemacro{\laststation}{#1-1}
+    \pgfmathsetmacro{\cutangle}{112.5-22.5*#1}
+    \pgfmathsetmacro{\endangle}{112.5-45*#1}
+    \pgfmathsetmacro{\sourceangle}{90-22.5*#1}
+    \path[fill=InkWash] (0,0)--(112.5:1.51)
+        arc[start angle=112.5,end angle=\cutangle,radius=1.51]--cycle;
+    \path[fill=BrickRed!11] (0,0)--(\cutangle:1.51)
+        arc[start angle=\cutangle,end angle=\endangle,radius=1.51]--cycle;
+    \draw[disk,densely dashed] (0,0) circle (1.51);
+    \foreach \j in {0,...,\laststation} {
+      \pgfmathsetmacro{\theta}{90-45*\j}
+      \ifnum\j<\numexpr #1/2\relax
+        \node[station,minimum size=15.5pt,font=\footnotesize] at (\theta:1.33) {$\j$};
+      \else
+        \node[warmstation,minimum size=15.5pt,font=\footnotesize] at (\theta:1.33) {$\j$};
+      \fi
+    }
+    \draw[warmarrow] (\sourceangle:1.71)
+       arc[start angle=\sourceangle,end angle=90,radius=1.71];
+  \end{tikzpicture}}
+
 \newcommand{\W}{W}
 \newcommand{\bt}{\boldsymbol}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 
 \begin{document}
-\pdfbookmark[0]{导读与符号}{cover}
+\hypertarget{fft-cover}{}\pdfbookmark[0]{导读与符号}{bookmark-cover}
 \vspace*{5mm}
-{\heiti\small\color{RoyalBlue}数学实验室}\par\vspace{6pt}
-{\fontsize{32}{40}\selectfont\heiti\bfseries\color{handoutink}FFT：从圆盘折叠到 C 代码}\par
+{\songti\small\color{RoyalBlue}数学实验室}\par\vspace{6pt}
+{\fontsize{31}{40}\selectfont\songti\bfseries\color{handoutink}FFT：从圆盘折叠到 C 代码}\par
 \vspace{5pt}
 {\large\color{handoutmuted}基 2 快速傅里叶变换的完整推导、手算例子与实现}\par
 \vspace{7pt}
 {\color{InkRule}\rule{\linewidth}{.6pt}}\par
 有限序列的离散傅里叶变换（DFT）可以写成一次矩阵乘法。基 2 FFT 利用矩阵里重复出现的单位根，把一次长变换拆成两次短变换，再用和、差重组结果。这里固定正变换的指数取负号，归一化系数 $1/N$ 放在逆变换。
 
-全文用同一个 4 点例子对照公式、圆盘和程序。输入与期望输出为
+用 4 点例子手算完整的频谱，用 8 点圆盘核对每次折叠和 C 数组地址。4 点输入与输出为
 \[
  \bt{x}=\begin{bmatrix}1&2&3&4\end{bmatrix}^{\rankff}
  \quad\longmapsto\quad
@@ -45,17 +71,22 @@ $F_M\in\Cplx^{M\times M}$ & DFT 矩阵。行是频点，列是输入下标，不
 \end{tabularx}\par}
 
 \vspace{6pt}
-\HandoutBlock{按什么顺序读}
+\HandoutBlock{阅读目录}
+{\small 蓝色的章节名和页码可点击。每页底部的蓝色“目录”可以返回这里。\par}
+{\small\noindent
 \begin{tabularx}{\linewidth}{@{}lYl@{}}
 \toprule
-主题 & 读完应能核对 & 页 \\
+章节 & 读完应能核对 & 页 \\
 \midrule
-DFT 与单位根 & 写出正变换、逆变换与根式求和 & \pageref{sec:dft} \\
-奇偶拆分与圆盘 & 推出蝶形公式，解释一折怎样改变数据形状 & \pageref{sec:split}--\pageref{sec:layers} \\
-4 点手算与矩阵 & 算出四个频点，逐项对上矩阵分解 & \pageref{sec:four}--\pageref{sec:matrix} \\
-C 代码与核查 & 对比分步计算、位反转和逆变换 & \pageref{sec:recursive}--\pageref{sec:verify} \\
+\FFTLink{dft}{DFT 与单位根} & 写出正变换、逆变换与根式求和 & \pageref{sec:dft} \\
+\FFTLink{split}{奇偶拆分与蝶形} & 推出两个共用旋转项的输出 & \pageref{sec:split} \\
+\FFTLink{disk}{圆盘与层状态} & 说清配对和每折的形状 & \pageref{sec:disk}--\pageref{sec:layers} \\
+\FFTLink{trace}{8 点三折对照} & 对上配对、系数、递归调用和迭代地址 & \pageref{sec:trace} \\
+\FFTLink{worked}{4 点手算与矩阵} & 算出四个频点并验证矩阵分解 & \pageref{sec:four}--\pageref{sec:matrix} \\
+\FFTLink{recursive}{递归 C}、\FFTLink{bit-reversal}{位反转}、\FFTLink{iterative}{原地迭代} & 找到同一只蝶形在两份程序中的写回位置 & \pageref{sec:recursive}--\pageref{sec:iterative} \\
+\FFTLink{verify}{复杂度与验算} & 核对递推计数和正反变换 & \pageref{sec:verify} \\
 \bottomrule
-\end{tabularx}
+\end{tabularx}\par}
 
 \FFTPage{一}{DFT 定义与单位根}{dft}
 \label{sec:dft}
@@ -209,7 +240,7 @@ C 代码与核查 & 对比分步计算、位反转和逆变换 & \pageref{sec:re
 长度为 2 时 $m=1$、$q=0$，因子 $\W_2^0=1$。因此第一折直接把两项的和、差写进站点。以 $j=1$ 为例，该站先接收 $x[1]$ 与 $x[5]$，再输出 $x[1]+x[5]$ 与 $x[1]-x[5]$。
 \[
  \begin{array}{c|c|ll}
-  \text{新站点 }j & \text{旧站点配对} & B_1[j,0] & B_1[j,1]\\ \hline
+  \text{新站点}\;j & \text{旧站点配对} & B_1[j,0] & B_1[j,1]\\ \hline
   0&(0,4)&x[0]+x[4]&x[0]-x[4]\\
   1&(1,5)&x[1]+x[5]&x[1]-x[5]\\
   2&(2,6)&x[2]+x[6]&x[2]-x[6]\\
@@ -219,7 +250,7 @@ C 代码与核查 & 对比分步计算、位反转和逆变换 & \pageref{sec:re
 
 第 2 折时站点只剩 $0,1,2,3$，配对改为 $(0,2)$ 与 $(1,3)$。每对包含两个局部频点 $q=0,1$，分别做蝶形，把两份 2 点结果合成一份 4 点结果。第 3 折把最后两站合并，得到完整 8 点频谱。
 
-\FFTNote{圆盘上移动半圈，让 $j$ 与 $j+d/2$ 落在同一站。复平面上乘 $\W_{2m}^{q}$ 负责旋转系数，其角度由 $q$ 决定。第一次折叠已经发生了配对，此时唯一的 $q=0$ 仍然对应零度数值旋转。}
+\FFTNote{第一折在整圆上移动半圈。接下来的每折只移动当前扇面的后一半，移动的角度分别减半。复平面上乘 $\W_{2m}^{q}$ 负责旋转系数，其角度由 $q$ 决定。单位根乘的是朱砂标出的一侧，即 $b$。第 1 折的唯一局部频点是 $q=0$，它的数值旋转为零度。\FFTLink{trace}{下一张对照表}列出三次配对及其数组地址。}
 
 \FFTPage{四}{每一折的不变量}{layers}
 \label{sec:layers}
@@ -263,7 +294,45 @@ C 代码与核查 & 对比分步计算、位反转和逆变换 & \pageref{sec:re
 
 当 $s=0$ 时 $m=1,d=N$，式~\eqref{eq:layer} 直接给出 $B_0[j,0]=x[j]$。当 $s=L$ 时 $d=1,m=N$，代入 $j=0$ 得 $B_L[0,k]=X[k]$，其转置就是输出列向量 $\bt{X}$。因此只要每一折满足式~\eqref{eq:layer-first} 与 \eqref{eq:layer-second}，最终结果就与定义式~\eqref{eq:dft} 相同。
 
-\FFTPage{五}{四个采样，完整算两折}{worked}
+\FFTPage{五}{8 点圆盘的三折对照}{trace}
+\label{sec:trace}
+
+固定原盘上的角位置 $\theta_j=90^\circ-45^\circ j$。折完 $s$ 次后，仍使用原盘上的前 $d$ 个位置。将旧站 $j+d/2$ 移到 $j$，角位置增加 $45^\circ d/2$。这三个角只描述扇面怎样合上，数值里的转角由 $W_{2m}^q$ 决定。
+
+\begin{center}
+\begin{minipage}[t]{.31\linewidth}\centering\FoldFan{8}\par\small 第 1 折 · $\Delta\theta=180^\circ$\end{minipage}\hfill
+\begin{minipage}[t]{.31\linewidth}\centering\FoldFan{4}\par\small 第 2 折 · $\Delta\theta=90^\circ$\end{minipage}\hfill
+\begin{minipage}[t]{.31\linewidth}\centering\FoldFan{2}\par\small 第 3 折 · $\Delta\theta=45^\circ$\end{minipage}
+\FigCap{图 4\quad 每图画折前站点。朱砂区移向绿区，箭头示例追踪叠到站点 $0$ 的一对。}
+\end{center}
+
+表按 \FFTLink{iterative}{C 迭代代码}第 63 行的 \texttt{start} 顺序列出。同一格的第一个配对对应第一个起点，以此类推。递归中的父调用在两份子变换完成后合并，它读的也是同一对站点的同一列。
+
+{\small\noindent
+\begin{tabularx}{\linewidth}{@{}lYll@{}}
+\toprule
+折数 & 旧站点配对，按 \texttt{start} 排 & \texttt{len} & \texttt{start} \\
+\midrule
+1 & $(0,4),(2,6),(1,5),(3,7)$，各取 $q=0$ & 2 & $0,2,4,6$ \\
+2 & $(0,2),(1,3)$，各取 $q=0,1$ & 4 & $0,4$ \\
+3 & $(0,1)$，取 $q=0,1,2,3$ & 8 & $0$ \\
+\bottomrule
+\end{tabularx}\par}
+
+\HandoutBlock{沿着同一个频点检查三次写回}
+取 $x[n]=n+1$。先看第 1 折中站点 $0$ 和 $2$ 的差项，再沿 $q=1$ 跟到终点。
+\begin{enumerate}
+ \item 第 1 折，$(0,4)$ 从 $1,5$ 得 $(6,-4)$，写 \texttt{a[0..1]}。$(2,6)$ 从 $3,7$ 得 $(10,-4)$，写 \texttt{a[2..3]}。
+ \item 第 2 折，\texttt{len=4, start=0, q=1}。第 65 行算出 $(u,v)=(1,3)$，读到两个 $-4$。第 67 行给 $t=(-\ii)(-4)=4\ii$，第 68–69 行把 $-4+4\ii,-4-4\ii$ 写回。对奇组做同一列的运算，也得到 $B_2[1,1]=-4+4\ii$。
+ \item 第 3 折，\texttt{len=8, start=0, q=1}。$(u,v)=(1,5)$，此时两个旧值都是 $-4+4\ii$。转后 $t=\frac{1-\ii}{\sqrt2}(-4+4\ii)=4\sqrt2\,\ii$。写回的频点是
+ \[
+    X[1]=-4+4(1+\sqrt2)\ii,\qquad
+    X[5]=-4+4(1-\sqrt2)\ii .
+ \]
+\end{enumerate}
+\FFTLink{recursive}{递归版}的对应行是 25–31。访存顺序的理由见 \FFTLink{bit-reversal}{位反转与数组中的站点}。
+
+\FFTPage{六}{四个采样，完整算两折}{worked}
 \label{sec:four}
 
 输入是 $(x[0],x[1],x[2],x[3])=(1,2,3,4)$。第 1 折对偶、奇两组分别取和与差。
@@ -300,7 +369,7 @@ $1$ & $(-2,-2)$ & $\ee^{-\pi\ii/2}=-\ii$ & 先得 $t=(-\ii)(-2)=2\ii$，再把 $
   \node[font=\small,align=center] at (2.08,1.65)
        {$\times(-\ii)$\\[2pt]顺时针 $90^\circ$};
 \end{tikzpicture}
-\FigCap{图 4\quad 第 2 折的第 1 列。$-2$ 的方向从 $\pi$ 变成 $\pi/2$，长度仍是 $2$。}
+\FigCap{图 5\quad 第 2 折的第 1 列。$-2$ 的方向从 $\pi$ 变成 $\pi/2$，长度仍是 $2$。}
 \end{center}
 
 两列的计算分别写入下标 $(0,2)$ 和 $(1,3)$，最终输出按 $k=0,1,2,3$ 排列。
@@ -312,7 +381,7 @@ $1$ & $(-2,-2)$ & $\ee^{-\pi\ii/2}=-\ii$ & 先得 $t=(-\ii)(-2)=2\ii$，再把 $
 
 \FFTNote{先核对 $X[0]=1+2+3+4=10$。实输入的 $X[1]$ 与 $X[3]$ 互为共轭。若它们的虚部互换，先查正向指数的符号。}
 
-\FFTPage{六}{把 FFT 写成矩阵乘积}{matrix}
+\FFTPage{七}{把 FFT 写成矩阵乘积}{matrix}
 \label{sec:matrix}
 
 对长度 $2m$，令置换矩阵 $P$ 把自然顺序的输入重排为前半偶项、后半奇项。设
@@ -342,7 +411,7 @@ $1$ & $(-2,-2)$ & $\ee^{-\pi\ii/2}=-\ii$ & 先得 $t=(-\ii)(-2)=2\ii$，再把 $
  1&0&1&0\\0&1&0&-\ii\\1&0&-1&0\\0&1&0&\ii
  \end{bmatrix}.
 \]
-实际的乘法顺序和两折对应如下。$v_1$ 是把 $B_1$ 的两行依次接到一起得到的列向量。
+实际的乘法顺序和两折对应如下。4 点例子中 $v_1$ 依次连接 $B_1$ 的两行。更长输入的数组块顺序见 \FFTLink{bit-reversal}{位反转}。
 \[
 \begin{aligned}
  v_0&=P_4\bt{x}=[1,3,2,4]^{\rankff},\\
@@ -365,39 +434,67 @@ $1$ & $(-2,-2)$ & $\ee^{-\pi\ii/2}=-\ii$ & 先得 $t=(-\ii)(-2)=2\ii$，再把 $
 \]
 例如取下标为 $k=1$ 的行，得到 $1-2\ii-3+4\ii=-2+2\ii$，正是第 2 折中 $q=1$ 的加法结果。
 
-\FFTPage{七}{递归写法：沿步长取样}{recursive}
+\FFTPage{八}{递归 C 代码与站点}{recursive}
 \label{sec:recursive}
 
-下面的 C99 写法可以直接编译。输入指针 \texttt{x} 指向当前子序列首项，\texttt{stride} 表示相邻两项的间隔。调用者提供长度为 $N$、互不重叠的输入和输出缓冲区。入口从自然顺序读取，最外层取 \texttt{stride = 1}。输出也是自然顺序。代码共用 \texttt{<complex.h>} 和 \texttt{<stddef.h>}，$I$ 在代码中是虚数单位。
+下面的 C99 写法可以直接编译。输入指针 \texttt{x} 指向当前子序列首项，\texttt{stride} 表示相邻两项的间隔。调用者提供长度为 $N$、互不重叠的输入和输出缓冲区。入口从自然顺序读取，最外层取 \mbox{\texttt{stride = 1}}。输出也是自然顺序。代码共用 \texttt{<complex.h>} 和 \texttt{<stddef.h>}，\texttt{I} 在代码中是虚数单位。
 
-\lstinputlisting[firstline=4,lastline=14]{fft.c}
-\lstinputlisting[firstline=16,lastline=42]{fft.c}
+\lstinputlisting[firstline=16,lastline=42,firstnumber=16]{fft.c}
 
-\HandoutBlock{逐句对照}
+\HandoutBlock{一份返回值就是一行}
+深度到达 $L-s$ 时，一个调用的输入地址相对根指针为 \texttt{x + j}，步长为 $d=N/2^s$，长度为 $m=2^s$。它读 $x[j+rd]$，返回的第 $q$ 项就是式~\eqref{eq:layer} 的 $B_s[j,q]$。若要向上合并，从父调用看，两个子调用的首地址相差父步长 $d/2$，正是圆盘配对 $j$ 与 $j+d/2$。
+
 {\small\noindent
 \begin{tabularx}{\linewidth}{@{}lY@{}}
 \toprule
-代码中的动作 & 数学含义 \\
+第 25–31 行 & 对上公式的动作 \\
 \midrule
-\texttt{n == 1} & 单点变换等于该点本身。 \\
-\texttt{x}, \texttt{x + stride} & 偶子序列和奇子序列的首地址。两次调用的步长都翻倍。 \\
-\texttt{out}, \texttt{out + m} & 前 $m$ 格存 $E$，后 $m$ 格存 $O$。 \\
-\texttt{a}, \texttt{t} & 先保存 $E[q]$，再算 $Wb$。写回前两项都已读出。 \\
-两次写回 & 对应式~\eqref{eq:butterfly} 的 $q$ 位与 $q+m$ 位。 \\
+两次递归调用 & 前 $m$ 格接收偶子序列的结果，后 $m$ 格接收奇子序列的结果。 \\
+算 \texttt{t} & 当前长度为 \texttt{n}，转角由 $\W_{\texttt{n}}^q$ 决定。 \\
+写 \texttt{out[q]} 与 \texttt{out[q + m]} & 对应式~\eqref{eq:butterfly} 的和与差。 \\
 \bottomrule
 \end{tabularx}\par}
 
-\FFTPage{八}{迭代写法：位反转后原地合并}{iterative}
+\FFTNote{以 8 点为例，根调用先处理偶支路。它的叶子按 $x[0],x[4],x[2],x[6]$ 的顺序读取。第 1 折对应最深的非叶调用，长度为 2。根调用重组偶、奇两半，对应最后一折。这条偶支路先得到站 $0$ 的 $(x[0],x[4])$，再得到站 $2$ 的 $(x[2],x[6])$，两站随即合并。之后才进入奇支路。$B_s$ 是按子问题长度整理的逻辑快照。递归按深度优先执行。父调用在同一块 \texttt{out} 缓冲区里写回，因此一些子结果会在其他支路返回之前被覆盖。}
+
+\FFTPage{九}{位反转与数组中的站点}{bit-reversal}
+\label{sec:iterative-order}
+
+递归从最低有效位开始决定奇、偶，依次检查更高位。把叶子按递归访问顺序连起来，相当于反转每个下标的 $L$ 个二进制位。8 点的原采样进入数组的顺序是
+\[
+   0,\ 4,\ 2,\ 6,\ 1,\ 5,\ 3,\ 7.
+\]
+设第 $s$ 层每站有 $m=2^s$ 项，剩 $d=N/m$ 站。记 $R_h$ 为反转 $h=\log_2d$ 位。迭代数组中第 $b$ 个连续块对应圆盘站点 $j=R_h(b)$，所以
+\begin{equation}
+ a[bm+q]=B_s[R_h(b),q].
+ \label{eq:block-address}
+\end{equation}
+当 $s=0$，这就是位反转之后的输入。当 $s=L$，只有第 $0$ 个块，输出回到自然频点顺序。对于待合成的第 $b'$ 个新块，旧块编号是 $2b'$ 和 $2b'+1$。反转后，两个站点分别为
+\[
+ R_h(2b')=R_{h-1}(b'),\qquad
+ R_h(2b'+1)=R_{h-1}(b')+d/2.
+\]
+因为末位的 $0$ 或 $1$ 被翻到最高位，写回顺序正好符合圆盘配对。$h=1$ 时约定 $R_0(0)=0$。这也解释了为什么 \FFTLink{trace}{8 点对照表}的第一折按 $0,2,1,3$ 访问新站点。
+
+\lstinputlisting[firstline=1,lastline=14,firstnumber=1]{fft.c}
+\lstinputlisting[firstline=44,lastline=58,firstnumber=44]{fft.c}
+
+\FFTPage{十}{原地迭代的块计算}{iterative}
 \label{sec:iterative}
 
-递归先依据二进制下标的最低位拆偶、奇，再依据更高一位继续拆。按叶节点从左到右读取时，低位成了外层顺序。把下标的 $L$ 个二进制位反过来，就得到这个访问次序。4 点时 $\texttt{00},\texttt{01},\texttt{10},\texttt{11}$ 反转后为 $\texttt{00},\texttt{10},\texttt{01},\texttt{11}$，数组先变成 $[1,3,2,4]$。
+第 78 行只做一次位反转。之后，\texttt{len} 取 $2,4,\ldots,N$，每轮把上一层的相邻两块合成一块。\texttt{start} 每次跨一个完整的输出块。
+\lstinputlisting[firstline=60,lastline=86,firstnumber=60]{fft.c}
 
-\lstinputlisting[firstline=44,lastline=81]{fft.c}
-
-\HandoutBlock{合并块的读法}
-\texttt{len} 是当前待合成的长度，\texttt{m = len / 2}。每个块从 \texttt{start} 开始，前半和后半各有一份已完成的 $m$ 点变换。第 $q$ 次配对读 \texttt{u = start + q} 与 \texttt{v = u + m}，乘的单位根是当前长度的 $\W_{\texttt{len}}^q$。长度为 $2,4,\ldots,N$ 的各层处理完以后，数组就是自然频点顺序的 $X$。
-
-\FFTPage{九}{复杂度、逆变换与验算}{verify}
+\HandoutBlock{用地址确认同一只蝶形}
+用 $j=R_{\log_2(N/\texttt{len})}(b')$、$\texttt{start}=b'\texttt{len}$ 标记本轮的块。在第 65 行确定地址，第 66–67 行读取这两项
+\[
+ \begin{aligned}
+  a[\texttt{start}+q]&=B_s[j,q],\\
+  a[\texttt{start}+q+m]&=B_s[j+d/2,q].
+ \end{aligned}
+\]
+对第 67 行，\texttt{root\_power(len, q)} 等于 $\W_{2m}^q$。第 68–69 行写同一对位置，相当于更新 $B_{s+1}$ 的 $q,q+m$ 两列。这样，源数组里的块、图上的两站、式~\eqref{eq:layer-first} 和 \eqref{eq:layer-second} 都指向同一对数。4 点时，第一轮把 $[1,3,2,4]$ 改为 $[4,-2,6,-2]$，第二轮原地写出四个 $X[k]$。
+\FFTPage{十一}{复杂度、逆变换与验算}{verify}
 \label{sec:verify}
 
 \HandoutBlock{为什么运算量是 $N\log_2N$}
@@ -414,7 +511,7 @@ $1$ & $(-2,-2)$ & $\ee^{-\pi\ii/2}=-\ii$ & 先得 $t=(-\ii)(-2)=2\ii$，再把 $
  \operatorname{IFFT}(\bt{X})=
  \frac{1}{N}\,\overline{\operatorname{FFT}(\overline{\bt{X}})}.
 \]
-源码中的 \texttt{ifft\_inplace} 执行这个过程。包内的测试独立地按 DFT 定义求和，并核对 4 点例题、长度 $1$ 到 $256$ 的 108 组复数输入、两种正向程序，以及正反变换往返。
+源码中的 \texttt{ifft\_inplace} 执行这个过程。包内的测试独立地按 DFT 定义求和，并核对 4 点例题、8 点逐折表，以及长度 $1$ 到 $256$ 的 108 组复数输入。测试还按式~\eqref{eq:block-address} 比对两种程序的每一层，并核对正反变换往返。
 
 \HandoutBlock{自己再检查三处}
 \begin{enumerate}
