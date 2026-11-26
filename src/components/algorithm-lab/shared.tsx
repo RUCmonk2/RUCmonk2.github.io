@@ -65,13 +65,15 @@ export function StepControls({
 export function MethodNote({
   note,
   english,
+  anchorId = "pseudocode",
 }: {
   note: Note;
   english: boolean;
+  anchorId?: string;
 }) {
   const lang = english ? "en" : "zh";
   return (
-    <section id="pseudocode" className="algo-note">
+    <section id={anchorId} className="algo-note">
       <div>
         <h2>{english ? "Pseudocode and reasoning" : "伪代码与算理"}</h2>
         <p>{note.why[lang]}</p>

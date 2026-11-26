@@ -1,10 +1,12 @@
 import "../math-lab.css";
 import "../algorithm-notebook.css";
+import "./mst-handout.css";
 
 import type { Metadata } from "next";
 import type { Locale } from "next-intl";
 
 import { GraphWorkshop } from "@/components/algorithm-lab/graph-workshop";
+import { MstHandout } from "@/components/algorithm-lab/mst-handout";
 import { NotebookPage } from "@/components/algorithm-lab/notebook-page";
 import { words } from "@/lib/math-lab/graph-algorithms";
 import { constructMetadata } from "@/lib/metadata";
@@ -30,8 +32,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { locale } = await params;
   return (
-    <NotebookPage locale={locale} title={title} description={description}>
-      <GraphWorkshop kind="mst" english={locale === "en"} />
+    <NotebookPage
+      locale={locale}
+      title={title}
+      description={description}
+      jump={{
+        href: "#mst-handout",
+        label: words("读完整讲义", "Read the Chinese handout"),
+      }}
+    >
+      <div id="mst-demo">
+        <GraphWorkshop kind="mst" english={locale === "en"} />
+      </div>
+      <MstHandout english={locale === "en"} />
     </NotebookPage>
   );
 }

@@ -28,6 +28,22 @@ assert.ok(
       step.title.en === "Delete an F-heavy edge" && step.active.includes("CI"),
   ),
 );
+const parallel = {
+  nodes: graph.classicGraph.nodes.slice(0, 2),
+  edges: [
+    { id: "low", u: "A", v: "B", w: -1 },
+    { id: "high", u: "A", v: "B", w: 5 },
+  ],
+};
+assert.deepEqual(ids(graph.kargerKleinTarjan(parallel, 1).kept), ["low"]);
+assert.throws(
+  () =>
+    graph.kargerKleinTarjan(
+      { ...parallel, edges: parallel.edges.map((e) => ({ ...e, id: "same" })) },
+      1,
+    ),
+  /unique ID/,
+);
 for (let seed = 1; seed <= 60; seed++) {
   const nodes = Array.from({ length: (seed % 11) + 3 }, (_, i) => ({
     id: `v${i}`,

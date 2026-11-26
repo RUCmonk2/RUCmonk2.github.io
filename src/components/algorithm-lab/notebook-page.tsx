@@ -9,11 +9,13 @@ export function NotebookPage({
   title,
   description,
   children,
+  jump,
 }: {
   locale: string;
   title: Text;
   description: Text;
   children: ReactNode;
+  jump?: { href: string; label: Text };
 }) {
   const lang = locale === "en" ? "en" : "zh",
     english = lang === "en";
@@ -30,8 +32,9 @@ export function NotebookPage({
         <header className="algo-intro">
           <h1>{title[lang]}</h1>
           <p>{description[lang]}</p>
-          <a className="algo-skip" href="#pseudocode">
-            {english ? "Jump to the pseudocode" : "跳到伪代码"}
+          <a className="algo-skip" href={jump?.href ?? "#pseudocode"}>
+            {jump?.label[lang] ??
+              (english ? "Jump to the pseudocode" : "跳到伪代码")}
             <ArrowDown size={14} aria-hidden="true" />
           </a>
         </header>

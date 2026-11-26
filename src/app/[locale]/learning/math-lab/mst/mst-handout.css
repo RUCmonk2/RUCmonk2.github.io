@@ -1,0 +1,520 @@
+#mst-demo,
+.mst-handout[id],
+.mst-handout [id] {
+  scroll-margin-top: 96px;
+}
+
+.mst-trace-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.mst-english-notes {
+  margin-top: 12px;
+  color: var(--study-link);
+  font-size: 13px;
+}
+
+.mst-english-notes summary {
+  width: fit-content;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mst-handout,
+.mst-trace-links {
+  --mst-link: #195c87;
+}
+
+.dark :is(.mst-handout, .mst-trace-links) {
+  --mst-link: #a2d4f7;
+}
+
+.mst-handout a,
+.mst-trace-links a {
+  color: var(--mst-link);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+.mst-handout a:hover,
+.mst-trace-links a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.mst-handout :focus-visible,
+.mst-trace-links :focus-visible {
+  outline: 2px solid var(--mst-link);
+  outline-offset: 3px;
+}
+
+.mst-handout {
+  --mst-serif: "Songti SC", "Noto Serif CJK SC", "SimSun", var(--study-serif);
+  margin-top: clamp(48px, 7vw, 86px);
+  color: var(--study-ink);
+}
+
+.mst-handout-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px 24px;
+  padding: clamp(18px, 3vw, 30px) 0;
+  border-block: 1px solid var(--algo-rule);
+}
+
+.mst-handout-heading h2 {
+  font: 600 clamp(29px, 4.5vw, 51px)/1.24 var(--mst-serif);
+}
+
+.mst-handout-heading p {
+  margin-top: 7px;
+  color: var(--study-muted);
+  font-size: 14px;
+}
+
+.mst-handout-heading .mst-swipe-hint {
+  display: none;
+}
+
+.mst-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 41px;
+  padding: 6px 11px;
+  border: 1px solid var(--algo-rule);
+  border-radius: 5px;
+  background: var(--algo-paper);
+  font-size: 13px;
+}
+
+.mst-handout-layout {
+  display: grid;
+  grid-template-columns: minmax(176px, 220px) minmax(0, 760px);
+  gap: clamp(26px, 5vw, 64px);
+  margin-top: 26px;
+}
+
+.mst-handout-contents {
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  padding: 16px;
+  border: 1px solid var(--algo-rule);
+  border-radius: 8px;
+  background: var(--algo-paper);
+  font-size: 13px;
+}
+
+.mst-handout-contents h3 {
+  margin: 0 0 8px;
+  font: 600 18px/1.3 var(--mst-serif);
+}
+
+.mst-handout-contents ul {
+  display: grid;
+  gap: 1px 14px;
+}
+
+.mst-handout-contents a {
+  display: block;
+  padding-block: 5px;
+}
+
+.mst-handout-contents .mst-handout-back {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  padding-top: 9px;
+  border-top: 1px solid var(--algo-rule);
+}
+
+.mst-handout-chapters {
+  min-width: 0;
+  line-height: 1.82;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+.mst-handout-chapter + .mst-handout-chapter {
+  padding-top: clamp(22px, 3vw, 34px);
+  margin-top: clamp(26px, 4vw, 44px);
+  border-top: 1px solid var(--algo-rule);
+}
+
+.mst-handout-chapter > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3px 12px;
+  margin-bottom: 11px;
+}
+
+.mst-handout-chapter h3 {
+  font: 600 clamp(23px, 3vw, 32px)/1.35 var(--mst-serif);
+}
+
+.mst-handout-chapter h4 {
+  margin-top: 20px;
+  font: 650 19px/1.45 var(--mst-serif);
+}
+
+.mst-handout-chapter .mst-toc-link {
+  display: none;
+  font-size: 12px;
+}
+
+.mst-handout-chapter :is(p, ol, ul) {
+  margin-block: 9px 12px;
+}
+
+.mst-handout-chapter :is(ol, ul) {
+  padding-inline-start: 1.5em;
+}
+
+.mst-handout-chapter ol {
+  list-style: decimal;
+}
+.mst-handout-chapter ul {
+  list-style: disc;
+}
+.mst-handout-chapter li + li {
+  margin-top: 5px;
+}
+
+.mst-handout-chapter .katex-display,
+.mst-handout-table,
+.mst-handout-code pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.mst-handout-chapter .katex-display {
+  margin: 12px 0 16px;
+  padding: 0.73em 0.82em;
+  border-left: 2px solid var(--algo-rule);
+  background: var(--algo-paper);
+  text-align: left;
+}
+
+.mst-handout-chapter .katex-display > .katex {
+  min-width: 100%;
+  width: max-content;
+  padding-right: 0.44em;
+  text-align: left;
+}
+
+.mst-handout-code,
+.mst-handout-table,
+.mst-handout-graph {
+  margin: 15px 0 19px;
+  border: 1px solid var(--algo-rule);
+  border-radius: 7px;
+  background: var(--algo-paper);
+}
+
+.mst-handout-code figcaption,
+.mst-handout-graph figcaption {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--algo-rule);
+  color: var(--study-muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.mst-handout-code pre {
+  margin: 0;
+  padding: 10px 12px;
+  font: 13px/1.55 var(--algo-mono);
+  tab-size: 4;
+}
+
+.mst-handout-chapter :not(pre) > code {
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  background: var(--algo-wash);
+  font: 0.85em var(--algo-mono);
+}
+
+.mst-handout-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88em;
+  line-height: 1.55;
+}
+
+.mst-handout-table :is(th, td) {
+  padding: 7px 9px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.mst-handout-table th {
+  background: var(--algo-wash);
+  color: var(--algo-ink);
+  font-weight: 650;
+}
+
+.mst-handout-table td {
+  border-top: 1px solid var(--algo-rule);
+}
+
+.mst-handout-table :is(th, td):first-child,
+.mst-handout-table .katex {
+  white-space: nowrap;
+}
+
+.mst-graph-viewport {
+  overflow-x: auto;
+}
+
+.mst-handout-graph svg {
+  display: block;
+  width: min(100%, 570px);
+  margin-inline: auto;
+  font: 16px var(--algo-mono);
+}
+
+.mst-handout-graph figcaption {
+  border-top: 1px solid var(--algo-rule);
+  border-bottom: 0;
+}
+
+.mst-handout-graph line {
+  stroke: var(--study-muted);
+  stroke-width: 2;
+}
+
+.mst-handout-graph line[data-tone="kept"] {
+  stroke: var(--algo-ink);
+  stroke-width: 4;
+}
+
+.mst-handout-graph line[data-tone="quiet"] {
+  stroke: var(--algo-rule);
+  stroke-dasharray: 4 5;
+}
+
+.mst-handout-graph line:is([data-tone="sampled"], [data-tone="proposed"]) {
+  stroke: var(--algo-sample);
+  stroke-width: 3.5;
+}
+
+.mst-handout-graph line[data-tone="rejected"] {
+  stroke: var(--algo-seal);
+  stroke-width: 2.5;
+  stroke-dasharray: 6 5;
+}
+
+.mst-handout-graph circle {
+  stroke: var(--algo-ink);
+  stroke-width: 1.6;
+  fill: var(--algo-wash);
+}
+
+.mst-handout-graph text {
+  fill: var(--study-ink);
+}
+
+.mst-cut-region {
+  fill: var(--algo-wash);
+  stroke: var(--algo-ink);
+  stroke-dasharray: 5 5;
+}
+
+.mst-edge-weight {
+  stroke: var(--algo-paper);
+  stroke-width: 7px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+}
+
+.mst-edge-weight[data-tone="rejected"] {
+  fill: var(--algo-seal);
+}
+.mst-edge-weight:is([data-tone="sampled"], [data-tone="proposed"]) {
+  fill: var(--algo-sample);
+}
+
+@media (max-width: 860px) {
+  .mst-handout-layout {
+    display: block;
+  }
+  .mst-handout-contents {
+    position: static;
+    margin-bottom: 23px;
+  }
+  .mst-handout-contents ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mst-handout-chapter .mst-toc-link {
+    display: inline;
+  }
+}
+
+@media (max-width: 530px) {
+  .mst-handout-heading .mst-swipe-hint {
+    display: block;
+    font-size: 12px;
+  }
+  .mst-handout-chapters {
+    font-size: 15px;
+  }
+  .mst-handout-chapter .katex-display {
+    font-size: 0.93em;
+  }
+  .mst-handout-table :is(th, td) {
+    padding: 6px;
+  }
+  .mst-handout-table table:has(thead th:nth-child(4)) {
+    min-width: 420px;
+  }
+  .mst-handout-table th {
+    white-space: nowrap;
+  }
+  .mst-graph-viewport svg {
+    min-width: 445px;
+  }
+  .mst-handout-graph svg {
+    font-size: 18px;
+  }
+}
+
+@page mst-lecture {
+  size: A4;
+  margin: 13mm 15mm 15mm;
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    color: #4d6357;
+    font:
+      9pt Georgia,
+      serif;
+  }
+}
+
+@media print {
+  body:has(.mst-handout) {
+    display: block;
+    min-height: 0;
+    background: white;
+  }
+  body:has(.mst-handout) > :is(header, footer, nextjs-portal),
+  .algo-page:has(.mst-handout) .lab-shell > :not(.mst-handout),
+  .mst-handout :is(.mst-pdf, .mst-handout-back, .mst-swipe-hint) {
+    display: none !important;
+  }
+  .algo-page:has(.mst-handout) {
+    padding: 0;
+  }
+  .algo-page:has(.mst-handout) .lab-shell {
+    width: 100%;
+  }
+  .mst-handout {
+    page: mst-lecture;
+    margin: 0;
+    --study-ink: #263830;
+    --study-muted: #40594d;
+    --algo-ink: #35614f;
+    --algo-wash: #eef2e9;
+    --algo-paper: #f8f8f1;
+    --algo-rule: #cbd5c9;
+    --algo-seal: #9e4936;
+    --algo-sample: #805f28;
+    --mst-link: #195c87;
+    print-color-adjust: exact;
+  }
+  .mst-handout-heading {
+    display: block;
+    padding: 9pt 0;
+  }
+  .mst-handout-heading h2 {
+    font-size: 27pt;
+  }
+  .mst-handout-heading p {
+    font-size: 10pt;
+  }
+  .mst-handout-layout {
+    display: block;
+    margin-top: 10pt;
+  }
+  .mst-handout-contents {
+    position: static;
+    padding: 8pt;
+    margin-bottom: 12pt;
+  }
+  .mst-handout-contents ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mst-handout-contents a {
+    padding-block: 1pt;
+  }
+  .mst-handout-chapters {
+    font-size: 10.5pt;
+    line-height: 1.42;
+  }
+  .mst-handout-chapter + .mst-handout-chapter {
+    break-before: page;
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+  }
+  .mst-handout-chapter h3 {
+    font-size: 19pt;
+  }
+  .mst-handout-chapter .mst-toc-link {
+    display: inline;
+    font-size: 9pt;
+  }
+  .mst-handout-chapter h4 {
+    margin-top: 9pt;
+    font-size: 13pt;
+  }
+  .mst-handout-chapter :is(header, h4) {
+    break-after: avoid;
+  }
+  .mst-handout-chapter :is(p, li) {
+    orphans: 3;
+    widows: 3;
+  }
+  .mst-handout-chapter :is(p, ol, ul) {
+    margin-block: 6pt 7pt;
+  }
+  .mst-handout-chapter .katex-display {
+    margin: 6pt 0;
+    font-size: 10pt;
+  }
+  .mst-handout-chapter :is(figure, .mst-handout-table, .katex-display) {
+    break-inside: avoid;
+  }
+  .mst-handout-chapter :is(figure, .mst-handout-table) {
+    margin: 7pt 0 8pt;
+  }
+  .mst-handout-table :is(th, td) {
+    padding: 4pt 5pt;
+  }
+  .mst-handout-code pre > code {
+    font: inherit;
+  }
+  .mst-handout-code pre {
+    padding: 6pt 8pt;
+    font-size: 9pt;
+    line-height: 1.28;
+    white-space: pre-wrap;
+  }
+  .mst-handout-graph svg {
+    min-width: 0;
+    width: min(100%, 92mm);
+  }
+  .mst-handout-graph[data-figure="sampling"] svg {
+    width: min(100%, 115mm);
+  }
+}

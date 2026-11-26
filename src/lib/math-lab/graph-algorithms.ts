@@ -1,3 +1,4 @@
+/** An edge ID uniquely identifies one edge within its graph. */
 export type Edge = { id: string; u: string; v: string; w: number };
 export type Vertex = { id: string; x: number; y: number; label?: string };
 export type Graph = { nodes: Vertex[]; edges: Edge[] };
@@ -17,7 +18,8 @@ export type GraphStep = {
 export const words = (zh: string, en: string): Text => ({ zh, en });
 const node = (id: string, x: number, y: number): Vertex => ({ id, x, y });
 const edge = (u: string, v: string, w = 1): Edge => ({ id: u + v, u, v, w });
-const byWeight = (a: Edge, b: Edge) => a.w - b.w || a.id.localeCompare(b.id);
+const byWeight = (a: Edge, b: Edge) =>
+  a.w - b.w || (a.id < b.id ? -1 : Number(a.id > b.id));
 export const edgeList = (edges: readonly Edge[]) =>
   edges.map((e) => `${e.u}–${e.v}`).join(", ") || "∅";
 const row = (zh: string, en: string, value: string) => ({
@@ -340,6 +342,9 @@ function forestPath(
 export function kargerKleinTarjan(graph: Graph, seed: number) {
   const ids = graph.nodes.map((n) => n.id),
     originals = new Map(graph.edges.map((e) => [e.id, e]));
+  if (originals.size !== graph.edges.length) {
+    throw new Error("KKT requires a unique ID for every edge");
+  }
   const initial = seed >>> 0;
   let randomState = initial;
   const sample = () => {

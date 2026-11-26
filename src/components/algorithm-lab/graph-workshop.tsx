@@ -263,7 +263,31 @@ export function GraphWorkshop({
           </section>
         </div>
       </section>
-      <MethodNote note={note} english={english} />
+      {kind === "mst" ? (
+        <>
+          <nav
+            className="mst-trace-links"
+            aria-label={english ? "Related lecture notes" : "本算法的讲义"}
+          >
+            <a href={`#mst-${method}`}>
+              {english
+                ? "Theory and pseudocode (Chinese)"
+                : `读 ${label[method][lang]} 的证明与伪代码`}
+            </a>
+            {method === "kkt" && (
+              <a href="#mst-trace">{english ? "Trace seed 1" : "跟算种子 1"}</a>
+            )}
+          </nav>
+          {english && (
+            <details className="mst-english-notes">
+              <summary>English reasoning and pseudocode</summary>
+              <MethodNote note={note} english anchorId="mst-english-code" />
+            </details>
+          )}
+        </>
+      ) : (
+        <MethodNote note={note} english={english} />
+      )}
     </>
   );
 }
