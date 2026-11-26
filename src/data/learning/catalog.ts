@@ -171,11 +171,11 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "TCS 学科地图", en: "Theoretical Computer Science Map" },
     description: {
-      zh: "从图流与排序网络出发，认识可计算性、算法、复杂性、程序语言和其他理论计算机科学分支。",
-      en: "Explore computability, algorithms, complexity, programming languages, and their neighbors through graph streams and sorting networks.",
+      zh: "从 MST 线性算法、矩阵乘法指数、P 与 NP、ETH 等问题进入理论计算机科学。",
+      en: "Explore theoretical computer science through MST, matrix multiplication, P versus NP, ETH and their connections.",
     },
     topic: { zh: "理论计算机科学", en: "Theoretical computer science" },
-    scope: { zh: "墨点图谱 · 图流与排序网络", en: "Interactive map · two case studies" },
+    scope: { zh: "9 个分支 · 12 个问题与结果", en: "9 fields · 12 problems and results" },
     updated: "2026-11-26",
   },
   {

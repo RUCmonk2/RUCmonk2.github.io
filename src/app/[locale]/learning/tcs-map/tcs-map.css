@@ -46,8 +46,7 @@
   border-bottom: 1px solid var(--note-line);
 }
 
-.tcs-map-heading h2,
-.tcs-reading h2 {
+.tcs-map-heading h2 {
   font:
     500 clamp(21px, 3vw, 28px) / 1.35 "Songti SC",
     STSong,
@@ -79,10 +78,6 @@
   pointer-events: none;
 }
 
-.tcs-map-connections-narrow {
-  display: none;
-}
-
 .tcs-map-connections line {
   stroke: var(--graph-line);
   stroke-width: 1;
@@ -96,8 +91,6 @@
 
 .tcs-map-node {
   position: absolute;
-  top: calc(var(--y-wide) - 22px);
-  left: var(--x-wide);
   display: flex;
   width: min(26%, 180px);
   flex-direction: column;
@@ -191,116 +184,6 @@
   color: currentColor;
 }
 
-.tcs-reading {
-  margin-top: 34px;
-}
-
-.tcs-reading h2 {
-  margin-bottom: 14px;
-}
-
-.tcs-topics {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 28px;
-}
-
-.tcs-topic {
-  scroll-margin-top: 86px;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  padding: 18px 12px 18px;
-  border-top: 1px solid var(--note-line);
-  line-height: 1.75;
-}
-
-.tcs-topic:target,
-.tcs-topic:focus-visible {
-  outline: 1px solid var(--note-accent);
-  outline-offset: -1px;
-  background: var(--note-paper);
-}
-
-.tcs-topic h3 {
-  margin-bottom: 5px;
-  font:
-    500 22px / 1.35 "Songti SC",
-    STSong,
-    Georgia,
-    serif;
-}
-
-.tcs-topic p + p {
-  margin-top: 8px;
-}
-
-.tcs-question {
-  color: var(--note-accent);
-  font-weight: 600;
-}
-
-.tcs-topic-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 12px;
-  margin: 12px 0 9px;
-  font-size: 13px;
-  color: var(--note-accent);
-}
-
-.tcs-topic-links a:hover,
-.tcs-return:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.tcs-return {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  gap: 4px;
-  margin-top: auto;
-  color: var(--note-muted);
-  font-size: 13px;
-}
-
-@media (max-width: 650px) {
-  .tcs-shell {
-    width: calc(100% - 32px);
-  }
-
-  .tcs-hero {
-    margin-block: 24px;
-  }
-
-  .tcs-map-stage {
-    height: 480px;
-  }
-
-  .tcs-map-connections-wide {
-    display: none;
-  }
-
-  .tcs-map-connections-narrow {
-    display: block;
-  }
-
-  .tcs-map-node {
-    top: calc(var(--y-narrow) - 22px);
-    left: var(--x-narrow);
-    width: 32%;
-  }
-
-  .tcs-node-label {
-    font-size: 14px;
-  }
-
-  .tcs-topics {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .tcs-map-connections line {
     transition: none;
@@ -310,4 +193,154 @@
     animation: none;
     stroke-dashoffset: 0;
   }
+}
+.tcs-shell {
+  max-width: 1310px;
+}
+.tcs-switch,
+.tcs-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tcs-switch button,
+.tcs-related button,
+.tcs-sheet-bar button {
+  padding: 6px 11px;
+  border: 1px solid var(--note-line);
+  border-radius: 4px;
+  color: var(--note-accent);
+  font-size: 14px;
+}
+.tcs-switch button[aria-pressed="true"] {
+  background: var(--note-accent);
+  color: var(--note-paper);
+  border-color: var(--note-accent);
+}
+.tcs-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 1fr);
+  margin-top: 14px;
+  height: clamp(370px, calc(100svh - 190px), 580px);
+  border-bottom: 1px solid var(--note-line);
+}
+.tcs-map-stage {
+  height: 100%;
+  border: 0;
+}
+.tcs-map-node {
+  width: 30%;
+  min-height: 48px;
+  cursor: pointer;
+}
+.tcs-map-node[aria-pressed="true"] .tcs-node-label {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 700;
+}
+.tcs-map-node[aria-pressed="true"] .tcs-node-mark {
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+.tcs-side {
+  min-height: 0;
+  border-left: 1px solid var(--note-line);
+  background: var(--note-paper);
+}
+.tcs-topic {
+  height: 100%;
+  overflow: auto;
+  padding: 20px clamp(14px, 2.1vw, 32px);
+  line-height: 1.78;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.tcs-topic h3 {
+  font:
+    500 clamp(23px, 2.6vw, 34px)/1.28 "Songti SC",
+    STSong,
+    Georgia,
+    serif;
+  text-wrap: balance;
+}
+.tcs-topic p {
+  margin-top: 12px;
+}
+.tcs-topic h4 {
+  margin: 18px 0 6px;
+  color: var(--note-muted);
+  font-size: 13px;
+}
+.tcs-question {
+  color: var(--note-accent);
+  font-weight: 600;
+}
+.tcs-sources {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--note-accent);
+}
+.tcs-sources a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.tcs-sheet {
+  position: fixed;
+  inset: auto 0 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 720px;
+  max-height: 77dvh;
+  padding: 0;
+  color: var(--note-ink);
+  background: var(--note-paper);
+  border-radius: 14px 14px 0 0;
+  border: 1px solid var(--note-line);
+}
+.tcs-sheet[open] {
+  display: flex;
+  flex-direction: column;
+}
+.tcs-sheet::backdrop {
+  background: rgba(26, 36, 32, 0.36);
+}
+.tcs-sheet-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--note-line);
+}
+.tcs-sheet .tcs-topic {
+  height: auto;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+body:has(.tcs-sheet[open]) {
+  overflow: hidden;
+}
+@media (max-width: 720px) {
+  .tcs-shell {
+    width: calc(100% - 32px);
+  }
+  .tcs-hero {
+    margin-block: 22px;
+  }
+  .tcs-workspace {
+    display: block;
+    height: clamp(350px, 58svh, 460px);
+  }
+  .tcs-side {
+    display: none;
+  }
+  .tcs-node-label {
+    font-size: 14px;
+  }
+  .tcs-map-node {
+    width: 32%;
+  }
+}
+
+.tcs-topic .galois-formula {
+  overflow-x: auto;
+  font-size: 0.89em;
+  color: var(--note-accent);
 }
