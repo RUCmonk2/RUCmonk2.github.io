@@ -638,3 +638,19 @@
     --pair-size: 128px;
   }
 }
+
+.fft-resource-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 12px;
+}
+
+@media (max-width: 420px) {
+  .fft-top-links {
+    flex-wrap: wrap;
+  }
+  .fft-resource-links .fft-proof-link {
+    font-size: 12px;
+  }
+}

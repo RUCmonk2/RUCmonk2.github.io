@@ -146,6 +146,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       })),
     ),
     ...LOCALES.map((locale) => ({
+      url:
+        siteUrl + localePathPrefix(locale) + "/learning/math-lab/fft/handout",
+      lastModified: new Date("2026-11-27"),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+    ...LOCALES.map((locale) => ({
       url: siteUrl + localePathPrefix(locale) + "/learning/math-lab/rotations",
       lastModified: new Date("2026-10-06"),
       changeFrequency: "monthly" as const,

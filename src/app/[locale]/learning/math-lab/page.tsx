@@ -272,6 +272,13 @@ export default async function Page({ params }: Props) {
         <div className="lab-related">
           <Link
             className="lab-derivation-link"
+            href={labHref + "/fft/handout/"}
+          >
+            {english ? "FFT PDF handout" : "FFT PDF 讲义"}{" "}
+            <ArrowRight size={14} aria-hidden="true" />
+          </Link>
+          <Link
+            className="lab-derivation-link"
             href={labHref + "/fft/#derivation"}
           >
             {english ? "FFT derivation and matrices" : "FFT 完整推导与矩阵"}{" "}

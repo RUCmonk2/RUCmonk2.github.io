@@ -1,0 +1,106 @@
+% 主文件用 \documentclass[UTF8,11pt,a4paper,fontset=fandol]{ctexart}。
+% 通用视觉底座。教学顺序、助教台词、署名与题目由主文件决定。
+\usepackage[left=23mm,right=23mm,top=19mm,bottom=18mm,headheight=15pt,headsep=6mm,footskip=9mm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,xcolor,fancyhdr,tabularx,booktabs,tikz}
+\usetikzlibrary{calc,arrows.meta,angles,quotes,intersections,positioning}
+
+\definecolor{BrickRed}{HTML}{8B4739}
+\definecolor{RoyalBlue}{HTML}{355E51}
+\definecolor{handoutink}{HTML}{253630}
+\definecolor{handoutmuted}{HTML}{58665E}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\linespread{1.08}
+\setlength{\emergencystretch}{3em}
+
+\newcommand{\HandoutHeader}[3][]{%
+  \pagestyle{fancy}\fancyhf{}
+  \fancyhead[L]{\small #2}\fancyhead[R]{\small #3}
+  \fancyfoot[L]{\scriptsize\fangsong #1}\fancyfoot[R]{\small\thepage}
+  \renewcommand{\headrulewidth}{.3pt}}
+\newcommand{\HandoutLesson}[2]{%
+  \par{\small\heiti\color{BrickRed}#1}\par\vspace{3pt}
+  {\fontsize{21}{27}\selectfont\heiti\bfseries #2}\par
+  \textcolor{BrickRed}{\rule{\linewidth}{.7pt}}\par}
+\newcommand{\HandoutBlock}[1]{\par\vspace{4pt}{\large\heiti\bfseries #1}\par}
+\newcommand{\HandoutNote}[1]{\par{\fangsong\fontsize{10.3}{15}\selectfont\color{handoutmuted}#1\par}}
+\newcommand{\HandoutBox}[1]{%
+  \par\noindent\begingroup\setlength{\fboxsep}{8pt}%
+  \colorbox{BrickRed!9}{\parbox{\dimexpr\linewidth-16pt\relax}{#1}}\endgroup\par}
+\newcommand{\HandoutHighlight}[1]{{\setlength{\fboxsep}{1.2pt}\colorbox{BrickRed!12}{$#1$}}}
+\newenvironment{HandoutIntuition}{\par\begingroup\kaishu\fontsize{12}{17.5}\selectfont}{\par\endgroup}
+\newenvironment{HandoutProblem}{\par\begingroup\fangsong\fontsize{12}{18}\selectfont}{\par\endgroup}
+
+\tikzset{
+  conic/.style={draw=black!85,line width=1.1pt,fill=cyan!4},
+  conicopen/.style={draw=black!85,line width=1.1pt},
+  polar/.style={draw=BrickRed,line width=1.0pt},
+  aux/.style={draw=gray!75,line width=.55pt},
+  auxdash/.style={aux,densely dashed},
+  guideaxis/.style={draw=gray!30,ultra thin,->},
+  geompoint/.style={circle,draw=black!90,fill=white,inner sep=1.5pt,line width=.65pt},
+  polepoint/.style={geompoint,fill=BrickRed!85,draw=black!80},
+  lbl/.style={fill=white,inner sep=1pt,text=handoutink,font=\small},
+  curve/.style={conicopen},closedcurve/.style={conic},keyline/.style={polar},
+  helperline/.style={aux},pointmark/.style={geompoint},keypoint/.style={polepoint},
+  diagramlabel/.style={lbl},
+  module/.style={draw=RoyalBlue!75,fill=RoyalBlue!8,rounded corners=3pt,line width=.65pt,align=center,inner sep=5pt},
+  dataflow/.style={-{Stealth[length=4pt]},draw=black!75,line width=.65pt},
+  gradientflow/.style={-{Stealth[length=4pt]},draw=BrickRed,line width=.7pt,densely dashed},
+  shapelabel/.style={lbl,font=\small},
+  every picture/.append style={font=\songti\small},
+  every label/.append style={font=\songti\small}
+}
+
+
+\newcommand{\tutorhighlight}[1]{\HandoutHighlight{#1}}
+\definecolor{InkRule}{HTML}{CDD6CC}
+\definecolor{InkWash}{HTML}{F1F4EE}
+\definecolor{CodePaper}{HTML}{F6F7F2}
+
+\usepackage{array,enumitem,listings}
+\usepackage[unicode,colorlinks,linkcolor=RoyalBlue,urlcolor=RoyalBlue]{hyperref}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=2em}
+\setlength{\abovedisplayskip}{8pt plus 2pt}
+\setlength{\belowdisplayskip}{7pt plus 2pt}
+\setlength{\abovedisplayshortskip}{5pt plus 1pt}
+\setlength{\belowdisplayshortskip}{6pt plus 1pt}
+\setlength{\jot}{3.5pt}
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.23}
+\raggedbottom
+
+\renewcommand{\HandoutLesson}[2]{%
+  \par\noindent{\small\heiti\color{RoyalBlue}#1}\par\vspace{1pt}
+  {\fontsize{23}{29}\selectfont\heiti\bfseries\color{handoutink}#2}\par
+  \textcolor{InkRule}{\rule{\linewidth}{.55pt}}\par\vspace{3pt}}
+
+\newcommand{\FFTNote}[1]{%
+  \par\noindent\begingroup\setlength{\fboxsep}{7pt}%
+  \colorbox{InkWash}{\parbox{\dimexpr\linewidth-14pt\relax}{\small\color{handoutink}#1}}\endgroup\par}
+\newcommand{\FigCap}[1]{\par{\small\color{handoutmuted}#1\par}}
+\newcommand{\Cplx}{\mathbb C}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\rankff}{\mathsf T}
+
+\lstdefinestyle{fftcode}{
+  language=C,basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{RoyalBlue}\bfseries,commentstyle=\color{handoutmuted},
+  stringstyle=\color{BrickRed},showstringspaces=false,keepspaces=true,tabsize=4,
+  columns=fullflexible,aboveskip=6pt,belowskip=6pt,
+  frame=leftline,framerule=.5pt,rulecolor=\color{InkRule},
+  backgroundcolor=\color{CodePaper},xleftmargin=10pt,
+  framexleftmargin=5pt,framexrightmargin=5pt,
+  breaklines=false,upquote=true
+}
+\lstset{style=fftcode}
+\tikzset{
+  disk/.style={draw=InkRule,line width=.7pt},
+  station/.style={circle,draw=RoyalBlue,fill=white,minimum size=19pt,inner sep=1pt,font=\small},
+  warmstation/.style={station,draw=BrickRed,fill=BrickRed!6},
+  foldchord/.style={draw=RoyalBlue!68,line width=.7pt},
+  foldwarm/.style={draw=BrickRed!74,line width=.7pt,densely dashed},
+  foldarrow/.style={-{Stealth[length=5pt]},line width=.8pt,draw=RoyalBlue},
+  warmarrow/.style={foldarrow,draw=BrickRed},
+}

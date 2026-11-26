@@ -3,7 +3,7 @@ import "../math-lab.css";
 import "./fft.css";
 import "./fft-guided.css";
 
-import { ArrowDown, ArrowLeft } from "lucide-react";
+import { ArrowDown, ArrowLeft, FileText } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { Locale } from "next-intl";
@@ -40,10 +40,19 @@ export default async function Page({ params }: Props) {
             <ArrowLeft size={16} aria-hidden="true" />
             {english ? "Mathematics Lab" : "数学实验室"}
           </Link>
-          <a className="fft-proof-link" href="#derivation">
-            {english ? "Full derivation" : "完整推导"}{" "}
-            <ArrowDown size={15} aria-hidden="true" />
-          </a>
+          <div className="fft-resource-links">
+            <Link
+              className="fft-proof-link"
+              href={prefix + "/learning/math-lab/fft/handout/"}
+            >
+              <FileText size={15} aria-hidden="true" />
+              {english ? "PDF handout" : "PDF 讲义"}
+            </Link>
+            <a className="fft-proof-link" href="#derivation">
+              {english ? "Full derivation" : "完整推导"}{" "}
+              <ArrowDown size={15} aria-hidden="true" />
+            </a>
+          </div>
         </div>
         <header className="fft-intro">
           <div>
