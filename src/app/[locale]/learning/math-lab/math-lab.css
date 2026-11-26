@@ -531,7 +531,7 @@
 
 .lab-algorithm-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -546,6 +546,12 @@
 
 .lab-algorithm-card .lab-card-title h3 {
   font-size: 21px;
+}
+
+@media (max-width: 950px) {
+  .lab-algorithm-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 680px) {

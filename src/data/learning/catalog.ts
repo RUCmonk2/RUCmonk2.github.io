@@ -126,14 +126,28 @@ export const learningCatalog: readonly LearningItem[] = [
     localized: true,
     title: { zh: "数学实验室", en: "Mathematics Lab" },
     description: {
-      zh: "从算例做 FFT、最小生成树、DAG、SCC、有向生成树、矩阵乘法和 LU／SVD，也可以体验旋转、代数与谜题。",
-      en: "Work through FFT, spanning trees, directed graph algorithms, and matrix multiplication or LU and SVD, then explore geometry, algebra, and puzzles.",
+      zh: "从算例做 FFT、最小生成树、DAG、SCC、有向生成树、矩阵乘法和 LU／SVD，也可以体验 Lean 证明、旋转、代数与谜题。",
+      en: "Work through FFT, spanning trees, directed graph algorithms, and matrix multiplication or LU and SVD, then explore Lean proofs, geometry, algebra, and puzzles.",
     },
     topic: { zh: "动手探索", en: "Hands-on exploration" },
     scope: {
-      zh: "9 个交互实验",
-      en: "Nine interactive experiments",
+      zh: "10 个交互实验",
+      en: "Ten interactive experiments",
     },
+    updated: "2026-11-26",
+  },
+  {
+    id: "lean-lab",
+    category: "math",
+    href: "/learning/lean-lab",
+    localized: true,
+    title: { zh: "Lean 实验室", en: "Lean Lab" },
+    description: {
+      zh: "逐步对照 Lean 代码、证明状态和纸笔推理。从逻辑与归纳入门，动手验证《算法导论》第四版里的插入排序等算法。",
+      en: "Follow Lean code, proof states, and reasoning side by side, from basic logic and induction to insertion sort in CLRS, fourth edition.",
+    },
+    topic: { zh: "形式化证明", en: "Formal proof" },
+    scope: { zh: "Lean 4 入门 · 算法验证", en: "Lean 4 basics · Algorithm verification" },
     updated: "2026-11-26",
   },
   {

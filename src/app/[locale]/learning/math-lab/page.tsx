@@ -54,7 +54,7 @@ const experiments = [
 
 const algorithmLabs = [
   {
-    path: "mst",
+    href: "/learning/math-lab/mst/",
     title: { zh: "最小生成树", en: "Minimum spanning trees" },
     summary: {
       zh: "同图比较 Kruskal、Prim、Borůvka，再看 KKT 的采样和删边。",
@@ -62,7 +62,7 @@ const algorithmLabs = [
     },
   },
   {
-    path: "matrices",
+    href: "/learning/math-lab/matrices/",
     title: { zh: "矩阵运算与分解", en: "Matrix operations" },
     summary: {
       zh: "逐格算乘法，分步做带主元 LU，再看 SVD 的秩与重构。",
@@ -70,11 +70,19 @@ const algorithmLabs = [
     },
   },
   {
-    path: "directed-graphs",
+    href: "/learning/math-lab/directed-graphs/",
     title: { zh: "有向图算法", en: "Directed graphs" },
     summary: {
       zh: "DAG 排序和最短路、Tarjan SCC、有向生成树 DST。",
       en: "DAG ordering and shortest paths, Tarjan SCCs, and rooted arborescences.",
+    },
+  },
+  {
+    href: "/learning/lean-lab/",
+    title: { zh: "Lean 实验室", en: "Lean Lab" },
+    summary: {
+      zh: "逐步对照 Lean 代码、证明状态与纸笔推理，从逻辑入门到插入排序。",
+      en: "Read the code, proof state, and reasoning together, from basic logic to insertion sort.",
     },
   },
 ] as const;
@@ -215,8 +223,8 @@ export default async function Page({ params }: Props) {
             {algorithmLabs.map((lab) => (
               <Link
                 className="lab-card lab-algorithm-card"
-                key={lab.path}
-                href={`${labHref}/${lab.path}/`}
+                key={lab.href}
+                href={prefix + lab.href}
               >
                 <div className="lab-card-copy">
                   <div className="lab-card-title">

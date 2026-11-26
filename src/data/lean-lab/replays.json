@@ -1,0 +1,540 @@
+{
+  "toolchain": "leanprover/lean4:v4.28.0",
+  "hashes": {
+    "Foundations.lean": "653078955e311440f60f1dccb415de074105c9363ce5625796df663f7d649381",
+    "InsertionSort.lean": "607404b80c618b725270e6bb0adb27596b046184029c46a954eeb642259134de",
+    "SumAndSearch.lean": "ad4d93536fc1e7af29d0e122c49a9786645c2122c73b6895f17929bc12be33f1"
+  },
+  "lessons": {
+    "propositions": {
+      "file": "Foundations.lean",
+      "lineNumbers": [
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "code": [
+        "theorem swapAnd (P Q : Prop) : P ∧ Q → Q ∧ P := by",
+        "  intro h",
+        "  constructor",
+        "  · exact h.right",
+        "  · exact h.left"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 1,
+          "state": "P Q : Prop\n⊢ P ∧ Q → Q ∧ P"
+        },
+        {
+          "id": "intro",
+          "from": 2,
+          "through": 2,
+          "state": "P Q : Prop\nh : P ∧ Q\n⊢ Q ∧ P"
+        },
+        {
+          "id": "constructor",
+          "from": 3,
+          "through": 3,
+          "state": "case left\nP Q : Prop\nh : P ∧ Q\n⊢ Q\n\ncase right\nP Q : Prop\nh : P ∧ Q\n⊢ P"
+        },
+        {
+          "id": "right",
+          "from": 4,
+          "through": 4,
+          "state": "no goals"
+        },
+        {
+          "id": "left",
+          "from": 5,
+          "through": 5,
+          "state": "no goals"
+        }
+      ]
+    },
+    "rewrite": {
+      "file": "Foundations.lean",
+      "lineNumbers": [
+        21,
+        23
+      ],
+      "code": [
+        "theorem addOneEq (a b : Nat) (h : a = b) : a + 1 = b + 1 := by",
+        "  rw [h]"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 1,
+          "state": "a b : Nat\nh : a = b\n⊢ a + 1 = b + 1"
+        },
+        {
+          "id": "rewrite",
+          "from": 2,
+          "through": 2,
+          "state": "no goals"
+        }
+      ]
+    },
+    "induction": {
+      "file": "Foundations.lean",
+      "lineNumbers": [
+        28,
+        30,
+        31,
+        33,
+        35,
+        37,
+        39
+      ],
+      "code": [
+        "theorem appendNil (xs : List Nat) : xs ++ [] = xs := by",
+        "  induction xs with",
+        "  | nil =>",
+        "    rfl",
+        "  | cons x rest ih =>",
+        "    change x :: (rest ++ []) = x :: rest",
+        "    rw [ih]"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 1,
+          "state": "xs : List Nat\n⊢ xs ++ [] = xs"
+        },
+        {
+          "id": "nil",
+          "from": 2,
+          "through": 3,
+          "state": "case nil\n⊢ [] ++ [] = []"
+        },
+        {
+          "id": "base",
+          "from": 4,
+          "through": 4,
+          "state": "no goals"
+        },
+        {
+          "id": "cons",
+          "from": 5,
+          "through": 5,
+          "state": "case cons\nx : Nat\nrest : List Nat\nih : rest ++ [] = rest\n⊢ x :: rest ++ [] = x :: rest"
+        },
+        {
+          "id": "unfold",
+          "from": 6,
+          "through": 6,
+          "state": "case cons\nx : Nat\nrest : List Nat\nih : rest ++ [] = rest\n⊢ x :: (rest ++ []) = x :: rest"
+        },
+        {
+          "id": "rewrite",
+          "from": 7,
+          "through": 7,
+          "state": "no goals"
+        }
+      ]
+    },
+    "insertion-order": {
+      "file": "InsertionSort.lean",
+      "lineNumbers": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        62,
+        63,
+        65,
+        67,
+        69,
+        70,
+        72
+      ],
+      "code": [
+        "theorem sortFrom_ordered",
+        "    (trans : ∀ {x y z}, r x y → r y z → r x z)",
+        "    (total : ∀ x y, r x y ∨ r y x)",
+        "    (rest acc : List Nat) (hAcc : acc.Pairwise r) :",
+        "    (sortFrom r acc rest).Pairwise r := by",
+        "  induction rest generalizing acc with",
+        "  | nil =>",
+        "    exact hAcc",
+        "  | cons x xs ih =>",
+        "    have hStep : (insert r x acc).Pairwise r :=",
+        "      insert_ordered r trans total x acc hAcc",
+        "    exact ih (insert r x acc) hStep"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 5,
+          "state": "r : Nat → Nat → Prop\ninst✝ : DecidableRel r\ntrans : ∀ {x y z : Nat}, r x y → r y z → r x z\ntotal : ∀ (x y : Nat), r x y ∨ r y x\nrest acc : List Nat\nhAcc : List.Pairwise r acc\n⊢ List.Pairwise r (sortFrom r acc rest)"
+        },
+        {
+          "id": "nil",
+          "from": 6,
+          "through": 7,
+          "state": "case nil\nr : Nat → Nat → Prop\ninst✝ : DecidableRel r\ntrans : ∀ {x y z : Nat}, r x y → r y z → r x z\ntotal : ∀ (x y : Nat), r x y ∨ r y x\nacc : List Nat\nhAcc : List.Pairwise r acc\n⊢ List.Pairwise r (sortFrom r acc [])"
+        },
+        {
+          "id": "base",
+          "from": 8,
+          "through": 8,
+          "state": "no goals"
+        },
+        {
+          "id": "cons",
+          "from": 9,
+          "through": 9,
+          "state": "case cons\nr : Nat → Nat → Prop\ninst✝ : DecidableRel r\ntrans : ∀ {x y z : Nat}, r x y → r y z → r x z\ntotal : ∀ (x y : Nat), r x y ∨ r y x\nx : Nat\nxs : List Nat\nih : ∀ (acc : List Nat), List.Pairwise r acc → List.Pairwise r (sortFrom r acc xs)\nacc : List Nat\nhAcc : List.Pairwise r acc\n⊢ List.Pairwise r (sortFrom r acc (x :: xs))"
+        },
+        {
+          "id": "preserve",
+          "from": 10,
+          "through": 11,
+          "state": "case cons\nr : Nat → Nat → Prop\ninst✝ : DecidableRel r\ntrans : ∀ {x y z : Nat}, r x y → r y z → r x z\ntotal : ∀ (x y : Nat), r x y ∨ r y x\nx : Nat\nxs : List Nat\nih : ∀ (acc : List Nat), List.Pairwise r acc → List.Pairwise r (sortFrom r acc xs)\nacc : List Nat\nhAcc : List.Pairwise r acc\nhStep : List.Pairwise r (insert r x acc)\n⊢ List.Pairwise r (sortFrom r acc (x :: xs))"
+        },
+        {
+          "id": "finish",
+          "from": 12,
+          "through": 12,
+          "state": "no goals"
+        }
+      ]
+    },
+    "insertion-spec": {
+      "file": "InsertionSort.lean",
+      "lineNumbers": [
+        86,
+        87,
+        88,
+        89,
+        91,
+        93,
+        95
+      ],
+      "code": [
+        "theorem insertionSort_correct",
+        "    (trans : ∀ {x y z}, r x y → r y z → r x z)",
+        "    (total : ∀ x y, r x y ∨ r y x) (xs : List Nat) :",
+        "    (insertionSort r xs).Pairwise r ∧ (insertionSort r xs).Perm xs := by",
+        "  constructor",
+        "  · exact sortFrom_ordered r trans total xs [] .nil",
+        "  · exact sortFrom_perm r xs []"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 4,
+          "state": "r : Nat → Nat → Prop\ninst✝ : DecidableRel r\ntrans : ∀ {x y z : Nat}, r x y → r y z → r x z\ntotal : ∀ (x y : Nat), r x y ∨ r y x\nxs : List Nat\n⊢ List.Pairwise r (insertionSort r xs) ∧ (insertionSort r xs).Perm xs"
+        },
+        {
+          "id": "split",
+          "from": 5,
+          "through": 5,
+          "state": "case left\nr : Nat → Nat → Prop\ninst✝ : DecidableRel r\ntrans : ∀ {x y z : Nat}, r x y → r y z → r x z\ntotal : ∀ (x y : Nat), r x y ∨ r y x\nxs : List Nat\n⊢ List.Pairwise r (insertionSort r xs)\n\ncase right\nr : Nat → Nat → Prop\ninst✝ : DecidableRel r\ntrans : ∀ {x y z : Nat}, r x y → r y z → r x z\ntotal : ∀ (x y : Nat), r x y ∨ r y x\nxs : List Nat\n⊢ (insertionSort r xs).Perm xs"
+        },
+        {
+          "id": "sorted",
+          "from": 6,
+          "through": 6,
+          "state": "no goals"
+        },
+        {
+          "id": "perm",
+          "from": 7,
+          "through": 7,
+          "state": "no goals"
+        }
+      ]
+    },
+    "descending": {
+      "file": "InsertionSort.lean",
+      "lineNumbers": [
+        100,
+        101,
+        102,
+        104,
+        106,
+        108,
+        110,
+        112
+      ],
+      "code": [
+        "theorem descending_correct (xs : List Nat) :",
+        "    (insertionSort (fun x y => y ≤ x) xs).Pairwise (fun x y => y ≤ x) ∧",
+        "      (insertionSort (fun x y => y ≤ x) xs).Perm xs := by",
+        "  apply insertionSort_correct",
+        "  · intro x y z hyx hzy",
+        "    exact Nat.le_trans hzy hyx",
+        "  · intro x y",
+        "    exact Nat.le_total y x"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 3,
+          "state": "xs : List Nat\n⊢ List.Pairwise (fun x y => y ≤ x) (insertionSort (fun x y => y ≤ x) xs) ∧ (insertionSort (fun x y => y ≤ x) xs).Perm xs"
+        },
+        {
+          "id": "apply",
+          "from": 4,
+          "through": 4,
+          "state": "case trans\nxs : List Nat\n⊢ ∀ {x y z : Nat}, y ≤ x → z ≤ y → z ≤ x\n\ncase total\nxs : List Nat\n⊢ ∀ (x y : Nat), y ≤ x ∨ x ≤ y"
+        },
+        {
+          "id": "trans-assume",
+          "from": 5,
+          "through": 5,
+          "state": "case trans\nxs : List Nat\nx y z : Nat\nhyx : y ≤ x\nhzy : z ≤ y\n⊢ z ≤ x"
+        },
+        {
+          "id": "trans",
+          "from": 6,
+          "through": 6,
+          "state": "no goals"
+        },
+        {
+          "id": "total-assume",
+          "from": 7,
+          "through": 7,
+          "state": "case total\nxs : List Nat\nx y : Nat\n⊢ y ≤ x ∨ x ≤ y"
+        },
+        {
+          "id": "total",
+          "from": 8,
+          "through": 8,
+          "state": "no goals"
+        }
+      ]
+    },
+    "sum": {
+      "file": "SumAndSearch.lean",
+      "lineNumbers": [
+        14,
+        15,
+        17,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28
+      ],
+      "code": [
+        "theorem sumFrom_correct (acc : Int) (xs : List Int) :",
+        "    sumFrom acc xs = acc + xs.sum := by",
+        "  induction xs generalizing acc with",
+        "  | nil =>",
+        "    simp [sumFrom, List.sum_nil, Int.add_zero]",
+        "  | cons x xs ih =>",
+        "    change sumFrom (acc + x) xs = acc + (x + xs.sum)",
+        "    rw [ih (acc + x)]",
+        "    exact Int.add_assoc acc x xs.sum"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 2,
+          "state": "acc : Int\nxs : List Int\n⊢ sumFrom acc xs = acc + xs.sum"
+        },
+        {
+          "id": "nil",
+          "from": 3,
+          "through": 4,
+          "state": "case nil\nacc : Int\n⊢ sumFrom acc [] = acc + [].sum"
+        },
+        {
+          "id": "base",
+          "from": 5,
+          "through": 5,
+          "state": "no goals"
+        },
+        {
+          "id": "cons",
+          "from": 6,
+          "through": 6,
+          "state": "case cons\nx : Int\nxs : List Int\nih : ∀ (acc : Int), sumFrom acc xs = acc + xs.sum\nacc : Int\n⊢ sumFrom acc (x :: xs) = acc + (x :: xs).sum"
+        },
+        {
+          "id": "unfold",
+          "from": 7,
+          "through": 7,
+          "state": "case cons\nx : Int\nxs : List Int\nih : ∀ (acc : Int), sumFrom acc xs = acc + xs.sum\nacc : Int\n⊢ sumFrom (acc + x) xs = acc + (x + xs.sum)"
+        },
+        {
+          "id": "use-ih",
+          "from": 8,
+          "through": 8,
+          "state": "case cons\nx : Int\nxs : List Int\nih : ∀ (acc : Int), sumFrom acc xs = acc + xs.sum\nacc : Int\n⊢ acc + x + xs.sum = acc + (x + xs.sum)"
+        },
+        {
+          "id": "assoc",
+          "from": 9,
+          "through": 9,
+          "state": "no goals"
+        }
+      ]
+    },
+    "search": {
+      "file": "SumAndSearch.lean",
+      "lineNumbers": [
+        57,
+        58,
+        60,
+        61,
+        63,
+        65,
+        67,
+        69,
+        71
+      ],
+      "code": [
+        "theorem linearSearch_none_iff (key : Nat) (xs : List Nat) :",
+        "    linearSearch key xs = none ↔ key ∉ xs := by",
+        "  induction xs with",
+        "  | nil =>",
+        "    simp [linearSearch]",
+        "  | cons x xs ih =>",
+        "    by_cases hx : x = key",
+        "    · simp [linearSearch, hx]",
+        "    · simpa [linearSearch, hx, Ne.symm hx] using ih"
+      ],
+      "steps": [
+        {
+          "id": "start",
+          "from": 1,
+          "through": 2,
+          "state": "key : Nat\nxs : List Nat\n⊢ linearSearch key xs = none ↔ ¬key ∈ xs"
+        },
+        {
+          "id": "nil",
+          "from": 3,
+          "through": 4,
+          "state": "case nil\nkey : Nat\n⊢ linearSearch key [] = none ↔ ¬key ∈ []"
+        },
+        {
+          "id": "base",
+          "from": 5,
+          "through": 5,
+          "state": "no goals"
+        },
+        {
+          "id": "cons",
+          "from": 6,
+          "through": 6,
+          "state": "case cons\nkey x : Nat\nxs : List Nat\nih : linearSearch key xs = none ↔ ¬key ∈ xs\n⊢ linearSearch key (x :: xs) = none ↔ ¬key ∈ x :: xs"
+        },
+        {
+          "id": "cases",
+          "from": 7,
+          "through": 7,
+          "state": "case pos\nkey x : Nat\nxs : List Nat\nih : linearSearch key xs = none ↔ ¬key ∈ xs\nhx : x = key\n⊢ linearSearch key (x :: xs) = none ↔ ¬key ∈ x :: xs\n\ncase neg\nkey x : Nat\nxs : List Nat\nih : linearSearch key xs = none ↔ ¬key ∈ xs\nhx : ¬x = key\n⊢ linearSearch key (x :: xs) = none ↔ ¬key ∈ x :: xs"
+        },
+        {
+          "id": "match",
+          "from": 8,
+          "through": 8,
+          "state": "no goals"
+        },
+        {
+          "id": "next",
+          "from": 9,
+          "through": 9,
+          "state": "no goals"
+        }
+      ]
+    }
+  },
+  "samples": {
+    "mixed": {
+      "input": [
+        4,
+        2,
+        5,
+        2,
+        1
+      ],
+      "prefixes": [
+        [],
+        [
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          2,
+          2,
+          4,
+          5
+        ],
+        [
+          1,
+          2,
+          2,
+          4,
+          5
+        ]
+      ]
+    },
+    "reversed": {
+      "input": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "prefixes": [
+        [],
+        [
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ]
+    },
+    "empty": {
+      "input": [],
+      "prefixes": [
+        []
+      ]
+    }
+  }
+}
