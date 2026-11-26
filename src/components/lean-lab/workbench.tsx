@@ -11,7 +11,8 @@ import {
   Terminal,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import {
   chapters,
@@ -19,6 +20,7 @@ import {
   clrsRepository,
   clrsUpstream,
 } from "@/data/lean-lab/chapters";
+import { handoutPath, lessonPage } from "@/data/lean-lab/handout";
 import {
   algorithms,
   basics,
@@ -55,6 +57,15 @@ export function Workbench({
   const en = locale === "en";
   const t = (zh: string, english: string) => (en ? english : zh);
   const [lesson, setLesson] = useState<LessonId>("propositions");
+  useEffect(() => {
+    const syncLesson = () => {
+      const id = new URLSearchParams(location.search).get("lesson");
+      if (id && Object.hasOwn(lessonNotes, id)) setLesson(id as LessonId);
+    };
+    syncLesson();
+    window.addEventListener("popstate", syncLesson);
+    return () => window.removeEventListener("popstate", syncLesson);
+  }, []);
   const groups = [
     { label: t("Lean 基础", "Lean basics"), ids: basics },
     {
@@ -173,6 +184,16 @@ function ReplayPanel({
           <p>{notes.intro[locale]}</p>
         </div>
         <div className={s.sourceActions}>
+          <Link
+            href={
+              (locale === "en" ? "/en" : "") +
+              handoutPath +
+              "?page=" +
+              lessonPage[id]
+            }
+          >
+            {t("读讲义", "Handout")} · p.{lessonPage[id]}
+          </Link>
           <a href={online} target="_blank" rel="noreferrer">
             <ExternalLink size={14} aria-hidden="true" />{" "}
             {t("在线运行", "Run online")}

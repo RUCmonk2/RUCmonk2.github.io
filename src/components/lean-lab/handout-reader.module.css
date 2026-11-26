@@ -1,0 +1,142 @@
+.shell {
+  max-width: 1040px;
+  margin: auto;
+  padding: 24px clamp(12px, 3vw, 32px) 40px;
+}
+.back,
+.links a,
+.foot a {
+  color: var(--green-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.back {
+  font-size: 0.87rem;
+}
+.heading {
+  margin: 26px 0 17px;
+}
+.heading h1 {
+  font-size: clamp(1.6rem, 4vw, 2.65rem);
+  font-weight: 680;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+.heading p {
+  color: var(--muted);
+  margin-top: 6px;
+  font-size: 0.91rem;
+}
+.reader {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.controls,
+.foot,
+.links {
+  display: flex;
+  align-items: center;
+  gap: 7px 12px;
+  flex-wrap: wrap;
+}
+.controls,
+.foot {
+  padding: 9px 12px;
+}
+.controls {
+  border-bottom: 1px solid var(--border);
+}
+.controls button,
+.controls select {
+  border: 1px solid var(--border);
+  color: var(--ink);
+  background: var(--panel);
+  padding: 5px 8px;
+  border-radius: 4px;
+  min-height: 38px;
+  font-size: 0.85rem;
+}
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  min-width: 0;
+}
+.controls select {
+  max-width: 100%;
+  min-width: 0;
+}
+.controls button {
+  cursor: pointer;
+}
+.controls button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.zoom {
+  margin-inline-start: auto;
+}
+.viewport {
+  height: min(78vh, 980px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--quiet);
+  padding: 10px;
+}
+.paper {
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 1px 6px #0002;
+}
+.paper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.foot {
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.links {
+  margin-top: 15px;
+  font-size: 0.85rem;
+}
+@media (max-width: 640px) {
+  .controls {
+    gap: 6px;
+  }
+  .controls label:not(.zoom) {
+    width: 100%;
+    order: -1;
+  }
+  .controls label:not(.zoom) select {
+    flex: 1;
+  }
+  .viewport {
+    padding: 2px;
+    height: 70vh;
+  }
+  .heading {
+    margin-top: 18px;
+  }
+}
+
+.viewport,
+.paper {
+  position: relative;
+}
+.paper + .paper {
+  margin-top: 10px;
+}
+.pdfLink {
+  position: absolute;
+  border-radius: 2px;
+}
+.pdfLink:is(:hover, :focus-visible) {
+  outline: 2px solid var(--green);
+  background: #35866e22;
+}

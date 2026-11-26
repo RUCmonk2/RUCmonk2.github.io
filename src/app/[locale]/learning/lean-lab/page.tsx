@@ -76,12 +76,19 @@ export default async function LeanLabPage({ params }: Props) {
             <h1>{t("Lean 实验室", "Lean Lab")}</h1>
             <p>
               {t(
-                "把 Lean 代码、证明状态和纸笔推理放在一起。先证明一个小命题，再把同样的思路用到插入排序。",
+                "用 22 页自学讲义读懂证明，再逐行运行实验。同一个例子，从纸上的两列「已知」和「待证」，一直写到 Lean 检查通过。",
                 "Read Lean code, proof states and handwritten reasoning side by side. Prove a small proposition, then use the same ideas to verify insertion sort.",
               )}
             </p>
             <div className={s.heroActions}>
-              <a href="#proof" className={s.primary}>
+              <Link
+                href={prefix + "/learning/lean-lab/handout/"}
+                className={s.primary}
+              >
+                <BookOpen size={17} aria-hidden="true" />{" "}
+                {t("阅读自学讲义", "Read handout (Chinese)")}
+              </Link>
+              <a href="#proof" className={s.secondary}>
                 {t("开始读证明", "Start proving")}{" "}
                 <ArrowDown size={17} aria-hidden="true" />
               </a>

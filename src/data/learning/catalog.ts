@@ -148,7 +148,7 @@ export const learningCatalog: readonly LearningItem[] = [
     },
     topic: { zh: "形式化证明", en: "Formal proof" },
     scope: { zh: "Lean 4 入门 · 算法验证", en: "Lean 4 basics · Algorithm verification" },
-    updated: "2026-11-26",
+    updated: "2026-11-27",
   },
   {
     id: "math-map",

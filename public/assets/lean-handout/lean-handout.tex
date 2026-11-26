@@ -1,0 +1,562 @@
+% !TEX program = xelatex
+% Standalone source. Compile twice with XeLaTeX or Tectonic; Fandol fonts are part of TeX Live.
+\documentclass[UTF8,11pt,a4paper,fontset=fandol]{ctexart}
+% 主文件用 \documentclass[UTF8,11pt,a4paper,fontset=fandol]{ctexart}。
+% 通用视觉底座。教学顺序、助教台词、署名与题目由主文件决定。
+\usepackage[left=19mm,right=19mm,top=18mm,bottom=18mm,headheight=15pt,headsep=6mm,footskip=9mm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,xcolor,fancyhdr,tabularx,booktabs,tikz}
+\usetikzlibrary{calc,arrows.meta,angles,quotes,intersections,positioning}
+\IfFontExistsTF{Kaiti SC}{\setCJKfamilyfont{zhkai}[BoldFont={Kaiti SC Bold}]{Kaiti SC}}{}
+
+\definecolor{BrickRed}{HTML}{A74636}
+\definecolor{RoyalBlue}{HTML}{285C89}
+\definecolor{handoutink}{HTML}{242B33}
+\definecolor{handoutmuted}{HTML}{59636C}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\linespread{1.08}
+\setlength{\emergencystretch}{3em}
+
+\newcommand{\HandoutHeader}[3][]{%
+  \pagestyle{fancy}\fancyhf{}
+  \fancyhead[L]{\small #2}\fancyhead[R]{\small #3}
+  \fancyfoot[L]{\scriptsize\fangsong #1}\fancyfoot[R]{\small\thepage}
+  \renewcommand{\headrulewidth}{.3pt}}
+\newcommand{\HandoutLesson}[2]{%
+  \par{\small\heiti\color{BrickRed}#1}\par\vspace{3pt}
+  {\fontsize{21}{27}\selectfont\heiti\bfseries #2}\par
+  \textcolor{BrickRed}{\rule{\linewidth}{.7pt}}\par}
+\newcommand{\HandoutBlock}[1]{\par\vspace{4pt}{\large\heiti\bfseries #1}\par}
+\newcommand{\HandoutNote}[1]{\par{\fangsong\fontsize{10.3}{15}\selectfont\color{handoutmuted}#1\par}}
+\newcommand{\HandoutBox}[1]{%
+  \par\noindent\begingroup\setlength{\fboxsep}{8pt}%
+  \colorbox{BrickRed!9}{\parbox{\dimexpr\linewidth-16pt\relax}{#1}}\endgroup\par}
+\newcommand{\HandoutHighlight}[1]{{\setlength{\fboxsep}{1.2pt}\colorbox{BrickRed!12}{$#1$}}}
+\newenvironment{HandoutIntuition}{\par\begingroup\kaishu\fontsize{12}{17.5}\selectfont}{\par\endgroup}
+\newenvironment{HandoutProblem}{\par\begingroup\fangsong\fontsize{12}{18}\selectfont}{\par\endgroup}
+
+\tikzset{
+  conic/.style={draw=black!85,line width=1.1pt,fill=cyan!4},
+  conicopen/.style={draw=black!85,line width=1.1pt},
+  polar/.style={draw=BrickRed,line width=1.0pt},
+  aux/.style={draw=gray!75,line width=.55pt},
+  auxdash/.style={aux,densely dashed},
+  guideaxis/.style={draw=gray!30,ultra thin,->},
+  geompoint/.style={circle,draw=black!90,fill=white,inner sep=1.5pt,line width=.65pt},
+  polepoint/.style={geompoint,fill=BrickRed!85,draw=black!80},
+  lbl/.style={fill=white,inner sep=1pt,text=handoutink,font=\small},
+  curve/.style={conicopen},closedcurve/.style={conic},keyline/.style={polar},
+  helperline/.style={aux},pointmark/.style={geompoint},keypoint/.style={polepoint},
+  diagramlabel/.style={lbl},
+  module/.style={draw=RoyalBlue!75,fill=RoyalBlue!8,rounded corners=3pt,line width=.65pt,align=center,inner sep=5pt},
+  dataflow/.style={-{Stealth[length=4pt]},draw=black!75,line width=.65pt},
+  gradientflow/.style={-{Stealth[length=4pt]},draw=BrickRed,line width=.7pt,densely dashed},
+  shapelabel/.style={lbl,font=\small},
+  every picture/.append style={font=\songti\small},
+  every label/.append style={font=\songti\small}
+}
+
+\newcommand{\TutorPortrait}[2][width=5.14cm,height=3.86cm]{%
+  \tikz[baseline=(portrait.center)]\node[fill=RoyalBlue!8,rounded corners=5pt,inner sep=3pt] (portrait)
+    {\includegraphics[#1,keepaspectratio]{#2}};}
+\newcommand{\TutorText}[3]{%
+  \raggedright{\heiti\bfseries\color{#1}#2}\par
+  {\kaishu\fontsize{12}{17.5}\selectfont #3\par}}
+\newcommand{\TutorCard}[4][RoyalBlue]{%
+  \par\vspace{6pt}\noindent
+  \begin{minipage}[c]{.32\linewidth}\centering\TutorPortrait{#2}\end{minipage}\hfill
+  \begin{minipage}[c]{.65\linewidth}\TutorText{#1}{#3}{#4}\end{minipage}\par}
+\newcommand{\TutorReadCard}[3]{%
+  \par\vspace{6pt}\noindent
+  \begin{minipage}[c]{.65\linewidth}\TutorText{RoyalBlue}{#2}{#3}\end{minipage}\hfill
+  \begin{minipage}[c]{.32\linewidth}\centering\TutorPortrait{#1}\end{minipage}\par}
+\newcommand{\TutorGridSlot}[2]{%
+  \begin{minipage}[t]{.47\linewidth}\centering
+    \TutorPortrait[width=\dimexpr\linewidth-6pt\relax]{#1}\par\vspace{2pt}
+    {\small\heiti\textcolor{RoyalBlue}{#2}}%
+  \end{minipage}}
+\newcommand{\TutorGrid}[4]{%
+  \par\noindent\TutorGridSlot{#1}{读图}\hfill\TutorGridSlot{#2}{讲解}\par\vspace{6pt}
+  \noindent\TutorGridSlot{#3}{验算}\hfill\TutorGridSlot{#4}{练习}\par}
+
+
+% 对外接口传入图像路径。高校的图例和话题不写入视觉宏。
+\newcommand{\tutorcard}[4][RoyalBlue]{\TutorCard[#1]{#2}{#3}{#4}}
+\newcommand{\tutorread}[3]{\TutorReadCard{#1}{#2}{#3}}
+\newcommand{\tutorhighlight}[1]{\HandoutHighlight{#1}}
+\newcommand{\tutorlinecard}[5][BrickRed]{%
+  \par\vspace{6pt}\noindent
+  \begin{minipage}[c]{.32\linewidth}\centering\TutorPortrait{#2}\end{minipage}\hfill
+  \begin{minipage}[c]{.31\linewidth}\TutorText{#1}{#3}{#4}\end{minipage}\hfill
+  \begin{minipage}[c]{.34\linewidth}\raggedright #5\end{minipage}\par}
+
+\usepackage[unicode,colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue]{hyperref}
+\hypersetup{pdftitle={从第一行 Lean 到算法正确性},pdfauthor={Lean 实验室},bookmarksopen=true}
+\geometry{paperwidth=182mm,paperheight=248mm,left=15mm,right=15mm,top=18mm,bottom=17mm}
+\HandoutHeader[Lean 实验室 · 自学讲义]{从第一行 Lean 到算法正确性}{Lean 4.28.0}
+\setlength{\parskip}{4pt}
+\setlength{\fboxsep}{6pt}
+\newcommand{\src}[1]{\textcolor{RoyalBlue}{\texttt{#1}}}
+\newcommand{\subhead}[1]{\par\vspace{3pt}{\heiti\bfseries\color{RoyalBlue}#1}\par}
+\newenvironment{leanblock}{\par\smallskip\noindent\begin{lrbox}{\leanbox}\begin{minipage}{\dimexpr\linewidth-12pt\relax}\raggedright\small\setlength{\parskip}{0pt}}{\end{minipage}\end{lrbox}\colorbox{RoyalBlue!6}{\usebox{\leanbox}}\par\smallskip}
+\newsavebox{\leanbox}
+\newcommand{\lineofcode}[2]{\noindent\hspace*{#1em}\strut\texttt{#2}\par}
+\begin{document}\raggedbottom\raggedright\fontsize{12}{17}\selectfont
+
+\clearpage\pdfbookmark[0]{从第一行 Lean 到算法正确性}{p1}\label{p1}\HandoutLesson{导读}{从第一行 Lean 到算法正确性}
+假设你知道两件事：作业已经交了，老师也签了字。有人要你先出示签字，再出示作业，你手里的两份凭据就够了。第一节实验要证明的正是这个动作。到了插入排序，手里的凭据会变成“已经排好序”和“元素一个也没丢”。我们仍然要弄清楚每份凭据从哪里来，又能用在哪里。
+\subhead{先认这几种写法}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X@{}}\toprule
+写法 & 读法与约定\\\midrule
+\src{n : Nat} & $n$ 是自然数，从 $0$ 开始。\src{Int} 也允许负数。\\
+\src{P : Prop} & $P$ 是一个命题；\src{h : P} 表示手里有 $P$ 的一个证明。\\
+\src{P \ensuremath{\to} Q} & 给我 $P$ 的证明，我就能构造 $Q$ 的证明。\\
+\src{P \ensuremath{\wedge} Q} & 两份证明放在一起，左边证明 $P$，右边证明 $Q$。\\
+\src{\ensuremath{\vdash} Q} & 此处待证 $Q$。这一行上面列出可以使用的对象和假设。\\
+\src{xs : List Nat} & 一个有限自然数列表。全文查找下标从 $0$ 开始。\\
+\src{acc}, \src{rest} & 已处理部分的累积值、尚未处理的输入；类型随算法而变。\\\bottomrule
+\end{tabularx}
+\subhead{怎么安排第一次自学}
+先读第 2–5 页，在在线编辑器里亲手把一个正确证明改错，再改回来。第 6–9 页练习列表归纳与求和。第 10–15 页用插入排序串起循环、引理与完整规格。第 16–18 页自行分析查找。最后合上前面的页，做第 19 页的题，再翻解答。
+\HandoutBox{手边放一张纸，分成“我已经知道”和“我还欠什么”两列。每遇到一行策略，先改纸上的两列，再看实验室里 Lean 给出的状态。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=propositions\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{第一次运行一个文件}{p2}\label{p2}\HandoutLesson{入门 · 操作}{第一次运行一个文件}
+打开网站的 Lean 实验室，选“交换合取的顺序”，点“在线运行”。打开的文件里有三个定理。先找到 \src{theorem swapAnd}，把光标放到 \src{intro h} 的行末，看信息窗口。同一处也可以在站内点击这行代码查看编译时记录的状态。
+\subhead{在文件末尾加四行}
+\begin{leanblock}
+\lineofcode{0.0}{\#check (3 : Nat)}
+\lineofcode{0.0}{\#eval (2 + 3 : Nat)}
+\lineofcode{0.0}{\#check (2 + 3 = 5)}
+\lineofcode{0.0}{example : (2 + 3 : Nat) = 5 := by rfl}
+\end{leanblock}
+第一行询问一个表达式的类型，Lean 会告诉你这个数属于 \src{Nat}。第二行要求实际计算，得到 $5$。第三行检查整个等式的类型，得到 \src{Prop}。此时你知道“$2+3=5$”写成了一句合法命题。第四行才给这句命题配上证明。\src{example} 可以声明一个不命名的例子。\src{rfl} 让两侧按定义计算，并检查得到的结果是否相同。
+\subhead{读懂定理的外壳}
+\begin{leanblock}
+\lineofcode{0.0}{theorem addOneEq (a b : Nat) (h : a = b) : a + 1 = b + 1 := by}
+\lineofcode{1.0}{rw [h]}
+\end{leanblock}
+从左往右读：名字是 \src{addOneEq}；给定两个自然数 $a,b$；再给定一份 $a=b$ 的证明 $h$；冒号之后写的是你承诺证明的结论。\src{:=} 引出给这个名字的内容。\src{by} 表示后面用策略逐步构造证明。证明体向右缩进，定理名和局部假设名区分大小写。
+\subhead{观察一次失败}
+把第四行例子的右边 $5$ 改成 $6$。两侧算出来分别是 $5$ 和 $6$，\src{rfl} 会在这里失败。改回 $5$，等错误消失。输入逻辑符号时可直接复制代码；在 Lean 编辑器中输入 \src{\textbackslash{}and} 再按空格可得到 $\wedge$。
+\HandoutBox{算过一组数，只说明这组数的结果。后面的排序定理带有任意列表参数，证明必须能接住这个参数的每一种取值。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=propositions\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{把两份证明调换顺序}{p3}\label{p3}\HandoutLesson{入门 · 合取}{把两份证明调换顺序}
+设 $P$ 表示“作业已交”，$Q$ 表示“老师已签字”。给你“作业已交且老师已签字”，要写下“老师已签字且作业已交”。这个推理与作业内容无关，所以可以把 $P,Q$ 留作任意命题。
+\begin{leanblock}
+\lineofcode{0.0}{theorem swapAnd (P Q : Prop) : P \ensuremath{\wedge} Q \ensuremath{\to} Q \ensuremath{\wedge} P := by}
+\lineofcode{1.0}{intro h}
+\lineofcode{1.0}{constructor}
+\lineofcode{1.0}{\ensuremath{\cdot} exact h.right}
+\lineofcode{1.0}{\ensuremath{\cdot} exact h.left}
+\end{leanblock}
+\subhead{一步一步改纸上的两列}
+开始时只有两个命题的名字。光是给一句话起名，手里还没有这句话的证明。此时的目标是整个蕴含式。\src{intro h} 让我们暂取它的前提成立，并把这份前提命名为 $h$。Lean 的窗口成为
+\begin{leanblock}
+\lineofcode{0.0}{P Q : Prop}
+\lineofcode{0.0}{h : P \ensuremath{\wedge} Q}
+\lineofcode{0.0}{\ensuremath{\vdash} Q \ensuremath{\wedge} P}
+\end{leanblock}
+接下来想一想：要把一个“且”交给别人，必须把哪两样东西一起交出去？\src{constructor} 选用合取的构造方式，留下两个目标。两个目标都可以使用 $h$，第一个要 $Q$，第二个要 $P$。\src{\ensuremath{\cdot}} 把后面的策略放进其中一个分支。
+从 $h$ 的右侧取证据，\src{h.right} 的类型就是 $Q$。\src{exact} 检查你交出的项能否满足当前目标，匹配成功就关闭这个分支。第二个分支用 \src{h.left}，类型为 $P$。两个分支都关掉以后，我们就有了从任意前提 $h$ 构造结论的办法。
+\HandoutBox{如果只做到第一条 exact，站内可能显示“当前分支已完成”。这时第二个目标仍待处理。回到 constructor 那一步能看到两个目标的原始顺序。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=propositions\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{从类型错误读回数学}{p4}\label{p4}\HandoutLesson{入门 · 调试}{从类型错误读回数学}
+在上一页的第一条 \src{exact} 后写 \src{h.left}。Lean 错误信息里最值得读的是两行：交来的项具有类型 $P$，当前位置需要类型 $Q$。按纸笔证明翻译，就是老师请你出示签字，你递过去的是作业。哪怕在这个故事中两句话都恰好为真，Lean 也需要你给出所要求的那一份证明。
+\subhead{把完整构造压缩成一行}
+\begin{leanblock}
+\lineofcode{0.0}{example (P Q : Prop) (h : P \ensuremath{\wedge} Q) : Q \ensuremath{\wedge} P := by}
+\lineofcode{1.0}{exact \ensuremath{\langle}h.right, h.left\ensuremath{\rangle}}
+\end{leanblock}
+这里一对尖括号按结论的顺序装入两个项。第一格的期望类型是 $Q$，第二格是 $P$。上一页用 \src{constructor} 把这两个空格分别呈现在窗口中；此处把两格同时填完。内核最终检查的是构造出来的证明项的类型。
+\subhead{换一个目标，自己挑证据}
+\begin{leanblock}
+\lineofcode{0.0}{example (P Q R : Prop) (h : P \ensuremath{\wedge} (Q \ensuremath{\wedge} R)) : R \ensuremath{\wedge} P := by}
+\lineofcode{1.0}{constructor}
+\lineofcode{1.0}{\ensuremath{\cdot} exact h.right.right}
+\lineofcode{1.0}{\ensuremath{\cdot} exact h.left}
+\end{leanblock}
+沿着括号读：$h$ 的右半边证明 $Q\wedge R$；从这半边再向右，才拿到 $R$。如果停在 \src{h.right}，交出去的是一整对，目标只要其中的 $R$。第二个分支只需从最外层向左走一步。
+\subhead{手中有一个蕴含式时}
+若 \src{f : P \ensuremath{\to} Q} 且 \src{hp : P}，那么 \src{f hp} 就是类型为 $Q$ 的项。把空格读作函数应用即可。归纳假设有时也长成一个函数，稍后写 \src{ih (acc + x)}，道理与此相同。
+\HandoutBox{快速自测：在上面的嵌套合取例子里，若把目标换成 $Q$，该拿哪一项？先沿外层向右，再沿内层向左，因此写 exact h.right.left。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=propositions\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{替换以后，为什么目标消失了}{p5}\label{p5}\HandoutLesson{入门 · 等式}{替换以后，为什么目标消失了}
+已知 $a=b$，要证 $a+1=b+1$。在纸上，我们在两个边长相等的线段后各添一单位。写成代数推导，只需把左边的 $a$ 改写成 $b$，再利用每个数等于它自己。
+\begin{leanblock}
+\lineofcode{0.0}{theorem addOneEq (a b : Nat) (h : a = b) : a + 1 = b + 1 := by}
+\lineofcode{1.0}{rw [h]}
+\end{leanblock}
+把策略执行前的目标、替换产生的中间式和最后一步分开写：
+\[
+ a+1=b+1\quad\xrightarrow{\ a\mapsto b\ }\quad b+1=b+1
+ \quad\xrightarrow{\text{自反性}}\quad \text{完成}.
+\]
+\src{rw [h]} 读取等式 $h$ 的方向，在目标中利用它重写；如果重写后的目标可以用自反性关闭，这个策略会顺手做完。因此最后的状态已经没有目标。中间的 $b+1=b+1$ 是这行内部发生的变化，回放不另停一帧。
+\subhead{怎样看出方向写反了}
+设 \src{h : b = a}，手中的另一个事实是 \src{ha : a = 3}，目标是 \src{b = 3}。这次可以先把目标中的 $b$ 改成 $a$，再交出 \src{ha}。若拿到的等式写作 \src{h : a = b}，就用反方向。
+\begin{leanblock}
+\lineofcode{0.0}{example (a b : Nat) (h : a = b) (ha : a = 3) : b = 3 := by}
+\lineofcode{1.0}{rw [\ensuremath{\leftarrow} h]}
+\lineofcode{1.0}{exact ha}
+\end{leanblock}
+\subhead{三种很像的动作}
+\src{rfl} 检查两侧是否能按定义化成同一表达式。\src{change} 把当前目标写成按定义等价的另一种样子，方便观察。\src{rw} 使用一条具体等式替换。接下来列表拼接的证明中，先用 \src{change} 看清结构，再用 \src{rw} 引入一个已经证明的事实。
+\HandoutBox{尝试把上例的 h 删除。代入的依据也随之消失。检查错误时先找清楚“我想替换哪一项”和“用的是哪条等式”。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=rewrite\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{为什么要沿着表头和表尾拆}{p6}\label{p6}\HandoutLesson{列表 · 递归}{为什么要沿着表头和表尾拆}
+\src{List Nat} 表示自然数列表。它只有两种生成方式：空列表 \src{[]}，或者在已有列表 \src{rest} 的前面放进一个元素 \src{x}，写作 \src{x :: rest}。例如 \src{[4, 2]} 可以展开为 \src{4 :: (2 :: [])}。列表有顺序，也允许重复值。
+\subhead{拼接的定义给了两条计算规则}
+令 $A,B$ 为列表，$x$ 为单个元素。把 \src{++} 读成“把右边列表接到左边的末尾”。计算时对左边列表分情况：
+\[
+ []\mathbin{++}B=B,\qquad (x::A)\mathbin{++}B=x::(A\mathbin{++}B).
+\]
+这里 $++$ 在公式中表示一个二元运算符。第一条可以立刻返回右边。第二条先把左边的表头放回输出，把剩下的拼接工作交给较短的尾部。
+\[
+\begin{aligned}
+ [4,2]\mathbin{++}[] &= 4::([2]\mathbin{++}[])\\
+ &=4::(2::([]\mathbin{++}[]))\\
+ &=4::(2::[])=[4,2].
+\end{aligned}
+\]
+\subhead{把数字擦掉会怎样}
+具体列表能一直算到底。当输入只叫 \src{xs} 时，你不知道它有没有表头。计算到 \src{xs ++ []} 就遇到了这个问题。反过来，\src{[] ++ xs} 的左边已知是空表，第一条规则立即生效。两道看起来对称的题，适合的证明方法不同。
+\begin{leanblock}
+\lineofcode{0.0}{example (xs : List Nat) : [] ++ xs = xs := by}
+\lineofcode{1.0}{rfl}
+\end{leanblock}
+\HandoutBox{思考：若有人说“所有列表都非空，因为可以取出它们的第一项”，漏掉了哪一种构造？在归纳证明中，Lean 会明确列出空列表分支，必须单独处理。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=induction\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{写出第一份完整的归纳证明}{p7}\label{p7}\HandoutLesson{列表 · 归纳}{写出第一份完整的归纳证明}
+我们要证明任意自然数列表 $L$ 满足 $S(L): L\mathbin{++}[]=L$。纸笔证明只需两件事：证明 $S([])$；在假设 $S(R)$ 的情况下证明 $S(x::R)$。任意有限列表都能从空表逐次接上表头得到，这两件事覆盖了每一个列表。
+\begin{leanblock}
+\lineofcode{0.0}{theorem appendNil (xs : List Nat) : xs ++ [] = xs := by}
+\lineofcode{1.0}{induction xs with}
+\lineofcode{1.0}{| nil => rfl}
+\lineofcode{1.0}{| cons x rest ih =>}
+\lineofcode{2.0}{change x :: (rest ++ []) = x :: rest}
+\lineofcode{2.0}{rw [ih]}
+\end{leanblock}
+\subhead{空表分支与递推分支各欠什么}
+\src{induction xs with} 指定沿列表的构造做归纳。\src{nil} 分支的目标是 \src{[] ++ [] = []}。左边按定义化简成右边，\src{rfl} 关闭分支。\src{cons} 分支拿到了一个元素 $x$、一个更短的列表 \src{rest}，以及关于这个更短列表的证据 \src{ih}。
+\begin{leanblock}
+\lineofcode{0.0}{ih : rest ++ [] = rest}
+\lineofcode{0.0}{\ensuremath{\vdash} (x :: rest) ++ [] = x :: rest}
+\end{leanblock}
+先展开一次拼接，左边成为 \src{x :: (rest ++ [])}。\src{change} 让双方共有的表头显出来。然后 \src{rw [ih]} 只替换尾部，左右均为 \src{x :: rest}。
+\subhead{为什么没有循环论证}
+以输入 $[4,2]$ 为例，证明 $S([4,2])$ 时可以调用 $S([2])$；后者只需要 $S([])$，而 $S([])$ 已经独立证明。任何这样的调用链每次都缩短一个元素，最终停在空表。
+\HandoutBox{合上代码，重写三行纸笔推理。第一行写归纳假设的准确对象，第二行只展开一次定义，第三行圈出能被 ih 替换的子式。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=induction\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{手算一次带累加器的循环}{p8}\label{p8}\HandoutLesson{第四版练习 2.1-2 · 求和}{手算一次带累加器的循环}
+现在把一个整数列表从左扫到右。用 \src{acc} 保存手头的和，拿走表头 $x$ 后把它更新为 \src{acc + x}。空表返回 \src{acc}。这是书中数组循环的列表模型，累加值的类型用 \src{Int}，可以处理负数。
+\begin{leanblock}
+\lineofcode{0.0}{def sumFrom (acc : Int) : List Int \ensuremath{\to} Int}
+\lineofcode{1.0}{| [] => acc}
+\lineofcode{1.0}{| x :: xs => sumFrom (acc + x) xs}
+\end{leanblock}
+\subhead{一笔总账，分在两个地方}
+从 \src{acc = 5}、剩余输入 $[3,-2,4]$ 开始。每次把一项从待处理清单移到账上。试着先遮住最后两列，自行填表。
+\begin{center}\begin{tabular}{rcrrr}\toprule
+轮次 & 剩余列表 & 手头的数 & 剩余之和 & 两者相加\\\midrule
+0 & $[3,-2,4]$ & 5 & 5 & 10\\
+1 & $[-2,4]$ & 8 & 2 & 10\\
+2 & $[4]$ & 6 & 4 & 10\\
+3 & $[]$ & 10 & 0 & 10\\\bottomrule
+\end{tabular}\end{center}
+第三列不断改变，最后一列始终为 $10$。原因是更新前的总量 $a+(x+s)$ 等于更新后的 $(a+x)+s$。这里 $s$ 表示尾部的和，唯一用到的代数规则是加法结合律。
+\subhead{为什么把初值也写进定理}
+最终使用的函数从 $0$ 开始，但做完一次更新，下一次调用已经从 $0+x$ 开始。如果手中只有“从 $0$ 开始时是正确的”这一句话，便无法直接套在更新后的调用上。我们把结论加强为
+\[
+ \mathrm{sumFrom}(a,L)=a+\mathrm{sum}(L)\qquad \text{对每个整数 }a.
+\]
+取 $a=0$ 就能取回原问题。先证明更强的命题，还让程序里每一个中间状态都有了同一条解释。
+\HandoutBox{把输入换为空表、初值换成 $-7$。函数返回多少？最后一列的写法应当仍成立。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=sum\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{累加器改变时，怎样使用归纳假设}{p9}\label{p9}\HandoutLesson{第四版练习 2.1-2 · 归纳}{累加器改变时，怎样使用归纳假设}
+\begin{leanblock}
+\lineofcode{0.0}{theorem sumFrom\_correct (acc : Int) (xs : List Int) :}
+\lineofcode{2.0}{sumFrom acc xs = acc + xs.sum := by}
+\lineofcode{1.0}{induction xs generalizing acc with}
+\lineofcode{1.0}{| nil => simp [sumFrom, List.sum\_nil, Int.add\_zero]}
+\lineofcode{1.0}{| cons x xs ih =>}
+\lineofcode{2.0}{change sumFrom (acc + x) xs = acc + (x + xs.sum)}
+\lineofcode{2.0}{rw [ih (acc + x)]}
+\lineofcode{2.0}{exact Int.add\_assoc acc x xs.sum}
+\end{leanblock}
+\src{generalizing acc} 保证在证明较短列表时仍然可以任选初值。把 \src{ih} 想象成一张写着空格的收据：“如果初值填 $b$，在尾部 \src{xs} 上运行的结果就是 $b+\mathrm{sum}(xs)$。”这里必须填 $b=a+x$，因为程序下一次调用实际传入的就是这个值。
+\subhead{把每一行策略翻译成等式}
+设 $s=\mathrm{sum}(xs)$。空表时目标化为 $a=a+0$，\src{simp} 按所列规则计算并消去右边的零。非空时只看左侧计算过程：
+\[
+\begin{aligned}
+\mathrm{sumFrom}(a,x::xs)
+ &=\mathrm{sumFrom}(a+x,xs) &&\text{展开一次程序}\\
+ &=(a+x)+s &&\text{用归纳假设，填入 }a+x\\
+ &=a+(x+s) &&\text{加法结合律}\\
+ &=a+\mathrm{sum}(x::xs) &&\text{表头加尾和}.
+\end{aligned}
+\]
+源码的 \src{change} 同时展开左右两端的定义。\src{rw} 完成第二行。\src{Int.add\_assoc} 接受三个整数，产出的等式方向恰好与剩余目标一致。最后令初值为零，再用 $0+t=t$，就得到 \src{sumList\_correct}。
+\HandoutBox{回到上一页的第 1 轮。此时该向归纳假设传入 $5$、$3$ 还是 $8$？把数字换回变量，你就能自己写出 rw 的参数。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=sum\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{先看算法的两层递归}{p10}\label{p10}\HandoutLesson{第四版 §2.1 · 插入排序}{先看算法的两层递归}
+一手拿着已经排好的牌，另一手拿着还没看的牌。外层每次取一张新牌，内层在已排部分中给它找一个位置。我们用自然数列表模拟这两叠牌，升序时比较规则取 $x\le y$。
+\begin{leanblock}
+\lineofcode{0.0}{def insert (x : Nat) : List Nat \ensuremath{\to} List Nat}
+\lineofcode{1.0}{| [] => [x]}
+\lineofcode{1.0}{| y :: ys => if r x y then x :: y :: ys else y :: insert x ys}
+\end{leanblock}
+这里 \src{r} 和它的可判定性在文件上方声明。\src{r x y} 的意思是“$x$ 可以排在 $y$ 前面”。在升序下，把 $2$ 插入 $[1,4,5]$：遇到 $1$，$2\le1$ 为假，保留 $1$ 并递归；遇到 $4$，$2\le4$ 成立，返回 $[2,4,5]$；回到上一层，得到 $[1,2,4,5]$。
+\subhead{外层到底在哪一刻维持有序}
+\begin{center}\begin{tabular}{cll}\toprule
+刚插入 & 已排部分 \src{acc} & 剩余 \src{rest}\\\midrule
+初始 & $[]$ & $[4,2,5,2,1]$\\
+4 & $[4]$ & $[2,5,2,1]$\\
+2 & $[2,4]$ & $[5,2,1]$\\
+5 & $[2,4,5]$ & $[2,1]$\\
+2 & $[2,2,4,5]$ & $[1]$\\
+1 & $[1,2,2,4,5]$ & $[]$\\\bottomrule
+\end{tabular}\end{center}
+每一行的已排部分都有序，但剩余输入可以杂乱。内层每次缩短待比较的已排列表；外层每次缩短未处理列表。两层各自都有一个会变空的参数。这解释了为什么递归可以停，也提示我们应该对哪一个列表做归纳。
+\HandoutBox{去“插入排序 · 保持有序”，展开 2.1-1 的走查。遮住下一行，只说出本次比较停在哪个元素前面。这个练习的输入是实验室自选的。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=insertion-order\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{一个排序函数要交出两份证明}{p11}\label{p11}\HandoutLesson{排序的规格}{一个排序函数要交出两份证明}
+把 \src{Pairwise r ys} 展成一句话：对 \src{ys} 中任意两个位置 $i<j$，排在前面的值与后面的值满足关系 $r$。升序时就是 $ys_i\le ys_j$。空列表没有这样的两个位置，单元素列表也没有，两者都满足条件。
+另一半用 \src{List.Perm} 表示“是一个排列”。例如 $[2,4,2]$ 与 $[4,2,2]$ 互为排列，因为可以移动元素得到另一列；$[2,4]$ 与 $[4,2,2]$ 包含相同的不同取值，却差了一个 $2$。
+\subhead{用两个坏算法检查规格写得够不够}
+函数一丢弃全部输入，一律返回 $[]$。它每次都给出有序结果。在输入 $[7]$ 上检查排列条件，它就无法通过。函数二原样返回输入，它总能通过排列检查，但输入 $[3,1]$ 时违反有序性。把两条要求合在一起，才抓住排序要做的事。
+\[
+ \underbrace{\mathrm{Pairwise}(r,\mathrm{out})}_{\text{检查顺序}}
+ \quad\land\quad
+ \underbrace{\mathrm{Perm}(\mathrm{out},\mathrm{in})}_{\text{检查元素及次数}}.
+\]
+\subhead{证明怎样接起来}
+\begin{center}\begin{tikzpicture}[node distance=5mm and 10mm]
+\node[module] (p) {\texttt{insert\_perm}};
+\node[module,right=of p] (o) {\texttt{insert\_ordered}};
+\node[module,below=of p] (pp) {\texttt{sortFrom\_perm}};
+\node[module,below=of o] (oo) {\texttt{sortFrom\_ordered}};
+\node[module,below=8mm of $(pp)!0.5!(oo)$] (end) {\texttt{insertionSort\_correct}};
+\draw[dataflow](p)--(pp);\draw[dataflow](p)--(o);\draw[dataflow](o)--(oo);
+\draw[dataflow](pp)--(end);\draw[dataflow](oo)--(end);
+\end{tikzpicture}\end{center}
+箭头从已知引理指向调用它的证明。横向那支箭头很重要：为了证明一次插入后仍有序，我们需要辨认插入后的某个元素从哪里来。排列引理可以告诉我们，它要么是新值，要么来自旧列表。
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=insertion-spec\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{一次插入怎样保住重复次数}{p12}\label{p12}\HandoutLesson{插入的第一个引理}{一次插入怎样保住重复次数}
+固定待插入的 $x$，目标是 \src{(insert r x ys).Perm (x :: ys)}。右边把新牌直接放在最前面，给出了一个容易核对的参照。只要左边能由右边调换位置得到，就知道没有丢牌或多造牌。
+\subhead{把一个具体交换拆开}
+将 $4$ 插入 $[2,5]$ 会得到 $[2,4,5]$。参照是 $[4,2,5]$。先看尾部，把 $4$ 插入 $[5]$ 得到 $[4,5]$，已经等于尾部的参照。在两边都加回 $2$，得到 $[2,4,5]$；最后交换前两项，就到达整列的参照 $[4,2,5]$。
+\subhead{读原证明的三个分支}
+\begin{leanblock}
+\lineofcode{1.0}{induction ys with}
+\lineofcode{1.0}{| nil => exact .refl \_}
+\lineofcode{1.0}{| cons y ys ih =>}
+\lineofcode{2.0}{by\_cases h : r x y}
+\lineofcode{2.0}{\ensuremath{\cdot} rw [insert, if\_pos h]}
+\lineofcode{2.0}{\ensuremath{\cdot} rw [insert, if\_neg h]}
+\lineofcode{3.0}{exact (List.Perm.cons y ih).trans (.swap x y ys)}
+\end{leanblock}
+空表时两边都是 $[x]$，\src{Perm.refl} 给出“自己是自己的排列”。非空时用比较结果分两支，\src{h} 在第一支证明 \src{r x y}，在第二支证明其否定。\src{if\_pos} 和 \src{if\_neg} 据此选中程序实际执行的分支。
+比较成立时，输出本来就是 $x::y::ys$。比较失败时，输出形如 $y::\mathrm{insert}(x,ys)$。归纳假设 \src{ih} 说后面的插入结果与 $x::ys$ 互为排列。\src{Perm.cons y ih} 允许两边同时加上 $y$；\src{.swap} 交换两个相邻表头；\src{.trans} 把两段排列证明首尾接起来。
+\HandoutBox{在纸上把“同时加表头”和“交换两个表头”各画一个箭头。只证明每个元素都出现过，会遗漏什么？试着拿含有两个 $2$ 的输入来反驳。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=insertion-spec\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{从一次比较推出整列有序}{p13}\label{p13}\HandoutLesson{插入的第二个引理}{从一次比较推出整列有序}
+假设 $y::ys$ 已经有序。把这个假设拆开，可以拿到两件事：$y$ 排在尾部每个元素 $z$ 前面，满足 $r(y,z)$；尾部 \src{ys} 自身也有序。在代码中 \src{List.pairwise\_cons.mp hs} 取出这两件事，分别命名为 \src{hy} 和 \src{hys}。
+\subhead{情形一：新值可以放在表头}
+若 $r(x,y)$，输出就是 $x::y::ys$。旧的后半列仍有序。新增的任务只有“$x$ 能放在后面每个值之前”。遇到 $y$ 本身，刚才那次比较给出了证明；遇到 \src{ys} 中的 $z$，由 $r(x,y)$、$r(y,z)$ 和传递性推出 $r(x,z)$。因此比较表头一次就足够。
+\begin{leanblock}
+\lineofcode{0.0}{rw [insert, if\_pos hxy, List.pairwise\_cons]}
+\lineofcode{0.0}{refine \ensuremath{\langle}?\_, hs\ensuremath{\rangle}}
+\end{leanblock}
+尖括号的第二格已经填入旧列的有序性 \src{hs}。\src{?\_} 留下第一格，要求我们逐个说明新表头与后面元素的关系。
+\subhead{情形二：保留原来的表头}
+若 $r(x,y)$ 为假，程序保留 $y$，在尾部递归插入 $x$。对较短列表使用归纳假设，可知新尾部有序。还需要验证 $y$ 能放在新尾部的每个 $z$ 前面。上页的排列引理保证 $z$ 的来历只有两种：
+\begin{itemize}
+\item 如果 $z=x$，全可比性给出 $r(x,y)\lor r(y,x)$。前一项已被排除，所以 $r(y,x)$ 成立。
+\item 如果 $z$ 是旧尾部元素，原先的 \src{hy} 就给出 $r(y,z)$。
+\end{itemize}
+以 $x=4$、旧列 $[2,5]$ 为例，新尾部是 $[4,5]$。$2\le4$ 来自比较失配后的反向关系；$2\le5$ 来自原列表有序。两种依据各用一次。
+\HandoutBox{现在可以给关系 r 写出三个接口要求：程序要能判定一次比较；证明需要传递性；比较失败后要能从全可比性选出反向关系。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=insertion-order\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{从一次插入走到任意长度的输入}{p14}\label{p14}\HandoutLesson{§2.1 · 完成规格}{从一次插入走到任意长度的输入}
+\src{sortFrom r acc rest} 从已排部分 \src{acc} 开始，把 \src{rest} 中的元素逐个插入。我们要证明：任给有序的 \src{acc}，处理完 \src{rest} 所得的列表仍有序。对尚待处理的 \src{rest} 做归纳，初值 \src{acc} 仍可任选。
+\begin{leanblock}
+\lineofcode{1.0}{induction rest generalizing acc with}
+\lineofcode{1.0}{| nil => exact hAcc}
+\lineofcode{1.0}{| cons x xs ih =>}
+\lineofcode{2.0}{have hStep : (insert r x acc).Pairwise r :=}
+\lineofcode{3.0}{insert\_ordered r trans total x acc hAcc}
+\lineofcode{2.0}{exact ih (insert r x acc) hStep}
+\end{leanblock}
+空表分支立即返回 \src{acc}，手里的 \src{hAcc} 正好证明它有序。在非空分支，\src{have} 给一个中间事实起名。调用上页的引理得到 \src{hStep} 后，当前目标依旧是最终结果有序。现在把更新后的累积列表和证明 \src{hStep} 一起交给 \src{ih}，剩余输入已经缩成 \src{xs}。
+\subhead{另一条归纳线怎样保持全部元素}
+若用 $\sim$ 表示“互为排列”，令 $a'=\mathrm{insert}(x,a)$。从 $a$ 出发处理 $x::s$ 等于从 $a'$ 出发处理 $s$。后者的结果按归纳假设与 $a'\mathbin{++}s$ 互为排列。一次插入的排列引理又告诉我们
+\[
+ a'\mathbin{++}s\ \sim\ (x::a)\mathbin{++}s\
+ \sim\ a\mathbin{++}(x::s).
+\]
+第一步在一对排列的右边接上相同尾部；第二步让 $x$ 越过整段 $a$。源码用 \src{append\_right} 和 \src{perm\_middle} 的反向证明完成这两步。
+\subhead{回到最外层的入口}
+\begin{leanblock}
+\lineofcode{1.0}{constructor}
+\lineofcode{1.0}{\ensuremath{\cdot} exact sortFrom\_ordered r trans total xs [] .nil}
+\lineofcode{1.0}{\ensuremath{\cdot} exact sortFrom\_perm r xs []}
+\end{leanblock}
+令初始累积列表为 $[]$。空表有序的证明是 \src{.nil}；空表拼上 \src{xs} 按定义就是 \src{xs}。两条子目标分别关闭，这就证明函数式插入排序对任意自然数列表满足完整规格。
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=insertion-spec\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{改为降序，哪些证明要重做}{p15}\label{p15}\HandoutLesson{第四版练习 2.1-3}{改为降序，哪些证明要重做}
+把关系 $r(x,y)$ 定义为 $y\le x$。例如处理 $[2,5,2]$，第一次插入得到 $[2]$，第二次比较“$2\le5$？”成立，把 $5$ 放在前面。第三次遇到表头 $5$ 时测试“$5\le2$？”失败，于是继续比较尾部。最终 $[5,2,2]$ 有序，原来的两个 $2$ 都在。
+\subhead{将一般定理用到一个具体关系}
+源码中 \src{fun x y => y \ensuremath{\leq} x} 就是这个二元关系。目标仍由合取组成：按反向关系有序，而且结果与输入互为排列。\src{apply insertionSort\_correct} 把一般定理的结论对准当前目标。Lean 已经从目标推断出关系和列表，剩余两个条件要我们填写。
+\begin{leanblock}
+\lineofcode{1.0}{apply insertionSort\_correct}
+\lineofcode{1.0}{\ensuremath{\cdot} intro x y z hyx hzy}
+\lineofcode{2.0}{exact Nat.le\_trans hzy hyx}
+\lineofcode{1.0}{\ensuremath{\cdot} intro x y}
+\lineofcode{2.0}{exact Nat.le\_total y x}
+\end{leanblock}
+第一支要证明传递性。把一般关系的公式
+\[
+ r(x,y)\ \longrightarrow\ r(y,z)\ \longrightarrow\ r(x,z)
+\]
+逐项换成自然数关系，就得到“若 $y\le x$ 且 $z\le y$，则 $z\le x$”。为了让不等式的中间项接起来，先递给 \src{Nat.le\_trans} 的应是 $z\le y$，再给 $y\le x$。这就是代码里 \src{hzy hyx} 次序的来历。
+第二支要求 $y\le x$ 或 $x\le y$。\src{Nat.le\_total y x} 的输出恰好匹配。一般定理里关于元素排列的证据也随之可用。
+\HandoutBox{能把这里的 $\le$ 换成严格小于吗？让 $x=y=2$。这时 $x<y$ 和 $y<x$ 同时为假，全可比性无法通过。这个检查看出了重复元素带来的实际约束。}
+
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=descending\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{查找为什么返回 Option Nat}{p16}\label{p16}\HandoutLesson{第四版练习 2.1-4 · 执行}{查找为什么返回 Option Nat}
+在 $[7,4,9]$ 里找 $4$，答案是下标 $1$。在同一个列表里找 $6$，没有可交回的合法下标。若用数字 $0$ 表示失败，便无法区别“没找到”和“在第一项找到”。\src{Option Nat} 提供两种构造：\src{none} 表示空缺，\src{some i} 保存一个自然数下标 $i$。
+\begin{leanblock}
+\lineofcode{0.0}{def linearSearch (key : Nat) : List Nat \ensuremath{\to} Option Nat}
+\lineofcode{1.0}{| [] => none}
+\lineofcode{1.0}{| x :: xs =>}
+\lineofcode{2.0}{if x = key then some 0 else (linearSearch key xs).map Nat.succ}
+\end{leanblock}
+\subhead{为什么尾部的答案要加一}
+从 $[7,4,9]$ 的表头开始，$7\ne4$，任务交给 $[4,9]$。在尾部看来，$4$ 就在位置 $0$，所以返回 \src{some 0}。回到原来的列表，它前面多了一个 $7$，下标要加一，得到 \src{some 1}。这里的 $1$ 是位置，目标值仍然是 $4$。
+\src{Nat.succ} 把 $j$ 变成 $j+1$。\src{map} 把这个操作伸进 \src{Option} 的包装里。如果尾部给出 \src{some j}，那么整体得到 \src{some (j+1)}；如果尾部给出 \src{none}，加一操作没有对象，整体仍是 \src{none}。
+\subhead{对两种返回值各问一句}
+\[
+\begin{aligned}
+\mathrm{search}(k,L)=\mathrm{none}
+   &\iff k\notin L,\\
+\mathrm{search}(k,L)=\mathrm{some}(i)
+   &\implies L[i]?=\mathrm{some}(k).
+\end{aligned}
+\]
+\src{xs[i]?} 是可失败的下标访问，越界时同样返回 \src{none}。第二式因此同时说明返回的位置存在，那里存放的确实是目标值。接下来两页分别证明这两句话。
+\HandoutBox{先推算 \src{linearSearch 9 [7,4,9]} 的返回过程：最内层找到时是多少？回到上一层、再上一层各是多少？对 \src{linearSearch 8 [7,4,9]} 重做一次。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=search\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{把“找不到”证明成双向等价}{p17}\label{p17}\HandoutLesson{第四版练习 2.1-4 · 缺失}{把“找不到”证明成双向等价}
+令 $F(L)$ 表示查找返回 \src{none}，令 $A(L)$ 表示目标值不在列表 $L$。我们要证明 $F(L)\leftrightarrow A(L)$。正向保证程序报告失败时列表里确实没有，反向保证列表里没有时程序会报告失败。
+\begin{leanblock}
+\lineofcode{0.0}{theorem linearSearch\_none\_iff (key : Nat) (xs : List Nat) :}
+\lineofcode{2.0}{linearSearch key xs = none \ensuremath{\leftrightarrow} key \ensuremath{\notin} xs := by}
+\lineofcode{1.0}{induction xs with}
+\lineofcode{1.0}{| nil => simp [linearSearch]}
+\lineofcode{1.0}{| cons x xs ih =>}
+\lineofcode{2.0}{by\_cases hx : x = key}
+\lineofcode{2.0}{\ensuremath{\cdot} simp [linearSearch, hx]}
+\lineofcode{2.0}{\ensuremath{\cdot} simpa [linearSearch, hx, Ne.symm hx] using ih}
+\end{leanblock}
+\subhead{空表、表头命中、表头失配}
+空表时，左边从定义化成 \src{none = none}，右边说明空列表没有成员，两边都成立。若表头等于目标值，函数返回 \src{some 0}，左边为假；目标就在表头，右边也为假。这里要证明的是等价关系，两边都为假时，这个等价关系为真。
+若表头失配，剩下的目标读作：
+\[
+\underbrace{\text{尾部结果经下标加一后仍为空}}_{\iff F(xs)}
+\ \longleftrightarrow\
+\underbrace{\text{目标既不是表头，也不在尾部}}_{\iff A(xs)}.
+\]
+左边用上页的 \src{map} 两条计算规则。右边用“属于 $x::xs$ 等价于等于 $x$ 或属于 \src{xs}”以及 $x\ne key$。因此要交出的命题正是已有的 \src{ih}。
+\subhead{最后一行浓缩了哪些依据}
+\src{simpa [...] using ih} 会按给定规则化简眼下的目标和已有事实，再检查它们能否对上。比较是 \src{x = key}，成员关系展开时也可能出现 \src{key = x}。\src{Ne.symm hx} 提供失配条件的反方向，避免这两个写法对不上。
+\HandoutBox{在纸上对 $[]$、$[4]$、$[7,4]$ 分别判断等价式的左右两边。会有一组“两边都假”；尝试说出为什么它仍然通过定理的检查。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=search\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{返回的下标为什么一定正确}{p18}\label{p18}\HandoutLesson{第四版练习 2.1-4 · 命中}{返回的下标为什么一定正确}
+假设 \src{found : linearSearch key xs = some i}。目标是 \src{xs[i]? = some key}。我们手里已经有“程序给了下标”的前提，要用它排除不可能的执行路径。分支越多，越值得先写一张表。
+\begin{center}\small\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}\toprule
+输入与比较 & 程序输出 & 从 found 得到什么\\\midrule
+空列表 & \src{none} & 与 \src{some i} 冲突，此支不可能。\\
+表头命中 & \src{some 0} & 必有 $i=0$；下标 $0$ 处就是目标值。\\
+表头失配，尾部失败 & \src{none} & 又与 found 冲突。\\
+表头失配，尾部命中 $j$ & \src{some (j+1)} & $i=j+1$，用尾部位置 $j$ 的归纳假设。\\\bottomrule\end{tabularx}\end{center}
+\subhead{在最难的一支中追到底}
+\src{cases ht : linearSearch key xs with} 拆开尾部的返回值，并把它的取值记录在等式 \src{ht} 中。假设尾部返回 \src{some j}。将 \src{ht} 和失配条件代入 \src{found}，已知 \src{some (j+1) = some i}，于是 $j+1=i$。源码里的 \src{simp [...] at found} 把这些计算用在已知条件上，\src{subst i} 随后在相关表达式中替换 $i$。
+此时整个列表是 $x::xs$。读取它的第 $j+1$ 项，按定义就是读尾部 \src{xs} 的第 $j$ 项。对尾部使用 \src{ih j ht}，已得 \src{xs[j]? = some key}，正是所需。
+\subhead{用具体数字检验一次位置换算}
+在 $[7,4,9]$ 找 $4$ 时，这个分支中 $x=7$，尾部为 $[4,9]$，$j=0$。尾部的第 $0$ 项是 $4$，因此整个列表的第 $1$ 项也是 $4$。若忘了给尾部返回值加一，函数会声称下标 $0$ 处是 $4$，实际那里是 $7$。这条反例能准确定位程序应修改的地方。
+\HandoutBox{两个查找定理合起来保证命中与缺失都可信。若还要单独证明“返回重复值的最小下标”，规格还需加入所有更小位置均不匹配的条件。}
+\par\smallskip{\footnotesize\href{https://yeyaozhi.eu.cc/learning/lean-lab/?lesson=search\#proof}{打开本页对应的 Lean 实验}}
+\clearpage\pdfbookmark[0]{六道题，把纸上的推理写进 Lean}{p19}\label{p19}\HandoutLesson{自测 · 先独立完成}{六道题，把纸上的推理写进 Lean}
+先在纸上作答。第 1–3 题可以在在线编辑器中新开文件，第一行写 \src{import Std}；本页给出定理的名字和目标，参考证明在下一页。第 4–6 题需要解释算法的状态，建议保留中间计算。
+\subhead{1　构造与取出}
+已知 \src{h : (P \ensuremath{\wedge} Q) \ensuremath{\wedge} R}，要求得到 \src{R \ensuremath{\wedge} Q}。先写出 \src{constructor} 后的两个目标，再分别用 \src{exact} 填上。特别留意 $Q$ 藏在括号的哪一层。
+\subhead{2　把等式用到假设中}
+已知 \src{h : a = b} 和 \src{ha : a + 1 = 9}，目标是 \src{b + 1 = 9}。这次试着保留目标的写法，改写 \src{ha}，再交出改写过的假设。预先写出替换之前和之后 \src{ha} 各是什么类型。
+\subhead{3　用自己的递归函数数元素}
+\begin{leanblock}
+\lineofcode{0.0}{def countItems : List Nat \ensuremath{\to} Nat}
+\lineofcode{1.0}{| [] => 0}
+\lineofcode{1.0}{| \_ :: xs => countItems xs + 1}
+\end{leanblock}
+在任意列表 \src{xs} 上证明 \src{countItems (xs ++ []) = countItems xs}。先尝试仅用第 7 页的引理，再试一次不调用该引理、直接归纳的证明。两种方法分别把哪一步留给了 Lean？
+\subhead{4　修复一个太弱的归纳假设}
+输入是整数列表 $[-3,5]$，累加器初值是 $0$。请分别写下第一、二次递归调用的参数，以及下一次应调用的归纳假设。如果证明中把初值锁死在 $0$，第一次卡在哪个式子？
+\subhead{5　一轮插入的两张收据}
+把 $3$ 插入 $[1,3,4]$。写下完整结果，指出至少一个重复值。在表头 $1$ 选择“继续递归”的分支时，为证明表头能排在新尾部前面，你需要说明新尾部元素的哪两种来历？
+\subhead{6　只测是否缺失够不够}
+某人修改了线性查找：如果目标出现，总返回 \src{some 0}；否则返回 \src{none}。这个函数能通过第 17 页的缺失规格吗？给出长度尽量短的输入，让第 18 页的下标规格失败。
+\clearpage\pdfbookmark[0]{前三题的可运行证明}{p20}\label{p20}\HandoutLesson{自测 · 参考解答}{前三题的可运行证明}
+\subhead{1　让目标决定取哪一个投影}
+\begin{leanblock}
+\lineofcode{0.0}{example (P Q R : Prop) (h : (P \ensuremath{\wedge} Q) \ensuremath{\wedge} R) : R \ensuremath{\wedge} Q := by}
+\lineofcode{1.0}{constructor}
+\lineofcode{1.0}{\ensuremath{\cdot} exact h.right}
+\lineofcode{1.0}{\ensuremath{\cdot} exact h.left.right}
+\end{leanblock}
+第一项目标是 $R$，位于外层右侧。第二项目标是 $Q$，先从外层向左取出 $P\wedge Q$，再向右取出 $Q$。若把两个分支的答案交换，第一处就会出现类型不匹配。
+\subhead{2　改写已知条件}
+\begin{leanblock}
+\lineofcode{0.0}{example (a b : Nat) (h : a = b) (ha : a + 1 = 9) :}
+\lineofcode{2.0}{b + 1 = 9 := by}
+\lineofcode{1.0}{rw [h] at ha}
+\lineofcode{1.0}{exact ha}
+\end{leanblock}
+\src{at ha} 选定已知条件作为重写位置。$a+1=9$ 变成 $b+1=9$，因此现在的 \src{ha} 与目标相同。另一种写法是在目标中用 \src{rw [\ensuremath{\leftarrow} h]}，再使用原来的 \src{ha}。
+\subhead{3　复用引理，或者重新归纳}
+把第 19 页的 \src{countItems} 和第 7 页的 \src{appendNil} 放在同一命名空间后，第一种证明只需 \src{rw [appendNil xs]}，它把函数的输入替换为 \src{xs}。第二种写成：
+\begin{leanblock}
+\lineofcode{0.0}{example (xs : List Nat) : countItems (xs ++ []) = countItems xs := by}
+\lineofcode{1.0}{induction xs with}
+\lineofcode{1.0}{| nil => rfl}
+\lineofcode{1.0}{| cons x rest ih =>}
+\lineofcode{2.0}{change countItems (rest ++ []) + 1 = countItems rest + 1}
+\lineofcode{2.0}{rw [ih]}
+\end{leanblock}
+这里先用定义把“数一个非空表”展开成“数尾部再加一”。$+1$ 在两边都保留，归纳假设替换的是内部的计数。比较第 7 页的证明：那里两边相同的是表头，这里两边相同的是加一操作。
+\clearpage\pdfbookmark[0]{后三题与独立读证明的方法}{p21}\label{p21}\HandoutLesson{自测 · 参考解答}{后三题与独立读证明的方法}
+\subhead{4　初值要能跟着程序一起改变}
+从 \src{sumFrom 0 [-3,5]} 开始，下一次是 \src{sumFrom (-3) [5]}，再下一次是 \src{sumFrom 2 []}。第一步推理需要把适用于尾部 $[5]$ 的归纳假设用在初值 $-3$ 上。若只知道 \src{sumFrom 0 [5] = [5].sum} 的数学内容，等式左侧不能与当前调用匹配。把初值推广后，$-3+5=2$，随后空表直接返回 $2$。
+\subhead{5　把来历与顺序分别核对}
+先保留 $1$，对 $[3,4]$ 递归插入 $3$。$3\le3$ 成立，于是新尾部变成 $[3,3,4]$，最终结果是 $[1,3,3,4]$。一次插入的排列引理保证新尾部成员要么是新插入的 $3$，要么来自旧尾部 $[3,4]$。第一种用 $1\le3$；第二种用旧列的有序性。值相同可能同时满足两种描述，这不会妨碍分情况证明。
+\subhead{6　把错误放进能发现它的规格}
+按题设，程序恰在目标缺失时返回 \src{none}，所以通过缺失规格。取列表 $[7,4]$ 和目标 $4$。它返回 \src{some 0}，而 $[7,4][0]$ 是 $7$。在长度为零或一的列表中，若找到目标，唯一可行的位置就是 $0$，因此长度二已经是最短反例。
+\subhead{下一次打开一个陌生定理}
+先把定理翻成“任给哪些对象、另需哪些假设、最终保证什么”。给它挑一个最小的正例和一个能暴露缺失条件的反例。随后对着源码只读当前一行：这一行引用的证明来自哪里？它的结论是否与当前目标对得上？遇到递归或归纳，多问一句“哪个参数真的变小了，哪个参数下次会改变”。
+\HandoutBox{闭卷验收：能用自己的话解释「只证明有序还差什么」「为何要 generalizing acc」「为何查找的 some 分支需要加一」，再回到实验室逐行预测目标。}
+\clearpage\pdfbookmark[0]{课程、定理与查阅入口}{p22}\label{p22}\HandoutLesson{索引 · 回到源码}{课程、定理与查阅入口}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}Xr@{}}\toprule
+源文件 & 定理、定义或程序状态 & 页\\\midrule
+Foundations & \src{swapAnd}，引入、拆分与两个投影 & 2–4\\
+& \src{addOneEq}，重写方向、自反性 & 5\\
+& \src{appendNil}，列表拼接、结构归纳 & 6–7\\
+SumAndSearch & \src{sumFrom}, \src{sumFrom\_correct}, \src{sumList\_correct}，累加器与结合律 & 8–9\\
+InsertionSort & \src{insert}, \src{sortFrom}, \src{insertionTraceFrom}, \src{insertionTrace}，一次插入与逐轮状态 & 10\\
+& \src{insert\_perm}, \src{insert\_ordered}，排列与有序性的保持 & 11–13\\
+& \src{sortFrom\_ordered}, \src{sortFrom\_perm}, \src{insertionSort}, \src{insertionSort\_correct} & 14\\
+& \src{descending\_correct}，传递性与全可比性 & 15\\
+SumAndSearch & \src{linearSearch}, \src{linearSearch\_none\_iff}, \src{linearSearch\_sound} & 16–18\\\bottomrule\end{tabularx}
+\subhead{版本、模型与资料}
+本讲义对照站内三个同名 \src{.lean} 文件，使用 Lean 4.28.0 和其标准库。新增练习的可运行解答可在阅读器下载。阅读器展示的讲义页与下载 PDF 的页码一致。
+《算法导论》第四版 §2.1 以数组讲插入排序。本讲义用自然数列表证明排序和查找，用整数列表证明求和；插入排序处理的是结果有序性和元素保留。数组下标的内存操作、时间界和稳定性需要各自的规格。书中的练习号用于定位主题，书目与配套资源见 \href{https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/}{MIT Press 第四版书页}。
+可在 \href{https://yeyaozhi.eu.cc/learning/lean-lab/}{Lean 实验室} 调出 8 节交互课，或从 \href{https://tanktechnology.github.io/CLRS-Lean/}{CLRS-Lean 章节导读} 查阅更多选定算法。策略和证明项的关系可读 Lean 官方教材 \href{https://lean-lang.org/theorem_proving_in_lean4/Tactics/}{Tactics}；列表归纳的原理见 \href{https://lean-lang.org/theorem_proving_in_lean4/Induction-and-Recursion/}{Induction and Recursion}。
+\end{document}
