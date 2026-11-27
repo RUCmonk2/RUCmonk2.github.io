@@ -12,6 +12,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { Locale } from "next-intl";
 
+import { HandoutReader } from "@/components/lean-lab/handout-reader";
 import s from "@/components/lean-lab/lean-lab.module.css";
 import { Workbench } from "@/components/lean-lab/workbench";
 import { lessonNotes } from "@/data/lean-lab/lessons";
@@ -81,13 +82,10 @@ export default async function LeanLabPage({ params }: Props) {
               )}
             </p>
             <div className={s.heroActions}>
-              <Link
-                href={prefix + "/learning/lean-lab/handout/"}
-                className={s.primary}
-              >
+              <a href="#lean-handout" className={s.primary}>
                 <BookOpen size={17} aria-hidden="true" />{" "}
                 {t("阅读自学讲义", "Read handout (Chinese)")}
-              </Link>
+              </a>
               <a href="#proof" className={s.secondary}>
                 {t("开始读证明", "Start proving")}{" "}
                 <ArrowDown size={17} aria-hidden="true" />
@@ -185,6 +183,8 @@ export default async function LeanLabPage({ params }: Props) {
           samples={replays.samples}
           sources={sources}
         />
+
+        <HandoutReader locale={language} standalone={false} />
 
         <footer className={s.footer}>
           <Link href={prefix + "/tutorials/lean-ai4math-ai4tcs"}>

@@ -34,3 +34,15 @@ export function lessonForPage(page: number): LessonId | undefined {
   if (page === 15) return "descending";
   if (page <= 18) return "search";
 }
+
+export const unitId = (number: number) => "unit-" + number;
+export const handoutGroups = [
+  { start: 1, end: 5, title: "命题与证明" },
+  { start: 6, end: 9, title: "列表、归纳与求和" },
+  { start: 10, end: 15, title: "插入排序的正确性" },
+  { start: 16, end: 18, title: "线性查找" },
+  { start: 19, end: 22, title: "自测与参考解答" },
+  { start: 23, end: 29, title: "二进制加法与算法分析" },
+  { start: 30, end: 40, title: "归并、二分与两数之和" },
+  { start: 41, end: 51, title: "章末思考题" },
+];

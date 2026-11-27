@@ -1,294 +1,331 @@
-"use client";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useLayoutEffect, useRef, useState } from "react";
+import katex from "katex";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Download } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 import {
   chapterPage,
-  chapterStart,
   handoutAssets,
-  handoutTitles as titles,
+  handoutTitles,
   lessonForPage,
+  unitId,
 } from "@/data/lean-lab/handout";
-import links from "@/data/lean-lab/handout-links.json";
 import { lessonNotes } from "@/data/lean-lab/lessons";
 import type { LearningLocale } from "@/data/learning/types";
 
-import book from "./handout-reader.module.css";
-import lab from "./lean-lab.module.css";
+import { CopyCode, HandoutNavigation } from "./handout-navigation";
+import s from "./handout-reader.module.css";
 
-export function HandoutReader({ locale }: { locale: LearningLocale }) {
-  const en = locale === "en";
-  const t = (zh: string, english: string) => (en ? english : zh);
-  const labPath = (en ? "/en" : "") + "/learning/lean-lab/";
-  const [page, setPage] = useState(1);
-  const [zoom, setZoom] = useState(100);
-  const frame = useRef<HTMLDivElement>(null);
-  const pdf = handoutAssets + "/lean-handout.pdf";
-  const lesson = lessonForPage(page);
-  const chapter = chapterPage(page);
-
-  function scrollToPage(number: number) {
-    const viewport = frame.current;
-    const sheet = viewport?.children[number - 1] as HTMLElement | undefined;
-    if (viewport && sheet)
-      viewport.scrollTo({ top: sheet.offsetTop, left: 0, behavior: "instant" });
-  }
-
-  useLayoutEffect(() => {
-    function readPage() {
-      const value = Number(new URLSearchParams(location.search).get("page"));
-      const selected =
-        Number.isInteger(value) && value >= 1 && value <= titles.length
-          ? value
-          : 1;
-      setPage(selected);
-      scrollToPage(selected);
-    }
-    readPage();
-    window.addEventListener("popstate", readPage);
-    return () => window.removeEventListener("popstate", readPage);
-  }, [zoom]);
-
-  function record(value: number) {
-    setPage(value);
-    const url = new URL(location.href);
-    url.searchParams.set("page", String(value));
-    history.replaceState(history.state, "", url);
-  }
-
-  function turn(value: number) {
-    if (value < 1 || value > titles.length) return;
-    scrollToPage(value);
-    record(value);
-  }
-
-  function trackPage() {
-    const viewport = frame.current;
-    if (!viewport) return;
-    if (
-      viewport.scrollTop + viewport.clientHeight >=
-      viewport.scrollHeight - 1
-    ) {
-      if (page !== titles.length) record(titles.length);
-      return;
-    }
-    const line = viewport.scrollTop + Math.min(96, viewport.clientHeight / 3);
-    const next = Array.from(viewport.children).findIndex((sheet) => {
-      const el = sheet as HTMLElement;
-      return el.offsetTop + el.offsetHeight > line;
-    });
-    if (next >= 0 && next + 1 !== page) record(next + 1);
-  }
-
+function ProofDiagram() {
   return (
-    <main className={lab.page}>
-      <div className={book.shell}>
-        <Link href={labPath} className={book.back}>
-          ← {t("Lean 实验室", "Lean Lab")}
-        </Link>
-        <header className={book.heading}>
-          <h1>
-            {t(
-              "从第一行 Lean 到算法正确性",
-              "From your first Lean proof to algorithm correctness",
-            )}
-          </h1>
-          <p>
-            {t(
-              `中文自学讲义 · ${titles.length} 页 · 含第四版第 2 章练习与思考题`,
-              `Chinese self-study handout · ${titles.length} pages · CLRS 4th edition chapter 2 exercises and problems`,
-            )}
-          </p>
-          <nav
-            className={book.links}
-            aria-label={t("按题组阅读", "Exercise groups")}
-          >
-            {[
-              [chapterStart, "2.1-5"],
-              [25, "§2.2"],
-              [30, "§2.3"],
-              [41, t("章末思考题", "Chapter problems")],
-            ].map(([number, label]) => (
-              <a
-                key={number}
-                href={"?page=" + number}
-                onClick={(event) => {
-                  event.preventDefault();
-                  turn(Number(number));
-                }}
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-        </header>
-        <section
-          className={book.reader}
-          aria-label={t("讲义阅读器", "Handout reader")}
-        >
-          <div className={book.controls}>
-            <button
-              type="button"
-              disabled={page === 1}
-              onClick={() => turn(page - 1)}
-            >
-              {t("上一页", "Previous")}
-            </button>
-            <label>
-              {t("页码", "Page")}{" "}
-              <select
-                aria-label={t("跳到讲义页", "Go to handout page")}
-                value={page}
-                onChange={(e) => turn(Number(e.target.value))}
-              >
-                {titles.map((title, i) => (
-                  <option key={title} value={i + 1}>
-                    {i + 1} · {title}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <button
-              type="button"
-              disabled={page === titles.length}
-              onClick={() => turn(page + 1)}
-            >
-              {t("下一页", "Next")}
-            </button>
-            <label className={book.zoom}>
-              {t("缩放", "Zoom")}{" "}
-              <select
-                value={zoom}
-                onChange={(e) => setZoom(Number(e.target.value))}
-              >
-                <option value={100}>{t("适合宽度", "Fit width")}</option>
-                <option value={150}>150%</option>
-                <option value={200}>200%</option>
-              </select>
-            </label>
-          </div>
-          <div className={book.foot}>
-            <span aria-live="polite">
-              {page} / {titles.length}
-            </span>
-            {chapter && (
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={
-                  "https://live.lean-lang.org/#url=" +
-                  encodeURIComponent(
-                    "https://yeyaozhi.eu.cc" +
-                      handoutAssets +
-                      "/" +
-                      chapter.file,
-                  )
-                }
-              >
-                {t("在线打开本题代码", "Open this proof online")} ↗
-              </a>
-            )}
-            {chapter && (
-              <a href={handoutAssets + "/" + chapter.file} download>
-                {t("下载本题 Lean 源码", "Download this proof")} ·{" "}
-                {chapter.file}
-              </a>
-            )}
-            {lesson && (
-              <Link href={labPath + "?lesson=" + lesson + "#proof"}>
-                {t("动手验证", "Try the proof")} ·{" "}
-                {lessonNotes[lesson].title[locale]} →
-              </Link>
-            )}
-          </div>
+    <figure className={s.diagram}>
+      <figcaption>插入排序的证明依赖</figcaption>
+      <div className={s.proofGrid} aria-hidden="true">
+        <code>insert_perm</code>
+        <i>→</i>
+        <code>insert_ordered</code>
+        <i>↓</i>
+        <span />
+        <i>↓</i>
+        <code>sortFrom_perm</code>
+        <span />
+        <code>sortFrom_ordered</code>
+        <i>↘</i>
+        <span />
+        <i>↙</i>
+        <code className={s.finalNode}>insertionSort_correct</code>
+      </div>
+      <p className="sr-only">
+        insert_perm 推出 insert_ordered，也用于证明
+        sortFrom_perm。insert_ordered 用于证明 sortFrom_ordered。最后两个
+        sortFrom 引理一起证明 insertionSort_correct。
+      </p>
+    </figure>
+  );
+}
+
+function LeanTokens({ text }: { text: string }) {
+  return text
+    .split(
+      /(#[A-Za-z]+|\b(?:theorem|def|example|by|intro|exact|constructor|change|induction|generalizing|with|cases|simp|simpa|using|have|fun|if|then|else|let|rw|rfl|omega|grind|obtain|apply|where|return|for|in|do|Nat|Int|Bool|List|Prop|Option)\b|⊢|→|↔|:=)/u,
+    )
+    .map((token, i) =>
+      i % 2 ? (
+        <span key={i} className={s.token}>
+          {token}
+        </span>
+      ) : (
+        token
+      ),
+    );
+}
+
+function Equation({
+  tex,
+  display = false,
+}: {
+  tex: string;
+  display?: boolean;
+}) {
+  const Tag = display ? "div" : "span";
+  // Browser math tools may annotate the static KaTeX markup before hydration.
+  return (
+    <Tag
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{
+        __html: katex.renderToString(tex, {
+          displayMode: display,
+          strict: "ignore",
+          throwOnError: true,
+        }),
+      }}
+    />
+  );
+}
+
+function Prose({
+  text,
+  english,
+  standalone,
+}: {
+  text: string;
+  english: boolean;
+  standalone: boolean;
+}) {
+  const Subheading = standalone ? "h3" : "h4";
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm, remarkMath]}
+      components={{
+        code: ({ children, className }) =>
+          className?.split(" ").includes("math-inline") ? (
+            <Equation tex={String(children)} />
+          ) : (
+            <code className={className}>{children}</code>
+          ),
+        h3: ({ children }) => <Subheading>{children}</Subheading>,
+        table: ({ children }) => (
           <div
-            ref={frame}
-            onScroll={trackPage}
-            className={book.viewport}
+            className={s.tableWrap}
             tabIndex={0}
-            aria-label={t(
-              "讲义页，使用翻页键翻页",
-              "Current page, use Page Up or Page Down to turn",
-            )}
-            onKeyDown={(e) => {
-              if (e.key === "PageUp" || e.key === "PageDown") {
-                e.preventDefault();
-                turn(page + (e.key === "PageUp" ? -1 : 1));
-              }
-            }}
+            role="region"
+            aria-label="讲义表格"
           >
-            {titles.map((title, i) => (
-              <div
-                key={title}
-                className={book.paper}
-                style={{ width: zoom + "%" }}
-              >
-                <Image
-                  unoptimized
-                  src={
-                    handoutAssets +
-                    "/pages/page-" +
-                    String(i + 1).padStart(2, "0") +
-                    ".webp"
-                  }
-                  width={1254}
-                  height={1709}
-                  alt={t("讲义第", "Handout page ") + (i + 1) + " · " + title}
-                />
-                {links[i].map(({ box, url }, j) => (
-                  <a
-                    key={j}
-                    className={book.pdfLink}
-                    href={
-                      url.startsWith(
-                        "https://yeyaozhi.eu.cc/learning/lean-lab/",
-                      )
-                        ? url.replace(
-                            "https://yeyaozhi.eu.cc/learning/lean-lab/",
-                            labPath,
-                          )
-                        : url
-                    }
-                    aria-label={
-                      url.includes("?lesson=")
-                        ? t("打开对应实验", "Open corresponding proof")
-                        : url
-                    }
-                    style={{
-                      left: box[0] + "%",
-                      top: box[1] + "%",
-                      width: box[2] + "%",
-                      height: box[3] + "%",
-                    }}
-                  />
-                ))}
-              </div>
-            ))}
+            <table>{children}</table>
           </div>
-        </section>
-        <div className={book.links}>
-          <a href={pdf + "#page=" + page} target="_blank" rel="noreferrer">
-            {t("用 PDF 阅读器打开本页", "Open this page in your PDF viewer")} ↗
+        ),
+        pre: ({ node }) => {
+          const code = node?.children[0];
+          if (!code || code.type !== "element" || code.tagName !== "code")
+            throw new Error("Expected fenced code in Lean handout");
+          const value = code.children
+            .map((child) => (child.type === "text" ? child.value : ""))
+            .join("")
+            .replace(/\n$/, "");
+          if (
+            Array.isArray(code.properties.className) &&
+            code.properties.className.includes("math-display")
+          )
+            return <Equation tex={value} display />;
+          const lean =
+            Array.isArray(code.properties.className) &&
+            code.properties.className.includes("language-lean");
+          const label = lean
+            ? "Lean 4"
+            : value.includes("⊢")
+              ? "证明状态"
+              : "伪代码";
+          return (
+            <figure className={s.listing}>
+              <figcaption>
+                <span>{label}</span>
+                <CopyCode english={english} />
+              </figcaption>
+              <pre tabIndex={0}>
+                <code>{lean ? <LeanTokens text={value} /> : value}</code>
+              </pre>
+            </figure>
+          );
+        },
+      }}
+    >
+      {text}
+    </ReactMarkdown>
+  );
+}
+
+export async function HandoutReader({
+  locale,
+  standalone = true,
+}: {
+  locale: LearningLocale;
+  standalone?: boolean;
+}) {
+  const english = locale === "en";
+  const t = (zh: string, en: string) => (english ? en : zh);
+  const labPath = (english ? "/en" : "") + "/learning/lean-lab/";
+  const raw = await readFile(
+    path.join(process.cwd(), "content/handouts/lean/lean.zh.md"),
+    "utf8",
+  );
+  const parts = raw.split(/^## (\d+) \| ([^\n]+)$/m);
+  const sections = [];
+  for (let i = 1; i < parts.length; i += 3) {
+    const number = Number(parts[i]),
+      title = parts[i + 1],
+      text = parts[i + 2].trim();
+    if (number !== sections.length + 1 || !text)
+      throw new Error("Invalid Lean handout section " + number);
+    sections.push({ number, title, text });
+  }
+  if (sections.length !== handoutTitles.length)
+    throw new Error("Missing Lean handout sections");
+  const titles = sections.map(({ number, title }) => {
+    const chapter = chapterPage(number);
+    return chapter ? chapter.exercise + " · " + title : title;
+  });
+  const Heading = standalone ? "h1" : "h2";
+  const SectionHeading = standalone ? "h2" : "h3";
+  const article = (
+    <article
+      lang="zh-CN"
+      id="lean-handout"
+      className={s.article}
+      data-embedded={standalone ? undefined : true}
+    >
+      <header className={s.masthead}>
+        {standalone ? (
+          <a className={s.back} href={labPath}>
+            <ArrowLeft size={15} aria-hidden />
+            {t("Lean 实验室", "Lean Lab")}
           </a>
-          <a href={handoutAssets + "/chapter-two-lean.zip"} download>
-            {t(
-              "第 2 章续篇 Lean 源码包",
-              "Chapter 2 continuation · Lean source bundle",
-            )}
+        ) : (
+          <a className={s.back} href={labPath + "handout/"}>
+            {t("单独阅读讲义", "Open the study notes")}{" "}
+            <ArrowUpRight size={14} aria-hidden />
           </a>
-          <a href={pdf} download>
-            {t("下载 PDF", "Download PDF")}
-          </a>
-          <a href={handoutAssets + "/lean-handout.tex"} download>
-            {t("LaTeX 源文件", "LaTeX source")}
-          </a>
-          <a href={handoutAssets + "/Practice.lean"} download>
-            {t("可运行的练习解答", "Runnable Lean solutions")}
-          </a>
+        )}
+        <div className={s.mastGrid}>
+          <div>
+            <div className={s.edition}>
+              Lean 4.28.0 <span>/</span> {t("自学讲义", "Chinese study notes")}
+            </div>
+            <Heading>
+              从第一行 <em>Lean</em>
+              <br />
+              到算法正确性
+            </Heading>
+            <p className={s.lede}>
+              从一个合取命题开始，学会读假设和目标，再动手验证《算法导论》第四版第
+              2 章。
+            </p>
+          </div>
+          <figure className={s.proofCard}>
+            <figcaption>交换合取的顺序</figcaption>
+            <div className={s.premise}>
+              <span>已知</span>
+              <code>h : P ∧ Q</code>
+            </div>
+            <div className={s.projections}>
+              <code>h.right : Q</code>
+              <code>h.left : P</code>
+            </div>
+            <div className={s.conclusion}>
+              <span>结论</span>
+              <code>Q ∧ P</code>
+            </div>
+            <a href="#unit-3">
+              读这段证明 <ArrowRight size={14} aria-hidden />
+            </a>
+          </figure>
+        </div>
+      </header>
+      <div className={s.layout}>
+        <HandoutNavigation
+          english={english}
+          titles={titles}
+          standalone={standalone}
+        />
+        <div className={s.column}>
+          {sections.map(({ number, title, text }) => {
+            const chapter = chapterPage(number),
+              lesson = lessonForPage(number);
+            return (
+              <section key={number} id={unitId(number)} className={s.unit}>
+                <div className={s.locator}>
+                  第 {number} 节{" "}
+                  {chapter && (
+                    <>
+                      <span>/</span>《算法导论》 {chapter.exercise}
+                    </>
+                  )}
+                </div>
+                <SectionHeading>{title}</SectionHeading>
+                <div className={s.prose}>
+                  {text.split("{{sort-proof-diagram}}").map((part, index) => (
+                    <div key={index}>
+                      {index > 0 && <ProofDiagram />}
+                      <Prose
+                        text={part}
+                        english={english}
+                        standalone={standalone}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {(chapter || lesson || number === 19) && (
+                  <footer className={s.unitLinks}>
+                    {chapter && (
+                      <>
+                        <a
+                          href={
+                            "https://live.lean-lang.org/#url=" +
+                            encodeURIComponent(
+                              "https://yeyaozhi.eu.cc" +
+                                handoutAssets +
+                                "/" +
+                                chapter.file,
+                            )
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          在线运行本题 <ArrowUpRight size={14} aria-hidden />
+                        </a>
+                        <a href={handoutAssets + "/" + chapter.file} download>
+                          {chapter.file} <Download size={13} aria-hidden />
+                        </a>
+                      </>
+                    )}
+                    {lesson && (
+                      <a href={labPath + "?lesson=" + lesson + "#proof"}>
+                        动手验证 · {lessonNotes[lesson].title[locale]}{" "}
+                        <ArrowRight size={14} aria-hidden />
+                      </a>
+                    )}
+                    {number === 19 && (
+                      <a href={handoutAssets + "/Practice.lean"} download>
+                        下载练习解答 <Download size={14} aria-hidden />
+                      </a>
+                    )}
+                  </footer>
+                )}
+              </section>
+            );
+          })}
+          <footer className={s.end}>
+            <a href={handoutAssets + "/chapter-two-lean.zip"} download>
+              下载第 2 章 Lean 源码包 <Download size={14} aria-hidden />
+            </a>
+            <a href="#lean-handout">回到开头 ↑</a>
+          </footer>
         </div>
       </div>
-    </main>
+    </article>
   );
+  return standalone ? <main className={s.standalone}>{article}</main> : article;
 }

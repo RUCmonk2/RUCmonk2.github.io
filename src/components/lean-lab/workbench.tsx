@@ -20,7 +20,7 @@ import {
   clrsRepository,
   clrsUpstream,
 } from "@/data/lean-lab/chapters";
-import { handoutPath, lessonPage } from "@/data/lean-lab/handout";
+import { lessonPage, unitId } from "@/data/lean-lab/handout";
 import {
   algorithms,
   basics,
@@ -184,15 +184,8 @@ function ReplayPanel({
           <p>{notes.intro[locale]}</p>
         </div>
         <div className={s.sourceActions}>
-          <Link
-            href={
-              (locale === "en" ? "/en" : "") +
-              handoutPath +
-              "?page=" +
-              lessonPage[id]
-            }
-          >
-            {t("读讲义", "Handout")} · p.{lessonPage[id]}
+          <Link href={"#" + unitId(lessonPage[id])}>
+            {t("读本节讲解", "Read this section")}
           </Link>
           <a href={online} target="_blank" rel="noreferrer">
             <ExternalLink size={14} aria-hidden="true" />{" "}
@@ -575,11 +568,11 @@ function ChapterIndex({
         <div className={s.indexFoot}>
           <span>
             {t(
-              "讲义第 23 页从 2.1-5 二进制加法开始，继续讲解 §2.2、§2.3 和章末四道思考题。",
-              "The handout continues on page 23 with binary addition, §§2.2–2.3, and all four chapter problems.",
+              "讲义第 23 节从 2.1-5 二进制加法开始，继续讲解 §2.2、§2.3 和章末四道思考题。",
+              "The handout continues in section 23 with binary addition, §§2.2–2.3, and all four chapter problems.",
             )}
           </span>
-          <a href={(locale === "en" ? "/en" : "") + handoutPath + "?page=23"}>
+          <a href={"#unit-23"}>
             {t("读第 2 章续篇", "Read the chapter continuation")}
           </a>
           <a href={clrsBook} target="_blank" rel="noreferrer">
