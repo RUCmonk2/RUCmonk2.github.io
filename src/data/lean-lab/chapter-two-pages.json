@@ -1,0 +1,147 @@
+[
+  {
+    "exercise": "2.1-5",
+    "title": "把最后一次进位也写下来",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2.1-5",
+    "title": "从一列的等式拼出整串的等式",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2.2-1",
+    "title": "给三次函数找到两道界",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2.2-2",
+    "title": "选择排序每一轮固定哪个位置",
+    "file": "SortingPasses.lean"
+  },
+  {
+    "exercise": "2.2-2",
+    "title": "选择排序的证据与比较次数",
+    "file": "SortingPasses.lean"
+  },
+  {
+    "exercise": "2.2-3",
+    "title": "线性查找平均要看几项",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2.2-4",
+    "title": "给排序加上有序输入的快速返回",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2.3-1",
+    "title": "八个数的归并树",
+    "file": "SearchAndMerge.lean"
+  },
+  {
+    "exercise": "2.3-2",
+    "title": "递归会不会制造空区间",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2.3-3",
+    "title": "归并循环里，已经写下的前缀是什么",
+    "file": "SearchAndMerge.lean"
+  },
+  {
+    "exercise": "2.3-4",
+    "title": "用高度写清归并递推的基例",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2.3-5",
+    "title": "递归地插入最后一张牌",
+    "file": "Inversions.lean"
+  },
+  {
+    "exercise": "2.3-6",
+    "title": "二分查找怎样保留目标所在的半边",
+    "file": "SearchAndMerge.lean"
+  },
+  {
+    "exercise": "2.3-6",
+    "title": "把找到、没找到和最坏时间都说清楚",
+    "file": "SearchAndMerge.lean"
+  },
+  {
+    "exercise": "2.3-6 · 证明细读",
+    "title": "左半边查找失败之后",
+    "file": "SearchAndMerge.lean"
+  },
+  {
+    "exercise": "2.3-7",
+    "title": "二分找到了空位，牌还得搬过去",
+    "file": "Inversions.lean"
+  },
+  {
+    "exercise": "2.3-8",
+    "title": "两个不同位置的和",
+    "file": "SearchAndMerge.lean"
+  },
+  {
+    "exercise": "2.3-8 · 证明细读",
+    "title": "从有序数组带回原来的两数之和",
+    "file": "SearchAndMerge.lean"
+  },
+  {
+    "exercise": "2-1(a,b)",
+    "title": "在归并树的叶子换一种排序",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2-1(c,d)",
+    "title": "阈值能长多快，实机又该怎样选",
+    "file": "BinaryAndCosts.lean"
+  },
+  {
+    "exercise": "2-2(a,b)",
+    "title": "冒泡的一趟从右往左走",
+    "file": "SortingPasses.lean"
+  },
+  {
+    "exercise": "2-2(c,d)",
+    "title": "每趟结束，前缀多固定一个元素",
+    "file": "SortingPasses.lean"
+  },
+  {
+    "exercise": "2-3(a,b)",
+    "title": "把多项式折起来，少算多少次",
+    "file": "Horner.lean"
+  },
+  {
+    "exercise": "2-3(c)",
+    "title": "为什么中间值恰好是一个后缀多项式",
+    "file": "Horner.lean"
+  },
+  {
+    "exercise": "2-4(a,b)",
+    "title": "逆序数是在数哪些位置对",
+    "file": "Inversions.lean"
+  },
+  {
+    "exercise": "2-4(c)",
+    "title": "插入排序的每次右移对应哪个逆序",
+    "file": "Inversions.lean"
+  },
+  {
+    "exercise": "2-4(d)",
+    "title": "在一次归并里数完跨界逆序",
+    "file": "Inversions.lean"
+  },
+  {
+    "exercise": "2-4(d)",
+    "title": "把跨界计数接回整棵归并树",
+    "file": "Inversions.lean"
+  },
+  {
+    "exercise": "2-4(d) · 证明细读",
+    "title": "一次批量计数的等式从哪儿来",
+    "file": "Inversions.lean"
+  }
+]

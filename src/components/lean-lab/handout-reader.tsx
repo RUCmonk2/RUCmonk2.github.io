@@ -4,9 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
 
-import { handoutAssets, lessonForPage } from "@/data/lean-lab/handout";
+import {
+  chapterPage,
+  chapterStart,
+  handoutAssets,
+  handoutTitles as titles,
+  lessonForPage,
+} from "@/data/lean-lab/handout";
 import links from "@/data/lean-lab/handout-links.json";
-import titles from "@/data/lean-lab/handout-titles.json";
 import { lessonNotes } from "@/data/lean-lab/lessons";
 import type { LearningLocale } from "@/data/learning/types";
 
@@ -22,6 +27,7 @@ export function HandoutReader({ locale }: { locale: LearningLocale }) {
   const frame = useRef<HTMLDivElement>(null);
   const pdf = handoutAssets + "/lean-handout.pdf";
   const lesson = lessonForPage(page);
+  const chapter = chapterPage(page);
 
   function scrollToPage(number: number) {
     const viewport = frame.current;
@@ -91,10 +97,32 @@ export function HandoutReader({ locale }: { locale: LearningLocale }) {
           </h1>
           <p>
             {t(
-              "中文自学讲义 · 22 页 · 含练习和参考解答",
-              "Chinese self-study handout · 22 pages · Exercises and worked solutions",
+              `中文自学讲义 · ${titles.length} 页 · 含第四版第 2 章练习与思考题`,
+              `Chinese self-study handout · ${titles.length} pages · CLRS 4th edition chapter 2 exercises and problems`,
             )}
           </p>
+          <nav
+            className={book.links}
+            aria-label={t("按题组阅读", "Exercise groups")}
+          >
+            {[
+              [chapterStart, "2.1-5"],
+              [25, "§2.2"],
+              [30, "§2.3"],
+              [41, t("章末思考题", "Chapter problems")],
+            ].map(([number, label]) => (
+              <a
+                key={number}
+                href={"?page=" + number}
+                onClick={(event) => {
+                  event.preventDefault();
+                  turn(Number(number));
+                }}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
         </header>
         <section
           className={book.reader}
@@ -145,6 +173,29 @@ export function HandoutReader({ locale }: { locale: LearningLocale }) {
             <span aria-live="polite">
               {page} / {titles.length}
             </span>
+            {chapter && (
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={
+                  "https://live.lean-lang.org/#url=" +
+                  encodeURIComponent(
+                    "https://yeyaozhi.eu.cc" +
+                      handoutAssets +
+                      "/" +
+                      chapter.file,
+                  )
+                }
+              >
+                {t("在线打开本题代码", "Open this proof online")} ↗
+              </a>
+            )}
+            {chapter && (
+              <a href={handoutAssets + "/" + chapter.file} download>
+                {t("下载本题 Lean 源码", "Download this proof")} ·{" "}
+                {chapter.file}
+              </a>
+            )}
             {lesson && (
               <Link href={labPath + "?lesson=" + lesson + "#proof"}>
                 {t("动手验证", "Try the proof")} ·{" "}
@@ -220,6 +271,12 @@ export function HandoutReader({ locale }: { locale: LearningLocale }) {
         <div className={book.links}>
           <a href={pdf + "#page=" + page} target="_blank" rel="noreferrer">
             {t("用 PDF 阅读器打开本页", "Open this page in your PDF viewer")} ↗
+          </a>
+          <a href={handoutAssets + "/chapter-two-lean.zip"} download>
+            {t(
+              "第 2 章续篇 Lean 源码包",
+              "Chapter 2 continuation · Lean source bundle",
+            )}
           </a>
           <a href={pdf} download>
             {t("下载 PDF", "Download PDF")}

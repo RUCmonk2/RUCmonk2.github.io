@@ -485,8 +485,8 @@ function ChapterIndex({
           </h2>
           <p>
             {t(
-              "按 35 章查阅 CLRS-Lean 的选定算法与定理。整本书的伪代码和习题仍有缺项；站内逐步课目前集中在 §2.1。",
-              "Browse selected algorithms and theorems in CLRS-Lean by chapter. Textbook pseudocode and exercises still have gaps. The local lessons focus on §2.1.",
+              "按 35 章查阅 CLRS-Lean 的选定算法与定理。站内逐步课从 §2.1 起步，自学讲义逐题讲到第 2 章末。",
+              "Browse selected algorithms and theorems in CLRS-Lean by chapter. The interactive lessons start at §2.1; the handout continues through the chapter problems.",
             )}
           </p>
         </div>
@@ -575,10 +575,13 @@ function ChapterIndex({
         <div className={s.indexFoot}>
           <span>
             {t(
-              "站内范围：§2.1 插入排序、2.1-1 的原创输入走查，以及 2.1-2 至 2.1-4 的列表模型。2.1-5（二进制加法）仍待补齐。",
-              "Local coverage: §2.1 insertion sort, an original trace for 2.1-1, and list models for 2.1-2 through 2.1-4. Binary addition (2.1-5) is still open.",
+              "讲义第 23 页从 2.1-5 二进制加法开始，继续讲解 §2.2、§2.3 和章末四道思考题。",
+              "The handout continues on page 23 with binary addition, §§2.2–2.3, and all four chapter problems.",
             )}
           </span>
+          <a href={(locale === "en" ? "/en" : "") + handoutPath + "?page=23"}>
+            {t("读第 2 章续篇", "Read the chapter continuation")}
+          </a>
           <a href={clrsBook} target="_blank" rel="noreferrer">
             {t("出版社资料", "Publisher resources")}{" "}
             <ExternalLink size={13} aria-hidden="true" />

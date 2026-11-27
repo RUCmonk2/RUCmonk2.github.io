@@ -76,8 +76,8 @@ export default async function LeanLabPage({ params }: Props) {
             <h1>{t("Lean 实验室", "Lean Lab")}</h1>
             <p>
               {t(
-                "用 22 页自学讲义读懂证明，再逐行运行实验。同一个例子，从纸上的两列「已知」和「待证」，一直写到 Lean 检查通过。",
-                "Read Lean code, proof states and handwritten reasoning side by side. Prove a small proposition, then use the same ideas to verify insertion sort.",
+                "从纸上的「已知」和「待证」读起，逐行运行 Lean，再跟着手算例子完成《算法导论》第四版第 2 章。",
+                "Read Lean code alongside proof states, then work through the exercises and problems of CLRS chapter 2 in the Chinese handout.",
               )}
             </p>
             <div className={s.heroActions}>

@@ -1,7 +1,18 @@
+import chapterTwoPages from "./chapter-two-pages.json";
+import introductoryTitles from "./handout-titles.json";
 import type { LessonId } from "./lessons";
 
 export const handoutPath = "/learning/lean-lab/handout/";
 export const handoutAssets = "/assets/lean-handout";
+export const handoutTitles = [
+  ...introductoryTitles,
+  ...chapterTwoPages.map((p) => p.exercise + " · " + p.title),
+];
+export const chapterStart = introductoryTitles.length + 1;
+export function chapterPage(page: number) {
+  return chapterTwoPages[page - chapterStart];
+}
+
 export const lessonPage: Record<LessonId, number> = {
   propositions: 3,
   rewrite: 5,
